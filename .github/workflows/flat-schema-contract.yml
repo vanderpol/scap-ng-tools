@@ -28,6 +28,7 @@ jobs:
             tests/fixtures/v04-direct-prototype
             tests/fixtures/v04-draft-compatibility
             tools
+            schema/v0.4.0
             third_party/scap-1.4-schemas/oval_5.12.3
           filter: blob:none
           persist-credentials: false
