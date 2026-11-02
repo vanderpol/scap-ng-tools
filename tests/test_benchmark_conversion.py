@@ -12,7 +12,6 @@ import unittest
 
 from scap_ng_tools.contracts import FrozenSchemaSnapshot
 from scap_ng_tools.converter import convert_benchmark, convert_focused
-from scap_ng_tools.converter._v04_semantic.validation import document_errors
 
 from test_benchmark_inventory import PINS, stable_digest
 
@@ -108,6 +107,7 @@ class BenchmarkConversionParity(unittest.TestCase):
                     self.assertFalse(target.exists())
 
     def test_explicit_negative_semantic_boundaries_remain_active(self):
+        from scap_ng_tools.converter._v04_semantic.validation import document_errors
         documents, _ = convert_focused(
             schema_root=self.schema, source=self.files[0], sha256_pin=PINS[0]['sha'],
             rule_ids=['xccdf_mil.disa.stig_rule_SV-278139r1182083_rule',
