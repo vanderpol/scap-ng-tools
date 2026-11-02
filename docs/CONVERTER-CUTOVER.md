@@ -1,0 +1,78 @@
+# Direct 0.4 converter: flat-schema compatibility gate
+
+**Status: partial qualification only. Not a converter release, canonical repo
+rename authorization, or independent scanner proof.**
+
+The original `vanderpol/scap-ng` 0.4 converter is currently a monorepo tool.
+`v04_direct_converter.py` loads mapping records and JSON Schema definitions
+from its own checkout's `schema/v0.4.0/`. The future canonical specification
+checkout instead stores its frozen files in flat `schema/` and will be renamed
+from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover checks.
+
+## Contract established here
+
+- Consumers explicitly select the full canonical checkout or its flat
+  `schema/` directory. No GitHub network lookup, floating `main`, inherited
+  working-directory fallback or bundled copy of the schemas is permitted.
+- The `FrozenSchemaSnapshot` reader fails on legacy nested layouts, altered
+  bytes, incorrect logical IDs, unexpected reference counts, missing mappings,
+  bad capability names and duplicated source JSON keys.
+- The frozen 143-file aggregate SHA256 is
+  `476f5767276f5c2114f91b211cf4e159a75bee0806ea736fc631d9c40f4c4b80`.
+  The logical `$id` URIs still contain `v0.4.0`, independently of physical paths.
+- The external probe imports an **explicitly pinned legacy source checkout**,
+  produces the original direct converter's output and trace, substitutes only
+  the source of its 52 mapping records, and requires identical native output.
+  It validates the result against the flat schema. No source file is changed.
+- CI checks out the exact staging merge commit above into a separate directory
+  and runs the schema adapter tests against it. The staging repository name
+  in that workflow must be updated during the owner-controlled name cutover;
+  the pin cannot be silently changed to floating `main`.
+
+## Pinned Windows Server 2025 probe
+
+Prerequisites are an *already locally available* clone of the original
+SCAP-NG research checkout at `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`, a
+clean flat staging checkout at `ed4a9dce01af6849bf4be146c7678ef7804051e4`,
+and the signed ZIP fixture from the research checkout. Install pinned test
+dependencies for the original converter in the test environment. The source
+ZIP SHA256 below is separately verified by the probe; the tool never fetches it.
+
+```sh
+PYTHONPATH=src:/path/to/research/tools python scripts/verify_flat_converter.py \
+  --converter-root /path/to/research \
+  --converter-commit d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9 \
+  --schema-root /path/to/pinned-staging \
+  --source-package /path/to/research/tests/fixtures/v04-direct-prototype/server2025-signed.zip \
+  --source-sha256 2f46264b5fa21c8a033236121794ebe372314bf7458dac0aca4f81179fe7ece0 \
+  --rule xccdf_mil.disa.stig_rule_SV-278139r1182083_rule \
+  --rule xccdf_mil.disa.stig_rule_SV-278080r1180946_rule \
+  --expected-native-digest 497ac2042ddefd126c9723f181d655b1d5d4c4fad441c3f986a4b77315584c69
+```
+
+The pinned comparison covers **two Rule closures, 52 mapping records and six
+native documents**, with zero schema validation findings. The source converter
+acceptance suite (11 tests) also passed in the original repository. Neither
+result proves all 100 supported capabilities, larger regression corpora,
+scanner collection, compile/proof equivalence or the entire converter stack.
+
+## Remaining cutover gates
+
+1. Determine the minimum runtime dependency closure for the supported
+   converter features. The full proof/compile import graph still contains
+   research modules and must **not** be copied wholesale without review.
+2. Migrate converter code into an installable `scap-ng-tools` package, route
+   all schema reads through the explicit pinned snapshot, and preserve current
+   CLI behavior or clearly reject features not yet qualified. Do not silently
+   downgrade `--verify` or `--compile` modes.
+3. Migrate the editor metadata pack exporter and external tests to the flat
+   snapshot. Its manifest includes a source commit, so changing repositories
+   requires a deliberate pin/hash update even if schema bytes are identical.
+4. Publish a current, license-reviewed fixture/provenance manifest independent
+   of the original research repository before that repository becomes private.
+   Run accepted source regression and boundary tests against the new layout.
+5. Only after the above gates pass: owner-controlled repository rename, link
+   audit, release pin and external VS Code PR tasking.
+
+Scanner implementation prose remains deferred; this checkpoint only establishes
+offline schema contract resolution and a reproducible conversion comparison.
