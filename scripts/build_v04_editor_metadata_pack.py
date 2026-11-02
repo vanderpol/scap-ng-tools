@@ -26,7 +26,8 @@ from generate_v04_semantic_pack import GENERATOR, OVAL_COMMIT, git_head
 # 235 deterministic resource descriptors, 100 capability identities, one URI.
 # Source commit is purposely excluded from this digest.
 HISTORICAL_RESOURCES_SHA256 = 'faa1c81c01c34a212e33827e3628f9c355255c1030fa8aa8936cb9d28522c564'
-REVIEWED_RESOURCES_SHA256 = '0297c8367f828123bcec8afe39d8a85712a51d938e3c918081eb9be41d75b562'
+PRE_DISCOVERY_RESOURCES_SHA256 = '0297c8367f828123bcec8afe39d8a85712a51d938e3c918081eb9be41d75b562'
+REVIEWED_RESOURCES_SHA256 = 'a88006cea5973d88773b6a3e1ac31bf4d0fd386ead77b3c2cfd18c1b116dfeda'
 COMMIT = re.compile(r'^[a-f0-9]{40}$')
 
 
