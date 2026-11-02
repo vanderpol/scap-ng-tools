@@ -19,16 +19,22 @@ exact 143-file frozen JSON digest, 34 roots, 242 references and 100 supported
 capability mappings under an explicitly selected flat `schema/` directory.
 No schema files or source corpus are vendored into this tool package.
 
-An external-only [legacy conversion equivalence probe](scripts/verify_flat_converter.py)
-can compare pinned direct-converter outputs with flat-schema outputs while the
-original source checkout is still available. This is a **migration test, not
-a redistributed converter or validation runtime**.
+The [direct 0.4 focused converter](docs/FOCUSED-CONVERTER-MIGRATION.md) is now
+copied into this package as an independently installable, source-pinned runtime
+for **explicitly selected Rule IDs**. It reads the separate frozen flat schema
+snapshot and emits structural-valid native JSON/YAML and source traces without
+the original research checkout. Unmigrated benchmark-wide, compile, verify and
+draft modes fail explicitly. It is not a complete converter or proof release.
 
-The converter, compiler, full authoring library, semantic validators and schema
-files **have not moved**. The original development repository remains the
-converter source of record until its dependency closure and proof/test fixtures
-are reviewed. This repository is not yet a complete 0.4 converter release or
-standalone scanner.
+An external-only [legacy conversion equivalence probe](scripts/verify_flat_converter.py)
+also compares pinned old/new direct converter outputs when the original
+source checkout is available. It remains diagnostic only.
+
+The compiler, full authoring library, independent semantic validators, other
+converter modes and schema files **have not moved**. The original development
+repository remains the authority for those features until their dependency
+closure and proof/test fixtures are qualified. This repository is not yet a
+complete 0.4 converter release or standalone scanner.
 
 Run the focused standard-library tests using:
 
@@ -45,6 +51,17 @@ SCAP_NG_SCHEMA_ROOT=/path/to/pinned-scap-ng \
 
 See the [converter cutover gate](docs/CONVERTER-CUTOVER.md) for the exact
 source-backed compatibility command and remaining repository-migration work.
+
+The focused CLI uses an explicit local snapshot and source hash:
+
+```sh
+scapng-convert-v04 --schema-root /path/to/pinned-scap-ng \
+  /path/to/original-scap14.zip --sha256 EXPECTED_SOURCE_SHA256 \
+  --rule EXACT_XCCDF_RULE_ID --output /path/to/new-output-directory
+```
+
+This command requires the converter dependencies installed from this package;
+it does not fetch schema files, SCAP input or scanner data over the network.
 
 See [migration provenance](docs/MIGRATION-PROVENANCE.md) for exact source hashes,
 licensing boundaries and the gated next steps.

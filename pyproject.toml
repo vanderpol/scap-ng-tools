@@ -8,6 +8,13 @@ version = "0.0.0"
 description = "Development-stage tools shared by SCAP-NG converters and editors"
 requires-python = ">=3.11"
 license = "Apache-2.0"
+dependencies = ["PyYAML>=6.0,<7", "jsonschema>=4.24,<5"]
+
+[project.scripts]
+scapng-convert-v04 = "scap_ng_tools.converter.direct04:main"
+
+[tool.setuptools.package-data]
+"scap_ng_tools.converter._v04_runtime" = ["*.json"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

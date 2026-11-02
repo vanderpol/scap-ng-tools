@@ -1,7 +1,8 @@
 # Direct 0.4 converter: flat-schema compatibility gate
 
-**Status: partial qualification only. Not a converter release, canonical repo
-rename authorization, or independent scanner proof.**
+**Status: focused direct conversion migrated and locally qualified. Full
+benchmark/compile/verify dependency closure remains pending. Not a complete
+converter release, canonical repo rename authorization or scanner proof.**
 
 The original `vanderpol/scap-ng` 0.4 converter is currently a monorepo tool.
 `v04_direct_converter.py` loads mapping records and JSON Schema definitions
@@ -28,6 +29,12 @@ from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover check
   and runs the schema adapter tests against it. The staging repository name
   in that workflow must be updated during the owner-controlled name cutover;
   the pin cannot be silently changed to floating `main`.
+- A separately reviewed migration copies the focused direct converter engine
+  byte-for-byte into this package, while keeping the new schema locator and
+  output writer outside that source module. See
+  [focused migration](FOCUSED-CONVERTER-MIGRATION.md). The CI fixture checkout
+  currently pins the original public research repo; it must be relocated to
+  a reviewed public fixture location before the research repo is made private.
 
 ## Pinned Windows Server 2025 probe
 
@@ -58,13 +65,12 @@ scanner collection, compile/proof equivalence or the entire converter stack.
 
 ## Remaining cutover gates
 
-1. Determine the minimum runtime dependency closure for the supported
-   converter features. The full proof/compile import graph still contains
+1. Qualify the **remaining** direct converter modes and their runtime/proof
+   dependency closure. The full compile/verify import graph still contains
    research modules and must **not** be copied wholesale without review.
-2. Migrate converter code into an installable `scap-ng-tools` package, route
-   all schema reads through the explicit pinned snapshot, and preserve current
-   CLI behavior or clearly reject features not yet qualified. Do not silently
-   downgrade `--verify` or `--compile` modes.
+2. Extend current narrow, installable focused conversion to accepted
+   benchmark-wide and other production converter modes without changing its
+   native output or silently downgrading `--verify`/`--compile` semantics.
 3. Migrate the editor metadata pack exporter and external tests to the flat
    snapshot. Its manifest includes a source commit, so changing repositories
    requires a deliberate pin/hash update even if schema bytes are identical.
