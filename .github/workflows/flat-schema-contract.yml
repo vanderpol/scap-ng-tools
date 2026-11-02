@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Checkout tools under review
         uses: actions/checkout@v4
-      - name: Checkout exact frozen schema snapshot (temporary staging name)
+      - name: Checkout exact frozen canonical 0.4 schema snapshot
         uses: actions/checkout@v4
         with:
-          repository: vanderpol/scap-ng-staging
+          repository: vanderpol/scap-ng
           ref: ed4a9dce01af6849bf4be146c7678ef7804051e4
           path: spec-snapshot
           persist-credentials: false

@@ -3,13 +3,15 @@
 **Status: focused conversion, read-only benchmark inventory and automatic
 benchmark authoring conversion migrated with exact original output parity.
 Draft admission, compile and independent verify remain pending. Not a complete
-converter release, canonical repo rename authorization or scanner proof.**
+converter release or scanner proof; canonical repository rename is complete.**
 
-The original `vanderpol/scap-ng` 0.4 converter is currently a monorepo tool.
+The original `vanderpol/scap-ng-research` 0.4 converter is a preserved research
+monorepo tool.
 `v04_direct_converter.py` loads mapping records and JSON Schema definitions
-from its own checkout's `schema/v0.4.0/`. The future canonical specification
-checkout instead stores its frozen files in flat `schema/` and will be renamed
-from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover checks.
+from its own checkout's `schema/v0.4.0/`. The canonical public specification
+repository `vanderpol/scap-ng` (formerly staging) stores the identical frozen
+0.4 files in flat `schema/` at
+`ed4a9dce01af6849bf4be146c7678ef7804051e4`.
 
 ## Contract established here
 
@@ -26,10 +28,10 @@ from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover check
   produces the original direct converter's output and trace, substitutes only
   the source of its 52 mapping records, and requires identical native output.
   It validates the result against the flat schema. No source file is changed.
-- CI checks out the exact staging merge commit above into a separate directory
-  and runs the schema adapter tests against it. The staging repository name
-  in that workflow must be updated during the owner-controlled name cutover;
-  the pin cannot be silently changed to floating `main`.
+- CI checks out the exact canonical schema commit above into a separate
+  directory and runs the schema adapter and 100-capability editor-pack tests
+  against it. The checkout name is now permanent and the commit remains
+  pinned, never floating `main`.
 - A separately reviewed migration copies the focused direct converter engine
   initially byte-for-byte into this package, keeping schema resolution and
   output writing outside the source engine. Two small documented inventory
@@ -57,7 +59,7 @@ programs, source proofs, scanner evidence or new corpus publications result.
 
 Prerequisites are an *already locally available* clone of the original
 SCAP-NG research checkout at `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`, a
-clean flat staging checkout at `ed4a9dce01af6849bf4be146c7678ef7804051e4`,
+clean flat canonical checkout at `ed4a9dce01af6849bf4be146c7678ef7804051e4`,
 and the signed ZIP fixture from the research checkout. Install pinned test
 dependencies for the original converter in the test environment. The source
 ZIP SHA256 below is separately verified by the probe; the tool never fetches it.
@@ -66,7 +68,7 @@ ZIP SHA256 below is separately verified by the probe; the tool never fetches it.
 PYTHONPATH=src:/path/to/research/tools python scripts/verify_flat_converter.py \
   --converter-root /path/to/research \
   --converter-commit d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9 \
-  --schema-root /path/to/pinned-staging \
+  --schema-root /path/to/pinned-canonical-scap-ng \
   --source-package /path/to/research/tests/fixtures/v04-direct-prototype/server2025-signed.zip \
   --source-sha256 2f46264b5fa21c8a033236121794ebe372314bf7458dac0aca4f81179fe7ece0 \
   --rule xccdf_mil.disa.stig_rule_SV-278139r1182083_rule \
@@ -88,18 +90,19 @@ scanner collection, compile/proof equivalence or the entire converter stack.
 2. Qualify draft admission and broader original regression coverage while
    preserving the now-pinned benchmark conversion output and without silently
    downgrading `--verify`/`--compile` semantics.
-3. **Editor-pack exporter qualification is now staged:** all 235 resources
+3. **Editor-pack exporter qualification is complete:** all 235 resources
    exactly match the old 100-capability pack using the flat snapshot, and a
-   new manifest/sourceCommit is pinned and tested. It still needs reviewed
-   publication and an editor profile update **after** canonical repo rename,
-   rather than repointing the extension prematurely.
+   new manifest/sourceCommit is pinned and tested. Now repoint the editor
+   profile and its CI to the canonical repo in a separate reviewed change.
 4. Keep the signed-source fixture checkout pinned directly to public NIWC Q3
    archived data. CI's old-research checkout has been replaced with a pinned
    public OVAL build-time input, exact original CLI goldens, and byte-copied
    generator helpers. Keep the optional local research differential check
    available to owners, and review notices/licenses and expanded edge cases.
-5. Only after the above gates pass: owner-controlled repository rename, link
-   audit, release pin and external VS Code PR tasking.
+5. The owner completed canonical/research repository renames and privacy
+   cutover on 2026-11-02. Finish the reference/link audit, editor profile pin,
+   and editor CI before external VS Code Codex tasking. Converter proof and
+   release qualification remain separate future work.
 
 Scanner implementation prose remains deferred; this checkpoint only establishes
 offline schema contract resolution and a reproducible conversion comparison.

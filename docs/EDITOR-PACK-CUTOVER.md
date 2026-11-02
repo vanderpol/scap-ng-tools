@@ -10,7 +10,7 @@ owner-controlled repository rename.
 
 ```sh
 PYTHONPATH=src python scripts/build_v04_editor_metadata_pack.py \
-  --schema-root /path/to/exact-scap-ng-staging-checkout \
+  --schema-root /path/to/exact-canonical-scap-ng-checkout \
   --oval-root /path/to/OVAL-v5.12.3-checkout \
   --source-commit ed4a9dce01af6849bf4be146c7678ef7804051e4 \
   --output /path/to/a-new/metadata-pack
@@ -40,8 +40,8 @@ digest (over canonical sorted JSON) of
 `faa1c81c01c34a212e33827e3628f9c355255c1030fa8aa8936cb9d28522c564`.
 Any drift fails before a pack is written.
 
-Only the **`sourceCommit` and derived `manifestSha256`** change to identify
-the flat staging source. The verified staging profile is:
+Only the **`sourceCommit` and derived `manifestSha256`** changed to identify
+the flat canonical source (formerly staging). The verified canonical profile is:
 
 ```json
 {
@@ -61,12 +61,11 @@ is approved. It is **not** a scanner result or proof authority.
 - The historical `sqlext` SQL-extension XSD additions remain excluded; the
   owner identified unresolved host-versus-database/instance targeting that
   prevents automatically treating them as `sql512`. No alias is introduced.
-- The existing VS Code metadata profile still names the historical research
-  repository. Do **not** repoint or task the extension against this staging
-  pin yet. First complete owner-controlled canonical repo cutover, then rebuild
-  and publish an editor pack from the exact canonical source commit and update
-  its profile in a reviewed editor PR. The stable versioned JSON `$id` URIs
-  remain unchanged despite the flattened physical directory.
+- The canonical repository cutover is complete. The existing VS Code
+  metadata profile must now be repointed to this verified canonical pin
+  through a reviewed editor PR, and its CI must pass before external VS Code
+  Codex implementation tasking. The stable versioned JSON `$id` URIs remain
+  unchanged despite the flattened physical directory.
 - The editor's proposed human-readable generated Test title, persistence of
   platform/capability test-data semantics, and authoring UI behavior are separate
   extension work; this exporter carries their frozen schema vocabulary without

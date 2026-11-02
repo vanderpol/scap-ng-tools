@@ -5,7 +5,7 @@ vendor content is the latest publication, that all findings can be converted,
 or that any target host has been scanned. The corpus was originally pinned from
 `niwc-atlantic/scap-content-library` revision
 `8c8e5dff860af6b1290ee9273a282db24278f8d5` and is referenced through
-`vanderpol/scap-ng` research commit
+`vanderpol/scap-ng-research` (now private) research commit
 `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`.
 
 Each signed fixture is retrieved directly from the **public NIWC Q3 2026
