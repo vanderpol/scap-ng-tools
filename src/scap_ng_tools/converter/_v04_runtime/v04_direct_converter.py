@@ -904,6 +904,9 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     documents[f'authoring/direct-slice/rules/{rule_id}.json'] = {'rule': native_rule}
     if converter.input_bindings:
         native_rule['assessment_choices']['automated']['inputs']=converter.input_bindings
+        from scap_ng_tools.authoring.input_discovery import derive_choice
+        rows=derive_choice(assessment,converter.input_bindings,{p['id']:p for p in converter.policy_parameters.values()})
+        native_rule['organizational_input_requirements']={'automated':rows} if rows else {}
     binding = {'source_rule': source_id, 'source_rule_sha256': digest(xml_identity(rule)),
         'component': component, 'definition': definition, 'native_rule': rule_id, 'assessment': assessment_id,
         'dependencies': converter.used, 'omitted_checks': omitted_checks,
