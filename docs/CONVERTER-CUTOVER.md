@@ -1,7 +1,7 @@
 # Direct 0.4 converter: flat-schema compatibility gate
 
-**Status: focused direct conversion migrated and locally qualified. Full
-benchmark/compile/verify dependency closure remains pending. Not a complete
+**Status: focused conversion and benchmark-wide read-only inventory migrated
+and qualified. Benchmark conversion/compile/verify remain pending. Not a complete
 converter release, canonical repo rename authorization or scanner proof.**
 
 The original `vanderpol/scap-ng` 0.4 converter is currently a monorepo tool.
@@ -30,8 +30,9 @@ from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover check
   in that workflow must be updated during the owner-controlled name cutover;
   the pin cannot be silently changed to floating `main`.
 - A separately reviewed migration copies the focused direct converter engine
-  byte-for-byte into this package, while keeping the new schema locator and
-  output writer outside that source module. See
+  initially byte-for-byte into this package, keeping schema resolution and
+  output writing outside the source engine. Two small documented inventory
+  catalog injection adaptations are now pinned by test. See
   [focused migration](FOCUSED-CONVERTER-MIGRATION.md). The CI fixture checkout
   currently pins the original public research repo; it must be relocated to
   a reviewed public fixture location before the research repo is made private.
@@ -69,7 +70,7 @@ scanner collection, compile/proof equivalence or the entire converter stack.
    dependency closure. The full compile/verify import graph still contains
    research modules and must **not** be copied wholesale without review.
 2. Extend current narrow, installable focused conversion to accepted
-   benchmark-wide and other production converter modes without changing its
+   benchmark-wide **conversion** and other production converter modes without changing its
    native output or silently downgrading `--verify`/`--compile` semantics.
 3. Migrate the editor metadata pack exporter and external tests to the flat
    snapshot. Its manifest includes a source commit, so changing repositories

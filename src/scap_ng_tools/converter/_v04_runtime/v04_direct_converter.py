@@ -1023,12 +1023,12 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
     """
     from v04_direct_inventory import SourceInventory, issue, summarize
     started = time.perf_counter()
-    inventory = SourceInventory(source)
+    mappings = load_mappings() if mappings is None else mappings
+    inventory = SourceInventory(source, mappings=mappings)
     rows = inventory.rules()
     inventory_counts = inventory.counts(rows)
     measured = {'inventory': time.perf_counter() - started, 'conversion': 0.0,
                 'validation': 0.0, 'diagnostics': 0.0}
-    mappings = load_mappings() if mappings is None else mappings
     documents, bindings, probes, accepted_parameters = {}, [], {}, {}
     if not inventory_only:
         from validate_native_json_schemas import build_validators, document_errors
