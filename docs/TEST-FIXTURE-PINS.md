@@ -84,8 +84,10 @@ byte-exact copies of the previously accepted generator helpers. It reproduces
 the original pack exactly. Of the original 54 research OVAL XSDs, **52 are
 byte-identical** to this official tag; two `independent-*` XSDs contain
 additional historical `sqlext` declarations. Those differences do not alter
-the 52-capability automatic-converter pack. The full 100-capability editor
-metadata export still requires a separate audited migration. See
+the 52-capability automatic-converter pack. The separate
+[editor metadata export audit](EDITOR-PACK-CUTOVER.md) reproduces every one
+of the original 235 resources across 100 capabilities, while excluding
+`sqlext` targeting equivalence by owner direction. See also the
 [generator independence audit](GENERATOR-INDEPENDENCE.md).
 
 ## Quarterly corpus policy

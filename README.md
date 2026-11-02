@@ -99,6 +99,14 @@ converter; the 0.4-only semantic pack is generated and byte-audited in CI.
 See the [generator independence audit](docs/GENERATOR-INDEPENDENCE.md) for
 public-source inputs and the explicitly deferred `sqlext` targeting contracts.
 
+The [offline editor-pack exporter](docs/EDITOR-PACK-CUTOVER.md) independently
+derives all 235 pinned 0.4 editor resources (34 root schemas, 100 capability
+fragments, 100 mappings, and the vocabulary) from the flat schema plus the
+public official OVAL 5.12.3 source. All derived resource bytes match the
+previous research exporter; only the explicit canonical source commit and
+manifest pin change. This is a CI/build-time artifact, **not** a VS Code
+extension release or authorization to retask the editor.
+
 See [migration provenance](docs/MIGRATION-PROVENANCE.md) for exact source hashes,
 licensing boundaries and the gated next steps.
 
