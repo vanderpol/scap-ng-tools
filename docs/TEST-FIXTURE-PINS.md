@@ -8,9 +8,12 @@ or that any target host has been scanned. The corpus was originally pinned from
 `vanderpol/scap-ng` research commit
 `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`.
 
-Each fixture is retrieved into a **separate temporary CI checkout**. It is
-neither embedded in the tools wheel nor distributed under this repository's
-Apache-2.0 license. CI verifies the exact source ZIP SHA-256 before reading it.
+Each signed fixture is now retrieved directly from the **public NIWC library**
+at that exact commit into a separate temporary CI checkout. It is neither
+embedded in the tools wheel nor distributed under this repository's Apache-2.0
+license. CI verifies the source ZIP SHA-256 before reading it. An independently
+pinned original *converter oracle/generator* is still checked out separately;
+the signed source data no longer comes from the research repository.
 
 | Fixture / suite | ZIP SHA-256 | Original Rule count |
 | --- | --- | ---: |
@@ -20,6 +23,16 @@ Apache-2.0 license. CI verifies the exact source ZIP SHA-256 before reading it.
 | `U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip` / `v04-draft-compatibility` | `d16c868152e14bab0a1e2ecdfa6ec889972e068625d4d20d4ac3f861ff2009ca` | 21 |
 
 **Total: 535 unique Rule entries across four benchmark inventories.**
+
+The public source repository's `Current/` tree at the pinned revision is
+`144371b737af54d39cb51389a21f1bdcb14c2132`. Exact original Git blobs:
+
+| Source | Pinned public Git blob SHA-1 |
+| --- | --- |
+| Windows Server 2025 (public original filename `U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip`) | `f6ba90413cd8a6ab3f9f5acc82603d9b52aca9cf` |
+| Active Directory Domain | `fbe644f2211fbd3df5643bffb535bb4a477e07ac` |
+| Amazon Linux 2023 | `60c5fe6e02dd5defa0f2ce64fcbb0abe7e0c809c` |
+| Windows Defender Firewall | `4380631f9847892fd01afa7ce9c3d568ce0bcd06` |
 
 ## Exact original-to-tools comparison
 
@@ -65,9 +78,9 @@ the pack in CI, never for installed converter execution.
 
 ## Cutover prerequisite
 
-Before renaming the original `scap-ng` repo to private `scap-ng-research`,
-review redistribution rights and relocate these fixtures (or a legally suitable
-reproducible public-source acquisition recipe) to a stable, version-pinned
-source available to the canonical specification and tools CI. Update the
-checkout reference by reviewed PR; never silently regenerate benchmarks or
-replace the source ZIP bytes while claiming the same baseline.
+The signed source ZIP relocation gate is provisionally met through a direct,
+read-only public NIWC checkout, with no republishing or relicensing. Before
+renaming the original `scap-ng` repo to private `scap-ng-research`, the **CI's
+remaining original converter oracle and build-time XSD/generator** still need
+a stable, legally reviewed replacement or an independently qualified static
+parity strategy. Do not silently regenerate benchmarks or replace the ZIP bytes.

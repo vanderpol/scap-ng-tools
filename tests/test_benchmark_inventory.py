@@ -42,6 +42,9 @@ PINS = [
     },
 ]
 
+PUBLIC_WINDOWS_NAME = ('U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_'
+                       'Benchmark-enhancedV1-signed.zip')
+
 
 def stable_digest(value):
     return sha256(json.dumps(value, sort_keys=True).encode('utf-8')).hexdigest()
@@ -62,7 +65,10 @@ class BenchmarkInventoryParity(unittest.TestCase):
         count = 0
         for path, pin in zip(self.files, PINS):
             with self.subTest(source=path.name):
-                self.assertEqual(path.name, pin['filename'])
+                if pin['filename'] == 'server2025-signed.zip':
+                    self.assertIn(path.name, (pin['filename'], PUBLIC_WINDOWS_NAME))
+                else:
+                    self.assertEqual(path.name, pin['filename'])
                 self.assertEqual(sha256(path.read_bytes()).hexdigest(), pin['sha'])
                 trace, inventory = inventory_benchmark(
                     schema_root=self.schema, source=path, sha256_pin=pin['sha'])
