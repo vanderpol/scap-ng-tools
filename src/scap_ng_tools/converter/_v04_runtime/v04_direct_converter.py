@@ -1014,7 +1014,7 @@ def blocker_category(message):
 
 
 def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=None,
-                      human_compact=True):
+                      human_compact=True, validate_document=None):
     """Inventory all Rules; isolate expected per-Rule failures and validate admission.
 
     Native output is atomic per Rule. Diagnostic probes of blocked closures are
@@ -1031,8 +1031,10 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 'validation': 0.0, 'diagnostics': 0.0}
     documents, bindings, probes, accepted_parameters = {}, [], {}, {}
     if not inventory_only:
-        from validate_native_json_schemas import build_validators, document_errors
-        validators = build_validators(ROOT / 'schema/v0.4.0')
+        if validate_document is None:
+            from validate_native_json_schemas import build_validators, document_errors
+            validators = build_validators(ROOT / 'schema/v0.4.0')
+            validate_document = lambda kind, doc: document_errors(validators[kind + '.schema.json'], doc)
         for row in rows:
             blockers = list(row['inventory_problems'])
             native, binding = {}, None
@@ -1055,7 +1057,7 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                         'native Rule/Assessment name collision in selected source Rules', row['source_rule']))
                 for path, document in native.items():
                     kind, = document
-                    for error in document_errors(validators[kind + '.schema.json'], document):
+                    for error in validate_document(kind, document):
                         blockers.append(issue('schema-semantic', f'{path}: {error.message}', row['source_rule']))
             measured['validation'] += time.perf_counter() - started
             started = time.perf_counter()

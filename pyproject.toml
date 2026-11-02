@@ -15,6 +15,7 @@ scapng-convert-v04 = "scap_ng_tools.converter.direct04:main"
 
 [tool.setuptools.package-data]
 "scap_ng_tools.converter._v04_runtime" = ["*.json"]
+"scap_ng_tools.converter._v04_semantic" = ["*.json"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,8 +1,8 @@
 # Focused SCAP 1.4 → SCAP-NG 0.4 converter: portability checkpoint
 
-**Scope:** Source-backed strict Rule-ID conversion only. No full benchmark
-conversion, draft admission, compiler, independent source proof, scanner
-execution or corpus regeneration is represented as complete.
+**Scope:** Strict Rule-ID conversion, read-only benchmark inventory, and
+qualified automatic benchmark authoring conversion. Draft admission, compiler,
+independent source proof, scanner execution and corpus regeneration remain out of scope.
 
 ## Mechanism
 
@@ -15,7 +15,8 @@ SHA-256 of these 18 source files to
 (sorted file name + NUL + exact bytes). The inventory pass introduced two
 **audited source-path injection edits** to `v04_direct_converter.py` and
 `v04_direct_inventory.py`, so descriptive capability names are resolved from
-the same flat catalog as conversion. The other 16 source files are byte-exact,
+the same flat catalog as conversion. At that earlier inventory-only checkpoint,
+the other 16 source files were byte-exact,
 with aggregate SHA-256
 `9b8cd16d4407706ad22d3f604d0cef6c9173fd31a67e4ecb968fdb1a4f71f282`.
 The adapted 18-file runtime's aggregate SHA-256 is
@@ -36,9 +37,9 @@ The new wrapper is deliberately separate from the frozen source engine:
   distinct from independent semantic or runtime verification.
 - JSON/YAML output and source traces are written to a new destination only,
   with a separate explicit `CONVERTED_UNVERIFIED` scope record.
-- A requested `--verify`, `--compile`, `--all-rules` or `--draft` fails before
+- A requested `--verify`, `--compile` or `--draft` fails before
   creating output, rather than quietly changing proof/compiler semantics.
-  `--inventory-only` is a separately qualified, read-only mode.
+  `--inventory-only` and `--all-rules` are separately qualified modes.
 
 The source engine retains its historical module imports while the wrapper
 loads them from a checked package-owned directory and rejects collisions with
@@ -82,15 +83,53 @@ Assessments** and has no proof or scanner execution authority.
 
 The source fixture hashes, per-file Rule counts and golden manifest/trace
 digests are recorded in [the fixture ledger](TEST-FIXTURE-PINS.md) and enforced
-by CI. This establishes a dependable inventory baseline before benchmark-wide
-conversion is migrated; it is **not** evidence that every inventory entry can
-be converted or scanned.
+by CI. This inventory-only result remains a distinct read-only baseline;
+it is **not** evidence that every Rule can be converted or scanned.
+
+## Automatic benchmark authoring conversion — separately qualified
+
+The original 0.4 semantic passes were copied into `_v04_semantic/` and adapted
+without importing historical-version modules. An offline generated pack holds
+the 52 activated capability fragments, exact field/selector type contracts,
+and eight source OVAL acquisition-behavior declarations. The pack is rebuilt
+from accepted original XSD/generator sources at research commit
+`d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9` and byte-compared in CI.
+Pack SHA-256:
+`b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70`.
+Neither historical generators nor source XSD files are needed by the wheel.
+
+Three of the original 18 runtime files now have audited changes: converter
+callback, inventory mapping injection, and source behavior defaults. The
+unchanged 15 have aggregate SHA-256
+`6360a01e45b460c8fa9669b996fa1406e647c76f539bff990fa3e7ba30a7acdb`;
+the adapted 18-file runtime has SHA-256
+`b8be370e6616ce3b9f31bd4d08577872e9fbc235ccb19f74ac6bcf8159b41cd4`.
+The earlier hashes above describe the preceding inventory-only checkpoint.
+
+| Original pinned source | Rules | Admitted | Blocked | Native docs |
+| --- | ---: | ---: | ---: | ---: |
+| Windows Server 2025 | 291 | 247 | 44 | 496 |
+| Active Directory Domain | 36 | 15 | 21 | 32 |
+| Amazon Linux 2023 | 187 | 118 | 69 | 238 |
+| Windows Defender Firewall | 21 | 0 | 21 | 0 |
+| **Total** | **535** | **380** | **155** | **766** |
+
+All four native-document, source-trace and coverage digests match the original
+public `--all-rules` CLI exactly. The Active Directory common JSON/YAML/trace/
+coverage files also match byte-for-byte. Negative Object, comparison, Variable
+and optional Input tests reproduce the original diagnostic path, validator and
+message. Windows's **247** in original public CLI broken-reference mode
+intentionally differs from 249 in a legacy unit test using different source
+options; earlier proofs were not touched or rebaselined.
+
+**Status: CONVERTED_UNVERIFIED.** This is an admitted automated authoring subset,
+not complete Benchmark/manual/OCIL conversion, compilation, independent source
+proof, scanner evaluation or a current vendor publication.
 
 ## Remaining work before repository rename
 
-1. Review and migrate active benchmark-wide conversion, compile and independent
-   proof modules and their expected artifacts without importing historical
-   experimental dependencies wholesale.
+1. Qualify draft admission, compile and independent source proof separately;
+   their runtime graphs must not be copied wholesale.
 2. Replace the CI's source fixture checkout from the soon-to-be-private
    research repository with a license-reviewed, pinned fixture distribution.
 3. Expand pinned integration cases across the accepted regression and boundary

@@ -1,6 +1,6 @@
 """Standalone, schema-pinned focused SCAP 1.4 → SCAP-NG 0.4 conversion."""
 
-__all__ = ['convert_focused', 'inventory_benchmark', 'QualifiedConversionError']
+__all__ = ['convert_focused', 'convert_benchmark', 'inventory_benchmark', 'QualifiedConversionError']
 
 
 def __getattr__(name):
