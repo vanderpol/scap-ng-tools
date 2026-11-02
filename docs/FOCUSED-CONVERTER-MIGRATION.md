@@ -130,8 +130,9 @@ proof, scanner evaluation or a current vendor publication.
 
 1. Qualify draft admission, compile and independent source proof separately;
    their runtime graphs must not be copied wholesale.
-2. Replace the CI's source fixture checkout from the soon-to-be-private
-   research repository with a license-reviewed, pinned fixture distribution.
+2. Keep the signed source fixture checkout pinned to the public NIWC library;
+   replace the CI's **remaining research generator/oracle** dependency before
+   privatizing that research repository.
 3. Expand pinned integration cases across the accepted regression and boundary
    suite before asserting a complete converter release.
 4. Migrate/editor-repin the external metadata pack exporter, which currently

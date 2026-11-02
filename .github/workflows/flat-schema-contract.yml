@@ -18,15 +18,27 @@ jobs:
           ref: ed4a9dce01af6849bf4be146c7678ef7804051e4
           path: spec-snapshot
           persist-credentials: false
-      - name: Checkout pinned original fixtures and source XSD generator (CI only)
+      - name: Checkout exact public NIWC signed benchmark fixtures (source data)
+        uses: actions/checkout@v4
+        with:
+          repository: niwc-atlantic/scap-content-library
+          ref: 8c8e5dff860af6b1290ee9273a282db24278f8d5
+          path: signed-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            Current/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
+            Current/U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip
+            Current/U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
+            Current/U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip
+          filter: blob:none
+          persist-credentials: false
+      - name: Checkout pinned research generator and independent oracle (CI only)
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
           ref: d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9
-          path: legacy-fixture
+          path: legacy-oracle
           sparse-checkout: |
-            tests/fixtures/v04-direct-prototype
-            tests/fixtures/v04-draft-compatibility
             tools
             schema/v0.4.0
             third_party/scap-1.4-schemas/oval_5.12.3
@@ -42,7 +54,7 @@ jobs:
           PYTHONPATH: src
         run: |
           python scripts/generate_v04_semantic_pack.py \
-            --research-root "${{ github.workspace }}/legacy-fixture" \
+            --research-root "${{ github.workspace }}/legacy-oracle" \
             --schema-root "${{ github.workspace }}/spec-snapshot" \
             --output "${{ runner.temp }}/semantic-contract-pack.json"
           cmp "${{ runner.temp }}/semantic-contract-pack.json" \
@@ -51,7 +63,7 @@ jobs:
         env:
           PYTHONPATH: src
           SCAP_NG_SCHEMA_ROOT: ${{ github.workspace }}/spec-snapshot
-          SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/legacy-fixture/tests/fixtures/v04-direct-prototype/server2025-signed.zip
-          SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/legacy-fixture/tests/fixtures/v04-draft-compatibility
-          SCAP_NG_RESEARCH_ROOT: ${{ github.workspace }}/legacy-fixture
+          SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/signed-source/Current/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
+          SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/signed-source/Current
+          SCAP_NG_RESEARCH_ROOT: ${{ github.workspace }}/legacy-oracle
         run: python -m unittest discover -s tests -v

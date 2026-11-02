@@ -34,9 +34,10 @@ from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover check
   initially byte-for-byte into this package, keeping schema resolution and
   output writing outside the source engine. Two small documented inventory
   catalog injection adaptations are now pinned by test. See
-  [focused migration](FOCUSED-CONVERTER-MIGRATION.md). The CI fixture checkout
-  currently pins the original public research repo; it must be relocated to
-  a reviewed public fixture location before the research repo is made private.
+  [focused migration](FOCUSED-CONVERTER-MIGRATION.md). The signed CI fixture
+  checkout now pins the public NIWC content library directly, preserving the
+  four exact Git blobs and SHA-256 ZIP digests. The original research checkout
+  remains **only** for the build-time generator and independent source oracle.
 
 The separately audited automatic benchmark mode uses an offline 0.4 semantic
 contract pack generated from the pinned OVAL XSD/generator and the unchanged
@@ -85,9 +86,10 @@ scanner collection, compile/proof equivalence or the entire converter stack.
 3. Migrate the editor metadata pack exporter and external tests to the flat
    snapshot. Its manifest includes a source commit, so changing repositories
    requires a deliberate pin/hash update even if schema bytes are identical.
-4. Publish a current, license-reviewed fixture/provenance manifest independent
-   of the original research repository before that repository becomes private.
-   Run accepted source regression and boundary tests against the new layout.
+4. Keep the signed-source fixture checkout pinned directly to public NIWC data.
+   Relocate or replace the **remaining CI original converter/XSD oracle** before
+   the research repository becomes private; review notices/licenses first.
+   Expand regression and boundary tests against the new layout.
 5. Only after the above gates pass: owner-controlled repository rename, link
    audit, release pin and external VS Code PR tasking.
 
