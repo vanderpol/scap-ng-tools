@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: b7089a353597748f1252872a2ef67166f595786f
+          ref: d4e477998cda438a1e53a7c3c84123ec92e5ba1f
           path: spec-snapshot
           persist-credentials: false
       - name: Checkout immutable Q3 2026 NIWC signed benchmark archive
