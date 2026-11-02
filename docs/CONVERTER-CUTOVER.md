@@ -1,7 +1,9 @@
 # Direct 0.4 converter: flat-schema compatibility gate
 
 **Status: focused conversion, read-only benchmark inventory and automatic
-benchmark authoring conversion migrated with exact original output parity.
+benchmark authoring conversion migrated with preserved admission, source-trace
+and coverage parity. Native bytes were deliberately regenerated for the
+owner-approved pre-release 0.4 `item_requirement` grammar amendment.
 Draft admission, compile and independent verify remain pending. Not a complete
 converter release or scanner proof; canonical repository rename is complete.**
 
@@ -10,8 +12,10 @@ monorepo tool.
 `v04_direct_converter.py` loads mapping records and JSON Schema definitions
 from its own checkout's `schema/v0.4.0/`. The canonical public specification
 repository `vanderpol/scap-ng` (formerly staging) stores the identical frozen
-0.4 files in flat `schema/` at
-`ed4a9dce01af6849bf4be146c7678ef7804051e4`.
+0.4 files in flat `schema/` at historical pin
+`ed4a9dce01af6849bf4be146c7678ef7804051e4`; the current amended candidate
+is [canonical PR #4](https://github.com/vanderpol/scap-ng/pull/4) at
+`354c9c962c77488a3d939cab56f6ceecfd495d27`.
 
 ## Contract established here
 
@@ -21,7 +25,9 @@ repository `vanderpol/scap-ng` (formerly staging) stores the identical frozen
 - The `FrozenSchemaSnapshot` reader fails on legacy nested layouts, altered
   bytes, incorrect logical IDs, unexpected reference counts, missing mappings,
   bad capability names and duplicated source JSON keys.
-- The frozen 143-file aggregate SHA256 is
+- The amended 143-file aggregate SHA256 is
+  `ab1933f2d9171ee0af70c0fab855b00f5faf78bf59ad4924fbf24b402ac4072a`;
+  the previous frozen digest was
   `476f5767276f5c2114f91b211cf4e159a75bee0806ea736fc631d9c40f4c4b80`.
   The logical `$id` URIs still contain `v0.4.0`, independently of physical paths.
 - The external probe imports an **explicitly pinned legacy source checkout**,
@@ -51,11 +57,18 @@ generator helpers, along with the unchanged
 flat metadata, byte-regenerated in CI. This removes research/XSD runtime
 dependencies without weakening structural, Object, comparison, Variable or
 Input admission. The four original acceptance ZIPs produce **380 admitted,
-155 blocked Rules and 766 native documents** with exact original document,
-trace and coverage hashes. This remains `CONVERTED_UNVERIFIED`; no compiled
+155 blocked Rules and 766 native documents** with new owner-amended document
+hashes and unchanged original trace and coverage hashes. This remains
+`CONVERTED_UNVERIFIED`; no compiled
 programs, source proofs, scanner evidence or new corpus publications result.
 
-## Pinned Windows Server 2025 probe
+## Historical original Windows Server 2025 differential probe
+
+The command below is retained as the **pre-amendment oracle** for exact
+research output. It is not a current 0.4 schema test after Item regrouping;
+use CI or `tests/test_focused_converter.py` against canonical PR #4 for current
+output. The reviewed new six-document digest is
+`8beb7b1c31c6321aa24ef4a0cfbbdd900dcd6dc349c8963887a9db28ee04d493`.
 
 Prerequisites are an *already locally available* clone of the original
 SCAP-NG research checkout at `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`, a
@@ -90,8 +103,8 @@ scanner collection, compile/proof equivalence or the entire converter stack.
 2. Qualify draft admission and broader original regression coverage while
    preserving the now-pinned benchmark conversion output and without silently
    downgrading `--verify`/`--compile` semantics.
-3. **Editor-pack exporter qualification is complete:** all 235 resources
-   exactly match the old 100-capability pack using the flat snapshot, and a
+3. **Editor-pack exporter qualification is complete for the owner amendment:**
+   all 235 resources match the reviewed amended 100-capability pack, and a
    new manifest/sourceCommit is pinned and tested. Now repoint the editor
    profile and its CI to the canonical repo in a separate reviewed change.
 4. Keep the signed-source fixture checkout pinned directly to public NIWC Q3

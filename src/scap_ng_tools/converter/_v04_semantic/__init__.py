@@ -14,8 +14,8 @@ from pathlib import Path
 from scap_ng_tools.contracts import FrozenSchemaSnapshot
 
 
-PACK_HASH = 'b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70'
-SCHEMA_HASH = '476f5767276f5c2114f91b211cf4e159a75bee0806ea736fc631d9c40f4c4b80'
+PACK_HASH = 'e489a14931b627e67c20724b82fc6b959e3bbf396da07e86cd51d47a08ee915a'
+SCHEMA_HASH = 'ab1933f2d9171ee0af70c0fab855b00f5faf78bf59ad4924fbf24b402ac4072a'
 RESEARCH_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 _selected = ContextVar('scap_ng_v04_semantic_schema', default=None)
 

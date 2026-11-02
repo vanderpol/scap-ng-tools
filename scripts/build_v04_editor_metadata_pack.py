@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Export the exact frozen 0.4 editor schema/mapping/vocabulary pack offline.
+"""Export the reviewed owner-amended 0.4 editor schema/mapping/vocabulary pack.
 
-The generated resources are required to remain byte-identical to the original
-reviewed 100-capability pack; only its deliberate sourceCommit profile pin may
-change when the canonical flat schema repository is repackaged or renamed.
+The accepted 2026-11-02 pre-release Item grouping amendment deliberately
+changes the schema/vocabulary resource digest. All other source-generated
+capability resources are still checked by this exact audited identity.
 This builds an unsigned local artifact. Distribution and editor consumption
 are separate owner-controlled steps.
 """
@@ -25,7 +25,8 @@ from generate_v04_semantic_pack import GENERATOR, OVAL_COMMIT, git_head
 # Original research exporter at d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9;
 # 235 deterministic resource descriptors, 100 capability identities, one URI.
 # Source commit is purposely excluded from this digest.
-REVIEWED_RESOURCES_SHA256 = 'faa1c81c01c34a212e33827e3628f9c355255c1030fa8aa8936cb9d28522c564'
+HISTORICAL_RESOURCES_SHA256 = 'faa1c81c01c34a212e33827e3628f9c355255c1030fa8aa8936cb9d28522c564'
+REVIEWED_RESOURCES_SHA256 = '0297c8367f828123bcec8afe39d8a85712a51d938e3c918081eb9be41d75b562'
 COMMIT = re.compile(r'^[a-f0-9]{40}$')
 
 

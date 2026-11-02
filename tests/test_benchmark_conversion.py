@@ -1,4 +1,9 @@
-"""Pinned exact original automatic benchmark admission; NOT compiler/proof."""
+"""Pinned automatic benchmark admission with audited 0.4 authoring regeneration.
+
+Original 2026-Q3 source, trace, coverage and Rule acceptance are unchanged;
+only native document serialization changes with owner-approved Item grouping.
+No compiler/scanner proof is asserted.
+"""
 
 from copy import deepcopy
 from hashlib import sha256
@@ -9,6 +14,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import yaml
 
 from scap_ng_tools.contracts import FrozenSchemaSnapshot
 from scap_ng_tools.converter import convert_benchmark, convert_focused
@@ -17,13 +23,13 @@ from test_benchmark_inventory import PINS, stable_digest
 
 
 EXPECTED = [
-    (496, 247, 44, 'c817e8b1842cecc20fa6174551502cd2199d8ddb9019214e432f9108c193a496',
+    (496, 247, 44, '8cb6cd7d1a8e2fa1824c142a08cd38ae3521d70faaf6c909d7d8bddeacac2df3',
      '2b06986ff6c21ea65a0a6ee45acacf53bdd58e96925ad84be47ae39765fa1e1c',
      '233fa961e84f101107cb62c5b810aa4719309c8bb5c31bbe2e212a09676c5bf4'),
-    (32, 15, 21, '7b4035676c5b5aed43a2f3c0e6dfe92b40661c6e66de9e8d12eff322e68e8cd3',
+    (32, 15, 21, '69d6606cf3b8c1e5ae943b5282ecf35a258556e5ce305b5ac1f4f9e1aa3bb10b',
      'db1dbdcbf11065eb14cad93afcd90004e12f82b4012e2423ce5b3068ab5766b5',
      'f90aacf66975f5d3cadf4d1d941142ad2a40f8c6a4c682eab491e15b2e604a53'),
-    (238, 118, 69, '5d3d4e176efed970984a60ce693a740aa0e23d767dd16041c276654cbac2ca58',
+    (238, 118, 69, '9094dd336ab9b77e8e301d523eb0a2cf6df65910a243ce57d553113240b853ee',
      '2d21ab8b6690f74023cf3b4f14f68164a9528b52e71196b8f7b9043c84b6467a',
      'da41d34d4c1b307097cb55c93e700e4bfa3f85950485c189d6f2f22a9f67a375'),
     (0, 0, 21, '44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a',
@@ -43,7 +49,7 @@ class BenchmarkConversionParity(unittest.TestCase):
         cls.schema = Path(schema)
         cls.files = [Path(primary)] + [Path(others) / pin['filename'] for pin in PINS[1:]]
 
-    def test_535_rules_have_original_automatic_admission_and_artifact_bytes(self):
+    def test_535_rules_preserve_admission_and_regenerated_document_hashes(self):
         totals = {'source': 0, 'converted': 0, 'blocked': 0, 'native': 0}
         for path, pin, (n, admitted, blocked, docs_hash, trace_hash, coverage_hash) in zip(
                 self.files, PINS, EXPECTED):
@@ -68,12 +74,13 @@ class BenchmarkConversionParity(unittest.TestCase):
         self.assertEqual(totals, {'source': 535, 'converted': 380,
                                   'blocked': 155, 'native': 766})
 
-    def test_cli_exact_common_bytes_match_pinned_original_converter(self):
-        # Golden originally captured from the pinned research CLI at
-        # d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9. CI has no need to
-        # clone that soon-to-be-private repository to detect byte drift.
+    def test_cli_exact_common_bytes_match_owner_amended_v04_baseline(self):
+        # Old original research CLI digest before Item grouping:
+        # 7720a9efae45a7ba34ca107bcdeb0face751aae8126e2e14b5c16f07c6f8d6ff
+        # Preserve historic provenance, but the original YAML bytes no longer
+        # qualify as current 0.4 authoring after the approved amendment.
         original_file_count = 67
-        original_file_digest = '7720a9efae45a7ba34ca107bcdeb0face751aae8126e2e14b5c16f07c6f8d6ff'
+        original_file_digest = 'd5a38ab93c9ffb9852a529b4de8860bbd848973963b5a2935958b6c61b1c073f'
         legacy_root = os.environ.get('SCAP_NG_RESEARCH_ROOT')
         path = self.files[1]
         with tempfile.TemporaryDirectory(prefix='scapng-benchmark-differential-') as temp:
@@ -101,7 +108,24 @@ class BenchmarkConversionParity(unittest.TestCase):
             if legacy_root:
                 originals = {p.relative_to(old).as_posix(): p.read_bytes()
                              for p in old.rglob('*') if p.is_file() and p.name != 'metrics.json'}
-                self.assertEqual(originals, emitted)
+                def upgraded(document):
+                    if isinstance(document, dict) and 'assessment' in document:
+                        for test in document['assessment'].get('tests', {}).values():
+                            req = test.get('require', {})
+                            if 'items_found' in req:
+                                item = {'items_found': req.pop('items_found')}
+                                if 'items_satisfying' in req:
+                                    item['items_satisfying'] = req.pop('items_satisfying')
+                                test['require'] = {'item_requirement': item, **req}
+                    return document
+                for name, old_raw in originals.items():
+                    new_raw = emitted[name]
+                    if name.endswith('.json'):
+                        self.assertEqual(upgraded(json.loads(old_raw)), json.loads(new_raw), name)
+                    elif name.endswith('.yaml'):
+                        self.assertEqual(upgraded(yaml.safe_load(old_raw)), yaml.safe_load(new_raw), name)
+                    else:
+                        self.assertEqual(old_raw, new_raw, name)
             self.assertEqual(json.loads((new / 'conversion-scope.json').read_text())
                              ['independent_semantic_proof'], False)
 

@@ -9,7 +9,7 @@ a release, new baseline, scanner execution, or independent proof.
 
 | Input | Exact identity | Role |
 | --- | --- | --- |
-| Frozen, flat 0.4 SCAP-NG schemas | `ed4a9dce01af6849bf4be146c7678ef7804051e4`, aggregate SHA-256 `476f5767276f5c2114f91b211cf4e159a75bee0806ea736fc631d9c40f4c4b80` | All 100 mapping records; 52 qualified for automatic conversion |
+| Owner-amended, flat 0.4 SCAP-NG schemas | `354c9c962c77488a3d939cab56f6ceecfd495d27` (draft PR #4), aggregate SHA-256 `ab1933f2d9171ee0af70c0fab855b00f5faf78bf59ad4924fbf24b402ac4072a` | All 100 mapping records; 52 qualified for automatic conversion |
 | Official OVAL 5.12.3 | [OVAL-Community/OVAL](https://github.com/OVAL-Community/OVAL/tree/2f140ee5c5dd1ed9606fcd5afc301f6baeb48706/oval-schemas), commit `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706` | Build-time original XSD field/type declarations |
 | Historical SCAP-NG generator source | `vanderpol/scap-ng-research@d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9` (private) | Provenance of four byte-exact Apache-2.0 generator helpers, now in `scripts/_v04_generation` |
 | Pinned NIWC Q3 2026 signed source ZIPs | `niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5`, `Archive/2026_Q3/` | Four original immutable compatibility fixtures |
@@ -18,17 +18,20 @@ The four helper files' SHA-256 values are asserted by
 `tests/test_converter_provenance.py`. The helper copies have **no
 editor/runtime dependency** in the installed package. CI fetches public OVAL
 schemas only to regenerate `contracts-0.4.0.json` and byte-compares the
-result with the exact original 580,676-byte pack, SHA-256
-`b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70`.
+result with the exact 580,676-byte **owner-amended** pack, SHA-256
+`e489a14931b627e67c20724b82fc6b959e3bbf396da07e86cd51d47a08ee915a`.
+The original pre-release pack had digest
+`b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70`;
+all capability and behavior contents remain unchanged.
 
 The original research XSD folder contains 54 OVAL files. Comparing exact Git
 blobs against the official OVAL 5.12.3 commit yields **52 exact matches**.
 The two differences are `independent-definitions-schema.xsd` and
 `independent-system-characteristics-schema.xsd`, which carry extra historical
 `sqlext` SQL test/item declarations. The 52-capability converter contract
-pack is **identical** using official OVAL 5.12.3 without those additions. The
+capability and behavior sections are **identical** using official OVAL 5.12.3 without those additions. The
 separate [100-capability editor-pack audit](EDITOR-PACK-CUTOVER.md) also
-reproduces all 235 previously approved derived resources byte-for-byte
+reproduces all 235 deliberately reviewed derived resources
 without those additions; it does not qualify missing SQL targeting behavior.
 Owner direction on 2026-11-02 explicitly
 **defers `sqlext` migration**: its host-versus-SQL-database/instance targeting
@@ -52,17 +55,18 @@ bytes is:
 
 `7720a9efae45a7ba34ca107bcdeb0face751aae8126e2e14b5c16f07c6f8d6ff`
 
-The tools CLI generates exactly the same 67 filenames and file bytes, excluding
-its additional unverified-scope declaration. CI now checks that frozen original
-CLI file-byte digest on every run even **without** a research checkout. The
-complete 535-Rule inventory and strict conversion suite also checks the
-original per-benchmark native JSON, coverage and source-trace digests, plus
-negative semantic boundary mutations. No blocker count, native output or
-proof status has been rebaselined.
+The owner-approved pre-release 0.4 `item_requirement` change deliberately
+updates those 67 authoring file bytes to digest
+`d5a38ab93c9ffb9852a529b4de8860bbd848973963b5a2935958b6c61b1c073f`.
+The original digest above remains a historical reference; the new CI golden
+is a separately recorded serialization baseline. All 535 source Rules,
+380 admissions, 155 blocks, and source trace/coverage hashes remain unchanged.
+No semantic proof status has been rebaselined.
 
 When the original research source is available, setting
-`SCAP_NG_RESEARCH_ROOT` continues to run its **live** CLI file-byte
-differential and original semantic error differential as extra diagnostics.
+`SCAP_NG_RESEARCH_ROOT` runs an optional *normalized structured-document*
+comparison (old ungrouped Item counts upgraded before comparison) and
+original semantic error diagnostics, not byte parity between grammars.
 These optional tests are not required for independent tools CI.
 
 ## Still out of scope

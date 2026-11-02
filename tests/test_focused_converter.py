@@ -13,7 +13,9 @@ from scap_ng_tools.converter import convert_focused
 
 
 ZIP_SHA = '2f46264b5fa21c8a033236121794ebe372314bf7458dac0aca4f81179fe7ece0'
-NATIVE_SHA = '497ac2042ddefd126c9723f181d655b1d5d4c4fad441c3f986a4b77315584c69'
+# Owner-approved 0.4 re-freeze: Item counts are nested under item_requirement.
+# The old baseline remains available in Git history; no semantic proof is claimed.
+NATIVE_SHA = '8beb7b1c31c6321aa24ef4a0cfbbdd900dcd6dc349c8963887a9db28ee04d493'
 RULES = [
     'xccdf_mil.disa.stig_rule_SV-278139r1182083_rule',
     'xccdf_mil.disa.stig_rule_SV-278080r1180946_rule',

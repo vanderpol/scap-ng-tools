@@ -26,7 +26,9 @@ def test_requirement(source):
 
     vocabulary(result)
     if set(result) == {'items_found'}:
-        return result
+        # An existence-only Test has no satisfaction comparison. Keep the
+        # distinction while using the same authoring-level grouping.
+        return {'item_requirement': result}
     pairs = []
 
     def policy(node, inherited=None, *, prune=False):
@@ -60,4 +62,7 @@ def test_requirement(source):
         result['field_requirement'] = deepcopy(pairs[0] if pairs else {
             'values_found': 'one_or_more', 'values_matching': 'every'})
     policy(result, prune=True)
-    return result
+    if not {'items_found', 'items_satisfying'} <= result.keys():
+        raise ValueError('comparison Test must state both Item quantifiers')
+    item = {name: result.pop(name) for name in ('items_found', 'items_satisfying')}
+    return {'item_requirement': item, **result}
