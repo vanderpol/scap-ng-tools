@@ -8,7 +8,7 @@ independent source proof, scanner execution and corpus regeneration remain out o
 
 This package began with 17 existing direct-converter Python runtime modules and
 the active 0.4 capability activation JSON, copied **byte-for-byte** from
-`vanderpol/scap-ng` commit
+`vanderpol/scap-ng-research` commit
 `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`. A CI test pins the aggregate
 SHA-256 of these 18 source files to
 `893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d`
@@ -67,7 +67,7 @@ also wrote a nondeterministic `metrics.json`; the new CLI instead writes a
 scope record that explicitly refuses runtime or proof authority. The entire
 original converter acceptance suite passed separately (11 tests).
 
-CI runs the package test suite against the exact frozen staging checkout and
+CI runs the package test suite against the exact frozen canonical checkout and
 the pinned original signed fixture, including an output-hash assertion and
 fail-closed proof-mode test. **This validates these selected source cases,
 not all capability acquisition or the whole regression corpus.**
@@ -92,8 +92,10 @@ The original 0.4 semantic passes were copied into `_v04_semantic/` and adapted
 without importing historical-version modules. An offline generated pack holds
 the 52 activated capability fragments, exact field/selector type contracts,
 and eight source OVAL acquisition-behavior declarations. The pack is rebuilt
-from accepted original XSD/generator sources at research commit
-`d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9` and byte-compared in CI.
+from official OVAL 5.12.3 at
+`2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`, using byte-audited
+generator helper copies from research commit
+`d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`, then byte-compared in CI.
 Pack SHA-256:
 `b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70`.
 Neither historical generators nor source XSD files are needed by the wheel.

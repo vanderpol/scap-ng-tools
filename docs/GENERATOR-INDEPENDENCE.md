@@ -1,9 +1,9 @@
 # Portable 0.4 generator and CLI-oracle cutover audit
 
-This checkpoint makes the **tools CI independent of the original**
-`vanderpol/scap-ng` **research checkout**. It does not approve a repository
-rename, merge, release, new baseline, VS Code editor work, proof, or scanner
-execution.
+This checkpoint makes the **tools CI independent of the preserved private**
+`vanderpol/scap-ng-research` **checkout**. The owner completed the separate
+repository renames and approved tools merges on 2026-11-02; that did not approve
+a release, new baseline, scanner execution, or independent proof.
 
 ## Pinned sources and exact byte parity
 
@@ -11,7 +11,7 @@ execution.
 | --- | --- | --- |
 | Frozen, flat 0.4 SCAP-NG schemas | `ed4a9dce01af6849bf4be146c7678ef7804051e4`, aggregate SHA-256 `476f5767276f5c2114f91b211cf4e159a75bee0806ea736fc631d9c40f4c4b80` | All 100 mapping records; 52 qualified for automatic conversion |
 | Official OVAL 5.12.3 | [OVAL-Community/OVAL](https://github.com/OVAL-Community/OVAL/tree/2f140ee5c5dd1ed9606fcd5afc301f6baeb48706/oval-schemas), commit `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706` | Build-time original XSD field/type declarations |
-| Historical SCAP-NG generator source | `vanderpol/scap-ng@d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9` | Provenance of four byte-exact Apache-2.0 generator helpers, now in `scripts/_v04_generation` |
+| Historical SCAP-NG generator source | `vanderpol/scap-ng-research@d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9` (private) | Provenance of four byte-exact Apache-2.0 generator helpers, now in `scripts/_v04_generation` |
 | Pinned NIWC Q3 2026 signed source ZIPs | `niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5`, `Archive/2026_Q3/` | Four original immutable compatibility fixtures |
 
 The four helper files' SHA-256 values are asserted by
@@ -72,5 +72,6 @@ These optional tests are not required for independent tools CI.
   must be repointed in a reviewed PR after canonical repository rename.
 - `--draft`, `--compile`, `--verify`, scanner collection, independent source
   proof, and any new content admissions.
-- Renaming `scap-ng-staging` to `scap-ng`, making the former research repo
-  private, merging the stacked draft PRs, or publishing a new release.
+- Public release packaging, publication of editor metadata, and external
+  VS Code PR tasking are separate from the now-completed repository renames
+  and tools PR merges.
