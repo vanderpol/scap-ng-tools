@@ -8,8 +8,9 @@ or that any target host has been scanned. The corpus was originally pinned from
 `vanderpol/scap-ng` research commit
 `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`.
 
-Each signed fixture is now retrieved directly from the **public NIWC library**
-at that exact commit into a separate temporary CI checkout. It is neither
+Each signed fixture is retrieved directly from the **public NIWC Q3 2026
+archive** (`Archive/2026_Q3/`) at that exact commit into a separate temporary
+CI checkout. It is neither
 embedded in the tools wheel nor distributed under this repository's Apache-2.0
 license. CI verifies the source ZIP SHA-256 before reading it. An independently
 pinned original *converter oracle/generator* is still checked out separately;
@@ -24,8 +25,10 @@ the signed source data no longer comes from the research repository.
 
 **Total: 535 unique Rule entries across four benchmark inventories.**
 
-The public source repository's `Current/` tree at the pinned revision is
-`144371b737af54d39cb51389a21f1bdcb14c2132`. Exact original Git blobs:
+The repository's `Current/` and `Archive/2026_Q3/` trees are **identical** at
+the pinned revision: Git tree
+`144371b737af54d39cb51389a21f1bdcb14c2132`. CI deliberately reads the
+archived Q3 paths, never the moving `Current/` alias. Exact original Git blobs:
 
 | Source | Pinned public Git blob SHA-1 |
 | --- | --- |
@@ -75,6 +78,19 @@ rebaselined here. The semantic contract pack's SHA-256 is
 `b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70`.
 The original research XSD and generator are required only for regenerating
 the pack in CI, never for installed converter execution.
+
+## Quarterly corpus policy
+
+- **Regression lane:** Keep this Q3 2026 archive, repository revision, Git blob
+  identities and SHA-256 ZIP hashes immutable. Its original converter output
+  and blocker counts remain a compatibility baseline, not a statement about
+  the newest content or every SCAP-NG conversion mode.
+- **Current qualification lane:** When the next NIWC quarterly publication is
+  released (expected Q4 2026), select and pin a *new* archive/revision and
+  compare source Rule identities, check constructs, warnings and conversion
+  outcomes. Do not update Q3 goldens in place or silently replace provenance.
+- Both lanes distinguish complete Rule-policy preservation, draft admission,
+  strict automated authoring admission, independent proof and scanner results.
 
 ## Cutover prerequisite
 
