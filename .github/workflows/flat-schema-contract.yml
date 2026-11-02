@@ -32,16 +32,14 @@ jobs:
             Archive/2026_Q3/U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip
           filter: blob:none
           persist-credentials: false
-      - name: Checkout pinned research generator and independent oracle (CI only)
+      - name: Checkout official OVAL 5.12.3 generator inputs (CI only)
         uses: actions/checkout@v4
         with:
-          repository: vanderpol/scap-ng
-          ref: d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9
-          path: legacy-oracle
+          repository: OVAL-Community/OVAL
+          ref: 2f140ee5c5dd1ed9606fcd5afc301f6baeb48706
+          path: official-oval
           sparse-checkout: |
-            tools
-            schema/v0.4.0
-            third_party/scap-1.4-schemas/oval_5.12.3
+            oval-schemas
           filter: blob:none
           persist-credentials: false
       - uses: actions/setup-python@v5
@@ -54,7 +52,7 @@ jobs:
           PYTHONPATH: src
         run: |
           python scripts/generate_v04_semantic_pack.py \
-            --research-root "${{ github.workspace }}/legacy-oracle" \
+            --oval-root "${{ github.workspace }}/official-oval" \
             --schema-root "${{ github.workspace }}/spec-snapshot" \
             --output "${{ runner.temp }}/semantic-contract-pack.json"
           cmp "${{ runner.temp }}/semantic-contract-pack.json" \
@@ -65,5 +63,4 @@ jobs:
           SCAP_NG_SCHEMA_ROOT: ${{ github.workspace }}/spec-snapshot
           SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/signed-source/Archive/2026_Q3/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
           SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/signed-source/Archive/2026_Q3
-          SCAP_NG_RESEARCH_ROOT: ${{ github.workspace }}/legacy-oracle
         run: python -m unittest discover -s tests -v

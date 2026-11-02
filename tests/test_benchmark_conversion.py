@@ -68,27 +68,40 @@ class BenchmarkConversionParity(unittest.TestCase):
         self.assertEqual(totals, {'source': 535, 'converted': 380,
                                   'blocked': 155, 'native': 766})
 
-    def test_cli_exact_common_bytes_match_original_converter(self):
+    def test_cli_exact_common_bytes_match_pinned_original_converter(self):
+        # Golden originally captured from the pinned research CLI at
+        # d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9. CI has no need to
+        # clone that soon-to-be-private repository to detect byte drift.
+        original_file_count = 67
+        original_file_digest = '7720a9efae45a7ba34ca107bcdeb0face751aae8126e2e14b5c16f07c6f8d6ff'
         legacy_root = os.environ.get('SCAP_NG_RESEARCH_ROOT')
-        if not legacy_root:
-            self.skipTest('Original pinned CLI checkout needed for differential test')
         path = self.files[1]
         with tempfile.TemporaryDirectory(prefix='scapng-benchmark-differential-') as temp:
             old = Path(temp) / 'original'
             new = Path(temp) / 'portable'
-            legacy_cli = [sys.executable, str(Path(legacy_root) / 'tools/v04_direct_converter.py'),
-                          str(path), '--sha256', PINS[1]['sha'], '--all-rules', '--output', str(old)]
             portable_cli = [sys.executable, '-m', 'scap_ng_tools.converter.direct04',
                             '--schema-root', str(self.schema), str(path), '--sha256', PINS[1]['sha'],
                             '--all-rules', '--output', str(new)]
-            for command in (legacy_cli, portable_cli):
+            commands = [portable_cli]
+            if legacy_root:
+                commands.insert(0, [
+                    sys.executable, str(Path(legacy_root) / 'tools/v04_direct_converter.py'),
+                    str(path), '--sha256', PINS[1]['sha'], '--all-rules', '--output', str(old)])
+            for command in commands:
                 result = subprocess.run(command, capture_output=True, text=True)
                 self.assertEqual(result.returncode, 0, result.stderr)
-            originals = {p.relative_to(old).as_posix(): p.read_bytes()
-                         for p in old.rglob('*') if p.is_file() and p.name != 'metrics.json'}
             emitted = {p.relative_to(new).as_posix(): p.read_bytes()
                        for p in new.rglob('*') if p.is_file() and p.name != 'conversion-scope.json'}
-            self.assertEqual(originals, emitted)
+            digest = sha256()
+            for name, raw in sorted(emitted.items()):
+                digest.update(name.encode('utf-8') + bytes([0]))
+                digest.update(raw)
+            self.assertEqual(len(emitted), original_file_count)
+            self.assertEqual(digest.hexdigest(), original_file_digest)
+            if legacy_root:
+                originals = {p.relative_to(old).as_posix(): p.read_bytes()
+                             for p in old.rglob('*') if p.is_file() and p.name != 'metrics.json'}
+                self.assertEqual(originals, emitted)
             self.assertEqual(json.loads((new / 'conversion-scope.json').read_text())
                              ['independent_semantic_proof'], False)
 

@@ -25,7 +25,10 @@ independently installable, source-pinned runtime for **explicit Rule IDs** and
 frozen flat schema snapshot and produce native JSON/YAML and source traces
 without the original research checkout. Benchmark conversion also runs the
 original 0.4 Object, comparison, Variable and Input semantic gates through a
-pinned 52-capability offline contract pack. Independent proof, compiler,
+pinned 52-capability offline contract pack. CI rebuilds it from the official
+OVAL 5.12.3 tag and audited generator-helper copies, with frozen original
+converter and CLI-byte goldens and no research-repository checkout.
+Independent proof, compiler,
 scanner execution and draft-admission modes remain unmigrated.
 
 **Read-only full-benchmark inventory** is also available using `--inventory-only`
@@ -93,6 +96,8 @@ On the four pinned acceptance ZIPs, original and portable outputs match exactly:
 The other modes (`--compile`, `--verify`, `--draft`) still fail closed. The
 signed source ZIPs and old OVAL XSD set are not bundled in the installed
 converter; the 0.4-only semantic pack is generated and byte-audited in CI.
+See the [generator independence audit](docs/GENERATOR-INDEPENDENCE.md) for
+public-source inputs and the explicitly deferred `sqlext` targeting contracts.
 
 See [migration provenance](docs/MIGRATION-PROVENANCE.md) for exact source hashes,
 licensing boundaries and the gated next steps.

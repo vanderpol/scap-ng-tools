@@ -37,11 +37,15 @@ from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover check
   [focused migration](FOCUSED-CONVERTER-MIGRATION.md). The signed CI fixture
   checkout now pins the public NIWC **Archive/2026_Q3/** directly, preserving
   the four exact Git blobs and SHA-256 ZIP digests. `Current/` is a moving
-  quarterly release pointer, not the regression fixture path. The research checkout
-  remains **only** for the build-time generator and independent source oracle.
+  quarterly release pointer, not the regression fixture path. CI no longer
+  checks out the research repository: it regenerates the 52-capability pack from
+  the pinned official OVAL 5.12.3 source and audited generator-helper copies,
+  and checks the original converter's frozen document, trace, coverage and
+  CLI-byte goldens. An optional original CLI differential probe remains.
 
 The separately audited automatic benchmark mode uses an offline 0.4 semantic
-contract pack generated from the pinned OVAL XSD/generator and the unchanged
+contract pack generated from the public pinned OVAL XSD and source-audited
+generator helpers, along with the unchanged
 flat metadata, byte-regenerated in CI. This removes research/XSD runtime
 dependencies without weakening structural, Object, comparison, Variable or
 Input admission. The four original acceptance ZIPs produce **380 admitted,
@@ -87,10 +91,11 @@ scanner collection, compile/proof equivalence or the entire converter stack.
 3. Migrate the editor metadata pack exporter and external tests to the flat
    snapshot. Its manifest includes a source commit, so changing repositories
    requires a deliberate pin/hash update even if schema bytes are identical.
-4. Keep the signed-source fixture checkout pinned directly to public NIWC data.
-   Relocate or replace the **remaining CI original converter/XSD oracle** before
-   the research repository becomes private; review notices/licenses first.
-   Expand regression and boundary tests against the new layout.
+4. Keep the signed-source fixture checkout pinned directly to public NIWC Q3
+   archived data. CI's old-research checkout has been replaced with a pinned
+   public OVAL build-time input, exact original CLI goldens, and byte-copied
+   generator helpers. Keep the optional local research differential check
+   available to owners, and review notices/licenses and expanded edge cases.
 5. Only after the above gates pass: owner-controlled repository rename, link
    audit, release pin and external VS Code PR tasking.
 
