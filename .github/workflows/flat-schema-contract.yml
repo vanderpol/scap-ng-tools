@@ -18,11 +18,23 @@ jobs:
           ref: ed4a9dce01af6849bf4be146c7678ef7804051e4
           path: spec-snapshot
           persist-credentials: false
+      - name: Checkout only the pinned original signed conversion fixture
+        uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng
+          ref: d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9
+          path: legacy-fixture
+          sparse-checkout: tests/fixtures/v04-direct-prototype
+          filter: blob:none
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify native helpers and frozen flat-schema adapter
+      - name: Install scoped converter dependencies
+        run: python -m pip install -e .
+      - name: Verify copied converter, pinned conversion and flat-schema adapter
         env:
           PYTHONPATH: src
           SCAP_NG_SCHEMA_ROOT: ${{ github.workspace }}/spec-snapshot
+          SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/legacy-fixture/tests/fixtures/v04-direct-prototype/server2025-signed.zip
         run: python -m unittest discover -s tests -v
