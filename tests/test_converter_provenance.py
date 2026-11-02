@@ -1,4 +1,4 @@
-"""Fail if the pinned runtime or explicit inventory-path adaptation drifts."""
+"""Fail if the audited copied runtime or isolated semantic port drifts."""
 
 from hashlib import sha256
 from pathlib import Path
@@ -8,11 +8,18 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = 'fcfa3ef00a083dc6510a8e1bd421b338d4c892fde59ab61d693ed60d957bc099'
-UNCHANGED_SOURCE_SHA256 = '9b8cd16d4407706ad22d3f604d0cef6c9173fd31a67e4ecb968fdb1a4f71f282'
+CURRENT_RUNTIME_SHA256 = 'b8be370e6616ce3b9f31bd4d08577872e9fbc235ccb19f74ac6bcf8159b41cd4'
+UNCHANGED_SOURCE_SHA256 = '6360a01e45b460c8fa9669b996fa1406e647c76f539bff990fa3e7ba30a7acdb'
 AUDITED_ADAPTATIONS = {
-    'v04_direct_converter.py': 'c373673c4116357027fa1b5fe1f312b156379e6533fb5fbee407843910cb72df',
+    'v04_direct_converter.py': '300c75678d2b8e1450a1c889545dcd7f0fa7d536847c81f92df3476698d4195d',
     'v04_direct_inventory.py': '99a324754b739a9b51d0ae62abed76f8a14d5a172b54ff65beec6fd7ff58d904',
+    'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
+}
+SEMANTIC_PORT = {
+    'v04_comparison_types.py': '1241301693adbf4553e4b1e7072fad8880212dbe4d2441dc7cb2ff20239e3e2c',
+    'v04_input_presence.py': 'a4baeb945a315d5cfe399d80013ca020a359864900c9d2c21bc5f73d185b6291',
+    'v04_object_contract.py': 'e86aab6bf1e0145c14c4f6313928894fd09d041cb0042498174420721aa78d29',
+    'v04_variable_expressions.py': 'e3d71f7aec9dbb8a958a23fe767c8979df1a36880372c63a3c7f5a491162482c',
 }
 SOURCE_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 
@@ -36,6 +43,14 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
                 unchanged.update(path.read_bytes())
         self.assertEqual(digest.hexdigest(), CURRENT_RUNTIME_SHA256)
         self.assertEqual(unchanged.hexdigest(), UNCHANGED_SOURCE_SHA256)
+
+    def test_semantic_port_is_allowlisted_and_generated_pack_is_integrity_pinned(self):
+        from scap_ng_tools.converter._v04_semantic import contracts
+        directory = ROOT / 'src/scap_ng_tools/converter/_v04_semantic'
+        for name, expected in SEMANTIC_PORT.items():
+            self.assertEqual(sha256((directory / name).read_bytes()).hexdigest(), expected)
+        self.assertEqual(len(contracts()['capabilities']), 52)
+        self.assertEqual(len(contracts()['behavior_attributes']), 8)
 
 
 if __name__ == '__main__':

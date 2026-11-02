@@ -27,25 +27,8 @@ def behavior_routes(mapping):
 
 @lru_cache(maxsize=None)
 def original_attributes(schema_path, object_name):
-    schema = ET.parse(ROOT / schema_path).getroot()
-    obj = schema.find(XS + 'element[@name="' + object_name + '"]')
-    declarations = obj.findall('.//' + XS + 'element[@name="behaviors"]')
-    ensure(len(declarations) == 1, 'one original behavior declaration required')
-    name = declarations[0].get('type', '').split(':')[-1]
-    declaration = schema.find(XS + 'complexType[@name="' + name + '"]')
-    ensure(declaration is not None, 'original behavior type unavailable')
-    def attributes_for(node, active):
-        name = node.get('name')
-        ensure(name not in active, 'cyclic original behavior inheritance')
-        result = {}
-        extension = node.find(XS + 'complexContent/' + XS + 'extension')
-        if extension is not None:
-            base = schema.find(XS + 'complexType[@name="' + extension.get('base').split(':')[-1] + '"]')
-            ensure(base is not None, 'unavailable original behavior base')
-            result.update(attributes_for(base, active | {name}))
-        result.update({a.get('name'): dict(a.attrib) for a in node.findall('.//' + XS + 'attribute')})
-        return result
-    return attributes_for(declaration, set())
+    from scap_ng_tools.converter._v04_semantic import behavior_declarations
+    return behavior_declarations(schema_path, object_name)
 
 
 def split_behaviors(element, scalar_names, traversal_names):

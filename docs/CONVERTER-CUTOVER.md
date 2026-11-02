@@ -1,7 +1,8 @@
 # Direct 0.4 converter: flat-schema compatibility gate
 
-**Status: focused conversion and benchmark-wide read-only inventory migrated
-and qualified. Benchmark conversion/compile/verify remain pending. Not a complete
+**Status: focused conversion, read-only benchmark inventory and automatic
+benchmark authoring conversion migrated with exact original output parity.
+Draft admission, compile and independent verify remain pending. Not a complete
 converter release, canonical repo rename authorization or scanner proof.**
 
 The original `vanderpol/scap-ng` 0.4 converter is currently a monorepo tool.
@@ -37,6 +38,15 @@ from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover check
   currently pins the original public research repo; it must be relocated to
   a reviewed public fixture location before the research repo is made private.
 
+The separately audited automatic benchmark mode uses an offline 0.4 semantic
+contract pack generated from the pinned OVAL XSD/generator and the unchanged
+flat metadata, byte-regenerated in CI. This removes research/XSD runtime
+dependencies without weakening structural, Object, comparison, Variable or
+Input admission. The four original acceptance ZIPs produce **380 admitted,
+155 blocked Rules and 766 native documents** with exact original document,
+trace and coverage hashes. This remains `CONVERTED_UNVERIFIED`; no compiled
+programs, source proofs, scanner evidence or new corpus publications result.
+
 ## Pinned Windows Server 2025 probe
 
 Prerequisites are an *already locally available* clone of the original
@@ -69,9 +79,9 @@ scanner collection, compile/proof equivalence or the entire converter stack.
 1. Qualify the **remaining** direct converter modes and their runtime/proof
    dependency closure. The full compile/verify import graph still contains
    research modules and must **not** be copied wholesale without review.
-2. Extend current narrow, installable focused conversion to accepted
-   benchmark-wide **conversion** and other production converter modes without changing its
-   native output or silently downgrading `--verify`/`--compile` semantics.
+2. Qualify draft admission and broader original regression coverage while
+   preserving the now-pinned benchmark conversion output and without silently
+   downgrading `--verify`/`--compile` semantics.
 3. Migrate the editor metadata pack exporter and external tests to the flat
    snapshot. Its manifest includes a source commit, so changing repositories
    requires a deliberate pin/hash update even if schema bytes are identical.

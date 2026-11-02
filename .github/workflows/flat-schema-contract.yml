@@ -18,7 +18,7 @@ jobs:
           ref: ed4a9dce01af6849bf4be146c7678ef7804051e4
           path: spec-snapshot
           persist-credentials: false
-      - name: Checkout only the pinned original signed conversion fixture
+      - name: Checkout pinned original fixtures and source XSD generator (CI only)
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
@@ -27,6 +27,9 @@ jobs:
           sparse-checkout: |
             tests/fixtures/v04-direct-prototype
             tests/fixtures/v04-draft-compatibility
+            tools
+            schema/v0.4.0
+            third_party/scap-1.4-schemas/oval_5.12.3
           filter: blob:none
           persist-credentials: false
       - uses: actions/setup-python@v5
@@ -34,10 +37,21 @@ jobs:
           python-version: '3.12'
       - name: Install scoped converter dependencies
         run: python -m pip install -e .
+      - name: Rebuild and byte-audit the portable 0.4 semantic contract pack
+        env:
+          PYTHONPATH: src
+        run: |
+          python scripts/generate_v04_semantic_pack.py \
+            --research-root "${{ github.workspace }}/legacy-fixture" \
+            --schema-root "${{ github.workspace }}/spec-snapshot" \
+            --output "${{ runner.temp }}/semantic-contract-pack.json"
+          cmp "${{ runner.temp }}/semantic-contract-pack.json" \
+            src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.0.json
       - name: Verify copied converter, pinned conversion and flat-schema adapter
         env:
           PYTHONPATH: src
           SCAP_NG_SCHEMA_ROOT: ${{ github.workspace }}/spec-snapshot
           SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/legacy-fixture/tests/fixtures/v04-direct-prototype/server2025-signed.zip
           SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/legacy-fixture/tests/fixtures/v04-draft-compatibility
+          SCAP_NG_RESEARCH_ROOT: ${{ github.workspace }}/legacy-fixture
         run: python -m unittest discover -s tests -v

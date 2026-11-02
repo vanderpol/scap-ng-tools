@@ -19,13 +19,14 @@ exact 143-file frozen JSON digest, 34 roots, 242 references and 100 supported
 capability mappings under an explicitly selected flat `schema/` directory.
 No schema files or source corpus are vendored into this tool package.
 
-The [direct 0.4 focused converter](docs/FOCUSED-CONVERTER-MIGRATION.md) is now
-copied into this package as an independently installable, source-pinned runtime
-for **explicitly selected Rule IDs**. It reads the separate frozen flat schema
-snapshot and emits structural-valid native JSON/YAML and source traces without
-the original research checkout. Unmigrated benchmark-wide **conversion**,
-compile, verify and draft modes fail explicitly. It is not a complete converter
-or proof release.
+The [direct 0.4 converter](docs/FOCUSED-CONVERTER-MIGRATION.md) is an
+independently installable, source-pinned runtime for **explicit Rule IDs** and
+**qualified automatic benchmark-wide authoring conversion**. Both use the
+frozen flat schema snapshot and produce native JSON/YAML and source traces
+without the original research checkout. Benchmark conversion also runs the
+original 0.4 Object, comparison, Variable and Input semantic gates through a
+pinned 52-capability offline contract pack. Independent proof, compiler,
+scanner execution and draft-admission modes remain unmigrated.
 
 **Read-only full-benchmark inventory** is also available using `--inventory-only`
 without `--rule`. It discovers every source Rule and blocker without admitting
@@ -38,12 +39,10 @@ An external-only [legacy conversion equivalence probe](scripts/verify_flat_conve
 also compares pinned old/new direct converter outputs when the original
 source checkout is available. It remains diagnostic only.
 
-The compiler, full authoring library, independent semantic validators, other
-converter modes (including benchmark-wide **conversion**) and schema files
-**have not moved**. The original development
-repository remains the authority for those features until their dependency
-closure and proof/test fixtures are qualified. This repository is not yet a
-complete 0.4 converter release or standalone scanner.
+The compiler, full authoring library, historical-version conversion,
+independent source proof/verification, draft admission and schema files
+**have not moved**. This repository is not yet a complete 0.4 converter
+release or standalone scanner.
 
 Run the focused standard-library tests using:
 
@@ -79,6 +78,21 @@ scapng-convert-v04 --schema-root /path/to/pinned-scap-ng \
   /path/to/original-scap14.zip --sha256 EXPECTED_SOURCE_SHA256 \
   --inventory-only --output /path/to/new-inventory-directory
 ```
+
+For **automated benchmark authoring conversion** with original blocked-Rule
+diagnostics (not full Benchmark policy equivalence or independent proof):
+
+```sh
+scapng-convert-v04 --schema-root /path/to/pinned-scap-ng \
+  /path/to/original-scap14.zip --sha256 EXPECTED_SOURCE_SHA256 \
+  --all-rules --output /path/to/new-unverified-directory
+```
+
+On the four pinned acceptance ZIPs, original and portable outputs match exactly:
+**535 source Rules, 380 admitted, 155 blocked, and 766 native documents**.
+The other modes (`--compile`, `--verify`, `--draft`) still fail closed. The
+signed source ZIPs and old OVAL XSD set are not bundled in the installed
+converter; the 0.4-only semantic pack is generated and byte-audited in CI.
 
 See [migration provenance](docs/MIGRATION-PROVENANCE.md) for exact source hashes,
 licensing boundaries and the gated next steps.
