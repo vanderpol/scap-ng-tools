@@ -12,9 +12,10 @@ Each signed fixture is retrieved directly from the **public NIWC Q3 2026
 archive** (`Archive/2026_Q3/`) at that exact commit into a separate temporary
 CI checkout. It is neither
 embedded in the tools wheel nor distributed under this repository's Apache-2.0
-license. CI verifies the source ZIP SHA-256 before reading it. An independently
-pinned original *converter oracle/generator* is still checked out separately;
-the signed source data no longer comes from the research repository.
+license. CI verifies the source ZIP SHA-256 before reading it. The original
+research repository is no longer checked out by CI: the historical converter's
+native/trace/coverage digests and CLI file-byte inventory are immutable goldens,
+and the original generator helpers are audited source copies.
 
 | Fixture / suite | ZIP SHA-256 | Original Rule count |
 | --- | --- | ---: |
@@ -76,8 +77,16 @@ Windows admissions use strict broken-reference inventory options; a different
 source-model setting in an old unit test yielded 249. No prior proof is
 rebaselined here. The semantic contract pack's SHA-256 is
 `b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70`.
-The original research XSD and generator are required only for regenerating
-the pack in CI, never for installed converter execution.
+CI regenerates this pack from the frozen flat SCAP-NG snapshot and the official
+OVAL-Community v5.12.3 source pinned to
+`2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`, using
+byte-exact copies of the previously accepted generator helpers. It reproduces
+the original pack exactly. Of the original 54 research OVAL XSDs, **52 are
+byte-identical** to this official tag; two `independent-*` XSDs contain
+additional historical `sqlext` declarations. Those differences do not alter
+the 52-capability automatic-converter pack. The full 100-capability editor
+metadata export still requires a separate audited migration. See
+[generator independence audit](GENERATOR-INDEPENDENCE.md).
 
 ## Quarterly corpus policy
 
@@ -94,9 +103,11 @@ the pack in CI, never for installed converter execution.
 
 ## Cutover prerequisite
 
-The signed source ZIP relocation gate is provisionally met through a direct,
-read-only public NIWC checkout, with no republishing or relicensing. Before
-renaming the original `scap-ng` repo to private `scap-ng-research`, the **CI's
-remaining original converter oracle and build-time XSD/generator** still need
-a stable, legally reviewed replacement or an independently qualified static
-parity strategy. Do not silently regenerate benchmarks or replace the ZIP bytes.
+The source ZIP relocation and converter CI's research-repository dependency
+gates are provisionally met using pinned public NIWC/OVAL checkouts,
+byte-audited generator helper copies, and pre-migration original CLI goldens.
+The original CLI remains available as an **optional, separate differential
+test** when a local research checkout is provided; its absence does not skip
+the frozen per-benchmark or CLI-byte acceptance tests. Repository renaming,
+100-capability editor metadata and canonical editor pins remain separate gates.
+Do not silently regenerate benchmarks or replace the ZIP bytes.

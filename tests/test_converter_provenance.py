@@ -22,9 +22,22 @@ SEMANTIC_PORT = {
     'v04_variable_expressions.py': 'e3d71f7aec9dbb8a958a23fe767c8979df1a36880372c63a3c7f5a491162482c',
 }
 SOURCE_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
+PINNED_GENERATOR_HELPERS = {
+    'generate_capability_schema_v04.py': '99f08e62596414a59dcd219c7aefc29c3b0c4a05f7f3f3b8a222f637ebd069d0',
+    'v04_capability_native.py': 'b2a961aea7231d74b0a755b1a9b0485f349594d0a3456c09d9ba9c9cf0b648e8',
+    'v04_capability_source.py': 'b2e4a1cb053acc574b7677ef7d94a38905ce9acdd8a418be613840b330ca44e5',
+    'v04_editor_annotations.py': 'ae85a8a324eeff5b61898612b607d4e04ddc00414f14993d874db6135c4d3175',
+}
 
 
 class DirectConverterSourceCopyTests(unittest.TestCase):
+    def test_build_time_generator_helpers_remain_exact_pinned_source_copies(self):
+        root = ROOT / 'scripts/_v04_generation'
+        self.assertEqual({p.name for p in root.glob('*.py')},
+                         set(PINNED_GENERATOR_HELPERS))
+        for name, expected in PINNED_GENERATOR_HELPERS.items():
+            self.assertEqual(sha256((root / name).read_bytes()).hexdigest(), expected)
+
     def test_runtime_matches_allowlisted_inventory_path_adaptation(self):
         paths = sorted(p for p in RUNTIME.iterdir()
                        if p.suffix in ('.py', '.json') and p.name != '__init__.py')
