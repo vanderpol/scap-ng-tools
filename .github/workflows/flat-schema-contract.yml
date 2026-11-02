@@ -11,11 +11,11 @@ jobs:
     steps:
       - name: Checkout tools under review
         uses: actions/checkout@v4
-      - name: Checkout exact frozen canonical 0.4 schema snapshot
+      - name: Checkout exact owner-amended pre-release 0.4 schema snapshot
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: ed4a9dce01af6849bf4be146c7678ef7804051e4
+          ref: 354c9c962c77488a3d939cab56f6ceecfd495d27
           path: spec-snapshot
           persist-credentials: false
       - name: Checkout immutable Q3 2026 NIWC signed benchmark archive

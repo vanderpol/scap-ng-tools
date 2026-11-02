@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from build_v04_editor_metadata_pack import build  # noqa: E402
 
 
-STAGING_COMMIT = 'ed4a9dce01af6849bf4be146c7678ef7804051e4'
-EXPECTED_MANIFEST = '57c0ce0695f84e188572bd5444156ceb577e3df7c80d580eaecf529e77bc3bc8'
+SCHEMA_COMMIT = '354c9c962c77488a3d939cab56f6ceecfd495d27'
+EXPECTED_MANIFEST = '1f981bcc09c294e15b287176482d6be0b0a9d3d128bda6c37a160826bda036e2'
 
 
 class EditorPackParity(unittest.TestCase):
@@ -27,20 +27,20 @@ class EditorPackParity(unittest.TestCase):
         cls.schema = Path(schema)
         cls.oval = Path(oval)
 
-    def test_all_235_original_resources_identical_with_explicit_new_pin(self):
+    def test_all_235_reviewed_amended_resources_match_explicit_new_pin(self):
         with tempfile.TemporaryDirectory(prefix='scapng-editor-pack-') as temp:
             output = Path(temp) / 'metadata'
-            profile = build(self.schema, self.oval, STAGING_COMMIT, output)
+            profile = build(self.schema, self.oval, SCHEMA_COMMIT, output)
             self.assertEqual(profile, {
                 'schemaVersion': '0.4.0',
-                'sourceCommit': STAGING_COMMIT,
+                'sourceCommit': SCHEMA_COMMIT,
                 'manifestSha256': EXPECTED_MANIFEST,
             })
             self.assertEqual(json.loads((output / 'profile.json').read_bytes()), profile)
             manifest_bytes = (output / 'manifest.json').read_bytes()
             self.assertEqual(sha256(manifest_bytes).hexdigest(), EXPECTED_MANIFEST)
             manifest = json.loads(manifest_bytes)
-            self.assertEqual(manifest['source_commit'], STAGING_COMMIT)
+            self.assertEqual(manifest['source_commit'], SCHEMA_COMMIT)
             self.assertEqual(len(manifest['resources']), 235)
             self.assertEqual(len(manifest['capabilities']), 100)
             names = set()
@@ -63,7 +63,7 @@ class EditorPackParity(unittest.TestCase):
             self.assertFalse(output.exists())
             output.mkdir()
             with self.assertRaisesRegex(ValueError, 'overwrite'):
-                build(self.schema, self.oval, STAGING_COMMIT, output)
+                build(self.schema, self.oval, SCHEMA_COMMIT, output)
 
 
 if __name__ == '__main__':

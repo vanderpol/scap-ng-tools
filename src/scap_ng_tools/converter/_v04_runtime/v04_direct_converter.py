@@ -189,7 +189,8 @@ class AssessmentConverter:
             # grammar still requires this uniform structured requirement.
             identifier = self.native_name(element, 'test')
             self.tests[identifier] = {'test_title': element.get('comment', ''), 'capability': mapping['capability'],
-                'require': {'items_found': 'one_or_more'}, 'reported_elements': 'all'}
+                'require': {'item_requirement': {'items_found': 'one_or_more'}},
+                'reported_elements': 'all'}
             return {'test': identifier}
         objects = element.findall(f'{{{mapping["source"]["namespace"]}}}object')
         ensure(len(objects) == 1, 'one Test Object required')
