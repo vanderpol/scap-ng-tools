@@ -88,9 +88,11 @@ scanner collection, compile/proof equivalence or the entire converter stack.
 2. Qualify draft admission and broader original regression coverage while
    preserving the now-pinned benchmark conversion output and without silently
    downgrading `--verify`/`--compile` semantics.
-3. Migrate the editor metadata pack exporter and external tests to the flat
-   snapshot. Its manifest includes a source commit, so changing repositories
-   requires a deliberate pin/hash update even if schema bytes are identical.
+3. **Editor-pack exporter qualification is now staged:** all 235 resources
+   exactly match the old 100-capability pack using the flat snapshot, and a
+   new manifest/sourceCommit is pinned and tested. It still needs reviewed
+   publication and an editor profile update **after** canonical repo rename,
+   rather than repointing the extension prematurely.
 4. Keep the signed-source fixture checkout pinned directly to public NIWC Q3
    archived data. CI's old-research checkout has been replaced with a pinned
    public OVAL build-time input, exact original CLI goldens, and byte-copied

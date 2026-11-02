@@ -27,9 +27,10 @@ The two differences are `independent-definitions-schema.xsd` and
 `independent-system-characteristics-schema.xsd`, which carry extra historical
 `sqlext` SQL test/item declarations. The 52-capability converter contract
 pack is **identical** using official OVAL 5.12.3 without those additions. The
-differences must be reconsidered separately when qualifying the entire 100-
-capability authoring/editor metadata pack; they are not silently treated as
-equivalent for that larger scope. Owner direction on 2026-11-02 explicitly
+separate [100-capability editor-pack audit](EDITOR-PACK-CUTOVER.md) also
+reproduces all 235 previously approved derived resources byte-for-byte
+without those additions; it does not qualify missing SQL targeting behavior.
+Owner direction on 2026-11-02 explicitly
 **defers `sqlext` migration**: its host-versus-SQL-database/instance targeting
 semantics are not yet equivalent to `sql512`. Do not alias, convert, or claim
 compatibility between them without a separately reviewed targeting contract.
@@ -66,9 +67,9 @@ These optional tests are not required for independent tools CI.
 
 ## Still out of scope
 
-- Editor metadata export of **all 100** supported capabilities; its schema
-  path, `sourceCommit` profile pin and 0.4 authoring annotations must be
-  deliberately migrated and tested before VS Code tasking.
+- Owner-controlled publication and **editor consumption** of the separately
+  audited 100-capability pack; the existing VS Code `sourceCommit` profile
+  must be repointed in a reviewed PR after canonical repository rename.
 - `--draft`, `--compile`, `--verify`, scanner collection, independent source
   proof, and any new content admissions.
 - Renaming `scap-ng-staging` to `scap-ng`, making the former research repo
