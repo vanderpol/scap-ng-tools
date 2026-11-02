@@ -27,13 +27,14 @@ def issue(category, message, source_id, component=None):
 
 class SourceInventory:
     """One indexed dependency graph, then deterministic per-Rule graph walks."""
-    def __init__(self, source):
+    def __init__(self, source, *, mappings=None):
         self.source, self.nodes = source, {}
         # Catalog names are descriptive inventory only, never admission authority.
         catalog = {}
-        directory = Path(__file__).resolve().parents[1] / 'schema/v0.4.0/capability-mappings/supported'
-        for path in sorted(directory.glob('*.json')):
-            mapping = json.loads(path.read_text())
+        if mappings is None:
+            directory = Path(__file__).resolve().parents[1] / 'schema/v0.4.0/capability-mappings/supported'
+            mappings = [json.loads(path.read_text()) for path in sorted(directory.glob('*.json'))]
+        for mapping in mappings:
             for kind in ('test', 'object', 'state'):
                 if mapping.get('source', {}).get(kind):
                     catalog['{' + mapping['source']['namespace'] + '}' + mapping['source'][kind]] = mapping['capability']

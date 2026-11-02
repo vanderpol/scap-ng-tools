@@ -6,13 +6,21 @@ execution or corpus regeneration is represented as complete.
 
 ## Mechanism
 
-This package contains 17 existing direct-converter Python runtime modules and
+This package began with 17 existing direct-converter Python runtime modules and
 the active 0.4 capability activation JSON, copied **byte-for-byte** from
 `vanderpol/scap-ng` commit
 `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`. A CI test pins the aggregate
 SHA-256 of these 18 source files to
 `893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d`
-(sorted file name + NUL + exact bytes).
+(sorted file name + NUL + exact bytes). The inventory pass introduced two
+**audited source-path injection edits** to `v04_direct_converter.py` and
+`v04_direct_inventory.py`, so descriptive capability names are resolved from
+the same flat catalog as conversion. The other 16 source files are byte-exact,
+with aggregate SHA-256
+`9b8cd16d4407706ad22d3f604d0cef6c9173fd31a67e4ecb968fdb1a4f71f282`.
+The adapted 18-file runtime's aggregate SHA-256 is
+`fcfa3ef00a083dc6510a8e1bd421b338d4c892fde59ab61d693ed60d957bc099`.
+Tests pin both changed files individually and the unchanged set independently.
 
 The new wrapper is deliberately separate from the frozen source engine:
 
@@ -28,9 +36,9 @@ The new wrapper is deliberately separate from the frozen source engine:
   distinct from independent semantic or runtime verification.
 - JSON/YAML output and source traces are written to a new destination only,
   with a separate explicit `CONVERTED_UNVERIFIED` scope record.
-- A requested `--verify`, `--compile`, `--all-rules`, `--inventory-only`
-  or `--draft` fails before creating output, rather than quietly changing
-  accepted proof or compiler semantics.
+- A requested `--verify`, `--compile`, `--all-rules` or `--draft` fails before
+  creating output, rather than quietly changing proof/compiler semantics.
+  `--inventory-only` is a separately qualified, read-only mode.
 
 The source engine retains its historical module imports while the wrapper
 loads them from a checked package-owned directory and rejects collisions with
@@ -62,6 +70,21 @@ CI runs the package test suite against the exact frozen staging checkout and
 the pinned original signed fixture, including an output-hash assertion and
 fail-closed proof-mode test. **This validates these selected source cases,
 not all capability acquisition or the whole regression corpus.**
+
+## Whole-benchmark read-only inventory
+
+The original and standalone inventory engines now agree exactly on four pinned
+source archives: **535 discovered Rules**, with identical manifest and source
+trace digests for every archive. The Windows Server 2025 CLI's
+`coverage.json`, `coverage.md` and `source-trace.json` were also checked
+byte-for-byte against the original. The inventory emits **zero native
+Assessments** and has no proof or scanner execution authority.
+
+The source fixture hashes, per-file Rule counts and golden manifest/trace
+digests are recorded in [the fixture ledger](TEST-FIXTURE-PINS.md) and enforced
+by CI. This establishes a dependable inventory baseline before benchmark-wide
+conversion is migrated; it is **not** evidence that every inventory entry can
+be converted or scanned.
 
 ## Remaining work before repository rename
 

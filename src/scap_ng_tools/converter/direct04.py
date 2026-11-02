@@ -101,6 +101,28 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
     return documents, trace
 
 
+def inventory_benchmark(*, schema_root, source, sha256_pin):
+    """Read every source Rule without admitting conversion or proving results."""
+    snapshot = FrozenSchemaSnapshot(schema_root)
+    if sha256(Path(source).read_bytes()).hexdigest() != sha256_pin:
+        raise QualifiedConversionError('original source archive does not match supplied SHA-256')
+    engine = load_runtime()
+    from v04_direct_scap_source import SourceModel
+    mappings = snapshot.supported_mappings(engine.CAPABILITIES)
+    previous = engine.load_mappings
+    try:
+        engine.load_mappings = lambda: mappings
+        original = SourceModel(Path(source), sha256_pin,
+                               inventory_broken_references=True)
+        documents, trace, coverage = engine.convert_benchmark(
+            original, inventory_only=True, mappings=mappings)
+    finally:
+        engine.load_mappings = previous
+    if documents or coverage.get('mode') != 'inventory':
+        raise QualifiedConversionError('inventory unexpectedly admitted native documents')
+    return trace, coverage
+
+
 def safe_relative_filename(root, relative):
     filename = PurePosixPath(relative)
     if not relative or filename.is_absolute() or '..' in filename.parts or '\\' in relative:
@@ -120,7 +142,7 @@ def main():
     parser.add_argument('--source', dest='source_option', type=Path,
                         help='equivalent explicit source ZIP path')
     parser.add_argument('--sha256', required=True, help='exact SHA-256 of original source ZIP')
-    parser.add_argument('--rule', action='append', required=True, help='selected source Rule ID; repeatable')
+    parser.add_argument('--rule', action='append', help='selected source Rule ID; repeatable')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
     for option in ('--verify', '--compile', '--all-rules', '--inventory-only', '--draft'):
@@ -130,12 +152,31 @@ def main():
         parser.error('supply exactly one source ZIP (positional or --source)')
     selected_source = arguments.source or arguments.source_option
     if any((arguments.verify, arguments.compile, arguments.all_rules,
-            arguments.inventory_only, arguments.draft)):
-        parser.error('only strict focused conversion is migrated; compile/proof, draft and '
-                     'benchmark modes require separate owner-qualified ports')
+            arguments.draft)):
+        parser.error('compile/proof, draft and benchmark-wide conversion are not migrated; '
+                     'these modes require separate owner-qualified ports')
+    if arguments.inventory_only and arguments.rule:
+        parser.error('--inventory-only must not be combined with --rule')
+    if not arguments.inventory_only and not arguments.rule:
+        parser.error('focused conversion requires at least one --rule')
     if arguments.output.exists():
         parser.error('output path already exists; refusing overwrite')
     try:
+        if arguments.inventory_only:
+            trace, coverage = inventory_benchmark(
+                schema_root=arguments.schema_root, source=selected_source,
+                sha256_pin=arguments.sha256)
+            from v04_direct_inventory import coverage_markdown
+            arguments.output.mkdir(parents=True, exist_ok=False)
+            (arguments.output / 'coverage.json').write_text(
+                json.dumps(coverage, indent=2) + '\n', encoding='utf-8')
+            (arguments.output / 'coverage.md').write_text(
+                coverage_markdown(coverage), encoding='utf-8')
+            (arguments.output / 'source-trace.json').write_text(
+                json.dumps(trace, indent=2) + '\n', encoding='utf-8')
+            print(json.dumps({'source_rules': coverage['summary']['source_rules'],
+                              'status': 'INVENTORIED_UNVERIFIED', 'native_documents': 0}))
+            return
         documents, trace = convert_focused(
             schema_root=arguments.schema_root, source=selected_source,
             sha256_pin=arguments.sha256, rule_ids=arguments.rule,

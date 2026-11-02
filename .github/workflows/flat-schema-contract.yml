@@ -24,7 +24,9 @@ jobs:
           repository: vanderpol/scap-ng
           ref: d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9
           path: legacy-fixture
-          sparse-checkout: tests/fixtures/v04-direct-prototype
+          sparse-checkout: |
+            tests/fixtures/v04-direct-prototype
+            tests/fixtures/v04-draft-compatibility
           filter: blob:none
           persist-credentials: false
       - uses: actions/setup-python@v5
@@ -37,4 +39,5 @@ jobs:
           PYTHONPATH: src
           SCAP_NG_SCHEMA_ROOT: ${{ github.workspace }}/spec-snapshot
           SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/legacy-fixture/tests/fixtures/v04-direct-prototype/server2025-signed.zip
+          SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/legacy-fixture/tests/fixtures/v04-draft-compatibility
         run: python -m unittest discover -s tests -v
