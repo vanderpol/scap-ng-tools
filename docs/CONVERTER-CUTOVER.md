@@ -35,8 +35,9 @@ from `vanderpol/scap-ng-staging` to `vanderpol/scap-ng` only after cutover check
   output writing outside the source engine. Two small documented inventory
   catalog injection adaptations are now pinned by test. See
   [focused migration](FOCUSED-CONVERTER-MIGRATION.md). The signed CI fixture
-  checkout now pins the public NIWC content library directly, preserving the
-  four exact Git blobs and SHA-256 ZIP digests. The original research checkout
+  checkout now pins the public NIWC **Archive/2026_Q3/** directly, preserving
+  the four exact Git blobs and SHA-256 ZIP digests. `Current/` is a moving
+  quarterly release pointer, not the regression fixture path. The research checkout
   remains **only** for the build-time generator and independent source oracle.
 
 The separately audited automatic benchmark mode uses an offline 0.4 semantic
