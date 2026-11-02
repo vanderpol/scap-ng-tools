@@ -1,0 +1,10 @@
+{
+  "previous_schema_commit": "c6414084677c061d205c2f4010ac915dc466adcc",
+  "new_schema_commit": "d4e477998cda438a1e53a7c3c84123ec92e5ba1f",
+  "resources": 235,
+  "changed_resources": [
+    "schemas/rule.schema.json"
+  ],
+  "unchanged_resources": 234,
+  "new_manifest_sha256": "33fa58aa40b627fc1d3ae03a5ef08312461614f3c99f21ffedf26003524d4dee"
+}

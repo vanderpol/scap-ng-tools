@@ -61,16 +61,16 @@ def presence_contract(assessment):
             raise ValueError('Input dependency resource limit')
         active.add(key)
         found = set()
-        stack = [tables[kind][name]]
+        stack = [(tables[kind][name], False)]
         count = 0
         while stack:
-            node = stack.pop(); count += 1
+            node, field_map = stack.pop(); count += 1
             if count > 16384:
                 raise ValueError('Input dependency resource limit')
             if isinstance(node, list):
-                stack.extend(node)
+                stack.extend((child, False) for child in node)
             elif isinstance(node, dict):
-                if set(node) == {'literal'}:
+                if set(node) == {'literal'} and not field_map:
                     continue  # Literal records are opaque data.
                 if set(node) == {'input'} and isinstance(node['input'], str):
                     if node['input'] not in inputs:
@@ -83,8 +83,7 @@ def presence_contract(assessment):
                 loop = node.get('for_each')
                 if isinstance(loop, dict) and isinstance(loop.get('in'), str):
                     found.update(dependencies('object', loop['in']))
-                stack.extend(v for k, v in node.items() if k not in
-                             {'test_title', 'object_title', 'title', 'description', 'constraints'})
+                stack.extend((v, k == 'fields') for k, v in node.items())
         active.remove(key)
         complete[key] = found
         return found
