@@ -1,4 +1,4 @@
-"""Consume only the existing 2026-10-24 Oracle source correction.
+"""Source-attested Oracle-only and eight-case owner-correction profiles.
 
 This is an explicit owner-normalized DRAFT, never a general proof that a
 comparator-bearing absence is equivalent to comparator-free native absence.
@@ -44,3 +44,42 @@ def oracle_visitor(base,source,rule_id):
                 return result
             return super().predicate(element,mapping,selector,record_field=record_field)
     return ApprovedOracleVisitor
+
+
+def approved_visitor(base,source,rule_id):
+    """Explicit eight-case profile; the old Oracle-only profile stays bounded."""
+    from .approved_absence_cases import CASES
+    base=oracle_visitor(base,source,rule_id)
+    case=CASES.get(rule_id)
+    if case is None or source.zip_sha256!=case['source_zip_sha256']:return base
+    from v04_direct_scap_source import digest,xml_identity,ensure
+    def attest():
+        ensure(digest(xml_identity(source.rules[rule_id]))==case['source_rule_sha256'],
+               'approved absence Rule changed')
+        cid,did,_=source.automated_check(source.rules[rule_id])
+        ensure((cid,did)==(case['component'],case['definition']),'approved absence binding changed')
+        for ident,expected in case['source_nodes'].items():
+            ensure(ident in source.nodes[cid] and digest(xml_identity(source.nodes[cid][ident]))==expected,
+                   'approved absence source node changed: '+ident)
+        state=source.nodes[cid][case['state']]
+        ensure(len(state)==1 and digest(xml_identity(state[0]))==case['field_sha256'],
+               'approved absence field changed')
+        return state[0]
+    field=attest()
+    class ApprovedAbsenceVisitor(base):
+        def predicate(self,element,mapping,selector=False,*,record_field=False):
+            if element is field and not selector and not record_field and mapping['capability']=='independent.shellcommand':
+                attest()
+                result={'values_found':'none'}
+                self.conversion_warnings.append({'code':'approved_absence_20261103',
+                    'decision':'Owner-approved exact-source intended-policy correction, 2026-11-03',
+                    'decision_record':'https://github.com/vanderpol/scap-ng-tools/issues/14#issuecomment-6615375024',
+                    'source_zip_sha256':case['source_zip_sha256'],'source_rule':rule_id,
+                    'source_rule_sha256':case['source_rule_sha256'],'source_nodes':dict(case['source_nodes']),
+                    'source_entity':xml_identity(element),'source_entity_sha256':digest(xml_identity(element)),
+                    'native_predicate':dict(result),'native_predicate_sha256':digest(result),
+                    'source_correction':True,'owner_normalized':True,
+                    'independent_static_proof':'UNPROVED','scanner_evaluated':False})
+                return result
+            return super().predicate(element,mapping,selector,record_field=record_field)
+    return ApprovedAbsenceVisitor

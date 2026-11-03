@@ -1,0 +1,330 @@
+{
+  "format": "issue14-approved-absence-native-identity/1",
+  "compiler_commit": "855c6023d55d882b55c0507d5492e6f4e4946023",
+  "totals": {
+    "packages": 7,
+    "documents": 38,
+    "programs": 8,
+    "tests": 8,
+    "manual_assessments": 8,
+    "rejected_mutants": 16
+  },
+  "results": [
+    {
+      "filename": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "bundle_sha256": "8ae1d122f760181c4e1c6b06bb6510309b1c6b1af932c91e5825d240607a46cf",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "canonical-ubuntu-18-04-lts-with-manual-questions-benchmark",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "source_graph_sha256": "e9db076687bdefb107185744bb63b9749a011245112e44d4a97fa05e1113ceeb",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "canonical-ubuntu-18-04-lts-with-manual-questions-benchmark",
+        "bundle_sha256": "8ae1d122f760181c4e1c6b06bb6510309b1c6b1af932c91e5825d240607a46cf",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "e9db076687bdefb107185744bb63b9749a011245112e44d4a97fa05e1113ceeb",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "manual_assessments": 1,
+      "rejected_mutants": [
+        {
+          "assessment": "all-local-interactive-owners-primary-group-sv-237770-assessment",
+          "case": "capability",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "all-local-interactive-owners-primary-group-sv-237770-assessment",
+          "case": "absence-cardinality",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        }
+      ]
+    },
+    {
+      "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "bundle_sha256": "533036b69ac14047cfca4426895da9aa02c6ae5067b87c00d4eca3e274fa27db",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "oracle-linux-8-stig-scap-with-manual-questions-benchmark",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "source_graph_sha256": "d6a7e2ab4ca3aa284319ddb6a14252b9a3b9df531c52ddbd20c640bb0c06dc9a",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "oracle-linux-8-stig-scap-with-manual-questions-benchmark",
+        "bundle_sha256": "533036b69ac14047cfca4426895da9aa02c6ae5067b87c00d4eca3e274fa27db",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "d6a7e2ab4ca3aa284319ddb6a14252b9a3b9df531c52ddbd20c640bb0c06dc9a",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "manual_assessments": 1,
+      "rejected_mutants": [
+        {
+          "assessment": "all-ol-8-local-owner-s-primary-group-sv-248641-assessment",
+          "case": "capability",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "all-ol-8-local-owner-s-primary-group-sv-248641-assessment",
+          "case": "absence-cardinality",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        }
+      ]
+    },
+    {
+      "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "bundle_sha256": "1b952482e2e3974d1e4bcbe73b245667204d4c3f98b495b7fd6412b58ca02d00",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "oracle-linux-9-stig-scap-with-manual-questions-benchmark",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "source_graph_sha256": "29cbf077a4110a9899fd3036f50c83ea8ce23216752c38ab03d7c5526601fbcb",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "oracle-linux-9-stig-scap-with-manual-questions-benchmark",
+        "bundle_sha256": "1b952482e2e3974d1e4bcbe73b245667204d4c3f98b495b7fd6412b58ca02d00",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "29cbf077a4110a9899fd3036f50c83ea8ce23216752c38ab03d7c5526601fbcb",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "manual_assessments": 1,
+      "rejected_mutants": [
+        {
+          "assessment": "ol-9-local-interactive-passwd-file-exist-sv-271844-assessment",
+          "case": "capability",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "ol-9-local-interactive-passwd-file-exist-sv-271844-assessment",
+          "case": "absence-cardinality",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        }
+      ]
+    },
+    {
+      "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "bundle_sha256": "7ce215ce06948342079da1cd05de349dd7fab54ff84b9c226c1ab27804369a39",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "red-hat-enterprise-linux-8-with-manual-questions-benchmark",
+        "documents": 8,
+        "programs": 2,
+        "tests": 2,
+        "source_graph_sha256": "adff44383f8e68e37a693d0cde1df9715f03bb0fe7c93e859f6f69c0acd9cfcc",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "red-hat-enterprise-linux-8-with-manual-questions-benchmark",
+        "bundle_sha256": "7ce215ce06948342079da1cd05de349dd7fab54ff84b9c226c1ab27804369a39",
+        "documents": 8,
+        "programs": 2,
+        "tests": 2,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "adff44383f8e68e37a693d0cde1df9715f03bb0fe7c93e859f6f69c0acd9cfcc",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "manual_assessments": 2,
+      "rejected_mutants": [
+        {
+          "assessment": "all-rhel-8-local-owner-s-primary-group-sv-230322-assessment",
+          "case": "capability",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "all-rhel-8-local-owner-s-primary-group-sv-230322-assessment",
+          "case": "absence-cardinality",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "all-rhel-8-local-in-etc-passwd-file-exist-sv-230323-assessment",
+          "case": "capability",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "all-rhel-8-local-in-etc-passwd-file-exist-sv-230323-assessment",
+          "case": "absence-cardinality",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        }
+      ]
+    },
+    {
+      "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "bundle_sha256": "f80c362272e262b14b95dfa7c0a7697376f16d0651cc85bd1392d44ae9ca0797",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "suse-linux-enterprise-enhanced-with-manual-questions-benchmark",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "source_graph_sha256": "40315032723a750faad8d14457954bd5d789a68c1f2f99d3aa075d839e8866b9",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "suse-linux-enterprise-enhanced-with-manual-questions-benchmark",
+        "bundle_sha256": "f80c362272e262b14b95dfa7c0a7697376f16d0651cc85bd1392d44ae9ca0797",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "40315032723a750faad8d14457954bd5d789a68c1f2f99d3aa075d839e8866b9",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "manual_assessments": 1,
+      "rejected_mutants": [
+        {
+          "assessment": "all-suse-operating-system-file-exist-sv-217172-assessment",
+          "case": "capability",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "all-suse-operating-system-file-exist-sv-217172-assessment",
+          "case": "absence-cardinality",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        }
+      ]
+    },
+    {
+      "filename": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "bundle_sha256": "46ac4dac360825840d002655c8071bd1dab1bbbcd3170613ef0a04a9a54849a3",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "suse-linux-enterprise-enhanced-with-manual-questions-benchmark",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "source_graph_sha256": "a1831d6d6ccdd1ecd65121a346fed9ab1bc1af9148f625387cf70e91ac91fa0b",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "suse-linux-enterprise-enhanced-with-manual-questions-benchmark",
+        "bundle_sha256": "46ac4dac360825840d002655c8071bd1dab1bbbcd3170613ef0a04a9a54849a3",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "a1831d6d6ccdd1ecd65121a346fed9ab1bc1af9148f625387cf70e91ac91fa0b",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "manual_assessments": 1,
+      "rejected_mutants": [
+        {
+          "assessment": "all-suse-operating-system-file-exist-sv-234992-assessment",
+          "case": "capability",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "all-suse-operating-system-file-exist-sv-234992-assessment",
+          "case": "absence-cardinality",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        }
+      ]
+    },
+    {
+      "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "bundle_sha256": "a38f5555cc96bf210f6f9aaebc8a67ae3e7800a434533f77b72a0f9b71f53e59",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "tri-lab-operating-system-with-manual-questions-benchmark",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "source_graph_sha256": "763b8da8e158386c9b5df7a63437585f7abd053f308c124caba142a976e073d9",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "tri-lab-operating-system-with-manual-questions-benchmark",
+        "bundle_sha256": "a38f5555cc96bf210f6f9aaebc8a67ae3e7800a434533f77b72a0f9b71f53e59",
+        "documents": 5,
+        "programs": 1,
+        "tests": 1,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "763b8da8e158386c9b5df7a63437585f7abd053f308c124caba142a976e073d9",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "manual_assessments": 1,
+      "rejected_mutants": [
+        {
+          "assessment": "all-toss-local-owner-s-primary-group-sv-252961-assessment",
+          "case": "capability",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        },
+        {
+          "assessment": "all-toss-local-owner-s-primary-group-sv-252961-assessment",
+          "case": "absence-cardinality",
+          "rejected": true,
+          "diagnostic": "compiled operand divergence"
+        }
+      ]
+    }
+  ],
+  "source_semantic_proof": false,
+  "scanner_execution": false,
+  "qualification": "Owner-corrected source/package/program identity only; not original OVAL/scanner equivalence."
+}

@@ -171,7 +171,7 @@ def _classes(engine, *, binary32_contract=None):
 
 
 def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameters=False, rule_ids=None,
-                      binary32_comparisons=False, approved_oracle_absence=False):
+                      binary32_comparisons=False, approved_oracle_absence=False, approved_absence_corrections=False):
     """Return native DRAFT documents, complete source trace and per-Rule ledger.
 
     Original selection/applicability XML remains in provenance. Native platform
@@ -230,6 +230,9 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
                 if approved_oracle_absence:
                     from .approved_absence import oracle_visitor
                     factory=oracle_visitor(factory,model,rid)
+                if approved_absence_corrections:
+                    from .approved_absence import approved_visitor
+                    factory=approved_visitor(factory,model,rid)
                 automatic,auto_binding=engine.convert_rule(model,rid,mappings,converter_factory=factory)
                 ensure(not any(w.get('code')=='test_all_exist_unproved' for w in auto_binding.get('conversion_warnings',[])),
                        'all_exist recovery requires separately qualified population semantics')
@@ -240,6 +243,11 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
                 native_rule.update({k:v for k,v in auto_rule.items() if k not in ('assessment_choices','default_assessment_choice')})
                 native_rule['assessment_choices'].update(auto_rule['assessment_choices'])
                 binding.update(auto_binding);row['automated_draft']=True
+                if approved_absence_corrections:
+                    corrections=[w for w in auto_binding.get('conversion_warnings',[]) if w.get('source_correction')]
+                    if corrections:
+                        row['owner_normalized']=True
+                        row['source_corrections']=[w['code'] for w in corrections]
             except ValueError as error:row['blockers'].append(str(error))
         if native_rule['assessment_choices']:
             # A missing/unsupported source default is not replaced by another choice.
@@ -314,4 +322,7 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
     if approved_oracle_absence:
         trace['approved_oracle_absence_enabled']=True
         ledger['approved_oracle_absence_enabled']=True
+    if approved_absence_corrections:
+        trace['approved_absence_corrections_enabled']=True
+        ledger['approved_absence_corrections_enabled']=True
     return docs,trace,ledger

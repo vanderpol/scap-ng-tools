@@ -1,0 +1,67 @@
+{
+  "format": "issue14-approved-absence-validation/1",
+  "base_commit": "0b8e5eeb4ff8121c2dd7d8f604a03f34a1d5b164",
+  "approval": "https://github.com/vanderpol/scap-ng-tools/issues/14#issuecomment-6615375024",
+  "code_sha256": {
+    "src/scap_ng_tools/converter/approved_absence.py": "9f5a2b7dc809e1e71d7545fc0e6c7bdcf06c1c0be7aa11210930346017251180",
+    "src/scap_ng_tools/converter/approved_absence_cases.py": "89d7c129ed17314eef4ad01f1332f863a3250de91b3ad7de0f8b31264aaa780a",
+    "src/scap_ng_tools/converter/recovery04.py": "459322709a01fefc98b248e2a3406dadd5ea61b500724de51835b90813c0750a",
+    "scripts/recover_benchmark.py": "bf73c197c2c5f8e16877653779b4eaf7ccbc8e4f346fe242326135237a080d03",
+    "scripts/triage_recovery_blockers.py": "f16a42bed232ecc33ba23c533aa95e99b39dbba60a54fc82f9ca9112e6b81dd9",
+    "scripts/recover_approved_absence_cases.py": "ff8d98c379122d95839268d713c927aef7088fa1607afb9091282162481ff897",
+    "scripts/qualify_approved_absence.py": "84d45a116fe5f91595796654623c1ba592cb24e4962bb08c4493c5eba715932a",
+    "tests/test_approved_absence.py": "14923b66fce4f121e280620ed355d8c21724a13160ad5bf1241daa549e62195a"
+  },
+  "log_sha256": {
+    "portable.log": "0b895247348d079f3fa3896454ef02cf203dda8bad235e03d98961caca5fd5c6",
+    "native-absence-tests.log": "2615e077b271f9e913d16e8fc21083aaa5b054a6e97414e2fcb907cb3a749088",
+    "native-qualification.log": "53d487f924f357e13c2df506ce93a6160ae85c198328bee72f5bef0447f78d8c",
+    "recovery.log": "36bf7c84cdfc61b27e2f88d3ab6ac2b6695c5c69572f731f4e0a5dc2644173ce",
+    "triage48.log": "8d0071d722f470ad5d42710ab07e5944718da2cc1e93138191daab1a455edb4a"
+  },
+  "portable_suite": {
+    "tests": 87,
+    "skips": 0,
+    "result": "PASS"
+  },
+  "focused_native_absence_suite": {
+    "compiler_commit": "855c6023d55d882b55c0507d5492e6f4e4946023",
+    "tests": 5,
+    "result": "PASS"
+  },
+  "native_qualification": {
+    "packages": 7,
+    "documents": 38,
+    "programs": 8,
+    "tests": 8,
+    "manual_assessments": 8,
+    "rejected_mutants": 16
+  },
+  "changed_source_rules": [
+    "xccdf_mil.disa.stig_rule_SV-237770r991589_rule",
+    "xccdf_mil.disa.stig_rule_SV-248641r991589_rule",
+    "xccdf_mil.disa.stig_rule_SV-230322r1017133_rule",
+    "xccdf_mil.disa.stig_rule_SV-230323r1017134_rule",
+    "xccdf_mil.disa.stig_rule_SV-217172r1184438_rule",
+    "xccdf_mil.disa.stig_rule_SV-234992r1184471_rule",
+    "xccdf_mil.disa.stig_rule_SV-252961r991589_rule"
+  ],
+  "all_other_41_triage_statuses_unchanged": true,
+  "all48_manual_preservation_flags_unchanged": true,
+  "all8_manual_document_hashes_unchanged": true,
+  "remaining_blockers": 27,
+  "protected_paths_unchanged_from_base": [
+    ".github/workflows",
+    "src/scap_ng_tools/converter/_v04_runtime",
+    "src/scap_ng_tools/converter/_v04_semantic",
+    "src/scap_ng_tools/converter/binary32.py",
+    "tests/fixtures",
+    "docs/evidence/issue14-absence",
+    "docs/evidence/issue14-binary32"
+  ],
+  "source_semantic_proof": false,
+  "scanner_execution": false,
+  "merge_performed": false,
+  "binary32_C1_merge_hold": "unresolved; reviewed binary32 producer/consumer heads unchanged",
+  "qualification": "Fresh bounded eight-Rule correction replay and48-case classification. No full143/65 publication or scanner proof. Hosted exact-head portable CI is recorded separately in PR comments."
+}
