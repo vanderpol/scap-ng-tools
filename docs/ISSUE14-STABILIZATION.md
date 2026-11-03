@@ -1,5 +1,11 @@
 # Issue14 stabilization and bounded default repair — 2026-11-03
 
+Follow-up: the [ten-case float investigation and owner decision packet](ISSUE14-FLOAT-DECISION.md)
+records **10 blocked → 10 blocked, 0 recovered**, with all ten real manual
+Assessments preserved. Native typed syntax/experimental compilation succeeds;
+binary32 observed-value semantics remain an owner decision. All counts and prior
+proof levels below remain unchanged; the original evidence files are retained.
+
 This follows the [new owner direction](https://github.com/vanderpol/scap-ng-tools/issues/14#issuecomment-6602501616).
 No schema, mapping, datatype representation, cardinality, Input binding,
 function vocabulary, collector or editor PR36 change is included. Earlier PR15,

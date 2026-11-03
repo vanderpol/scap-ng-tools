@@ -1,0 +1,192 @@
+[
+  {
+    "filename": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+    "sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-219237r958752_rule",
+    "source_rule_sha256": "714ed1fee4c4b80ab6ef07e2fb8da7d0810b0634ce08bce8bace9fdd762c5985",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:21923701",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "85cc4348a0bd85becf757f50e6f0d3ef67169c87e26f12f045c94914d7099ef5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-238305r958752_rule",
+    "source_rule_sha256": "5e28076a541ce8747b5a98d652cc86f1756f4c65338920934d6eaf85667e3b55",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:23830501",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+    "sha256": "dbbc87ffe6d0c84688993d96cd7007e76bf83b9206508109b586ccc5bf88b6b2",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-260595r958752_rule",
+    "source_rule_sha256": "c905cc62db963738b1c4fa55d44ba1f5d366c5b3c50b3f2c35316a149f3e60c0",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:26059501",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+    "sha256": "40229cd7a41e6ff4a8cfb675523f767292d1460edbc68fe9ba5258c530c8b4a7",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-270816r1066937_rule",
+    "source_rule_sha256": "2a4be07c8e13fa25227f7405bff71c13e5f39aea3f57b29869982fc8f24242cb",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:27081601",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-248811r958752_rule",
+    "source_rule_sha256": "87566112aa97d461e4ebe261686f38abd7353d80b680670e58c673ee3faf4eb8",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:24881101",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+    "sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-230476r958752_rule",
+    "source_rule_sha256": "ae66b41a8751db1a16448d6cdf60a18045e146740ded40d15f3b9aefaa994a4e",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:23047601",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+    "sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-217192r958752_rule",
+    "source_rule_sha256": "60bff9633ebacc3f6b651441338ece4461d18ba4a3e101e95cd9c186405f418a",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:21719201",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+    "sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-237605r1050789_rule",
+    "source_rule_sha256": "6f54cca49aabbe361d65e1c7cdeaf661b9fbdf4feb7559cffc66d237bd3dbd6f",
+    "float_entities": [
+      {
+        "parent": "oval:mil.disa.stig.sles12:ste:26200",
+        "child_index": 0,
+        "parsed_node_sha256": "0c6f1d0fc7b32a3b904929ed7382fec5e5ec514e8752a2f99c409f3a8411275f",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-234965r958752_rule",
+    "source_rule_sha256": "cd3f14fe626c058a35bb32888bc0b06f8c9585cec1580b36a35a2da57a102596",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:23496501",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  },
+  {
+    "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+    "sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-253031r958752_rule",
+    "source_rule_sha256": "a617a35ee1c0232b71a6016e5694f8cf07801a22f80207b722ead5b541b4e732",
+    "float_entities": [
+      {
+        "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:25303101",
+        "child_index": 1,
+        "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+        "attributes": {
+          "datatype": "float",
+          "operation": "greater than or equal"
+        },
+        "lexical_value": "10.0",
+        "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+      }
+    ]
+  }
+]

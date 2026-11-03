@@ -1,0 +1,103 @@
+{
+  "format": "issue14-float-syntax-compilation/1",
+  "compiler_commit": "7e26f8da44a81ae96135eca837e611a3f99f9c28",
+  "probe_file_sha256": "36a81449d174111a18493f2a54d0d28008c3ba80b11f434de112d6ecd129ccc5",
+  "programs": 10,
+  "tests": 19,
+  "rules": [
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-219237r958752_rule",
+      "assessment": "ubuntu-operating-system-storage-facility-sv-219237-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "9610925545e93693f5425abf74c79c37cc4e7893cac0e51093a6671e5fa56e09"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-238305r958752_rule",
+      "assessment": "ubuntu-operating-system-storage-facility-sv-238305-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "5927a8d43acdac0a17f8700a3341d353c030e3865cadb44c1da95dc00b774954"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-260595r958752_rule",
+      "assessment": "ubuntu-22-04-lts-allocate-storage-facility-sv-260595-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "7dd67d0f6b41155a18d4a097ecb893d241e8ed5d6ed4a4a8b7caa0fe492a6008"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-270816r1066937_rule",
+      "assessment": "ubuntu-24-04-lts-allocate-storage-facility-sv-270816-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "fc6a0887b70bb37c4f5047d6a743d9092f0678f8fd460da22052746b762a385a"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-248811r958752_rule",
+      "assessment": "ol-8-allocate-audit-storage-facility-sv-248811-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "b22d1bdfc7f2842718ba95be0dea9291f7ce38cc1c39efe6b955f59784173b47"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230476r958752_rule",
+      "assessment": "rhel-8-allocate-audit-storage-facility-sv-230476-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "f9ec89841f25f4d720e999a5199ce56fbe3d5eb7a5f56b3f5fbccc46d999bdb7"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-217192r958752_rule",
+      "assessment": "suse-operating-system-storage-facility-sv-217192-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "b1ac9e8be04b2df2a9b4e517e5ec023821259efa102335380d5830fbc82f06ae"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-237605r1050789_rule",
+      "assessment": "suse-operating-system-using-sudo-command-sv-237605-assessment",
+      "test_count": 1,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "ce84318643a1cde60c39453b0aebd49132ba0b2b43b00014d1d0b3bff33f5bf7"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-234965r958752_rule",
+      "assessment": "suse-operating-system-storage-facility-sv-234965-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "fa40c8be824828e0eea5cb99591e39d084587d6f67212f01c8251b0e0095e063"
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-253031r958752_rule",
+      "assessment": "toss-allocate-audit-storage-facility-sv-253031-assessment",
+      "test_count": 2,
+      "compiled": true,
+      "independent_program_operand_check": true,
+      "operand_mutant_rejected": true,
+      "program_sha256": "1f14685c8970153ecb5a6b82df2bff7134ad0c68231a2c25981436beb4bf975e"
+    }
+  ],
+  "production_admitted": false,
+  "independent_source_proof": false,
+  "scanner_execution": false,
+  "qualification": "Native compilation and independent operand identity of experimental syntax only; no float evaluation or original-source equivalence."
+}
