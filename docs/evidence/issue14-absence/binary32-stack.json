@@ -1,0 +1,418 @@
+{
+  "format": "issue14-binary32-stack-review/1",
+  "no_merges": true,
+  "current_mains": {
+    "vanderpol/scap-ng": "c6414084677c061d205c2f4010ac915dc466adcc",
+    "vanderpol/scap-ng-tools": "7fe944a3cb7374f998736e16abb301a0a9ebb860",
+    "vanderpol/scap-ng-research": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a"
+  },
+  "prs": [
+    {
+      "repository": "vanderpol/scap-ng",
+      "pr": 13,
+      "url": "https://github.com/vanderpol/scap-ng/pull/13",
+      "head": "codex/issue14-binary32-contract",
+      "head_sha": "da4c48dfc60dc96a46e7b85425f70fb8f301a0b1",
+      "base": "codex/issue14-native-functions",
+      "reported_base_sha": "246a8d37cc54875386768a7d76b60a6f9c01d013",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41664336667,
+          "name": "Frozen SCAP-NG 0.4 schema and documentation checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "pr": 19,
+      "url": "https://github.com/vanderpol/scap-ng-tools/pull/19",
+      "head": "codex/issue14-binary32-recovery",
+      "head_sha": "23eea6462cfa0ae2bd3321985d16a07ac36a03f1",
+      "base": "codex/issue14-float-comparisons",
+      "reported_base_sha": "688a71896cac03dad3a5664d1e8d500866ac1fa2",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41673398105,
+          "name": "Pinned flat 0.4 schema contracts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41673398054,
+          "name": "Authoring foundation safety checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "pr": 278,
+      "url": "https://github.com/vanderpol/scap-ng-research/pull/278",
+      "head": "codex/issue14-binary32-contract",
+      "head_sha": "855c6023d55d882b55c0507d5492e6f4e4946023",
+      "base": "codex/issue14-native-functions",
+      "reported_base_sha": "7e26f8da44a81ae96135eca837e611a3f99f9c28",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41672578808,
+          "name": "0.4.0 canonical authoring fast checks",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41672578872,
+          "name": "Representative Board conversion regression",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41672578303,
+          "name": "Commit issue reference",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41672578253,
+          "name": "Markdown navigation and duplication audit",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41672578461,
+          "name": "Native SCAP-NG schema validation",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41672578478,
+          "name": "0.4.0 toolchain clean-extract smoke",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41672578702,
+          "name": "Current-design regression contracts",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41672578177,
+          "name": "SCAP-NG 0.4 draft schema checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng",
+      "pr": 9,
+      "url": "https://github.com/vanderpol/scap-ng/pull/9",
+      "head": "codex/issue8-native-discovery",
+      "head_sha": "d4e477998cda438a1e53a7c3c84123ec92e5ba1f",
+      "base": "main",
+      "reported_base_sha": "c6414084677c061d205c2f4010ac915dc466adcc",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41539907419,
+          "name": "Frozen SCAP-NG 0.4 schema and documentation checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng",
+      "pr": 11,
+      "url": "https://github.com/vanderpol/scap-ng/pull/11",
+      "head": "codex/issue14-native-functions",
+      "head_sha": "246a8d37cc54875386768a7d76b60a6f9c01d013",
+      "base": "codex/issue8-native-discovery",
+      "reported_base_sha": "d4e477998cda438a1e53a7c3c84123ec92e5ba1f",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41559545481,
+          "name": "Frozen SCAP-NG 0.4 schema and documentation checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "pr": 13,
+      "url": "https://github.com/vanderpol/scap-ng-tools/pull/13",
+      "head": "codex/issue8-native-discovery",
+      "head_sha": "1c8aa287808f3ad0aa3d5e8aa610d800e8862c22",
+      "base": "main",
+      "reported_base_sha": "7fe944a3cb7374f998736e16abb301a0a9ebb860",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41540865098,
+          "name": "Authoring foundation safety checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41540865119,
+          "name": "Pinned flat 0.4 schema contracts",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "pr": 15,
+      "url": "https://github.com/vanderpol/scap-ng-tools/pull/15",
+      "head": "codex/issue14-firewall-recovery",
+      "head_sha": "72f7ec2317c409362393c9c0d74b19d081b38f05",
+      "base": "codex/issue8-native-discovery",
+      "reported_base_sha": "1c8aa287808f3ad0aa3d5e8aa610d800e8862c22",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41554943788,
+          "name": "Pinned flat 0.4 schema contracts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41554943779,
+          "name": "Authoring foundation safety checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "pr": 16,
+      "url": "https://github.com/vanderpol/scap-ng-tools/pull/16",
+      "head": "codex/issue14-function-adapter",
+      "head_sha": "8f5251dcd1062ed29e33b8e9ef72f2f619d83a0d",
+      "base": "codex/issue14-firewall-recovery",
+      "reported_base_sha": "72f7ec2317c409362393c9c0d74b19d081b38f05",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41619200133,
+          "name": "Pinned flat 0.4 schema contracts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41619200074,
+          "name": "Authoring foundation safety checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "pr": 17,
+      "url": "https://github.com/vanderpol/scap-ng-tools/pull/17",
+      "head": "codex/issue14-stack-triage",
+      "head_sha": "9a09d277f18feffa8975998231d931cd3edf4ce3",
+      "base": "codex/issue14-function-adapter",
+      "reported_base_sha": "8f5251dcd1062ed29e33b8e9ef72f2f619d83a0d",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41631868447,
+          "name": "Pinned flat 0.4 schema contracts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41631868322,
+          "name": "Authoring foundation safety checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "pr": 18,
+      "url": "https://github.com/vanderpol/scap-ng-tools/pull/18",
+      "head": "codex/issue14-float-comparisons",
+      "head_sha": "688a71896cac03dad3a5664d1e8d500866ac1fa2",
+      "base": "codex/issue14-stack-triage",
+      "reported_base_sha": "9a09d277f18feffa8975998231d931cd3edf4ce3",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41642716195,
+          "name": "Authoring foundation safety checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41642716139,
+          "name": "Pinned flat 0.4 schema contracts",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "pr": 272,
+      "url": "https://github.com/vanderpol/scap-ng-research/pull/272",
+      "head": "codex/issue8-native-input-validation-reviewed",
+      "head_sha": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "base": "main",
+      "reported_base_sha": "d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41542127166,
+          "name": "Commit issue reference",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41542126493,
+          "name": "0.4.0 toolchain clean-extract smoke",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41542126666,
+          "name": "0.4 schema and converter contract synchronization",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41542126636,
+          "name": "Markdown navigation and duplication audit",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41542126581,
+          "name": "Current-design regression contracts",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41542126452,
+          "name": "0.4.0 canonical authoring fast checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41542126466,
+          "name": "SCAP-NG 0.4 draft schema checks",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41542126793,
+          "name": "Representative Board conversion regression",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "pr": 275,
+      "url": "https://github.com/vanderpol/scap-ng-research/pull/275",
+      "head": "codex/issue14-native-functions",
+      "head_sha": "7e26f8da44a81ae96135eca837e611a3f99f9c28",
+      "base": "codex/issue8-native-input-validation-reviewed",
+      "reported_base_sha": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "draft": true,
+      "merged": false,
+      "mergeable_reported": true,
+      "runs": [
+        {
+          "id": 41620009466,
+          "name": "Markdown navigation and duplication audit",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41620009480,
+          "name": "0.4 schema and converter contract synchronization",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41620009391,
+          "name": "0.4.0 toolchain clean-extract smoke",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41620009385,
+          "name": "Commit issue reference",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 41620009368,
+          "name": "0.4.0 canonical authoring fast checks",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41620009422,
+          "name": "Current-design regression contracts",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        {
+          "id": 41620009414,
+          "name": "SCAP-NG 0.4 draft schema checks",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "primary_review_submissions": 0,
+  "primary_review_threads": 0,
+  "native_main_ahead_of_reported_root_base": 2,
+  "read_only_native_stack_merge_tree": "f024ccd2768dffd4692cf6aa7bea7dd00059abe6",
+  "textual_merge_conflicts": 0,
+  "merge_blockers": [
+    "C1: both float inventories omit cmdlet object_record predicates; profile binding and canonical validation bypass.",
+    "All reviewed PRs remain draft without formal review submissions.",
+    "Private required upload/transfer gates fail quota; aggregate/tail checks skipped.",
+    "Native main moved two commits beyond reported root base; virtual tree conflict check is not an integration test."
+  ]
+}

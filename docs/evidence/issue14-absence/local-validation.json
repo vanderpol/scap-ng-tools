@@ -1,0 +1,56 @@
+{
+  "format": "issue14-absence-local-validation/1",
+  "base_commit": "23eea6462cfa0ae2bd3321985d16a07ac36a03f1",
+  "code_sha256": {
+    "src/scap_ng_tools/converter/approved_absence.py": "a7913945e2fd99bcd3ac55e6e38f3156d50ba74b80ad84fca8c35bec574d4c35",
+    "src/scap_ng_tools/converter/recovery04.py": "5e533b5459ce4b5dfbddc2cd471328145409d1a5e741c37c6d4b2bce984cc4dd",
+    "scripts/recover_benchmark.py": "0362a2b5b9ec8048e97e99f523c2344074d093aa0f8b826e42b785f7c55135f6",
+    "scripts/triage_recovery_blockers.py": "9a63163f7930b8476b5aaa2baed9c10fd7c21d1715ba07cdbfbb01bb169475c7",
+    "scripts/absence_witnesses.py": "9f2d8877461d1ebe8d306a289394a6b2c00831432f8ad1556940802483c7331b",
+    "scripts/check_absence_reference.py": "44e10f7d055d3a2fcdfd1aeb06dc5da42596dfa80e66ff789788e348ab564ee7",
+    "scripts/investigate_absence_cases.py": "aa0434bce6e1209999104fbbf90b718300cbf1456a5da2cbfec046d31218de9c",
+    "scripts/review_binary32_record_gap.py": "b65d1f07a0e030138dab51a5aeff10bd09a9511e196316f4f172a022fd69dc9a",
+    "tests/test_absence_review.py": "fea59099c48bd144c3cf6a7b2e6a293fa14ac83a8e2abd349059a85cd368f6ba",
+    "tests/fixtures/issue14-absence-pins.json": "93dbb4930b047d199e1732ce9effadd6cdd70ab0eac71db6784e2c3493e1dc65",
+    ".github/workflows/flat-schema-contract.yml": "b4dfb76efaf98a96aec3c8403e12775a2ee9f205fb1c79105e7d0f5095c88a11"
+  },
+  "log_sha256": {
+    "portable-full.log": "cc56e78814c2823cef8f1b84d36c879561729ab0623fe5cc1bbdc40181325c56",
+    "absence-tests.log": "9f561dd2773894252898b8705c58490195b2172c1d35a290ddc5761210f30cb0",
+    "native-suite.log": "d0e66b0e7f0a354a2484fc21a5e6e7da7148e0f73980f4d6d20e8b9573aeb751",
+    "triage48-final.log": "2df8f46ae287cc71e8dc95fc7d2591255b2155307d41e32ec0a1048cc2ef70b5"
+  },
+  "portable_suite": {
+    "tests": 82,
+    "skips": 0,
+    "result": "PASS"
+  },
+  "focused_absence_tests": {
+    "tests": 5,
+    "result": "PASS"
+  },
+  "unchanged_native_focused_suite": {
+    "compiler_commit": "855c6023d55d882b55c0507d5492e6f4e4946023",
+    "tests": 26,
+    "result": "PASS"
+  },
+  "fresh_triage": {
+    "cases": 48,
+    "AUTOMATED_DRAFT": 14,
+    "BLOCKED": 34
+  },
+  "protected_paths_unchanged_from_base": [
+    "src/scap_ng_tools/converter/_v04_runtime",
+    "src/scap_ng_tools/converter/_v04_semantic",
+    "tests/fixtures/issue14-remaining48-pins.json",
+    "docs/evidence/issue14-binary32"
+  ],
+  "manual_documents": "all eight digests independently compared by tests",
+  "native_corrected_source_qualification": "5 documents, 1 program, 1 Test; 2 mutants rejected",
+  "source_semantic_proof": false,
+  "scanner_execution": false,
+  "merge_performed": false,
+  "remaining_owner_decision": "Seven unapproved exact-source corrections; retain BLOCKED",
+  "integration_blocker": "C1 API-record binary32 traversal omitted in producer/consumer/portable overlay",
+  "qualification": "Portable suite precedes only the triage missing-binding guard adjustment; the final 48-case CLI exercises that adjustment. Exact pushed-head portable CI is reported separately in PR comments."
+}

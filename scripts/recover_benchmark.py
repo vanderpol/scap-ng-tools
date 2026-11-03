@@ -15,11 +15,13 @@ def main():
     p.add_argument('--organization-parameters',action='store_true',help='explicit controlled policy derivative; remove publisher defaults and delegate resolution')
     p.add_argument('--binary32-comparisons', action='store_true',
                    help='explicit finite-expected binary32 recovery; requires exact coordinated contract sidecar')
+    p.add_argument('--approved-oracle-absence',action='store_true',
+                   help='existing exact-source Oracle SV-271844 correction only; not lossless comparator elision')
     args=p.parse_args()
     if args.output.exists():p.error('output exists; refusing overwrite')
     docs,trace,ledger=recover_benchmark(schema_root=args.schema_root,source=args.source,
         sha256_pin=args.sha256,organization_parameters=args.organization_parameters,rule_ids=args.rule,
-        binary32_comparisons=args.binary32_comparisons)
+        binary32_comparisons=args.binary32_comparisons,approved_oracle_absence=args.approved_oracle_absence)
     args.output.mkdir(parents=True)
     for name,doc in docs.items():
         target=args.output/name;target.parent.mkdir(parents=True,exist_ok=True)

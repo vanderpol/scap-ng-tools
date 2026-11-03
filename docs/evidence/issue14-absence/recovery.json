@@ -1,0 +1,164 @@
+{
+  "format": "issue14-absence-recovery-delta/1",
+  "profile": "explicit approved_oracle_absence opt-in only",
+  "eight_cases": [
+    {
+      "filename": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "source_zip_sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-237770r991589_rule",
+      "source_rule_sha256": "db8325fdaf00d4516dbddd76615310488df740882b2144e61379c22c6a2116ba",
+      "manual_assessment": "sv-237770-manual-assessment",
+      "manual_document_sha256": "a4bb7b7087e497da1a9ec154d0c6fd109308722dbe5d6ff1d8de6bdbfd559520",
+      "before": "BLOCKED",
+      "after": "BLOCKED",
+      "approved_source_corrections": [],
+      "manual_preserved_by_test": true,
+      "source_semantic_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_zip_sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-248641r991589_rule",
+      "source_rule_sha256": "a3e4b6bc809fe28da7ce5cb21f750010c90c34843a4c23ff169b9971b3323fa0",
+      "manual_assessment": "sv-248641-manual-assessment",
+      "manual_document_sha256": "1967f265108908b861ddc412dbacbae3e7c52e01f1559d98948da6def14b5d6b",
+      "before": "BLOCKED",
+      "after": "BLOCKED",
+      "approved_source_corrections": [],
+      "manual_preserved_by_test": true,
+      "source_semantic_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "source_zip_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271844r1184222_rule",
+      "source_rule_sha256": "3e3a4a2456fdc7b9fc0476bc1f5d2d057f8537ebda1a1e55b94fff85b20c2d97",
+      "manual_assessment": "sv-271844-manual-assessment",
+      "manual_document_sha256": "bdcc207f678c6755088385d5aed7a6a26507bc811adfdcb01edf23703ad266e0",
+      "before": "BLOCKED",
+      "after": "AUTOMATED_DRAFT",
+      "approved_source_corrections": [
+        {
+          "code": "approved_oracle_absence_20261024",
+          "decision": "Existing owner-approved Oracle SV-271844 source correction, 2026-10-24",
+          "decision_record": "https://github.com/vanderpol/scap-ng-research/blob/855c6023d55d882b55c0507d5492e6f4e4946023/docs/audit/v04-six-stig-current-schema-20261024.md",
+          "source_zip_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271844r1184222_rule",
+          "source_rule_sha256": "3e3a4a2456fdc7b9fc0476bc1f5d2d057f8537ebda1a1e55b94fff85b20c2d97",
+          "source_nodes": {
+            "oval:navy.navwar.niwcatlantic.scc.rhel8:def:271844": "e4a8d309809278db0a65db19ed3bcd88823f8577851ed6ec12d71300eb3b2c54",
+            "oval:navy.navwar.niwcatlantic.scc.rhel8:tst:27184401": "8afa1a93d5de093509ac2cfb640765fcf25b4eea511c7d6c542865caaf81c6a0",
+            "oval:navy.navwar.niwcatlantic.scc.rhel8:obj:27184401": "35bfa2c3252215f07437067836160b93af8a258e5d360dd09d3fe52e8f0bec30",
+            "oval:navy.navwar.niwcatlantic.scc.rhel8:ste:27184401": "6a157df96f01dc0ee861e86350766a8bb74c093c8d74e4ad1876b381a97771a5"
+          },
+          "source_entity": [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}stderr_line",
+            [
+              [
+                "check_existence",
+                "none_exist"
+              ],
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            ".*",
+            []
+          ],
+          "source_entity_sha256": "aff6de358e95c22f4bb7d4cd8a79d4ac7b88d4a29679584222442a0677269cbe",
+          "native_predicate": {
+            "values_found": "none"
+          },
+          "native_predicate_sha256": "cb154e25d6105c4fb4789fc543f53e628e00d691af0f58a90b19d467c9c820c2",
+          "source_correction": true,
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "manual_preserved_by_test": true,
+      "source_semantic_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "source_zip_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230322r1017133_rule",
+      "source_rule_sha256": "c529bb8b0df34589aa82af46ed242c2afef6404fda72feb0577e5e6f6a4e7c66",
+      "manual_assessment": "sv-230322-manual-assessment",
+      "manual_document_sha256": "55b3df812122ff53456d8fd2678d7f858310796599f77845efc7cc0ef31cdb41",
+      "before": "BLOCKED",
+      "after": "BLOCKED",
+      "approved_source_corrections": [],
+      "manual_preserved_by_test": true,
+      "source_semantic_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "source_zip_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230323r1017134_rule",
+      "source_rule_sha256": "eab6b44e5f19499e035cb4ac2a4e6e2866a2d77750c402323a9574df3054670d",
+      "manual_assessment": "sv-230323-manual-assessment",
+      "manual_document_sha256": "a4ff6dbc8ef5678107208a47ffe8d7d550535bc3de790c3e32e70e6fa5c90d69",
+      "before": "BLOCKED",
+      "after": "BLOCKED",
+      "approved_source_corrections": [],
+      "manual_preserved_by_test": true,
+      "source_semantic_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "source_zip_sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-217172r1184438_rule",
+      "source_rule_sha256": "e8744af93052b5cf16f7a18eb7f9d684d5674ae848c6c78424cbfb1d3c23294e",
+      "manual_assessment": "sv-217172-manual-assessment",
+      "manual_document_sha256": "c04947efccfcdae942be588e99fac5e4b1b7eed4d11f441cbd2ceb74d8acea23",
+      "before": "BLOCKED",
+      "after": "BLOCKED",
+      "approved_source_corrections": [],
+      "manual_preserved_by_test": true,
+      "source_semantic_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_zip_sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-234992r1184471_rule",
+      "source_rule_sha256": "763650364441365f257069ba1ecc12f3220cab4e352ca1968ff86bfca5bd5da5",
+      "manual_assessment": "sv-234992-manual-assessment",
+      "manual_document_sha256": "3b9526d435cd8fd49c55ba34b3f44f3eae2be717530c5287fc10c58bff97875a",
+      "before": "BLOCKED",
+      "after": "BLOCKED",
+      "approved_source_corrections": [],
+      "manual_preserved_by_test": true,
+      "source_semantic_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "source_zip_sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-252961r991589_rule",
+      "source_rule_sha256": "886d7096db38e9cda2e0fd764fac3d947fee9ab3f396d33dd7b1ff2b78e8eb2c",
+      "manual_assessment": "sv-252961-manual-assessment",
+      "manual_document_sha256": "1c710e3d34b47b741cb5eef4ec73666ad1de9e8569cbd591340bf4b1e6ca9cc9",
+      "before": "BLOCKED",
+      "after": "BLOCKED",
+      "approved_source_corrections": [],
+      "manual_preserved_by_test": true,
+      "source_semantic_proof": false,
+      "scanner_execution": false
+    }
+  ],
+  "counts": {
+    "blocked_before": 8,
+    "owner_corrected_drafts_after": 1,
+    "blocked_after": 7,
+    "prior35_blocked_after": 34
+  },
+  "default_profile_eight_cases_still_blocked": true,
+  "lossless_comparator_elision_proofs": 0
+}

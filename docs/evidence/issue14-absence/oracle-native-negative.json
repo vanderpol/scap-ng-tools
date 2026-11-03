@@ -1,0 +1,18 @@
+{
+  "compiler_commit": "855c6023d55d882b55c0507d5492e6f4e4946023",
+  "program_format": "scap-ng-0.4.0-native-assessment-program/0.1",
+  "program_sha256": "d0c956e29b57c18ece5630f4eeb500d4d576dfc1aaf1cff4998effb2fb3c9e72",
+  "rejected_mutants": [
+    {
+      "kind": "operand",
+      "diagnostic": "compiled operand divergence"
+    },
+    {
+      "kind": "requirement",
+      "diagnostic": "compiled operand divergence"
+    }
+  ],
+  "source_semantic_proof": false,
+  "scanner_execution": false,
+  "qualification": "Native corrected-source/program identity only. Uses the existing owner-approved source correction; not original-OVAL equivalence."
+}
