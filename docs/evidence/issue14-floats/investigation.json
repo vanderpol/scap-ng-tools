@@ -1,0 +1,4901 @@
+{
+  "format": "issue14-float-investigation/1",
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "schema": {
+    "schema_version": "0.4.0",
+    "physical_layout": "schema/",
+    "logical_id_prefix": "https://scap-ng.dev/schema/v0.4.0/",
+    "schema_json_count": 143,
+    "root_schema_count": 34,
+    "root_ref_count": 244,
+    "supported_capability_count": 100,
+    "aggregate_sha256": "f19246c60814f7768a5564cd335675b4c2c6ae721ebd6a464ee9a6f17185e0a3",
+    "external_snapshot_required": true
+  },
+  "counts_before": {
+    "BLOCKED": 10
+  },
+  "counts_after": {
+    "BLOCKED": 10
+  },
+  "recovered": 0,
+  "rules": [
+    {
+      "filename": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "source_zip_sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-219237r958752_rule",
+      "source_rule_sha256": "714ed1fee4c4b80ab6ef07e2fb8da7d0810b0634ce08bce8bace9fdd762c5985",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:219237",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:219237": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "4c883a865a172dd1a8bb31ef968f1c8fb1778a060dd93f31027e630be12476bc"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:21923702": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "64523abb839d4768d95a559e22cce808dcf5d51d284cb509c0faab335fe11b00"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923702": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "48799da4f153a3e3342446bf215ee5c52f8f7f46453540d6798ace9f21d3bf0c"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:21923701": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "875a81904d61a798a9364a2419b4cf4c287fff391422d29e4d31693627f6cb71"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923701": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "e1915ea180ed1f259690fedb47b6b5327c2d525f06e19aafb68294442825d39b"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:21923701": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "71c1819eedcaa25ebb58181b4c9a778e800443b4466fe9418772e08cfd6e23b0"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:21923703": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "1419b6b40ef36f02c5a37f74d68de16b6cfba387f73231c58782c89b7fd7c4ac"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923703": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "4d120e42f6e899d4086feb581b3b4fa7e890b49c75800deb549b1f94713c030e"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:21923701",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-219237-manual-assessment",
+      "manual_document_sha256": "41a4c062743a481b20aa3816d731ec9d7ec0b3634d38287d1f448d5715c2c86a",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "source_zip_sha256": "85cc4348a0bd85becf757f50e6f0d3ef67169c87e26f12f045c94914d7099ef5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-238305r958752_rule",
+      "source_rule_sha256": "5e28076a541ce8747b5a98d652cc86f1756f4c65338920934d6eaf85667e3b55",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:238305",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:238305": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "0ae60b505486e164ac5c16185635f5d0ce9e2c2e08c440865a38fe806cd27acb"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:23830502": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "f6513b25e490fe6f892c49b31458c30b09886bfeaef911cd640d54f9d5f3759c"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830502": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "b91c5f562a52e7d9f770696931a419171ccf53dc6d6b2f54848a4dabcce331cf"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:23830501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "3c07789dc51a8c0a2c2e84a35c39402797e71402d06ca53986b80a59e6e3b003"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "847cdd7ed71024292350f0e6f1930dfc297c67bf0f9025ff9995eecdfd296a00"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:23830501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "5c4cada8c046a1bb576bbe294d703e43530abf88c001e8ebe7d89f0829ba1f6c"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:23830503": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "91b543bfdec90ae228a5800797137f9071bf48bb454703a4d2e514e1239bbc4a"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830503": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "509bb039b531d05f67e0d2149b7491eb39497387820013b6716306ee014115cb"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:23830501",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-238305-manual-assessment",
+      "manual_document_sha256": "53908c6794b77b07255873ab415b4c6ad55dd4a885bec134a6ad147fad76f70f",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+      "source_zip_sha256": "dbbc87ffe6d0c84688993d96cd7007e76bf83b9206508109b586ccc5bf88b6b2",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-260595r958752_rule",
+      "source_rule_sha256": "c905cc62db963738b1c4fa55d44ba1f5d366c5b3c50b3f2c35316a149f3e60c0",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:260595",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:260595": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "618051836ee0b2367ad62a2251ead79fb02dd39e814c5428366925ad330c4bf1"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:26059502": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "9a6552c729d0593b15687326d2e0b9a972c32da8bf9fa30da1d5dc9508b5fb2f"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059502": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "8a9c468391980056dcc715a760d13c579fcd34d36f738d3c2d73e9e63276264b"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:26059501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "37e986a9efb1a7b417149dffc5ad7670be5a3d3684c888fdfcb5abd1b05f54da"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "1a38725edc4997bda2566a35fdcbf5362427a8b93cef4c5cce967ffaca39d50e"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:26059501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "fd79f70b6cd4ad25fc3e79b9213cf406745234b58e5513f016afaa6cae5cdb3f"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:26059503": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "931d3a944f58f6623bb79c5eb6b2c18ad4bbc10c397ef0acfda9e329570cb69a"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059503": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "c2aaea00018cb27ca32017916a6c51110a20cdcb4f81889dfa2327ef139c620a"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:26059501",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-260595-manual-assessment",
+      "manual_document_sha256": "a44483ee5166e52dfc2830dca7d73173aa4e1f9f66a5b01f133647f9cec95ca8",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+      "source_zip_sha256": "40229cd7a41e6ff4a8cfb675523f767292d1460edbc68fe9ba5258c530c8b4a7",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-270816r1066937_rule",
+      "source_rule_sha256": "2a4be07c8e13fa25227f7405bff71c13e5f39aea3f57b29869982fc8f24242cb",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:270816",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:270816": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "9ab2b298a0189263d369e3763d65b19d042206de4337b82f0cf3380cae589ec7"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:27081602": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "471488b41556b1e67ff7603c7e3b73853171492c160aac56d01b1fdbdd9e6301"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081602": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "259dde51f89e56f91d0db930d306e59e79e1f9c1c2e6151dc422c258695ba0ec"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:27081601": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "caef2c63b4591d7df4fc84d9019d5ce5a60108acd23f6ae42eee8ba166b2012c"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081601": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "f6a4df600fdff6f38a971d86d7e14c2e13e362e23473dd038a454ddfe30a3750"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:27081601": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "c8d9295a6a8e08999fdfbf0cfe8613ad8fdaa977e653028d8efb9f2d7371da66"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:27081603": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "6e2ce9d81592b36f933ab5b77bbfa1c973975cec3ca9f5c8a9e923af15e3cef9"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081603": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "1141f4d2823c45b8bcc74142a45dac890fdba7e37d63350dc161d8a6dd2c2563"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:27081601",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-270816-manual-assessment",
+      "manual_document_sha256": "5c43d651c7ccffcc2d3393df5a390cb1733705b277c7d75b3f9bd4a98cf28553",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_zip_sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-248811r958752_rule",
+      "source_rule_sha256": "87566112aa97d461e4ebe261686f38abd7353d80b680670e58c673ee3faf4eb8",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:248811",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:248811": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "2013c9012756adcffac2c103ca98be3ad17d277e16de167a1522d6a8fdd649ec"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:24881102": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "db550fa882f63444bf6cc08ac128a8fa4b406f6512b8f85bf44484db022eb3a4"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881102": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "a6af4a9080b8c6935c07ca71a9069b59070504c445e911ce5ea622ddadc437a9"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:24881101": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "35b0380b11c578f447bcf10fe47fa523d2b5a8f4b20c0da78840797ae39c85f8"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881101": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "1224e7c3dd238c88f994579c6eb18db21cd1945f5ed87bf31a382be9185412a7"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:24881101": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "3af6082b5005871846e791b15123cee5b4ee816836a4b4e1d8841efa3cf9b648"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:24881103": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "b8bc6bb65fb051fad8240e6f7844fef6adbfb5510a74a443d89a900be3d8dd78"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881103": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "c434e8f7ea166f64d0350e17d729bdf3a00ec7094976e3eba1df1e6e42e577e5"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:24881101",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-248811-manual-assessment",
+      "manual_document_sha256": "1bd20afec55fa8ec2e5188368664be493276ccd621e8820b5250873f87eff2c3",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "source_zip_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230476r958752_rule",
+      "source_rule_sha256": "ae66b41a8751db1a16448d6cdf60a18045e146740ded40d15f3b9aefaa994a4e",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:230476",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:230476": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "dcd7977b50b7733a575bce28ec7f82141a02c162c4c9c075c88af197ec208e3d"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:23047602": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "c5667e6e12a781b3cf80b271cf6efae7703fe535f5cd6c5b8a3f10e63a6b6252"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047602": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "d509d3127725c747cb28b1b0087e4de2b9fe6974e3e960e06c00c0091cb7a90b"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:23047601": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "f09f42d95606efb7bd1e904d04ee653b04a35446d8e66f38d9cf0b52ad7aecef"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047601": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "0880b538d73b8f56752e5446bdff2a24fa59cb40d27200cdaf8f21f3d35b0ea1"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:23047601": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "55ddde02feeb9354e4a2596b537f990ddbb0600de4cf54d8867c551e8ffb3f36"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:23047603": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "a7be9716112e1282089076aea1c13e04c9c6944cb089dc74f9ed3883d8c0549b"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047603": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "0328435e427e7130dbfd1af379afd759ad6634a937c4604eec9bd495fb2e8fc7"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:23047601",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-230476-manual-assessment",
+      "manual_document_sha256": "1e3e31a91e29bf7cae4d86226cb100e612ec6768f1623fb8f24ec809540f0bd6",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "source_zip_sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-217192r958752_rule",
+      "source_rule_sha256": "60bff9633ebacc3f6b651441338ece4461d18ba4a3e101e95cd9c186405f418a",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:217192",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:217192": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "ae8edffdfba30bb5e71e9a50d96d9c57aee08b566fb57aed15157f7a2e9bdc8d"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:21719202": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "0e2e29a4458ad6260624c0a634aeffdab776729862257bad4e7763cc8d4fb0a6"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719202": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "5f8f3111ae36edf6d64e7b58e930d4e2295e62a770f54ef149860e26db1a3c4c"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:21719201": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "23804bc9388674758afa4a9222a2cc2f950b2d82b05feda3c7400a959a91b0c6"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719201": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "dc5248e7739ac8a6a7bc2ee19e6d9f9476ce95dea4c1846a00ae4c6da81ccf0a"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:21719201": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "b5b6acb7ad5d71edec47b0cec828cf147c957b80e6acb887fa31ac4ddb62ca01"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:21719203": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "2642cd649e9c4e652248f8bdc9573c47c5b844ffe032d1a86b6ff19e1a6c8a2b"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719203": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "0a845315154d00fd27bd51986f95e4de60b6c0f39144d0bf8542a305104b63f7"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:21719201",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-217192-manual-assessment",
+      "manual_document_sha256": "4312646db915dc8aa12c42e2198f3fbd32aa8076e15cd458874db42975be06df",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "source_zip_sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-237605r1050789_rule",
+      "source_rule_sha256": "6f54cca49aabbe361d65e1c7cdeaf661b9fbdf4feb7559cffc66d237bd3dbd6f",
+      "component": "scap_mil.disa.stig_comp_U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+      "definition": "oval:mil.disa.stig.sles12:def:262",
+      "closure": {
+        "oval:mil.disa.stig.sles12:def:262": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "5a6045d4e28432f3f2c080a0577d5c7f0c206b59856b6f8bff42314a2302882f"
+        },
+        "oval:mil.disa.stig.sles12:tst:26200": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+          "parsed_node_sha256": "8f86a4433715f4085dbeff96e48066d9118b3473051487891290c2972ab69435"
+        },
+        "oval:mil.disa.stig.sles12:obj:26202": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "19801d317a83e1fe2d8237f007edbfcd191e72aa66dfb64da7aca5fe9dedf4af"
+        },
+        "oval:mil.disa.stig.sles12:obj:26200": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "919ca1a9eec498ed1b867108a279f48b42253d1743051a856e7cdcd1d8f864db"
+        },
+        "oval:mil.disa.stig.sles12:obj:26201": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "4d28aaf436f6f2307b520ddf0ef1d52607c2f42cdb0e6f61426c60b4be006887"
+        },
+        "oval:mil.disa.stig.sles12:ste:26200": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_state",
+          "parsed_node_sha256": "a23f0aa120ae5584c2fef1b7dcac01f188afb30899564663a62f4b1c11896685"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:mil.disa.stig.sles12:ste:26200",
+          "child_index": 0,
+          "parsed_node_sha256": "0c6f1d0fc7b32a3b904929ed7382fec5e5ec514e8752a2f99c409f3a8411275f",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-237605-manual-assessment",
+      "manual_document_sha256": "18a739d92725fb366e7ff8db28966db2ace61e9e6fd6ccf3875851c2df51a9bb",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_zip_sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-234965r958752_rule",
+      "source_rule_sha256": "cd3f14fe626c058a35bb32888bc0b06f8c9585cec1580b36a35a2da57a102596",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:234965",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:234965": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "8229ea512c9aebf15f5c4e237f01ae03f4b3616d626bb7d6b2bfec6a84e9ec5a"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:23496502": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "f09ce02f484e2cdcd6e38bd6156e319983a5950eeff1d75ef776770645107ab0"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496502": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "e7e15706293818a57964022c6f9197f89f2b7dd13603da902ba5eb8f95d934d9"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:23496501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "697a48f3142dbe0ea063b15b1cf2173fcebd70e303c3f6f62bd5c5bbe81b9632"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "d04608d3b1b31fabf0911c29941e1cd4df1665d99282bcd44820981027a7ce53"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:23496501": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "abe64dd7b023a8a9cf07d598be8e6a0c7319e372788b5ebf64848eed36bdceed"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:23496503": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "442bff902c42a3e83229d1cc23956a2ee0e8e484c4233ece3b8ae7615c8dc503"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496503": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "5eab068486916b71e5acad8494184636f01f53611a780b2bc7d4329a3c820726"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:23496501",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-234965-manual-assessment",
+      "manual_document_sha256": "52064c3f4049f5d80db2581118939cdd243e79981423c714412b09429b47ff3c",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    },
+    {
+      "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "source_zip_sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-253031r958752_rule",
+      "source_rule_sha256": "a617a35ee1c0232b71a6016e5694f8cf07801a22f80207b722ead5b541b4e732",
+      "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-oval2.xml",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.linux:def:253031",
+      "closure": {
+        "oval:navy.navwar.niwcatlantic.scc.linux:def:253031": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+          "parsed_node_sha256": "76778b7ea57c5c505ee3a94a4284655c136d714784676eb9539a6175884ad8ea"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:25303102": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "8495500416f9b2cd4597a59c8af0780e3c57e97f7c311b038e410bc28a259c2f"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303102": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "02ea449a7cb7e1fe788d571037020db4a5de7da787e052d544b5d9e8e8528e56"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:var:25303101": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "parsed_node_sha256": "5b1a51a1f0bb5dcf55850a9c0d0249ea397d2ab1e3b18f4479a0d2e391a16dca"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303101": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+          "parsed_node_sha256": "86c4588d60bbc2ed58154bff109432f1d44aac6ebcd504a34f46558c2f01a70f"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:ste:25303101": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+          "parsed_node_sha256": "769ca4011d4a42ee52fa98275b9db5c0b48fd0342bb6f5a628663eb711038c61"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:tst:25303103": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+          "parsed_node_sha256": "d22fb0063deca72fa4cc85fc6de7ee76103f586ffe73e5e4dfee5da42231988d"
+        },
+        "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303103": {
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+          "parsed_node_sha256": "f6cdba55c8710630b94aa792d0727f29337d2e2cf5dbf9076fb10dcf041a8e2b"
+        }
+      },
+      "float_entities": [
+        {
+          "parent": "oval:navy.navwar.niwcatlantic.scc.linux:ste:25303101",
+          "child_index": 1,
+          "parsed_node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "lexical_value": "10.0",
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression"
+        }
+      ],
+      "before_status": "BLOCKED",
+      "after_status": "BLOCKED",
+      "blockers": [
+        "ordered comparison expansion requires integer source datatype",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "manual_assessment": "sv-253031-manual-assessment",
+      "manual_document_sha256": "cc8f12386479e66cea546dfea7c9f659c37052a3348421bbaecec92224ca0abd",
+      "rule_emitted": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "experimental_assessments": 1,
+      "experimental_diagnostic": null,
+      "production_admitted": false
+    }
+  ],
+  "source_nodes": {
+    "4c883a865a172dd1a8bb31ef968f1c8fb1778a060dd93f31027e630be12476bc": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:219237"
+        ],
+        [
+          "version",
+          "16"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "The Ubuntu operating system must allocate audit record storage capacity to store at least one weeks worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:21923702"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:21923703"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "64523abb839d4768d95a559e22cce808dcf5d51d284cb509c0faab335fe11b00": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:21923702"
+        ],
+        [
+          "version",
+          "16"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923702"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:21923701"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "48799da4f153a3e3342446bf215ee5c52f8f7f46453540d6798ace9f21d3bf0c": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923702"
+        ],
+        [
+          "version",
+          "16"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:21923701"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "875a81904d61a798a9364a2419b4cf4c287fff391422d29e4d31693627f6cb71": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:21923701"
+        ],
+        [
+          "version",
+          "16"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923701"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "e1915ea180ed1f259690fedb47b6b5327c2d525f06e19aafb68294442825d39b": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923701"
+        ],
+        [
+          "version",
+          "16"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "71c1819eedcaa25ebb58181b4c9a778e800443b4466fe9418772e08cfd6e23b0": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:21923701"
+        ],
+        [
+          "version",
+          "16"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "1419b6b40ef36f02c5a37f74d68de16b6cfba387f73231c58782c89b7fd7c4ac": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:21923703"
+        ],
+        [
+          "version",
+          "16"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923703"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:21923701"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "4d120e42f6e899d4086feb581b3b4fa7e890b49c75800deb549b1f94713c030e": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:21923703"
+        ],
+        [
+          "version",
+          "16"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:21923701"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "0ae60b505486e164ac5c16185635f5d0ce9e2c2e08c440865a38fe806cd27acb": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:238305"
+        ],
+        [
+          "version",
+          "18"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "The Ubuntu operating system must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:23830502"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:23830503"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "f6513b25e490fe6f892c49b31458c30b09886bfeaef911cd640d54f9d5f3759c": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:23830502"
+        ],
+        [
+          "version",
+          "18"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830502"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:23830501"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "b91c5f562a52e7d9f770696931a419171ccf53dc6d6b2f54848a4dabcce331cf": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830502"
+        ],
+        [
+          "version",
+          "18"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:23830501"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "3c07789dc51a8c0a2c2e84a35c39402797e71402d06ca53986b80a59e6e3b003": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:23830501"
+        ],
+        [
+          "version",
+          "18"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830501"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "847cdd7ed71024292350f0e6f1930dfc297c67bf0f9025ff9995eecdfd296a00": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830501"
+        ],
+        [
+          "version",
+          "18"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "5c4cada8c046a1bb576bbe294d703e43530abf88c001e8ebe7d89f0829ba1f6c": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:23830501"
+        ],
+        [
+          "version",
+          "18"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "91b543bfdec90ae228a5800797137f9071bf48bb454703a4d2e514e1239bbc4a": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:23830503"
+        ],
+        [
+          "version",
+          "18"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830503"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:23830501"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "509bb039b531d05f67e0d2149b7491eb39497387820013b6716306ee014115cb": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23830503"
+        ],
+        [
+          "version",
+          "18"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:23830501"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "618051836ee0b2367ad62a2251ead79fb02dd39e814c5428366925ad330c4bf1": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:260595"
+        ],
+        [
+          "version",
+          "10"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "Ubuntu 22.04 LTS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:26059502"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:26059503"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "9a6552c729d0593b15687326d2e0b9a972c32da8bf9fa30da1d5dc9508b5fb2f": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:26059502"
+        ],
+        [
+          "version",
+          "10"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059502"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:26059501"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "8a9c468391980056dcc715a760d13c579fcd34d36f738d3c2d73e9e63276264b": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059502"
+        ],
+        [
+          "version",
+          "10"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:26059501"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "37e986a9efb1a7b417149dffc5ad7670be5a3d3684c888fdfcb5abd1b05f54da": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:26059501"
+        ],
+        [
+          "version",
+          "10"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059501"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "1a38725edc4997bda2566a35fdcbf5362427a8b93cef4c5cce967ffaca39d50e": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059501"
+        ],
+        [
+          "version",
+          "10"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "fd79f70b6cd4ad25fc3e79b9213cf406745234b58e5513f016afaa6cae5cdb3f": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:26059501"
+        ],
+        [
+          "version",
+          "10"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "931d3a944f58f6623bb79c5eb6b2c18ad4bbc10c397ef0acfda9e329570cb69a": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:26059503"
+        ],
+        [
+          "version",
+          "10"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059503"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:26059501"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "c2aaea00018cb27ca32017916a6c51110a20cdcb4f81889dfa2327ef139c620a": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:26059503"
+        ],
+        [
+          "version",
+          "10"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:26059501"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "9ab2b298a0189263d369e3763d65b19d042206de4337b82f0cf3380cae589ec7": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:270816"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "Ubuntu 24.04 LTS must allocate audit record storage capacity to store at least one week's worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:27081602"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:27081603"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "471488b41556b1e67ff7603c7e3b73853171492c160aac56d01b1fdbdd9e6301": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:27081602"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081602"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:27081601"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "259dde51f89e56f91d0db930d306e59e79e1f9c1c2e6151dc422c258695ba0ec": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081602"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:27081601"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "caef2c63b4591d7df4fc84d9019d5ce5a60108acd23f6ae42eee8ba166b2012c": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:27081601"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081601"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "f6a4df600fdff6f38a971d86d7e14c2e13e362e23473dd038a454ddfe30a3750": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081601"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "c8d9295a6a8e08999fdfbf0cfe8613ad8fdaa977e653028d8efb9f2d7371da66": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:27081601"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "6e2ce9d81592b36f933ab5b77bbfa1c973975cec3ca9f5c8a9e923af15e3cef9": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:27081603"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081603"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:27081601"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "1141f4d2823c45b8bcc74142a45dac890fdba7e37d63350dc161d8a6dd2c2563": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:27081603"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:27081601"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "2013c9012756adcffac2c103ca98be3ad17d277e16de167a1522d6a8fdd649ec": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:248811"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "OL 8 must allocate audit record storage capacity to store at least one week of audit records when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:24881102"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:24881103"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "db550fa882f63444bf6cc08ac128a8fa4b406f6512b8f85bf44484db022eb3a4": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:24881102"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881102"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:24881101"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "a6af4a9080b8c6935c07ca71a9069b59070504c445e911ce5ea622ddadc437a9": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881102"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:24881101"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "35b0380b11c578f447bcf10fe47fa523d2b5a8f4b20c0da78840797ae39c85f8": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:24881101"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881101"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "1224e7c3dd238c88f994579c6eb18db21cd1945f5ed87bf31a382be9185412a7": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881101"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "3af6082b5005871846e791b15123cee5b4ee816836a4b4e1d8841efa3cf9b648": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:24881101"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "b8bc6bb65fb051fad8240e6f7844fef6adbfb5510a74a443d89a900be3d8dd78": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:24881103"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881103"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:24881101"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "c434e8f7ea166f64d0350e17d729bdf3a00ec7094976e3eba1df1e6e42e577e5": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:24881103"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:24881101"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "dcd7977b50b7733a575bce28ec7f82141a02c162c4c9c075c88af197ec208e3d": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:230476"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "RHEL 8 must allocate audit record storage capacity to store at least one week of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:23047602"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:23047603"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "c5667e6e12a781b3cf80b271cf6efae7703fe535f5cd6c5b8a3f10e63a6b6252": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:23047602"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047602"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:23047601"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "d509d3127725c747cb28b1b0087e4de2b9fe6974e3e960e06c00c0091cb7a90b": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047602"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:23047601"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "f09f42d95606efb7bd1e904d04ee653b04a35446d8e66f38d9cf0b52ad7aecef": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:23047601"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047601"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "0880b538d73b8f56752e5446bdff2a24fa59cb40d27200cdaf8f21f3d35b0ea1": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047601"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "55ddde02feeb9354e4a2596b537f990ddbb0600de4cf54d8867c551e8ffb3f36": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:23047601"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "a7be9716112e1282089076aea1c13e04c9c6944cb089dc74f9ed3883d8c0549b": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:23047603"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047603"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:23047601"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "0328435e427e7130dbfd1af379afd759ad6634a937c4604eec9bd495fb2e8fc7": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23047603"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:23047601"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "ae8edffdfba30bb5e71e9a50d96d9c57aee08b566fb57aed15157f7a2e9bdc8d": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:217192"
+        ],
+        [
+          "version",
+          "17"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "The SUSE operating system must allocate audit record storage capacity to store at least one weeks worth of audit records when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:21719202"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:21719203"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "0e2e29a4458ad6260624c0a634aeffdab776729862257bad4e7763cc8d4fb0a6": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:21719202"
+        ],
+        [
+          "version",
+          "17"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719202"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:21719201"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "5f8f3111ae36edf6d64e7b58e930d4e2295e62a770f54ef149860e26db1a3c4c": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719202"
+        ],
+        [
+          "version",
+          "17"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:21719201"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "23804bc9388674758afa4a9222a2cc2f950b2d82b05feda3c7400a959a91b0c6": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:21719201"
+        ],
+        [
+          "version",
+          "17"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719201"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "dc5248e7739ac8a6a7bc2ee19e6d9f9476ce95dea4c1846a00ae4c6da81ccf0a": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719201"
+        ],
+        [
+          "version",
+          "17"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "b5b6acb7ad5d71edec47b0cec828cf147c957b80e6acb887fa31ac4ddb62ca01": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:21719201"
+        ],
+        [
+          "version",
+          "17"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "2642cd649e9c4e652248f8bdc9573c47c5b844ffe032d1a86b6ff19e1a6c8a2b": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:21719203"
+        ],
+        [
+          "version",
+          "17"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719203"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:21719201"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "0a845315154d00fd27bd51986f95e4de60b6c0f39144d0bf8542a305104b63f7": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:21719203"
+        ],
+        [
+          "version",
+          "17"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:21719201"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "5a6045d4e28432f3f2c080a0577d5c7f0c206b59856b6f8bff42314a2302882f": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:mil.disa.stig.sles12:def:262"
+        ],
+        [
+          "version",
+          "2"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "SLES-12-010113 - The SUSE operating system must require re-authentication when using the \"sudo\" command.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}affected",
+              [
+                [
+                  "family",
+                  "unix"
+                ]
+              ],
+              null,
+              [
+                [
+                  "{http://oval.mitre.org/XMLSchema/oval-definitions-5}platform",
+                  [],
+                  "SLES 12",
+                  []
+                ]
+              ]
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "Without re-authentication, users may access resources or perform tasks for which they do not have authorization. \n\nWhen operating systems provide the capability to escalate a functional capability, it is critical the organization requires the user to re-authenticate when using the \"sudo\" command.\n\nIf the value is set to an integer less than 0, the user's time stamp will not expire and the user will not have to re-authenticate for privileged actions until the user's session is terminated.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "test_ref",
+                  "oval:mil.disa.stig.sles12:tst:26200"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "8f86a4433715f4085dbeff96e48066d9118b3473051487891290c2972ab69435": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "comment",
+          "timestamp_timeout is set to 0 or a positive number in either /etc/sudoers or /etc/sudoers.d"
+        ],
+        [
+          "id",
+          "oval:mil.disa.stig.sles12:tst:26200"
+        ],
+        [
+          "version",
+          "4"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:mil.disa.stig.sles12:obj:26202"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:mil.disa.stig.sles12:ste:26200"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "19801d317a83e1fe2d8237f007edbfcd191e72aa66dfb64da7aca5fe9dedf4af": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "id",
+          "oval:mil.disa.stig.sles12:obj:26202"
+        ],
+        [
+          "version",
+          "1"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}set",
+          [
+            [
+              "set_operator",
+              "UNION"
+            ]
+          ],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_reference",
+              [],
+              "oval:mil.disa.stig.sles12:obj:26200",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_reference",
+              [],
+              "oval:mil.disa.stig.sles12:obj:26201",
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "919ca1a9eec498ed1b867108a279f48b42253d1743051a856e7cdcd1d8f864db": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "id",
+          "oval:mil.disa.stig.sles12:obj:26200"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}behaviors",
+          [
+            [
+              "ignore_case",
+              "true"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/sudoers",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "^[ \\t]*Defaults[ \\t]+timestamp_timeout[ \\t]*=[ \\t]*(-?[\\d\\.]+)",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "4d28aaf436f6f2307b520ddf0ef1d52607c2f42cdb0e6f61426c60b4be006887": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "id",
+          "oval:mil.disa.stig.sles12:obj:26201"
+        ],
+        [
+          "version",
+          "7"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}behaviors",
+          [
+            [
+              "ignore_case",
+              "true"
+            ],
+            [
+              "max_depth",
+              "-1"
+            ],
+            [
+              "recurse_direction",
+              "down"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}path",
+          [],
+          "/etc/sudoers.d",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filename",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          ".*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "^[ \\t]*Defaults[ \\t]+timestamp_timeout[ \\t]*=[ \\t]*(-?[\\d\\.]+)",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "a23f0aa120ae5584c2fef1b7dcac01f188afb30899564663a62f4b1c11896685": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_state",
+      [
+        [
+          "id",
+          "oval:mil.disa.stig.sles12:ste:26200"
+        ],
+        [
+          "version",
+          "2"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "0",
+          []
+        ]
+      ]
+    ],
+    "8229ea512c9aebf15f5c4e237f01ae03f4b3616d626bb7d6b2bfec6a84e9ec5a": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:234965"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "The SUSE operating system must allocate audit record storage capacity to store at least one week of audit records when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:23496502"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:23496503"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "f09ce02f484e2cdcd6e38bd6156e319983a5950eeff1d75ef776770645107ab0": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:23496502"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496502"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:23496501"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "e7e15706293818a57964022c6f9197f89f2b7dd13603da902ba5eb8f95d934d9": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496502"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:23496501"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "697a48f3142dbe0ea063b15b1cf2173fcebd70e303c3f6f62bd5c5bbe81b9632": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:23496501"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496501"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "d04608d3b1b31fabf0911c29941e1cd4df1665d99282bcd44820981027a7ce53": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496501"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "abe64dd7b023a8a9cf07d598be8e6a0c7319e372788b5ebf64848eed36bdceed": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:23496501"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "442bff902c42a3e83229d1cc23956a2ee0e8e484c4233ece3b8ae7615c8dc503": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:23496503"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496503"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:23496501"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "5eab068486916b71e5acad8494184636f01f53611a780b2bc7d4329a3c820726": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23496503"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:23496501"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "76778b7ea57c5c505ee3a94a4284655c136d714784676eb9539a6175884ad8ea": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+      [
+        [
+          "class",
+          "compliance"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:def:253031"
+        ],
+        [
+          "version",
+          "8"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+              [],
+              "TOSS must allocate audit record storage capacity to store at least one week's worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+              [],
+              "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility.",
+              []
+            ]
+          ]
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check the size of the partition that audit records are written to."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:25303102"
+                ]
+              ],
+              null,
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+              [
+                [
+                  "comment",
+                  "Check that 'other than log files are not using too much space."
+                ],
+                [
+                  "test_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:tst:25303103"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "8495500416f9b2cd4597a59c8af0780e3c57e97f7c311b038e410bc28a259c2f": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Log partition size is greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:25303102"
+        ],
+        [
+          "version",
+          "8"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303102"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:25303101"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "02ea449a7cb7e1fe788d571037020db4a5de7da787e052d544b5d9e8e8528e56": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303102"
+        ],
+        [
+          "version",
+          "8"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:25303101"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ],
+    "5b1a51a1f0bb5dcf55850a9c0d0249ea397d2ab1e3b18f4479a0d2e391a16dca": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+      [
+        [
+          "comment",
+          "Determine path to audit.log file "
+        ],
+        [
+          "datatype",
+          "string"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:var:25303101"
+        ],
+        [
+          "version",
+          "8"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+          [],
+          null,
+          [
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+              [
+                [
+                  "datatype",
+                  "string"
+                ]
+              ],
+              "df -h ",
+              []
+            ],
+            [
+              "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+              [
+                [
+                  "item_field",
+                  "subexpression"
+                ],
+                [
+                  "object_ref",
+                  "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303101"
+                ]
+              ],
+              null,
+              []
+            ]
+          ]
+        ]
+      ]
+    ],
+    "86c4588d60bbc2ed58154bff109432f1d44aac6ebcd504a34f46558c2f01a70f": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303101"
+        ],
+        [
+          "version",
+          "8"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/audit/auditd.conf",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "log_file\\s+=\\s+(\\/\\S+\\/)+\\S+\\s*",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ],
+    "769ca4011d4a42ee52fa98275b9db5c0b48fd0342bb6f5a628663eb711038c61": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:25303101"
+        ],
+        [
+          "version",
+          "8"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ],
+    "d22fb0063deca72fa4cc85fc6de7ee76103f586ffe73e5e4dfee5da42231988d": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+      [
+        [
+          "check",
+          "all"
+        ],
+        [
+          "check_existence",
+          "at_least_one_exists"
+        ],
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility. Free space on log partition greater than or equal to 10G."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:tst:25303103"
+        ],
+        [
+          "version",
+          "8"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+          [
+            [
+              "object_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303103"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+          [
+            [
+              "state_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:ste:25303101"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ],
+    "f6cdba55c8710630b94aa792d0727f29337d2e2cf5dbf9076fb10dcf041a8e2b": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:25303103"
+        ],
+        [
+          "version",
+          "8"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+          [],
+          "bash",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+          [
+            [
+              "var_ref",
+              "oval:navy.navwar.niwcatlantic.scc.linux:var:25303101"
+            ]
+          ],
+          null,
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "(?:\\/\\w+)+\\/\\S+\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(?:\\d+(?:\\.\\d+)*)(?:[KMGTP])\\s+(\\d+(\\.\\d+)*)(?:[KMGTP])",
+          []
+        ]
+      ]
+    ]
+  },
+  "qualification": "Source inventory and native syntax only; precision undecided. No production admission, source proof or scanner execution."
+}

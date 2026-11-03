@@ -1,0 +1,54 @@
+{
+  "producer_base_commit": "9a09d277f18feffa8975998231d931cd3edf4ce3",
+  "full_portable_tests": 68,
+  "skips": 0,
+  "final_float_tests": 9,
+  "note": "Full suite followed by focused rerun after adding receipt identity/explicit datatype checks and a Rule-order invariant. Remote final-head CI is recorded separately in PR comments.",
+  "source_pin": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "canonical_pin": "246a8d37cc54875386768a7d76b60a6f9c01d013",
+  "oval_pin": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "focused_cases": 10,
+  "blocked_before": 10,
+  "blocked_after": 10,
+  "recovered": 0,
+  "manual_assessments_preserved": 10,
+  "experimental_programs": 10,
+  "experimental_tests": 19,
+  "independent_operand_mutants_rejected": 10,
+  "source_semantic_proof": false,
+  "scanner_execution": false,
+  "semantic_pack_byte_identical": true,
+  "strict_golden_rules_unchanged": 535,
+  "frozen_runtime_files_unchanged": 18,
+  "firewall_native_documents": 64,
+  "review": "Reviewed source references (including Set object_reference text), exact float dtype/operator/value, capture multiplicity, strict gates, manual retention, syntax-only labels and protected-path diff. No production/schema changes.",
+  "files": {
+    "scripts/investigate_float_comparisons.py": "780bffb61ce252ba7cc14284b733b7d317eb8ec667cc4c6aa2122049c429e35f",
+    "scripts/check_float_probe_compilation.py": "f5213104b2d550125efb5a709d6ad8de214232b6d2fa479aeac5962146831883",
+    "tests/test_float_investigation.py": "8d1232311fc065bce914b35fb763c5d5f2bb7b58b9933158a4915cc7c50f7720",
+    "tests/fixtures/issue14-float-pins.json": "8d9d496bc96edb28017927c866d1bda6965dede26defb81bce06cd92682d6614"
+  },
+  "logs": {
+    "full-portable.log": {
+      "bytes": 11691,
+      "sha256": "cdcb8f72ee24c8ca2eb7328a6ef85f4b0fdffdd6194d73e33c4b2ef5a4787b60"
+    },
+    "float-focused-final.log": {
+      "bytes": 1749,
+      "sha256": "6a4d6c8444b45be4d7d56b50fa509810eb28871d75a001924540e902c08cd156"
+    },
+    "semantic-pack.log": {
+      "bytes": 91,
+      "sha256": "c4657bedce3077d24f663742ec8dfb047ac224ab4423dd4bc548616a4afc5125"
+    },
+    "native-syntax-compilation.log": {
+      "bytes": 60,
+      "sha256": "bb4f56b39e5c2e4844d13b2ed8ab7a6d38311b8242da75a9b578e5bfe47474ff"
+    }
+  },
+  "prior_tracked_files_unchanged_in": [
+    "src",
+    "tests/fixtures",
+    "docs/evidence/issue14-stabilization"
+  ]
+}
