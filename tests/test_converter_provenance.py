@@ -14,7 +14,7 @@ CURRENT_RUNTIME_SHA256 = '52fd6b65d9f2f77c8c8b634124527ebbefe8c9119f9f272a6a6830
 PRE_RECOVERY_UNCHANGED_SOURCE_SHA256 = '2da8fcb55708af9a1306b7d3b33832fd5225fe25e698236af22ac4eeb3ad6890'
 UNCHANGED_SOURCE_SHA256 = '5df01a836f809c791417829a9460bffd4ebd0f42df12500762b3dd3ff350124c'
 AUDITED_ADAPTATIONS = {
-    # Issue14 optional visitor factory and binding-name hooks only; strict defaults unchanged.
+    # Issue14 opt-in visitor/naming, warning and exact-consumer operator adapters.
     'v04_draft_inputs.py': 'be582346c5f4cd072f6f81079787ccf1a84b937edfa26e5cb2a12136414be5f2',
     # Allowlisted Item grouping and native discovery producer adaptations;
     # original hashes remain in the migration record and prior commits.

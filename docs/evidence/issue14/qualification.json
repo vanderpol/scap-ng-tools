@@ -285,5 +285,54 @@
     "scanner_execution": false,
     "new_full65_library": false,
     "old_proof_rebaseline": false
+  },
+  "publisher_firewall_variant": {
+    "compile": {
+      "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "benchmark": "microsoft-windows-defender-with-manual-questions-benchmark",
+      "documents": 64,
+      "programs": 20,
+      "tests": 109,
+      "source_graph_sha256": "d3853d37292c5e114de5510fd0c7aa31eb31ea06280f80a48e9708da7fc25353",
+      "scanner_evaluated": false,
+      "signature_verified": false
+    },
+    "independent_package_consumer": {
+      "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+      "benchmark": "microsoft-windows-defender-with-manual-questions-benchmark",
+      "bundle_sha256": "e436ed65b36ca2e11c876bbe9d22c66e3633a460ae6fbdc8b7dc79838740ac18",
+      "documents": 64,
+      "programs": 20,
+      "tests": 109,
+      "shared_objects": 35,
+      "variables": 0,
+      "source_graph_sha256": "d3853d37292c5e114de5510fd0c7aa31eb31ea06280f80a48e9708da7fc25353",
+      "external_source_compared": true,
+      "scanner_evaluated": false,
+      "publisher_trust_verified": false
+    },
+    "not_counted_twice_in_unique_totals": true
+  },
+  "installed_wheel_smoke": {
+    "source_commit": "c8f391cc490f27d2231c11422a222018a92ac344",
+    "wheel_sha256": "be999ba01223f0acbbfa29ab54f8d07d7d1789f13e2853b5592a5310b9bc09d9",
+    "python_isolated_mode": true,
+    "working_directory": "outside checkout",
+    "system_python_dependencies_used": true,
+    "private_source_modules_loaded": false,
+    "native_documents": 64,
+    "automated_draft": 20,
+    "manual_methods": 21,
+    "release_artifact": false
+  },
+  "verified_implementation_ci": {
+    "source_commit": "c8f391cc490f27d2231c11422a222018a92ac344",
+    "runs": [
+      41552534863,
+      41552534963
+    ],
+    "conclusion": "success",
+    "hosted_tests": 45,
+    "skips": 0
   }
 }

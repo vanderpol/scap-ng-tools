@@ -1,3 +1,19 @@
+## Qualified implementation checkpoint
+
+Published implementation `c8f391cc490f27d2231c11422a222018a92ac344`, draft PR15
+stacked on PR13, has both exact-source workflows SUCCESS: flat41552534863
+(hosted45 tests, zero skips, semantic-pack byte comparison) and foundation41552534963.
+Installed-wheel isolated-Python recovery from outside the checkout reproduces
+64 Firewall documents/20 automated/21 manual methods, loading no private modules.
+All changes and compact evidence are pushed. Public progress receipt:
+https://github.com/vanderpol/scap-ng-tools/issues/14#issuecomment-6592025254.
+[Next contract packet](ISSUE14-NEXT-CONTRACT.md) identifies the actual closed-grammar
+boundary for11 dynamic-function blockers; no unapproved function/schema changes
+were made. Final containing documentation/receipt successor has identical runtime
+bytes; its hosted conclusions follow in PR15. Keep initial milestone distinct
+from full policy/source proof or a new65 library. No editor18 dependency or source
+artifact rebaseline. Recovery location remains `/workspace/work/issue14/`.
+
 # Autonomous development checkpoint — Issue14, 2026-11-03
 
 Task: [native Firewall and blocked Assessment recovery](https://github.com/vanderpol/scap-ng-tools/issues/14).

@@ -158,7 +158,11 @@ exercise21/21 accounting, manual choices/defaults, original Test controls,
 organization bindings, source pinning, naming, invalid selectors, real/false
 constraints,34 operator-preserving admissions and two disagreements. Optional
 external compiler qualification is recorded separately and is not a public
-package/CI dependency. Hosted PR receipts identify the exact containing source.
+package/CI dependency. Implementation `c8f391cc490f27d2231c11422a222018a92ac344` has both hosted workflows
+SUCCESS, including45 tests with zero skips and semantic-pack byte comparison.
+An installed-wheel isolated-Python run outside the checkout reproduces the64
+Firewall documents without loading private modules. Hosted PR receipts identify
+the final documentation successor as well. See the [next contract boundary](ISSUE14-NEXT-CONTRACT.md).
 
 ## Reproduction
 
