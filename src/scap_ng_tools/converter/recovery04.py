@@ -37,7 +37,7 @@ def _identifier(source, element, suffix, title=None):
     return result
 
 
-def _classes(engine):
+def _classes(engine, *, binary32_contract=None):
     from v04_direct_scap_source import SourceModel, XCCDF, OVAL, OCIL, ensure, attributes
 
     class RecoverySource(SourceModel):
@@ -74,6 +74,32 @@ def _classes(engine):
 
         def predicate(self, element, mapping, selector=False, *, record_field=False):
             from v04_direct_scap_source import local_name, digest, xml_identity
+            if binary32_contract is not None and element.get('datatype') == 'float':
+                from .binary32 import OPERATIONS, finite_literal, lexical_bits
+                ensure(not selector and not record_field and not len(element),
+                       'binary32 recovery supports scalar State fields only')
+                attributes(element, {'datatype', 'operation', 'entity_check', 'check_existence'})
+                ensure(element.tag == '{' + mapping['source']['namespace'] + '}' + local_name(element)
+                       and local_name(element) in mapping['native']['state_field_map'],
+                       'unsupported binary32 State field')
+                source_operation = element.get('operation', 'equals')
+                ensure(source_operation in {op.replace('_', ' ') for op in OPERATIONS},
+                       'unsupported binary32 source comparison')
+                operation = source_operation.replace(' ', '_')
+                existence = element.get('check_existence', 'at_least_one_exists')
+                matching = element.get('entity_check', 'all')
+                ensure(existence in engine.FIELD_EXISTENCE and existence != 'none_exist'
+                       and matching in engine.MATCHING, 'unsupported binary32 field controls')
+                value = finite_literal(element.text)
+                result = {'float_' + operation: value,
+                          'values_found': engine.FIELD_EXISTENCE[existence],
+                          'values_matching': engine.MATCHING[matching]}
+                self.conversion_warnings.append({'code': 'native_binary32_comparison_v1',
+                    'source_sha256': digest(xml_identity(element)), 'source_lexical': element.text,
+                    'source_attributes': dict(element.attrib), 'binary32_bits': f'{lexical_bits(element.text):08x}',
+                    'contract': binary32_contract, 'native_predicate_sha256': digest(result),
+                    'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
+                return result
             # OVAL EntityAttributeGroup explicitly defaults operation to equals.
             # This exact empty State form already has an approved absence AST.
             # Keep pattern/values/Variables/extra controls and selectors strict.
@@ -144,7 +170,8 @@ def _classes(engine):
     return RecoverySource, RecoveryVisitor
 
 
-def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameters=False, rule_ids=None):
+def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameters=False, rule_ids=None,
+                      binary32_comparisons=False):
     """Return native DRAFT documents, complete source trace and per-Rule ledger.
 
     Original selection/applicability XML remains in provenance. Native platform
@@ -152,7 +179,11 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
     """
     snapshot=FrozenSchemaSnapshot(schema_root);engine=load_runtime()
     from v04_direct_scap_source import XCCDF, OVAL, OCIL, ensure, digest, xml_identity, native_identifier
-    RecoverySource,RecoveryVisitor=_classes(engine)
+    binary32_contract = None
+    if binary32_comparisons:
+        from .binary32 import require_contract
+        binary32_contract = require_contract(snapshot.schema_root)
+    RecoverySource,RecoveryVisitor=_classes(engine, binary32_contract=binary32_contract)
     model=RecoverySource(Path(source),sha256_pin,inventory_broken_references=True,draft_compatibility=True)
     mappings=snapshot.supported_mappings(engine.CAPABILITIES)
     selected=list(model.rules) if rule_ids is None else list(rule_ids)
@@ -273,4 +304,7 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
                 'manual_choices':sum(r['manual'] and r['rule_emitted'] for r in rows),
                 'manual_assessments':sum(r['manual'] for r in rows),
                 'independently_source_proved':0,'scanner_executed':0}}
+    if binary32_contract is not None:
+        trace['binary32_comparison_contract'] = binary32_contract
+        ledger['binary32_comparison_contract'] = binary32_contract
     return docs,trace,ledger

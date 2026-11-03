@@ -1,0 +1,11 @@
+{
+  "qualification": "Independent C strtof/binary32 numerical experiment only; no OVAL evaluator, scanner or complete Rule proof.",
+  "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "c_source_sha256": "73c994e37aee203e428d10a6c18d1f21972e5005ded2fed7e3d5baa20d6b3ac0",
+  "fixed_vectors": 19,
+  "native_cast_checks": 57,
+  "native_comparison_checks": 342,
+  "passed": true,
+  "source_semantic_proof": false,
+  "scanner_execution": false
+}

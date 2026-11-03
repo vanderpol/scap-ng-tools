@@ -1,0 +1,378 @@
+{
+  "format": "issue14-binary32-recovery/1",
+  "contract": {
+    "id": "scap-ng-0.4.0-binary32-comparisons/1",
+    "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+  },
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "counts_before": {
+    "BLOCKED": 10
+  },
+  "counts_after": {
+    "AUTOMATED_DRAFT": 10
+  },
+  "recovered": 10,
+  "rules": [
+    {
+      "filename": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "source_zip_sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-219237r958752_rule",
+      "source_rule_sha256": "714ed1fee4c4b80ab6ef07e2fb8da7d0810b0634ce08bce8bace9fdd762c5985",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "41a4c062743a481b20aa3816d731ec9d7ec0b3634d38287d1f448d5715c2c86a",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "source_zip_sha256": "85cc4348a0bd85becf757f50e6f0d3ef67169c87e26f12f045c94914d7099ef5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-238305r958752_rule",
+      "source_rule_sha256": "5e28076a541ce8747b5a98d652cc86f1756f4c65338920934d6eaf85667e3b55",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "53908c6794b77b07255873ab415b4c6ad55dd4a885bec134a6ad147fad76f70f",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+      "source_zip_sha256": "dbbc87ffe6d0c84688993d96cd7007e76bf83b9206508109b586ccc5bf88b6b2",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-260595r958752_rule",
+      "source_rule_sha256": "c905cc62db963738b1c4fa55d44ba1f5d366c5b3c50b3f2c35316a149f3e60c0",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "a44483ee5166e52dfc2830dca7d73173aa4e1f9f66a5b01f133647f9cec95ca8",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+      "source_zip_sha256": "40229cd7a41e6ff4a8cfb675523f767292d1460edbc68fe9ba5258c530c8b4a7",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-270816r1066937_rule",
+      "source_rule_sha256": "2a4be07c8e13fa25227f7405bff71c13e5f39aea3f57b29869982fc8f24242cb",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "5c43d651c7ccffcc2d3393df5a390cb1733705b277c7d75b3f9bd4a98cf28553",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_zip_sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-248811r958752_rule",
+      "source_rule_sha256": "87566112aa97d461e4ebe261686f38abd7353d80b680670e58c673ee3faf4eb8",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "1bd20afec55fa8ec2e5188368664be493276ccd621e8820b5250873f87eff2c3",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "source_zip_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230476r958752_rule",
+      "source_rule_sha256": "ae66b41a8751db1a16448d6cdf60a18045e146740ded40d15f3b9aefaa994a4e",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "1e3e31a91e29bf7cae4d86226cb100e612ec6768f1623fb8f24ec809540f0bd6",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "source_zip_sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-217192r958752_rule",
+      "source_rule_sha256": "60bff9633ebacc3f6b651441338ece4461d18ba4a3e101e95cd9c186405f418a",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "4312646db915dc8aa12c42e2198f3fbd32aa8076e15cd458874db42975be06df",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "source_zip_sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-237605r1050789_rule",
+      "source_rule_sha256": "6f54cca49aabbe361d65e1c7cdeaf661b9fbdf4feb7559cffc66d237bd3dbd6f",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "18a739d92725fb366e7ff8db28966db2ace61e9e6fd6ccf3875851c2df51a9bb",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "0c6f1d0fc7b32a3b904929ed7382fec5e5ec514e8752a2f99c409f3a8411275f",
+          "source_lexical": "0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "00000000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "35259b943a20d3646ade778ddcdc72d28ca539fbb78b5eacd7649f8e4de896cb",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_zip_sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-234965r958752_rule",
+      "source_rule_sha256": "cd3f14fe626c058a35bb32888bc0b06f8c9585cec1580b36a35a2da57a102596",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "52064c3f4049f5d80db2581118939cdd243e79981423c714412b09429b47ff3c",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "source_zip_sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-253031r958752_rule",
+      "source_rule_sha256": "a617a35ee1c0232b71a6016e5694f8cf07801a22f80207b722ead5b541b4e732",
+      "before_status": "BLOCKED",
+      "after_status": "AUTOMATED_DRAFT",
+      "blockers": [],
+      "manual_preserved": true,
+      "manual_document_sha256": "cc8f12386479e66cea546dfea7c9f659c37052a3348421bbaecec92224ca0abd",
+      "rule_emitted": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "binary32_warnings": [
+        {
+          "code": "native_binary32_comparison_v1",
+          "source_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+          "source_lexical": "10.0",
+          "source_attributes": {
+            "datatype": "float",
+            "operation": "greater than or equal"
+          },
+          "binary32_bits": "41200000",
+          "contract": {
+            "id": "scap-ng-0.4.0-binary32-comparisons/1",
+            "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+          },
+          "native_predicate_sha256": "ae8a046b13f713b8e26106d63f26bbace1c821f42cca2a4d83089c758b24bc25",
+          "independent_static_proof": "UNPROVED",
+          "scanner_evaluated": false
+        }
+      ],
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    }
+  ],
+  "qualification": "Explicit current-contract native DRAFT recovery; independent compilation is a separate receipt. No original-source or scanner equivalence."
+}

@@ -1,0 +1,89 @@
+{
+  "producer_base_commit": "688a71896cac03dad3a5664d1e8d500866ac1fa2",
+  "canonical_contract_commit": "da4c48dfc60dc96a46e7b85425f70fb8f301a0b1",
+  "prior_schema_editor_pin_retained": "246a8d37cc54875386768a7d76b60a6f9c01d013",
+  "compiler_commit": "855c6023d55d882b55c0507d5492e6f4e4946023",
+  "full_portable_tests": 77,
+  "skips": 0,
+  "final_focused_tests": 9,
+  "focused_note": "After the full suite, added minimum-normal rounding and supplied lexical Item/Result serialization assertions; the final nine-test rerun passes.",
+  "case_counts_before": {
+    "BLOCKED": 10
+  },
+  "case_counts_after": {
+    "AUTOMATED_DRAFT": 10
+  },
+  "remaining48": {
+    "AUTOMATED_DRAFT": 13,
+    "BLOCKED": 35
+  },
+  "native_packages": 9,
+  "native_documents": 48,
+  "native_programs": 10,
+  "native_tests": 19,
+  "manual_assessments_preserved": 10,
+  "independent_mutants_rejected": 20,
+  "native_numeric_vectors": 19,
+  "native_cast_checks": 57,
+  "native_comparison_checks": 342,
+  "private_maintained_scripts": 43,
+  "private_maintained_tests": 318,
+  "private_schema_scripts": 13,
+  "private_schema_tests": 257,
+  "legacy_six": {
+    "conversion": "PASS",
+    "render": "PASS",
+    "schema": "PASS",
+    "semantics": "PASS",
+    "graph": "PASS",
+    "normalization": "PASS",
+    "compilation": "PASS",
+    "packages": 6,
+    "candidate_authored_yaml": 4586,
+    "normalized_authored_yaml": 4012,
+    "authored_byte_parity": true,
+    "code_provenance": "Local working tree marker at test time; code unchanged in committed compiler855c6023d55d882b55c0507d5492e6f4e4946023. Private receipt retains raw command/log identities."
+  },
+  "baseline_limits": {
+    "legacy_authoring_guard": "Same1440-file naming report as baseline; not passed.",
+    "markdown": "Same3 current/39 historical errors as baseline; not passed.",
+    "hosted_private_artifact_gates": "Initial inherited uploads fail quota; tests/clean extraction pass. No retries."
+  },
+  "strict_runtime_files_unchanged": 18,
+  "pinned_semantic_modules_unchanged": 4,
+  "strict_golden_rules_unchanged": 535,
+  "semantic_pack_byte_identical": true,
+  "editor_metadata_resources_unchanged": 235,
+  "firewall_native_documents": 64,
+  "independent_source_proof": false,
+  "scanner_execution": false,
+  "review": "Checked direct decimal rounding, finite canonical expected values, actual source operator/type/controls, immutable old evidence, original manual hashes, source-path inventories, downgrade and rehashed mutants, source graph and explicit profile pin. No schema/Result/Editor36/workflow-transfer/release changes.",
+  "logs": {
+    "portable-full-approved.log": {
+      "bytes": 13310,
+      "sha256": "784fc7079672023e4df4fddd91796e45a9fb8d3b5c50dc79c8772730fb180930"
+    },
+    "float-focused-final.log": {
+      "bytes": 1717,
+      "sha256": "2a260cad7c7bc229c8db503b53ce79265f07660d8646a5b95581d2abd6195257"
+    },
+    "native-qualification.log": {
+      "bytes": 124,
+      "sha256": "f55ec75f463bc660de43fcad66ae73bd3651e82235a91324267c13094e61757c"
+    },
+    "triage48.log": {
+      "bytes": 92,
+      "sha256": "0587f6e85668545cdec57513b5785d2d967bd2e6708f43bfa1fda3c3b18feb77"
+    }
+  },
+  "files": {
+    "src/scap_ng_tools/converter/binary32.py": "75f8e1678e275b9ae1befa7a11ef2494d8a3c057eace61d339b1c2d023c16e01",
+    "src/scap_ng_tools/converter/binary32_predicates.py": "1ac5b978dcc966f070601c297245f63420fbd978c98dd9a64205063c958c46fa",
+    "src/scap_ng_tools/converter/recovery04.py": "861424e28c49bca2e1bfaf3f6710fffcf261ee6745c352ca70371dfdf612f16b",
+    "scripts/recover_float_cases.py": "67c40c69a97b722690f443f6d1588d45e06c394f718544d94b6cc222df3a0d8d",
+    "scripts/qualify_binary32_recovery.py": "98a499e82560e1a409f2bd5ce0c58cd99f20c8665e35a95b716bb0a43ff8e89b",
+    "scripts/check_binary32_native_oracle.py": "d01c0a7b437237c8110d89f770d1fb70e8ce0b0b021fd8d622c9a093200a940a",
+    "scripts/triage_recovery_blockers.py": "9e7db722d5ba1de664268f4e361fa507eec1bf6e3ce39726e30dd461e43443f8",
+    "tests/test_binary32_recovery.py": "5da53971ef719917646dc8339555d7d2730f55326caaf963a6277ce1db64358d"
+  }
+}
