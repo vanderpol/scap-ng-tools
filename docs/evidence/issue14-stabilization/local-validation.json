@@ -1,0 +1,33 @@
+{
+  "producer_base_commit": "8f5251dcd1062ed29e33b8e9ef72f2f619d83a0d",
+  "recovery_adapter_sha256": "f8d99d6445c83ec0e39873add5978b284a8b82bd9e76cc911d6ba404dd131bde",
+  "full_portable_tests": 59,
+  "skips": 0,
+  "boundary_tests": 6,
+  "focused_cases": 48,
+  "current_draft": 3,
+  "current_blocked": 45,
+  "new_rule": "SV-224994",
+  "new_programs": 1,
+  "new_tests": 1,
+  "source_semantic_proof": false,
+  "scanner_execution": false,
+  "logs": {
+    "tools-full-final.log": {
+      "bytes": 10041,
+      "sha256": "7308e63a6c702e1167cd3ca1bd2c517a7900eabb1eee100babbe32406419334d"
+    },
+    "absence-tests-final.log": {
+      "bytes": 1322,
+      "sha256": "5b29a8370a7aed09db3556ff5f881b3936ede558cca02c4cbb2885b93dff4d4f"
+    },
+    "repro-triage-final.log": {
+      "bytes": 91,
+      "sha256": "d1105340923b5ad39a033edb3590f7087e538b72b9e3c3233ec42d558522a972"
+    },
+    "recovery-parity.log": {
+      "bytes": 100,
+      "sha256": "f101da1ded5867ef879de6b8d6c966635e3339e29e266f50fe946688d2d6931e"
+    }
+  }
+}

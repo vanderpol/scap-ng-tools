@@ -72,6 +72,28 @@ def _classes(engine):
         def binding_name(self, element, suffix, title=None):
             return _identifier(self.source,element,suffix,title)
 
+        def predicate(self, element, mapping, selector=False, *, record_field=False):
+            from v04_direct_scap_source import local_name, digest, xml_identity
+            # OVAL EntityAttributeGroup explicitly defaults operation to equals.
+            # This exact empty State form already has an approved absence AST.
+            # Keep pattern/values/Variables/extra controls and selectors strict.
+            if (not selector and not record_field and not len(element) and not element.text
+                    and dict(element.attrib) == {'check_existence': 'none_exist', 'operation': 'equals'}
+                    and element.tag == '{' + mapping['source']['namespace'] + '}' + local_name(element)
+                    and local_name(element) in mapping['native']['state_field_map']):
+                original = element
+                element = deepcopy(element)
+                del element.attrib['operation']
+                result = super().predicate(element, mapping)
+                self.conversion_warnings.append({'code': 'explicit_absence_equals_default',
+                    'source_sha256': digest(xml_identity(original)),
+                    'source_attributes': dict(original.attrib),
+                    'native_predicate_sha256': digest(result),
+                    'basis': 'OVAL-5.12.3 EntityAttributeGroup operation default equals',
+                    'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
+                return result
+            return super().predicate(element, mapping, selector, record_field=record_field)
+
         def function(self, element):
             from v04_direct_scap_source import local_name, digest, xml_identity
             operation = local_name(element)

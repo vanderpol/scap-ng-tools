@@ -1,0 +1,434 @@
+[
+  {
+    "filename": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+    "sha256": "88cc35f98c9ff96c567110c284c06e6adfc556fd59967019bdec6fd1cc5a204f",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
+    "pr15_blockers": [
+      "unsupported function: arithmetic",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+    "sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-219237r958752_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+    "sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-237770r991589_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "85cc4348a0bd85becf757f50e6f0d3ef67169c87e26f12f045c94914d7099ef5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-238305r958752_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+    "sha256": "dbbc87ffe6d0c84688993d96cd7007e76bf83b9206508109b586ccc5bf88b6b2",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-260595r958752_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+    "sha256": "40229cd7a41e6ff4a8cfb675523f767292d1460edbc68fe9ba5258c530c8b4a7",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-270816r1066937_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+    "sha256": "1e8e828b22f0c73673cbac1900dd56fd68537baf0dd2afd0a2379df9a2b0664f",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278400r1172752_rule",
+    "pr15_blockers": [
+      "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.nginx:ste:27840004",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+    "sha256": "9578b414bc8e406e15226b91d663d31f227f1164f8bca7c4d5ea3507d8f520c9",
+    "source_rule": "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
+    "pr15_blockers": [
+      "unsupported acquisition parameter comparison/type",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+    "sha256": "b6bd7ad2a458f464eca99deb9eac50aaeafa74d435cf0bb2ca76d0424d916692",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
+    "pr15_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+    "sha256": "46497542771fd7841cd96745d61dbdeb8ccf0d082415dcfa64a6694bf365f8f9",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
+    "pr15_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "8bfa016748ea4c6478655a6777dc2aab9d601581b0429388e4d1ba0e3696ca1b",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule",
+    "pr15_blockers": [
+      "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "8bfa016748ea4c6478655a6777dc2aab9d601581b0429388e4d1ba0e3696ca1b",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218801r961083_rule",
+    "pr15_blockers": [
+      "invalid original pattern-path recursion attributes",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "8bfa016748ea4c6478655a6777dc2aab9d601581b0429388e4d1ba0e3696ca1b",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218814r1067589_rule",
+    "pr15_blockers": [
+      "Variable cast outside bounded proof",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule",
+    "pr15_blockers": [
+      "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874102",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218742r1022679_rule",
+    "pr15_blockers": [
+      "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874205",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
+    "pr15_blockers": [
+      "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
+    "pr15_blockers": [
+      "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+    "sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-220812r991589_rule",
+    "pr15_blockers": [
+      "unsupported acquisition parameter comparison/type",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+    "sha256": "ecba937d43efc0a72037eefb501b46a2e417158088b2f2699f2c86b68bd1de9c",
+    "source_rule": "xccdf_mil.disa.fso_rule_SV-226330r794605_rule",
+    "pr15_blockers": [
+      "XCCDF Value operator disagrees with actual OVAL consumers",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+    "sha256": "ecba937d43efc0a72037eefb501b46a2e417158088b2f2699f2c86b68bd1de9c",
+    "source_rule": "xccdf_mil.disa.fso_rule_SV-226276r794552_rule",
+    "pr15_blockers": [
+      "check-export source/Variable datatype mismatch",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+    "sha256": "3ad256b29d6f85fe69ba9a14b18502a6f50e923faea2880d9ce10246f780a50a",
+    "source_rule": "xccdf_mil.disa.fso_rule_SV-225507r569185_rule",
+    "pr15_blockers": [
+      "XCCDF Value operator disagrees with actual OVAL consumers",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+    "sha256": "3ad256b29d6f85fe69ba9a14b18502a6f50e923faea2880d9ce10246f780a50a",
+    "source_rule": "xccdf_mil.disa.fso_rule_SV-225453r569185_rule",
+    "pr15_blockers": [
+      "check-export source/Variable datatype mismatch",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-224994r958484_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-224975r958524_rule",
+    "pr15_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-205723r1137695_rule",
+    "pr15_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "5ba5577961a13ded0d4e9a0c6603f93b8201b4fc74d23ef679eba7726e0182f4",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-254396r1137695_rule",
+    "pr15_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+    "sha256": "f674b67e74acbd3037093d50e33dc20765bd9d45a6c9ed2be5d463d009a6c6b8",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule",
+    "pr15_blockers": [
+      "invalid original pattern-path recursion attributes",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+    "sha256": "f674b67e74acbd3037093d50e33dc20765bd9d45a6c9ed2be5d463d009a6c6b8",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259368r1212359_rule",
+    "pr15_blockers": [
+      "invalid original pattern-path recursion attributes",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+    "sha256": "0235429534dfc1149824f1a6b5144f73e16dc28d84d899c638cc5ede31da8c1a",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+    "pr15_blockers": [
+      "unsupported function: arithmetic",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+    "sha256": "0235429534dfc1149824f1a6b5144f73e16dc28d84d899c638cc5ede31da8c1a",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
+    "pr15_blockers": [
+      "unsupported State field/namespace",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-248811r958752_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-248641r991589_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+    "sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
+    "pr15_blockers": [
+      "unsupported function: arithmetic",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+    "sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-271844r1184222_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "17c3ddd4d4ae40bd7ca3443dae0a0c9ed921444a57c34bff357f9f885e0d9ab8",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-214799r991589_rule",
+    "pr15_blockers": [
+      "unsupported State field/namespace",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+    "sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-230476r958752_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+    "sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-230322r1017133_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+    "sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-230323r1017134_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+    "sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
+    "pr15_blockers": [
+      "unsupported function: arithmetic",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+    "sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-217192r958752_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+    "sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-237605r1050789_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+    "sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-217172r1184438_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-234965r958752_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-234992r1184471_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "b8ae7486d503b46e25ca885cfd53b9b47c40f313b9b4117683f88102c7222b1d",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
+    "pr15_blockers": [
+      "unsupported function: split",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "f988154cba7cf0ab39fa3063e510398c716e5d7d5865ae5cc187dc10d2071f2a",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
+    "pr15_blockers": [
+      "unsupported function: split",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+    "sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-253031r958752_rule",
+    "pr15_blockers": [
+      "ordered comparison expansion requires integer source datatype",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+    "sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-252961r991589_rule",
+    "pr15_blockers": [
+      "comparator-bearing absence blocked",
+      "source default choice unavailable"
+    ]
+  }
+]
