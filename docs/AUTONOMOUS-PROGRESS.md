@@ -10,7 +10,9 @@ https://github.com/vanderpol/scap-ng-tools/issues/14#issuecomment-6592025254.
 [Next contract packet](ISSUE14-NEXT-CONTRACT.md) identifies the actual closed-grammar
 boundary for11 dynamic-function blockers; no unapproved function/schema changes
 were made. Final containing documentation/receipt successor has identical runtime
-bytes; its hosted conclusions follow in PR15. Keep initial milestone distinct
+bytes; its hosted conclusions follow in PR15. A final metadata correction gives the
+new mixed-mode trace its own version and includes manual-only Rule hashes;
+native authoring/package bytes and strict trace goldens remain unchanged. Keep initial milestone distinct
 from full policy/source proof or a new65 library. No editor18 dependency or source
 artifact rebaseline. Recovery location remains `/workspace/work/issue14/`.
 

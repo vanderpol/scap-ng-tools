@@ -142,7 +142,9 @@ Rules; the other8749 are not claimed current-schema validated or compiled.
 
 ## Implementation and tests
 
-The recovery API/script is an explicit lane. Existing strict CLI `--all-rules`,
+The recovery API/script is an explicit lane. Its `native-recovery-trace/1`
+format distinguishes mixed automatic/manual records from the legacy strict
+automated-only trace, and includes source Rule hashes for manual-only records. Existing strict CLI `--all-rules`,
 focused output, unsupported `--draft`/compile/proof modes and original535-Rule
 strict source/document/trace/coverage goldens remain unchanged. Two audited
 runtime files expose a visitor factory and bounded Input metadata/name hooks;

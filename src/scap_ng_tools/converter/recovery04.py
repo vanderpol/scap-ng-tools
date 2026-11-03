@@ -117,7 +117,7 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
              'schema_validated':False,'semantic_validated':False,'compiled':False,
              'independent_source_proof':False,'scanner_execution':False,'blockers':[],
              'source_checks':[xml_identity(c) for c in rule.findall('{'+XCCDF+'}check')]}
-        native={};binding={'source_rule':rid,'native_rule':native_identifier(rule,'rule',title+' '+label),
+        native={};binding={'source_rule':rid,'source_rule_sha256':row['source_rule_sha256'],'native_rule':native_identifier(rule,'rule',title+' '+label),
                           'policy_parameters':{},'dependencies':{},'manual_choices':[]}
         native_rule={'id':binding['native_rule'],'version':rule.findtext('{'+XCCDF+'}version',''),
                      'title':title,'severity':rule.get('severity','unknown'),'role':'full',
@@ -204,6 +204,8 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
                 if uses:rule['organizational_input_requirements'][selector]=uses
     docs={p.replace('authoring/direct-slice/','authoring/'+bid+'/'):d for p,d in docs.items()}
     validate_native_documents(snapshot,docs)
+    trace['format']='native-recovery-trace/1'
+    trace['scope']='Current native DRAFT automatic/manual projection; original source retained; full policy/CPE execution unqualified'
     trace['source_benchmark_xml']=ET.tostring(model.benchmark,encoding='unicode')
     trace['source_rule_records']=[{'id':rid,'xml':ET.tostring(rule,encoding='unicode')} for rid,rule in model.rules.items()]
     trace['source_components']={cid:{'sha256':model.component_hashes[cid],'root_tag':node.tag} for cid,node in model.components.items()}
