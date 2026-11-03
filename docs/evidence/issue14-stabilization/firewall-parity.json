@@ -1,0 +1,18 @@
+{
+  "native_documents": 64,
+  "exact_prior_document_equality": true,
+  "canonical_json_sha256": "47e46cd90778681fd01eb237ddf16751f8937910721c17159c49f2e820856e2a",
+  "summary": {
+    "source_rules": 21,
+    "statuses": {
+      "AUTOMATED_DRAFT": 20,
+      "MANUAL": 1
+    },
+    "automated_draft": 20,
+    "manual_choices": 21,
+    "manual_assessments": 21,
+    "independently_source_proved": 0,
+    "scanner_executed": 0
+  },
+  "scanner_execution": false
+}

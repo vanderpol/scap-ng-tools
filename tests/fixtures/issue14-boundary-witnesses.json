@@ -1,0 +1,354 @@
+{
+  "integer-positive": {
+    "filename": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "source_zip_sha256": "17c3ddd4d4ae40bd7ca3443dae0a0c9ed921444a57c34bff357f9f885e0d9ab8",
+    "component": "scap_mil.disa.stig_comp_U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+    "parent_id": "oval:mil.disa.stig.ind:obj:20444501",
+    "child_index": 2,
+    "parent_sha256": "424fe5326b389eabe1eb45a14511c4a1b97eb65f1a9c50b62e60fcb563e4232b",
+    "node_sha256": "712d6da61ac236f0e780745df88a33f8f00c2b7ebaf3c0e23c4c626f6384424d",
+    "node": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+      [
+        [
+          "datatype",
+          "int"
+        ],
+        [
+          "operation",
+          "greater than or equal"
+        ]
+      ],
+      "1",
+      []
+    ],
+    "parent": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+      [
+        [
+          "id",
+          "oval:mil.disa.stig.ind:obj:20444501"
+        ],
+        [
+          "version",
+          "1"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+          [],
+          "/etc/crontab",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+          [
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          "^[ \\t]*([\\S]+[ \\t]+[\\S]+[ \\t]+\\*[ \\t]+\\*[ \\t]+[\\S]+)[ \\t]+root[ \\t]+\\/usr\\/sbin\\/aide[ \\t]+\\-\\-check(?:[\\s]+|[\\>\\|]|$)",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+          [
+            [
+              "datatype",
+              "int"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "1",
+          []
+        ]
+      ]
+    ]
+  },
+  "rpm-negative": {
+    "filename": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "source_zip_sha256": "17c3ddd4d4ae40bd7ca3443dae0a0c9ed921444a57c34bff357f9f885e0d9ab8",
+    "component": "scap_mil.disa.stig_comp_U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+    "parent_id": "oval:mil.disa.stig.rhel7:ste:3860",
+    "child_index": 0,
+    "parent_sha256": "c9e7cc0387d3b4a54efb004c348b3f8e4153a60379d353cdfd7a25402c8cc0d6",
+    "node_sha256": "823aaea56ad3d05c45fe243e60612049b09509a5a9580dede433a62a934dbf81",
+    "node": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}md5_differs",
+      [],
+      "fail",
+      []
+    ],
+    "parent": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}rpmverifyfile_state",
+      [
+        [
+          "id",
+          "oval:mil.disa.stig.rhel7:ste:3860"
+        ],
+        [
+          "operator",
+          "AND"
+        ],
+        [
+          "version",
+          "1"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}md5_differs",
+          [],
+          "fail",
+          []
+        ]
+      ]
+    ]
+  },
+  "absence-positive": {
+    "filename": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "source_zip_sha256": "17c3ddd4d4ae40bd7ca3443dae0a0c9ed921444a57c34bff357f9f885e0d9ab8",
+    "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-oval2.xml",
+    "parent_id": "oval:navy.navwar.niwcatlantic.scc.linux:ste:25170302",
+    "child_index": 0,
+    "parent_sha256": "d29c78f4d407e2763a4e4fc644d5d77659c20a88eeaa82ccc7e3ddc9d7b760c9",
+    "node_sha256": "5f23f61646d75745dddbfe0f8f1b9e793b37f9fcf9333e6b45dc5cd4a1d18f81",
+    "node": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}stdout_line",
+      [
+        [
+          "check_existence",
+          "none_exist"
+        ]
+      ],
+      null,
+      []
+    ],
+    "parent": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "Confirm no 'includes' in /etc/sudoers.d directory."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:25170302"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}stdout_line",
+          [
+            [
+              "check_existence",
+              "none_exist"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ]
+  },
+  "float-negative": {
+    "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+    "source_zip_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+    "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-oval2.xml",
+    "parent_id": "oval:navy.navwar.niwcatlantic.scc.linux:ste:23047601",
+    "child_index": 1,
+    "parent_sha256": "55ddde02feeb9354e4a2596b537f990ddbb0600de4cf54d8867c551e8ffb3f36",
+    "node_sha256": "030ad5a525ca6e00f06f12530be89e1f67c9be0a65a41be254e8b5ed40504072",
+    "node": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+      [
+        [
+          "datatype",
+          "float"
+        ],
+        [
+          "operation",
+          "greater than or equal"
+        ]
+      ],
+      "10.0",
+      []
+    ],
+    "parent": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "The OS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:23047601"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+          [
+            [
+              "datatype",
+              "int"
+            ]
+          ],
+          "0",
+          []
+        ],
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+          [
+            [
+              "datatype",
+              "float"
+            ],
+            [
+              "operation",
+              "greater than or equal"
+            ]
+          ],
+          "10.0",
+          []
+        ]
+      ]
+    ]
+  },
+  "absence-equals-positive": {
+    "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "source_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+    "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval2.xml",
+    "parent_id": "oval:navy.navwar.niwcatlantic.scc.windows:ste:22499401",
+    "child_index": 0,
+    "parent_sha256": "45fe99c3bcd650cca89598e0b2e8488d2dedc1fbcfedea454637a230210a0e1e",
+    "node_sha256": "7417eaa33a4f9c8e754024fa065a07f772dac40e60784136ed78236824693b22",
+    "node": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}stdout_line",
+      [
+        [
+          "check_existence",
+          "none_exist"
+        ],
+        [
+          "operation",
+          "equals"
+        ]
+      ],
+      null,
+      []
+    ],
+    "parent": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "Verify nothing is printed to stdout"
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.windows:ste:22499401"
+        ],
+        [
+          "version",
+          "19"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}stdout_line",
+          [
+            [
+              "check_existence",
+              "none_exist"
+            ],
+            [
+              "operation",
+              "equals"
+            ]
+          ],
+          null,
+          []
+        ]
+      ]
+    ]
+  },
+  "pattern-absence-negative": {
+    "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+    "source_zip_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+    "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-oval2.xml",
+    "parent_id": "oval:navy.navwar.niwcatlantic.scc.linux:ste:23032201",
+    "child_index": 0,
+    "parent_sha256": "9219fbe056b19cfef40d246228e9ea6c68548b571171610d15d408ab1bb79d23",
+    "node_sha256": "0ddf904adef5a9e769649ce1546c41aff399fe61e8d1931579fe1448a0c828ee",
+    "node": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}stdout_line",
+      [
+        [
+          "check_existence",
+          "none_exist"
+        ],
+        [
+          "operation",
+          "pattern match"
+        ]
+      ],
+      ".*",
+      []
+    ],
+    "parent": [
+      "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+      [
+        [
+          "comment",
+          "Confirm that no home directories are reported with file group owner different from the user's main group."
+        ],
+        [
+          "id",
+          "oval:navy.navwar.niwcatlantic.scc.linux:ste:23032201"
+        ],
+        [
+          "version",
+          "22"
+        ]
+      ],
+      null,
+      [
+        [
+          "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}stdout_line",
+          [
+            [
+              "check_existence",
+              "none_exist"
+            ],
+            [
+              "operation",
+              "pattern match"
+            ]
+          ],
+          ".*",
+          []
+        ]
+      ]
+    ]
+  }
+}

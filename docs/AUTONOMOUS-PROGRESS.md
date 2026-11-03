@@ -59,3 +59,22 @@ source proofs and initial receipts remain separate. Review/reproduction and exac
 pins: [function amendment](ISSUE14-FUNCTIONS.md). Final portable CI and exact
 editor pin checks remain to complete. Working evidence is under
 `/workspace/work/issue14-functions/`; no full65 native library or scanner run.
+
+## Owner-directed stabilization — 2026-11-03 / tools14
+
+New branch codex/issue14-stack-triage from exact PR16 head8f5251d. All original
+stack heads/bases remain intact and draft; office editor PR36 untouched. Fresh
+remaining48 classification records2 previous Solaris drafts/46 blockers. A bounded
+source-default repair for Windows2016 SV-224994 now yields3 drafts/45 blockers:
+only empty none_exist + explicit operation=equals projects through the already
+approved absence AST. Pattern/value/Variable/extra-control cases stay blocked.
+Five-doc/one-program/one-Test package and independent native consumer pass against
+compiler7e26. Firewall64 native docs compare exactly equal;21/21 Rule accounting
+and38 existing recoveries remain. New selected totals78 auto/20manual/45blocked,
+98 complete Rule projections/78 programs/214 Tests; backlog381. No old proof,
+float/cardinality/binding/collector language or schema is changed.
+[Review, source witnesses, stack and go/no-go](ISSUE14-STABILIZATION.md).
+Separate CI-only private PR277 implements newly authorized routine artifact policy;
+no quota probes or editor36 modifications. Exact final tests/CI receipts pending.
+
+Final local59 portable tests pass withzero skips, including the original535 strict goldens, eleven signed fixtures, andsix exact-source/default boundary tests. Fresh48 classification3draft/45blocked; all64 Firewall docs identical. New Windows package/source consumer passes against7e26, no source/scanner proof upgrade. Compact log identities committed; raw outputs recover under /workspace/work/issue14-stabilize/. Exact new remote CI pending.

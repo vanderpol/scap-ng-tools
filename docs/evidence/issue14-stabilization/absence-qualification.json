@@ -1,0 +1,32 @@
+{
+  "compiler_commit": "7e26f8da44a81ae96135eca837e611a3f99f9c28",
+  "bundle_sha256": "78071ad97e0298a97eac386eb7738b16a44622f62d1a77d985cf50b20070adbc",
+  "compile": {
+    "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+    "benchmark": "microsoft-windows-server-with-manual-questions-benchmark",
+    "documents": 5,
+    "programs": 1,
+    "tests": 1,
+    "source_graph_sha256": "1756537943f046f65b6db6d1cfcd9de421f84e83393e3b14d1904f881cf9fdc3",
+    "scanner_evaluated": false,
+    "signature_verified": false
+  },
+  "independent_package_consumer": {
+    "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+    "benchmark": "microsoft-windows-server-with-manual-questions-benchmark",
+    "bundle_sha256": "78071ad97e0298a97eac386eb7738b16a44622f62d1a77d985cf50b20070adbc",
+    "documents": 5,
+    "programs": 1,
+    "tests": 1,
+    "shared_objects": 0,
+    "variables": 0,
+    "source_graph_sha256": "1756537943f046f65b6db6d1cfcd9de421f84e83393e3b14d1904f881cf9fdc3",
+    "external_source_compared": true,
+    "scanner_evaluated": false,
+    "publisher_trust_verified": false
+  },
+  "negative_cases": [],
+  "source_semantic_proof": false,
+  "scanner_execution": false,
+  "derived_maps": false
+}
