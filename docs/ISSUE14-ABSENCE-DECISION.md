@@ -17,6 +17,17 @@ match"` and scalar text `.*`; datatype defaults to string, entity_check defaults
 to all, and there is no Variable operand. Test existence, State-entity existence,
 State operator and Item/field/value quantifiers remain separate scopes.
 
+In the pinned Test-level `any_exist` table, the existence piece is true when
+there are no error-status Items (even with zero Items or not-collected Items),
+and also when at least one Item exists despite other errors. Zero existing
+Items plus at least one error gives error. This does **not** prescribe the
+subsequent State result. For a nonempty `all` comparison aggregation, any false
+dominates; otherwise error, unknown and not-evaluated dominate in that order.
+At least one true with only true/not-applicable yields true; all not-applicable
+yields not-applicable. The same check table supplies no zero-result row.
+Neither `any_exist` nor `all` can be replaced by an at-least-one requirement,
+and field absence must not be confused with absence of the shellcommand Item.
+
 | Original Rule | Benchmark | State field | This successor |
 | --- | --- | --- | --- |
 | SV-237770r991589 | Ubuntu18.04 | stdout_line | blocked |
