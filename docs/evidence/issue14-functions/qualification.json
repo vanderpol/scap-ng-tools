@@ -1,0 +1,66 @@
+{
+  "x86": {
+    "compiler_commit": "4fccf51d96a529583a18005776e5cb21ea459885",
+    "bundle_sha256": "ddcdf07f13272427c10d389afeeb8a7569554710f0430aa61773fbc45ecc5172",
+    "compile": {
+      "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "benchmark": "solaris-11-x86-stig-scap-with-manual-questions-benchmark",
+      "documents": 5,
+      "programs": 1,
+      "tests": 8,
+      "source_graph_sha256": "b16c0e81eb6f74ff76e79fad877411d96d1ad64b158b22652f15d6553aae80ac",
+      "scanner_evaluated": false,
+      "signature_verified": false
+    },
+    "independent_package_consumer": {
+      "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+      "benchmark": "solaris-11-x86-stig-scap-with-manual-questions-benchmark",
+      "bundle_sha256": "ddcdf07f13272427c10d389afeeb8a7569554710f0430aa61773fbc45ecc5172",
+      "documents": 5,
+      "programs": 1,
+      "tests": 8,
+      "shared_objects": 4,
+      "variables": 6,
+      "source_graph_sha256": "b16c0e81eb6f74ff76e79fad877411d96d1ad64b158b22652f15d6553aae80ac",
+      "external_source_compared": true,
+      "scanner_evaluated": false,
+      "publisher_trust_verified": false
+    },
+    "negative_cases": [],
+    "source_semantic_proof": false,
+    "scanner_execution": false,
+    "derived_maps": false
+  },
+  "sparc": {
+    "compiler_commit": "4fccf51d96a529583a18005776e5cb21ea459885",
+    "bundle_sha256": "65d7d46dfbd34e1c16edbaf80993feb5ea398511009ef1c45a16f24ec2888d8a",
+    "compile": {
+      "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "benchmark": "solaris-11-sparc-stig-scap-with-manual-questions-benchmark",
+      "documents": 5,
+      "programs": 1,
+      "tests": 8,
+      "source_graph_sha256": "e53f7d64aa7f31d6d0dea25f613e92905363aef8d693418b6ffd0e67064e3314",
+      "scanner_evaluated": false,
+      "signature_verified": false
+    },
+    "independent_package_consumer": {
+      "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+      "benchmark": "solaris-11-sparc-stig-scap-with-manual-questions-benchmark",
+      "bundle_sha256": "65d7d46dfbd34e1c16edbaf80993feb5ea398511009ef1c45a16f24ec2888d8a",
+      "documents": 5,
+      "programs": 1,
+      "tests": 8,
+      "shared_objects": 4,
+      "variables": 6,
+      "source_graph_sha256": "e53f7d64aa7f31d6d0dea25f613e92905363aef8d693418b6ffd0e67064e3314",
+      "external_source_compared": true,
+      "scanner_evaluated": false,
+      "publisher_trust_verified": false
+    },
+    "negative_cases": [],
+    "source_semantic_proof": false,
+    "scanner_execution": false,
+    "derived_maps": false
+  }
+}

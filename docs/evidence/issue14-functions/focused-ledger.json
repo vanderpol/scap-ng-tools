@@ -1,0 +1,241 @@
+{
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "rules": [
+    {
+      "filename": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "sha256": "88cc35f98c9ff96c567110c284c06e6adfc556fd59967019bdec6fd1cc5a204f",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
+      "before_blockers": [
+        "unsupported function: arithmetic",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "d02f764847b1321a23973b688d12f2f2328bb883f56faa32017a0c266b4475b2",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "all_exist recovery requires separately qualified population semantics",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "sha256": "b6bd7ad2a458f464eca99deb9eac50aaeafa74d435cf0bb2ca76d0424d916692",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
+      "before_blockers": [
+        "unsupported function: substring",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "d1a36b855b38a29f4ade95182dd1af7008383668d20d695be220c266114cc943",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "sha256": "46497542771fd7841cd96745d61dbdeb8ccf0d082415dcfa64a6694bf365f8f9",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
+      "before_blockers": [
+        "unsupported function: substring",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "468330a606a7b20fb50913cc504332eb11d4891be4b7af16499d73091e66c686",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224975r958524_rule",
+      "before_blockers": [
+        "unsupported function: substring",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "c559a538af76ba24e7e36d01a65a28b101ea4f63db34437b2855caadd333e0b6",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "sha256": "54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-205723r1137695_rule",
+      "before_blockers": [
+        "unsupported function: substring",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "cf9411467006771d573ed19e4bc9182785d58fc332ec0e92566428941a84e31b",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "sha256": "5ba5577961a13ded0d4e9a0c6603f93b8201b4fc74d23ef679eba7726e0182f4",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-254396r1137695_rule",
+      "before_blockers": [
+        "unsupported function: substring",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "65f1842761eb898a88ecdf378391b6bcc6671af86c013cad8752783f7217d2d2",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "sha256": "0235429534dfc1149824f1a6b5144f73e16dc28d84d899c638cc5ede31da8c1a",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+      "before_blockers": [
+        "unsupported function: arithmetic",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "a82d77b5ca397a7c244fdde0027b481f23837471df055971791707d1a2c05b03",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "Assessment Input function composition requires a supported typed expression",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
+      "before_blockers": [
+        "unsupported function: arithmetic",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "cf79e9db4c8647f7525137f3ee94d4321410be92e4d76c4287ba2d8e7bc74da5",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "all_exist recovery requires separately qualified population semantics",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
+      "before_blockers": [
+        "unsupported function: arithmetic",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "a1e9f0ec19624231143a7cdded89663e4ef8c7af20313a0d1f021ed03279931f",
+      "after_status": "BLOCKED",
+      "after_blockers": [
+        "all_exist recovery requires separately qualified population semantics",
+        "source default choice unavailable"
+      ],
+      "manual_preserved": true,
+      "schema_validated": false,
+      "semantic_validated": false,
+      "compiled": false,
+      "independent_source_proof": false,
+      "scanner_execution": false
+    },
+    {
+      "filename": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "sha256": "b8ae7486d503b46e25ca885cfd53b9b47c40f313b9b4117683f88102c7222b1d",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
+      "before_blockers": [
+        "unsupported function: split",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "2562eda8fd36313328d1836f418df797364a3070bdd24293e3d128de979088ff",
+      "after_status": "AUTOMATED_DRAFT",
+      "after_blockers": [],
+      "manual_preserved": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "independent_package_consumer": true
+    },
+    {
+      "filename": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "sha256": "f988154cba7cf0ab39fa3063e510398c716e5d7d5865ae5cc187dc10d2071f2a",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
+      "before_blockers": [
+        "unsupported function: split",
+        "source default choice unavailable"
+      ],
+      "source_rule_sha256": "198a7588062652ec15c1f802ccbd5b6d98f1e6b1b72540752e1da601dcdc92f7",
+      "after_status": "AUTOMATED_DRAFT",
+      "after_blockers": [],
+      "manual_preserved": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "independent_package_consumer": true
+    }
+  ],
+  "initial_recovery_checkpoint": "72f7ec2317c409362393c9c0d74b19d081b38f05",
+  "historical_backlog_before": 384,
+  "historical_backlog_after": 382,
+  "selected_143_after": {
+    "automated_drafts": 77,
+    "manual_only": 20,
+    "blocked": 46
+  },
+  "qualification": "Authoring gates only; focused compiler receipts tracked separately."
+}

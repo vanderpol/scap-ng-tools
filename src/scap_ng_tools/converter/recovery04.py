@@ -72,6 +72,35 @@ def _classes(engine):
         def binding_name(self, element, suffix, title=None):
             return _identifier(self.source,element,suffix,title)
 
+        def function(self, element):
+            from v04_direct_scap_source import local_name, digest, xml_identity
+            operation = local_name(element)
+            if operation not in ('arithmetic', 'substring', 'split'):
+                return super().function(element)
+            ensure(element.tag == '{' + OVAL + '}' + operation, 'function namespace mismatch')
+            required = ({'arithmetic_operation'} if operation == 'arithmetic' else
+                        {'substring_start', 'substring_length'} if operation == 'substring' else {'delimiter'})
+            attributes(element, required)
+            ensure(set(element.attrib) == required, 'explicit complete function options required')
+            ensure(len(element) >= 2 if operation == 'arithmetic' else len(element) == 1,
+                   'function arity mismatch')
+            options = dict(element.attrib)
+            if operation == 'arithmetic':
+                ensure(options['arithmetic_operation'] in ('add', 'multiply'), 'unsupported arithmetic operation')
+            elif operation == 'substring':
+                for key, text in options.items():
+                    ensure(re.fullmatch(r'[+-]?[0-9]+', text.strip()) is not None, 'substring option must be xsd:int')
+                    number = int(text)
+                    ensure(-2147483648 <= number <= 2147483647, 'substring option outside xsd:int')
+                    options[key] = number
+            expression = {'function': {'name': operation,
+                'arguments': [self.function(child) for child in element], 'options': options}}
+            self.conversion_warnings.append({'code': 'native_function_contract_v1',
+                'source_function': operation, 'source_sha256': digest(xml_identity(element)),
+                'source_options': dict(element.attrib), 'native_expression_sha256': digest(expression),
+                'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
+            return expression
+
         def convert_object(self, element):
             from v04_direct_scap_source import attributes, ensure, digest, xml_identity
             mapping=self.capability(element,'object')
