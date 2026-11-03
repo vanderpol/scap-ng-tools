@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: d4e477998cda438a1e53a7c3c84123ec92e5ba1f
+          ref: 246a8d37cc54875386768a7d76b60a6f9c01d013
           path: spec-snapshot
           persist-credentials: false
       - name: Checkout immutable Q3 2026 NIWC signed benchmark archive
@@ -35,6 +35,7 @@ jobs:
             Archive/2026_Q3/U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip
             Archive/2026_Q3/U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip
             Archive/2026_Q3/U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip
+            Archive/2026_Q3/U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip
           filter: blob:none
           persist-credentials: false
       - name: Checkout official OVAL 5.12.3 generator inputs (CI only)

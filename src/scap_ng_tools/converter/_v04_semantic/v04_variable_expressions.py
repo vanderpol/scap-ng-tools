@@ -1,6 +1,7 @@
 """Decision 29: closed native expression/type validation, never value execution.
 
-The isolated canonical-call candidate is deliberately not imported. Collection
+The broad isolated candidate remains inactive. The separately approved active
+three-function subset is validated here without computing values. Collection
 flags, multiplicities and runtime lexical-cast failures are not evaluated here.
 """
 from functools import lru_cache
@@ -85,7 +86,27 @@ def assessment_variable_expressions(assessment):
             field = value['field']
             if field not in fields:
                 raise ValueError('unknown collected-field projection: ' + field)
-            return {'record'} if field in records else set(fields[field])
+            domains = {'record'} if field in records else set(fields[field])
+            # Polymorphic collected fields expose possible domains, not a mixed
+            # literal array. An explicit consuming string signature constrains
+            # that projection; incompatible runtime data remain errors.
+            if declared is not None:
+                compatible(domains, declared, 'collected-field projection')
+                return {declared}
+            return domains
+        if op == 'function':
+            name = value['name']
+            domains = [expression(arg, 'string' if name in ('substring', 'split') else None)
+                       for arg in value['arguments']]
+            if name == 'arithmetic':
+                if any(not types or not types <= {'integer', 'float'} for types in domains):
+                    raise ValueError('arithmetic requires numeric arguments; no string/boolean/record coercion')
+                return {'float'} if any('float' in types for types in domains) else {'integer'}
+            if name in ('substring', 'split'):
+                if any(types != {'string'} for types in domains):
+                    raise ValueError(name + ' requires string arguments without implicit casts')
+                return {'string'}
+            raise ValueError('unsupported native function: ' + name)
         if op == 'unique':
             domains = expression(value, declared)
             if 'record' in domains:

@@ -47,3 +47,15 @@ SHA/PR/hosted conclusions follow in the issue/PR Conversation to avoid a CI rece
 commit loop. Next: verify hosted checks for this source, attach concise receipts,
 and resolve only real next-stage contract/source decisions. No silent merges or
 editor task dependencies.
+
+## Approved bounded function amendment — 2026-11-03
+
+Separate branch `codex/issue14-function-adapter`, based on immutable PR15 head
+72f7ec2. Owner approved arithmetic/substring/split; no question pending on this
+scope. Canonical candidate 246a8d3 / PR11 has green schema CI. Two Solaris Rules
+recover and compile/independent-consume (two programs/16 Tests); nine remain
+blocked. Backlog382, selected77 automated/20 manual-only/46 blocked. Original
+source proofs and initial receipts remain separate. Review/reproduction and exact
+pins: [function amendment](ISSUE14-FUNCTIONS.md). Final portable CI and exact
+editor pin checks remain to complete. Working evidence is under
+`/workspace/work/issue14-functions/`; no full65 native library or scanner run.

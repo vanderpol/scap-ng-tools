@@ -1,0 +1,23 @@
+[
+  {
+    "filename": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+    "sha256": "88cc35f98c9ff96c567110c284c06e6adfc556fd59967019bdec6fd1cc5a204f",
+    "function": "arithmetic",
+    "variable": "oval:mil.disa.stig.defs:var:25815500",
+    "projection_datatype": "integer"
+  },
+  {
+    "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+    "function": "substring",
+    "variable": "oval:navy.navwar.niwcatlantic.scc.windows:var:22497501",
+    "projection_datatype": "string"
+  },
+  {
+    "filename": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "f988154cba7cf0ab39fa3063e510398c716e5d7d5865ae5cc187dc10d2071f2a",
+    "function": "split",
+    "variable": "oval:mil.disa.fso.solaris11:var:11104",
+    "projection_datatype": "string"
+  }
+]

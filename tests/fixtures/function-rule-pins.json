@@ -1,0 +1,101 @@
+[
+  {
+    "filename": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+    "sha256": "88cc35f98c9ff96c567110c284c06e6adfc556fd59967019bdec6fd1cc5a204f",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
+    "before_blockers": [
+      "unsupported function: arithmetic",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+    "sha256": "b6bd7ad2a458f464eca99deb9eac50aaeafa74d435cf0bb2ca76d0424d916692",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
+    "before_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+    "sha256": "46497542771fd7841cd96745d61dbdeb8ccf0d082415dcfa64a6694bf365f8f9",
+    "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
+    "before_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-224975r958524_rule",
+    "before_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-205723r1137695_rule",
+    "before_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "sha256": "5ba5577961a13ded0d4e9a0c6603f93b8201b4fc74d23ef679eba7726e0182f4",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-254396r1137695_rule",
+    "before_blockers": [
+      "unsupported function: substring",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+    "sha256": "0235429534dfc1149824f1a6b5144f73e16dc28d84d899c638cc5ede31da8c1a",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+    "before_blockers": [
+      "unsupported function: arithmetic",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+    "sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
+    "before_blockers": [
+      "unsupported function: arithmetic",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+    "sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
+    "before_blockers": [
+      "unsupported function: arithmetic",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "b8ae7486d503b46e25ca885cfd53b9b47c40f313b9b4117683f88102c7222b1d",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
+    "before_blockers": [
+      "unsupported function: split",
+      "source default choice unavailable"
+    ]
+  },
+  {
+    "filename": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+    "sha256": "f988154cba7cf0ab39fa3063e510398c716e5d7d5865ae5cc187dc10d2071f2a",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
+    "before_blockers": [
+      "unsupported function: split",
+      "source default choice unavailable"
+    ]
+  }
+]
