@@ -1,0 +1,922 @@
+{
+  "format": "native-recovery-ledger/1",
+  "source_zip_sha256": "94740b7929dd868043ab1b476c3b568712fc26d045a4d450359cea90effbfa1c",
+  "source_xml_sha256": "3588013c09033a9d679b839c0bb03f42deee323ae2e675cee94e614f5bc53ded",
+  "component_hashes": {
+    "scap_navy.navwar.niwcatlantic.scc_comp_U_Active_Directory_Domain_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV2-xccdf.xml": "eb590c3da953b0b1e8891865f25cd2a97b6a18ad5e7ec97dfc8a200454f43952",
+    "scap_navy.navwar.niwcatlantic.scc_comp_U_Active_Directory_Domain_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV2-cpe-oval.xml": "5304f50f59edb890110e73ad41501e8a8977e9cd29109909f06d01c46c7c6564",
+    "scap_navy.navwar.niwcatlantic.scc_comp_U_Active_Directory_Domain_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV2-cpe-dictionary.xml": "0d972d936bde2aa8398b4ac6e28f9fce93ef6f754bbe9f4e474e88c1a7fdf051",
+    "scap_navy.navwar.niwcatlantic.scc_comp_U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-oval2.xml": "8cf03d790ca8ac2bfb74170c2bc9ffab7cd914071093556235e04733c4cdcbcf",
+    "scap_navy.navwar.niwcatlantic.scc_comp_U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-ocil.xml": "c4c53f97780893fbeb02f7621eb1583526e7e4655ef5710e906b72b5426e4020"
+  },
+  "schema_family_sha256": "04074a04cf3e5378fcc99e4f7780ff2e10f032e400751c35cea960aa0c42d971",
+  "rules": [
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243466r959010_rule",
+      "source_rule_sha256": "d68575ffbe449a73ac8eeb16fc72f08318d3f3fce814ec214e6c545978a17c8f",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243467r959010_rule",
+      "source_rule_sha256": "d980d53cfd594cab0a7032d4d85c9e7471483ee18da0a90b1c76284f82e23142",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243468r959010_rule",
+      "source_rule_sha256": "dd009b4a0089dac2b88d886682945d80873b431c1a5d860cbafb6c798bc82974",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243469r959010_rule",
+      "source_rule_sha256": "67172d645ab8af52d4a4915977d6569c7df734efecd77f0f27e42bef71d1ee82",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243470r959010_rule",
+      "source_rule_sha256": "12f617c5d1dba48b64b1d975e61caef199ba8cce9ae78b2c464a97a481388bab",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243471r1186313_rule",
+      "source_rule_sha256": "324812a6109114d398f3979995d6c707f6061cb0779c7581310b3bca97214e94",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243472r959010_rule",
+      "source_rule_sha256": "5d3f507a0a60179b270d5784afc159b7d31386fde3ab822b22f675c3079e09a5",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243473r959010_rule",
+      "source_rule_sha256": "d2c8cb609fcddc46c7e7c5ed2c89e9e1a2039f6395d103bfcd83166e8b9973fe",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243475r959010_rule",
+      "source_rule_sha256": "14eb031d36618317441c3fe59343c452d0bf22b80fc2d524f08636a19ed16cfd",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243476r1038967_rule",
+      "source_rule_sha256": "e1d87018fdd3bc5ff2af9194e24a62b5974266080085ce7f77a9f81cf3fa4766",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243477r1153405_rule",
+      "source_rule_sha256": "3ff5d3d6c954d5fbc61845468210f149116bda9c142013faa8cea2b0a6b9ca46",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243478r959010_rule",
+      "source_rule_sha256": "f798684f750a8b1b62e17d0d0d717bc02326d0722e873285729919a13a02c68d",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243479r1153403_rule",
+      "source_rule_sha256": "19bc6600ef952cdcf04a74bdf11203118f65106503b03c77fbb31bac2b9f0e07",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243480r959010_rule",
+      "source_rule_sha256": "77baae405f9e41e1987817c0a2997fa553c8f3a6234bb5ed356b67551a85392d",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243481r959010_rule",
+      "source_rule_sha256": "9052b756c4a216651be6f6414c166f9c6cb971a44ef7fc298721542f88fd376f",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243482r959010_rule",
+      "source_rule_sha256": "88177634304c68ae8c72297ee8d8c81f6d41ca51a1c6863288fb1a998b5e156e",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243483r959010_rule",
+      "source_rule_sha256": "76da338c57a096423f48a560710e7009f645ba6c601721dcefe877a5a5f9022a",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243484r958482_rule",
+      "source_rule_sha256": "38eeb6e22b6749880792763c9a48ccd4d1b3d16c62ef2d3a39c41088b32e300d",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243485r1117265_rule",
+      "source_rule_sha256": "af2b979c1815ba0029643125b926f2b71665aa68b403194a4af1280441e82deb",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243486r958504_rule",
+      "source_rule_sha256": "12a83c1343df1c02e538cf837b531d677d3f728c0c33bd14ba565e3e2c220dcc",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243487r959010_rule",
+      "source_rule_sha256": "8ee7aafcbf652959b3aa4ce8c30301f8ee88c79a4565c9ca67ca830bcd52ea01",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243488r959010_rule",
+      "source_rule_sha256": "c0cfa788e45ffa09ed75979f9d91f117546a94d6cf427e741c62424bbff62491",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243489r959010_rule",
+      "source_rule_sha256": "7ded82472402b78c28ca1bd330a5b1ec5891471442301bd6ff39a7937384856f",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243490r959010_rule",
+      "source_rule_sha256": "6313912e4bbd9147ccecfb9a3984e7b6ce29c4d2cee1fbd596a7e1de57a4fa5e",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243491r959010_rule",
+      "source_rule_sha256": "5a8ba56cd76e6328e724bcfcb5b84a3db2f81c9d9e93dbb8cb7b03a96a35b581",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243492r959010_rule",
+      "source_rule_sha256": "bbb3d0191b976ccbd1cb54df13c1c902a66651b50d8f3c17aef7420f4d4f1c06",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243493r959010_rule",
+      "source_rule_sha256": "7c7a7604ddeea47219a49d7b048101b6f8fde5f2a28185d5931312f2c52655e1",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243494r959010_rule",
+      "source_rule_sha256": "3e31d0d1438d61e866d112e6e1cb06c97266e40dbd4b7ab44b0ea7caee98e616",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243495r958908_rule",
+      "source_rule_sha256": "a9ebb4d59b0147391cbfcd2d1b325d2d01a61793fdd7b03d87d50973c0134a58",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243496r959010_rule",
+      "source_rule_sha256": "620eddd631a974db7ff37341d7be5f3cd6b4be8328d7d733f41034218eeb454a",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243497r959010_rule",
+      "source_rule_sha256": "e3a06547cc7d0bcc96535438dd42255d3c043958ef2a3ef15f86de48ab0e18da",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243498r958406_rule",
+      "source_rule_sha256": "43ce0659d26e27673fae0720e8f7257f0a62e4e521c2ba7106c8c417db3b11fe",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243499r959010_rule",
+      "source_rule_sha256": "677f1bd01c7b90cc359ec09230d4401df3405c8bc330559aee880d66b999a845",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243500r959010_rule",
+      "source_rule_sha256": "3400ebf9bc2b29960331ad2a2d08ae38ee4c1a33db8a16b4738db6a105962202",
+      "status": "MANUAL",
+      "automated_draft": false,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": ""
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243501r1016334_rule",
+      "source_rule_sha256": "e39077595c1c6f0e53e3eecfeac0b285e515bd792b1c79cd888363c7a8ec36e1",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    },
+    {
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-269097r1026170_rule",
+      "source_rule_sha256": "729cd59b058c234b929acbd91fa93466c8eb08c3d37ee8febb49bf443993f4d3",
+      "status": "AUTOMATED_DRAFT",
+      "automated_draft": true,
+      "manual": true,
+      "schema_validated": true,
+      "semantic_validated": true,
+      "compiled": true,
+      "independent_source_proof": false,
+      "scanner_execution": false,
+      "blockers": [],
+      "source_checks": [
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": ""
+        },
+        {
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "selector": "automated"
+        },
+        {
+          "system": "http://scap.nist.gov/schema/ocil/2",
+          "selector": "manual"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "source_rules": 36,
+    "statuses": {
+      "AUTOMATED_DRAFT": 17,
+      "MANUAL": 19
+    },
+    "automated_draft": 17,
+    "manual_choices": 36,
+    "independently_source_proved": 0,
+    "scanner_executed": 0
+  }
+}

@@ -1,5 +1,9 @@
 # Direct 0.4 converter: flat-schema compatibility gate
 
+Scope note: this records the strict compatibility lane. The separate [Issue14
+bounded recovery lane](ISSUE14-RECOVERY.md) now has its own current-DRAFT tests
+and receipts; no historical hash/count below is redefined.
+
 **Status: focused conversion, read-only benchmark inventory and automatic
 benchmark authoring conversion migrated with preserved admission, source-trace
 and coverage parity. Native bytes were deliberately regenerated for the

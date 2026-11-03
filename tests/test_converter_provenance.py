@@ -9,13 +9,17 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
 PRE_DISCOVERY_RUNTIME_SHA256 = '063c4c11bbaec72442cfc8fe2770eac7ca0496ce5079c858c122f92d8b9b581b'
-CURRENT_RUNTIME_SHA256 = '3c93e0c9fb75542174796033035f3f08581ea210ce5acd47bd9f685f3fe0c035'
-UNCHANGED_SOURCE_SHA256 = '2da8fcb55708af9a1306b7d3b33832fd5225fe25e698236af22ac4eeb3ad6890'
+PRE_RECOVERY_RUNTIME_SHA256 = '3c93e0c9fb75542174796033035f3f08581ea210ce5acd47bd9f685f3fe0c035'
+CURRENT_RUNTIME_SHA256 = '52fd6b65d9f2f77c8c8b634124527ebbefe8c9119f9f272a6a6830d3d3f227ba'
+PRE_RECOVERY_UNCHANGED_SOURCE_SHA256 = '2da8fcb55708af9a1306b7d3b33832fd5225fe25e698236af22ac4eeb3ad6890'
+UNCHANGED_SOURCE_SHA256 = '5df01a836f809c791417829a9460bffd4ebd0f42df12500762b3dd3ff350124c'
 AUDITED_ADAPTATIONS = {
+    # Issue14 optional visitor factory and binding-name hooks only; strict defaults unchanged.
+    'v04_draft_inputs.py': 'be582346c5f4cd072f6f81079787ccf1a84b937edfa26e5cb2a12136414be5f2',
     # Allowlisted Item grouping and native discovery producer adaptations;
     # original hashes remain in the migration record and prior commits.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
-    'v04_direct_converter.py': '1424c7c4737578fb8a1d2ba616eaf30b564e269e0fd9b779a4888b168a77e0d3',
+    'v04_direct_converter.py': '828cf480ef3b84c32110975005547c3fe82a3de3c78752d78b0191a899622ed0',
     'v04_direct_inventory.py': '99a324754b739a9b51d0ae62abed76f8a14d5a172b54ff65beec6fd7ff58d904',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
 }

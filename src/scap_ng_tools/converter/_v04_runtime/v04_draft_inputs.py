@@ -29,8 +29,15 @@ def external_input(visitor, element):
     ensure(value is not None and all(n.tag=='{'+OVAL+'}possible_value' for n in element),
            'unbound external Variable or unsupported possible_restriction')
     attributes(value, {'id','type','operator','interactive','interfaceHint','hidden'})
-    ensure(value.get('operator','equals')=='equals', 'XCCDF Value operator requires an explicit constraint adapter')
-    ensure(all(n.tag in {'{'+XCCDF+'}'+name for name in ['title','description','value','reference']} for n in value),
+    value_operator=value.get('operator','equals')
+    if value_operator!='equals' and getattr(visitor,'preserve_redundant_value_operator',False):
+        sites=[n for n in visitor.source.components[visitor.component_id].iter() if n.get('var_ref')==ident]
+        ensure(sites and all(n.get('operation','equals')==value_operator for n in sites),
+               'XCCDF Value operator disagrees with actual OVAL consumers')
+    else:
+        ensure(value_operator=='equals', 'XCCDF Value operator requires an explicit constraint adapter')
+    metadata=['warning'] if getattr(visitor,'preserve_value_warnings',False) else []
+    ensure(all(n.tag in {'{'+XCCDF+'}'+name for name in ['title','description','value','reference']+metadata} for n in value),
            'XCCDF Value constraints require a supported Parameter adapter')
     datatype=element.get('datatype')
     source_type=value.get('type','string')
@@ -38,13 +45,22 @@ def external_input(visitor, element):
            'check-export source/Variable datatype mismatch')
     defaults=[n for n in value.findall('{'+XCCDF+'}value') if not n.get('selector')]
     ensure(len(defaults)<=1 and all(not len(n) for n in value.findall('{'+XCCDF+'}value')), 'ambiguous/complex XCCDF default')
-    input_id=native_identifier(element,'input')
-    parameter_id=native_identifier(value,'parameter')
+    binding_name=getattr(visitor,'binding_name',native_identifier)
+    input_id=binding_name(element,'input')
+    parameter_id=binding_name(value,'parameter')
     contract={'datatype':native_datatype(datatype),'cardinality':'exactly_one','required':True,
               'description':value.findtext('{'+XCCDF+'}description','')}
     parameter={'id':parameter_id,'datatype':native_datatype(datatype),'cardinality':'one','required':True,
                'resolution':'publisher' if defaults else 'organization',
                'title':value.findtext('{'+XCCDF+'}title',''), 'description':contract['description']}
+    if metadata:
+        warnings=[]
+        for node in value.findall('{'+XCCDF+'}warning'):
+            attributes(node,{'category','{http://www.w3.org/XML/1998/namespace}lang'})
+            ensure(not len(node),'complex Value warning metadata unsupported')
+            warnings.append({'text':node.text or '', 'category':node.get('category'),
+                             'language':node.get('{http://www.w3.org/XML/1998/namespace}lang')})
+        if warnings:parameter['warnings']=warnings
     if defaults:
         parameter['value']=visitor.literal(datatype,defaults[0].text or '')
     allowed=[]
@@ -63,6 +79,8 @@ def external_input(visitor, element):
         'source_external_variable':ident,'source_variable_sha256':digest(xml_identity(element)),
         'source_value':value.get('id'),'source_value_sha256':digest(xml_identity(value)),
         'source_value_xml':xml_identity(value),'input':input_id,'parameter':parameter_id,
+        'source_value_operator':value_operator,
+        'operator_validation':'exact_actual_consumer_agreement' if value_operator!='equals' else 'equals_default_path',
         'resolution':parameter['resolution'],'independent_static_proof':'UNPROVED','scanner_runtime':'NOT_RUN',
         'message':'Explicit typed expected-value binding retained; policy/runtime binding equivalence independently unproved.'})
     return {'input':input_id}

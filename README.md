@@ -3,6 +3,17 @@
 Development-stage, Apache-2.0-licensed tools intended to be shared by SCAP-NG
 converters, authoring applications, and post-conversion normalization workflows.
 
+## Explicit native DRAFT recovery
+
+[Issue14 recovery](docs/ISSUE14-RECOVERY.md) adds a separate source-pinned recovery
+lane: whole Firewall21/21 accounting with20 automated drafts and21 manual methods,
+bounded follow-on blocker recovery, and read-only65-stream source/backlog reports.
+It preserves real OCIL procedures/answer mappings and native Input bindings while
+keeping strict conversion goldens intact. See `scripts/recover_benchmark.py` and
+`scripts/probe_recovery_backlog.py`. This is not a qualified full library or a scanner.
+Compilation is an explicitly selected optional external qualification, not a package
+runtime or public-CI dependency. Existing legacy `--draft`/proof flags remain gated.
+
 ## Current limited import
 
 This first **copy-first** checkpoint includes two dependency-free, presentation-only

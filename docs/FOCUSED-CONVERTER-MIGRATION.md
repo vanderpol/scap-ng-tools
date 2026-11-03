@@ -1,5 +1,9 @@
 # Focused SCAP 1.4 → SCAP-NG 0.4 converter: portability checkpoint
 
+Scope note: this records the strict compatibility lane. The separate [Issue14
+bounded recovery lane](ISSUE14-RECOVERY.md) now has its own current-DRAFT tests
+and receipts; no historical hash/count below is redefined.
+
 **Scope:** Strict Rule-ID conversion, read-only benchmark inventory, and
 qualified automatic benchmark authoring conversion. Draft admission, compiler,
 independent source proof, scanner execution and corpus regeneration remain out of scope.
