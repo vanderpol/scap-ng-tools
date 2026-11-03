@@ -1,5 +1,10 @@
 # Issue #14: ten original float comparisons — owner decision packet
 
+Follow-up: owner approved the recommended coordinated contract work on
+2026-11-03 (“Yes I approve”). The [explicit binary32 recovery successor](ISSUE14-BINARY32-RECOVERY.md)
+records implementation, compatibility, validation and fresh before/after counts.
+This PR18 packet/ledger retains the preceding default-profile investigation.
+
 2026-11-03. Based on tools PR #17, exact
 `9a09d277f18feffa8975998231d931cd3edf4ce3`. **No production float recovery is
 admitted by this investigation.** Existing typed syntax can express the operands
@@ -160,7 +165,8 @@ PYTHONDONTWRITEBYTECODE=1 python scripts/check_float_probe_compilation.py \
    boundaries above remain unresolved. An explicit lossy policy would require a
    different product/compatibility decision and must not be called recovery.
 
-Human decision: **pending**. This PR changes no language contract. Approval of
+Human decision at the PR18 checkpoint: **pending**, subsequently approved as
+recorded above. The investigation itself changes no language contract. Approval of
 option 1 would authorize the subsequent coordinated design/implementation and
 review, not assert that the ten cases are already recovered. Existing 0.3/0.4
 Assessments and legacy proofs need explicit compatibility treatment if native

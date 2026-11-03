@@ -36,6 +36,8 @@ def document_errors(snapshot, kind, document):
             return
         yield from object_errors(document)
         yield from comparison_errors(document)
+        from ..binary32_predicates import comparison_errors as binary32_errors
+        yield from binary32_errors(document)
         yield from variable_expression_errors(document)
         assessment = document.get('assessment')
         if not isinstance(assessment, dict) or assessment.get('mode') != 'manual':

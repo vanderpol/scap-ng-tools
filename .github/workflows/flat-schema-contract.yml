@@ -18,6 +18,13 @@ jobs:
           ref: 246a8d37cc54875386768a7d76b60a6f9c01d013
           path: spec-snapshot
           persist-credentials: false
+      - name: Checkout exact binary32 comparison contract (schemas unchanged)
+        uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng
+          ref: da4c48dfc60dc96a46e7b85425f70fb8f301a0b1
+          path: binary32-snapshot
+          persist-credentials: false
       - name: Checkout immutable Q3 2026 NIWC signed benchmark archive
         uses: actions/checkout@v4
         with:
@@ -76,6 +83,7 @@ jobs:
         env:
           PYTHONPATH: src
           SCAP_NG_SCHEMA_ROOT: ${{ github.workspace }}/spec-snapshot
+          SCAP_NG_BINARY32_SCHEMA_ROOT: ${{ github.workspace }}/binary32-snapshot
           SCAP_NG_OVAL_ROOT: ${{ github.workspace }}/official-oval
           SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/signed-source/Archive/2026_Q3/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
           SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/signed-source/Archive/2026_Q3

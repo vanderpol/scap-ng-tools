@@ -1,0 +1,119 @@
+{
+  "format": "issue14-binary32-native-qualification/1",
+  "compiler_commit": "855c6023d55d882b55c0507d5492e6f4e4946023",
+  "source_recovery_report_sha256": "225c251e08f8baeec7c327dc35efd1dddb35bd88f4c3c1a1d6c756058f23c37e",
+  "contract": {
+    "id": "scap-ng-0.4.0-binary32-comparisons/1",
+    "sha256": "676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd"
+  },
+  "packages": 9,
+  "documents": 48,
+  "programs": 10,
+  "tests": 19,
+  "independent_mutants_rejected": 20,
+  "manual_assessments": 10,
+  "benchmarks": [
+    {
+      "source_archive": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "documents_file_sha256": "877b30c18425ab44c6cc215e1461f5d28bc20d6e4568073afe14e1a7444884d2",
+      "bundle_sha256": "788a3e1032eec885b3725284c6f6a90db7ef48f4775b5475fafd50b1cacc155d",
+      "bundle_bytes": 6972,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 5,
+      "programs": 1,
+      "tests": 2,
+      "external_native_source_compared": true
+    },
+    {
+      "source_archive": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "documents_file_sha256": "3faa71a4c127d9696c28a8f3565621443b4592734bfcc25809703708ce8e3320",
+      "bundle_sha256": "4cba3f937db4458b7da3edb043e66d74cd3724b15b844e41199bb367ade6544c",
+      "bundle_bytes": 6975,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 5,
+      "programs": 1,
+      "tests": 2,
+      "external_native_source_compared": true
+    },
+    {
+      "source_archive": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+      "documents_file_sha256": "2922af611703d2c4868d6e90ff508c084ebfa0fd3312773319e6771c82915ee2",
+      "bundle_sha256": "c77daaeb6609939256e3a1ef0ea38ae1284385238348436c02f264c1faa0ebaa",
+      "bundle_bytes": 6903,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 5,
+      "programs": 1,
+      "tests": 2,
+      "external_native_source_compared": true
+    },
+    {
+      "source_archive": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+      "documents_file_sha256": "86e4f2f9f4105b57835486d00bfd4cc8df48e06406f26dbe0967917c9500f370",
+      "bundle_sha256": "436d855e2af976a7ab6520c32dd0af8f9b0312da5eea75a774bf039ef682ace1",
+      "bundle_bytes": 6886,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 5,
+      "programs": 1,
+      "tests": 2,
+      "external_native_source_compared": true
+    },
+    {
+      "source_archive": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "documents_file_sha256": "aba93cf4bc87b145e5309e6c0ff9b78db3dc9cbbb0db59e14ede26780a865a95",
+      "bundle_sha256": "adb5b3ee1d318e8c4f5610f5d72a23ad2ab4766cb76d1b2c7ad8e82e5cfb0614",
+      "bundle_bytes": 6837,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 5,
+      "programs": 1,
+      "tests": 2,
+      "external_native_source_compared": true
+    },
+    {
+      "source_archive": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "documents_file_sha256": "0b3d0e917173b81c556e322d8cc1543a0bf47eba06d3368f176b64d76aec98f4",
+      "bundle_sha256": "05110800dc4f80405bf15b70b33c9a59ed8f5f2eba4a6f1a89709568cf474df5",
+      "bundle_bytes": 6871,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 5,
+      "programs": 1,
+      "tests": 2,
+      "external_native_source_compared": true
+    },
+    {
+      "source_archive": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "documents_file_sha256": "605efec333297f030ede1f9e97815d1420d14afb7c17102b381cd6b58ebbdeae",
+      "bundle_sha256": "8e81cf7352981d0e97895203dcf850873fae409d6422523e52765bb8053a2cf7",
+      "bundle_bytes": 11249,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 8,
+      "programs": 2,
+      "tests": 3,
+      "external_native_source_compared": true
+    },
+    {
+      "source_archive": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "documents_file_sha256": "cc754a848188f62cd63968b1c07e92ae9a657f83b9d34413b7932185389fecfa",
+      "bundle_sha256": "b9bfa7e2b3ca6fb7b07addd71b706e0da4bfb1ba91cdf3a01c4b0aa1137df413",
+      "bundle_bytes": 6919,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 5,
+      "programs": 1,
+      "tests": 2,
+      "external_native_source_compared": true
+    },
+    {
+      "source_archive": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "documents_file_sha256": "588bb162307c1d2c01398dfc0d3a3f789f8662fd4d1b38e7b0921a110799004d",
+      "bundle_sha256": "73a2250adbf73062dda1f39cea8fcaa0ce4027b518c3be8b2ad4ea31327cf4ad",
+      "bundle_bytes": 6928,
+      "native_verification_status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "documents": 5,
+      "programs": 1,
+      "tests": 2,
+      "external_native_source_compared": true
+    }
+  ],
+  "independent_source_proof": false,
+  "scanner_execution": false,
+  "qualification": "Native package/schema/graph/program and independent source/program identity only; not original OVAL/source or scanner equivalence."
+}
