@@ -1,0 +1,32 @@
+{
+  "compiler_commit": "855c6023d55d882b55c0507d5492e6f4e4946023",
+  "bundle_sha256": "1b952482e2e3974d1e4bcbe73b245667204d4c3f98b495b7fd6412b58ca02d00",
+  "compile": {
+    "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+    "benchmark": "oracle-linux-9-stig-scap-with-manual-questions-benchmark",
+    "documents": 5,
+    "programs": 1,
+    "tests": 1,
+    "source_graph_sha256": "29cbf077a4110a9899fd3036f50c83ea8ce23216752c38ab03d7c5526601fbcb",
+    "scanner_evaluated": false,
+    "signature_verified": false
+  },
+  "independent_package_consumer": {
+    "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+    "benchmark": "oracle-linux-9-stig-scap-with-manual-questions-benchmark",
+    "bundle_sha256": "1b952482e2e3974d1e4bcbe73b245667204d4c3f98b495b7fd6412b58ca02d00",
+    "documents": 5,
+    "programs": 1,
+    "tests": 1,
+    "shared_objects": 0,
+    "variables": 0,
+    "source_graph_sha256": "29cbf077a4110a9899fd3036f50c83ea8ce23216752c38ab03d7c5526601fbcb",
+    "external_source_compared": true,
+    "scanner_evaluated": false,
+    "publisher_trust_verified": false
+  },
+  "negative_cases": [],
+  "source_semantic_proof": false,
+  "scanner_execution": false,
+  "derived_maps": false
+}

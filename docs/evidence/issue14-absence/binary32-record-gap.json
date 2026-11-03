@@ -1,0 +1,113 @@
+{
+  "format": "issue14-binary32-independent-review-gap/1",
+  "compiler_commit": "855c6023d55d882b55c0507d5492e6f4e4946023",
+  "cases": [
+    {
+      "document": {
+        "assessment": {
+          "id": "record-input-assessment",
+          "version": 1,
+          "assessment_title": "Record input witness",
+          "specification": {
+            "id": "scap-ng.pre-alpha.assessment",
+            "version": "0.4.0"
+          },
+          "mode": "automated",
+          "tests": {
+            "record-input-test": {
+              "test_title": "Typed argument",
+              "capability": "windows.cmdlet",
+              "object": {
+                "module_name": null,
+                "module_id": null,
+                "module_version": null,
+                "verb": "Get",
+                "noun": "Item",
+                "parameters": {
+                  "fields": {
+                    "Threshold": {
+                      "float_equals": 1.25,
+                      "selection_match": "one_or_more"
+                    }
+                  }
+                },
+                "select": null
+              },
+              "require": {
+                "item_requirement": {
+                  "items_found": "one_or_more"
+                }
+              },
+              "reported_elements": "all"
+            }
+          },
+          "evaluate": {
+            "test": "record-input-test"
+          }
+        }
+      },
+      "validation_errors": [
+        "'class' is a required property"
+      ],
+      "program_format": "scap-ng-0.4.0-native-assessment-program/0.1",
+      "compiler_inventory": [],
+      "independent_reader_inventory": [],
+      "contract_bound": false
+    },
+    {
+      "document": {
+        "assessment": {
+          "id": "record-input-assessment",
+          "version": 1,
+          "assessment_title": "Record input witness",
+          "specification": {
+            "id": "scap-ng.pre-alpha.assessment",
+            "version": "0.4.0"
+          },
+          "mode": "automated",
+          "tests": {
+            "record-input-test": {
+              "test_title": "Typed argument",
+              "capability": "windows.cmdlet",
+              "object": {
+                "module_name": null,
+                "module_id": null,
+                "module_version": null,
+                "verb": "Get",
+                "noun": "Item",
+                "parameters": {
+                  "fields": {
+                    "Threshold": {
+                      "float_equals": 1.2,
+                      "selection_match": "one_or_more"
+                    }
+                  }
+                },
+                "select": null
+              },
+              "require": {
+                "item_requirement": {
+                  "items_found": "one_or_more"
+                }
+              },
+              "reported_elements": "all"
+            }
+          },
+          "evaluate": {
+            "test": "record-input-test"
+          }
+        }
+      },
+      "validation_errors": [
+        "'class' is a required property"
+      ],
+      "program_format": "scap-ng-0.4.0-native-assessment-program/0.1",
+      "compiler_inventory": [],
+      "independent_reader_inventory": [],
+      "contract_bound": false
+    }
+  ],
+  "finding": "Valid cmdlet API record predicates evade float inventory and finite-canonical validation. Canonical1.25 lacks program binding; noncanonical1.2 is accepted. Both visitors miss the same grammar site.",
+  "merge_blocker": true,
+  "scanner_execution": false
+}

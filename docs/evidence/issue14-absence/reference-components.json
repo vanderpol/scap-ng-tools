@@ -1,0 +1,25 @@
+{
+  "format": "issue14-absence-independent-C-components/1",
+  "openscap_commit": "099cd84a0fa23c0e5d748e4e577c900c9b280623",
+  "source_files": {
+    "src/OVAL/results/oval_resultTest.c": "59d26f0fd98c6b05365b728cd332c68584458970dcdcd9478b37002ee00b45fa",
+    "src/OVAL/results/oval_status_counter.c": "725d7fb275b4ad984ed16d55514f379b475e2377ac30498eb930a36f7b0cc048"
+  },
+  "extracted_function_hashes": [
+    "b5ac2d8d17ee9df503ef92609ed1a9e380813022b64026e5d91df7e62fb83ab6",
+    "ae950e4c9925c0e30ae773a90650a961b994aaeddb2b3ab568e06e81ff305aa6"
+  ],
+  "empty_population": {
+    "existence_piece": "true",
+    "empty_all_value_aggregate": "unknown",
+    "native_comparator_free_absence": "true"
+  },
+  "does_not_exist_entity": {
+    "existence_piece": "true",
+    "per_entity_status_comparison": "false (upstream _evaluate_sysent early return)",
+    "all_value_aggregate": "false"
+  },
+  "limitation": "Exact upstream component functions with named-enum stubs. Not a full evaluator/collector/NIWC shellcommand run, nor normative resolution of omitted empty rows.",
+  "lossless_comparator_elision_established": false,
+  "scanner_execution": false
+}

@@ -171,7 +171,7 @@ def _classes(engine, *, binary32_contract=None):
 
 
 def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameters=False, rule_ids=None,
-                      binary32_comparisons=False):
+                      binary32_comparisons=False, approved_oracle_absence=False):
     """Return native DRAFT documents, complete source trace and per-Rule ledger.
 
     Original selection/applicability XML remains in provenance. Native platform
@@ -226,7 +226,11 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
             except ValueError as error:row['blockers'].append(str(error))
         if any(c.get('system')==OVAL for c in checks):
             try:
-                automatic,auto_binding=engine.convert_rule(model,rid,mappings,converter_factory=RecoveryVisitor)
+                factory=RecoveryVisitor
+                if approved_oracle_absence:
+                    from .approved_absence import oracle_visitor
+                    factory=oracle_visitor(factory,model,rid)
+                automatic,auto_binding=engine.convert_rule(model,rid,mappings,converter_factory=factory)
                 ensure(not any(w.get('code')=='test_all_exist_unproved' for w in auto_binding.get('conversion_warnings',[])),
                        'all_exist recovery requires separately qualified population semantics')
                 for name,doc in automatic.items():
@@ -307,4 +311,7 @@ def recover_benchmark(*, schema_root, source, sha256_pin, organization_parameter
     if binary32_contract is not None:
         trace['binary32_comparison_contract'] = binary32_contract
         ledger['binary32_comparison_contract'] = binary32_contract
+    if approved_oracle_absence:
+        trace['approved_oracle_absence_enabled']=True
+        ledger['approved_oracle_absence_enabled']=True
     return docs,trace,ledger

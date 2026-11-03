@@ -52,6 +52,7 @@ jobs:
             Archive/2026_Q3/U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip
             Archive/2026_Q3/U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip
             Archive/2026_Q3/U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip
+            Archive/2026_Q3/U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip
           filter: blob:none
           persist-credentials: false
       - name: Checkout official OVAL 5.12.3 generator inputs (CI only)

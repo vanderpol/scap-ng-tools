@@ -1,0 +1,648 @@
+{
+  "format": "issue14-absence-status-witnesses/1",
+  "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "schema_sha256": "678824ffa43a26ec6a7c49b2f9536dbc85be2a94627d9835e4cc65afdd827df2",
+  "none_exist_chart": [
+    [
+      [
+        "0",
+        "0+",
+        "0",
+        "0"
+      ],
+      "true"
+    ],
+    [
+      [
+        "1+",
+        "0+",
+        "0+",
+        "0+"
+      ],
+      "false"
+    ],
+    [
+      [
+        "0",
+        "0+",
+        "1+",
+        "0+"
+      ],
+      "error"
+    ],
+    [
+      [
+        "0",
+        "0+",
+        "0",
+        "1+"
+      ],
+      "unknown"
+    ]
+  ],
+  "population_cases": [
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "true"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "unknown"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "unknown"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "true"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "unknown"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "unknown"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "true"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "unknown"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "unknown"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 0,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "error"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 1,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 0,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 1,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 0,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 1,
+      "not_collected": 2,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 0,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 1,
+      "existence_piece": "false"
+    },
+    {
+      "exists": 2,
+      "does_not_exist": 2,
+      "error": 2,
+      "not_collected": 2,
+      "existence_piece": "false"
+    }
+  ],
+  "lexical_cases": [
+    {
+      "value": "",
+      "universal_pattern_matches": true,
+      "exists": 1,
+      "none_exist_piece": "false"
+    },
+    {
+      "value": "\n",
+      "universal_pattern_matches": true,
+      "exists": 1,
+      "none_exist_piece": "false"
+    },
+    {
+      "value": "ordinary text",
+      "universal_pattern_matches": true,
+      "exists": 1,
+      "none_exist_piece": "false"
+    },
+    {
+      "value": "permission denied",
+      "universal_pattern_matches": true,
+      "exists": 1,
+      "none_exist_piece": "false"
+    },
+    {
+      "value": "nonmatching-looking content",
+      "universal_pattern_matches": true,
+      "exists": 1,
+      "none_exist_piece": "false"
+    }
+  ],
+  "empty_all_value_aggregate": "NO_ROW_IN_PINNED_NORMATIVE_CHART",
+  "qualification": "81 existence-piece cases independently checked. Regex universality does not resolve zero-value aggregation or prove complete source equivalence.",
+  "source_semantic_proof": false,
+  "scanner_execution": false
+}
