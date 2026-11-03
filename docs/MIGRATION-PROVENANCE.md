@@ -48,3 +48,17 @@ index is written against the approved public contract. Generator helper bytes,
 semantic contract JSON, unrelated runtime sources and original-source goldens
 remain pinned. This is a bounded adaptation, not an assertion that all runtime
 files remain byte-for-byte original copies.
+
+## Issue14 bounded recovery follow-up — 2026-11-03
+
+[Recovery packet](ISSUE14-RECOVERY.md) records the new, explicit DRAFT lane.
+Only two existing runtime files change: the converter's optional visitor factory,
+and external-Input naming plus explicitly gated warning/redundant-operator adapters.
+Strict defaults and all535-Rule goldens stay unchanged. Previous runtime hash
+`3c93e0c9fb75542174796033035f3f08581ea210ce5acd47bd9f685f3fe0c035`
+and previous unchanged14-file hash remain preserved in tests. New18-file runtime
+hash `52fd6b65d9f2f77c8c8b634124527ebbefe8c9119f9f272a6a6830d3d3f227ba`;
+unchanged13-file hash `5df01a836f809c791417829a9460bffd4ebd0f42df12500762b3dd3ff350124c`.
+Semantic/generator/schema bytes and original proofs are unchanged. New public
+code is authored against existing public contracts; external compiler checking
+is optional and explicit, never a hidden private dependency.

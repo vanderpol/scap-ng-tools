@@ -1,0 +1,338 @@
+{
+  "canonical_schema_commit": "d4e477998cda438a1e53a7c3c84123ec92e5ba1f",
+  "base_tools_commit": "1c8aa287808f3ad0aa3d5e8aa610d800e8862c22",
+  "compiler_commit": "b34db42f40d801662fb08ab6c64be36dad03327b",
+  "source_archive_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "historical_review_sha256": "a01ea589501bf8a53e5df68e50ca9478f19543d2bd3844546667fde743c28d8c",
+  "original_firewall_sha256": "d16c868152e14bab0a1e2ecdfa6ec889972e068625d4d20d4ac3f861ff2009ca",
+  "schema_family_sha256": "04074a04cf3e5378fcc99e4f7780ff2e10f032e400751c35cea960aa0c42d971",
+  "portable_tests": 45,
+  "portable_skips": 0,
+  "compiled_complete_rules": 95,
+  "compiled_programs": 75,
+  "compiled_tests": 197,
+  "negative_compile_cases": 8,
+  "qualification_reports": [
+    {
+      "compiler_commit": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "bundle_sha256": "850d0708acb3aecd6f216ea504f23e8fce5a78053ce7427b5e2030b0f0699e72",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "microsoft-windows-defender-with-manual-questions-benchmark",
+        "documents": 64,
+        "programs": 20,
+        "tests": 109,
+        "source_graph_sha256": "4df240c9cf5c876f5d7ed008795feb889d087578fc3cecffde231fa8355c42ab",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "microsoft-windows-defender-with-manual-questions-benchmark",
+        "bundle_sha256": "850d0708acb3aecd6f216ea504f23e8fce5a78053ce7427b5e2030b0f0699e72",
+        "documents": 64,
+        "programs": 20,
+        "tests": 109,
+        "shared_objects": 35,
+        "variables": 0,
+        "source_graph_sha256": "4df240c9cf5c876f5d7ed008795feb889d087578fc3cecffde231fa8355c42ab",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "negative_cases": [
+        {
+          "case": "missing-required",
+          "rejected": true,
+          "diagnostic": "windows-defender-firewall-when-connected-domain-sv-241989-rule/automated: required Assessment Input firewall-state-domain-profile-479800-input is unbound"
+        },
+        {
+          "case": "unknown-binding",
+          "rejected": true,
+          "diagnostic": "windows-defender-firewall-when-connected-domain-sv-241989-rule/automated: unknown Assessment Input binding unresolved-input"
+        },
+        {
+          "case": "missing-parameter",
+          "rejected": true,
+          "diagnostic": "windows-defender-firewall-when-connected-domain-sv-241989-rule/automated: missing Benchmark Parameter unresolved-parameter"
+        },
+        {
+          "case": "datatype",
+          "rejected": true,
+          "diagnostic": "windows-defender-firewall-when-connected-domain-sv-241989-rule/automated: datatype mismatch for firewall-state-domain-profile-479800-input -> firewall-state-domain-profile-firewall-state-var-parameter"
+        },
+        {
+          "case": "cardinality",
+          "rejected": true,
+          "diagnostic": "windows-defender-firewall-when-connected-domain-sv-241989-rule/automated: cardinality mismatch for firewall-state-domain-profile-479800-input -> firewall-state-domain-profile-firewall-state-var-parameter"
+        },
+        {
+          "case": "dishonest-map",
+          "rejected": true,
+          "diagnostic": "windows-defender-firewall-when-connected-domain-sv-241989-rule/automated: native discovery locations do not match complete Input reference multiset"
+        },
+        {
+          "case": "wrong-pointer-kind",
+          "rejected": true,
+          "diagnostic": "windows-defender-firewall-when-connected-domain-sv-241989-rule/automated: discovery pointer kind/target is not an actual Input reference"
+        },
+        {
+          "case": "unguarded-optional-controlled-derivative",
+          "rejected": true,
+          "diagnostic": "unguarded optional Input consumption at evaluate/or/0: firewall-state-domain-profile-479800-input"
+        }
+      ],
+      "source_semantic_proof": false,
+      "scanner_execution": false,
+      "derived_maps": true
+    },
+    {
+      "compiler_commit": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "bundle_sha256": "1425aa583a28a5e50b61b38760f20e874e36bd452adadd299f498a82aafe73c5",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "active-directory-domain-with-manual-questions-benchmark",
+        "documents": 91,
+        "programs": 17,
+        "tests": 39,
+        "source_graph_sha256": "d0c945f2cb751e9df6f9debf54c834b408fd9889096d2dff3aed807714663d14",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "active-directory-domain-with-manual-questions-benchmark",
+        "bundle_sha256": "1425aa583a28a5e50b61b38760f20e874e36bd452adadd299f498a82aafe73c5",
+        "documents": 91,
+        "programs": 17,
+        "tests": 39,
+        "shared_objects": 1,
+        "variables": 0,
+        "source_graph_sha256": "d0c945f2cb751e9df6f9debf54c834b408fd9889096d2dff3aed807714663d14",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "negative_cases": [],
+      "source_semantic_proof": false,
+      "scanner_execution": false,
+      "derived_maps": false
+    },
+    {
+      "compiler_commit": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "bundle_sha256": "951f2e202445116599817c9a54a0fd0ae8f1cbc8d8c866efa88782c0b4595c9e",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "microsoft-windows-server-with-manual-questions-benchmark",
+        "documents": 46,
+        "programs": 14,
+        "tests": 18,
+        "source_graph_sha256": "b4f1f0ca956bc4d52caf6fd76f082e679b8b15c2eb0a989fb81e2ca3a83f621d",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "microsoft-windows-server-with-manual-questions-benchmark",
+        "bundle_sha256": "951f2e202445116599817c9a54a0fd0ae8f1cbc8d8c866efa88782c0b4595c9e",
+        "documents": 46,
+        "programs": 14,
+        "tests": 18,
+        "shared_objects": 1,
+        "variables": 0,
+        "source_graph_sha256": "b4f1f0ca956bc4d52caf6fd76f082e679b8b15c2eb0a989fb81e2ca3a83f621d",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "negative_cases": [],
+      "source_semantic_proof": false,
+      "scanner_execution": false,
+      "derived_maps": false
+    },
+    {
+      "compiler_commit": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "bundle_sha256": "6eb7ac7f40673a9122669673c15e26f2bde58877ef4ba1f0344ab6c5d47afa85",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "microsoft-windows-server-with-manual-questions-benchmark",
+        "documents": 49,
+        "programs": 15,
+        "tests": 19,
+        "source_graph_sha256": "348c844bf9ef8d0d2e4dd971d3887116aafda00cc2083e28023d5f91586ebc6c",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "microsoft-windows-server-with-manual-questions-benchmark",
+        "bundle_sha256": "6eb7ac7f40673a9122669673c15e26f2bde58877ef4ba1f0344ab6c5d47afa85",
+        "documents": 49,
+        "programs": 15,
+        "tests": 19,
+        "shared_objects": 1,
+        "variables": 0,
+        "source_graph_sha256": "348c844bf9ef8d0d2e4dd971d3887116aafda00cc2083e28023d5f91586ebc6c",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "negative_cases": [],
+      "source_semantic_proof": false,
+      "scanner_execution": false,
+      "derived_maps": false
+    },
+    {
+      "compiler_commit": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "bundle_sha256": "7c42beffd078d97692f4cd77f8947db3aa210c49dc59a893ed1a12683aab3820",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "microsoft-windows-server-with-manual-questions-benchmark",
+        "documents": 19,
+        "programs": 5,
+        "tests": 8,
+        "source_graph_sha256": "457f7d5a59f5c34c5ae4e5e8e7732b2b987b94450174bb189e794099f812bd19",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "microsoft-windows-server-with-manual-questions-benchmark",
+        "bundle_sha256": "7c42beffd078d97692f4cd77f8947db3aa210c49dc59a893ed1a12683aab3820",
+        "documents": 19,
+        "programs": 5,
+        "tests": 8,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "457f7d5a59f5c34c5ae4e5e8e7732b2b987b94450174bb189e794099f812bd19",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "negative_cases": [],
+      "source_semantic_proof": false,
+      "scanner_execution": false,
+      "derived_maps": false
+    },
+    {
+      "compiler_commit": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "bundle_sha256": "a9d8f891753b5577d4fabbff805c3b87ddb9af316d45db426c1471fa35c4392b",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "oracle-linux-7-stig-scap-with-manual-questions-benchmark",
+        "documents": 10,
+        "programs": 2,
+        "tests": 2,
+        "source_graph_sha256": "37ecffedcfdf2931e9fac80c41b7c77646978f99df818e7c3be467e269a2a52f",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "oracle-linux-7-stig-scap-with-manual-questions-benchmark",
+        "bundle_sha256": "a9d8f891753b5577d4fabbff805c3b87ddb9af316d45db426c1471fa35c4392b",
+        "documents": 10,
+        "programs": 2,
+        "tests": 2,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "37ecffedcfdf2931e9fac80c41b7c77646978f99df818e7c3be467e269a2a52f",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "negative_cases": [],
+      "source_semantic_proof": false,
+      "scanner_execution": false,
+      "derived_maps": false
+    },
+    {
+      "compiler_commit": "b34db42f40d801662fb08ab6c64be36dad03327b",
+      "bundle_sha256": "f022b23fa25ac9b53d632e4fd0daab3bbedf54a3d1a643c1028113c719421904",
+      "compile": {
+        "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+        "benchmark": "red-hat-enterprise-linux-7-with-manual-questions-benchmark",
+        "documents": 9,
+        "programs": 2,
+        "tests": 2,
+        "source_graph_sha256": "7a2cd75251faf20e671feb5fb60312b6cf60ecf8c2ed7a4b1d758984b30eed14",
+        "scanner_evaluated": false,
+        "signature_verified": false
+      },
+      "independent_package_consumer": {
+        "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+        "benchmark": "red-hat-enterprise-linux-7-with-manual-questions-benchmark",
+        "bundle_sha256": "f022b23fa25ac9b53d632e4fd0daab3bbedf54a3d1a643c1028113c719421904",
+        "documents": 9,
+        "programs": 2,
+        "tests": 2,
+        "shared_objects": 0,
+        "variables": 0,
+        "source_graph_sha256": "7a2cd75251faf20e671feb5fb60312b6cf60ecf8c2ed7a4b1d758984b30eed14",
+        "external_source_compared": true,
+        "scanner_evaluated": false,
+        "publisher_trust_verified": false
+      },
+      "negative_cases": [],
+      "source_semantic_proof": false,
+      "scanner_execution": false,
+      "derived_maps": false
+    }
+  ],
+  "claims": {
+    "full_policy_equivalence": false,
+    "source_semantic_proof": false,
+    "scanner_execution": false,
+    "new_full65_library": false,
+    "old_proof_rebaseline": false
+  },
+  "publisher_firewall_variant": {
+    "compile": {
+      "status": "NATIVE_040_COMPILED_CONTENT_BUNDLE_NOT_SCANNER_TESTED",
+      "benchmark": "microsoft-windows-defender-with-manual-questions-benchmark",
+      "documents": 64,
+      "programs": 20,
+      "tests": 109,
+      "source_graph_sha256": "d3853d37292c5e114de5510fd0c7aa31eb31ea06280f80a48e9708da7fc25353",
+      "scanner_evaluated": false,
+      "signature_verified": false
+    },
+    "independent_package_consumer": {
+      "status": "INDEPENDENT_PACKAGE_CONSUMER_PASS",
+      "benchmark": "microsoft-windows-defender-with-manual-questions-benchmark",
+      "bundle_sha256": "e436ed65b36ca2e11c876bbe9d22c66e3633a460ae6fbdc8b7dc79838740ac18",
+      "documents": 64,
+      "programs": 20,
+      "tests": 109,
+      "shared_objects": 35,
+      "variables": 0,
+      "source_graph_sha256": "d3853d37292c5e114de5510fd0c7aa31eb31ea06280f80a48e9708da7fc25353",
+      "external_source_compared": true,
+      "scanner_evaluated": false,
+      "publisher_trust_verified": false
+    },
+    "not_counted_twice_in_unique_totals": true
+  },
+  "installed_wheel_smoke": {
+    "source_commit": "c8f391cc490f27d2231c11422a222018a92ac344",
+    "wheel_sha256": "be999ba01223f0acbbfa29ab54f8d07d7d1789f13e2853b5592a5310b9bc09d9",
+    "python_isolated_mode": true,
+    "working_directory": "outside checkout",
+    "system_python_dependencies_used": true,
+    "private_source_modules_loaded": false,
+    "native_documents": 64,
+    "automated_draft": 20,
+    "manual_methods": 21,
+    "release_artifact": false
+  },
+  "verified_implementation_ci": {
+    "source_commit": "c8f391cc490f27d2231c11422a222018a92ac344",
+    "runs": [
+      41552534863,
+      41552534963
+    ],
+    "conclusion": "success",
+    "hosted_tests": 45,
+    "skips": 0
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": [
+    "xccdf_mil.disa.fso_rule_SV-226057r794277_rule",
+    "xccdf_mil.disa.fso_rule_SV-226058r852055_rule",
+    "xccdf_mil.disa.fso_rule_SV-226059r794296_rule",
+    "xccdf_mil.disa.fso_rule_SV-226060r794295_rule",
+    "xccdf_mil.disa.fso_rule_SV-226061r794294_rule",
+    "xccdf_mil.disa.fso_rule_SV-226062r794298_rule",
+    "xccdf_mil.disa.fso_rule_SV-226278r794583_rule",
+    "xccdf_mil.disa.fso_rule_SV-226283r794585_rule",
+    "xccdf_mil.disa.fso_rule_SV-226291r794589_rule",
+    "xccdf_mil.disa.fso_rule_SV-226296r852140_rule",
+    "xccdf_mil.disa.fso_rule_SV-226305r852143_rule",
+    "xccdf_mil.disa.fso_rule_SV-226311r852146_rule",
+    "xccdf_mil.disa.fso_rule_SV-226312r852147_rule",
+    "xccdf_mil.disa.fso_rule_SV-226313r852148_rule",
+    "xccdf_mil.disa.fso_rule_SV-226330r794605_rule"
+  ],
+  "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": [
+    "xccdf_mil.disa.fso_rule_SV-225267r569185_rule",
+    "xccdf_mil.disa.fso_rule_SV-225268r852183_rule",
+    "xccdf_mil.disa.fso_rule_SV-225269r569185_rule",
+    "xccdf_mil.disa.fso_rule_SV-225270r569185_rule",
+    "xccdf_mil.disa.fso_rule_SV-225271r569185_rule",
+    "xccdf_mil.disa.fso_rule_SV-225272r569185_rule",
+    "xccdf_mil.disa.fso_rule_SV-225356r877039_rule",
+    "xccdf_mil.disa.fso_rule_SV-225455r569185_rule",
+    "xccdf_mil.disa.fso_rule_SV-225460r569185_rule",
+    "xccdf_mil.disa.fso_rule_SV-225468r569185_rule",
+    "xccdf_mil.disa.fso_rule_SV-225473r852251_rule",
+    "xccdf_mil.disa.fso_rule_SV-225482r852254_rule",
+    "xccdf_mil.disa.fso_rule_SV-225488r852257_rule",
+    "xccdf_mil.disa.fso_rule_SV-225489r852258_rule",
+    "xccdf_mil.disa.fso_rule_SV-225490r852259_rule",
+    "xccdf_mil.disa.fso_rule_SV-225507r569185_rule"
+  ],
+  "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip": [
+    "xccdf_mil.disa.stig_rule_SV-224867r958388_rule",
+    "xccdf_mil.disa.stig_rule_SV-224868r958388_rule",
+    "xccdf_mil.disa.stig_rule_SV-224869r982201_rule",
+    "xccdf_mil.disa.stig_rule_SV-224870r982200_rule",
+    "xccdf_mil.disa.stig_rule_SV-224871r982188_rule"
+  ]
+}

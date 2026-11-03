@@ -861,13 +861,13 @@ def dependency_blockers(source, node, mappings):
     return problems
 
 
-def convert_rule(source, source_id, mappings, *, human_compact=True):
+def convert_rule(source, source_id, mappings, *, human_compact=True, converter_factory=None):
     """Convert one entire automated closure; failures leave no emitted artifacts."""
     documents = {}
     ensure(source_id in source.rules, f'source Rule not found: {source_id}')
     rule = source.rules[source_id]
     component, definition, omitted_checks = source.automated_check(rule)
-    converter = AssessmentConverter(source, component, mappings, human_compact=human_compact)
+    converter = (converter_factory or AssessmentConverter)(source, component, mappings, human_compact=human_compact)
     if getattr(source,'draft_compatibility',False):
         from v04_draft_inputs import check_exports
         converter.bound_exports=check_exports(source,rule)
