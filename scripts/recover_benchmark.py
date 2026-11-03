@@ -17,11 +17,14 @@ def main():
                    help='explicit finite-expected binary32 recovery; requires exact coordinated contract sidecar')
     p.add_argument('--approved-oracle-absence',action='store_true',
                    help='existing exact-source Oracle SV-271844 correction only; not lossless comparator elision')
+    p.add_argument('--approved-absence-corrections',action='store_true',
+                   help='eight exact-source owner-corrected drafts; not original-OVAL equivalence')
     args=p.parse_args()
     if args.output.exists():p.error('output exists; refusing overwrite')
     docs,trace,ledger=recover_benchmark(schema_root=args.schema_root,source=args.source,
         sha256_pin=args.sha256,organization_parameters=args.organization_parameters,rule_ids=args.rule,
-        binary32_comparisons=args.binary32_comparisons,approved_oracle_absence=args.approved_oracle_absence)
+        binary32_comparisons=args.binary32_comparisons,approved_oracle_absence=args.approved_oracle_absence,
+        approved_absence_corrections=args.approved_absence_corrections)
     args.output.mkdir(parents=True)
     for name,doc in docs.items():
         target=args.output/name;target.parent.mkdir(parents=True,exist_ok=True)
