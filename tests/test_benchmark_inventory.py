@@ -74,10 +74,12 @@ class BenchmarkInventoryParity(unittest.TestCase):
                     schema_root=self.schema, source=path, sha256_pin=pin['sha'])
                 self.assertEqual(inventory['mode'], 'inventory')
                 self.assertEqual(inventory['summary']['source_rules'], pin['count'])
+                # Count source records before hash assertions so a stale trace
+                # reports the observed 535-record total rather than 0.
+                count += pin['count']
                 self.assertEqual(stable_digest(trace), pin['trace'])
                 self.assertEqual(stable_digest(inventory), pin['manifest'])
                 self.assertIs(inventory['scanner_evaluated'], False)
-                count += pin['count']
         self.assertEqual(count, 535)
 
     def test_cli_inventory_has_no_native_assessment_or_proof(self):

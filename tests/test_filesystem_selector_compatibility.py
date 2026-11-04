@@ -125,6 +125,27 @@ class FilesystemSelectorCompatibilityTests(unittest.TestCase):
                 )
                 self.assertIn("filename", filename)
 
+    def test_windows_pattern_path_recursion_guard_uses_canonical_selector_map(self):
+        mapping = next(item for item in self.mappings if item["capability"] == "windows.file")
+        namespace = mapping["source"]["namespace"]
+        object_element = ET.Element(
+            "{" + namespace + "}" + mapping["source"]["object"],
+            {"id": "issue22-pattern-path-object"},
+        )
+        ET.SubElement(object_element, "{" + namespace + "}path", {
+            "operation": "pattern match",
+        }).text = r"C:\ProgramData"
+        ET.SubElement(object_element, "{" + namespace + "}filename", {
+            "operation": "equals",
+        }).text = "sshd_config"
+        ET.SubElement(object_element, "{" + namespace + "}behaviors", {
+            "max_depth": "1", "recurse_direction": "down",
+        })
+        converter = self.engine.AssessmentConverter(object(), "issue22-component", [mapping])
+        converter.object_uses = {"issue22-pattern-path-object": 1}
+        with self.assertRaisesRegex(ValueError, "pattern-path recursion"):
+            converter.convert_object(object_element)
+
     def test_nullable_filename_preserves_directory_selection(self):
         for capability in self.capabilities:
             with self.subTest(capability=capability):

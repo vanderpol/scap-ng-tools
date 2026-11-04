@@ -1,0 +1,139 @@
+assessment:
+  assessment_title: Windows Server 2025 must have the DoW Root Certificate Authority
+    (CA) certificates installed in the Trusted Root Store.
+  class: compliance
+  evaluate:
+    and:
+    - test: dod-root-ca-3-certificate-into-trusted-root-store-test
+    - test: dod-root-ca-5-certificate-into-trusted-root-store-test
+    - test: dod-root-ca-6-certificate-into-trusted-root-store-test
+  id: windows-server-2025-have-root-store-sv-278192-assessment
+  mode: automated
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  tests:
+    dod-root-ca-3-certificate-into-trusted-root-store-test:
+      capability: windows.registry
+      object:
+        set:
+          operands:
+          - filters: []
+            object:
+              set:
+                operands:
+                - filters: []
+                  object:
+                    hive:
+                      equals: local_machine
+                    key:
+                      equals: SOFTWARE\Microsoft\SystemCertificates\Root\Certificates\D73CA91102A2204A36459ED32213B467D7CE97FB
+                    name:
+                      matches_regex: ^.+$
+                - filters: []
+                  object:
+                    hive:
+                      equals: local_machine
+                    key:
+                      equals: SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates\D73CA91102A2204A36459ED32213B467D7CE97FB
+                    name:
+                      matches_regex: ^.+$
+                operator: union
+          - filters: []
+            object:
+              hive:
+                equals: local_machine
+              key:
+                equals: SOFTWARE\Policies\Microsoft\SystemCertificates\Root\Certificates\D73CA91102A2204A36459ED32213B467D7CE97FB
+              name:
+                matches_regex: ^.+$
+          operator: union
+      reported_elements: all
+      require:
+        item_requirement:
+          items_found: one_or_more
+      test_title: The DoD Root CA 3 Certificate expiring 12/30/2029 is installed into
+        the Trusted Root Store.
+    dod-root-ca-5-certificate-into-trusted-root-store-test:
+      capability: windows.registry
+      object:
+        set:
+          operands:
+          - filters: []
+            object:
+              set:
+                operands:
+                - filters: []
+                  object:
+                    hive:
+                      equals: local_machine
+                    key:
+                      equals: SOFTWARE\Microsoft\SystemCertificates\Root\Certificates\4ECB5CC3095670454DA1CBD410FC921F46B8564B
+                    name:
+                      matches_regex: ^.+$
+                - filters: []
+                  object:
+                    hive:
+                      equals: local_machine
+                    key:
+                      equals: SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates\4ECB5CC3095670454DA1CBD410FC921F46B8564B
+                    name:
+                      matches_regex: ^.+$
+                operator: union
+          - filters: []
+            object:
+              hive:
+                equals: local_machine
+              key:
+                equals: SOFTWARE\Policies\Microsoft\SystemCertificates\Root\Certificates\4ECB5CC3095670454DA1CBD410FC921F46B8564B
+              name:
+                matches_regex: ^.+$
+          operator: union
+      reported_elements: all
+      require:
+        item_requirement:
+          items_found: one_or_more
+      test_title: The DoD Root CA 5 Certificate expiring 6/14/2041 is installed into
+        the Trusted Root Store.
+    dod-root-ca-6-certificate-into-trusted-root-store-test:
+      capability: windows.registry
+      object:
+        set:
+          operands:
+          - filters: []
+            object:
+              set:
+                operands:
+                - filters: []
+                  object:
+                    hive:
+                      equals: local_machine
+                    key:
+                      equals: SOFTWARE\Microsoft\SystemCertificates\Root\Certificates\D37ECF61C0B4ED88681EF3630C4E2FC787B37AEF
+                    name:
+                      matches_regex: ^.+$
+                - filters: []
+                  object:
+                    hive:
+                      equals: local_machine
+                    key:
+                      equals: SOFTWARE\Microsoft\EnterpriseCertificates\Root\Certificates\D37ECF61C0B4ED88681EF3630C4E2FC787B37AEF
+                    name:
+                      matches_regex: ^.+$
+                operator: union
+          - filters: []
+            object:
+              hive:
+                equals: local_machine
+              key:
+                equals: SOFTWARE\Policies\Microsoft\SystemCertificates\Root\Certificates\D37ECF61C0B4ED88681EF3630C4E2FC787B37AEF
+              name:
+                matches_regex: ^.+$
+          operator: union
+      reported_elements: all
+      require:
+        item_requirement:
+          items_found: one_or_more
+      test_title: The DoD Root CA 6 Certificate expiring 1/24/2053 is installed into
+        the Trusted Root Store.
+  version: 1

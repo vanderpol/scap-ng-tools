@@ -1,0 +1,127 @@
+assessment:
+  assessment_title: Amazon Linux 2023 must allow only the information system security
+    manager (ISSM) (or individuals or roles appointed by the ISSM) to select which
+    auditable events are to be audited.
+  class: compliance
+  evaluate:
+    and:
+    - test: etc-audit-auditd-conf-has-mode-0600-or-less-permissive-test
+    - test: rules-files-in-etc-audit-have-mode-0600-or-less-permissive-test
+    - test: etc-audit-audit-rules-has-mode-0600-or-less-permissive-test
+  id: amazon-linux-2023-allow-events-are-audited-sv-274111-assessment
+  mode: automated
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  tests:
+    etc-audit-audit-rules-has-mode-0600-or-less-permissive-test:
+      capability: unix.file
+      object:
+        filepath:
+          equals: /etc/audit/audit.rules
+        filesystem: all
+      reported_elements: all
+      require:
+        field_requirement:
+          values_found: one_or_more
+          values_matching: every
+        fields:
+          group_execute:
+            equals: false
+          group_read:
+            equals: false
+          group_write:
+            equals: false
+          other_execute:
+            equals: false
+          other_read:
+            equals: false
+          other_write:
+            equals: false
+          owner_execute:
+            equals: false
+          setgid:
+            equals: false
+          setuid:
+            equals: false
+          sticky:
+            equals: false
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+      test_title: /etc/audit/audit.rules has mode 0600 or less permissive
+    etc-audit-auditd-conf-has-mode-0600-or-less-permissive-test:
+      capability: unix.file
+      object:
+        filepath:
+          equals: /etc/audit/auditd.conf
+        filesystem: all
+      reported_elements: all
+      require:
+        field_requirement:
+          values_found: one_or_more
+          values_matching: every
+        fields:
+          group_execute:
+            equals: false
+          group_read:
+            equals: false
+          group_write:
+            equals: false
+          other_execute:
+            equals: false
+          other_read:
+            equals: false
+          other_write:
+            equals: false
+          owner_execute:
+            equals: false
+          setgid:
+            equals: false
+          setuid:
+            equals: false
+          sticky:
+            equals: false
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+      test_title: /etc/audit/auditd.conf has mode 0600 or less permissive
+    rules-files-in-etc-audit-have-mode-0600-or-less-permissive-test:
+      capability: unix.file
+      object:
+        filename:
+          matches_regex: .rules$
+        filesystem: all
+        path:
+          equals: /etc/audit/rules.d
+      reported_elements: all
+      require:
+        field_requirement:
+          values_found: one_or_more
+          values_matching: every
+        fields:
+          group_execute:
+            equals: false
+          group_read:
+            equals: false
+          group_write:
+            equals: false
+          other_execute:
+            equals: false
+          other_read:
+            equals: false
+          other_write:
+            equals: false
+          owner_execute:
+            equals: false
+          setgid:
+            equals: false
+          setuid:
+            equals: false
+          sticky:
+            equals: false
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+      test_title: .rules files in /etc/audit/rules.d have mode 0600 or less permissive
+  version: 1

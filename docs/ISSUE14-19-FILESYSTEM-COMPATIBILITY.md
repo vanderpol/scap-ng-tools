@@ -8,12 +8,12 @@ introduce aliases or rename native fields.
 
 | Artifact | Value |
 | --- | --- |
-| SCAP-NG schema source commit | `5a13698933c88ca1e271d635b9bee39af75bc027` |
-| Flat JSON / root / root-ref counts | `145 / 35 / 658` |
-| Schema aggregate SHA-256 | `0a8c5a5840b5a17839db87decf034544286baf56383f52de71795862cca20593` |
-| Semantic contract pack SHA-256 | `5e3aa7a017cbce86cb724679fd1a3ce15e1ff63def48f09b61a3f83f3484fb92` |
+| SCAP-NG schema source commit | `54bbd761aab78432b108e2090dc4a0f966f578ef` |
+| Flat JSON / root / root-ref counts | `145 / 35 / 673` |
+| Schema aggregate SHA-256 | `d2d8d59bcc722eacdba80342232f6d92d5bba812aab077753486268c3f74aa2d` |
+| Semantic contract pack SHA-256 | `0f2de8d318ed5a8a102e51ffbcc09dedaac074a21b04dc86799b5e9f0b773114` |
 | Editor resource count | `236` |
-| Editor manifest SHA-256 | `305dbd0b77729c69f3bc5d40232b0b3fbc5a32646310678f61ff2ae304831a5f` |
+| Editor manifest SHA-256 | `69c3b454ad52d4fae69432cdeb295f6963f39e0415560c13c9b4ee2d8ce0a8d5` |
 
 The semantic pack was regenerated from the pinned OVAL 5.12.3 XSD and compared
 byte-for-byte with the committed pack. The editor pack was regenerated as a
@@ -35,6 +35,22 @@ they are not accepted native aliases.
 The regression test exercises the actual `AssessmentConverter`, YAML
 serialization round trip, Draft 2020-12 validation, regex mapping, explicit
 case-insensitive comparison, `filesystem: all`, and nullable `filename`.
-The tools suite with the accepted schema and pinned OVAL source completed with
-20 passing tests and 3 fixture-dependent skips; the filesystem compatibility
-tests covered all nine selector contracts.
+The synchronized validation evidence is recorded in
+[`docs/evidence/issue22/validation.txt`](evidence/issue22/validation.txt). The
+filesystem compatibility tests cover all nine selector contracts; the pinned
+benchmark parity assertions intentionally remain historical until owner
+approval of the separate migration proposal.
+
+## Issue #22 golden audit
+
+The pinned four-fixture audit is recorded in
+[`docs/evidence/issue22/`](evidence/issue22/). It compares the previous
+canonicalized output with the Candidate-A output field-by-field. All 11
+historical parity assertions are representation/provenance-only; no source
+Rule, Assessment, Test, capability, or provenance record was lost. Historical
+hashes remain unchanged pending owner approval of the separate migration
+proposal.
+
+The generated selector overlay now also retains the already-defined OVAL
+5.12.3 Set form and mapping-declared NTUSER collection parameters. This fixed
+six temporary Windows admission losses without changing converter semantics.

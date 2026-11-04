@@ -62,15 +62,18 @@ class BenchmarkConversionParity(unittest.TestCase):
                 self.assertEqual(stable_digest(trace), trace_hash)
                 self.assertEqual(stable_digest(coverage), coverage_hash)
                 self.assertEqual(coverage['summary']['source_rules'], pin['count'])
+                # Reconcile totals before independent golden assertions so
+                # parity drift cannot mask the observed 535 source Rules.
+                totals['source'] += pin['count']
+                totals['converted'] += admitted
+                totals['blocked'] += blocked
+                totals['native'] += n
                 self.assertEqual(coverage['summary']['statuses'].get('converted', 0), admitted)
                 self.assertEqual(coverage['summary']['statuses'].get('blocked', 0), blocked)
                 self.assertEqual(coverage['summary']['proof_levels'].get('source_proved', 0), 0)
                 self.assertFalse(coverage['scanner_evaluated'])
                 for row in coverage['rules']:
                     self.assertIn(row['proof_level'], ('none', 'authoring_validated'))
-                for key, value in [('source', pin['count']), ('converted', admitted),
-                                   ('blocked', blocked), ('native', n)]:
-                    totals[key] += value
         self.assertEqual(totals, {'source': 535, 'converted': 380,
                                   'blocked': 155, 'native': 766})
 

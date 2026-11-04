@@ -1,0 +1,29 @@
+Issue #22 validation evidence (2026-11-04)
+
+SCAP-NG schema worktree
+  python tools/generate_native_selector_schema.py --check
+  python tools/generate_docs.py --check
+  python -m unittest discover -s tests -v
+  result: 32 passed
+
+scap-ng-tools, without external fixtures
+  PYTHONPATH=src python -m unittest discover -s tests -v
+  result: 13 passed, 7 fixture-dependent skips
+
+scap-ng-tools, focused filesystem and pins
+  PYTHONPATH=src SCAP_NG_SCHEMA_ROOT=<final schema checkout> \
+    python -m unittest tests.test_filesystem_selector_compatibility \
+      tests.test_schema_snapshot tests.test_editor_metadata_pack -v
+  result: 8 passed
+  (3 filesystem tests, 3 snapshot tests, 2 editor-pack tests)
+
+Pinned fixture candidate conversion
+  four signed Q3 2026 ZIPs, original SHA-256 pins, final schema snapshot
+  result: 535 inventory Rules; 766 native documents; 380 converted; 155 blocked
+  source Rule IDs, capability counts, inventory manifests and coverage counts
+  match the historical baseline.
+
+Historical parity
+  Historical hashes were not changed. The parity suite continues to fail on
+  the 11 documented digest assertions (2 native document, 4 automatic trace,
+  4 inventory trace, 1 CLI-byte), all classified in benchmark-difference-report.json.

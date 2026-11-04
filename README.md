@@ -16,9 +16,9 @@ helpers copied byte-for-byte from the frozen 0.4 core repository:
 The compatibility checkpoint also adds a **shared offline 0.4 schema snapshot
 locator** (`scap_ng_tools.contracts.FrozenSchemaSnapshot`). The historical
 pre-selector checkpoint was 143 files/34 roots/242 references; the current
-coordinated Issue #14/#19 candidate is pinned to 145 JSON files, 35 roots, 658
+coordinated Issue #14/#19 candidate is pinned to 145 JSON files, 35 roots, 673
 references and aggregate SHA-256
-`0a8c5a5840b5a17839db87decf034544286baf56383f52de71795862cca20593`, under an
+`d2d8d59bcc722eacdba80342232f6d92d5bba812aab077753486268c3f74aa2d`, under an
 explicitly selected flat `schema/` directory.
 No schema files or source corpus are vendored into this tool package.
 
@@ -40,6 +40,9 @@ conversion, generating native Assessments or claiming scanner evidence. Four
 original ZIPs, covering 535 Rules, are pinned for manifest/source-trace parity
 with the original implementation. See the
 [fixture acceptance ledger](docs/TEST-FIXTURE-PINS.md).
+The Issue #22 golden-parity audit and migration evidence is recorded in
+[docs/evidence/issue22](docs/evidence/issue22). Historical goldens remain
+unchanged pending owner approval.
 
 An external-only [legacy conversion equivalence probe](scripts/verify_flat_converter.py)
 also compares pinned old/new direct converter outputs when the original
