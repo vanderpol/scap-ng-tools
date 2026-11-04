@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from build_v04_editor_metadata_pack import build  # noqa: E402
 
 
-SCHEMA_COMMIT = '6bccf83bdadf9c91ddb0f91769052bf318d1b32b'
-EXPECTED_MANIFEST = 'd86423a0e097f494c080680702b1692cf4fd175d88a5e49de5fdaa0106461666'
+SCHEMA_COMMIT = '972a6f914c10055bec08d975a4127db863283887'
+EXPECTED_MANIFEST = '71c8dc488c373c325382b7a4c387d9f3637159de33c6aa04e8415ac6178d7c52'
 
 
 class EditorPackParity(unittest.TestCase):

@@ -1,8 +1,8 @@
 {
-  "schema_commit": "6bccf83bdadf9c91ddb0f91769052bf318d1b32b",
+  "schema_commit": "972a6f914c10055bec08d975a4127db863283887",
   "schema_family_sha256": "dfbcb781008f62f41a547265da43fa5c32cce32bdd54438d0d6bd6093b62463e",
   "resource_identity_sha256": "23de44953b088663a28c95ec7f21f473c236f72ebb73be2feb56f4db2d9181a2",
-  "manifest_sha256": "d86423a0e097f494c080680702b1692cf4fd175d88a5e49de5fdaa0106461666",
+  "manifest_sha256": "71c8dc488c373c325382b7a4c387d9f3637159de33c6aa04e8415ac6178d7c52",
   "prior_runtime_sha256": "063c4c11bbaec72442cfc8fe2770eac7ca0496ce5079c858c122f92d8b9b581b",
   "prior_converter_sha256": "2a2c0ec7d55f7fab74202bfbcd881444cbd802e8a380aa31c25250887fbbc055",
   "converter_sha256": "e08bed4234090e9e53d93caf23109d881228901de9c46e6f965cfb6ca090851a",
