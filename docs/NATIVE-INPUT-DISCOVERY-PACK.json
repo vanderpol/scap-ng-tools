@@ -1,13 +1,13 @@
 {
   "previous_schema_commit": "5c89c98033ed8e7b56ef8d6a0522253555faefd7",
-  "new_schema_commit": "972a6f914c10055bec08d975a4127db863283887",
+  "new_schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
   "resources": 236,
   "changed_resources": [
     "schemas/assessment-result.schema.json",
     "schemas/rule.schema.json"
   ],
   "unchanged_resources": 234,
-  "new_manifest_sha256": "71c8dc488c373c325382b7a4c387d9f3637159de33c6aa04e8415ac6178d7c52",
-  "new_resource_identity_sha256": "23de44953b088663a28c95ec7f21f473c236f72ebb73be2feb56f4db2d9181a2",
-  "new_schema_family_sha256": "dfbcb781008f62f41a547265da43fa5c32cce32bdd54438d0d6bd6093b62463e"
+  "new_manifest_sha256": "ab46bd24275111122cefaa047ae94785796d4d58de3639fb6e649bbc08585986",
+  "new_resource_identity_sha256": "60a36a866b57bfcf034b66fb86faf9e1d4337dcb68eb11b978af556ae1d6d0e2",
+  "new_schema_family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5"
 }
