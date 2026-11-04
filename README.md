@@ -18,7 +18,7 @@ locator** (`scap_ng_tools.contracts.FrozenSchemaSnapshot`). The historical
 pre-selector checkpoint was 143 files/34 roots/242 references; the current
 coordinated Issue #14/#19 candidate is pinned to 145 JSON files, 35 roots, 658
 references and aggregate SHA-256
-`e9405d79f9eac95e84a3f0293dcb37bd7f3e547b790131f296692baa656838a5`, under an
+`0a8c5a5840b5a17839db87decf034544286baf56383f52de71795862cca20593`, under an
 explicitly selected flat `schema/` directory.
 No schema files or source corpus are vendored into this tool package.
 

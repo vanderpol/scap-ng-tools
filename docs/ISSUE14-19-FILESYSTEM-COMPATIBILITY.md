@@ -8,12 +8,12 @@ introduce aliases or rename native fields.
 
 | Artifact | Value |
 | --- | --- |
-| SCAP-NG schema source commit | `7e38222494ee92a9a5584e2879d1688632bb21a5` |
+| SCAP-NG schema source commit | `5a13698933c88ca1e271d635b9bee39af75bc027` |
 | Flat JSON / root / root-ref counts | `145 / 35 / 658` |
-| Schema aggregate SHA-256 | `e9405d79f9eac95e84a3f0293dcb37bd7f3e547b790131f296692baa656838a5` |
-| Semantic contract pack SHA-256 | `212e9572c18e5fb25c53508531d1cb0d8c7b030d306d72b8a25d57db2645394d` |
+| Schema aggregate SHA-256 | `0a8c5a5840b5a17839db87decf034544286baf56383f52de71795862cca20593` |
+| Semantic contract pack SHA-256 | `5e3aa7a017cbce86cb724679fd1a3ce15e1ff63def48f09b61a3f83f3484fb92` |
 | Editor resource count | `236` |
-| Editor manifest SHA-256 | `e78ea28a779bf62c317582e3dd70f5e8c663fcde53c75098c2fb6bda9bf479dd` |
+| Editor manifest SHA-256 | `305dbd0b77729c69f3bc5d40232b0b3fbc5a32646310678f61ff2ae304831a5f` |
 
 The semantic pack was regenerated from the pinned OVAL 5.12.3 XSD and compared
 byte-for-byte with the committed pack. The editor pack was regenerated as a
