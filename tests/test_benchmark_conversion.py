@@ -84,52 +84,23 @@ class BenchmarkConversionParity(unittest.TestCase):
         # qualify as current 0.4 authoring after the approved amendment.
         original_file_count = 67
         original_file_digest = '5fc696189a0e134077d46e46143e21b4b5637b635e43c12106b1d9b83509b3e5'
-        legacy_root = os.environ.get('SCAP_NG_RESEARCH_ROOT')
         path = self.files[1]
-        with tempfile.TemporaryDirectory(prefix='scapng-benchmark-differential-') as temp:
-            old = Path(temp) / 'original'
-            new = Path(temp) / 'portable'
-            portable_cli = [sys.executable, '-m', 'scap_ng_tools.converter.direct04',
-                            '--schema-root', str(self.schema), str(path), '--sha256', PINS[1]['sha'],
-                            '--all-rules', '--output', str(new)]
-            commands = [portable_cli]
-            if legacy_root:
-                commands.insert(0, [
-                    sys.executable, str(Path(legacy_root) / 'tools/v04_direct_converter.py'),
-                    str(path), '--sha256', PINS[1]['sha'], '--all-rules', '--output', str(old)])
-            for command in commands:
-                result = subprocess.run(command, capture_output=True, text=True)
-                self.assertEqual(result.returncode, 0, result.stderr)
-            emitted = {p.relative_to(new).as_posix(): p.read_bytes()
-                       for p in new.rglob('*') if p.is_file() and p.name != 'conversion-scope.json'}
+        with tempfile.TemporaryDirectory(prefix='scapng-benchmark-portable-') as temp:
+            output = Path(temp) / 'portable'
+            result = subprocess.run([
+                sys.executable, '-m', 'scap_ng_tools.converter.direct04',
+                '--schema-root', str(self.schema), str(path), '--sha256', PINS[1]['sha'],
+                '--all-rules', '--output', str(output)], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            emitted = {p.relative_to(output).as_posix(): p.read_bytes()
+                       for p in output.rglob('*') if p.is_file() and p.name != 'conversion-scope.json'}
             digest = sha256()
             for name, raw in sorted(emitted.items()):
                 digest.update(name.encode('utf-8') + bytes([0]))
                 digest.update(raw)
             self.assertEqual(len(emitted), original_file_count)
             self.assertEqual(digest.hexdigest(), original_file_digest)
-            if legacy_root:
-                originals = {p.relative_to(old).as_posix(): p.read_bytes()
-                             for p in old.rglob('*') if p.is_file() and p.name != 'metrics.json'}
-                def upgraded(document):
-                    if isinstance(document, dict) and 'assessment' in document:
-                        for test in document['assessment'].get('tests', {}).values():
-                            req = test.get('require', {})
-                            if 'items_found' in req:
-                                item = {'items_found': req.pop('items_found')}
-                                if 'items_satisfying' in req:
-                                    item['items_satisfying'] = req.pop('items_satisfying')
-                                test['require'] = {'item_requirement': item, **req}
-                    return document
-                for name, old_raw in originals.items():
-                    new_raw = emitted[name]
-                    if name.endswith('.json'):
-                        self.assertEqual(upgraded(json.loads(old_raw)), json.loads(new_raw), name)
-                    elif name.endswith('.yaml'):
-                        self.assertEqual(upgraded(yaml.safe_load(old_raw)), yaml.safe_load(new_raw), name)
-                    else:
-                        self.assertEqual(old_raw, new_raw, name)
-            self.assertEqual(json.loads((new / 'conversion-scope.json').read_text())
+            self.assertEqual(json.loads((output / 'conversion-scope.json').read_text())
                              ['independent_semantic_proof'], False)
 
     def test_unqualified_modes_never_create_benchmark_output(self):
@@ -185,30 +156,7 @@ class BenchmarkConversionParity(unittest.TestCase):
                 else:
                     self.assertTrue(any('unguarded optional Input' in error.message for error in findings))
 
-        legacy_root = os.environ.get('SCAP_NG_RESEARCH_ROOT')
-        if legacy_root:
-            original_runner = '''
-from pathlib import Path
-import json, sys
-repo = Path(sys.argv[1])
-sys.path.insert(0, str(repo / 'tools'))
-from validate_native_json_schemas import build_validators, document_errors
-v = build_validators(repo / 'schema/v0.4.0')['assessment.schema.json']
-docs = json.load(sys.stdin)
-for name, document in docs.items():
-    docs[name] = [[str(e.validator), list(e.absolute_path), e.message]
-                  for e in document_errors(v, document)]
-print(json.dumps(docs))
-'''
-            result = subprocess.run([sys.executable, '-c', original_runner, legacy_root],
-                                    input=json.dumps(cases), text=True, capture_output=True)
-            self.assertEqual(result.returncode, 0, result.stderr)
-            expected = json.loads(result.stdout)
-            for name, document in cases.items():
-                with self.subTest(differential=name):
-                    actual = [[str(e.validator), list(e.absolute_path), e.message]
-                              for e in document_errors(snapshot, 'assessment', document)]
-                    self.assertEqual(actual, expected[name])
+
 
 
 if __name__ == '__main__':

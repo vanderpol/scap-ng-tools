@@ -72,9 +72,9 @@ is approved. It is **not** a scanner result or proof authority.
 ## Native discovery amendment candidate — 2026-11-02 (Issue #12)
 
 The owner-approved [native Input discovery amendment](https://github.com/vanderpol/scap-ng/issues/8#issuecomment-6587857027)
-uses canonical schema commit `b7089a353597748f1252872a2ef67166f595786f`.
+uses canonical schema commit `c0e70f3428ff34abdb6d2daf3fbf14cad84a3e65`.
 Its complete 143-file JSON family hash is
-`04074a04cf3e5378fcc99e4f7780ff2e10f032e400751c35cea960aa0c42d971`.
+`6560b1af3c7bdefb9379d377b7ee9fb6fc5987981c56c93b663e382ac84e6d03`.
 Grouped Item requirements, 100 mappings and Result wire are preserved.
 
 The 235-resource inventory has **one changed resource**, the Rule schema;
@@ -82,7 +82,7 @@ all other 234 resources are byte-identical to the preceding public pack.
 [Resource comparison](NATIVE-INPUT-DISCOVERY-PACK.json) and
 [code/schema provenance](NATIVE-INPUT-DISCOVERY-RECEIPT.json) preserve prior pins.
 The new manifest SHA256 is
-`2787cc97ffe61f89a5ee73b1251db342b6b8bfb7b56957bf7ad3b4be24d146c0`.
+`18d1cca6c00b0ee490dd5ae33d0095816a5be29e8f1d47908f1bfa0216b7805f`.
 
 The pure derivation helper indexes value/presence references, skips explicit
 literal payloads, and preserves real record members named like metadata or

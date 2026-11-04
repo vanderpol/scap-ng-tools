@@ -1,17 +1,17 @@
 {
-  "schema_commit": "d4e477998cda438a1e53a7c3c84123ec92e5ba1f",
-  "schema_family_sha256": "04074a04cf3e5378fcc99e4f7780ff2e10f032e400751c35cea960aa0c42d971",
-  "resource_identity_sha256": "a88006cea5973d88773b6a3e1ac31bf4d0fd386ead77b3c2cfd18c1b116dfeda",
-  "manifest_sha256": "33fa58aa40b627fc1d3ae03a5ef08312461614f3c99f21ffedf26003524d4dee",
+  "schema_commit": "c0e70f3428ff34abdb6d2daf3fbf14cad84a3e65",
+  "schema_family_sha256": "6560b1af3c7bdefb9379d377b7ee9fb6fc5987981c56c93b663e382ac84e6d03",
+  "resource_identity_sha256": "0227c9376abcd097d24d69ba2bd2d429e38e33d31c04780db66ee08dd43b415b",
+  "manifest_sha256": "18d1cca6c00b0ee490dd5ae33d0095816a5be29e8f1d47908f1bfa0216b7805f",
   "prior_runtime_sha256": "063c4c11bbaec72442cfc8fe2770eac7ca0496ce5079c858c122f92d8b9b581b",
   "prior_converter_sha256": "2a2c0ec7d55f7fab74202bfbcd881444cbd802e8a380aa31c25250887fbbc055",
-  "converter_sha256": "1424c7c4737578fb8a1d2ba616eaf30b564e269e0fd9b779a4888b168a77e0d3",
+  "converter_sha256": "e08bed4234090e9e53d93caf23109d881228901de9c46e6f965cfb6ca090851a",
   "prior_presence_sha256": "a4baeb945a315d5cfe399d80013ca020a359864900c9d2c21bc5f73d185b6291",
   "presence_sha256": "fa9b680582205010fd011879a01cac3473d3e9d22900840c44f016a9d39062ce",
-  "new_derivation_helper_sha256": "604521d4a35c886568a7cb59b4d8f5b29c1ba40d80e698e0f0d351f0fd520dfc",
+  "new_derivation_helper_sha256": "556718bb9015b0d5444dc77166ad76a0aaeffffae7da8cd9361dd6e2e11578a",
   "owner_decision": "https://github.com/vanderpol/scap-ng/issues/8#issuecomment-6587857027",
   "historical_sources_or_proofs_modified": false,
   "prior_semantic_pack_sha256": "e489a14931b627e67c20724b82fc6b959e3bbf396da07e86cd51d47a08ee915a",
-  "semantic_pack_sha256": "aa6cd8e028c250bfe5b37aef6567ac5a36dce949b3bfbdad81769f95772f131f",
-  "semantic_pack_change": "frozen_schema_digest provenance only; all 52 capability and 8 behavior contracts unchanged"
+  "semantic_pack_sha256": "fd3bd7afb7ecf8a1a729c3124b4c15ea8e4379e06ab9047c278cb56168f6a56f",
+  "semantic_pack_change": "frozen schema digest provenance only; capability and behavior contracts unchanged; native discovery producer added"
 }

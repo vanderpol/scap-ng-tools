@@ -902,11 +902,18 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     for key in omitted_metadata:
         native_rule.pop(key)
     documents[f'authoring/direct-slice/rules/{rule_id}.json'] = {'rule': native_rule}
+    from scap_ng_tools.converter._v04_semantic.v04_input_presence import presence_contract
+    from scap_ng_tools.authoring.input_discovery import validate_choice_map
     if converter.input_bindings:
-        native_rule['assessment_choices']['automated']['inputs']=converter.input_bindings
-        from scap_ng_tools.authoring.input_discovery import derive_choice
-        rows=derive_choice(assessment,converter.input_bindings,{p['id']:p for p in converter.policy_parameters.values()})
-        native_rule['organizational_input_requirements']={'automated':rows} if rows else {}
+        native_rule['assessment_choices']['automated']['inputs'] = converter.input_bindings
+    # Validate all native Input consumers before emitting a Rule. The direct
+    # converter has no author-supplied discovery map, so the packaged map is
+    # always the exact compiler derivation (including the empty case).
+    if converter.inputs or converter.input_bindings:
+        presence_contract(assessment)
+        parameters = {p['id']: p for p in converter.policy_parameters.values()}
+        rows = validate_choice_map(assessment, converter.input_bindings, parameters)
+        native_rule['organizational_input_requirements'] = {'automated': rows} if rows else {}
     binding = {'source_rule': source_id, 'source_rule_sha256': digest(xml_identity(rule)),
         'component': component, 'definition': definition, 'native_rule': rule_id, 'assessment': assessment_id,
         'dependencies': converter.used, 'omitted_checks': omitted_checks,
