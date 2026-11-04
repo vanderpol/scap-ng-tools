@@ -18,8 +18,8 @@ The four helper files' SHA-256 values are asserted by
 `tests/test_converter_provenance.py`. The helper copies have **no
 editor/runtime dependency** in the installed package. CI fetches public OVAL
 schemas only to regenerate `contracts-0.4.0.json` and byte-compares the
-result with the exact 580,676-byte **owner-amended** pack, SHA-256
-`e489a14931b627e67c20724b82fc6b959e3bbf396da07e86cd51d47a08ee915a`.
+result with the exact 580,634-byte **owner-amended** pack, SHA-256
+`0f2de8d318ed5a8a102e51ffbcc09dedaac074a21b04dc86799b5e9f0b773114`.
 The original pre-release pack had digest
 `b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70`;
 all capability and behavior contents remain unchanged.

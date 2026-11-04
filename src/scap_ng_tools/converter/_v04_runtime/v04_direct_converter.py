@@ -370,7 +370,8 @@ class AssessmentConverter:
                 if 'content' not in acquisition:
                     from v04_direct_file_behaviors import traversal_behaviors
                     acquisition.update(traversal_behaviors(traversal_part, acquisition,
-                        windows=mapping['native']['traversal_definition'] == 'windows_file_traversal'))
+                        windows=mapping['native']['traversal_definition'] == 'windows_file_traversal',
+                        selector_map=mapping['native'].get('selector_map', {})))
                 if 'content' not in acquisition:
                     acquisition.setdefault('filesystem', 'all')
             if mapping['native'].get('traversal_definition') == 'hierarchy_traversal':

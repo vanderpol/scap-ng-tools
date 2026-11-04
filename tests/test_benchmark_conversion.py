@@ -23,17 +23,17 @@ from test_benchmark_inventory import PINS, stable_digest
 
 
 EXPECTED = [
-    (496, 247, 44, '8cb6cd7d1a8e2fa1824c142a08cd38ae3521d70faaf6c909d7d8bddeacac2df3',
-     '2b06986ff6c21ea65a0a6ee45acacf53bdd58e96925ad84be47ae39765fa1e1c',
+    (496, 247, 44, '5687a4919b66e4e38e9d9dc2f59131393cf9683b0af768caf0ca4c3fa72deca8',
+     '28ccb0600d666f99b76b36164776a7b442276ef8282f614d87b28c470dcf95d4',
      '233fa961e84f101107cb62c5b810aa4719309c8bb5c31bbe2e212a09676c5bf4'),
     (32, 15, 21, '69d6606cf3b8c1e5ae943b5282ecf35a258556e5ce305b5ac1f4f9e1aa3bb10b',
-     'db1dbdcbf11065eb14cad93afcd90004e12f82b4012e2423ce5b3068ab5766b5',
+     '450aadbc110a26934a5688aefbed0c86e0e967ead6e1041cbc376e858f7dee64',
      'f90aacf66975f5d3cadf4d1d941142ad2a40f8c6a4c682eab491e15b2e604a53'),
-    (238, 118, 69, '9094dd336ab9b77e8e301d523eb0a2cf6df65910a243ce57d553113240b853ee',
-     '2d21ab8b6690f74023cf3b4f14f68164a9528b52e71196b8f7b9043c84b6467a',
+    (238, 118, 69, '7a9a7b578bf6f7f3498e58369f64340c719f7b50e5a376058974aefa20f6db4d',
+     '09d77b842843d3cab5b3dd4e9e28af253799ac3878608cd65239dc47a8d880e2',
      'da41d34d4c1b307097cb55c93e700e4bfa3f85950485c189d6f2f22a9f67a375'),
     (0, 0, 21, '44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a',
-     '5a9c179c112065435380c84fcd79fe83830d215e2f3f72550094777feb72fe9c',
+     'fde316371acb5b11e9f5b747b3138ec66e5ea07dc8609e6480543d2f0a7210bc',
      '5e70d08b2503940e2f486529164f65108c9a3a101a358ba2d0e37f16287d8d0d'),
 ]
 
@@ -62,15 +62,18 @@ class BenchmarkConversionParity(unittest.TestCase):
                 self.assertEqual(stable_digest(trace), trace_hash)
                 self.assertEqual(stable_digest(coverage), coverage_hash)
                 self.assertEqual(coverage['summary']['source_rules'], pin['count'])
+                # Reconcile totals before independent golden assertions so
+                # parity drift cannot mask the observed 535 source Rules.
+                totals['source'] += pin['count']
+                totals['converted'] += admitted
+                totals['blocked'] += blocked
+                totals['native'] += n
                 self.assertEqual(coverage['summary']['statuses'].get('converted', 0), admitted)
                 self.assertEqual(coverage['summary']['statuses'].get('blocked', 0), blocked)
                 self.assertEqual(coverage['summary']['proof_levels'].get('source_proved', 0), 0)
                 self.assertFalse(coverage['scanner_evaluated'])
                 for row in coverage['rules']:
                     self.assertIn(row['proof_level'], ('none', 'authoring_validated'))
-                for key, value in [('source', pin['count']), ('converted', admitted),
-                                   ('blocked', blocked), ('native', n)]:
-                    totals[key] += value
         self.assertEqual(totals, {'source': 535, 'converted': 380,
                                   'blocked': 155, 'native': 766})
 
@@ -80,7 +83,7 @@ class BenchmarkConversionParity(unittest.TestCase):
         # Preserve historic provenance, but the original YAML bytes no longer
         # qualify as current 0.4 authoring after the approved amendment.
         original_file_count = 67
-        original_file_digest = 'd5a38ab93c9ffb9852a529b4de8860bbd848973963b5a2935958b6c61b1c073f'
+        original_file_digest = '5fc696189a0e134077d46e46143e21b4b5637b635e43c12106b1d9b83509b3e5'
         legacy_root = os.environ.get('SCAP_NG_RESEARCH_ROOT')
         path = self.files[1]
         with tempfile.TemporaryDirectory(prefix='scapng-benchmark-differential-') as temp:

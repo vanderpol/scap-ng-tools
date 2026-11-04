@@ -1,0 +1,160 @@
+assessment:
+  assessment_title: Windows Server 2025 permissions for the Application event log
+    must prevent access by nonprivileged accounts.
+  class: compliance
+  evaluate:
+    or:
+    - and:
+      - test: application-event-log-have-default-permissions-strict-path-test
+      - not:
+          test: application-event-log-have-systemroot-environment-variable-test
+    - and:
+      - test: application-event-log-have-default-permissions-built-path-test
+      - test: application-event-log-have-systemroot-environment-variable-test
+  id: windows-server-2025-nonprivileged-accounts-sv-278043-assessment
+  mode: automated
+  shared_objects:
+    path-application-evtx-object:
+      capability: windows.registry
+      hive:
+        equals: local_machine
+      key:
+        equals: SYSTEM\CurrentControlSet\Services\EventLog\Application
+      name:
+        equals: file
+      object_title: path Application.evtx
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  tests:
+    application-event-log-have-default-permissions-built-path-test:
+      capability: windows.fileeffectiverights
+      object:
+        set:
+          operands:
+          - filters:
+            - exclude:
+                trustee_sid:
+                  equals: S-1-5-80-880578595-1860270145-482643319-2788375705-1540778122
+                  values_found: one_or_more
+                  values_matching: every
+            - exclude:
+                trustee_sid:
+                  equals: S-1-5-18
+                  values_found: one_or_more
+                  values_matching: every
+            - exclude:
+                trustee_sid:
+                  equals: S-1-5-32-544
+                  values_found: one_or_more
+                  values_matching: every
+            - exclude:
+                trustee_sid:
+                  equals: S-1-5-19
+                  values_found: one_or_more
+                  values_matching: every
+            object:
+              filesystem: all
+              full_path:
+                case_insensitive_equals:
+                  variable: path-application-evtx-with-replaced-with-its-value-variable
+                value_match: one_or_more
+              trustee_sid:
+                matches_regex: .*
+          operator: union
+      reported_elements: all
+      require:
+        item_requirement:
+          items_found: none
+      test_title: The Application event log must have at least default permissions.
+        Built Path
+    application-event-log-have-default-permissions-strict-path-test:
+      capability: windows.fileeffectiverights
+      object:
+        set:
+          operands:
+          - filters:
+            - exclude:
+                trustee_sid:
+                  equals: S-1-5-80-880578595-1860270145-482643319-2788375705-1540778122
+                  values_found: one_or_more
+                  values_matching: every
+            - exclude:
+                trustee_sid:
+                  equals: S-1-5-18
+                  values_found: one_or_more
+                  values_matching: every
+            - exclude:
+                trustee_sid:
+                  equals: S-1-5-32-544
+                  values_found: one_or_more
+                  values_matching: every
+            - exclude:
+                trustee_sid:
+                  equals: S-1-5-19
+                  values_found: one_or_more
+                  values_matching: every
+            object:
+              filesystem: all
+              full_path:
+                case_insensitive_equals:
+                  variable: strict-path-to-application-evtx-variable
+                value_match: one_or_more
+              trustee_sid:
+                matches_regex: .*
+          operator: union
+      reported_elements: all
+      require:
+        item_requirement:
+          items_found: none
+      test_title: The Application event log must have at least default permissions.
+        Strict Path
+    application-event-log-have-systemroot-environment-variable-test:
+      capability: windows.registry
+      object: path-application-evtx-object
+      reported_elements: all
+      require:
+        field_requirement:
+          values_found: one_or_more
+          values_matching: every
+        fields:
+          value:
+            matches_regex: ^(?i)%SystemRoot%.*$
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+      test_title: The Application event log registry specified location must have
+        the %SystemRoot% environment variable.
+  variables:
+    path-application-evtx-with-replaced-with-its-value-variable:
+      datatype: string
+      expression:
+        concat:
+        - values:
+            field: value
+            object:
+              capability: windows.registry
+              hive:
+                equals: local_machine
+              key:
+                equals: SOFTWARE\Microsoft\Windows NT\CurrentVersion
+              name:
+                equals: SystemRoot
+        - regex_capture:
+            pattern: ^%.*%(.*)$
+            value:
+              values:
+                field: value
+                object: path-application-evtx-object
+      kind: local
+    strict-path-to-application-evtx-variable:
+      datatype: string
+      expression:
+        regex_capture:
+          pattern: ^(.*)$
+          value:
+            values:
+              field: value
+              object: path-application-evtx-object
+      kind: local
+  version: 1

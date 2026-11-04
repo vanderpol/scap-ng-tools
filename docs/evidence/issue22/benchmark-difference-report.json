@@ -1,0 +1,835 @@
+{
+  "admission_repair": {
+    "cause": "Generated capability overlays had additionalProperties=false but omitted existing OVAL Set and collection-parameter properties. No converter semantics changed; the schema overlay now exposes existing common set_expression and mapping-declared collection parameters.",
+    "corrected_candidate": {
+      "blocked": 44,
+      "converted": 247,
+      "windows_server_documents": 496
+    },
+    "restored_rules": [
+      "SV-278043",
+      "SV-278044",
+      "SV-278045",
+      "SV-278046",
+      "SV-278192",
+      "SV-278240"
+    ],
+    "temporary_pre_overlay_candidate": {
+      "blocked": 50,
+      "converted": 241,
+      "windows_server_documents": 484
+    }
+  },
+  "baseline": {
+    "schema_commit": "354c9c962c77488a3d939cab56f6ceecfd495d27",
+    "tools_commit": "1f4f74d215ecb6ac16ded2da9bfe447a9dc45a42"
+  },
+  "candidate": {
+    "schema_commit": "54bbd761aab78432b108e2090dc4a0f966f578ef",
+    "tools_commit": "4c994b78ade27f9ecdb26285dc191983efd2bdd2"
+  },
+  "fixtures": [
+    {
+      "capability_coverage": {
+        "after": {
+          "independent.shellcommand": 22,
+          "independent.unknown": 9,
+          "windows.auditeventpolicysubcategories": 2,
+          "windows.registry": 1
+        },
+        "before": {
+          "independent.shellcommand": 22,
+          "independent.unknown": 9,
+          "windows.auditeventpolicysubcategories": 2,
+          "windows.registry": 1
+        }
+      },
+      "classification": "expected-mapping-provenance-change-no-native-content",
+      "counts": {
+        "after_documents": 32,
+        "after_inventory_records": 36,
+        "after_rules": 36,
+        "after_statuses": {
+          "blocked": 21,
+          "converted": 15
+        },
+        "before_documents": 32,
+        "before_inventory_records": 36,
+        "before_rules": 36,
+        "before_statuses": {
+          "blocked": 21,
+          "converted": 15
+        }
+      },
+      "document_changes": [],
+      "first_differing_inventory_trace_field": {
+        "after": "94d7c7ee502d98d1cd2d6797884228ec0afe9f0b608109893fb496327b54705b",
+        "before": "22e6ba0336b0cadd399a24de247d39e69299be57ae90eca907a49cf0bd05c537",
+        "path": "/mapping_sha256/unix.file"
+      },
+      "first_differing_trace_field": {
+        "after": "94d7c7ee502d98d1cd2d6797884228ec0afe9f0b608109893fb496327b54705b",
+        "before": "22e6ba0336b0cadd399a24de247d39e69299be57ae90eca907a49cf0bd05c537",
+        "path": "/mapping_sha256/unix.file"
+      },
+      "hashes": {
+        "after_coverage": "f90aacf66975f5d3cadf4d1d941142ad2a40f8c6a4c682eab491e15b2e604a53",
+        "after_documents": "69d6606cf3b8c1e5ae943b5282ecf35a258556e5ce305b5ac1f4f9e1aa3bb10b",
+        "after_inventory": "9335f772f3cc5a1952c46d66b1087f17dbd2105ce975b4f9156f29fc96d8d719",
+        "after_inventory_trace": "a904fa7e88ff40bdea90825aac5d8b102a28fbd89d24b7c43b78aebe3b790824",
+        "after_trace": "450aadbc110a26934a5688aefbed0c86e0e967ead6e1041cbc376e858f7dee64",
+        "before_coverage": "f90aacf66975f5d3cadf4d1d941142ad2a40f8c6a4c682eab491e15b2e604a53",
+        "before_documents": "69d6606cf3b8c1e5ae943b5282ecf35a258556e5ce305b5ac1f4f9e1aa3bb10b",
+        "before_inventory": "9335f772f3cc5a1952c46d66b1087f17dbd2105ce975b4f9156f29fc96d8d719",
+        "before_inventory_trace": "19f8df8e2e7d714bee02bb03334323ef4e19087e0d28d9e8cb0621e9f96bebfb",
+        "before_trace": "db1dbdcbf11065eb14cad93afcd90004e12f82b4012e2423ce5b3068ab5766b5"
+      },
+      "source": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed",
+      "source_identifiers": {
+        "after_rule_id_digest": "0c42f9ab307577944aab874752fcb9e67eda5c67f17a924bcf1bb416e1fa475d",
+        "before_rule_id_digest": "0c42f9ab307577944aab874752fcb9e67eda5c67f17a924bcf1bb416e1fa475d",
+        "inventory_rule_ids_same": true,
+        "rule_ids_same": true
+      }
+    },
+    {
+      "capability_coverage": {
+        "after": {
+          "independent.textfilecontent": 90,
+          "linux.partition": 5,
+          "linux.rpminfo": 17,
+          "linux.systemdunitproperty": 12,
+          "unix.file": 29,
+          "unix.symlink": 11,
+          "unix.sysctl": 1
+        },
+        "before": {
+          "independent.textfilecontent": 90,
+          "linux.partition": 5,
+          "linux.rpminfo": 17,
+          "linux.systemdunitproperty": 12,
+          "unix.file": 29,
+          "unix.symlink": 11,
+          "unix.sysctl": 1
+        }
+      },
+      "classification": "expected-filesystem-selector-representation",
+      "counts": {
+        "after_documents": 238,
+        "after_inventory_records": 187,
+        "after_rules": 187,
+        "after_statuses": {
+          "blocked": 69,
+          "converted": 118
+        },
+        "before_documents": 238,
+        "before_inventory_records": 187,
+        "before_rules": 187,
+        "before_statuses": {
+          "blocked": 69,
+          "converted": 118
+        }
+      },
+      "document_changes": [
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-allow-events-are-audited-sv-274111-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": "/etc/audit/audit.rules"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/etc-audit-audit-rules-has-mode-0600-or-less-permissive-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-audit-access-audit-log-sv-274110-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": {
+                "variable": "audit-log-location-from-etc-audit-auditd-conf-variable"
+              },
+              "value_match": "every"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/audit-log-is-mode-0600-or-less-permissive-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-audit-owned-by-root-sv-274103-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": [
+                "/sbin/auditctl",
+                "/sbin/aureport",
+                "/sbin/ausearch",
+                "/sbin/autrace",
+                "/sbin/auditd",
+                "/sbin/rsyslogd",
+                "/sbin/augenrules"
+              ],
+              "value_match": "one_or_more"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/the-audit-tools-are-group-owned-by-root-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-audit-read-access-sv-274108-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": {
+                "variable": "audit-data-directory-from-etc-audit-auditd-conf-variable"
+              },
+              "value_match": "every"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/audit-logs-are-group-owned-by-root-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-audit-read-access-sv-274116-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": {
+                "variable": "audit-data-directory-from-etc-audit-auditd-conf-variable"
+              },
+              "value_match": "every"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/audit-logs-are-group-owned-by-root-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-crypto-not-overridden-sv-274058-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": "/etc/crypto-policies/back-ends/nss.config"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/nss-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-directories-sv-274164-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": "/"
+            },
+            "path": "/assessment/tests/check-that-all-world-directories-have-sticky-bit-set-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-less-permissive-sv-274125-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": "/var/log"
+            },
+            "path": "/assessment/tests/var-log-directory-has-mode-0755-or-less-permissive-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-less-permissive-sv-274128-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": "/var/log/messages"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/var-log-messages-file-has-mode-0640-or-less-permissive-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-owned-by-root-sv-274126-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": "/var/log"
+            },
+            "path": "/assessment/tests/var-log-directory-is-owned-by-root-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-owned-by-root-sv-274127-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": "/var/log"
+            },
+            "path": "/assessment/tests/var-log-directory-is-group-owned-by-root-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-owned-by-root-sv-274129-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": "/var/log/messages"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/var-log-messages-file-is-owned-by-root-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-owned-by-root-sv-274130-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": "/var/log/messages"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/var-log-messages-file-is-owned-by-root-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-have-package-installed-sv-274024-assessment.json",
+          "first_diff": {
+            "after": {
+              "equals": "/var/lib/aide/aide.db.gz"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/var-lib-aide-aide-db-gz-exists-and-is-not-empty-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-library-less-permissive-sv-274120-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": [
+                "/lib",
+                "/lib64",
+                "/usr/lib",
+                "/usr/lib64"
+              ],
+              "value_match": "exactly_one"
+            },
+            "path": "/assessment/tests/no-group-writable-library-directories-exist-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-library-less-permissive-sv-274121-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": [
+                "/lib",
+                "/lib64",
+                "/usr/lib",
+                "/usr/lib64"
+              ],
+              "value_match": "exactly_one"
+            },
+            "path": "/assessment/tests/no-operating-system-library-files-are-group-writable-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-library-owned-by-root-sv-274122-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": [
+                "/lib",
+                "/lib64",
+                "/usr/lib",
+                "/usr/lib64"
+              ],
+              "value_match": "exactly_one"
+            },
+            "path": "/assessment/tests/the-operating-system-library-files-are-owned-by-root-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-library-owned-by-root-sv-274124-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": [
+                "/lib",
+                "/lib64",
+                "/usr/lib",
+                "/usr/lib64"
+              ],
+              "value_match": "exactly_one"
+            },
+            "path": "/assessment/tests/no-system-wide-library-exist-except-those-owned-by-root-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-library-system-account-sv-274119-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": [
+                "/lib",
+                "/lib64",
+                "/usr/lib",
+                "/usr/lib64"
+              ],
+              "value_match": "exactly_one"
+            },
+            "path": "/assessment/tests/no-system-wide-library-for-those-group-owned-by-root-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-library-system-account-sv-274123-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": [
+                "/lib",
+                "/lib64",
+                "/usr/lib",
+                "/usr/lib64"
+              ],
+              "value_match": "exactly_one"
+            },
+            "path": "/assessment/tests/the-operating-system-library-files-are-group-owned-by-root-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-system-or-system-account-sv-274132-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": [
+                "/bin",
+                "/sbin",
+                "/usr/bin",
+                "/usr/sbin",
+                "/usr/libexec",
+                "/usr/local/bin",
+                "/usr/local/sbin"
+              ],
+              "value_match": "one_or_more"
+            },
+            "path": "/assessment/tests/no-system-commands-exist-owned-by-root-or-system-account-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/amazon-linux-2023-system-owned-by-root-sv-274131-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": [
+                "/bin",
+                "/sbin",
+                "/usr/bin",
+                "/usr/sbin",
+                "/usr/libexec",
+                "/usr/local/bin",
+                "/usr/local/sbin"
+              ],
+              "value_match": "one_or_more"
+            },
+            "path": "/assessment/tests/no-system-command-files-exist-except-those-owned-by-root-test/object/directory"
+          },
+          "kind": "changed"
+        }
+      ],
+      "first_differing_inventory_trace_field": {
+        "after": "94d7c7ee502d98d1cd2d6797884228ec0afe9f0b608109893fb496327b54705b",
+        "before": "22e6ba0336b0cadd399a24de247d39e69299be57ae90eca907a49cf0bd05c537",
+        "path": "/mapping_sha256/unix.file"
+      },
+      "first_differing_trace_field": {
+        "after": "94d7c7ee502d98d1cd2d6797884228ec0afe9f0b608109893fb496327b54705b",
+        "before": "22e6ba0336b0cadd399a24de247d39e69299be57ae90eca907a49cf0bd05c537",
+        "path": "/mapping_sha256/unix.file"
+      },
+      "hashes": {
+        "after_coverage": "da41d34d4c1b307097cb55c93e700e4bfa3f85950485c189d6f2f22a9f67a375",
+        "after_documents": "7a9a7b578bf6f7f3498e58369f64340c719f7b50e5a376058974aefa20f6db4d",
+        "after_inventory": "6b3cdccfda5097f549f7372ae95c661f88b03d2097e9ebce366c4d99e31d0823",
+        "after_inventory_trace": "af1acfc9a2a7454153f629e2e1a88823f794bfa99e5cc4b4aef2cba980c7f4e1",
+        "after_trace": "09d77b842843d3cab5b3dd4e9e28af253799ac3878608cd65239dc47a8d880e2",
+        "before_coverage": "da41d34d4c1b307097cb55c93e700e4bfa3f85950485c189d6f2f22a9f67a375",
+        "before_documents": "9094dd336ab9b77e8e301d523eb0a2cf6df65910a243ce57d553113240b853ee",
+        "before_inventory": "6b3cdccfda5097f549f7372ae95c661f88b03d2097e9ebce366c4d99e31d0823",
+        "before_inventory_trace": "3f82c57c8a34a5055a342993dfa496d62e653d1d83f159dc721799b50f576786",
+        "before_trace": "2d21ab8b6690f74023cf3b4f14f68164a9528b52e71196b8f7b9043c84b6467a"
+      },
+      "source": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed",
+      "source_identifiers": {
+        "after_rule_id_digest": "9634d46cb58c6b87d6c4345536fcb0cb94af0010200317ab5c461de34dc7def4",
+        "before_rule_id_digest": "9634d46cb58c6b87d6c4345536fcb0cb94af0010200317ab5c461de34dc7def4",
+        "inventory_rule_ids_same": true,
+        "rule_ids_same": true
+      }
+    },
+    {
+      "capability_coverage": {
+        "after": {},
+        "before": {}
+      },
+      "classification": "expected-mapping-provenance-change-no-native-content",
+      "counts": {
+        "after_documents": 0,
+        "after_inventory_records": 21,
+        "after_rules": 21,
+        "after_statuses": {
+          "blocked": 21
+        },
+        "before_documents": 0,
+        "before_inventory_records": 21,
+        "before_rules": 21,
+        "before_statuses": {
+          "blocked": 21
+        }
+      },
+      "document_changes": [],
+      "first_differing_inventory_trace_field": {
+        "after": "94d7c7ee502d98d1cd2d6797884228ec0afe9f0b608109893fb496327b54705b",
+        "before": "22e6ba0336b0cadd399a24de247d39e69299be57ae90eca907a49cf0bd05c537",
+        "path": "/mapping_sha256/unix.file"
+      },
+      "first_differing_trace_field": {
+        "after": "94d7c7ee502d98d1cd2d6797884228ec0afe9f0b608109893fb496327b54705b",
+        "before": "22e6ba0336b0cadd399a24de247d39e69299be57ae90eca907a49cf0bd05c537",
+        "path": "/mapping_sha256/unix.file"
+      },
+      "hashes": {
+        "after_coverage": "5e70d08b2503940e2f486529164f65108c9a3a101a358ba2d0e37f16287d8d0d",
+        "after_documents": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "after_inventory": "f0ba480d3e3d2c61600e68cc1e34daecfc8fe90804912bde5b4484f4440921b4",
+        "after_inventory_trace": "fde316371acb5b11e9f5b747b3138ec66e5ea07dc8609e6480543d2f0a7210bc",
+        "after_trace": "fde316371acb5b11e9f5b747b3138ec66e5ea07dc8609e6480543d2f0a7210bc",
+        "before_coverage": "5e70d08b2503940e2f486529164f65108c9a3a101a358ba2d0e37f16287d8d0d",
+        "before_documents": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "before_inventory": "f0ba480d3e3d2c61600e68cc1e34daecfc8fe90804912bde5b4484f4440921b4",
+        "before_inventory_trace": "5a9c179c112065435380c84fcd79fe83830d215e2f3f72550094777feb72fe9c",
+        "before_trace": "5a9c179c112065435380c84fcd79fe83830d215e2f3f72550094777feb72fe9c"
+      },
+      "source": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed",
+      "source_identifiers": {
+        "after_rule_id_digest": "0b74e9023bd923c1ef81ea42572c86abd7ce4bd81078c4e888ad8eef5f18fc71",
+        "before_rule_id_digest": "0b74e9023bd923c1ef81ea42572c86abd7ce4bd81078c4e888ad8eef5f18fc71",
+        "inventory_rule_ids_same": true,
+        "rule_ids_same": true
+      }
+    },
+    {
+      "capability_coverage": {
+        "after": {
+          "independent.shellcommand": 30,
+          "independent.textfilecontent": 7,
+          "windows.appcmdlistconfig": 1,
+          "windows.auditeventpolicysubcategories": 71,
+          "windows.cmdlet": 9,
+          "windows.fileeffectiverights": 26,
+          "windows.lockoutpolicy": 7,
+          "windows.ntuser": 1,
+          "windows.passwordpolicy": 7,
+          "windows.registry": 112,
+          "windows.service": 2,
+          "windows.userright": 52,
+          "windows.wmi.query": 28
+        },
+        "before": {
+          "independent.shellcommand": 30,
+          "independent.textfilecontent": 7,
+          "windows.appcmdlistconfig": 1,
+          "windows.auditeventpolicysubcategories": 71,
+          "windows.cmdlet": 9,
+          "windows.fileeffectiverights": 26,
+          "windows.lockoutpolicy": 7,
+          "windows.ntuser": 1,
+          "windows.passwordpolicy": 7,
+          "windows.registry": 112,
+          "windows.service": 2,
+          "windows.userright": 52,
+          "windows.wmi.query": 28
+        }
+      },
+      "classification": "expected-filesystem-selector-representation",
+      "counts": {
+        "after_documents": 496,
+        "after_inventory_records": 291,
+        "after_rules": 291,
+        "after_statuses": {
+          "blocked": 44,
+          "converted": 247
+        },
+        "before_documents": 496,
+        "before_inventory_records": 291,
+        "before_rules": 291,
+        "before_statuses": {
+          "blocked": 44,
+          "converted": 247
+        }
+      },
+      "document_changes": [
+        {
+          "document": "authoring/direct-slice/assessments/windows-server-2025-event-and-deletion-sv-278046-assessment.json",
+          "first_diff": {
+            "after": {
+              "case_insensitive_equals": {
+                "variable": "expanded-value-of-systemroot-system32-eventvwr-exe-variable"
+              },
+              "value_match": "one_or_more"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/eventvwr-exe-only-read-and-other-than-trustedinstaller-test/object/set/operands/0/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/windows-server-2025-minimum-requirements-sv-285320-assessment.json",
+          "first_diff": {
+            "after": {
+              "case_insensitive_equals": "C:\\ProgramData\\ssh\\sshd_config"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/c-programdata-ssh-sshd-config-builtin-administrators-f-test/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/windows-server-2025-minimum-requirements-sv-285321-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "case_insensitive_equals": "C:\\ProgramData\\ssh\\"
+            },
+            "path": "/assessment/tests/c-programdata-ssh-key-builtin-administrators-f-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/windows-server-2025-minimum-requirements-sv-285322-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "case_insensitive_equals": "C:\\ProgramData\\ssh\\"
+            },
+            "path": "/assessment/tests/c-programdata-ssh-key-pub-builtin-administrators-f-test/object/directory"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/windows-server-2025-nonprivileged-accounts-sv-278043-assessment.json",
+          "first_diff": {
+            "after": {
+              "case_insensitive_equals": {
+                "variable": "path-application-evtx-with-replaced-with-its-value-variable"
+              },
+              "value_match": "one_or_more"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/application-event-log-have-default-permissions-built-path-test/object/set/operands/0/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/windows-server-2025-nonprivileged-accounts-sv-278044-assessment.json",
+          "first_diff": {
+            "after": {
+              "case_insensitive_equals": {
+                "variable": "path-security-evtx-with-replaced-with-its-value-variable"
+              },
+              "value_match": "one_or_more"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/security-event-log-have-at-default-permissions-built-path-test/object/set/operands/0/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/windows-server-2025-nonprivileged-accounts-sv-278045-assessment.json",
+          "first_diff": {
+            "after": {
+              "case_insensitive_equals": {
+                "variable": "path-system-evtx-with-variable-replaced-with-its-value-variable"
+              },
+              "value_match": "one_or_more"
+            },
+            "before": "<missing>",
+            "path": "/assessment/tests/system-event-log-have-at-default-permissions-built-path-test/object/set/operands/0/object/filepath"
+          },
+          "kind": "changed"
+        },
+        {
+          "document": "authoring/direct-slice/assessments/windows-server-2025-sas-access-sv-278138-assessment.json",
+          "first_diff": {
+            "after": "<missing>",
+            "before": {
+              "equals": {
+                "variable": "database-log-files-path-variable"
+              },
+              "value_match": "every"
+            },
+            "path": "/assessment/tests/database-log-files-builtin-administrators-has-full-control-test/object/directory"
+          },
+          "kind": "changed"
+        }
+      ],
+      "first_differing_inventory_trace_field": {
+        "after": "94d7c7ee502d98d1cd2d6797884228ec0afe9f0b608109893fb496327b54705b",
+        "before": "22e6ba0336b0cadd399a24de247d39e69299be57ae90eca907a49cf0bd05c537",
+        "path": "/mapping_sha256/unix.file"
+      },
+      "first_differing_trace_field": {
+        "after": "94d7c7ee502d98d1cd2d6797884228ec0afe9f0b608109893fb496327b54705b",
+        "before": "22e6ba0336b0cadd399a24de247d39e69299be57ae90eca907a49cf0bd05c537",
+        "path": "/mapping_sha256/unix.file"
+      },
+      "hashes": {
+        "after_coverage": "233fa961e84f101107cb62c5b810aa4719309c8bb5c31bbe2e212a09676c5bf4",
+        "after_documents": "5687a4919b66e4e38e9d9dc2f59131393cf9683b0af768caf0ca4c3fa72deca8",
+        "after_inventory": "b8e006eceeaca1d1e669e88d2f9336ea3ad165323409a2ff49f80e0641e9b238",
+        "after_inventory_trace": "0558217d6c90a39bf7f0e9b9bf8f8235f391df4152be639968ac1d3e132f41ff",
+        "after_trace": "28ccb0600d666f99b76b36164776a7b442276ef8282f614d87b28c470dcf95d4",
+        "before_coverage": "233fa961e84f101107cb62c5b810aa4719309c8bb5c31bbe2e212a09676c5bf4",
+        "before_documents": "8cb6cd7d1a8e2fa1824c142a08cd38ae3521d70faaf6c909d7d8bddeacac2df3",
+        "before_inventory": "b8e006eceeaca1d1e669e88d2f9336ea3ad165323409a2ff49f80e0641e9b238",
+        "before_inventory_trace": "2350f42616db168fd7984af6f28fea19e3538bb91e0c2dd6fa477e6f2f5d1126",
+        "before_trace": "2b06986ff6c21ea65a0a6ee45acacf53bdd58e96925ad84be47ae39765fa1e1c"
+      },
+      "source": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed",
+      "source_identifiers": {
+        "after_rule_id_digest": "1842f76d8b96d09ddbffcf6affab72937f1a916c9f03fefd37113afca7a4cbc7",
+        "before_rule_id_digest": "1842f76d8b96d09ddbffcf6affab72937f1a916c9f03fefd37113afca7a4cbc7",
+        "inventory_rule_ids_same": true,
+        "rule_ids_same": true
+      }
+    }
+  ],
+  "format": "scap-ng/issue22/benchmark-difference-report/2",
+  "golden_assertions": [
+    {
+      "candidate": "5687a4919b66e4e38e9d9dc2f59131393cf9683b0af768caf0ca4c3fa72deca8",
+      "classification": "filesystem selector representation",
+      "historical": "8cb6cd7d1a8e2fa1824c142a08cd38ae3521d70faaf6c909d7d8bddeacac2df3",
+      "kind": "native_document_digest",
+      "source": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    },
+    {
+      "candidate": "7a9a7b578bf6f7f3498e58369f64340c719f7b50e5a376058974aefa20f6db4d",
+      "classification": "filesystem selector representation",
+      "historical": "9094dd336ab9b77e8e301d523eb0a2cf6df65910a243ce57d553113240b853ee",
+      "kind": "native_document_digest",
+      "source": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    },
+    {
+      "candidate": "450aadbc110a26934a5688aefbed0c86e0e967ead6e1041cbc376e858f7dee64",
+      "classification": "approved unix.file mapping hash / provenance representation",
+      "historical": "db1dbdcbf11065eb14cad93afcd90004e12f82b4012e2423ce5b3068ab5766b5",
+      "kind": "automatic_trace_digest",
+      "source": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed"
+    },
+    {
+      "candidate": "09d77b842843d3cab5b3dd4e9e28af253799ac3878608cd65239dc47a8d880e2",
+      "classification": "approved unix.file mapping hash / provenance representation",
+      "historical": "2d21ab8b6690f74023cf3b4f14f68164a9528b52e71196b8f7b9043c84b6467a",
+      "kind": "automatic_trace_digest",
+      "source": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    },
+    {
+      "candidate": "fde316371acb5b11e9f5b747b3138ec66e5ea07dc8609e6480543d2f0a7210bc",
+      "classification": "approved unix.file mapping hash / provenance representation",
+      "historical": "5a9c179c112065435380c84fcd79fe83830d215e2f3f72550094777feb72fe9c",
+      "kind": "automatic_trace_digest",
+      "source": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed"
+    },
+    {
+      "candidate": "28ccb0600d666f99b76b36164776a7b442276ef8282f614d87b28c470dcf95d4",
+      "classification": "approved unix.file mapping hash / provenance representation",
+      "historical": "2b06986ff6c21ea65a0a6ee45acacf53bdd58e96925ad84be47ae39765fa1e1c",
+      "kind": "automatic_trace_digest",
+      "source": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    },
+    {
+      "candidate": "a904fa7e88ff40bdea90825aac5d8b102a28fbd89d24b7c43b78aebe3b790824",
+      "classification": "approved unix.file mapping hash / provenance representation",
+      "historical": "19f8df8e2e7d714bee02bb03334323ef4e19087e0d28d9e8cb0621e9f96bebfb",
+      "kind": "inventory_trace_digest",
+      "source": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed"
+    },
+    {
+      "candidate": "af1acfc9a2a7454153f629e2e1a88823f794bfa99e5cc4b4aef2cba980c7f4e1",
+      "classification": "approved unix.file mapping hash / provenance representation",
+      "historical": "3f82c57c8a34a5055a342993dfa496d62e653d1d83f159dc721799b50f576786",
+      "kind": "inventory_trace_digest",
+      "source": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    },
+    {
+      "candidate": "fde316371acb5b11e9f5b747b3138ec66e5ea07dc8609e6480543d2f0a7210bc",
+      "classification": "approved unix.file mapping hash / provenance representation",
+      "historical": "5a9c179c112065435380c84fcd79fe83830d215e2f3f72550094777feb72fe9c",
+      "kind": "inventory_trace_digest",
+      "source": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed"
+    },
+    {
+      "candidate": "0558217d6c90a39bf7f0e9b9bf8f8235f391df4152be639968ac1d3e132f41ff",
+      "classification": "approved unix.file mapping hash / provenance representation",
+      "historical": "2350f42616db168fd7984af6f28fea19e3538bb91e0c2dd6fa477e6f2f5d1126",
+      "kind": "inventory_trace_digest",
+      "source": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    },
+    {
+      "candidate": "5fc696189a0e134077d46e46143e21b4b5637b635e43c12106b1d9b83509b3e5",
+      "classification": "filesystem selector representation",
+      "historical": "d5a38ab93c9ffb9852a529b4de8860bbd848973963b5a2935958b6c61b1c073f",
+      "kind": "cli_common_bytes_digest",
+      "source": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    }
+  ],
+  "golden_assertions_summary": {
+    "automatic_trace": 4,
+    "cli_common_bytes": 1,
+    "inventory_trace": 4,
+    "native_document": 2,
+    "semantic_regressions": 0,
+    "total": 11
+  },
+  "inventory_zero_explanation": {
+    "corrective_test_change": "Count each inventory source_rules value immediately after source count validation; historical hashes remain unchanged.",
+    "observed": "The inventory test incremented its 535-record counter only after historical trace/manifest assertions. All four trace assertions fail on the approved unix.file mapping hash, so execution reaches no increment and reports 0.",
+    "verified_source_records": 535
+  },
+  "representative_examples": [
+    {
+      "document": "authoring/direct-slice/assessments/amazon-linux-2023-allow-events-are-audited-sv-274111-assessment.json",
+      "files": {
+        "after": "amazon-after.yaml",
+        "before": "amazon-before.yaml"
+      },
+      "source": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    },
+    {
+      "document": "authoring/direct-slice/assessments/windows-server-2025-nonprivileged-accounts-sv-278043-assessment.json",
+      "files": {
+        "after": "windows-set-after.yaml",
+        "before": "windows-set-before.yaml"
+      },
+      "source": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    },
+    {
+      "document": "authoring/direct-slice/assessments/windows-server-2025-have-root-store-sv-278192-assessment.json",
+      "files": {
+        "after": "windows-nested-set-after.yaml",
+        "before": "windows-nested-set-before.yaml"
+      },
+      "source": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed"
+    }
+  ]
+}

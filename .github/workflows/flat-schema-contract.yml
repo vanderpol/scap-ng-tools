@@ -1,6 +1,7 @@
 name: Pinned flat 0.4 schema contracts
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches: [main]
@@ -15,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: 354c9c962c77488a3d939cab56f6ceecfd495d27
+          ref: 54bbd761aab78432b108e2090dc4a0f966f578ef
           path: spec-snapshot
           persist-credentials: false
       - name: Checkout immutable Q3 2026 NIWC signed benchmark archive
