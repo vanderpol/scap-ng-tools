@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from build_v04_editor_metadata_pack import build  # noqa: E402
 
 
-SCHEMA_COMMIT = '354c9c962c77488a3d939cab56f6ceecfd495d27'
-EXPECTED_MANIFEST = '1f981bcc09c294e15b287176482d6be0b0a9d3d128bda6c37a160826bda036e2'
+SCHEMA_COMMIT = '7e38222494ee92a9a5584e2879d1688632bb21a5'
+EXPECTED_MANIFEST = 'e78ea28a779bf62c317582e3dd70f5e8c663fcde53c75098c2fb6bda9bf479dd'
 
 
 class EditorPackParity(unittest.TestCase):
@@ -27,7 +27,7 @@ class EditorPackParity(unittest.TestCase):
         cls.schema = Path(schema)
         cls.oval = Path(oval)
 
-    def test_all_235_reviewed_amended_resources_match_explicit_new_pin(self):
+    def test_all_236_reviewed_amended_resources_match_explicit_new_pin(self):
         with tempfile.TemporaryDirectory(prefix='scapng-editor-pack-') as temp:
             output = Path(temp) / 'metadata'
             profile = build(self.schema, self.oval, SCHEMA_COMMIT, output)
@@ -41,7 +41,7 @@ class EditorPackParity(unittest.TestCase):
             self.assertEqual(sha256(manifest_bytes).hexdigest(), EXPECTED_MANIFEST)
             manifest = json.loads(manifest_bytes)
             self.assertEqual(manifest['source_commit'], SCHEMA_COMMIT)
-            self.assertEqual(len(manifest['resources']), 235)
+            self.assertEqual(len(manifest['resources']), 236)
             self.assertEqual(len(manifest['capabilities']), 100)
             names = set()
             for row in manifest['resources']:
@@ -50,7 +50,7 @@ class EditorPackParity(unittest.TestCase):
                 self.assertEqual(sha256((output / row['path']).read_bytes()).hexdigest(),
                                  row['sha256'])
                 self.assertEqual((output / row['path']).stat().st_size, row['bytes'])
-            self.assertEqual(len(names), 235)
+            self.assertEqual(len(names), 236)
             self.assertEqual(
                 {p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()},
                 names | {'profile.json', 'manifest.json'})

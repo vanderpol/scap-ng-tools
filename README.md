@@ -14,9 +14,12 @@ helpers copied byte-for-byte from the frozen 0.4 core repository:
   records. This never manufactures Assessments or changes proof status.
 
 The compatibility checkpoint also adds a **shared offline 0.4 schema snapshot
-locator** (`scap_ng_tools.contracts.FrozenSchemaSnapshot`), which verifies the
-exact 143-file frozen JSON digest, 34 roots, 242 references and 100 supported
-capability mappings under an explicitly selected flat `schema/` directory.
+locator** (`scap_ng_tools.contracts.FrozenSchemaSnapshot`). The historical
+pre-selector checkpoint was 143 files/34 roots/242 references; the current
+coordinated Issue #14/#19 candidate is pinned to 145 JSON files, 35 roots, 658
+references and aggregate SHA-256
+`e9405d79f9eac95e84a3f0293dcb37bd7f3e547b790131f296692baa656838a5`, under an
+explicitly selected flat `schema/` directory.
 No schema files or source corpus are vendored into this tool package.
 
 The [direct 0.4 converter](docs/FOCUSED-CONVERTER-MIGRATION.md) is an
@@ -100,7 +103,7 @@ See the [generator independence audit](docs/GENERATOR-INDEPENDENCE.md) for
 public-source inputs and the explicitly deferred `sqlext` targeting contracts.
 
 The [offline editor-pack exporter](docs/EDITOR-PACK-CUTOVER.md) independently
-derives all 235 pinned 0.4 editor resources (34 root schemas, 100 capability
+derives all 236 pinned 0.4 editor resources (35 root schemas, 100 capability
 fragments, 100 mappings, and the vocabulary) from the flat schema plus the
 public official OVAL 5.12.3 source. All derived resource bytes match the
 previous research exporter; only the explicit canonical source commit and
