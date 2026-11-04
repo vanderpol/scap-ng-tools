@@ -22,11 +22,11 @@
   },
   "baseline": {
     "schema_commit": "354c9c962c77488a3d939cab56f6ceecfd495d27",
-    "tools_commit": "1f4f74d"
+    "tools_commit": "1f4f74d215ecb6ac16ded2da9bfe447a9dc45a42"
   },
   "candidate": {
     "schema_commit": "54bbd761aab78432b108e2090dc4a0f966f578ef",
-    "tools_commit": "codex/issue22-golden-audit"
+    "tools_commit": "7d0281517754ae29ace853cc3dbd8a2925fb2d51"
   },
   "fixtures": [
     {
