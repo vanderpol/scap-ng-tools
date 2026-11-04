@@ -1,8 +1,8 @@
 {
-  "schema_commit": "c0e70f3428ff34abdb6d2daf3fbf14cad84a3e65",
-  "schema_family_sha256": "6560b1af3c7bdefb9379d377b7ee9fb6fc5987981c56c93b663e382ac84e6d03",
-  "resource_identity_sha256": "0227c9376abcd097d24d69ba2bd2d429e38e33d31c04780db66ee08dd43b415b",
-  "manifest_sha256": "18d1cca6c00b0ee490dd5ae33d0095816a5be29e8f1d47908f1bfa0216b7805f",
+  "schema_commit": "c6bddd83e6f7518b886538e7e8062a4018d61ca6",
+  "schema_family_sha256": "dfbcb781008f62f41a547265da43fa5c32cce32bdd54438d0d6bd6093b62463e",
+  "resource_identity_sha256": "23de44953b088663a28c95ec7f21f473c236f72ebb73be2feb56f4db2d9181a2",
+  "manifest_sha256": "01ea908bb7496573ba1ef8601191e927169051f15c0d63071aef013d1bc5468e",
   "prior_runtime_sha256": "063c4c11bbaec72442cfc8fe2770eac7ca0496ce5079c858c122f92d8b9b581b",
   "prior_converter_sha256": "2a2c0ec7d55f7fab74202bfbcd881444cbd802e8a380aa31c25250887fbbc055",
   "converter_sha256": "e08bed4234090e9e53d93caf23109d881228901de9c46e6f965cfb6ca090851a",
@@ -12,6 +12,6 @@
   "owner_decision": "https://github.com/vanderpol/scap-ng/issues/8#issuecomment-6587857027",
   "historical_sources_or_proofs_modified": false,
   "prior_semantic_pack_sha256": "e489a14931b627e67c20724b82fc6b959e3bbf396da07e86cd51d47a08ee915a",
-  "semantic_pack_sha256": "fd3bd7afb7ecf8a1a729c3124b4c15ea8e4379e06ab9047c278cb56168f6a56f",
+  "semantic_pack_sha256": "e310e0592f3df28a68b30d4b532b2b2696cf461471ec596799ae4b376f3cba89",
   "semantic_pack_change": "frozen schema digest provenance only; capability and behavior contracts unchanged; native discovery producer added"
 }
