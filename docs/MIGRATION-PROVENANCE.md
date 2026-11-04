@@ -37,3 +37,14 @@ remains open.
 - Research code removal, workflow deletion and symlink rewrites still require
   separate reviewed changes. Canonical schema flattening has been qualified.
 
+
+## Approved native discovery follow-up — Issue #12
+
+The original imports and hash receipts above are preserved as history. The
+[approved discovery follow-up](NATIVE-INPUT-DISCOVERY-RECEIPT.json) allowlists
+only the converter's derived discovery emission and the presence traversal
+correction for real record members named like metadata. The new pure authoring
+index is written against the approved public contract. Generator helper bytes,
+semantic contract JSON, unrelated runtime sources and original-source goldens
+remain pinned. This is a bounded adaptation, not an assertion that all runtime
+files remain byte-for-byte original copies.

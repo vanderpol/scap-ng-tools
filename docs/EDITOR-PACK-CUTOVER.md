@@ -68,3 +68,32 @@ is approved. It is **not** a scanner result or proof authority.
   platform/capability test-data semantics, and authoring UI behavior are separate
   extension work; this exporter carries their frozen schema vocabulary without
   implementing UI behavior.
+
+## Native discovery amendment candidate — 2026-11-02 (Issue #12)
+
+The owner-approved [native Input discovery amendment](https://github.com/vanderpol/scap-ng/issues/8#issuecomment-6587857027)
+uses canonical schema commit `f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b`.
+Its complete 145-file JSON family hash is
+`63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5`.
+Grouped Item requirements, 100 mappings and Result wire are preserved.
+
+The 236-resource inventory has **two changed resources**, the Rule and
+Assessment Result schemas; all other 234 resources are byte-identical to the
+preceding public pack.
+[Resource comparison](NATIVE-INPUT-DISCOVERY-PACK.json) and
+[code/schema provenance](NATIVE-INPUT-DISCOVERY-RECEIPT.json) preserve prior pins.
+The new manifest SHA256 is
+`ab46bd24275111122cefaa047ae94785796d4d58de3639fb6e649bbc08585986`.
+
+The pure derivation helper indexes value/presence references, skips explicit
+literal payloads, and preserves real record members named like metadata or
+expression operators. It is an index, not a substitute for semantic validation.
+The existing presence checker now visits those real member predicates too;
+optional consumption still requires positive guard dominance. No values or
+runtime binding outcomes are invented. Source Rule maps may be omitted and
+are compiled mechanically; explicit maps require complete semantic agreement.
+
+Local qualification: 29 public tools tests PASS with all four pinned original
+ZIPs, the exact schema and official OVAL checkout (no skipped tests). Original
+535-Rule inventory/conversion goldens remain unchanged. Hosted CI receipts follow
+this candidate; it is not a release or scanner qualification.
