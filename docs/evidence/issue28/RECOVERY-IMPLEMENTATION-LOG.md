@@ -40,7 +40,11 @@ current ledger does not yet admit that function in the Assessment Variable
 schema, so count Rules remain **blocked pending canonical schema/compiler
 admission**. Independent vectors now cover zero, empty-string, duplicate,
 and error/unknown populations; no ledger count is presented as converted or
-proved.
+proved. The isolated semantic validator also enforces the owner-directed
+three-function contract (numeric arithmetic widening, literal-delimiter split,
+and signed-32-bit substring) when a future active schema admits it. It rejects
+implicit string/number casts and malformed options; the pinned Assessment
+schema still rejects these calls before semantic admission.
 
 ## Ordered float comparisons
 

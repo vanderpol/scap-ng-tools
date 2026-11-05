@@ -153,7 +153,10 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
         }.items():
             if constructs & names:
                 feature_rules[key].add(rule['source_rule'])
-        primary_message = (rule.get('blockers') or [{}])[0].get('message', '')
+        if rule.get('status') != 'blocked':
+            continue
+        primary_problem = (rule.get('blockers') or [{}])[0]
+        primary_message = primary_problem.get('message', '')
         if primary_message.startswith('unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken'):
             primary_feature_rules['access_token'] += 1
         if primary_message.startswith('unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_test'):
@@ -161,7 +164,7 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
         if primary_message.startswith('unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object'):
             primary_feature_rules['legacy_wmi_object'] += 1
         if (primary_message == 'unsupported function: count' or
-                issue_key(blockers[0]) ==
+                issue_key(primary_problem) ==
                 ('schema-semantic', 'native function contract admission: count')):
             primary_feature_rules['count'] += 1
     diagnostic_stats = {

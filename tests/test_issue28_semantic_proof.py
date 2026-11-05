@@ -2,6 +2,7 @@
 import sys
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'tools'))
 from issue28_semantics import (Outcome, arithmetic, concat, count, flatten_components,
@@ -87,6 +88,50 @@ class RecoveryFunctionBoundary(unittest.TestCase):
             f'<substring xmlns="{OVAL}" substring_start="1.0" substring_length="1"><literal_component datatype="string">x</literal_component></substring>')
         with self.assertRaisesRegex(ValueError, 'xsd:int'):
             visitor.function(bad)
+
+class NativeFunctionContractSemantics(unittest.TestCase):
+    class _NoSchemaErrors:
+        @staticmethod
+        def iter_errors(_declaration):
+            return iter(())
+
+    @staticmethod
+    def _literal(datatype, value):
+        return {'literal': {'datatype': datatype, 'value': value}}
+
+    def _validate(self, declaration):
+        from scap_ng_tools.converter._v04_semantic.v04_variable_expressions import (
+            assessment_variable_expressions)
+        assessment = {'variables': {'result-variable': declaration}}
+        with patch('scap_ng_tools.converter._v04_semantic.v04_variable_expressions.declaration_validator',
+                   return_value=self._NoSchemaErrors()):
+            return assessment_variable_expressions(assessment)
+
+    def test_owner_function_subset_preserves_numeric_widening_and_string_results(self):
+        arithmetic = {'function': {'name': 'arithmetic', 'arguments': [
+            self._literal('integer', 2), self._literal('float', 1.5)],
+            'options': {'arithmetic_operation': 'multiply'}}}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'float',
+                                         'expression': arithmetic})['result-variable'], 'float')
+        split = {'function': {'name': 'split', 'arguments': [self._literal('string', 'a,,b')],
+                              'options': {'delimiter': ','}}}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
+                                         'expression': split})['result-variable'], 'string')
+        substring = {'function': {'name': 'substring', 'arguments': [self._literal('string', 'abc')],
+                                  'options': {'substring_start': 1, 'substring_length': 2}}}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
+                                         'expression': substring})['result-variable'], 'string')
+
+    def test_owner_function_subset_rejects_implicit_casts_and_bad_options(self):
+        numeric_split = {'function': {'name': 'split', 'arguments': [self._literal('integer', 2)],
+                                      'options': {'delimiter': ','}}}
+        with self.assertRaisesRegex(ValueError, 'requires string operands'):
+            self._validate({'kind': 'local', 'datatype': 'string', 'expression': numeric_split})
+        bad_substring = {'function': {'name': 'substring', 'arguments': [self._literal('string', 'abc')],
+                                      'options': {'substring_start': 1.0, 'substring_length': 2}}}
+        with self.assertRaisesRegex(ValueError, 'signed 32-bit'):
+            self._validate({'kind': 'local', 'datatype': 'string', 'expression': bad_substring})
+
 
 class AbsencePrecedence(unittest.TestCase):
     def test_existence_none_drops_comparator_with_warning(self):

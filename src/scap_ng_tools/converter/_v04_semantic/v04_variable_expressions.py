@@ -1,7 +1,8 @@
 """Decision 29: closed native expression/type validation, never value execution.
 
-The isolated canonical-call candidate is deliberately not imported. Collection
-flags, multiplicities and runtime lexical-cast failures are not evaluated here.
+The active function branch is intentionally limited to the owner-directed
+arithmetic, split, and substring contract. Collection flags, multiplicities,
+and runtime lexical-cast failures are not evaluated here.
 """
 from functools import lru_cache
 import json
@@ -86,6 +87,39 @@ def assessment_variable_expressions(assessment):
             if field not in fields:
                 raise ValueError('unknown collected-field projection: ' + field)
             return {'record'} if field in records else set(fields[field])
+        if op == 'function':
+            if (not isinstance(value, dict) or set(value) != {'name', 'arguments', 'options'}):
+                raise ValueError('function expression requires name, arguments, and options')
+            name, arguments, options = value['name'], value['arguments'], value['options']
+            if not isinstance(arguments, list) or not isinstance(options, dict):
+                raise ValueError('function expression has invalid arguments/options')
+            if name == 'arithmetic':
+                if len(arguments) < 2 or set(options) != {'arithmetic_operation'}:
+                    raise ValueError('arithmetic requires two arguments and explicit operation')
+                if options['arithmetic_operation'] not in ('add', 'multiply'):
+                    raise ValueError('unsupported arithmetic operation')
+                domains = [expression(argument) for argument in arguments]
+                if any(not domain or not domain <= {'integer', 'float'} for domain in domains):
+                    raise ValueError('arithmetic requires numeric operands')
+                return {'float'} if any('float' in domain for domain in domains) else {'integer'}
+            if name in ('split', 'substring'):
+                if len(arguments) != 1:
+                    raise ValueError(name + ' requires one argument')
+                if name == 'split':
+                    if set(options) != {'delimiter'} or not isinstance(options['delimiter'], str):
+                        raise ValueError('split requires a literal string delimiter')
+                else:
+                    required = {'substring_start', 'substring_length'}
+                    if set(options) != required:
+                        raise ValueError('substring requires explicit signed integer options')
+                    if any(isinstance(options[key], bool) or not isinstance(options[key], int)
+                           or not -2147483648 <= options[key] <= 2147483647 for key in required):
+                        raise ValueError('substring options must be signed 32-bit integers')
+                domain = expression(arguments[0])
+                if not domain or not domain <= {'string'}:
+                    raise ValueError(name + ' requires string operands')
+                return {'string'}
+            raise ValueError('unsupported native Variable function: ' + str(name))
         if op == 'unique':
             domains = expression(value, declared)
             if 'record' in domains:
