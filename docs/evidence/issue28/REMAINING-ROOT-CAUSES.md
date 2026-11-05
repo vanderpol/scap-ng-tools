@@ -25,3 +25,12 @@ manual-only, 327 genuinely blocked, 209 intentionally excluded, and 0
 independently proved** out of 8,892 Rules. YAML/schema admission and compilation
 are not proof; independent scanner/source-semantic proof remains outstanding
 for every converted Rule.
+
+## Verification status
+
+The complete ledger performs pinned-schema validation and source tracing, but
+this tools branch's `direct04 --compile` mode is explicitly not migrated (the
+CLI rejects it before conversion). Therefore all 6,775 automated Rules remain
+**converted but unproved**; none is promoted by schema validity alone. Scanner
+execution and independent OVAL-result comparison are also not available in
+this ledger run.
