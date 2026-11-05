@@ -23,9 +23,9 @@ class Issue28CompleteLedger(unittest.TestCase):
             'automated_converted_proved', 'automated_converted_unproved',
             'manual_only', 'genuinely_blocked', 'intentionally_excluded')), 8892)
         self.assertEqual(classification['automated_converted_proved'], 0)
-        self.assertEqual(classification['automated_converted_unproved'], 6724)
+        self.assertEqual(classification['automated_converted_unproved'], 6728)
         self.assertEqual(classification['manual_only'], 1581)
-        self.assertEqual(classification['genuinely_blocked'], 378)
+        self.assertEqual(classification['genuinely_blocked'], 374)
         self.assertEqual(classification['intentionally_excluded'], 209)
 
     def test_deprecated_and_supported_wmi_stats_are_separate(self):

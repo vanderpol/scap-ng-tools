@@ -3,17 +3,12 @@
     {
       "category": "unsupported-construct",
       "message": "unbound external Variable or unsupported possible_restriction",
-      "rules": 520
+      "rules": 500
     },
     {
       "category": "unsupported-capability",
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
       "rules": 458
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "unsupported function: count",
-      "rules": 365
     },
     {
       "category": "unsupported-capability",
@@ -147,11 +142,6 @@
     },
     {
       "category": "unsupported-construct",
-      "message": "XCCDF Value constraints require a supported Parameter adapter",
-      "rules": 4
-    },
-    {
-      "category": "unsupported-construct",
       "message": "conflicting Benchmark Parameter binding: javapermissions-localcomputer-var-parameter",
       "rules": 3
     },
@@ -183,6 +173,11 @@
     {
       "category": "unsupported-construct",
       "message": "conflicting Benchmark Parameter binding: mss-disableipsourcerouting-against-packet-spoofing-parameter",
+      "rules": 3
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "existing canonical calls require independent validation",
       "rules": 3
     },
     {
@@ -232,6 +227,21 @@
     },
     {
       "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
       "rules": 1
     },
@@ -248,6 +258,256 @@
     {
       "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: Native Variable expression: Variable grub-superusers-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -352,6 +612,21 @@
     },
     {
       "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: Native Variable expression: Variable count-of-captured-unique-pool-names-assigned-website-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/application-pools-rapid-0-website-managed-sv-218778-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)",
       "rules": 1
     },
@@ -376,8 +651,53 @@
       "rules": 1
     },
     {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'independent.shellcommand', 'shell': 'powershell', 'command': 'Get-DnsServerForwarder | ForEach-Object {$_.IPAddress.IPAddressToString}', 'error_if_exit_status_not_0': False, 'error_if_stderr_exists': False}, 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json: Native Variable expression: Variable the-number-of-dns-server-forwarders-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'independent.shellcommand', 'shell': 'powershell', 'command': 'Get-DnsServerForwarder | ForEach-Object {$_.IPAddress.IPAddressToString}', 'error_if_exit_status_not_0': False, 'error_if_stderr_exists': False}, 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-list-of-online-network-adapter-interface-indexes-object', 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json: Native Variable expression: Variable the-number-of-online-network-adapter-interface-indexes-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-list-of-online-network-adapter-interface-indexes-object', 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
       "category": "unsupported-construct",
       "message": "Assessment Input function composition requires a supported typed expression",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -438,6 +758,71 @@
     {
       "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: Native Variable expression: Variable count-of-unique-gids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -542,6 +927,46 @@
     },
     {
       "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: Native Variable expression: Variable count-of-unique-gids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/rhel-9-allocate-audit-of-audit-records-sv-258155-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
       "rules": 1
     },
@@ -549,11 +974,21 @@
       "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/rhel-9-allocate-audit-of-audit-records-sv-258155-assessment.json: Native Variable expression: Variable audit-partition-total-size-in-bytes-variable/expression: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
       "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
     }
   ],
   "baseline": {
-    "blocked": 378,
-    "converted": 6724,
+    "blocked": 374,
+    "converted": 6728,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "total": 8892
@@ -615,17 +1050,18 @@
       "automated_converted": 168,
       "blocked": 2,
       "blocker_categories": {
-        "schema-semantic": 1,
-        "unsupported-construct": 1
+        "schema-semantic": 2
       },
       "converted": 168,
       "filename": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 17,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/amazon-linux-2023-record-storage-facility-sv-274067-assessment.json: Native Variable expression: Variable audit-partition-total-size-in-bytes-variable/expression: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/amazon-linux-2023-record-storage-facility-sv-274067-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas": 1,
-        "unsupported function: count": 1
+        "authoring/direct-slice/assessments/amazon-linux-2023-record-storage-facility-sv-274067-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 187,
@@ -793,16 +1229,19 @@
       "automated_converted": 173,
       "blocked": 2,
       "blocker_categories": {
-        "unsupported-construct": 2
+        "schema-semantic": 1,
+        "unsupported-construct": 1
       },
       "converted": 173,
       "filename": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 13,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1,
-        "unsupported function: count": 1
+        "unsupported acquisition parameter comparison/type": 1
       },
       "scope": "in_scope",
       "source_rules": 188,
@@ -812,16 +1251,19 @@
       "automated_converted": 176,
       "blocked": 2,
       "blocker_categories": {
-        "unsupported-construct": 2
+        "schema-semantic": 1,
+        "unsupported-construct": 1
       },
       "converted": 176,
       "filename": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 16,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1,
-        "unsupported function: count": 1
+        "unsupported acquisition parameter comparison/type": 1
       },
       "scope": "in_scope",
       "source_rules": 194,
@@ -831,14 +1273,24 @@
       "automated_converted": 32,
       "blocked": 5,
       "blocker_categories": {
-        "unsupported-construct": 5
+        "schema-semantic": 5
       },
       "converted": 32,
       "filename": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 5,
       "primary_blockers": {
-        "unsupported function: count": 5
+        "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 42,
@@ -861,14 +1313,24 @@
       "automated_converted": 32,
       "blocked": 5,
       "blocker_categories": {
-        "unsupported-construct": 5
+        "schema-semantic": 5
       },
       "converted": 32,
       "filename": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 5,
       "primary_blockers": {
-        "unsupported function: count": 5
+        "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 42,
@@ -878,14 +1340,24 @@
       "automated_converted": 24,
       "blocked": 5,
       "blocker_categories": {
-        "unsupported-construct": 5
+        "schema-semantic": 5
       },
       "converted": 24,
       "filename": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 6,
       "primary_blockers": {
-        "unsupported function: count": 5
+        "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 35,
@@ -895,14 +1367,24 @@
       "automated_converted": 24,
       "blocked": 5,
       "blocker_categories": {
-        "unsupported-construct": 5
+        "schema-semantic": 5
       },
       "converted": 24,
       "filename": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 6,
       "primary_blockers": {
-        "unsupported function: count": 5
+        "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 35,
@@ -1125,9 +1607,9 @@
       "automated_converted": 26,
       "blocked": 7,
       "blocker_categories": {
-        "schema-semantic": 2,
+        "schema-semantic": 3,
         "unsupported-capability": 4,
-        "unsupported-construct": 2
+        "unsupported-construct": 1
       },
       "converted": 26,
       "filename": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
@@ -1137,6 +1619,9 @@
         "Variable source requires one var_ref; Sets/Filters unsupported": 1,
         "authoring/direct-slice/assessments/application-pools-rapid-0-website-managed-sv-218778-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)": 1,
         "authoring/direct-slice/assessments/idle-time-out-monitor-for-website-enabled-sv-218762-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)": 1,
+        "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: Native Variable expression: Variable count-of-captured-unique-pool-names-assigned-website-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874102": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874103": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874205": 1,
@@ -1145,7 +1630,6 @@
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875202": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878102": 1,
-        "unsupported function: count": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
       },
       "scope": "in_scope",
@@ -1505,33 +1989,36 @@
       "automated_converted": 39,
       "blocked": 2,
       "blocker_categories": {
-        "unsupported-construct": 2
+        "schema-semantic": 2
       },
       "converted": 39,
       "filename": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 40,
       "primary_blockers": {
-        "unsupported function: count": 2
+        "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json: Native Variable expression: Variable the-number-of-dns-server-forwarders-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'independent.shellcommand', 'shell': 'powershell', 'command': 'Get-DnsServerForwarder | ForEach-Object {$_.IPAddress.IPAddressToString}', 'error_if_exit_status_not_0': False, 'error_if_stderr_exists': False}, 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'independent.shellcommand', 'shell': 'powershell', 'command': 'Get-DnsServerForwarder | ForEach-Object {$_.IPAddress.IPAddressToString}', 'error_if_exit_status_not_0': False, 'error_if_stderr_exists': False}, 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json: Native Variable expression: Variable the-number-of-online-network-adapter-interface-indexes-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-list-of-online-network-adapter-interface-indexes-object', 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-list-of-online-network-adapter-interface-indexes-object', 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 81,
       "source_sha256": "f674b67e74acbd3037093d50e33dc20765bd9d45a6c9ed2be5d463d009a6c6b8"
     },
     {
-      "automated_converted": 167,
-      "blocked": 4,
+      "automated_converted": 169,
+      "blocked": 2,
       "blocker_categories": {
-        "unsupported-construct": 4
+        "unsupported-construct": 2
       },
-      "converted": 167,
+      "converted": 169,
       "filename": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 72,
       "primary_blockers": {
         "Assessment Input function composition requires a supported typed expression": 1,
-        "XCCDF Value constraints require a supported Parameter adapter": 2,
-        "unbound external Variable or unsupported possible_restriction": 3,
+        "existing canonical calls require independent validation": 1,
+        "unbound external Variable or unsupported possible_restriction": 1,
         "unsupported State field/namespace": 1
       },
       "scope": "in_scope",
@@ -1542,16 +2029,21 @@
       "automated_converted": 321,
       "blocked": 3,
       "blocker_categories": {
-        "unsupported-construct": 3
+        "schema-semantic": 2,
+        "unsupported-construct": 1
       },
       "converted": 321,
       "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 52,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1,
-        "unsupported function: count": 2
+        "unsupported acquisition parameter comparison/type": 1
       },
       "scope": "in_scope",
       "source_rules": 376,
@@ -1561,8 +2053,8 @@
       "automated_converted": 398,
       "blocked": 10,
       "blocker_categories": {
-        "schema-semantic": 6,
-        "unsupported-construct": 4
+        "schema-semantic": 9,
+        "unsupported-construct": 1
       },
       "converted": 398,
       "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
@@ -1571,6 +2063,12 @@
       "primary_blockers": {
         "authoring/direct-slice/assessments/ol-9-allocate-audit-worth-of-audit-records-sv-271596-assessment.json: Native Variable expression: Variable audit-partition-total-size-in-bytes-variable/expression: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-9-allocate-audit-worth-of-audit-records-sv-271596-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: Native Variable expression: Variable count-of-unique-gids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
@@ -1581,26 +2079,25 @@
         "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
-        "unsupported Test matching/absence combination": 1,
-        "unsupported function: count": 3
+        "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "unsupported Test matching/absence combination": 1
       },
       "scope": "in_scope",
       "source_rules": 448,
       "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d"
     },
     {
-      "automated_converted": 183,
-      "blocked": 3,
+      "automated_converted": 185,
+      "blocked": 1,
       "blocker_categories": {
-        "unsupported-construct": 3
+        "unsupported-construct": 1
       },
-      "converted": 183,
+      "converted": 185,
       "filename": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 58,
       "primary_blockers": {
-        "XCCDF Value constraints require a supported Parameter adapter": 2,
-        "unbound external Variable or unsupported possible_restriction": 2,
         "unsupported State field/namespace": 1
       },
       "scope": "in_scope",
@@ -1611,14 +2108,19 @@
       "automated_converted": 329,
       "blocked": 8,
       "blocker_categories": {
-        "schema-semantic": 5,
-        "unsupported-construct": 3
+        "schema-semantic": 7,
+        "unsupported-construct": 1
       },
       "converted": 329,
       "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 32,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
@@ -1630,8 +2132,7 @@
         "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1,
-        "unsupported function: count": 2
+        "unsupported acquisition parameter comparison/type": 1
       },
       "scope": "in_scope",
       "source_rules": 369,
@@ -1641,8 +2142,8 @@
       "automated_converted": 408,
       "blocked": 10,
       "blocker_categories": {
-        "schema-semantic": 6,
-        "unsupported-construct": 4
+        "schema-semantic": 9,
+        "unsupported-construct": 1
       },
       "converted": 408,
       "filename": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
@@ -1651,6 +2152,12 @@
       "primary_blockers": {
         "authoring/direct-slice/assessments/rhel-9-allocate-audit-of-audit-records-sv-258155-assessment.json: Native Variable expression: Variable audit-partition-total-size-in-bytes-variable/expression: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-9-allocate-audit-of-audit-records-sv-258155-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: Native Variable expression: Variable count-of-unique-gids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
@@ -1661,8 +2168,9 @@
         "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
-        "unsupported Test matching/absence combination": 1,
-        "unsupported function: count": 3
+        "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "unsupported Test matching/absence combination": 1
       },
       "scope": "in_scope",
       "source_rules": 445,
@@ -1742,16 +2250,18 @@
       "automated_converted": 193,
       "blocked": 2,
       "blocker_categories": {
-        "unsupported-construct": 2
+        "schema-semantic": 1,
+        "unsupported-construct": 1
       },
       "converted": 193,
       "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 30,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1,
-        "unsupported function: count": 1
+        "unsupported acquisition parameter comparison/type": 1
       },
       "scope": "in_scope",
       "source_rules": 225,
@@ -1760,15 +2270,15 @@
   ],
   "classification": {
     "automated_converted_proved": 0,
-    "automated_converted_unproved": 6724,
-    "genuinely_blocked": 378,
+    "automated_converted_unproved": 6728,
+    "genuinely_blocked": 374,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "proof_note": "No Rules are independently proved by this authoring ledger."
   },
   "diagnostic_stats": {
     "count_function": {
-      "primary_blocker_rules": 37,
+      "primary_blocker_rules": 0,
       "source_rules_nonexcluded": 37
     },
     "deprecated_oval_tests": {
@@ -1821,28 +2331,6 @@
       ],
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
       "rules": 125
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule",
-          "title": "Amazon Linux 2023 must ensure all interactive users have unique User IDs (UIDs)."
-        },
-        {
-          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-260543r958482_rule",
-          "title": "Ubuntu 22.04 LTS must uniquely identify interactive users."
-        },
-        {
-          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-270720r1066649_rule",
-          "title": "Ubuntu 24.04 LTS must uniquely identify interactive users."
-        }
-      ],
-      "message": "unsupported function: count",
-      "rules": 37
     },
     {
       "category": "unsupported-construct",
@@ -2040,28 +2528,6 @@
         }
       ],
       "message": "unsupported Test matching/absence combination",
-      "rules": 4
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-221681r1015177_rule",
-          "title": "The Oracle Linux operating system must be configured so that passwords for new users are restricted to a 24 hours/1 day minimum lifetime."
-        },
-        {
-          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-221683r1038967_rule",
-          "title": "The Oracle Linux operating system must be configured so that passwords for new users are restricted to a 60-day maximum lifetime."
-        },
-        {
-          "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-204418r982188_rule",
-          "title": "The Red Hat Enterprise Linux operating system must be configured so that passwords for new users are restricted to a 24 hours/1 day minimum lifetime."
-        }
-      ],
-      "message": "XCCDF Value constraints require a supported Parameter adapter",
       "rules": 4
     },
     {
@@ -2282,6 +2748,18 @@
       "category": "schema-semantic",
       "examples": [
         {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule",
+          "title": "Amazon Linux 2023 must ensure all interactive users have unique User IDs (UIDs)."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
           "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
           "source_rule": "xccdf_mil.disa.stig_rule_SV-219147r958472_rule",
           "title": "Ubuntu operating systems booted with a BIOS must require authentication upon booting into single-user and maintenance modes."
@@ -2300,6 +2778,270 @@
         }
       ],
       "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260543r958482_rule",
+          "title": "Ubuntu 22.04 LTS must uniquely identify interactive users."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270720r1066649_rule",
+          "title": "Ubuntu 24.04 LTS must uniquely identify interactive users."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule",
+          "title": "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215812r1137875_rule",
+          "title": "The Cisco router must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
+          "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215838r1015295_rule",
+          "title": "The Cisco router must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215854r1156415_rule",
+          "title": "The Cisco router must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220518r960735_rule",
+          "title": "The Cisco switch must be configured to limit the number of concurrent management sessions to an organization-defined number."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220523r1137875_rule",
+          "title": "The Cisco switch must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
+          "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220549r991924_rule",
+          "title": "The Cisco switch must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220565r1195273_rule",
+          "title": "The Cisco switch must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215662r1192908_rule",
+          "title": "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215667r1137875_rule",
+          "title": "The Cisco router must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
+          "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215693r991832_rule",
+          "title": "The Cisco router must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215709r1205827_rule",
+          "title": "The Cisco router must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule",
+          "title": "The Cisco switch must be configured to limit the number of concurrent management sessions to an organization-defined number."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule",
+          "title": "The Cisco switch must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
+          "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220601r1015287_rule",
+          "title": "The Cisco switch must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220617r1205840_rule",
+          "title": "The Cisco switch must be configured to use at least two authentication servers to authenticate users prior to granting administrative access."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2559,6 +3301,18 @@
       "examples": [
         {
           "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
+          "title": "The IIS 10.0 website must have a unique application pool."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
           "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule",
           "title": "The application pools rapid fail protection settings for each IIS 10.0 website must be managed."
         }
@@ -2627,6 +3381,30 @@
       "rules": 1
     },
     {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259341r1156949_rule",
+          "title": "The Windows DNS Server must prohibit recursion on authoritative name servers for which forwarders have not been configured for external queries."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'independent.shellcommand', 'shell': 'powershell', 'command': 'Get-DnsServerForwarder | ForEach-Object {$_.IPAddress.IPAddressToString}', 'error_if_exit_status_not_0': False, 'error_if_stderr_exists': False}, 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259374r1156950_rule",
+          "title": "The Windows DNS Server's IP address must be statically defined and configured locally on the server."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-list-of-online-network-adapter-interface-indexes-object', 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
       "category": "unsupported-construct",
       "examples": [
         {
@@ -2636,6 +3414,30 @@
         }
       ],
       "message": "Assessment Input function composition requires a supported typed expression",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248634r991589_rule",
+          "title": "For OL 8 systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248701r958422_rule",
+          "title": "OL 8 duplicate User IDs (UIDs) must not exist for interactive users."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2708,6 +3510,66 @@
         }
       ],
       "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271832r1092208_rule",
+          "title": "OL 9 duplicate User IDs (UIDs) must not exist for interactive users."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271835r1092217_rule",
+          "title": "OL 9 groups must have unique Group ID (GID)."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271861r1092295_rule",
+          "title": "OL 9 systems using Domain Name Servers (DNS) resolution must have at least two name servers configured."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230316r1044801_rule",
+          "title": "For RHEL 8 systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230371r1017183_rule",
+          "title": "RHEL 8 duplicate User IDs (UIDs) must not exist for interactive users."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2835,11 +3697,59 @@
       "examples": [
         {
           "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-257948r1045004_rule",
+          "title": "RHEL 9 systems using Domain Name Servers (DNS) resolution must have at least two name servers configured."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-258045r958482_rule",
+          "title": "RHEL 9 duplicate User IDs (UIDs) must not exist for interactive users."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-258061r958482_rule",
+          "title": "RHEL 9 groups must have unique Group ID (GID)."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
           "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
           "title": "RHEL 9 must allocate audit record storage capacity to store at least one week's worth of audit records."
         }
       ],
       "message": "authoring/direct-slice/assessments/rhel-9-allocate-audit-of-audit-records-sv-258155-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-252935r991589_rule",
+          "title": "For TOSS systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured."
+        }
+      ],
+      "message": "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     }
   ],
@@ -2861,7 +3771,7 @@
       "root_cause": "check_import_export"
     },
     {
-      "primary_rules": 71,
+      "primary_rules": 34,
       "reason": "Recover only source-backed forms already admitted by the 0.4 grammar; retain OVAL Cartesian/status/casting behavior.",
       "root_cause": "variables_and_functions"
     },
@@ -2911,9 +3821,9 @@
       "total": 4
     },
     "external_variable": {
-      "blocked": 170,
-      "converted": 285,
-      "total": 511
+      "blocked": 162,
+      "converted": 289,
+      "total": 507
     },
     "local_variable": {
       "blocked": 258,
