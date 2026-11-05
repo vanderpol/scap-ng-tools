@@ -3984,5 +3984,10 @@
       "proof": "source inventory; no independent Rule proof",
       "status": "partially_implemented"
     }
-  ]
+  ],
+  "operation_coverage_summary": {
+    "intentionally_excluded": 12,
+    "native_language_gap": 3,
+    "partially_implemented": 351
+  }
 }

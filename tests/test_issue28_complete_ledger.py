@@ -66,6 +66,11 @@ class Issue28CompleteLedger(unittest.TestCase):
                           if row['matrix_status'] == 'unclassified'])
         self.assertEqual(operations['end']['matrix_status'], 'partially_implemented')
         self.assertEqual(operations['current_state']['category'], 'OVAL element')
+        self.assertEqual(self.matrix['operation_coverage_summary'], {
+            'intentionally_excluded': 12,
+            'native_language_gap': 3,
+            'partially_implemented': 351,
+        })
 
 
 if __name__ == '__main__':

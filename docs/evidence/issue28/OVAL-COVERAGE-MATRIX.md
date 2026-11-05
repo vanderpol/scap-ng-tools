@@ -13,6 +13,10 @@ status; schema acceptance is not inferred from the inventory alone.
 
 ## Status counts in the reviewed matrix
 
+The complete operation inventory is classified as **351 partially implemented**,
+**3 native-language gaps**, and **12 intentionally excluded** names. The
+higher-level feature rows below retain their separate qualification detail.
+
 | Classification | Meaning |
 |---|---|
 | Fully supported and proved | Source-backed implementation plus independent semantic vectors |
