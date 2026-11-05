@@ -56,6 +56,15 @@ nonfinite expected values are covered by exact vectors. The original lexical
 entity, contract identity/hash, and unproved scanner status are retained in
 provenance. Runtime/compiler/scanner equivalence remains unproved.
 
+## Stable blocker accounting
+
+Aggregate primary blocker selection now uses an explicit owner-reviewed root-cause
+priority only when a Rule has multiple schema-semantic diagnostics. This keeps the
+mutually exclusive ledger stable across supported `jsonschema` and `referencing`
+versions without changing source/capability diagnostic order. Raw per-Rule
+diagnostics remain preserved; normalization affects only aggregate classification
+and representative examples.
+
 ## Deliberately not normalized
 
 Multi-component `unique`/`merge` now have an opt-in canonical function-call

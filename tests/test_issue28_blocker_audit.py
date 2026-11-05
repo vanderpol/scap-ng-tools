@@ -22,6 +22,22 @@ class Issue28BlockerAudit(unittest.TestCase):
                                     'message': "foo: {'traversal': {'max_depth': 1}} is not valid under any of the given schemas"}),
                          ('schema-semantic', 'native traversal contract admission'))
 
+    def test_primary_root_is_stable_when_validator_error_order_changes(self):
+        import sys
+        sys.path.insert(0, str(Path(__file__).parents[1] / 'scripts'))
+        from audit_issue28_blockers import primary_blocker
+        count = {'category': 'schema-semantic',
+                 'message': "foo: {'function': {'name': 'count'}} is not valid under any of the given schemas"}
+        split = {'category': 'schema-semantic',
+                 'message': "foo: {'function': {'name': 'split'}} is not valid under any of the given schemas"}
+        self.assertEqual(primary_blocker([split, count]), count)
+        self.assertEqual(primary_blocker([count, split]), count)
+
+        access = {'category': 'unsupported-capability', 'message': 'access'}
+        wmi = {'category': 'unsupported-capability', 'message': 'wmi'}
+        self.assertEqual(primary_blocker([access, wmi]), access)
+        self.assertEqual(primary_blocker([wmi, access]), wmi)
+
     @classmethod
     def setUpClass(cls):
         cls.report = json.loads(REPORT.read_text(encoding='utf-8'))

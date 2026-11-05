@@ -45,6 +45,61 @@ def issue_key(problem):
     return category, message
 
 
+# Validator implementations are free to order independent errors differently.
+# A ledger must not therefore change its mutually-exclusive *primary* root cause
+# merely because jsonschema/referencing was upgraded.  This order is the
+# owner-reviewed Issue #28 triage order; unknown diagnostics remain fail-closed
+# and sort after known roots.  Raw diagnostics are never reordered or discarded.
+_PRIMARY_ISSUE_ORDER = {
+    'unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test': 10,
+    'native function contract admission: count': 20,
+    'XCCDF Value operator requires an explicit constraint adapter': 30,
+    'multiple aggregation components need an approved collection expression': 40,
+    'native function contract admission: split': 60,
+    'unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object': 70,
+    'unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test': 80,
+    'invalid original pattern-path recursion attributes': 90,
+    'native function contract admission: arithmetic': 100,
+    'native Variable declared/derived datatype mismatch': 110,
+    'check-export source/Variable datatype mismatch': 120,
+    'unsupported State field/namespace': 130,
+    'state capability mismatch: oval:navy.navwar.niwcatlantic.scc.nginx:ste:27840004': 140,
+    'native traversal contract admission': 150,
+    'native function contract admission: substring': 160,
+    'Variable cast outside bounded proof': 170,
+    'state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874102': 180,
+    'state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874205': 181,
+    'state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101': 182,
+    'state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:80': 183,
+    'state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:93': 184,
+    'state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180': 185,
+    'Assessment Input function composition requires a supported typed expression': 200,
+}
+
+
+def primary_blocker(blockers):
+    """Select a stable aggregate root without changing raw Rule diagnostics."""
+    if not blockers:
+        return {'category': 'missing', 'message': 'no blocker diagnostic'}
+    # Capability/construct diagnostics retain converter/source order: that
+    # order identifies the first unsupported boundary and is not a validator
+    # artifact.  Only competing schema-semantic diagnostics are normalized,
+    # because their order varies between validator implementations.
+    first_category, _ = issue_key(blockers[0])
+    if first_category != 'schema-semantic':
+        return blockers[0]
+    ranked = []
+    for index, problem in enumerate(blockers):
+        category, message = issue_key(problem)
+        if category != 'schema-semantic':
+            continue
+        ranked.append((_PRIMARY_ISSUE_ORDER.get(message, 10000),
+                       message, index, problem))
+    if not ranked:
+        return blockers[0]
+    return min(ranked, key=lambda row: row[:3])[-1]
+
+
 def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_recovery=True):
     sources = sorted(source_dir.glob('*.zip'))
     if len(sources) != EXPECTED_BENCHMARKS:
@@ -100,12 +155,12 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
             blockers = rule.get('blockers', [])
             if not blockers:
                 blockers = [{'category': 'missing', 'message': 'no blocker diagnostic'}]
-            primary[issue_key(blockers[0])] += 1
+            primary[issue_key(primary_blocker(blockers))] += 1
             for problem in blockers:
                 all_blockers[issue_key(problem)] += 1
             for construct in rule.get('needed_constructs', []):
                 usage[construct][rule['status']] += 1
-            key = issue_key(blockers[0])
+            key = issue_key(primary_blocker(blockers))
             if len(examples[key]) < 3:
                 examples[key].append({
                     'benchmark': source.name,
@@ -155,7 +210,7 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
                 feature_rules[key].add(rule['source_rule'])
         if rule.get('status') != 'blocked':
             continue
-        primary_problem = (rule.get('blockers') or [{}])[0]
+        primary_problem = primary_blocker(rule.get('blockers'))
         primary_message = primary_problem.get('message', '')
         if primary_message.startswith('unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken'):
             primary_feature_rules['access_token'] += 1
