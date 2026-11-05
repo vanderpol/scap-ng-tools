@@ -170,3 +170,145 @@ The converter preserves the exact key/name/traversal intent, but the pinned
 native Registry Object schema admits no traversal member. Removing traversal
 would change the population, so this Rule remains blocked pending coordinated
 schema/compiler/runtime support.
+
+## Deprecated RPM `md5_differs` State
+
+Oracle Linux 7 `SV-221653` reaches this deprecated State shape (the source
+Rule/Test closure is retained in the inventory):
+
+```xml
+<linux:rpmverifyfile_state
+    id="oval:mil.disa.stig.ol7:ste:3860" operator="AND">
+  <linux:md5_differs>fail</linux:md5_differs>
+</linux:rpmverifyfile_state>
+```
+
+The approved mapping uses `filedigest_differs`; inventing a replacement for
+this deprecated RPM field would change the source contract, so the two Rules
+remain intentionally unsupported.
+
+## Unsupported Windows `user_*` capability
+
+Windows 10 `SV-220952` contains a genuine OVAL User Test, not a WMI57 Test:
+
+```xml
+<windows:user_test
+    id="oval:navy.navwar.niwcatlantic.scc.windows:tst:22095201"
+    check_existence="any_exist" check="all">
+  <windows:object object_ref="oval:navy.navwar.niwcatlantic.scc.windows:obj:22095201"/>
+  <windows:state state_ref="oval:navy.navwar.niwcatlantic.scc.windows:ste:22095201"/>
+</windows:user_test>
+```
+
+The current 0.4 contract has `windows.user_sid` and related capabilities, but
+no approved `windows.user` mapping preserving this User Object/State
+population and semantics. No SID-only equivalent is fabricated.
+
+## XCCDF string Value to OVAL binary Variable mismatch
+
+Windows Server 2012 `SV-226276` exports a string XCCDF Value to a binary OVAL
+external Variable:
+
+```xml
+<xccdf:Value id="xccdf_mil.disa.stig_value_audit_use_backup_restore_privilege_var"
+    type="string" operator="equals">
+  <xccdf:value>00</xccdf:value>
+  <xccdf:value selector="disabled">00</xccdf:value>
+  <xccdf:value selector="enabled">01</xccdf:value>
+</xccdf:Value>
+<oval:external_variable id="oval:mil.disa.fso.windows:var:454400"
+    datatype="binary">
+  <oval:possible_value hint="disabled">00</oval:possible_value>
+  <oval:possible_value hint="enabled">01</oval:possible_value>
+</oval:external_variable>
+```
+
+The converter preserves both source datatypes and blocks the binding; it does
+not silently reinterpret lexical text as binary.
+
+## Declared/derived Variable datatype mismatch
+
+IIS 10.0 Site `SV-218762` declares an integer Variable whose concatenated
+regex captures derive strings:
+
+```xml
+<oval:local_variable id="oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21876201"
+    datatype="int">
+  <oval:concat>
+    <oval:regex_capture pattern="(\d\d):\d\d:\d\d">
+      <oval:object_component object_ref="oval:...:obj:21876202"
+          item_field="result"/>
+    </oval:regex_capture>
+    <oval:regex_capture pattern="\d\d:(\d\d):\d\d">
+      <oval:object_component object_ref="oval:...:obj:21876202"
+          item_field="result"/>
+    </oval:regex_capture>
+  </oval:concat>
+</oval:local_variable>
+```
+
+No numeric cast is inferred. A faithful native contract needs explicit cast
+and lexical-error propagation semantics.
+
+## Variable cast at an acquisition boundary
+
+IIS 10.0 Server `SV-218814` passes a derived integer-declared Variable to a
+string shell-command acquisition:
+
+```xml
+<independent:shellcommand_object
+    id="oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:obj:21881401">
+  <independent:shell>powershell</independent:shell>
+  <independent:command
+      var_ref="oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:var:21881401"/>
+  <independent:pattern/>
+</independent:shellcommand_object>
+```
+
+The source Variable expression is string-producing while declared `int`; the
+converter rejects the acquisition cast rather than inserting a coercion.
+
+## Assessment Input function composition
+
+Oracle Linux 7 `SV-221718` exports an organizational Value and then uses it
+inside OVAL `substring` Variables:
+
+```xml
+<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+  <xccdf:check-export value-id="xccdf_mil.disa.stig_value_var_accounts_user_umask"
+      export-name="oval:mil.disa.stig.ol7:var:4211"/>
+  <xccdf:check-content-ref name="oval:mil.disa.stig.ol7:def:518"/>
+</xccdf:check>
+<oval:local_variable id="oval:mil.disa.stig.ol7:var:4212" datatype="int">
+  <oval:substring substring_start="1" substring_length="1">
+    <oval:variable_component var_ref="oval:mil.disa.stig.ol7:var:4211"/>
+  </oval:substring>
+</oval:local_variable>
+```
+
+The current native Input contract cannot be an operand of a composed Variable
+expression. Direct typed Input binding is preserved; composed Input remains a
+genuine language-contract gap.
+
+## IIS/NGINX capability mismatch
+
+F5 NGINX `SV-278400` contains a Unix `file_test` whose referenced Object and
+State are independent `shellcommand` nodes:
+
+```xml
+<unix:file_test id="oval:navy.navwar.niwcatlantic.scc.nginx:tst:27840004"
+    check_existence="at_least_one_exists" check="all">
+  <unix:object object_ref="oval:...:obj:27840004"/>
+  <unix:state state_ref="oval:...:ste:27840004"/>
+</unix:file_test>
+<independent:shellcommand_object id="oval:...:obj:27840004">
+  <independent:shell>bash</independent:shell>
+  <independent:command var_ref="oval:...:var:27840001"/>
+</independent:shellcommand_object>
+<independent:shellcommand_state id="oval:...:ste:27840004">
+  <independent:subexpression operation="pattern match">\S+</independent:subexpression>
+</independent:shellcommand_state>
+```
+
+The family/capability mismatch is source-specific; mapping it to an unrelated
+native collector would change the evidence population.
