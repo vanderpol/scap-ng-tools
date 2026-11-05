@@ -52,6 +52,10 @@ class Issue28CompleteLedger(unittest.TestCase):
         operations = {row['name']: row for row in self.inventory['operations']}
         for name in ('count', 'split', 'substring', 'arithmetic'):
             self.assertEqual(operations[name]['matrix_status'], 'partially_implemented')
+        self.assertEqual(operations['filter']['category'], 'Object operation')
+        self.assertEqual(operations['set']['category'], 'Object operation')
+        self.assertEqual(operations['local_variable']['category'], 'Variable construct')
+        self.assertEqual(operations['registry_test']['category'], 'Test capability')
 
 
 if __name__ == '__main__':

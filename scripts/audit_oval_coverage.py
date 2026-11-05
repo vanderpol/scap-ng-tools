@@ -175,7 +175,8 @@ def main():
         if match is None:
             match = next((value for value in by_feature.values()
                           if value['feature'].split()[-1] == name), None)
-        operations.append({**row, 'name': name, 'attributes': sorted(row['attributes']),
+        operations.append({**row, 'name': name, 'category': classify(name, None),
+                           'attributes': sorted(row['attributes']),
                            'representative_rules': sorted(set(row['examples']))[:3],
                            'matrix_status': match['status'] if match else 'unclassified'})
     benchmark_summary = [{

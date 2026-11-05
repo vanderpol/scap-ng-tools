@@ -2,7 +2,13 @@
 
 The machine-readable [matrix](OVAL-COVERAGE-MATRIX.json) separates schema,
 compiler, converter, runtime, and proof status. A schema-valid document is not
-an equivalence or scanner claim. The 65-benchmark baseline remains 8,892 Rules.
+an equivalence or scanner claim. The 65-benchmark baseline remains 8,892 Rules. The companion source inventory
+contains **366 distinct OVAL element/operation names** across the corpus,
+including 43 Test capabilities, 43 Object capabilities, 41 State capabilities,
+9 Functions, 6 Variable constructs, 3 Definition operators, and 3 Object
+operations. Each inventory row retains attributes, observed values, source Rule
+examples, and its matrix status; schema acceptance is not inferred from the
+inventory alone.
 
 ## Status counts in the reviewed matrix
 
