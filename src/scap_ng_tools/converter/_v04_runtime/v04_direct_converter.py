@@ -934,7 +934,7 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     rule = source.rules[source_id]
     component, definition, omitted_checks = source.automated_check(rule)
     converter = AssessmentConverter(source, component, mappings,
-                                     canonical_variable_functions=native_recovery,
+                                     canonical_variable_functions=False,
                                      human_compact=human_compact, native_recovery=native_recovery)
     if getattr(source,'draft_compatibility',False) or getattr(source, 'native_recovery', False):
         from v04_draft_inputs import check_exports
