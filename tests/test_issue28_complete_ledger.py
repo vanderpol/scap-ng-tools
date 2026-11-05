@@ -28,6 +28,13 @@ class Issue28CompleteLedger(unittest.TestCase):
         self.assertEqual(classification['genuinely_blocked'], 578)
         self.assertEqual(classification['intentionally_excluded'], 209)
 
+    def test_deprecated_and_supported_wmi_stats_are_separate(self):
+        stats = self.ledger['diagnostic_stats']
+        self.assertEqual(stats['deprecated_oval_tests']['access_token']['source_rules_nonexcluded'], 127)
+        self.assertEqual(stats['deprecated_oval_tests']['legacy_wmi']['source_rules_nonexcluded'], 37)
+        self.assertEqual(stats['wmi57_supported']['source_rules_nonexcluded'], 169)
+        self.assertEqual(stats['count_function']['source_rules_nonexcluded'], 37)
+
     def test_source_inventory_matches_owner_baseline(self):
         self.assertEqual(self.inventory['source_count'], 65)
         self.assertEqual(self.inventory['rule_count'], 8892)

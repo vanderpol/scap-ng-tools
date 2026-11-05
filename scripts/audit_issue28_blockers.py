@@ -31,6 +31,7 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
     if len(sources) != EXPECTED_BENCHMARKS:
         raise ValueError(f'expected {EXPECTED_BENCHMARKS} benchmark ZIPs, found {len(sources)}')
     rows = []
+    rule_rows = []
     primary = Counter()
     all_blockers = Counter()
     usage = defaultdict(Counter)
@@ -73,6 +74,7 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
         rows.append(benchmark)
         for status, count in summary['statuses'].items():
             totals[status] += count
+        rule_rows.extend(coverage['rules'])
         for rule in coverage['rules']:
             if rule['status'] != 'blocked':
                 continue
@@ -118,6 +120,37 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
     accounted = sum(totals.values())
     if accounted != EXPECTED_RULES:
         raise ValueError(f'Rule accounting changed: {dict(totals)}')
+    feature_rules = defaultdict(set)
+    primary_feature_rules = defaultdict(int)
+    for rule in rule_rows:
+        if rule.get('status') == 'intentionally_excluded':
+            continue
+        constructs = set(rule.get('needed_constructs', []))
+        for key, names in {
+            'access_token': {'accesstoken_test', 'accesstoken_object', 'accesstoken_state'},
+            'legacy_wmi': {'wmi_test', 'wmi_object', 'wmi_state'},
+            'wmi57': {'wmi57_test', 'wmi57_object', 'wmi57_state'},
+            'count': {'count'},
+        }.items():
+            if constructs & names:
+                feature_rules[key].add(rule['source_rule'])
+        primary_message = (rule.get('blockers') or [{}])[0].get('message', '')
+        if primary_message.startswith('unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken'):
+            primary_feature_rules['access_token'] += 1
+        if primary_message.startswith('unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_test'):
+            primary_feature_rules['legacy_wmi_test'] += 1
+        if primary_message.startswith('unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object'):
+            primary_feature_rules['legacy_wmi_object'] += 1
+        if primary_message == 'unsupported function: count':
+            primary_feature_rules['count'] += 1
+    diagnostic_stats = {
+        'deprecated_oval_tests': {
+            'access_token': {'source_rules_nonexcluded': len(feature_rules['access_token']), 'primary_blocker_rules': primary_feature_rules['access_token']},
+            'legacy_wmi': {'source_rules_nonexcluded': len(feature_rules['legacy_wmi']), 'primary_blocker_test_rules': primary_feature_rules['legacy_wmi_test'], 'primary_blocker_object_rules': primary_feature_rules['legacy_wmi_object']},
+        },
+        'wmi57_supported': {'source_rules_nonexcluded': len(feature_rules['wmi57'])},
+        'count_function': {'source_rules_nonexcluded': len(feature_rules['count']), 'primary_blocker_rules': primary_feature_rules['count']},
+    }
     return {
         'format': 'scap-ng-tools/issue28-blocker-audit/1',
         'scope': {
@@ -134,6 +167,7 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
                      'intentionally_excluded': totals.get('intentionally_excluded', 0),
                      'total': accounted},
         'recovery_mode': 'native_recovery' if native_recovery else 'historical_default',
+        'diagnostic_stats': diagnostic_stats,
         'classification': {
             'automated_converted_unproved': totals.get('converted', 0),
             'automated_converted_proved': 0,

@@ -16,8 +16,9 @@ an equivalence or scanner claim. The 65-benchmark baseline remains 8,892 Rules.
 
 `all_exist` is intentionally marked partial: the owner-approved native spelling
 maps it to `one_or_more`, but the independent empty/error vectors do not by
-themselves prove equivalence to an OVAL engine. Access-token capabilities are not
-fabricated. SQLEXT-dependent SQL benchmarks are excluded rather than converted.
+themselves prove equivalence to an OVAL engine. Access-token and legacy `wmi_*` capabilities are tracked together as
+**Deprecated OVAL Tests**; no equivalents are fabricated. `wmi57_*` is tracked
+as supported WMI. SQLEXT-dependent SQL benchmarks are excluded rather than converted.
 
 ## Proof boundary
 

@@ -2608,6 +2608,38 @@
     "manual_only": 1581,
     "proof_note": "No Rules are independently proved by this authoring ledger."
   },
+  "diagnostic_stats": {
+    "count_function": {
+      "primary_blocker_rules": 37,
+      "source_rules_nonexcluded": 37,
+      "status": "supported_native_direction_converter_mapping_missing"
+    },
+    "deprecated_oval_tests": {
+      "access_token": {
+        "capability": "windows.accesstoken_test/object",
+        "primary_blocker_rules": 125,
+        "source_rules_nonexcluded": 127
+      },
+      "label": "Deprecated OVAL Tests",
+      "legacy_wmi": {
+        "capability": "windows.wmi_test/object/state",
+        "note": "wmi57 is not included",
+        "primary_blocker_object_rules": 14,
+        "primary_blocker_test_rules": 20,
+        "source_rules_nonexcluded": 37
+      }
+    },
+    "wmi57_supported": {
+      "capability": "windows.wmi.query",
+      "source_names": [
+        "wmi57_test",
+        "wmi57_object",
+        "wmi57_state"
+      ],
+      "source_rules_nonexcluded": 169,
+      "status": "supported_mapping_not_deprecated"
+    }
+  },
   "format": "scap-ng-tools/issue28-complete-ledger/1",
   "ledger_contract": {
     "categories": [
@@ -5283,6 +5315,7 @@
       "root_cause": "capability_gaps"
     }
   ],
+  "sample_evidence": "docs/evidence/issue28/REMAINING-BLOCKER-SAMPLES.md",
   "scope": {
     "benchmarks": 65,
     "ledger_access": "public pinned Q3 2026 ZIPs; VM-private ledger was not used",

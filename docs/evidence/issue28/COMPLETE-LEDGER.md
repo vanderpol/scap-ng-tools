@@ -18,3 +18,12 @@ compiler or scanner equivalence. OCIL-only Rules are manual-only, and mixed
 OVAL/OCIL Rules prefer OVAL while retaining manual alternatives. Access-token
 capabilities remain explicit blockers. The JSON ledger retains source ZIP hashes,
 per-benchmark counts, root-cause blockers, and representative source Rules.
+
+## Separate diagnostic statistics
+
+These are source-feature statistics, not additional mutually-exclusive Rule
+categories:
+
+- Deprecated OVAL Tests: legacy `accesstoken_*` occurs in 127 non-excluded source Rules (125 are the primary blocker); legacy `wmi_*` occurs in 37 Rules (20 test and 14 object primary blockers).
+- WMI57 supported mapping: 169 non-excluded Rules use `wmi57_*`.
+- `count`: 37 Rules. This is a supported native-language direction with a missing converter/compiler mapping, not a deprecated capability.
