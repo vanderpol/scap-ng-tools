@@ -204,7 +204,7 @@ class SourceModel:
             ensure(selector not in selectors, 'duplicate OVAL selector unsupported')
             selectors.append(selector)
             references = check.findall(f'{{{XCCDF}}}check-content-ref')
-            if self.draft_compatibility:
+            if self.draft_compatibility or getattr(self, 'native_recovery', False):
                 ensure(len(references)==1 and all(c.tag in {f'{{{XCCDF}}}check-export',f'{{{XCCDF}}}check-content-ref'}
                        for c in check), 'OVAL check-import/result binding or complex check unsupported')
             else:

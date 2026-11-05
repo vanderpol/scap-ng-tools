@@ -93,6 +93,7 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
     try:
         engine.load_mappings = lambda: mappings
         source_model = SourceModel(Path(source), sha256_pin)
+        source_model.native_recovery = native_recovery
         documents, trace = engine.convert(source_model, list(rule_ids),
                                           human_compact=human_compact,
                                           native_recovery=native_recovery)
@@ -139,6 +140,7 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
     from ._v04_semantic.validation import document_errors
     mappings = snapshot.supported_mappings(engine.CAPABILITIES)
     original = SourceModel(Path(source), sha256_pin, inventory_broken_references=True)
+    original.native_recovery = native_recovery
     documents, trace, coverage = engine.convert_benchmark(
         original, mappings=mappings, human_compact=human_compact,
         validate_document=lambda kind, doc: document_errors(snapshot, kind, doc),
