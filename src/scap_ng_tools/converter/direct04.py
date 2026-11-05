@@ -75,7 +75,7 @@ def validate_native_documents(snapshot, documents):
 
 
 def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
-                    human_compact=True):
+                    human_compact=True, native_recovery=False):
     """Return a verified-structure native document set and original source trace.
 
     Output provenance may truthfully say schema-validated and source-traced, but
@@ -94,7 +94,8 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
         engine.load_mappings = lambda: mappings
         source_model = SourceModel(Path(source), sha256_pin)
         documents, trace = engine.convert(source_model, list(rule_ids),
-                                          human_compact=human_compact)
+                                          human_compact=human_compact,
+                                          native_recovery=native_recovery)
     finally:
         engine.load_mappings = previous
     validate_native_documents(snapshot, documents)
@@ -123,7 +124,8 @@ def inventory_benchmark(*, schema_root, source, sha256_pin):
     return trace, coverage
 
 
-def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True):
+def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
+                      native_recovery=False):
     """Admit automated Rules through a pinned, strictly version-local semantic gate.
 
     Blocked Rules retain original inventory diagnostics. Admitted Rules are
@@ -139,7 +141,8 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True):
     original = SourceModel(Path(source), sha256_pin, inventory_broken_references=True)
     documents, trace, coverage = engine.convert_benchmark(
         original, mappings=mappings, human_compact=human_compact,
-        validate_document=lambda kind, doc: document_errors(snapshot, kind, doc))
+        validate_document=lambda kind, doc: document_errors(snapshot, kind, doc),
+        native_recovery=native_recovery)
     if (coverage.get('mode') != 'automatic' or
             any(row['proof_level'] not in ('none', 'authoring_validated')
                 for row in coverage['rules'])):
@@ -169,6 +172,7 @@ def main():
     parser.add_argument('--rule', action='append', help='selected source Rule ID; repeatable')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument('--recover-native', action='store_true', help='opt into owner-review native recovery candidates')
     for option in ('--verify', '--compile', '--all-rules', '--inventory-only', '--draft'):
         parser.add_argument(option, action='store_true')
     arguments = parser.parse_args()
@@ -203,12 +207,13 @@ def main():
         if arguments.all_rules:
             documents, trace, coverage = convert_benchmark(
                 schema_root=arguments.schema_root, source=selected_source,
-                sha256_pin=arguments.sha256, human_compact=arguments.human_compact)
+                sha256_pin=arguments.sha256, human_compact=arguments.human_compact,
+                native_recovery=arguments.recover_native)
         else:
             documents, trace = convert_focused(
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, rule_ids=arguments.rule,
-                human_compact=arguments.human_compact)
+                human_compact=arguments.human_compact, native_recovery=arguments.recover_native)
         from v04_direct_yaml import authoring_yaml
         targets = {name: safe_relative_filename(arguments.output, name)
                    for name in documents}
