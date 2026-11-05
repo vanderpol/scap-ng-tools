@@ -73,3 +73,18 @@ class RecoveryFunctionBoundary(unittest.TestCase):
             f'<substring xmlns="{OVAL}" substring_start="1.0" substring_length="1"><literal_component datatype="string">x</literal_component></substring>')
         with self.assertRaisesRegex(ValueError, 'xsd:int'):
             visitor.function(bad)
+
+class AbsencePrecedence(unittest.TestCase):
+    def test_existence_none_drops_comparator_with_warning(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [])
+        element = ET.fromstring(
+            f'<stderr_line xmlns="{OVAL}" check_existence="none_exist" operation="pattern match">.*</stderr_line>')
+        result = visitor.predicate(element, {})
+        self.assertEqual(result, {'values_found': 'none'})
+        self.assertEqual(visitor.conversion_warnings[0]['code'],
+                         'oval_absence_comparator_ignored')

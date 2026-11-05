@@ -13,9 +13,7 @@ Representative SLES 12 source:
     operation="pattern match">.*</independent:stderr_line>
 ```
 
-The converter rejects this rather than emitting `values_found: none` and
-silently discarding `operation="pattern match"`. The design decision is whether
-OVAL processors treat the comparator as irrelevant once `none_exist` is applied,
-or whether SCAP-NG needs an explicit absence-with-predicate form. A source
-semantic proof is required before lowering it. Nine primary Rules currently hit
-this boundary.
+The converter now emits `values_found: none` and records
+`oval_absence_comparator_ignored` with the original attributes and source hash.
+Nine primary Rules hit this recovery path; independent source vectors remain
+required before promoting the warning to a proof claim.

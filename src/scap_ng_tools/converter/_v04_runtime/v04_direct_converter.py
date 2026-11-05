@@ -758,7 +758,23 @@ class AssessmentConverter:
         ensure(not len(element), 'record/nested entity unsupported')
         existence = element.get('check_existence', 'at_least_one_exists')
         if existence == 'none_exist':
-            ensure(not selector and set(element.attrib) == {'check_existence'} and not element.text, 'comparator-bearing absence blocked')
+            ensure(not selector and not len(element),
+                   'record/selector absence shape unsupported')
+            ignored = set(element.attrib) - {'check_existence'}
+            if ignored:
+                # OVAL Test/State existence is evaluated before any entity
+                # comparator. With no matching entity, the comparator cannot
+                # change the result. Preserve the source shape in provenance,
+                # but do not fabricate a native comparator on an absent field.
+                self.conversion_warnings.append({
+                    'code': 'oval_absence_comparator_ignored',
+                    'source_element': local_name(element),
+                    'source_attributes': dict(element.attrib),
+                    'source_sha256': digest(xml_identity(element)),
+                    'ignored_attributes': sorted(ignored),
+                    'semantic_basis': 'OVAL check_existence none_exist takes precedence',
+                    'independent_static_proof': 'SOURCE_RULE_OWNER_DECISION',
+                })
             return {'values_found': 'none'}
         operation = element.get('operation', 'equals')
         ensure(existence in FIELD_EXISTENCE and operation in COMPARISONS, 'unsupported entity existence/comparator')
