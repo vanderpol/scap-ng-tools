@@ -38,6 +38,16 @@ COMPARISONS = {'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'm
 SET_OPERATORS = {'UNION': 'union', 'INTERSECTION': 'intersection', 'COMPLEMENT': 'difference'}
 
 
+def native_items_found(source_value):
+    """Lower the OVAL Test population to the native 0.4 cardinality."""
+    ensure(source_value in EXISTENCE or source_value == 'all_exist',
+           f'unsupported Test existence: {source_value}')
+    # SCAP-NG 0.4 has no synthetic absent Items. Its approved contract maps
+    # OVAL all_exist and at_least_one_exists to one_or_more; source spelling
+    # remains available through the binding provenance emitted for recovery.
+    return 'one_or_more' if source_value == 'all_exist' else EXISTENCE[source_value]
+
+
 def load_mappings():
     mappings = [json.loads((ROOT / f'schema/v0.4.0/capability-mappings/supported/{name}.json').read_text())
                 for name in CAPABILITIES]
@@ -62,11 +72,14 @@ class AssessmentConverter:
     declarations. Cached values are copied so a consumer cannot mutate a peer.
     """
     def __init__(self, source, component_id, mappings, *, canonical_variable_functions=False,
-                 human_compact=True):
+                 human_compact=True, native_recovery=False):
         self.source, self.component_id, self.mappings = source, component_id, mappings
         # Opt-in migration probe only. Production output and source-proof paths
         # retain their current syntax until coordinated compiler migration.
         self.canonical_variable_functions = canonical_variable_functions
+        # Recovery candidates are opt-in until their changed golden deltas are
+        # owner-accepted; the historical default remains byte-compatible.
+        self.native_recovery = native_recovery
         # Opt-in authoring projection; a new program digest needs fresh review.
         self.human_compact = human_compact
         self.human_compaction = []
@@ -204,9 +217,13 @@ class AssessmentConverter:
                 self.same_family(child.get('state_ref'), 'state', mapping)
                 conditions.append(self.reference(child.get('state_ref'), 'state'))
         found = element.get('check_existence', 'at_least_one_exists')
-        draft_all_exist = found == 'all_exist' and getattr(self.source, 'draft_compatibility', False)
-        ensure(found in EXISTENCE or draft_all_exist, f'unsupported Test existence: {found}')
-        requirement = {'items_found': 'one_or_more' if draft_all_exist else EXISTENCE[found]}
+        # Native 0.4's item_requirement explicitly defines all_exist as
+        # one_or_more: collected Items have no synthetic does-not-exist
+        # entries. Keep the source spelling in the trace, but do not gate this
+        # approved native lowering behind the retired draft mode.
+        if found == 'all_exist' and not self.native_recovery:
+            ensure(False, 'unsupported Test existence: all_exist')
+        requirement = {'items_found': native_items_found(found)}
         if conditions:
             ensure(element.get('check') in MATCHING and found != 'none_exist', 'unsupported Test matching/absence combination')
             requirement.update(items_satisfying=MATCHING[element.get('check')])
@@ -227,10 +244,6 @@ class AssessmentConverter:
         identifier = self.native_name(element, 'test')
         self.tests[identifier] = {'test_title': element.get('comment', ''), 'capability': mapping['capability'],
                                   'object': acquisition, 'require': requirement, 'reported_elements': 'all'}
-        if draft_all_exist:
-            from v04_draft_compatibility import all_exist_warning
-            self.conversion_warnings.append(all_exist_warning(self.source, self.component_id, element,
-                self.source.node(self.component_id, object_id, 'object'), identifier))
         if mapping['native'].get('test_source', {}).get('kind') == 'none':
             # The version-local contract deliberately omits meaningless source
             # singleton Objects. The source dependency remains in provenance.
@@ -807,7 +820,7 @@ class AssessmentConverter:
         return result
 
 
-def dependency_blockers(source, node, mappings):
+def dependency_blockers(source, node, mappings, *, native_recovery=False):
     """Probe independent obligations even when an earlier sibling failed.
 
     Uses the same conversion primitives, never a second acceptance grammar.
@@ -826,14 +839,13 @@ def dependency_blockers(source, node, mappings):
             problem['source_path'] = label
             problems.append(problem)
 
-    visitor = AssessmentConverter(source, component, mappings)
+    visitor = AssessmentConverter(source, component, mappings, native_recovery=native_recovery)
     probe('closure', visitor.reference, identifier, kind)
     # Quantifier support is independent of which capability failed first.
     if kind == 'test':
         found = element.get('check_existence', 'at_least_one_exists')
-        probe('@check_existence', ensure, found in EXISTENCE or
-              (found == 'all_exist' and getattr(source, 'draft_compatibility', False)),
-              f'unsupported Test existence: {found}')
+        probe('@check_existence', (native_items_found if native_recovery else
+              lambda value: ensure(value in EXISTENCE, f'unsupported Test existence: {value}')), found)
     if kind in ('state', 'object'):
         try:
             mapping = visitor.capability(element, kind)
@@ -862,13 +874,14 @@ def dependency_blockers(source, node, mappings):
     return problems
 
 
-def convert_rule(source, source_id, mappings, *, human_compact=True):
+def convert_rule(source, source_id, mappings, *, human_compact=True, native_recovery=False):
     """Convert one entire automated closure; failures leave no emitted artifacts."""
     documents = {}
     ensure(source_id in source.rules, f'source Rule not found: {source_id}')
     rule = source.rules[source_id]
     component, definition, omitted_checks = source.automated_check(rule)
-    converter = AssessmentConverter(source, component, mappings, human_compact=human_compact)
+    converter = AssessmentConverter(source, component, mappings, human_compact=human_compact,
+                                     native_recovery=native_recovery)
     if getattr(source,'draft_compatibility',False):
         from v04_draft_inputs import check_exports
         converter.bound_exports=check_exports(source,rule)
@@ -918,6 +931,21 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
         'component': component, 'definition': definition, 'native_rule': rule_id, 'assessment': assessment_id,
         'dependencies': converter.used, 'omitted_checks': omitted_checks,
         'source_platforms': [child.get('idref') for child in rule.findall(f'{{{XCCDF}}}platform')]}
+    recovered_controls = []
+    for identifier, used in sorted(converter.used.items()):
+        if used.get('kind') != 'test':
+            continue
+        test_source = source.node(component, identifier, 'test')
+        if native_recovery and test_source.get('check_existence') == 'all_exist':
+            recovered_controls.append({
+                'source_test': identifier,
+                'source_test_sha256': digest(xml_identity(test_source)),
+                'source_test_attributes': dict(test_source.attrib),
+                'native_items_found': 'one_or_more',
+                'semantic_basis': 'SCAP-NG 0.4 item_requirement one_or_more; no synthetic nonexistent Items',
+            })
+    if recovered_controls:
+        binding['source_test_controls'] = recovered_controls
     binding['authoring_contract_migration'] = {'owner_decision_date': '2026-10-31',
         'decisions': [1, 3, 6, 10, 13, 14], 'requires_fresh_proof': True,
         'omitted_empty_optional_metadata': omitted_metadata,
@@ -951,20 +979,20 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     return documents, binding
 
 
-def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True):
+def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True, native_recovery=False):
     """Strict focused API; any unsupported selection fails the entire request."""
     ensure(rule_ids and len(set(rule_ids)) == len(rule_ids), 'distinct source Rules required')
     mappings = load_mappings()
     documents, bindings = {}, []
     for source_id in rule_ids:
-        native, binding = convert_rule(source, source_id, mappings, human_compact=human_compact)
+        native, binding = convert_rule(source, source_id, mappings, human_compact=human_compact, native_recovery=native_recovery)
         ensure(not set(native) & set(documents), 'native Rule/Assessment name collision in selected source Rules')
         documents.update(native)
         bindings.append(binding)
-    return assemble_subset(source, documents, bindings, mappings)
+    return assemble_subset(source, documents, bindings, mappings, native_recovery=native_recovery)
 
 
-def assemble_subset(source, documents, rule_trace, mappings):
+def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=False):
     """Project selection only over emitted Rules; an empty subset has no package."""
     rule_ids = [row['source_rule'] for row in rule_trace]
     rule_links = {row['source_rule']: row['native_rule'] for row in rule_trace}
@@ -1000,6 +1028,12 @@ def assemble_subset(source, documents, rule_trace, mappings):
     if rule_ids:
         documents['authoring/direct-slice/benchmark.json'] = {'benchmark': wrapper}
         documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': {}}}
+    unsupported = ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
+                   'other Object behaviors/traversal',
+                   'record-level Variables, nested records, record absence and masking']
+    if not native_recovery:
+        unsupported.append('all_exist')
+    unsupported.append('other capabilities/functions')
     trace = {'format': 'direct-converter-spike/1', 'source_zip_sha256': source.zip_sha256, 'source_xml_sha256': source.xml_sha256,
         'source_member': source.member, 'source_benchmark_component': source.benchmark_component,
         'component_hashes': source.component_hashes, 'rules': rule_trace, 'profiles': profile_trace,
@@ -1007,10 +1041,7 @@ def assemble_subset(source, documents, rule_trace, mappings):
         'omitted_rules': sorted(set(source.rules) - set(rule_ids)), 'xml_parse_calls': source.parse_count,
         'component_index_passes': len(source.components), 'mapping_sha256': {m['capability']: digest(m) for m in mappings},
         'scope': 'Automated Assessment/selection subset, not full Rule-policy or Benchmark conversion',
-        'unsupported': ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
-                        'other Object behaviors/traversal',
-                        'record-level Variables, nested records, record absence and masking',
-                        'all_exist', 'other capabilities/functions'],
+        'unsupported': unsupported,
         'coverage_promoted': False, 'scanner_evaluated': False}
     return documents, trace
 
@@ -1026,7 +1057,7 @@ def blocker_category(message):
 
 
 def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=None,
-                      human_compact=True, validate_document=None):
+                      human_compact=True, validate_document=None, native_recovery=False):
     """Inventory all Rules; isolate expected per-Rule failures and validate admission.
 
     Native output is atomic per Rule. Diagnostic probes of blocked closures are
@@ -1055,7 +1086,8 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 rule = source.rules[row['source_rule']]
                 ensure(source.rule_selected(rule), 'disabled source defaults unsupported')
                 native, binding = convert_rule(source, row['source_rule'], mappings,
-                                               human_compact=human_compact)
+                                               human_compact=human_compact,
+                                               native_recovery=native_recovery)
                 for key, parameter in binding.get('policy_parameters', {}).items():
                     ensure(key not in accepted_parameters or accepted_parameters[key] == parameter,
                            'conflicting Benchmark Parameter binding: '+key)
@@ -1079,7 +1111,8 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 for node in row['dependencies']:
                     key = node['component'], node['id']
                     if key not in probes:
-                        probes[key] = dependency_blockers(source, node, mappings)
+                        probes[key] = dependency_blockers(source, node, mappings,
+                                                           native_recovery=native_recovery)
                     blockers.extend(probes[key])
                 # Distinct source contexts are kept even when diagnostics repeat.
                 row['blockers'] = list({digest(b): b for b in blockers}.values())
@@ -1096,7 +1129,8 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                     row['independent_static_proof_eligible'] = False
             measured['diagnostics'] += time.perf_counter() - started
     started = time.perf_counter()
-    documents, trace = assemble_subset(source, documents, bindings, mappings)
+    documents, trace = assemble_subset(source, documents, bindings, mappings,
+                                      native_recovery=native_recovery)
     manifest = {'format': 'direct-benchmark-coverage/1', 'source_zip_sha256': source.zip_sha256,
         'source_xml_sha256': source.xml_sha256, 'source_member': source.member,
         'source_benchmark_component': source.benchmark_component,
@@ -1126,6 +1160,8 @@ def main():
                         help='allow warning-admitted catalog/all_exist drafts; never independent verification')
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True,
                         help='source-aware scalar State compaction with inverse ledger; --verify still requires independent proof')
+    parser.add_argument('--recover-native', action='store_true',
+                        help='opt into owner-review native 0.4 recovery candidates; changes baseline admission')
     parser.add_argument('--compile', action='store_true',
                         help='compile generated authoring and independently check package structure/operands; no semantic-proof claim')
     parser.add_argument('--output', type=Path, required=True)
@@ -1148,10 +1184,12 @@ def main():
     manifest = None
     stages = {}
     if arguments.rule:
-        documents, trace = convert(source, arguments.rule, human_compact=arguments.human_compact)
+        documents, trace = convert(source, arguments.rule, human_compact=arguments.human_compact,
+                                  native_recovery=arguments.recover_native)
     else:
         documents, trace, manifest = convert_benchmark(source, inventory_only=arguments.inventory_only,
-                                                       timings=stages, human_compact=arguments.human_compact)
+                                                       timings=stages, human_compact=arguments.human_compact,
+                                                       native_recovery=arguments.recover_native)
     converted = time.perf_counter()
     from v04_direct_yaml import authoring_yaml
     arguments.output.mkdir(parents=True)
