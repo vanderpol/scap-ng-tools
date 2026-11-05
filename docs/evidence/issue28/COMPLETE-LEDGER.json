@@ -11,11 +11,6 @@
       "rules": 295
     },
     {
-      "category": "unsupported-construct",
-      "message": "multiple aggregation components need an approved collection expression",
-      "rules": 279
-    },
-    {
       "category": "unsupported-capability",
       "message": "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state",
       "rules": 248
@@ -54,6 +49,11 @@
       "category": "unsupported-construct",
       "message": "XCCDF Value operator requires an explicit constraint adapter",
       "rules": 36
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "multiple aggregation components need an approved collection expression",
+      "rules": 30
     },
     {
       "category": "unsupported-capability",
@@ -162,12 +162,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -197,12 +197,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -212,12 +212,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -247,12 +247,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -302,12 +302,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -357,12 +357,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -412,12 +412,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -443,6 +443,306 @@
     {
       "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -557,12 +857,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -632,12 +932,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -682,12 +982,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -807,12 +1107,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -847,16 +1147,6 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
@@ -867,17 +1157,17 @@
     },
     {
       "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: Native Variable expression: Variable split-paths-for-etc-rc-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -888,6 +1178,16 @@
     {
       "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-etc-init-d-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1359,6 +1659,7 @@
       "automated_converted": 0,
       "blocked": 30,
       "blocker_categories": {
+        "schema-semantic": 30,
         "unsupported-construct": 30
       },
       "converted": 0,
@@ -1366,6 +1667,66 @@
       "intentionally_excluded": 0,
       "manual_only": 3,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "multiple aggregation components need an approved collection expression": 30
       },
       "scope": "in_scope",
@@ -2422,7 +2783,7 @@
           "title": "Amazon Linux 2023 must ensure all interactive users have unique User IDs (UIDs)."
         }
       ],
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2458,7 +2819,7 @@
           "title": "Ubuntu 22.04 LTS must uniquely identify interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2470,7 +2831,7 @@
           "title": "Ubuntu 24.04 LTS must uniquely identify interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2506,7 +2867,7 @@
           "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2566,7 +2927,7 @@
           "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2626,7 +2987,7 @@
           "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2686,7 +3047,7 @@
           "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2938,7 +3299,7 @@
           "title": "OL 8 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3022,7 +3383,7 @@
           "title": "OL 9 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3070,7 +3431,7 @@
           "title": "RHEL 8 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3214,7 +3575,7 @@
           "title": "RHEL 9 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3250,7 +3611,7 @@
           "title": "Run control scripts executable search paths must contain only authorized paths."
         }
       ],
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3262,7 +3623,7 @@
           "title": "Run control scripts executable search paths must contain only authorized paths."
         }
       ],
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {

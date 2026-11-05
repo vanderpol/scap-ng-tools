@@ -56,29 +56,35 @@ def check_exports(source, rule):
 
 
 def external_input(visitor, element):
+    recovery = getattr(visitor, 'native_recovery', False)
     ident=element.get('id');value=visitor.bound_exports.get(ident)
     ensure(value is not None and all(n.tag=='{'+OVAL+'}possible_value' for n in element),
            'unbound external Variable or unsupported possible_restriction')
     attributes(value, {'id','type','operator','interactive','interfaceHint','hidden'})
     ensure(value.get('operator','equals')=='equals', 'XCCDF Value operator requires an explicit constraint adapter')
-    allowed_children = {'{'+XCCDF+'}'+name for name in
-                       ['title', 'description', 'value', 'reference', 'warning']}
+    allowed_names = ['title', 'description', 'value', 'reference']
+    if recovery:
+        allowed_names.append('warning')
+    allowed_children = {'{'+XCCDF+'}'+name for name in allowed_names}
     ensure(all(n.tag in allowed_children for n in value),
            'XCCDF Value constraints require a supported Parameter adapter')
     # XCCDF warning text is non-executable guidance. It is retained in the
     # source Value XML provenance below; it must not be mistaken for an
     # allowed-value or relational constraint in the native Parameter.
-    for warning in value.findall('{'+XCCDF+'}warning'):
-        attributes(warning, {'category', '{http://www.w3.org/XML/1998/namespace}lang'})
-        ensure(not len(warning), 'complex XCCDF warning is unsupported')
+    if recovery:
+        for warning in value.findall('{'+XCCDF+'}warning'):
+            attributes(warning, {'category', '{http://www.w3.org/XML/1998/namespace}lang'})
+            ensure(not len(warning), 'complex XCCDF warning is unsupported')
     datatype=element.get('datatype')
     source_type=value.get('type','string')
     ensure(source_type=={'string':'string','boolean':'boolean','int':'number','float':'number'}.get(datatype),
            'check-export source/Variable datatype mismatch')
     defaults=[n for n in value.findall('{'+XCCDF+'}value') if not n.get('selector')]
     ensure(len(defaults)<=1 and all(not len(n) for n in value.findall('{'+XCCDF+'}value')), 'ambiguous/complex XCCDF default')
-    input_id=external_input_identifier(visitor, element)
-    parameter_id=value_parameter_identifier(visitor, value)
+    input_id=(external_input_identifier(visitor, element) if recovery else
+              native_identifier(element, 'input'))
+    parameter_id=(value_parameter_identifier(visitor, value) if recovery else
+                  native_identifier(value, 'parameter'))
     contract={'datatype':native_datatype(datatype),'cardinality':'exactly_one','required':True,
               'description':value.findtext('{'+XCCDF+'}description','')}
     parameter={'id':parameter_id,'datatype':native_datatype(datatype),'cardinality':'one','required':True,

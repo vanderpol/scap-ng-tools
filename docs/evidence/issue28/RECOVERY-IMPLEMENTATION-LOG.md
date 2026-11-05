@@ -30,20 +30,22 @@ Framework `SV-225229` source Rule is a focused corpus regression.
 
 ## Count
 
-The recovery visitor now emits the canonical 0.4 function-call envelope for a
-single-operand OVAL `count` function under the opt-in native recovery mode and
-retains an inverse migration mapping. The pinned 0.4 schema snapshot used by
-the current ledger does not yet admit that function in the Assessment Variable
+The recovery visitor now emits the canonical 0.4 function-call envelope
+for one-or-more OVAL `count` components under the opt-in native recovery mode
+and retains an inverse migration mapping. Extra operands are preserved rather
+than silently counted as one. The pinned 0.4 schema snapshot used by the
+current ledger does not yet admit that function in the Assessment Variable
 schema, so count Rules remain **blocked pending canonical schema/compiler
 admission**. No ledger count is presented as converted or proved.
 
 ## Deliberately not normalized
 
-Multi-component `unique`/aggregation has no approved native collection-union
-expression in the pinned contract. XCCDF relational Value constraints likewise
-need a native typed Parameter/Input relation contract; an allowed-values list
-is not a substitute. Both remain explicit blockers rather than silently
-changing source semantics.
+Multi-component `unique`/`merge` now have an opt-in canonical function-call
+candidate preserving every source component, but the active 0.4
+Variable-expression schema/compiler does not yet admit that call form. They
+remain explicit schema/compiler blockers rather than silently changing source
+semantics. XCCDF relational Value constraints likewise need a native typed
+Parameter/Input relation contract; an allowed-values list is not a substitute.
 
 ## XCCDF Value metadata
 

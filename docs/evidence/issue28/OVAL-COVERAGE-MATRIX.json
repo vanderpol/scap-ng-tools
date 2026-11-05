@@ -110,10 +110,10 @@
       "feature": "multi-component Variable aggregation",
       "schema": "collection expression contract",
       "compiler": "supported only for one collection operand",
-      "converter": "mapping missing for multiple aggregation components",
+      "converter": "native_recovery canonical call candidate; active schema/compiler admission missing",
       "runtime": "ordered collection/empty/duplicate/error semantics must be preserved",
-      "proof": "30 primary blocker Rules; Firefox SV-251546 example",
-      "status": "supported_mapping_missing"
+      "proof": "30 primary blocker Rules; Firefox SV-251546 example; candidate vectors preserve order/duplicates",
+      "status": "partially_implemented"
     },
     {
       "category": "Function",
@@ -140,9 +140,9 @@
       "feature": "unique",
       "schema": "legacy/native migration form",
       "compiler": "partial",
-      "converter": "implemented for one collection expression",
-      "runtime": "record and empty collection cases gated",
-      "proof": "inventory only",
+      "converter": "implemented for one operand; multi-operand canonical recovery candidate",
+      "runtime": "multi-operand collection/status semantics remain schema/compiler gated",
+      "proof": "multi-operand recovery vectors; source equivalence unproved",
       "status": "partially_implemented"
     },
     {
@@ -150,9 +150,9 @@
       "feature": "merge",
       "schema": "legacy/native migration form",
       "compiler": "partial",
-      "converter": "implemented for one collection expression",
-      "runtime": "sort/datatypes/error cases gated",
-      "proof": "inventory only",
+      "converter": "implemented for one operand; multi-operand canonical recovery candidate",
+      "runtime": "multi-operand ordered flatten/sort/status semantics remain schema/compiler gated",
+      "proof": "multi-operand recovery vectors; source equivalence unproved",
       "status": "partially_implemented"
     },
     {
@@ -160,10 +160,10 @@
       "feature": "count",
       "schema": "native function contract",
       "compiler": "not mapped",
-      "converter": "mapping missing; recover before treating as genuine blocker",
-      "runtime": "not available",
-      "proof": "37 primary blocker Rules",
-      "status": "supported_mapping_missing"
+      "converter": "native_recovery canonical call candidate preserves one-or-more operands",
+      "runtime": "canonical function admission and evaluation unavailable",
+      "proof": "single/multi-operand vectors; source equivalence unproved",
+      "status": "partially_implemented"
     },
     {
       "category": "Function",

@@ -101,7 +101,7 @@ class IdentityCollisionRecovery(unittest.TestCase):
         source = type('Source', (), {'nodes': {'component': {
             n.get('id'): n for n in (first, second)
         }}})()
-        visitor = AssessmentConverter(source, 'component', [])
+        visitor = AssessmentConverter(source, 'component', [], native_recovery=True)
         a = visitor.native_name(first, 'test')
         b = visitor.native_name(second, 'test')
         self.assertNotEqual(a, b)
@@ -116,7 +116,7 @@ class NilSelectorRecovery(unittest.TestCase):
         from v04_direct_cmdlet_inputs import cmdlet_input
         element = ET.fromstring('<parameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>')
         self.assertIsNone(cmdlet_input(element, {'schema_ref': 'object_record', 'nullable': True},
-                                       lambda _: {}, lambda _: None))
+                                       lambda _: {}, lambda _: None, native_recovery=True))
 
     def test_record_cmdlet_nil_rejects_wrong_explicit_datatype(self):
         import xml.etree.ElementTree as ET
@@ -126,7 +126,7 @@ class NilSelectorRecovery(unittest.TestCase):
         element = ET.fromstring('<parameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" datatype="string"/>')
         with self.assertRaisesRegex(ValueError, 'invalid nil input datatype'):
             cmdlet_input(element, {'schema_ref': 'object_record', 'nullable': True},
-                         lambda _: {}, lambda _: None)
+                         lambda _: {}, lambda _: None, native_recovery=True)
 
 class RecursionRecovery(unittest.TestCase):
     def test_typed_equality_path_allows_downward_traversal(self):
@@ -136,7 +136,7 @@ class RecursionRecovery(unittest.TestCase):
         from v04_direct_file_behaviors import traversal_behaviors
         behaviors = ET.fromstring('<behaviors max_depth="2" recurse_direction="down"/>')
         acquisition = {'directory': {'case_insensitive_equals': {'variable': 'root-variable'}}}
-        result = traversal_behaviors(behaviors, acquisition, windows=True)
+        result = traversal_behaviors(behaviors, acquisition, windows=True, native_recovery=True)
         self.assertEqual(result['traversal'], {'max_depth': 2, 'recurse': 'directories'})
 
     def test_pattern_path_still_rejects_recursion(self):
@@ -163,15 +163,70 @@ class CountRecovery(unittest.TestCase):
         self.assertEqual(expression['function']['options'], {})
         self.assertEqual(len(expression['function']['arguments']), 1)
 
-    def test_count_requires_one_operand(self):
+    def test_count_requires_at_least_one_operand(self):
         import xml.etree.ElementTree as ET
-        from scap_ng_tools.converter.direct04 import load_runtime
-        load_runtime()
         from v04_direct_converter import AssessmentConverter
         from v04_direct_scap_source import OVAL
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = ET.fromstring(f'<count xmlns="{OVAL}"/>')
         with self.assertRaisesRegex(ValueError, 'function arity mismatch'):
+            visitor.function(source)
+
+    def test_count_preserves_all_source_components(self):
+        import xml.etree.ElementTree as ET
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = ET.fromstring(f'''<count xmlns="{OVAL}">
+          <literal_component datatype="string">a</literal_component>
+          <literal_component datatype="string">b</literal_component>
+        </count>''')
+        expression = visitor.function(source)
+        self.assertEqual(expression['function']['name'], 'count')
+        self.assertEqual(len(expression['function']['arguments']), 2)
+        self.assertEqual([a['literal']['value'] for a in expression['function']['arguments']], ['a', 'b'])
+
+class MultiComponentAggregationRecovery(unittest.TestCase):
+    def test_unique_preserves_ordered_components_in_recovery_envelope(self):
+        import xml.etree.ElementTree as ET
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = ET.fromstring(f'''<unique xmlns="{OVAL}">
+          <literal_component datatype="string">a</literal_component>
+          <literal_component datatype="string">b</literal_component>
+        </unique>''')
+        expression = visitor.function(source)
+        self.assertEqual(expression['function']['name'], 'unique')
+        self.assertEqual(len(expression['function']['arguments']), 2)
+        self.assertEqual(expression['function']['options'], {})
+        self.assertEqual(visitor.conversion_warnings[-1]['source_component_count'], 2)
+
+    def test_merge_preserves_options_and_components_in_recovery_envelope(self):
+        import xml.etree.ElementTree as ET
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = ET.fromstring(f'''<merge xmlns="{OVAL}" delimiter="," sort="numeric" order="descending">
+          <literal_component datatype="string">10</literal_component>
+          <literal_component datatype="string">2</literal_component>
+        </merge>''')
+        expression = visitor.function(source)
+        self.assertEqual(expression['function']['name'], 'merge')
+        self.assertEqual(len(expression['function']['arguments']), 2)
+        self.assertEqual(expression['function']['options'], {
+            'delimiter': ',', 'sort': 'numeric', 'order': 'descending'})
+
+    def test_default_path_still_rejects_multi_component_aggregation(self):
+        import xml.etree.ElementTree as ET
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [])
+        source = ET.fromstring(f'''<unique xmlns="{OVAL}">
+          <literal_component datatype="string">a</literal_component>
+          <literal_component datatype="string">b</literal_component>
+        </unique>''')
+        with self.assertRaisesRegex(ValueError, 'multiple aggregation components'):
             visitor.function(source)
 
 class NestedCountRecovery(unittest.TestCase):

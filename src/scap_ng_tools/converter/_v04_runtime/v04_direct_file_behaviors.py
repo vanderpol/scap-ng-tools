@@ -10,18 +10,21 @@ ITEM_CREATION = {'all_object_elements_fullfilled', 'filepath_exists'}
 FILESYSTEMS = {'all': 'all', 'local': 'local', 'defined': 'same'}
 
 
-def textfile_path_controls(element, acquisition):
+def textfile_path_controls(element, acquisition, *, native_recovery=False):
     """Preserve original Textfilecontent54 path/behavior Schematron boundaries."""
     values = {} if element is None else element.attrib
     full_path, directory = acquisition.get('full_path'), acquisition.get('directory')
     if full_path is not None:
         ensure(not set(values) & {'max_depth', 'recurse_direction'},
                'invalid original textfile filepath recursion attributes')
-    if directory is not None and not ({'equals', 'case_insensitive_equals'} & set(directory)):
+    directory_equality = ({'equals', 'case_insensitive_equals'} if native_recovery
+                         else {'equals'})
+    if directory is not None and not (directory_equality & set(directory)):
         ensure(not set(values) & {'max_depth', 'recurse_direction', 'recurse'},
                'invalid original textfile pattern-path recursion attributes')
     selector = full_path if full_path is not None else directory
-    ensure(values.get('recurse_file_system') != 'defined' or isinstance(selector, dict) and 'equals' in selector,
+    ensure(values.get('recurse_file_system') != 'defined' or
+           isinstance(selector, dict) and bool(directory_equality & set(selector)),
            'invalid original textfile defined-filesystem pattern selection')
 
 
@@ -46,7 +49,7 @@ def hierarchy_behaviors(element, acquisition):
     return {'traversal': {'max_depth': 'unlimited' if depth == -1 else depth}}
 
 
-def traversal_behaviors(element, acquisition, *, windows=False, selector_map=None):
+def traversal_behaviors(element, acquisition, *, windows=False, selector_map=None, native_recovery=False):
     """Translate shared FileBehaviors without changing a selector's meaning.
 
     OVAL defaults recursion to none. Downward traversal applies only to an
@@ -57,6 +60,8 @@ def traversal_behaviors(element, acquisition, *, windows=False, selector_map=Non
     selector_map = selector_map or {}
     filepath_key = selector_map.get('filepath', 'full_path')
     path_key = selector_map.get('path', 'directory')
+    equality_ops = ({'equals', 'case_insensitive_equals'} if native_recovery
+                    else {'equals'})
     if element is not None:
         attributes(element, {'max_depth', 'recurse', 'recurse_direction', 'recurse_file_system'})
         ensure(not len(element) and not (element.text or '').strip(), 'behaviors must have no content')
@@ -81,19 +86,18 @@ def traversal_behaviors(element, acquisition, *, windows=False, selector_map=Non
         # ignored. Do not turn invalid original input into admitted authoring.
         directory = acquisition.get(path_key)
         full_path = acquisition.get(filepath_key)
-        if directory is not None and not ({'equals', 'case_insensitive_equals'} & set(directory)):
+        if directory is not None and not equality_ops & set(directory):
             ensure(not set(values) & {'max_depth', 'recurse', 'recurse_direction'},
                    'invalid original pattern-path recursion attributes')
         if full_path is not None:
             ensure(not set(values) & {'max_depth', 'recurse_direction'},
                    'invalid original filepath recursion attributes')
         selector = full_path if full_path is not None else directory
-        ensure(scope != 'defined' or isinstance(selector, dict) and ('equals' in selector or 'case_insensitive_equals' in selector),
+        ensure(scope != 'defined' or isinstance(selector, dict) and equality_ops & set(selector),
                'invalid original defined-filesystem pattern selection')
     result = {'filesystem': FILESYSTEMS[scope]}
     directory = acquisition.get(path_key)
-    if direction == 'down' and filepath_key not in acquisition and isinstance(directory, dict) and (
-            'equals' in directory or 'case_insensitive_equals' in directory):
+    if direction == 'down' and filepath_key not in acquisition and isinstance(directory, dict) and equality_ops & set(directory):
         result['traversal'] = {'max_depth': 'unlimited' if depth == -1 else depth, 'recurse': options[recurse]}
     return result
 

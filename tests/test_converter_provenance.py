@@ -8,19 +8,19 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '534a7e6216328747ff6526d31e99d39a0fb32131b7c2433f54bf3e58bcbd80c5'
+CURRENT_RUNTIME_SHA256 = '11a38d1185fdfcbae8375355c200de6563cac249fb276a7ed4fe94d6af47e435'
 UNCHANGED_SOURCE_SHA256 = 'a0bd0dc0cb3e48f68ac54aceee104ae50930bdd0d6984fb1aad29352788fc0a8'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
-    'v04_direct_converter.py': '6d467d39782ed5745ee86098e995e302da8975f0de9a1ac378ef0ab8178af779',
-    'v04_direct_cmdlet_inputs.py': '733064f59015e687f71481ee5e7c0738ecaab311c0a76cef2a5c1c4b134b86ac',
-    'v04_direct_file_behaviors.py': 'df87c563db8571be034cac12cc977d9d182f62eb48e6317be43d7dd9e4df66bc',
+    'v04_direct_converter.py': '9dd6df65446a57cef373d8a43600b2d7fbda201360a4f8c5e837bad7a5ce7471',
+    'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
+    'v04_direct_file_behaviors.py': 'b1615731accbcf79d1a10635f03523249b0cf8d878475daf11ca57333d1da512',
     'v04_direct_scap_source.py': '8969d250de92050674c849c4934c70506484d8fec9d6d82de84741cfb225d553',
-    'v04_draft_inputs.py': '8779c676eda8ed4e697b8e3f41cf4fd6ac5ec04de68caf6a44ceb80eec9bec31',
+    'v04_draft_inputs.py': '787bebc720cbc876d5de5a8077185c87f614f04457fd2d30533835e6952399da',
     'v04_direct_inventory.py': '99a324754b739a9b51d0ae62abed76f8a14d5a172b54ff65beec6fd7ff58d904',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
-    'v04_variable_function_migration.py': 'f221cbf30ce60c3646983e0a05ca463c6e5bde7c7ed5c47c5300627a23fafbdb',
+    'v04_variable_function_migration.py': '94f9c2a05e83905d424cd22cdba03ff68a382f988a1b42ed2c171358035ad5f1',
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': '1241301693adbf4553e4b1e7072fad8880212dbe4d2441dc7cb2ff20239e3e2c',

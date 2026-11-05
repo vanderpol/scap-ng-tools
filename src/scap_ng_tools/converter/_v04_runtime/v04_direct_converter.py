@@ -106,7 +106,7 @@ class AssessmentConverter:
         # first reference is allocated. Cache only the immutable node index;
         # SourceModel.index replaces that index and invalidates this cache.
         nodes = getattr(self.source, 'nodes', {}).get(self.component_id, {})
-        if nodes and suffix in ('object', 'test', 'variable'):
+        if self.native_recovery and nodes and suffix in ('object', 'test', 'variable'):
             from collections import Counter
             cache = getattr(self.source, '_native_name_census', {})
             entry = cache.get((self.component_id, suffix))
@@ -129,7 +129,7 @@ class AssessmentConverter:
         original = element.get('id')
         ensure(isinstance(original, str) and original, 'source node lacks identity for native naming')
         key = suffix, identifier
-        if key in self.native_names and self.native_names[key] != original:
+        if self.native_recovery and key in self.native_names and self.native_names[key] != original:
             # Readable comments are not identities. If the source-derived
             # descriptor is still ambiguous (including identical comments,
             # controls, and values), append a deterministic source-ID token.
@@ -229,7 +229,7 @@ class AssessmentConverter:
                 state_refs.append(child.get('state_ref'))
                 # No Item can satisfy a none_exist Test. Do not execute or
                 # require its State graph merely to lower the absence result.
-                if found != 'none_exist':
+                if found != 'none_exist' or not self.native_recovery:
                     self.same_family(child.get('state_ref'), 'state', mapping)
                     conditions.append(self.reference(child.get('state_ref'), 'state'))
         # Native 0.4's item_requirement explicitly defines all_exist as
@@ -239,7 +239,7 @@ class AssessmentConverter:
         if found == 'all_exist' and not self.native_recovery:
             ensure(False, 'unsupported Test existence: all_exist')
         requirement = {'items_found': native_items_found(found)}
-        if found == 'none_exist' and state_refs:
+        if self.native_recovery and found == 'none_exist' and state_refs:
             # OVAL Test existence is evaluated before State matching. An
             # absent population has no Items on which a comparator or State
             # expression can operate, so preserve only the absence
@@ -328,19 +328,23 @@ class AssessmentConverter:
             # controls on its var_ref. A direct native Variable source has no
             # second selector comparator, so drop them only after proving the
             # source is the default string equality boundary.
-            attributes(references[0], {'datatype', 'operation'})
-            ensure(references[0].get('datatype', 'string') == 'string' and
-                   references[0].get('operation', 'equals') == 'equals',
-                   'Variable source var_ref comparator/type outside bounded proof')
+            if self.native_recovery:
+                attributes(references[0], {'datatype', 'operation'})
+                ensure(references[0].get('datatype', 'string') == 'string' and
+                       references[0].get('operation', 'equals') == 'equals',
+                       'Variable source var_ref comparator/type outside bounded proof')
+            else:
+                attributes(references[0], set())
             ensure(not len(references[0]), 'Variable source var_ref has children')
-            self.conversion_warnings.append({
+            if self.native_recovery and references[0].attrib:
+                self.conversion_warnings.append({
                 'code': 'oval_variable_source_ref_controls_ignored',
                 'source_object': element.get('id'),
                 'source_object_sha256': digest(xml_identity(element)),
                 'source_var_ref_attributes': dict(references[0].attrib),
                 'semantic_basis': 'native Variable source is already the selected equality domain',
                 'independent_static_proof': 'SOURCE_TYPED_EQUALITY_BOUNDARY',
-            }) if references[0].attrib else None
+                })
             acquisition['variable'] = self.named_variable((references[0].text or '').strip())
             return acquisition
         if mapping['native'].get('test_source', {}).get('kind') == 'none':
@@ -377,7 +381,9 @@ class AssessmentConverter:
                     contract = mapping['native']['collection_parameters'][target]
                     acquisition[target] = cmdlet_input(child, contract,
                         lambda entity: self.predicate(entity, mapping, selector=True),
-                        lambda entity: self.parameter(entity, datatype=contract.get('semantic_datatype', contract.get('type', 'string'))))
+                        (lambda entity: self.parameter(entity, datatype=contract.get('semantic_datatype', contract.get('type', 'string')))
+                         if self.native_recovery else self.parameter),
+                        native_recovery=self.native_recovery)
                 else:
                     if field in selectors:
                         acquisition[target] = self.predicate(child, mapping, selector=True)
@@ -422,7 +428,7 @@ class AssessmentConverter:
                 text_part, traversal_part = split_behaviors(behaviors,
                     {'ignore_case', 'multiline', 'singleline', 'item_creation'},
                     {'max_depth', 'recurse', 'recurse_direction', 'recurse_file_system'})
-                textfile_path_controls(traversal_part, acquisition)
+                textfile_path_controls(traversal_part, acquisition, native_recovery=self.native_recovery)
                 acquisition.update(file_behaviors(text_part))
             if mapping['capability'] == 'independent.shellcommand':
                 from v04_direct_command_behaviors import command_behaviors
@@ -434,7 +440,8 @@ class AssessmentConverter:
                     from v04_direct_file_behaviors import traversal_behaviors
                     acquisition.update(traversal_behaviors(traversal_part, acquisition,
                         windows=mapping['native']['traversal_definition'] == 'windows_file_traversal',
-                        selector_map=mapping['native'].get('selector_map', {})))
+                        selector_map=mapping['native'].get('selector_map', {}),
+                        native_recovery=self.native_recovery))
                 if 'content' not in acquisition:
                     acquisition.setdefault('filesystem', 'all')
             if mapping['native'].get('traversal_definition') == 'hierarchy_traversal':
@@ -615,7 +622,13 @@ class AssessmentConverter:
                         {'character'} if operation in ('begin', 'end') else set())
             attributes(element, required)
             ensure(set(element.attrib) == required, 'function options must be explicit')
-            ensure(len(element) >= 2 if operation == 'arithmetic' else len(element) == 1,
+            # OVAL count aggregates every component (not just one), while the
+            # remaining recovered unary functions accept exactly one and
+            # arithmetic accepts two or more. Preserve that distinction in
+            # the canonical call envelope; never drop extra components.
+            minimum = 2 if operation == 'arithmetic' else 1
+            maximum = 1 if operation in ('split', 'substring', 'begin', 'end') else None
+            ensure(len(element) >= minimum and (maximum is None or len(element) <= maximum),
                    'function arity mismatch')
             options = dict(element.attrib)
             if operation == 'arithmetic':
@@ -645,9 +658,33 @@ class AssessmentConverter:
         ensure(len(element) and (operation != 'regex_capture' or (len(element) == 1 and 'pattern' in element.attrib)), 'function arity/pattern')
         values = [self.function(child) for child in element]
         if operation in ('merge', 'unique'):
-            # Existing native aggregation consumes one collection expression.
-            # Do not invent a union grammar for multiple source components.
-            ensure(len(values) == 1, 'multiple aggregation components need an approved collection expression')
+            # OVAL unique/merge flatten all component collections in source
+            # order. The active 0.4 expression schema currently exposes only
+            # one collection operand, so the exact multi-component form is
+            # emitted only as the opt-in canonical-call candidate. It remains
+            # schema/compiler-gated; the default path fails closed rather than
+            # changing the operation to concat or set union.
+            if len(values) > 1:
+                ensure(self.native_recovery,
+                       'multiple aggregation components need an approved collection expression')
+                if operation == 'unique':
+                    options = {}
+                else:
+                    ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
+                           and element.get('order', 'ascending') in ('ascending', 'descending'),
+                           'unsupported merge sort/order')
+                    options = {'delimiter': element.get('delimiter', ''),
+                               'sort': element.get('sort', 'document'),
+                               'order': element.get('order', 'ascending')}
+                from v04_variable_function_migration import canonical_expression
+                arguments = [canonical_expression(value, allow_existing=True) for value in values]
+                expression = {'function': {'name': operation, 'arguments': arguments,
+                                           'options': options}}
+                self.conversion_warnings.append({'code': 'native_function_contract_v1',
+                    'source_function': operation, 'source_options': dict(element.attrib),
+                    'source_component_count': len(values),
+                    'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
+                return expression
             if operation == 'unique':
                 return {'unique': values[0]}
             ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
@@ -1256,6 +1293,18 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 if set(native) & set(documents):
                     blockers.append(issue('native-identity',
                         'native Rule/Assessment name collision in selected source Rules', row['source_rule']))
+                # Keep the source-level aggregation boundary visible even when
+                # the candidate reaches the active schema validator. The
+                # canonical envelope is intentionally retained for owner review,
+                # but multi-operand unique/merge is still a distinct blocker,
+                # not an opaque generic schema rejection.
+                for warning in binding.get('conversion_warnings', []):
+                    if (warning.get('code') == 'native_function_contract_v1' and
+                            warning.get('source_function') in ('unique', 'merge') and
+                            warning.get('source_component_count', 1) > 1):
+                        blockers.append(issue('unsupported-construct',
+                            'multiple aggregation components need an approved collection expression',
+                            row['source_rule']))
                 for path, document in native.items():
                     kind, = document
                     for error in validate_document(kind, document):

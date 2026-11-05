@@ -12,7 +12,7 @@ SELECTION = {'all': 'every', 'at least one': 'one_or_more',
              'none satisfy': 'none', 'only one': 'exactly_one'}
 
 
-def cmdlet_input(element, contract, compare_field, scalar_parameter):
+def cmdlet_input(element, contract, compare_field, scalar_parameter, *, native_recovery=False):
     """One original input + its approved contract -> native parameter value."""
     if NIL in element.attrib:
         attributes(element, {NIL, 'datatype'})
@@ -20,11 +20,11 @@ def cmdlet_input(element, contract, compare_field, scalar_parameter):
                not len(element) and not (element.text or '').strip(), 'unsupported cmdlet nil input')
         expected = 'record' if contract.get('schema_ref') == 'object_record' else (
             'version' if local_name(element) == 'module_version' else 'string')
-        # xsi:nil carries no lexical value.  For record-valued cmdlet inputs
-        # OVAL commonly omits datatype entirely; the capability position is
-        # already the approved type and native null preserves that absence.
-        # An explicit datatype, when present, must still agree exactly.
-        if expected == 'record':
+        if native_recovery and expected == 'record':
+            # xsi:nil carries no lexical value. For record-valued cmdlet
+            # inputs OVAL commonly omits datatype entirely; the capability
+            # position is already the approved type and native null preserves
+            # that absence.
             ensure(element.get('datatype', 'record') == 'record',
                    'invalid nil input datatype')
         else:
