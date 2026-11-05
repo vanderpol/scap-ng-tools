@@ -1,9 +1,9 @@
 # Ordered comparison recovery
 
-The current `ordered comparison expansion requires integer source datatype`
-diagnostic is too broad. The native schema already has a `float` datatype and
-typed comparison vocabulary; the converter/runtime path does not yet wire the
-float contract through.
+The prior `ordered comparison expansion requires integer source datatype`
+diagnostic was too broad. The native schema already has a `float` datatype and
+typed comparison vocabulary. The converter now wires the owner-coordinated
+finite-expected binary32 contract through as an opt-in recovery candidate.
 
 Representative source: Ubuntu 18.04 `SV-219237`:
 
@@ -18,7 +18,8 @@ Representative source: Ubuntu 18.04 `SV-219237`:
 </independent:shellcommand_state>
 ```
 
-This should be tracked as a converter/runtime recovery item, not a native
-language gap. A faithful implementation needs the existing float precision
-contract, including NaN/infinity handling, lexical conversion failures, and
-comparison behavior. Ten primary Rules currently hit this path.
+This remains a converter/runtime recovery item, not a native language gap.
+The converter handles exact decimal-to-binary32 expected-value conversion and
+rejects nonfinite expected values per the contract. Ten primary Rules use this
+path. Runtime collection/status propagation, compiler admission, scanner
+execution, and source-result comparison remain unproved.

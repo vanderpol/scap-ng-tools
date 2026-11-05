@@ -32,11 +32,6 @@
     },
     {
       "category": "unsupported-construct",
-      "message": "ordered comparison expansion requires integer source datatype",
-      "rules": 59
-    },
-    {
-      "category": "unsupported-construct",
       "message": "invalid original pattern-path recursion attributes",
       "rules": 40
     },
@@ -59,11 +54,6 @@
       "category": "unsupported-capability",
       "message": "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_state",
       "rules": 29
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "unsupported acquisition parameter comparison/type",
-      "rules": 25
     },
     {
       "category": "unsupported-capability",
@@ -104,6 +94,11 @@
       "category": "unsupported-capability",
       "message": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object",
       "rules": 8
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "unsupported acquisition parameter comparison/type",
+      "rules": 7
     },
     {
       "category": "unsupported-capability",
@@ -162,12 +157,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -197,12 +192,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -212,12 +207,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -247,12 +242,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -302,12 +297,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -357,12 +352,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -412,12 +407,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -857,12 +852,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -932,12 +927,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -947,12 +942,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -982,12 +977,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1107,12 +1102,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1122,12 +1117,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1147,6 +1142,11 @@
     },
     {
       "category": "schema-semantic",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
@@ -1162,12 +1162,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: Native Variable expression: Variable split-paths-for-etc-rc-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: Native Variable expression: Variable split-paths-for-etc-rc-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1187,11 +1187,6 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: Native Variable expression: Variable split-paths-for-etc-rc-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
@@ -1207,8 +1202,8 @@
     }
   ],
   "baseline": {
-    "blocked": 327,
-    "converted": 6775,
+    "blocked": 317,
+    "converted": 6785,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "total": 8892
@@ -1405,13 +1400,12 @@
       "source_sha256": "f4ad086a9d017dda38fdaf76590c4f4081d3927f54cd0c8a0953e85541561955"
     },
     {
-      "automated_converted": 126,
-      "blocked": 3,
+      "automated_converted": 127,
+      "blocked": 2,
       "blocker_categories": {
-        "schema-semantic": 2,
-        "unsupported-construct": 1
+        "schema-semantic": 2
       },
-      "converted": 126,
+      "converted": 127,
       "filename": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 47,
@@ -1419,71 +1413,58 @@
         "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: Native Variable expression: Variable grub-superusers-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: Native Variable expression: Variable grub-superusers-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas": 1,
-        "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 176,
       "source_sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49"
     },
     {
-      "automated_converted": 138,
-      "blocked": 1,
-      "blocker_categories": {
-        "unsupported-construct": 1
-      },
-      "converted": 138,
+      "automated_converted": 139,
+      "blocked": 0,
+      "blocker_categories": {},
+      "converted": 139,
       "filename": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 34,
-      "primary_blockers": {
-        "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1
-      },
+      "primary_blockers": {},
       "scope": "in_scope",
       "source_rules": 173,
       "source_sha256": "85cc4348a0bd85becf757f50e6f0d3ef67169c87e26f12f045c94914d7099ef5"
     },
     {
-      "automated_converted": 173,
-      "blocked": 2,
+      "automated_converted": 174,
+      "blocked": 1,
       "blocker_categories": {
-        "schema-semantic": 1,
-        "unsupported-construct": 1
+        "schema-semantic": 1
       },
-      "converted": 173,
+      "converted": 174,
       "filename": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 13,
       "primary_blockers": {
         "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1
+        "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 188,
       "source_sha256": "dbbc87ffe6d0c84688993d96cd7007e76bf83b9206508109b586ccc5bf88b6b2"
     },
     {
-      "automated_converted": 176,
-      "blocked": 2,
+      "automated_converted": 177,
+      "blocked": 1,
       "blocker_categories": {
-        "schema-semantic": 1,
-        "unsupported-construct": 1
+        "schema-semantic": 1
       },
-      "converted": 176,
+      "converted": 177,
       "filename": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 16,
       "primary_blockers": {
         "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1
+        "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 194,
@@ -2264,13 +2245,12 @@
       "source_sha256": "0235429534dfc1149824f1a6b5144f73e16dc28d84d899c638cc5ede31da8c1a"
     },
     {
-      "automated_converted": 321,
-      "blocked": 3,
+      "automated_converted": 322,
+      "blocked": 2,
       "blocker_categories": {
-        "schema-semantic": 2,
-        "unsupported-construct": 1
+        "schema-semantic": 2
       },
-      "converted": 321,
+      "converted": 322,
       "filename": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 52,
@@ -2279,9 +2259,7 @@
         "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1
+        "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 376,
@@ -2341,13 +2319,12 @@
       "source_sha256": "17c3ddd4d4ae40bd7ca3443dae0a0c9ed921444a57c34bff357f9f885e0d9ab8"
     },
     {
-      "automated_converted": 329,
-      "blocked": 8,
+      "automated_converted": 330,
+      "blocked": 7,
       "blocker_categories": {
-        "schema-semantic": 7,
-        "unsupported-construct": 1
+        "schema-semantic": 7
       },
-      "converted": 329,
+      "converted": 330,
       "filename": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 32,
@@ -2366,9 +2343,7 @@
         "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
-        "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1
+        "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 369,
@@ -2411,37 +2386,27 @@
       "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5"
     },
     {
-      "automated_converted": 119,
-      "blocked": 2,
-      "blocker_categories": {
-        "unsupported-construct": 2
-      },
-      "converted": 119,
+      "automated_converted": 121,
+      "blocked": 0,
+      "blocker_categories": {},
+      "converted": 121,
       "filename": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 89,
-      "primary_blockers": {
-        "ordered comparison expansion requires integer source datatype": 2,
-        "unsupported acquisition parameter comparison/type": 1
-      },
+      "primary_blockers": {},
       "scope": "in_scope",
       "source_rules": 210,
       "source_sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5"
     },
     {
-      "automated_converted": 134,
-      "blocked": 1,
-      "blocker_categories": {
-        "unsupported-construct": 1
-      },
-      "converted": 134,
+      "automated_converted": 135,
+      "blocked": 0,
+      "blocker_categories": {},
+      "converted": 135,
       "filename": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 83,
-      "primary_blockers": {
-        "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1
-      },
+      "primary_blockers": {},
       "scope": "in_scope",
       "source_rules": 218,
       "source_sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c"
@@ -2489,21 +2454,18 @@
       "source_sha256": "f988154cba7cf0ab39fa3063e510398c716e5d7d5865ae5cc187dc10d2071f2a"
     },
     {
-      "automated_converted": 193,
-      "blocked": 2,
+      "automated_converted": 194,
+      "blocked": 1,
       "blocker_categories": {
-        "schema-semantic": 1,
-        "unsupported-construct": 1
+        "schema-semantic": 1
       },
-      "converted": 193,
+      "converted": 194,
       "filename": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 30,
       "primary_blockers": {
         "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "ordered comparison expansion requires integer source datatype": 1,
-        "unsupported acquisition parameter comparison/type": 1
+        "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 225,
@@ -2512,8 +2474,8 @@
   ],
   "classification": {
     "automated_converted_proved": 0,
-    "automated_converted_unproved": 6775,
-    "genuinely_blocked": 327,
+    "automated_converted_unproved": 6785,
+    "genuinely_blocked": 317,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "proof_note": "No Rules are independently proved by this authoring ledger."
@@ -2663,28 +2625,6 @@
       "rules": 14
     },
     {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-219237r958752_rule",
-          "title": "The Ubuntu operating system must allocate audit record storage capacity to store at least one weeks worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
-        },
-        {
-          "benchmark": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-238305r958752_rule",
-          "title": "The Ubuntu operating system must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
-        },
-        {
-          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-260595r958752_rule",
-          "title": "Ubuntu 22.04 LTS must allocate audit record storage capacity to store at least one weeks' worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
-        }
-      ],
-      "message": "ordered comparison expansion requires integer source datatype",
-      "rules": 10
-    },
-    {
       "category": "unsupported-capability",
       "examples": [
         {
@@ -2783,7 +2723,7 @@
           "title": "Amazon Linux 2023 must ensure all interactive users have unique User IDs (UIDs)."
         }
       ],
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2819,7 +2759,7 @@
           "title": "Ubuntu 22.04 LTS must uniquely identify interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2831,7 +2771,7 @@
           "title": "Ubuntu 24.04 LTS must uniquely identify interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2867,7 +2807,7 @@
           "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2927,7 +2867,7 @@
           "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2987,7 +2927,7 @@
           "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3047,7 +2987,7 @@
           "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3299,7 +3239,7 @@
           "title": "OL 8 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3383,7 +3323,7 @@
           "title": "OL 9 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3395,7 +3335,7 @@
           "title": "OL 9 groups must have unique Group ID (GID)."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3431,7 +3371,7 @@
           "title": "RHEL 8 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3575,7 +3515,7 @@
           "title": "RHEL 9 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3587,7 +3527,7 @@
           "title": "RHEL 9 groups must have unique Group ID (GID)."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3611,7 +3551,7 @@
           "title": "Run control scripts executable search paths must contain only authorized paths."
         }
       ],
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3623,7 +3563,7 @@
           "title": "Run control scripts executable search paths must contain only authorized paths."
         }
       ],
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3687,9 +3627,9 @@
       "total": 0
     },
     "concat": {
-      "blocked": 164,
-      "converted": 201,
-      "total": 381
+      "blocked": 146,
+      "converted": 210,
+      "total": 372
     },
     "constant_variable": {
       "blocked": 10,
@@ -3712,9 +3652,9 @@
       "total": 466
     },
     "local_variable": {
-      "blocked": 256,
-      "converted": 366,
-      "total": 644
+      "blocked": 238,
+      "converted": 375,
+      "total": 635
     },
     "merge": {
       "blocked": 16,

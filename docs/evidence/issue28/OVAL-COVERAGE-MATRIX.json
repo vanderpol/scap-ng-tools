@@ -269,11 +269,11 @@
       "category": "Converter/runtime mapping",
       "feature": "Ordered float comparisons",
       "schema": "native float datatype and typed comparisons exist",
-      "compiler": "float precision contract not wired into converter",
-      "converter": "currently rejects non-integer ordered expansion",
-      "runtime": "requires explicit binary32/float comparison semantics",
-      "proof": "10 primary Rules; Ubuntu SV-219237 example",
-      "status": "supported_mapping_missing"
+      "compiler": "existing float vocabulary; binary32 runtime contract remains external",
+      "converter": "native_recovery exact decimal-to-binary32 expected-value mapping",
+      "runtime": "contract-bound comparator; scanner/status semantics unproved",
+      "proof": "10 source Rules; exact binary32 vectors; no independent scanner proof",
+      "status": "partially_implemented"
     },
     {
       "category": "Converter mapping",
@@ -309,7 +309,7 @@
       "Define the native collection-expression lowering for multi-operand unique/merge without changing OVAL ordering, duplicate, empty, or error semantics.",
       "Finalize deterministic source-identity disambiguation for readable native IDs, preserving source IDs and the 64-character native identifier limit.",
       "Complete converter lowering for xsi:nil selectors using existing windows.cmdlet nullable contracts; add null, empty, and non-null regression vectors.",
-      "Wire ordered float comparisons through the existing native float contract with explicit precision, NaN, infinity, and lexical-error semantics.",
+      "Record compiler/scanner/runtime proof for the coordinated binary32 float contract; keep nonfinite expected values explicitly blocked.",
       "Treat case-insensitive equality as an equality path only where the capability contract proves identical traversal scope; retain pattern-path rejection."
     ]
   }

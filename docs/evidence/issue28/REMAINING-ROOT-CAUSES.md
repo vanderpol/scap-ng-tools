@@ -10,7 +10,7 @@ JSON ledger may overlap a Rule and are not added to the primary total.
 | Legacy `wmi_*` | 34 | Intentionally unsupported / deprecated | 20 primary Test Rules and 14 primary Object Rules; 37 source Rules tracked. `wmi57_*` remains supported. |
 | XCCDF relational Value operator | 36 | Genuine native-contract gap | Requires typed Input/Parameter relation semantics; allowed-values-only lowering is not faithful. |
 | Multi-component aggregation | 30 | Genuine native-contract gap | Exact candidate now preserves ordered components, but active Variable-expression schema/compiler admission for multi-operand aggregation is pending; concat or set union would change OVAL semantics. |
-| Float ordered comparisons | 10 | Pending canonical contract | Precision, NaN/infinity, lexical errors, and comparison behavior must be fixed before conversion equivalence. |
+| Float ordered comparisons | 10 | Converted in opt-in recovery, independently unproved | Exact finite expected-value binary32 mapping is implemented; runtime/compiler/scanner proof and nonfinite expected design remain outstanding. |
 | Windows `user_*` capability | 8 | Genuine capability gap | No approved `windows.user` mapping exists in the pinned SCAP-NG 0.4 contract. |
 | Pattern-path recursion with traversal attributes | 7 | Genuine source/native boundary | Typed equality recursion is recovered; pattern paths, full paths, and upward recursion remain fail-closed. |
 | XCCDF/OVAL datatype mismatch | 2 | Source semantic mismatch | XCCDF string Values are exported to OVAL binary Variables; no silent cast is applied. |

@@ -694,8 +694,11 @@ class AssessmentConverter:
         ensure(operation != 'concat' or len(values) >= 2, 'concat requires at least two components')
         return {'concat': values} if operation == 'concat' else {'regex_capture': {'pattern': element.get('pattern'), 'value': values[0]}}
 
-    # Retained visitor API; lexical conversion has one reusable implementation.
-    literal = staticmethod(literal)
+    def literal(self, source_type, text):
+        # Float conversion is opt-in because the canonical binary32 contract
+        # is not a generic host-number coercion and the historical path must
+        # remain byte-compatible.
+        return literal(source_type, text, binary32=self.native_recovery)
 
     def operand(self, element, *, enum_aliases=None):
         if element.get('var_ref'):
@@ -722,7 +725,7 @@ class AssessmentConverter:
             return value[0]
         ensure('var_check' not in element.attrib or (element.get('var_ref') and
                element.get('var_check') == 'all'), 'acquisition parameter var_check outside bounded proof')
-        ensure(isinstance(value, (str, dict)), 'array acquisition parameter unsupported')
+        ensure(isinstance(value, (str, int, float, dict)), 'array acquisition parameter unsupported')
         return value
 
     def renamed_enum_projection(self, identifier, active=None):
@@ -871,8 +874,27 @@ class AssessmentConverter:
         ensure(existence in FIELD_EXISTENCE and operation in COMPARISONS, 'unsupported entity existence/comparator')
         if operation == 'case insensitive not equal':
             ensure(element.get('datatype', 'string') == 'string', 'case-insensitive inequality requires string datatype')
-        if operation in ('greater than', 'greater than or equal', 'less than or equal') and element.get('datatype', 'string') not in SPECIAL_TYPES:
-            ensure(element.get('datatype') == 'int', 'ordered comparison expansion requires integer source datatype')
+        datatype = element.get('datatype', 'string')
+        if datatype == 'float':
+            ensure(self.native_recovery,
+                   'float comparison requires the native binary32 recovery contract')
+            # The source contract is explicit about expected-value rounding;
+            # retain the lexical entity and contract binding in provenance. The
+            # converter does not claim scanner/runtime equivalence here.
+            self.conversion_warnings.append({
+                'code': 'native_float_binary32_contract',
+                'source_element': local_name(element),
+                'source_attributes': dict(element.attrib),
+                'source_sha256': digest(xml_identity(element)),
+                'contract': 'scap-ng-0.4.0-binary32-comparisons/1',
+                'contract_sha256': '676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd',
+                'source_lexical': element.text,
+                'rounding': 'direct_decimal_to_ieee754_binary32_nearest_even',
+                'independent_static_proof': 'CONTRACT_AND_EXACT_LEXICAL_CONVERSION',
+                'scanner_evaluated': False,
+            })
+        if operation in ('greater than', 'greater than or equal', 'less than or equal') and datatype not in SPECIAL_TYPES:
+            ensure(datatype == 'int', 'ordered comparison expansion requires integer source datatype')
         crosswalk = mapping['native'].get('selector_value_crosswalk' if selector else 'state_value_crosswalk', {}).get(local_name(element))
         field = mapping['native']['state_field_map'].get(local_name(element))
         domain = mapping['native'].get('state_value_enums', {}).get(field, [])

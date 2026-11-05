@@ -38,6 +38,16 @@ current ledger does not yet admit that function in the Assessment Variable
 schema, so count Rules remain **blocked pending canonical schema/compiler
 admission**. No ledger count is presented as converted or proved.
 
+## Ordered float comparisons
+
+The ten finite-float Rules now use an opt-in exact decimal-to-IEEE-754 binary32
+converter aligned with the owner-coordinated SCAP-NG 0.4 contract. Existing
+`float_*` comparison vocabulary is emitted without schema changes. Midpoint
+ties, subnormal underflow, signed zero, overflow, malformed lexical forms, and
+nonfinite expected values are covered by exact vectors. The original lexical
+entity, contract identity/hash, and unproved scanner status are retained in
+provenance. Runtime/compiler/scanner equivalence remains unproved.
+
 ## Deliberately not normalized
 
 Multi-component `unique`/`merge` now have an opt-in canonical function-call

@@ -8,12 +8,13 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '11a38d1185fdfcbae8375355c200de6563cac249fb276a7ed4fe94d6af47e435'
-UNCHANGED_SOURCE_SHA256 = 'a0bd0dc0cb3e48f68ac54aceee104ae50930bdd0d6984fb1aad29352788fc0a8'
+CURRENT_RUNTIME_SHA256 = 'b103f38bd757b21ed5cadeedc29cb6a33dbcf9be2f446e44ead3751226898785'
+UNCHANGED_SOURCE_SHA256 = 'de52a62d54bf73838457c9b91a2bdb3a5ad993dc000c0a6c4e1f1545d30c5ccf'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
-    'v04_direct_converter.py': '9dd6df65446a57cef373d8a43600b2d7fbda201360a4f8c5e837bad7a5ce7471',
+    'v04_direct_converter.py': '658ab36953f3618f6f2321601c4834268dda770548628c760274e6e0adf24b43',
+    'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': 'b1615731accbcf79d1a10635f03523249b0cf8d878475daf11ca57333d1da512',
     'v04_direct_scap_source.py': '8969d250de92050674c849c4934c70506484d8fec9d6d82de84741cfb225d553',
@@ -23,7 +24,7 @@ AUDITED_ADAPTATIONS = {
     'v04_variable_function_migration.py': '94f9c2a05e83905d424cd22cdba03ff68a382f988a1b42ed2c171358035ad5f1',
 }
 SEMANTIC_PORT = {
-    'v04_comparison_types.py': '1241301693adbf4553e4b1e7072fad8880212dbe4d2441dc7cb2ff20239e3e2c',
+    'v04_comparison_types.py': 'aa2782f9ed3b23d7282ac7b69450650b0827ac76704878e4c6df2539f75394ea',
     'v04_input_presence.py': 'fa9b680582205010fd011879a01cac3473d3e9d22900840c44f016a9d39062ce',
     'v04_object_contract.py': 'e86aab6bf1e0145c14c4f6313928894fd09d041cb0042498174420721aa78d29',
     'v04_variable_expressions.py': 'e3d71f7aec9dbb8a958a23fe767c8979df1a36880372c63a3c7f5a491162482c',
