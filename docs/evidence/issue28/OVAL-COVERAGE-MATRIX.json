@@ -1,0 +1,50 @@
+{
+  "format": "scap-ng-tools/issue28-oval-coverage-matrix/1",
+  "source": {
+    "oval": "5.12.3",
+    "corpus": "niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "rules": 8892,
+    "benchmarks": 65,
+    "note": "Counts and proof levels are distinct. This matrix describes converter gates; schema acceptance alone is not runtime support."
+  },
+  "status_vocabulary": [
+    "fully_supported_proved",
+    "supported_mapping_missing",
+    "partially_implemented",
+    "native_language_gap",
+    "intentionally_excluded"
+  ],
+  "features": [
+    {"category":"XCCDF selection","feature":"OVAL preferred when OVAL and OCIL coexist","schema":"supported","compiler":"supported","converter":"implemented","runtime":"selection only; no OCIL execution","proof":"source selection/provenance vectors","status":"fully_supported_proved"},
+    {"category":"XCCDF selection","feature":"OCIL alternative on OVAL Rule","schema":"manual Assessment","compiler":"manual Assessment","converter":"implemented","runtime":"human-only","proof":"manual projection tests; source execution unproved","status":"partially_implemented"},
+    {"category":"XCCDF selection","feature":"OCIL-only Rule","schema":"manual Assessment","compiler":"manual Assessment","converter":"implemented","runtime":"human-only","proof":"manual projection tests; questionnaire equivalence unproved","status":"partially_implemented"},
+    {"category":"Test","feature":"check_existence all_exist","schema":"one_or_more contract","compiler":"supported","converter":"native_recovery mapping","runtime":"collection semantics require independent proof","proof":"mapping and empty/error vectors; not source-equivalence proof","status":"partially_implemented"},
+    {"category":"Test","feature":"check_existence none_exist/only_one_exists/any_exist","schema":"supported","compiler":"supported","converter":"implemented","runtime":"cardinality/error propagation vectors","proof":"independent vectors","status":"fully_supported_proved"},
+    {"category":"Test","feature":"check/entity existence and matching operators","schema":"supported","compiler":"supported","converter":"implemented with bounded combinations","runtime":"six-state propagation needs scanner proof","proof":"static semantic gates","status":"partially_implemented"},
+    {"category":"Object","feature":"Filters","schema":"supported","compiler":"supported","converter":"implemented","runtime":"filter order and per-operand scope unproved","proof":"source-shaped static tests","status":"partially_implemented"},
+    {"category":"Object","feature":"UNION/INTERSECTION/COMPLEMENT Sets","schema":"supported","compiler":"supported","converter":"implemented for bounded arity","runtime":"set/error semantics unproved","proof":"source-shaped static tests","status":"partially_implemented"},
+    {"category":"Variable","feature":"constant/local/external Variable","schema":"supported","compiler":"supported","converter":"external Input recovery is bounded","runtime":"empty/error/casting propagation unproved","proof":"Input binding tests","status":"partially_implemented"},
+    {"category":"Variable","feature":"multi-component Variable aggregation","schema":"collection expression contract","compiler":"supported only for one collection operand","converter":"mapping missing for multi-component forms","runtime":"not available","proof":"blocker audit","status":"supported_mapping_missing"},
+    {"category":"Function","feature":"concat","schema":"legacy/native migration form","compiler":"partial","converter":"implemented for nested scalar forms","runtime":"datatype and empty collection proof incomplete","proof":"inventory only","status":"partially_implemented"},
+    {"category":"Function","feature":"regex_capture","schema":"legacy/native migration form","compiler":"partial","converter":"implemented","runtime":"capture absence/error propagation unproved","proof":"inventory only","status":"partially_implemented"},
+    {"category":"Function","feature":"unique","schema":"legacy/native migration form","compiler":"partial","converter":"implemented for one collection expression","runtime":"record and empty collection cases gated","proof":"inventory only","status":"partially_implemented"},
+    {"category":"Function","feature":"merge","schema":"legacy/native migration form","compiler":"partial","converter":"implemented for one collection expression","runtime":"sort/datatypes/error cases gated","proof":"inventory only","status":"partially_implemented"},
+    {"category":"Function","feature":"count","schema":"native function contract","compiler":"not mapped","converter":"mapping missing","runtime":"not available","proof":"37 primary blocker Rules","status":"supported_mapping_missing"},
+    {"category":"Function","feature":"split","schema":"native function contract","compiler":"not mapped","converter":"mapping missing","runtime":"not available","proof":"15 primary blocker Rules; independent vectors exist","status":"supported_mapping_missing"},
+    {"category":"Function","feature":"substring","schema":"native function contract","compiler":"not mapped","converter":"mapping missing","runtime":"not available","proof":"7 primary blocker Rules; independent vectors exist","status":"supported_mapping_missing"},
+    {"category":"Function","feature":"arithmetic and casting","schema":"typed function contract","compiler":"not mapped","converter":"mapping missing","runtime":"no implicit coercion permitted","proof":"source inventory","status":"supported_mapping_missing"},
+    {"category":"Capability","feature":"windows.accesstoken_test","schema":"not in supported scope","compiler":"unsupported","converter":"blocked","runtime":"unsupported","proof":"125 Rules","status":"intentionally_excluded"},
+    {"category":"Capability","feature":"independent.sqlext_test/object","schema":"not in supported scope","compiler":"unsupported","converter":"excluded SQL benchmarks; source retained","runtime":"unsupported","proof":"66 dependency occurrences; four SQL benchmarks excluded from scope","status":"intentionally_excluded"},
+    {"category":"Capability","feature":"windows.wmi_test/object","schema":"capability gap","compiler":"unsupported","converter":"blocked","runtime":"unsupported","proof":"source blocker inventory","status":"native_language_gap"}
+  ],
+  "qualification": {
+    "automated_equivalence_claim": false,
+    "compiled_claim": false,
+    "independent_scanner_claim": false,
+    "next_decisions": [
+      "Approve or reject a native function-expression contract for count/split/substring/arithmetic.",
+      "Approve exact OCIL questionnaire-to-manual response mapping beyond the bounded procedure projection.",
+      "Approve native capability contracts for remaining WMI/access-token features or retain explicit exclusions."
+    ]
+  }
+}

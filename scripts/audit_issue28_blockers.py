@@ -26,7 +26,7 @@ def issue_key(problem):
     return problem.get('category', 'unknown'), problem.get('message', 'unknown')
 
 
-def compact(source_dir: Path, schema_root: Path):
+def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True):
     sources = sorted(source_dir.glob('*.zip'))
     if len(sources) != EXPECTED_BENCHMARKS:
         raise ValueError(f'expected {EXPECTED_BENCHMARKS} benchmark ZIPs, found {len(sources)}')
@@ -38,18 +38,37 @@ def compact(source_dir: Path, schema_root: Path):
     totals = Counter()
     for source in sources:
         source_hash = sha256(source.read_bytes()).hexdigest()
-        _, _, coverage = convert_benchmark(schema_root=schema_root, source=source,
-                                           sha256_pin=source_hash)
-        summary = coverage['summary']
+        excluded = exclude_sqlext and 'sql_server_' in source.name.lower()
+        if excluded:
+            # Inventory is still performed and retained; no SQL extension
+            # capability is converted or replaced with an opaque equivalent.
+            from scap_ng_tools.converter.direct04 import inventory_benchmark
+            _, coverage = inventory_benchmark(schema_root=schema_root, source=source,
+                                              sha256_pin=source_hash)
+            for rule in coverage['rules']:
+                rule['status'] = 'intentionally_excluded'
+                rule['proof_level'] = 'none'
+                rule['blockers'] = []
+            summary = coverage['summary']
+            summary['statuses'] = {'intentionally_excluded': summary['source_rules']}
+        else:
+            _, _, coverage = convert_benchmark(schema_root=schema_root, source=source,
+                                               sha256_pin=source_hash)
+            summary = coverage['summary']
         benchmark = {
             'filename': source.name,
             'source_sha256': source_hash,
             'source_rules': summary['source_rules'],
-            'converted': summary['statuses'].get('converted', 0),
+            'automated_converted': summary['statuses'].get('converted', 0),
+            'manual_only': summary['statuses'].get('manual_only', 0),
             'blocked': summary['statuses'].get('blocked', 0),
+            'intentionally_excluded': summary['statuses'].get('intentionally_excluded', 0),
             'primary_blockers': summary.get('rules_by_blocker_message', {}),
             'blocker_categories': summary.get('rules_by_blocker_category', {}),
+            'scope': 'intentionally_excluded_sqlext' if excluded else 'in_scope',
         }
+        # Retain the historical field for consumers of the PR #29 ledger.
+        benchmark['converted'] = benchmark['automated_converted']
         rows.append(benchmark)
         for status, count in summary['statuses'].items():
             totals[status] += count
@@ -95,8 +114,9 @@ def compact(source_dir: Path, schema_root: Path):
         }
     if sum(row['source_rules'] for row in rows) != EXPECTED_RULES:
         raise ValueError('source Rule total does not match the owner baseline')
-    if totals['converted'] != 4524 or totals['blocked'] != 4368:
-        raise ValueError(f'baseline changed: {dict(totals)}')
+    accounted = sum(totals.values())
+    if accounted != EXPECTED_RULES:
+        raise ValueError(f'Rule accounting changed: {dict(totals)}')
     return {
         'format': 'scap-ng-tools/issue28-blocker-audit/1',
         'scope': {
@@ -107,8 +127,18 @@ def compact(source_dir: Path, schema_root: Path):
             'rules': sum(row['source_rules'] for row in rows),
             'ledger_access': 'public pinned Q3 2026 ZIPs; VM-private ledger was not used',
         },
-        'baseline': {'converted': totals['converted'], 'blocked': totals['blocked'],
-                     'total': sum(totals.values())},
+        'baseline': {'converted': totals.get('converted', 0),
+                     'manual_only': totals.get('manual_only', 0),
+                     'blocked': totals.get('blocked', 0),
+                     'intentionally_excluded': totals.get('intentionally_excluded', 0),
+                     'total': accounted},
+        'classification': {
+            'automated_converted_unproved': totals.get('converted', 0),
+            'automated_converted_proved': 0,
+            'manual_only': totals.get('manual_only', 0),
+            'genuinely_blocked': totals.get('blocked', 0),
+            'intentionally_excluded': totals.get('intentionally_excluded', 0),
+            'proof_note': 'No Rules are independently proved by this authoring ledger.'},
         'primary_blockers': primary_rows,
         'all_blockers': all_rows,
         'variable_function_usage': construct_rows,
@@ -135,8 +165,11 @@ def main():
     parser.add_argument('--source-dir', type=Path, required=True)
     parser.add_argument('--schema-root', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--include-sqlext', action='store_true',
+                        help='retain SQLEXT-dependent SQL benchmarks in the blocked in-scope set')
     args = parser.parse_args()
-    report = compact(args.source_dir, args.schema_root)
+    report = compact(args.source_dir, args.schema_root,
+                     exclude_sqlext=not args.include_sqlext)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8')
     print(json.dumps(report['baseline'], sort_keys=True))

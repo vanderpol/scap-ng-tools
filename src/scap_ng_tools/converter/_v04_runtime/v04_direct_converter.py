@@ -876,6 +876,26 @@ def dependency_blockers(source, node, mappings, *, native_recovery=False):
     return problems
 
 
+def convert_manual_only_rule(source, source_id):
+    """Convert an OCIL-only Rule to a manual Assessment without automation."""
+    from scap_ng_tools.converter.manual04 import manual_rule
+    ensure(source_id in source.rules, f'source Rule not found: {source_id}')
+    rule = source.rules[source_id]
+    title = rule.findtext(f'{{{XCCDF}}}title', '')
+    control = re.search(r'SV-\d+', source_id)
+    local_title = title + (' ' + control.group() if control else '')
+    rule_id = native_identifier(rule, 'rule', local_title)
+    assessment_id = native_identifier(rule, 'assessment', local_title + ' manual')
+    documents, binding = manual_rule(source, rule, title=title, rule_id=rule_id,
+                                      assessment_id=assessment_id)
+    binding['source_selection_policy'] = 'ocil_only_manual_assessment'
+    binding['source_checks'] = [{'system': check.get('system'), 'selector': check.get('selector', ''),
+                                 'sha256': digest(xml_identity(check)), 'source': xml_identity(check),
+                                 'default': check.get('selector', '') == ''}
+                                for check in rule.findall(f'{{{XCCDF}}}check')]
+    return documents, binding
+
+
 def convert_rule(source, source_id, mappings, *, human_compact=True, native_recovery=False):
     """Convert one entire automated closure; failures leave no emitted artifacts."""
     documents = {}
@@ -917,6 +937,19 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     for key in omitted_metadata:
         native_rule.pop(key)
     documents[f'authoring/direct-slice/rules/{rule_id}.json'] = {'rule': native_rule}
+    # OCIL is an optional manual alternative.  It is never selected as the
+    # default when an OVAL check exists, and its source graph is not executed.
+    manual_alternatives = []
+    for number, check in enumerate(source.manual_checks(rule)):
+        from scap_ng_tools.converter.manual04 import _choice_assessment
+        manual_id = native_identifier(rule, 'assessment', local_title + f' manual {number}')
+        manual_document, manual_provenance = _choice_assessment(
+            source, rule, check, assessment_id=manual_id, title=title)
+        manual_path = f'authoring/direct-slice/assessments/{manual_id}.json'
+        ensure(manual_path not in documents, 'duplicate OCIL manual Assessment identity')
+        documents[manual_path] = manual_document
+        native_rule['assessment_choices']['manual'] = {'assessment': manual_id}
+        manual_alternatives.append({'assessment': manual_id, **manual_provenance})
     from scap_ng_tools.converter._v04_semantic.v04_input_presence import presence_contract
     from scap_ng_tools.authoring.input_discovery import validate_choice_map
     if converter.input_bindings:
@@ -932,7 +965,14 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     binding = {'source_rule': source_id, 'source_rule_sha256': digest(xml_identity(rule)),
         'component': component, 'definition': definition, 'native_rule': rule_id, 'assessment': assessment_id,
         'dependencies': converter.used, 'omitted_checks': omitted_checks,
+        'source_checks': [{'system': check.get('system'), 'selector': check.get('selector', ''),
+                           'sha256': digest(xml_identity(check)), 'source': xml_identity(check),
+                           'default': check.get('selector', '') == ''}
+                          for check in rule.findall(f'{{{XCCDF}}}check')],
+        'source_selection_policy': 'oval_preferred_manual_ocil_alternative',
         'source_platforms': [child.get('idref') for child in rule.findall(f'{{{XCCDF}}}platform')]}
+    if manual_alternatives:
+        binding['manual_alternatives'] = manual_alternatives
     recovered_controls = []
     for identifier, used in sorted(converter.used.items()):
         if used.get('kind') != 'test':
@@ -987,7 +1027,14 @@ def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True, nat
     mappings = load_mappings()
     documents, bindings = {}, []
     for source_id in rule_ids:
-        native, binding = convert_rule(source, source_id, mappings, human_compact=human_compact, native_recovery=native_recovery)
+        rule = source.rules[source_id]
+        if not any(check.get('system') == OVAL
+                   for check in rule.findall(f'{{{XCCDF}}}check')):
+            native, binding = convert_manual_only_rule(source, source_id)
+        else:
+            native, binding = convert_rule(source, source_id, mappings,
+                                            human_compact=human_compact,
+                                            native_recovery=native_recovery)
         ensure(not set(native) & set(documents), 'native Rule/Assessment name collision in selected source Rules')
         documents.update(native)
         bindings.append(binding)
@@ -1087,9 +1134,15 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
             try:
                 rule = source.rules[row['source_rule']]
                 ensure(source.rule_selected(rule), 'disabled source defaults unsupported')
-                native, binding = convert_rule(source, row['source_rule'], mappings,
-                                               human_compact=human_compact,
-                                               native_recovery=native_recovery)
+                if not any(check.get('system') == OVAL
+                           for check in rule.findall(f'{{{XCCDF}}}check')):
+                    native, binding = convert_manual_only_rule(source, row['source_rule'])
+                    row.update(status='manual_only', proof_level='none', artifacts=sorted(native),
+                               conversion_status='MANUAL_ONLY_PRESERVED')
+                else:
+                    native, binding = convert_rule(source, row['source_rule'], mappings,
+                                                   human_compact=human_compact,
+                                                   native_recovery=native_recovery)
                 for key, parameter in binding.get('policy_parameters', {}).items():
                     ensure(key not in accepted_parameters or accepted_parameters[key] == parameter,
                            'conflicting Benchmark Parameter binding: '+key)
@@ -1124,8 +1177,9 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 documents.update(native)
                 accepted_parameters.update(binding.get('policy_parameters', {}))
                 bindings.append(binding)
-                row.update(status='converted', proof_level='authoring_validated', artifacts=sorted(native),
-                           conversion_status='CONVERTED_UNVERIFIED')
+                if row.get('status') != 'manual_only':
+                    row.update(status='converted', proof_level='authoring_validated', artifacts=sorted(native),
+                               conversion_status='CONVERTED_UNVERIFIED')
                 if binding.get('conversion_warnings'):
                     row['conversion_warnings'] = binding['conversion_warnings']
                     row['independent_static_proof_eligible'] = False
