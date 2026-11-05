@@ -15,9 +15,12 @@ def main():
     parser.add_argument('--schema-root', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--include-sqlext', action='store_true')
+    parser.add_argument('--historical-default', action='store_true',
+                        help='disable owner-approved native all_exist/Input recovery')
     args = parser.parse_args()
     report = compact(args.source_dir, args.schema_root,
-                     exclude_sqlext=not args.include_sqlext)
+                     exclude_sqlext=not args.include_sqlext,
+                     native_recovery=not args.historical_default)
     report['format'] = 'scap-ng-tools/issue28-complete-ledger/1'
     report['ledger_contract'] = {
         'categories': ['automated_converted_proved', 'automated_converted_unproved',

@@ -26,7 +26,7 @@ def issue_key(problem):
     return problem.get('category', 'unknown'), problem.get('message', 'unknown')
 
 
-def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True):
+def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_recovery=True):
     sources = sorted(source_dir.glob('*.zip'))
     if len(sources) != EXPECTED_BENCHMARKS:
         raise ValueError(f'expected {EXPECTED_BENCHMARKS} benchmark ZIPs, found {len(sources)}')
@@ -53,7 +53,8 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True):
             summary['statuses'] = {'intentionally_excluded': summary['source_rules']}
         else:
             _, _, coverage = convert_benchmark(schema_root=schema_root, source=source,
-                                               sha256_pin=source_hash)
+                                               sha256_pin=source_hash,
+                                               native_recovery=native_recovery)
             summary = coverage['summary']
         benchmark = {
             'filename': source.name,
@@ -132,6 +133,7 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True):
                      'blocked': totals.get('blocked', 0),
                      'intentionally_excluded': totals.get('intentionally_excluded', 0),
                      'total': accounted},
+        'recovery_mode': 'native_recovery' if native_recovery else 'historical_default',
         'classification': {
             'automated_converted_unproved': totals.get('converted', 0),
             'automated_converted_proved': 0,
@@ -167,9 +169,12 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--include-sqlext', action='store_true',
                         help='retain SQLEXT-dependent SQL benchmarks in the blocked in-scope set')
+    parser.add_argument('--historical-default', action='store_true',
+                        help='disable owner-approved native all_exist/Input recovery')
     args = parser.parse_args()
     report = compact(args.source_dir, args.schema_root,
-                     exclude_sqlext=not args.include_sqlext)
+                     exclude_sqlext=not args.include_sqlext,
+                     native_recovery=not args.historical_default)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8')
     print(json.dumps(report['baseline'], sort_keys=True))
