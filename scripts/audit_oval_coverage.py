@@ -122,6 +122,10 @@ def inventory(archive: Path):
                 closure(component, (descendant.text or '').strip(), rule_id, visited)
             elif descendant.tag == O + 'filter':
                 closure(component, (descendant.text or '').strip(), rule_id, visited)
+            elif lname(descendant) == 'var_ref' and (descendant.text or '').strip():
+                # Variable-object references are child text in family-specific
+                # namespaces rather than a var_ref attribute.
+                closure(component, (descendant.text or '').strip(), rule_id, visited)
 
     for rule_id, rule in rules.items():
         visited = set()

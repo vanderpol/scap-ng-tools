@@ -134,6 +134,7 @@
       "filename": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
       "operations": [
         "affected",
+        "arithmetic",
         "behaviors",
         "canonical_path",
         "chg_req",
@@ -802,12 +803,14 @@
         "line_test",
         "literal_component",
         "local_variable",
+        "merge",
         "metadata",
         "object",
         "object_component",
         "platform",
         "regex_capture",
         "show_subcommand",
+        "split",
         "state",
         "title",
         "value",
@@ -866,12 +869,14 @@
         "line_test",
         "literal_component",
         "local_variable",
+        "merge",
         "metadata",
         "object",
         "object_component",
         "platform",
         "regex_capture",
         "show_subcommand",
+        "split",
         "state",
         "title",
         "value",
@@ -904,12 +909,14 @@
         "line_test",
         "literal_component",
         "local_variable",
+        "merge",
         "metadata",
         "object",
         "object_component",
         "platform",
         "regex_capture",
         "show_subcommand",
+        "split",
         "state",
         "title",
         "value",
@@ -942,12 +949,14 @@
         "line_test",
         "literal_component",
         "local_variable",
+        "merge",
         "metadata",
         "object",
         "object_component",
         "platform",
         "regex_capture",
         "show_subcommand",
+        "split",
         "state",
         "title",
         "value",
@@ -1143,6 +1152,7 @@
         "key",
         "literal_component",
         "local_variable",
+        "merge",
         "metadata",
         "module_id",
         "module_name",
@@ -1318,6 +1328,7 @@
         "local_variable",
         "metadata",
         "name",
+        "namespace",
         "object",
         "object_component",
         "pattern",
@@ -1344,7 +1355,9 @@
         "variable_component",
         "variable_object",
         "variable_state",
-        "variable_test"
+        "variable_test",
+        "wmi_object",
+        "wql"
       ],
       "rules": 68,
       "source_sha256": "b6bd7ad2a458f464eca99deb9eac50aaeafa74d435cf0bb2ca76d0424d916692"
@@ -1368,6 +1381,7 @@
         "literal_component",
         "local_variable",
         "metadata",
+        "namespace",
         "object",
         "object_component",
         "parameter",
@@ -1392,7 +1406,9 @@
         "variable_component",
         "variable_object",
         "variable_state",
-        "variable_test"
+        "variable_test",
+        "wmi_object",
+        "wql"
       ],
       "rules": 66,
       "source_sha256": "46497542771fd7841cd96745d61dbdeb8ccf0d082415dcfa64a6694bf365f8f9"
@@ -2210,6 +2226,7 @@
         "logoff",
         "logon",
         "max_passwd_age",
+        "merge",
         "metadata",
         "min_passwd_age",
         "min_passwd_len",
@@ -2388,6 +2405,7 @@
         "logoff",
         "logon",
         "max_passwd_age",
+        "merge",
         "metadata",
         "min_passwd_age",
         "min_passwd_len",
@@ -3556,6 +3574,7 @@
         "behaviors",
         "command",
         "concat",
+        "count",
         "criteria",
         "criterion",
         "definition",
@@ -3849,6 +3868,7 @@
       "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
       "operations": [
         "affected",
+        "arithmetic",
         "behaviors",
         "canonical_path",
         "chg_req",
@@ -3918,6 +3938,7 @@
         "shellcommand_state",
         "shellcommand_test",
         "size",
+        "split",
         "state",
         "stderr_line",
         "stdout_line",
@@ -4149,6 +4170,7 @@
         "shellcommand_object",
         "shellcommand_state",
         "shellcommand_test",
+        "split",
         "state",
         "stderr_line",
         "stdout_line",
@@ -4189,6 +4211,7 @@
       "filename": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
       "operations": [
         "affected",
+        "arithmetic",
         "behaviors",
         "canonical_path",
         "chg_req",
@@ -4257,6 +4280,7 @@
         "shellcommand_object",
         "shellcommand_state",
         "shellcommand_test",
+        "split",
         "state",
         "stderr_line",
         "stdout_line",
@@ -4528,6 +4552,7 @@
         "smf_object",
         "smf_state",
         "smf_test",
+        "split",
         "state",
         "stdout_line",
         "sticky",
@@ -4622,6 +4647,7 @@
         "smf_object",
         "smf_state",
         "smf_test",
+        "split",
         "state",
         "stdout_line",
         "sticky",
@@ -4665,6 +4691,7 @@
         "command_line",
         "concat",
         "constant_variable",
+        "count",
         "criteria",
         "criterion",
         "definition",
@@ -4737,6 +4764,7 @@
         "textfilecontent54_test",
         "title",
         "uexec",
+        "unique",
         "unit",
         "user_id",
         "username",
@@ -5070,7 +5098,6 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259712r961863_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218739r1022675_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218742r1022679_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214448r879562_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214449r879562_rule",
         "xccdf_mil.disa.stig_rule_SV-224861r991589_rule",
@@ -5080,13 +5107,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "appcmd_object",
-      "occurrences": 26,
+      "occurrences": 37,
       "representative_rules": [
         "xccdf_mil.disa.stig_rule_SV-205854r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-224861r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-254280r991589_rule"
       ],
-      "rules": 20
+      "rules": 25
     },
     {
       "attributes": [
@@ -5190,8 +5217,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218738r1022673_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214400r879562_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214454r879587_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214464r879650_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214465r879650_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_mil.disa.stig_rule_SV-224860r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-205853r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-254279r991589_rule",
@@ -5199,13 +5225,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "appcmdlistconfig_state",
-      "occurrences": 89,
+      "occurrences": 93,
       "representative_rules": [
         "xccdf_mil.disa.stig_rule_SV-205853r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-224860r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-254279r991589_rule"
       ],
-      "rules": 64
+      "rules": 66
     },
     {
       "attributes": [
@@ -5264,17 +5290,22 @@
       "attributes": [
         "arithmetic_operation"
       ],
-      "benchmarks": 1,
+      "benchmarks": 4,
       "examples": [
-        "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
+        "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
+        "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+        "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
+        "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule"
       ],
       "matrix_status": "unclassified",
       "name": "arithmetic",
-      "occurrences": 3,
+      "occurrences": 9,
       "representative_rules": [
-        "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
+        "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+        "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
+        "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule"
       ],
-      "rules": 1
+      "rules": 4
     },
     {
       "attributes": [
@@ -5893,7 +5924,7 @@
       ],
       "matrix_status": "unclassified",
       "name": "command",
-      "occurrences": 1832,
+      "occurrences": 1833,
       "representative_rules": [
         "xccdf_gov.nist_rule_SV-257142r958400_rule",
         "xccdf_gov.nist_rule_SV-257143r958400_rule",
@@ -6006,11 +6037,14 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-283673r1193224_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214433r879756_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214492r879887_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213902r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213903r960864_rule",
@@ -6071,13 +6105,13 @@
       ],
       "matrix_status": "partially_implemented",
       "name": "concat",
-      "occurrences": 767,
+      "occurrences": 772,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
         "xccdf_mil.disa.fso_rule_SV-225229r1188309_rule",
         "xccdf_mil.disa.fso_rule_SV-225313r569185_rule"
       ],
-      "rules": 294
+      "rules": 299
     },
     {
       "attributes": [
@@ -6216,7 +6250,7 @@
       ],
       "matrix_status": "unclassified",
       "name": "constant_variable",
-      "occurrences": 757,
+      "occurrences": 759,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
@@ -6226,7 +6260,7 @@
     },
     {
       "attributes": [],
-      "benchmarks": 12,
+      "benchmarks": 14,
       "examples": [
         "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule",
         "xccdf_mil.disa.stig_rule_SV-260543r958482_rule",
@@ -6244,22 +6278,27 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259341r1156949_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259374r1156950_rule",
+        "xccdf_mil.disa.stig_rule_SV-248634r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-248701r958422_rule",
         "xccdf_mil.disa.stig_rule_SV-271832r1092208_rule",
         "xccdf_mil.disa.stig_rule_SV-271835r1092217_rule",
+        "xccdf_mil.disa.stig_rule_SV-230316r1044801_rule",
         "xccdf_mil.disa.stig_rule_SV-230371r1017183_rule",
+        "xccdf_mil.disa.stig_rule_SV-257948r1045004_rule",
         "xccdf_mil.disa.stig_rule_SV-258045r958482_rule",
-        "xccdf_mil.disa.stig_rule_SV-258061r958482_rule"
+        "xccdf_mil.disa.stig_rule_SV-252935r991589_rule"
       ],
       "matrix_status": "supported_mapping_missing",
       "name": "count",
-      "occurrences": 26,
+      "occurrences": 47,
       "representative_rules": [
         "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-215812r1137875_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule"
       ],
-      "rules": 26
+      "rules": 37
     },
     {
       "attributes": [
@@ -7311,9 +7350,11 @@
       "benchmarks": 8,
       "examples": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218818r961470_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214433r879756_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
         "xccdf_mil.disa.stig_rule_SV-224861r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-205854r991589_rule",
@@ -7322,13 +7363,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "environmentvariable58_object",
-      "occurrences": 21,
+      "occurrences": 23,
       "representative_rules": [
         "xccdf_mil.disa.stig_rule_SV-205854r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-224861r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-254280r991589_rule"
       ],
-      "rules": 9
+      "rules": 11
     },
     {
       "attributes": [
@@ -7542,13 +7583,13 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213904r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213930r1043176_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213933r1167475_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213948r960942_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213936r960879_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271118r1107970_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271121r1109177_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271122r1109180_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271265r1108933_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271269r1108423_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271283r1108465_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271270r1108426_rule",
         "xccdf_mil.disa.fso_rule_SV-226057r794277_rule",
         "xccdf_mil.disa.fso_rule_SV-226058r852055_rule",
         "xccdf_mil.disa.fso_rule_SV-226059r794296_rule",
@@ -7570,13 +7611,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "external_variable",
-      "occurrences": 441,
+      "occurrences": 443,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-223017r961089_rule",
         "xccdf_mil.disa.fso_rule_SV-223018r961089_rule",
         "xccdf_mil.disa.fso_rule_SV-223019r961092_rule"
       ],
-      "rules": 424
+      "rules": 426
     },
     {
       "attributes": [],
@@ -8545,8 +8586,9 @@
         "xccdf_mil.disa.fso_rule_SV-223122r960963_rule",
         "xccdf_mil.disa.fso_rule_SV-223124r960963_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218748r1210384_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
         "xccdf_mil.disa.stig_rule_SV-223280r961050_rule",
         "xccdf_mil.disa.stig_rule_SV-223281r1016166_rule",
@@ -8591,13 +8633,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "filter",
-      "occurrences": 1481,
+      "occurrences": 1485,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-223016r961038_rule",
         "xccdf_mil.disa.fso_rule_SV-223122r960963_rule",
         "xccdf_mil.disa.fso_rule_SV-223124r960963_rule"
       ],
-      "rules": 552
+      "rules": 554
     },
     {
       "attributes": [
@@ -8915,13 +8957,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "global_command",
-      "occurrences": 147,
+      "occurrences": 155,
       "representative_rules": [
         "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-216733r991901_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215662r1192908_rule"
       ],
-      "rules": 53
+      "rules": 57
     },
     {
       "attributes": [
@@ -8939,13 +8981,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "global_object",
-      "occurrences": 114,
+      "occurrences": 122,
       "representative_rules": [
         "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-216733r991901_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215662r1192908_rule"
       ],
-      "rules": 53
+      "rules": 57
     },
     {
       "attributes": [
@@ -9274,8 +9316,8 @@
         "xccdf_mil.disa.stig_rule_SV-221559r961083_rule",
         "xccdf_mil.disa.stig_rule_SV-221561r960963_rule",
         "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
-        "xccdf_mil.disa.stig_rule_SV-251549r960963_rule",
-        "xccdf_mil.disa.stig_rule_SV-251550r961194_rule",
+        "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+        "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
         "xccdf_mil.disa.stig_rule_SV-213426r961197_rule",
         "xccdf_mil.disa.stig_rule_SV-213427r961197_rule",
         "xccdf_mil.disa.stig_rule_SV-213428r1192794_rule",
@@ -9322,13 +9364,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "hive",
-      "occurrences": 2562,
+      "occurrences": 2570,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-223015r961863_rule",
         "xccdf_mil.disa.fso_rule_SV-223017r961089_rule",
         "xccdf_mil.disa.fso_rule_SV-223018r961089_rule"
       ],
-      "rules": 1555
+      "rules": 1563
     },
     {
       "attributes": [
@@ -9395,13 +9437,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "identifier",
-      "occurrences": 100,
+      "occurrences": 111,
       "representative_rules": [
         "xccdf_mil.disa.stig_rule_SV-205853r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-205854r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-224860r991589_rule"
       ],
-      "rules": 82
+      "rules": 87
     },
     {
       "attributes": [],
@@ -9429,13 +9471,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "identifier_type",
-      "occurrences": 100,
+      "occurrences": 111,
       "representative_rules": [
         "xccdf_mil.disa.stig_rule_SV-205853r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-205854r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-224860r991589_rule"
       ],
-      "rules": 82
+      "rules": 87
     },
     {
       "attributes": [
@@ -9699,8 +9741,8 @@
         "xccdf_mil.disa.stig_rule_SV-221559r961083_rule",
         "xccdf_mil.disa.stig_rule_SV-221561r960963_rule",
         "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
-        "xccdf_mil.disa.stig_rule_SV-251549r960963_rule",
-        "xccdf_mil.disa.stig_rule_SV-251550r961194_rule",
+        "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+        "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
         "xccdf_mil.disa.stig_rule_SV-213426r961197_rule",
         "xccdf_mil.disa.stig_rule_SV-213427r961197_rule",
         "xccdf_mil.disa.stig_rule_SV-213428r1192794_rule",
@@ -9749,13 +9791,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "key",
-      "occurrences": 2720,
+      "occurrences": 2728,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-223015r961863_rule",
         "xccdf_mil.disa.fso_rule_SV-223016r961038_rule",
         "xccdf_mil.disa.fso_rule_SV-223017r961089_rule"
       ],
-      "rules": 1694
+      "rules": 1702
     },
     {
       "attributes": [
@@ -9987,13 +10029,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "line_object",
-      "occurrences": 101,
+      "occurrences": 105,
       "representative_rules": [
         "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-215808r1186320_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-215809r1186322_rule"
       ],
-      "rules": 97
+      "rules": 101
     },
     {
       "attributes": [
@@ -10149,7 +10191,7 @@
       ],
       "matrix_status": "unclassified",
       "name": "literal_component",
-      "occurrences": 1111,
+      "occurrences": 1113,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
         "xccdf_mil.disa.fso_rule_SV-225229r1188309_rule",
@@ -10199,19 +10241,22 @@
         "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
         "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
         "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
+        "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+        "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
         "xccdf_mil.disa.stig_rule_SV-251550r961194_rule",
         "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
         "xccdf_mil.disa.fso_rule_SV-225229r1188309_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218742r1022679_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214451r879567_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214452r879568_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213902r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213903r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213935r960864_rule",
@@ -10249,7 +10294,7 @@
         "xccdf_mil.disa.stig_rule_SV-230225r1184236_rule",
         "xccdf_mil.disa.stig_rule_SV-230294r1017105_rule",
         "xccdf_mil.disa.stig_rule_SV-257847r1044924_rule",
-        "xccdf_mil.disa.stig_rule_SV-257889r1184302_rule",
+        "xccdf_mil.disa.stig_rule_SV-257866r958804_rule",
         "xccdf_mil.disa.stig_rule_SV-217131r1038967_rule",
         "xccdf_mil.disa.stig_rule_SV-217173r1184441_rule",
         "xccdf_mil.disa.stig_rule_SV-217175r1184447_rule",
@@ -10257,24 +10302,20 @@
         "xccdf_mil.disa.stig_rule_SV-234965r958752_rule",
         "xccdf_mil.disa.stig_rule_SV-234993r1184474_rule",
         "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
-        "xccdf_mil.disa.stig_rule_SV-216309r959010_rule",
-        "xccdf_mil.disa.stig_rule_SV-216336r958400_rule",
         "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
-        "xccdf_mil.disa.stig_rule_SV-216074r959010_rule",
-        "xccdf_mil.disa.stig_rule_SV-216101r958400_rule",
+        "xccdf_mil.disa.stig_rule_SV-252935r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule",
-        "xccdf_mil.disa.stig_rule_SV-252977r958434_rule",
-        "xccdf_mil.disa.stig_rule_SV-252978r958434_rule"
+        "xccdf_mil.disa.stig_rule_SV-252977r958434_rule"
       ],
       "matrix_status": "unclassified",
       "name": "local_variable",
-      "occurrences": 1356,
+      "occurrences": 1450,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
         "xccdf_mil.disa.fso_rule_SV-225229r1188309_rule",
         "xccdf_mil.disa.fso_rule_SV-225313r569185_rule"
       ],
-      "rules": 476
+      "rules": 516
     },
     {
       "attributes": [
@@ -10605,7 +10646,7 @@
         "delimiter",
         "sort"
       ],
-      "benchmarks": 8,
+      "benchmarks": 15,
       "examples": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214230r1210990_rule",
@@ -10615,6 +10656,15 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214308r1192935_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214368r960963_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214390r1192950_rule",
+        "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
+        "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+        "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
+        "xccdf_mil.disa.stig_rule_SV-251554r1067554_rule",
+        "xccdf_mil.disa.stig_rule_SV-220805r971535_rule",
+        "xccdf_mil.disa.stig_rule_SV-253363r971535_rule",
         "xccdf_mil.disa.stig_rule_SV-224975r958524_rule",
         "xccdf_mil.disa.stig_rule_SV-205723r1137695_rule",
         "xccdf_mil.disa.stig_rule_SV-254396r1137695_rule",
@@ -10622,13 +10672,13 @@
       ],
       "matrix_status": "partially_implemented",
       "name": "merge",
-      "occurrences": 86,
+      "occurrences": 98,
       "representative_rules": [
+        "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
         "xccdf_mil.disa.stig_rule_SV-205723r1137695_rule",
-        "xccdf_mil.disa.stig_rule_SV-224975r958524_rule",
-        "xccdf_mil.disa.stig_rule_SV-254396r1137695_rule"
+        "xccdf_mil.disa.stig_rule_SV-220805r971535_rule"
       ],
-      "rules": 49
+      "rules": 61
     },
     {
       "attributes": [],
@@ -11128,8 +11178,8 @@
         "xccdf_mil.disa.stig_rule_SV-221559r961083_rule",
         "xccdf_mil.disa.stig_rule_SV-221561r960963_rule",
         "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
-        "xccdf_mil.disa.stig_rule_SV-251549r960963_rule",
-        "xccdf_mil.disa.stig_rule_SV-251550r961194_rule",
+        "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+        "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
         "xccdf_mil.disa.stig_rule_SV-213426r961197_rule",
         "xccdf_mil.disa.stig_rule_SV-213427r961197_rule",
         "xccdf_mil.disa.stig_rule_SV-213428r1192794_rule",
@@ -11145,13 +11195,14 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218799r960963_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218814r1067589_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218818r961470_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-278953r1192787_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214414r879587_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214457r879587_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-258445r928856_rule",
         "xccdf_mil.disa.stig_rule_SV-223280r961050_rule",
         "xccdf_mil.disa.stig_rule_SV-223281r1016166_rule",
         "xccdf_mil.disa.stig_rule_SV-223282r1082349_rule",
@@ -11205,24 +11256,26 @@
       ],
       "matrix_status": "unclassified",
       "name": "name",
-      "occurrences": 3394,
+      "occurrences": 3404,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-223015r961863_rule",
         "xccdf_mil.disa.fso_rule_SV-223016r961038_rule",
         "xccdf_mil.disa.fso_rule_SV-223017r961089_rule"
       ],
-      "rules": 2343
+      "rules": 2353
     },
     {
       "attributes": [
         "datatype",
         "operation"
       ],
-      "benchmarks": 17,
+      "benchmarks": 19,
       "examples": [
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
         "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule",
         "xccdf_mil.disa.fso_rule_SV-225234r1188289_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule",
@@ -11259,13 +11312,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "namespace",
-      "occurrences": 224,
+      "occurrences": 226,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
         "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule",
         "xccdf_mil.disa.fso_rule_SV-225234r1188289_rule"
       ],
-      "rules": 208
+      "rules": 210
     },
     {
       "attributes": [],
@@ -11594,7 +11647,6 @@
       "examples": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243503r1026201_rule",
         "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
-        "xccdf_mil.disa.stig_rule_SV-274068r1120192_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214292r961167_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214306r960735_rule",
@@ -11626,6 +11678,8 @@
         "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
         "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
         "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
+        "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+        "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
         "xccdf_mil.disa.stig_rule_SV-251550r961194_rule",
         "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
         "xccdf_mil.disa.fso_rule_SV-225229r1188309_rule",
@@ -11633,13 +11687,14 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218742r1022679_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214451r879567_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214452r879568_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213902r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213935r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213936r960879_rule",
@@ -11672,32 +11727,28 @@
         "xccdf_mil.disa.stig_rule_SV-230225r1184236_rule",
         "xccdf_mil.disa.stig_rule_SV-230294r1017105_rule",
         "xccdf_mil.disa.stig_rule_SV-257847r1044924_rule",
-        "xccdf_mil.disa.stig_rule_SV-257889r1184302_rule",
+        "xccdf_mil.disa.stig_rule_SV-257866r958804_rule",
         "xccdf_mil.disa.stig_rule_SV-217131r1038967_rule",
         "xccdf_mil.disa.stig_rule_SV-217173r1184441_rule",
         "xccdf_mil.disa.stig_rule_SV-217175r1184447_rule",
         "xccdf_mil.disa.stig_rule_SV-234892r1038967_rule",
         "xccdf_mil.disa.stig_rule_SV-234965r958752_rule",
         "xccdf_mil.disa.stig_rule_SV-234993r1184474_rule",
-        "xccdf_mil.disa.stig_rule_SV-216309r959010_rule",
-        "xccdf_mil.disa.stig_rule_SV-216336r958400_rule",
-        "xccdf_mil.disa.stig_rule_SV-216337r958402_rule",
-        "xccdf_mil.disa.stig_rule_SV-216074r959010_rule",
-        "xccdf_mil.disa.stig_rule_SV-216101r958400_rule",
-        "xccdf_mil.disa.stig_rule_SV-216102r958402_rule",
+        "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
+        "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
+        "xccdf_mil.disa.stig_rule_SV-252935r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule",
-        "xccdf_mil.disa.stig_rule_SV-252977r958434_rule",
-        "xccdf_mil.disa.stig_rule_SV-252978r958434_rule"
+        "xccdf_mil.disa.stig_rule_SV-252977r958434_rule"
       ],
       "matrix_status": "unclassified",
       "name": "object_component",
-      "occurrences": 822,
+      "occurrences": 912,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
         "xccdf_mil.disa.fso_rule_SV-225229r1188309_rule",
         "xccdf_mil.disa.fso_rule_SV-225313r569185_rule"
       ],
-      "rules": 455
+      "rules": 498
     },
     {
       "attributes": [],
@@ -12211,13 +12262,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "parameter",
-      "occurrences": 100,
+      "occurrences": 111,
       "representative_rules": [
         "xccdf_mil.disa.stig_rule_SV-205853r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-205854r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-224860r991589_rule"
       ],
-      "rules": 82
+      "rules": 87
     },
     {
       "attributes": [
@@ -12976,9 +13027,11 @@
         "xccdf_mil.disa.stig_rule_SV-242404r960960_rule",
         "xccdf_mil.disa.stig_rule_SV-242406r960960_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218818r961470_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214433r879756_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
         "xccdf_mil.disa.stig_rule_SV-224861r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-205854r991589_rule",
@@ -13001,13 +13054,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "pid",
-      "occurrences": 147,
+      "occurrences": 149,
       "representative_rules": [
         "xccdf_mil.disa.stig_rule_SV-204451r958498_rule",
         "xccdf_mil.disa.stig_rule_SV-204503r958414_rule",
         "xccdf_mil.disa.stig_rule_SV-205854r991589_rule"
       ],
-      "rules": 128
+      "rules": 130
     },
     {
       "attributes": [],
@@ -13454,20 +13507,24 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214306r960735_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214368r960963_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-215812r1137875_rule",
-        "xccdf_mil.disa.stig.cisco_rule_SV-215854r1156415_rule",
+        "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220523r1137875_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220565r1195273_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215667r1137875_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215709r1205827_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220617r1205840_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
         "xccdf_mil.disa.stig_rule_SV-242406r960960_rule",
         "xccdf_mil.disa.stig_rule_SV-242407r960960_rule",
         "xccdf_mil.disa.stig_rule_SV-242420r1043178_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218814r1067589_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218742r1022679_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214451r879567_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214452r879568_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213902r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213935r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-283667r1192917_rule",
@@ -13494,13 +13551,13 @@
       ],
       "matrix_status": "partially_implemented",
       "name": "regex_capture",
-      "occurrences": 289,
+      "occurrences": 314,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-226070r877392_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-215812r1137875_rule",
-        "xccdf_mil.disa.stig.cisco_rule_SV-215854r1156415_rule"
+        "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule"
       ],
-      "rules": 115
+      "rules": 128
     },
     {
       "attributes": [
@@ -13548,8 +13605,8 @@
         "xccdf_mil.disa.stig_rule_SV-221559r961083_rule",
         "xccdf_mil.disa.stig_rule_SV-221561r960963_rule",
         "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
-        "xccdf_mil.disa.stig_rule_SV-251549r960963_rule",
-        "xccdf_mil.disa.stig_rule_SV-251550r961194_rule",
+        "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+        "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
         "xccdf_mil.disa.stig_rule_SV-213426r961197_rule",
         "xccdf_mil.disa.stig_rule_SV-213427r961197_rule",
         "xccdf_mil.disa.stig_rule_SV-213428r1192794_rule",
@@ -13596,13 +13653,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "registry_object",
-      "occurrences": 2852,
+      "occurrences": 2860,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-223015r961863_rule",
         "xccdf_mil.disa.fso_rule_SV-223017r961089_rule",
         "xccdf_mil.disa.fso_rule_SV-223018r961089_rule"
       ],
-      "rules": 1555
+      "rules": 1563
     },
     {
       "attributes": [
@@ -13911,13 +13968,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "result",
-      "occurrences": 573,
+      "occurrences": 577,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225238r1069480_rule",
         "xccdf_mil.disa.fso_rule_SV-225259r569185_rule",
         "xccdf_mil.disa.fso_rule_SV-225260r569185_rule"
       ],
-      "rules": 346
+      "rules": 348
     },
     {
       "attributes": [
@@ -15593,7 +15650,7 @@
       ],
       "matrix_status": "unclassified",
       "name": "shell",
-      "occurrences": 1825,
+      "occurrences": 1826,
       "representative_rules": [
         "xccdf_gov.nist_rule_SV-257142r958400_rule",
         "xccdf_gov.nist_rule_SV-257143r958400_rule",
@@ -15704,7 +15761,7 @@
       ],
       "matrix_status": "unclassified",
       "name": "shellcommand_object",
-      "occurrences": 1832,
+      "occurrences": 1833,
       "representative_rules": [
         "xccdf_gov.nist_rule_SV-257142r958400_rule",
         "xccdf_gov.nist_rule_SV-257143r958400_rule",
@@ -15959,13 +16016,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "show_subcommand",
-      "occurrences": 236,
+      "occurrences": 240,
       "representative_rules": [
         "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-216700r531086_rule",
         "xccdf_mil.disa.stig.cisco_rule_SV-216727r945856_rule"
       ],
-      "rules": 97
+      "rules": 101
     },
     {
       "attributes": [
@@ -16237,19 +16294,35 @@
       "attributes": [
         "delimiter"
       ],
-      "benchmarks": 1,
+      "benchmarks": 10,
       "examples": [
         "xccdf_mil.disa.stig_rule_SV-219147r958472_rule",
-        "xccdf_mil.disa.stig_rule_SV-219148r958472_rule"
+        "xccdf_mil.disa.stig_rule_SV-219148r958472_rule",
+        "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
+        "xccdf_mil.disa.stig_rule_SV-271653r1091671_rule",
+        "xccdf_mil.disa.stig_rule_SV-271657r1091683_rule",
+        "xccdf_mil.disa.stig_rule_SV-271658r1091686_rule",
+        "xccdf_mil.disa.stig_rule_SV-230511r958804_rule",
+        "xccdf_mil.disa.stig_rule_SV-230514r958804_rule",
+        "xccdf_mil.disa.stig_rule_SV-230515r958804_rule",
+        "xccdf_mil.disa.stig_rule_SV-257866r958804_rule",
+        "xccdf_mil.disa.stig_rule_SV-257870r958804_rule",
+        "xccdf_mil.disa.stig_rule_SV-257871r958804_rule",
+        "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
+        "xccdf_mil.disa.stig_rule_SV-216066r959010_rule"
       ],
       "matrix_status": "supported_mapping_missing",
       "name": "split",
-      "occurrences": 2,
+      "occurrences": 29,
       "representative_rules": [
-        "xccdf_mil.disa.stig_rule_SV-219147r958472_rule",
-        "xccdf_mil.disa.stig_rule_SV-219148r958472_rule"
+        "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
+        "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
+        "xccdf_mil.disa.stig_rule_SV-216301r959010_rule"
       ],
-      "rules": 2
+      "rules": 23
     },
     {
       "attributes": [
@@ -17015,7 +17088,7 @@
       ],
       "matrix_status": "supported_mapping_missing",
       "name": "substring",
-      "occurrences": 16,
+      "occurrences": 21,
       "representative_rules": [
         "xccdf_mil.disa.stig_rule_SV-205723r1137695_rule",
         "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
@@ -18322,7 +18395,7 @@
     },
     {
       "attributes": [],
-      "benchmarks": 14,
+      "benchmarks": 15,
       "examples": [
         "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule",
@@ -18346,22 +18419,27 @@
         "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
         "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
+        "xccdf_mil.disa.stig_rule_SV-248634r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-248701r958422_rule",
         "xccdf_mil.disa.stig_rule_SV-271832r1092208_rule",
         "xccdf_mil.disa.stig_rule_SV-271835r1092217_rule",
+        "xccdf_mil.disa.stig_rule_SV-271861r1092295_rule",
+        "xccdf_mil.disa.stig_rule_SV-230316r1044801_rule",
         "xccdf_mil.disa.stig_rule_SV-230371r1017183_rule",
+        "xccdf_mil.disa.stig_rule_SV-257948r1045004_rule",
         "xccdf_mil.disa.stig_rule_SV-258045r958482_rule",
-        "xccdf_mil.disa.stig_rule_SV-258061r958482_rule"
+        "xccdf_mil.disa.stig_rule_SV-258061r958482_rule",
+        "xccdf_mil.disa.stig_rule_SV-252935r991589_rule"
       ],
       "matrix_status": "partially_implemented",
       "name": "unique",
-      "occurrences": 82,
+      "occurrences": 87,
       "representative_rules": [
+        "xccdf_mil.disa.stig_rule_SV-230316r1044801_rule",
         "xccdf_mil.disa.stig_rule_SV-230371r1017183_rule",
-        "xccdf_mil.disa.stig_rule_SV-238367r958902_rule",
-        "xccdf_mil.disa.stig_rule_SV-248701r958422_rule"
+        "xccdf_mil.disa.stig_rule_SV-238367r958902_rule"
       ],
-      "rules": 82
+      "rules": 87
     },
     {
       "attributes": [],
@@ -19093,7 +19171,7 @@
       ],
       "matrix_status": "unclassified",
       "name": "value",
-      "occurrences": 4904,
+      "occurrences": 4906,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-223015r961863_rule",
         "xccdf_mil.disa.fso_rule_SV-223016r961038_rule",
@@ -19221,9 +19299,9 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
-        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213903r960864_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271121r1109177_rule",
         "xccdf_mil.disa.stig_rule_SV-224861r991589_rule",
@@ -19245,13 +19323,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "variable_component",
-      "occurrences": 1280,
+      "occurrences": 1297,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
         "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule"
       ],
-      "rules": 114
+      "rules": 116
     },
     {
       "attributes": [
@@ -19673,11 +19751,13 @@
         "id",
         "version"
       ],
-      "benchmarks": 11,
+      "benchmarks": 13,
       "examples": [
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
         "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule",
         "xccdf_mil.disa.fso_rule_SV-225234r1188289_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule",
@@ -19697,13 +19777,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "wmi_object",
-      "occurrences": 36,
+      "occurrences": 38,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
         "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule",
         "xccdf_mil.disa.fso_rule_SV-225234r1188289_rule"
       ],
-      "rules": 35
+      "rules": 37
     },
     {
       "attributes": [
@@ -19764,11 +19844,13 @@
         "datatype",
         "operation"
       ],
-      "benchmarks": 17,
+      "benchmarks": 19,
       "examples": [
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
         "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule",
         "xccdf_mil.disa.fso_rule_SV-225234r1188289_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule",
@@ -19805,13 +19887,13 @@
       ],
       "matrix_status": "unclassified",
       "name": "wql",
-      "occurrences": 224,
+      "occurrences": 226,
       "representative_rules": [
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
         "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule",
         "xccdf_mil.disa.fso_rule_SV-225234r1188289_rule"
       ],
-      "rules": 208
+      "rules": 210
     },
     {
       "attributes": [
