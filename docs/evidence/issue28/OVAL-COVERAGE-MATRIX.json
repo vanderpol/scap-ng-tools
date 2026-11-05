@@ -254,6 +254,16 @@
       "runtime": "not reached",
       "proof": "45 primary collision Rules; Office 365 SV-223296 example",
       "status": "supported_mapping_missing"
+    },
+    {
+      "category": "Converter mapping",
+      "feature": "xsi:nil Object selectors and nullable cmdlet parameters",
+      "schema": "windows.cmdlet mapping already declares nullable fields",
+      "compiler": "native null contract exists",
+      "converter": "nil selector lowering missing/incomplete",
+      "runtime": "native null means unconstrained/no parameter",
+      "proof": "11 primary Rules; SV-220698 source fixture",
+      "status": "supported_mapping_missing"
     }
   ],
   "qualification": {
@@ -267,7 +277,8 @@
       "Reclassify legacy wmi_* and accesstoken_* under one Deprecated OVAL Tests statistic; keep wmi57_* in supported WMI coverage.",
       "Define the typed native Input/Parameter relation adapter for XCCDF Value operators (starting with less_than_or_equal), including allowed values, defaults, cardinality, and check-export binding.",
       "Define the native collection-expression lowering for multi-operand unique/merge without changing OVAL ordering, duplicate, empty, or error semantics.",
-      "Finalize deterministic source-identity disambiguation for readable native IDs, preserving source IDs and the 64-character native identifier limit."
+      "Finalize deterministic source-identity disambiguation for readable native IDs, preserving source IDs and the 64-character native identifier limit.",
+      "Complete converter lowering for xsi:nil selectors using existing windows.cmdlet nullable contracts; add null, empty, and non-null regression vectors."
     ]
   }
 }
