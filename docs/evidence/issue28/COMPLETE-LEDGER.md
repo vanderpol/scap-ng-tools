@@ -1,15 +1,15 @@
 # Issue #28 complete ledger result
 
 This ledger was regenerated from the original 65 signed Q3 2026 ZIPs against
-schema commit `7354a24cdbfe18321153ccaef5d772801a10cd71`. The 8,892 source Rule
+schema commit `7354a24cdbfe18321153ccaef5d772801a10cd71`, with owner-approved native recovery (`all_exist` and bounded Input/Parameter bindings) enabled. The 8,892 source Rule
 baseline reconciles exactly and the categories are mutually exclusive.
 
 | Category | Rules |
 |---|---:|
 | Automated converted, independently proved | 0 |
-| Automated converted, unproved | 4,517 |
+| Automated converted, unproved | 6,524 |
 | Manual-only | 1,581 |
-| Genuinely blocked | 2,585 |
+| Genuinely blocked | 578 |
 | Intentionally excluded (four SQLEXT SQL benchmarks) | 209 |
 | **Total** | **8,892** |
 
