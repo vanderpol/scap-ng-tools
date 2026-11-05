@@ -554,6 +554,37 @@ class AssessmentConverter:
             ensure(element.get('item_field') in mapping['native']['state_field_map'], 'unknown object_component field')
             return {'values': {'object': self.reference(identifier, 'object'),
                                'field': mapping['native']['state_field_map'][element.get('item_field')]}}
+        # The approved migration envelope is opt-in.  It is never emitted by
+        # the historical/default path, which remains byte-compatible.  Options
+        # are copied from OVAL only after exact lexical/range/arity checks; no
+        # value evaluation or implicit cast is performed here.
+        if self.native_recovery and operation in ('arithmetic', 'split', 'substring'):
+            required = ({'arithmetic_operation'} if operation == 'arithmetic' else
+                        {'delimiter'} if operation == 'split' else
+                        {'substring_start', 'substring_length'})
+            attributes(element, required)
+            ensure(set(element.attrib) == required, 'function options must be explicit')
+            ensure(len(element) >= 2 if operation == 'arithmetic' else len(element) == 1,
+                   'function arity mismatch')
+            options = dict(element.attrib)
+            if operation == 'arithmetic':
+                ensure(options['arithmetic_operation'] in ('add', 'multiply'),
+                       'unsupported arithmetic operation')
+            elif operation == 'substring':
+                for key, value in options.items():
+                    ensure(re.fullmatch(r'[+-]?[0-9]+', value.strip()) is not None,
+                           'substring option must be xsd:int')
+                    number = int(value)
+                    ensure(-2147483648 <= number <= 2147483647,
+                           'substring option outside xsd:int')
+                    options[key] = number
+            arguments = [self.function(child) for child in element]
+            expression = {'function': {'name': operation, 'arguments': arguments,
+                                       'options': options}}
+            self.conversion_warnings.append({'code': 'native_function_contract_v1',
+                'source_function': operation, 'source_options': dict(element.attrib),
+                'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
+            return expression
         ensure(operation in ('concat', 'regex_capture', 'merge', 'unique'), f'unsupported function: {operation}')
         attributes(element, {'pattern'} if operation == 'regex_capture' else
                    {'delimiter', 'sort', 'order'} if operation == 'merge' else set())
@@ -902,8 +933,9 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     ensure(source_id in source.rules, f'source Rule not found: {source_id}')
     rule = source.rules[source_id]
     component, definition, omitted_checks = source.automated_check(rule)
-    converter = AssessmentConverter(source, component, mappings, human_compact=human_compact,
-                                     native_recovery=native_recovery)
+    converter = AssessmentConverter(source, component, mappings,
+                                     canonical_variable_functions=native_recovery,
+                                     human_compact=human_compact, native_recovery=native_recovery)
     if getattr(source,'draft_compatibility',False) or getattr(source, 'native_recovery', False):
         from v04_draft_inputs import check_exports
         converter.bound_exports=check_exports(source,rule)
