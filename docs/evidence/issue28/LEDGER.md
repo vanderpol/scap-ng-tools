@@ -24,7 +24,7 @@ SQLEXT-dependent SQL benchmark archives are excluded by default. Use
 in-scope conversion result. Access-token capabilities remain blockers and are
 never replaced with fabricated native selectors.
 
-The current repository does not publish a regenerated 65-archive result. A
-run with the pinned original content is required before reporting benchmark
-counts as current. The historical 8,892-Rule baseline remains the reconciliation
-sum, including explicit exclusions.
+The regenerated result is published in [`COMPLETE-LEDGER.json`](COMPLETE-LEDGER.json)
+and summarized in [`COMPLETE-LEDGER.md`](COMPLETE-LEDGER.md). The historical
+8,892-Rule baseline remains the reconciliation sum, including explicit
+exclusions.
