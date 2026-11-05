@@ -16,7 +16,7 @@ JSON ledger may overlap a Rule and are not added to the primary total.
 | XCCDF/OVAL datatype mismatch | 2 | Source semantic mismatch | XCCDF string Values are exported to OVAL binary Variables; no silent cast is applied. |
 | Deprecated RPM `md5_differs` State | 2 | Intentionally unsupported | The pinned mapping explicitly replaces this deprecated field with `filedigest_differs`; no equivalent is invented. |
 | Native function contract admission | 64 | Pending canonical schema/compiler | Converter emits validated recovery envelopes for arithmetic, count, split, substring, and nested forms, but the pinned Assessment schema does not yet admit all function calls. |
-| Other native capability mismatches | 5 | Genuine capability/mapping gaps | IIS/NGINX state capability mismatches remain source-specific and require approved mappings. |
+| Other native capability mismatches | 7 | Genuine capability/mapping gaps | IIS/NGINX state capability mismatches remain source-specific and require approved mappings. |
 | Native Variable cast | 1 | Genuine semantic gap | Requires explicit typed cast/error propagation semantics. |
 | Assessment Input function composition | 1 | Genuine semantic gap | Native Input cannot currently participate in a composed Variable expression without a typed expression contract. |
 
