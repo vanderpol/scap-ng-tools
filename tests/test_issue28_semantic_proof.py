@@ -55,3 +55,21 @@ class SelectionPolicyVectors(unittest.TestCase):
         self.assertEqual((component, definition), ('oval-component', 'd'))
         self.assertEqual(omitted[0]['system'], OCIL)
         self.assertIn('source', omitted[0])
+
+class RecoveryFunctionBoundary(unittest.TestCase):
+    def test_native_recovery_requires_exact_function_options(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = ET.fromstring(
+            f'<split xmlns="{OVAL}" delimiter=","><literal_component datatype="string">a,b</literal_component></split>')
+        expression = visitor.function(source)
+        self.assertEqual(expression['function']['name'], 'split')
+        self.assertEqual(expression['function']['options'], {'delimiter': ','})
+        bad = ET.fromstring(
+            f'<substring xmlns="{OVAL}" substring_start="1.0" substring_length="1"><literal_component datatype="string">x</literal_component></substring>')
+        with self.assertRaisesRegex(ValueError, 'xsd:int'):
+            visitor.function(bad)
