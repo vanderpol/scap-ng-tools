@@ -7,7 +7,7 @@ complete ledger.
 | Requirement | Authoritative evidence | Current result |
 |---|---|---|
 | Preserve OVAL-preferred XCCDF selection and OCIL alternatives | `tests/test_issue28_all_exist_recovery.py`; focused source traces; `OVAL-COVERAGE-MATRIX.json` | Implemented and source-traced; OCIL execution remains manual |
-| Inventory all source OVAL operations and categories | `OVAL-SOURCE-INVENTORY.json`; `scripts/audit_oval_coverage.py` | **65 benchmarks / 8,892 Rules / 366 distinct names** |
+| Inventory all source OVAL operations and categories | `OVAL-SOURCE-INVENTORY.json`; `OVAL-COVERAGE-MATRIX.json`; `scripts/audit_oval_coverage.py` | **65 benchmarks / 8,892 Rules / 366 distinct names; every name classified** |
 | Recover identity collisions, nil selectors, typed equality recursion, absence precedence, and bindings | `RECOVERY-IMPLEMENTATION-LOG.md`; `tests/test_issue28_semantic_proof.py`; source provenance in `BLOCKER-AUDIT.json` | Implemented under bounded contracts; independently scanner-unproved |
 | Preserve count and multi-component aggregation candidates | `MULTI-COMPONENT-AGGREGATION.md`; recovery tests; raw blocker diagnostics | Candidate emitted only in recovery mode; active schema/compiler admission is missing |
 | Validate generated authoring against the pinned schema | `COMPLETE-LEDGER.json`; flat-schema CI check | Rebuilt and validated; this does not prove runtime equivalence |
