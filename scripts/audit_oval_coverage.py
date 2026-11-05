@@ -171,9 +171,14 @@ def main():
         operations.append({**row, 'name': name, 'attributes': sorted(row['attributes']),
                            'representative_rules': sorted(set(row['examples']))[:3],
                            'matrix_status': match['status'] if match else 'unclassified'})
+    benchmark_summary = [{
+        'filename': report['filename'], 'source_sha256': report['source_sha256'],
+        'rules': report['rules'],
+        'operations': sorted(row['name'] for row in report['operations'])
+    } for report in reports]
     result = {'format': 'scap-ng-tools/issue28-oval-source-inventory/1',
               'source_count': len(reports), 'rule_count': sum(r['rules'] for r in reports),
-              'benchmarks': reports, 'operations': operations,
+              'benchmarks': benchmark_summary, 'operations': operations,
               'qualification': 'Inventory only; no schema/runtime support inferred.'}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + '\n')
