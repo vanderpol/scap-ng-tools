@@ -8,6 +8,9 @@ PYTHONPATH=src python scripts/build_issue28_ledger.py \
   --source-dir /path/to/65-pinned-zips \
   --schema-root /path/to/scap-ng \
   --output docs/evidence/issue28/COMPLETE-LEDGER.json
+PYTHONPATH=src python scripts/render_issue28_ledger.py \
+  docs/evidence/issue28/COMPLETE-LEDGER.json \
+  docs/evidence/issue28/COMPLETE-LEDGER.md
 ```
 
 The output preserves every source ZIP hash, Rule ID, source Rule hash, check

@@ -35,6 +35,13 @@ class Issue28CompleteLedger(unittest.TestCase):
         self.assertEqual(stats['wmi57_supported']['source_rules_nonexcluded'], 169)
         self.assertEqual(stats['count_function']['source_rules_nonexcluded'], 37)
 
+    def test_primary_blockers_are_stable_root_causes(self):
+        for row in self.ledger['primary_blockers']:
+            if row['category'] == 'schema-semantic':
+                self.assertNotIn('authoring/direct-slice', row['message'])
+                self.assertNotIn("'function':", row['message'])
+        self.assertEqual(sum(row['rules'] for row in self.ledger['primary_blockers']), 317)
+
     def test_source_inventory_matches_owner_baseline(self):
         self.assertEqual(self.inventory['source_count'], 65)
         self.assertEqual(self.inventory['rule_count'], 8892)

@@ -26,9 +26,24 @@
       "rules": 206
     },
     {
+      "category": "schema-semantic",
+      "message": "native function contract admission: count",
+      "rules": 84
+    },
+    {
       "category": "unsupported-capability",
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_test",
       "rules": 83
+    },
+    {
+      "category": "schema-semantic",
+      "message": "native function contract admission: unique",
+      "rules": 60
+    },
+    {
+      "category": "schema-semantic",
+      "message": "native function contract admission: split",
+      "rules": 48
     },
     {
       "category": "unsupported-construct",
@@ -101,6 +116,11 @@
       "rules": 7
     },
     {
+      "category": "schema-semantic",
+      "message": "native function contract admission: arithmetic",
+      "rules": 6
+    },
+    {
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.nginx:ste:27840004",
       "rules": 5
@@ -126,6 +146,11 @@
       "rules": 3
     },
     {
+      "category": "schema-semantic",
+      "message": "native Variable declared/derived datatype mismatch",
+      "rules": 3
+    },
+    {
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:80",
       "rules": 3
@@ -134,6 +159,11 @@
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:93",
       "rules": 3
+    },
+    {
+      "category": "schema-semantic",
+      "message": "native function contract admission: substring",
+      "rules": 2
     },
     {
       "category": "unsupported-construct",
@@ -147,612 +177,7 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-record-storage-facility-sv-274067-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-record-storage-facility-sv-274067-assessment.json: Native Variable expression: Variable audit-partition-total-size-in-bytes-variable/expression: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: Native Variable expression: Variable grub-superusers-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: Native Variable expression: Variable grub-superusers-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: Native Variable expression: Variable number-of-line-and-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json: Native Variable expression: Variable number-of-ntp-servers-configured-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: Native Variable expression: Variable number-of-vty-s-on-the-system-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'function': {'name': 'concat', 'arguments': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/digital-signatures-assemblies-verified-sv-225223-assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\StrongName\\\\Verification'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json: {'function': {'name': 'substring', 'arguments': [{'values': {'object': 'shellcommand-object-true-msiinstallpath-msiinstallpath-w-object', 'field': 'stdout_line'}}], 'options': {'substring_start': 1, 'substring_length': 1}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json: Native Variable expression: Variable exchange-installation-drive-letter-variable/expression: {'function': {'name': 'substring', 'arguments': [{'values': {'object': 'shellcommand-object-true-msiinstallpath-msiinstallpath-w-object', 'field': 'stdout_line'}}], 'options': {'substring_start': 1, 'substring_length': 1}}} is not valid under any of the given schemas",
+      "message": "native traversal contract admission",
       "rules": 1
     },
     {
@@ -766,31 +191,6 @@
       "rules": 1
     },
     {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/idle-time-out-monitor-for-website-enabled-sv-218762-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: Native Variable expression: Variable count-of-captured-unique-pool-names-assigned-website-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/application-pools-rapid-0-website-managed-sv-218778-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)",
-      "rules": 1
-    },
-    {
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:81",
       "rules": 1
@@ -798,11 +198,6 @@
     {
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:94",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/application-pools-rapid-5-website-managed-sv-214492-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)",
       "rules": 1
     },
     {
@@ -816,388 +211,8 @@
       "rules": 1
     },
     {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'independent.shellcommand', 'shell': 'powershell', 'command': 'Get-DnsServerForwarder | ForEach-Object {$_.IPAddress.IPAddressToString}', 'error_if_exit_status_not_0': False, 'error_if_stderr_exists': False}, 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json: Native Variable expression: Variable the-number-of-dns-server-forwarders-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'independent.shellcommand', 'shell': 'powershell', 'command': 'Get-DnsServerForwarder | ForEach-Object {$_.IPAddress.IPAddressToString}', 'error_if_exit_status_not_0': False, 'error_if_stderr_exists': False}, 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-list-of-online-network-adapter-interface-indexes-object', 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json: Native Variable expression: Variable the-number-of-online-network-adapter-interface-indexes-variable/expression: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-list-of-online-network-adapter-interface-indexes-object', 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
       "category": "unsupported-construct",
       "message": "Assessment Input function composition requires a supported typed expression",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-allocate-audit-worth-of-audit-records-sv-271596-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-allocate-audit-worth-of-audit-records-sv-271596-assessment.json: Native Variable expression: Variable audit-partition-total-size-in-bytes-variable/expression: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-noexec-option-sv-271658-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-noexec-option-sv-271658-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: Native Variable expression: Variable count-of-unique-gids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-noexec-option-sv-230516-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-noexec-option-sv-230516-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-noexec-option-sv-257871-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-noexec-option-sv-257871-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: Native Variable expression: Variable count-of-unique-uids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: Native Variable expression: Variable count-of-unique-gids-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-allocate-audit-of-audit-records-sv-258155-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-allocate-audit-of-audit-records-sv-258155-assessment.json: Native Variable expression: Variable audit-partition-total-size-in-bytes-variable/expression: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-etc-init-d-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: Native Variable expression: Variable split-paths-for-etc-rc-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-etc-init-d-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: Native Variable expression: Variable split-paths-for-etc-rc-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     }
   ],
@@ -2482,7 +1497,7 @@
   },
   "diagnostic_stats": {
     "count_function": {
-      "primary_blocker_rules": 0,
+      "primary_blocker_rules": 37,
       "source_rules_nonexcluded": 37
     },
     "deprecated_oval_tests": {
@@ -2535,6 +1550,28 @@
       ],
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
       "rules": 125
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule",
+          "title": "Amazon Linux 2023 must ensure all interactive users have unique User IDs (UIDs)."
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260543r958482_rule",
+          "title": "Ubuntu 22.04 LTS must uniquely identify interactive users."
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270720r1066649_rule",
+          "title": "Ubuntu 24.04 LTS must uniquely identify interactive users."
+        }
+      ],
+      "message": "native function contract admission: count",
+      "rules": 37
     },
     {
       "category": "unsupported-construct",
@@ -2603,6 +1640,28 @@
       "rules": 20
     },
     {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-219147r958472_rule",
+          "title": "Ubuntu operating systems booted with a BIOS must require authentication upon booting into single-user and maintenance modes."
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-219148r958472_rule",
+          "title": "Ubuntu operating systems booted with United Extensible Firmware Interface (UEFI) implemented must require authentication upon booting into single-user mode and maintenance."
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271653r1091671_rule",
+          "title": "OL 9 must mount /tmp with the nodev option."
+        }
+      ],
+      "message": "native function contract admission: split",
+      "rules": 19
+    },
+    {
       "category": "unsupported-capability",
       "examples": [
         {
@@ -2669,6 +1728,50 @@
       "rules": 7
     },
     {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
+          "title": "Amazon Linux 2023 must allocate audit record storage capacity to store at least one week's worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
+          "title": "OL 9 must allocate audit record storage capacity to store at least one week's worth of audit records."
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
+          "title": "RHEL 9 must allocate audit record storage capacity to store at least one week's worth of audit records."
+        }
+      ],
+      "message": "native function contract admission: arithmetic",
+      "rules": 3
+    },
+    {
+      "category": "schema-semantic",
+      "examples": [
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule",
+          "title": "The Idle Time-out monitor for each IIS 10.0 website must be enabled."
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule",
+          "title": "The application pools rapid fail protection settings for each IIS 10.0 website must be managed."
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214492r879887_rule",
+          "title": "The application pools rapid fail protection settings for each IIS 8.5 website must be managed."
+        }
+      ],
+      "message": "native Variable declared/derived datatype mismatch",
+      "rules": 3
+    },
+    {
       "category": "unsupported-construct",
       "examples": [
         {
@@ -2703,318 +1806,6 @@
       "rules": 2
     },
     {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
-          "title": "Amazon Linux 2023 must allocate audit record storage capacity to store at least one week's worth of audit records, when audit records are not immediately sent to a central audit record storage facility."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-record-storage-facility-sv-274067-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule",
-          "title": "Amazon Linux 2023 must ensure all interactive users have unique User IDs (UIDs)."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-219147r958472_rule",
-          "title": "Ubuntu operating systems booted with a BIOS must require authentication upon booting into single-user and maintenance modes."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-219148r958472_rule",
-          "title": "Ubuntu operating systems booted with United Extensible Firmware Interface (UEFI) implemented must require authentication upon booting into single-user mode and maintenance."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-260543r958482_rule",
-          "title": "Ubuntu 22.04 LTS must uniquely identify interactive users."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-270720r1066649_rule",
-          "title": "Ubuntu 24.04 LTS must uniquely identify interactive users."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule",
-          "title": "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215812r1137875_rule",
-          "title": "The Cisco router must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
-          "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215838r1015295_rule",
-          "title": "The Cisco router must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215854r1156415_rule",
-          "title": "The Cisco router must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220518r960735_rule",
-          "title": "The Cisco switch must be configured to limit the number of concurrent management sessions to an organization-defined number."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220523r1137875_rule",
-          "title": "The Cisco switch must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
-          "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220549r991924_rule",
-          "title": "The Cisco switch must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220565r1195273_rule",
-          "title": "The Cisco switch must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215662r1192908_rule",
-          "title": "The Cisco router must be configured to limit the number of concurrent management sessions to an organization-defined number."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215667r1137875_rule",
-          "title": "The Cisco router must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
-          "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215693r991832_rule",
-          "title": "The Cisco router must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215709r1205827_rule",
-          "title": "The Cisco router must be configured to use at least two authentication servers for the purpose of authenticating users prior to granting administrative access."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule",
-          "title": "The Cisco switch must be configured to limit the number of concurrent management sessions to an organization-defined number."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule",
-          "title": "The Cisco switch must be configured to enforce approved authorizations for controlling the flow of management information within the device based on control policies."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
-          "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220601r1015287_rule",
-          "title": "The Cisco switch must be configured to synchronize its clock with the primary and secondary time sources using redundant authoritative time sources."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^ntp[ \\\\t]+server[ \\\\t]+\\\\S+[ \\\\t]*'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220617r1205840_rule",
-          "title": "The Cisco switch must be configured to use at least two authentication servers to authenticate users prior to granting administrative access."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
       "category": "unsupported-capability",
       "examples": [
         {
@@ -3035,7 +1826,7 @@
           "title": "Digital signatures assigned to strongly named assemblies must be verified."
         }
       ],
-      "message": "authoring/direct-slice/assessments/digital-signatures-assemblies-verified-sv-225223-assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\StrongName\\\\Verification'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "message": "native traversal contract admission",
       "rules": 1
     },
     {
@@ -3047,7 +1838,7 @@
           "title": "Exchange queue database must reside on a dedicated partition."
         }
       ],
-      "message": "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json: {'function': {'name': 'substring', 'arguments': [{'values': {'object': 'shellcommand-object-true-msiinstallpath-msiinstallpath-w-object', 'field': 'stdout_line'}}], 'options': {'substring_start': 1, 'substring_length': 1}}} is not valid under any of the given schemas",
+      "message": "native function contract admission: substring",
       "rules": 1
     },
     {
@@ -3087,42 +1878,6 @@
       "rules": 1
     },
     {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule",
-          "title": "The Idle Time-out monitor for each IIS 10.0 website must be enabled."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/idle-time-out-monitor-for-website-enabled-sv-218762-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
-          "title": "The IIS 10.0 website must have a unique application pool."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule",
-          "title": "The application pools rapid fail protection settings for each IIS 10.0 website must be managed."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/application-pools-rapid-0-website-managed-sv-218778-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)",
-      "rules": 1
-    },
-    {
       "category": "unsupported-capability",
       "examples": [
         {
@@ -3159,18 +1914,6 @@
       "rules": 1
     },
     {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214492r879887_rule",
-          "title": "The application pools rapid fail protection settings for each IIS 8.5 website must be managed."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/application-pools-rapid-5-website-managed-sv-214492-assessment.json: Native Variable expression: Variable time-in-int-hhmmss-used-to-be-hh-mm-ss-variable: declared/derived datatype conflict (['string'] vs integer)",
-      "rules": 1
-    },
-    {
       "category": "unsupported-capability",
       "examples": [
         {
@@ -3183,30 +1926,6 @@
       "rules": 1
     },
     {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259341r1156949_rule",
-          "title": "The Windows DNS Server must prohibit recursion on authoritative name servers for which forwarders have not been configured for external queries."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'independent.shellcommand', 'shell': 'powershell', 'command': 'Get-DnsServerForwarder | ForEach-Object {$_.IPAddress.IPAddressToString}', 'error_if_exit_status_not_0': False, 'error_if_stderr_exists': False}, 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259374r1156950_rule",
-          "title": "The Windows DNS Server's IP address must be statically defined and configured locally on the server."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-list-of-online-network-adapter-interface-indexes-object', 'field': 'stdout_line'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
       "category": "unsupported-construct",
       "examples": [
         {
@@ -3216,366 +1935,6 @@
         }
       ],
       "message": "Assessment Input function composition requires a supported typed expression",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-248634r991589_rule",
-          "title": "For OL 8 systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-248701r958422_rule",
-          "title": "OL 8 duplicate User IDs (UIDs) must not exist for interactive users."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
-          "title": "OL 9 must allocate audit record storage capacity to store at least one week's worth of audit records."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-allocate-audit-worth-of-audit-records-sv-271596-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271653r1091671_rule",
-          "title": "OL 9 must mount /tmp with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271657r1091683_rule",
-          "title": "OL 9 must mount /var/log with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271658r1091686_rule",
-          "title": "OL 9 must mount /var/log with the noexec option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-noexec-option-sv-271658-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271659r1091689_rule",
-          "title": "OL 9 must mount /var/log with the nosuid option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271660r1091692_rule",
-          "title": "OL 9 must mount /var/log/audit with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271832r1092208_rule",
-          "title": "OL 9 duplicate User IDs (UIDs) must not exist for interactive users."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271835r1092217_rule",
-          "title": "OL 9 groups must have unique Group ID (GID)."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271861r1092295_rule",
-          "title": "OL 9 systems using Domain Name Servers (DNS) resolution must have at least two name servers configured."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-230316r1044801_rule",
-          "title": "For RHEL 8 systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-230371r1017183_rule",
-          "title": "RHEL 8 duplicate User IDs (UIDs) must not exist for interactive users."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-230511r958804_rule",
-          "title": "RHEL 8 must mount /tmp with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-230514r958804_rule",
-          "title": "RHEL 8 must mount /var/log with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-230515r958804_rule",
-          "title": "RHEL 8 must mount /var/log with the nosuid option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-230516r958804_rule",
-          "title": "RHEL 8 must mount /var/log with the noexec option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-noexec-option-sv-230516-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-230517r958804_rule",
-          "title": "RHEL 8 must mount /var/log/audit with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-257866r958804_rule",
-          "title": "RHEL 9 must mount /tmp with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-257870r958804_rule",
-          "title": "RHEL 9 must mount /var/log with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-257871r958804_rule",
-          "title": "RHEL 9 must mount /var/log with the noexec option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-noexec-option-sv-257871-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-257872r958804_rule",
-          "title": "RHEL 9 must mount /var/log with the nosuid option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-257873r958804_rule",
-          "title": "RHEL 9 must mount /var/log/audit with the nodev option."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-257948r1045004_rule",
-          "title": "RHEL 9 systems using Domain Name Servers (DNS) resolution must have at least two name servers configured."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-258045r958482_rule",
-          "title": "RHEL 9 duplicate User IDs (UIDs) must not exist for interactive users."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-258061r958482_rule",
-          "title": "RHEL 9 groups must have unique Group ID (GID)."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-group-gids-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
-          "title": "RHEL 9 must allocate audit record storage capacity to store at least one week's worth of audit records."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/rhel-9-allocate-audit-of-audit-records-sv-258155-assessment.json: {'function': {'name': 'arithmetic', 'arguments': [{'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'block_size'}}, {'values': {'object': 'partition-mount-point-equals-from-a-source-variable-object', 'field': 'total_space'}}], 'options': {'arithmetic_operation': 'multiply'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
-          "title": "Run control scripts executable search paths must contain only authorized paths."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
-          "title": "Run control scripts executable search paths must contain only authorized paths."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "schema-semantic",
-      "examples": [
-        {
-          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-252935r991589_rule",
-          "title": "For TOSS systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured."
-        }
-      ],
-      "message": "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     }
   ],

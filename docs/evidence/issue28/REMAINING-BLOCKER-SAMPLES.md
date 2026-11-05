@@ -149,3 +149,24 @@ SLES 12 source state entity:
 
 This combines an existence absence operator with a comparator, which requires an
 explicit native semantic contract rather than a Boolean shortcut.
+
+## Native traversal contract admission
+
+DotNet Framework `SV-225223` uses a Registry Object whose key is an exact
+lookup, whose value name is a pattern, and whose behaviors request downward
+recursion. The source shape is preserved here; the source Rule ID is retained in the
+ledger (`xccdf_mil.disa.fso_rule_SV-225223r961038_rule`):
+
+```xml
+<windows:registry_object>
+  <windows:hive datatype="string">HKEY_LOCAL_MACHINE</windows:hive>
+  <windows:key datatype="string" operation="equals">Software\Microsoft\StrongName\Verification</windows:key>
+  <windows:name datatype="string" operation="pattern match">.*</windows:name>
+  <windows:behaviors max_depth="-1" recurse_direction="down"/>
+</windows:registry_object>
+```
+
+The converter preserves the exact key/name/traversal intent, but the pinned
+native Registry Object schema admits no traversal member. Removing traversal
+would change the population, so this Rule remains blocked pending coordinated
+schema/compiler/runtime support.

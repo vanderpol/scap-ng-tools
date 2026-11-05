@@ -12,6 +12,7 @@ import argparse
 from hashlib import sha256
 import json
 from pathlib import Path
+import re
 
 from scap_ng_tools.converter.direct04 import convert_benchmark
 
@@ -23,7 +24,25 @@ SCHEMA_FAMILY = '63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db
 
 
 def issue_key(problem):
-    return problem.get('category', 'unknown'), problem.get('message', 'unknown')
+    """Return a stable root-cause key without discarding raw Rule diagnostics.
+
+    Converter diagnostics may contain generated filenames, native identifiers,
+    object payloads, or complete function ASTs. Those details belong on the
+    individual Rule trace; they must not create one ledger blocker category per
+    generated document. Only the aggregate keys are normalized here.
+    """
+    category = problem.get('category', 'unknown')
+    message = problem.get('message', 'unknown')
+    if category == 'schema-semantic':
+        if 'declared/derived datatype conflict' in message:
+            return category, 'native Variable declared/derived datatype mismatch'
+        match = re.search(r"['\"]name['\"]:\s*['\"]([^'\"]+)", message)
+        if match and 'not valid under any of the given schemas' in message:
+            return category, f'native function contract admission: {match.group(1)}'
+        if "'traversal':" in message and 'not valid under any of the given schemas' in message:
+            return category, 'native traversal contract admission'
+        return category, 'native schema admission'
+    return category, message
 
 
 def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_recovery=True):
@@ -141,7 +160,9 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
             primary_feature_rules['legacy_wmi_test'] += 1
         if primary_message.startswith('unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object'):
             primary_feature_rules['legacy_wmi_object'] += 1
-        if primary_message == 'unsupported function: count':
+        if (primary_message == 'unsupported function: count' or
+                issue_key(blockers[0]) ==
+                ('schema-semantic', 'native function contract admission: count')):
             primary_feature_rules['count'] += 1
     diagnostic_stats = {
         'deprecated_oval_tests': {

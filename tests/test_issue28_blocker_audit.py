@@ -8,6 +8,20 @@ REPORT = Path(__file__).resolve().parents[1] / 'docs/evidence/issue28/BLOCKER-AU
 
 
 class Issue28BlockerAudit(unittest.TestCase):
+    def test_generated_schema_diagnostics_group_by_root_cause(self):
+        import sys
+        sys.path.insert(0, str(Path(__file__).parents[1] / 'scripts'))
+        from audit_issue28_blockers import issue_key
+        self.assertEqual(issue_key({'category': 'schema-semantic',
+                                    'message': "foo: {'function': {'name': 'count'}} is not valid under any of the given schemas"}),
+                         ('schema-semantic', 'native function contract admission: count'))
+        self.assertEqual(issue_key({'category': 'schema-semantic',
+                                    'message': 'foo: Native Variable expression: declared/derived datatype conflict'}),
+                         ('schema-semantic', 'native Variable declared/derived datatype mismatch'))
+        self.assertEqual(issue_key({'category': 'schema-semantic',
+                                    'message': "foo: {'traversal': {'max_depth': 1}} is not valid under any of the given schemas"}),
+                         ('schema-semantic', 'native traversal contract admission'))
+
     @classmethod
     def setUpClass(cls):
         cls.report = json.loads(REPORT.read_text(encoding='utf-8'))
