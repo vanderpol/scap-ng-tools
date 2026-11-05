@@ -28,8 +28,14 @@ def textfile_path_controls(element, acquisition, *, native_recovery=False):
            'invalid original textfile defined-filesystem pattern selection')
 
 
-def hierarchy_behaviors(element, acquisition):
-    """Approved downward Registry traversal; group/view controls stay blocked."""
+def hierarchy_behaviors(element, acquisition, *, native_recovery=False):
+    """Approved downward Registry traversal; group/view controls stay blocked.
+
+    The recovery contract treats a typed case-insensitive equality selector as
+    an equality path only when the capability mapping uses the same lookup
+    domain. Pattern selectors remain non-recursive and the historical path
+    keeps its stricter literal-equality admission.
+    """
     values = {} if element is None else element.attrib
     if element is not None:
         attributes(element, {'max_depth', 'recurse_direction'})
@@ -44,7 +50,8 @@ def hierarchy_behaviors(element, acquisition):
     if direction == 'none':
         return {}
     key = acquisition.get('key')
-    ensure('key' in acquisition and (key is None or isinstance(key, dict) and 'equals' in key),
+    equality = {'equals', 'case_insensitive_equals'} if native_recovery else {'equals'}
+    ensure('key' in acquisition and (key is None or isinstance(key, dict) and equality & set(key)),
            'hierarchy recursion requires an equality key or hive-root selector')
     return {'traversal': {'max_depth': 'unlimited' if depth == -1 else depth}}
 

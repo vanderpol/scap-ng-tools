@@ -157,12 +157,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -192,12 +192,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -207,12 +207,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -772,12 +772,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -852,12 +852,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -927,12 +927,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -977,12 +977,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1102,12 +1102,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1142,12 +1142,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1167,12 +1167,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2723,7 +2723,7 @@
           "title": "Amazon Linux 2023 must ensure all interactive users have unique User IDs (UIDs)."
         }
       ],
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2759,7 +2759,7 @@
           "title": "Ubuntu 22.04 LTS must uniquely identify interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2771,7 +2771,7 @@
           "title": "Ubuntu 24.04 LTS must uniquely identify interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3107,7 +3107,7 @@
           "title": "The IIS 10.0 website must have a unique application pool."
         }
       ],
-      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'the-iis-10-website-must-have-a-unique-application-pool-object', 'field': 'result'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3239,7 +3239,7 @@
           "title": "OL 8 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3323,7 +3323,7 @@
           "title": "OL 9 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3371,7 +3371,7 @@
           "title": "RHEL 8 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3515,7 +3515,7 @@
           "title": "RHEL 9 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3551,7 +3551,7 @@
           "title": "Run control scripts executable search paths must contain only authorized paths."
         }
       ],
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3563,7 +3563,7 @@
           "title": "Run control scripts executable search paths must contain only authorized paths."
         }
       ],
-      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {

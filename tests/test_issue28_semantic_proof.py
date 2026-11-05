@@ -149,6 +149,26 @@ class RecursionRecovery(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'pattern-path recursion'):
             traversal_behaviors(behaviors, acquisition, windows=True)
 
+    def test_typed_case_insensitive_hierarchy_key_allows_downward_traversal(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_file_behaviors import hierarchy_behaviors
+        behaviors = ET.fromstring('<behaviors max_depth="2" recurse_direction="down"/>')
+        acquisition = {'key': {'case_insensitive_equals': 'HKLM\\Software'}}
+        result = hierarchy_behaviors(behaviors, acquisition, native_recovery=True)
+        self.assertEqual(result, {'traversal': {'max_depth': 2}})
+
+    def test_historical_hierarchy_path_keeps_case_sensitive_boundary(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_file_behaviors import hierarchy_behaviors
+        behaviors = ET.fromstring('<behaviors max_depth="2" recurse_direction="down"/>')
+        acquisition = {'key': {'case_insensitive_equals': 'HKLM\\Software'}}
+        with self.assertRaisesRegex(ValueError, 'equality key'):
+            hierarchy_behaviors(behaviors, acquisition)
+
 class CountRecovery(unittest.TestCase):
     def test_count_uses_the_canonical_function_call_envelope(self):
         import xml.etree.ElementTree as ET

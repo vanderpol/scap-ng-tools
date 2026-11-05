@@ -446,7 +446,8 @@ class AssessmentConverter:
                     acquisition.setdefault('filesystem', 'all')
             if mapping['native'].get('traversal_definition') == 'hierarchy_traversal':
                 from v04_direct_file_behaviors import hierarchy_behaviors
-                acquisition.update(hierarchy_behaviors(traversal_part, acquisition))
+                acquisition.update(hierarchy_behaviors(traversal_part, acquisition,
+                                                       native_recovery=self.native_recovery))
             if filters:
                 acquisition['filters'] = filters
         # Source identity, not payload equality, determines shared acquisitions.
