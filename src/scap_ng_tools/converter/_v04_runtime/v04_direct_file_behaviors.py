@@ -17,7 +17,7 @@ def textfile_path_controls(element, acquisition):
     if full_path is not None:
         ensure(not set(values) & {'max_depth', 'recurse_direction'},
                'invalid original textfile filepath recursion attributes')
-    if directory is not None and 'equals' not in directory:
+    if directory is not None and not ({'equals', 'case_insensitive_equals'} & set(directory)):
         ensure(not set(values) & {'max_depth', 'recurse_direction', 'recurse'},
                'invalid original textfile pattern-path recursion attributes')
     selector = full_path if full_path is not None else directory
@@ -81,18 +81,19 @@ def traversal_behaviors(element, acquisition, *, windows=False, selector_map=Non
         # ignored. Do not turn invalid original input into admitted authoring.
         directory = acquisition.get(path_key)
         full_path = acquisition.get(filepath_key)
-        if directory is not None and 'equals' not in directory:
+        if directory is not None and not ({'equals', 'case_insensitive_equals'} & set(directory)):
             ensure(not set(values) & {'max_depth', 'recurse', 'recurse_direction'},
                    'invalid original pattern-path recursion attributes')
         if full_path is not None:
             ensure(not set(values) & {'max_depth', 'recurse_direction'},
                    'invalid original filepath recursion attributes')
         selector = full_path if full_path is not None else directory
-        ensure(scope != 'defined' or isinstance(selector, dict) and 'equals' in selector,
+        ensure(scope != 'defined' or isinstance(selector, dict) and ('equals' in selector or 'case_insensitive_equals' in selector),
                'invalid original defined-filesystem pattern selection')
     result = {'filesystem': FILESYSTEMS[scope]}
     directory = acquisition.get(path_key)
-    if direction == 'down' and filepath_key not in acquisition and isinstance(directory, dict) and 'equals' in directory:
+    if direction == 'down' and filepath_key not in acquisition and isinstance(directory, dict) and (
+            'equals' in directory or 'case_insensitive_equals' in directory):
         result['traversal'] = {'max_depth': 'unlimited' if depth == -1 else depth, 'recurse': options[recurse]}
     return result
 

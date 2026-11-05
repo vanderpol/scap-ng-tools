@@ -20,8 +20,16 @@ def cmdlet_input(element, contract, compare_field, scalar_parameter):
                not len(element) and not (element.text or '').strip(), 'unsupported cmdlet nil input')
         expected = 'record' if contract.get('schema_ref') == 'object_record' else (
             'version' if local_name(element) == 'module_version' else 'string')
-        ensure(element.get('datatype', 'string' if expected == 'string' else None) == expected,
-               'invalid nil input datatype')
+        # xsi:nil carries no lexical value.  For record-valued cmdlet inputs
+        # OVAL commonly omits datatype entirely; the capability position is
+        # already the approved type and native null preserves that absence.
+        # An explicit datatype, when present, must still agree exactly.
+        if expected == 'record':
+            ensure(element.get('datatype', 'record') == 'record',
+                   'invalid nil input datatype')
+        else:
+            ensure(element.get('datatype', 'string' if expected == 'string' else None) == expected,
+                   'invalid nil input datatype')
         return None
     if contract.get('schema_ref') != 'object_record':
         value = scalar_parameter(element)

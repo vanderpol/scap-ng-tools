@@ -88,3 +88,88 @@ class AbsencePrecedence(unittest.TestCase):
         self.assertEqual(result, {'values_found': 'none'})
         self.assertEqual(visitor.conversion_warnings[0]['code'],
                          'oval_absence_comparator_ignored')
+
+class IdentityCollisionRecovery(unittest.TestCase):
+    def test_identical_source_descriptors_get_source_discriminators(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        first = ET.fromstring(f'<registry_test xmlns="{OVAL}#windows" id="oval:a:tst:1" comment="Same"><object object_ref="oval:a:o:1"/></registry_test>')
+        second = ET.fromstring(f'<registry_test xmlns="{OVAL}#windows" id="oval:a:tst:2" comment="Same"><object object_ref="oval:a:o:2"/></registry_test>')
+        source = type('Source', (), {'nodes': {'component': {
+            n.get('id'): n for n in (first, second)
+        }}})()
+        visitor = AssessmentConverter(source, 'component', [])
+        a = visitor.native_name(first, 'test')
+        b = visitor.native_name(second, 'test')
+        self.assertNotEqual(a, b)
+        self.assertLessEqual(len(a), 64)
+        self.assertLessEqual(len(b), 64)
+
+class NilSelectorRecovery(unittest.TestCase):
+    def test_record_cmdlet_nil_without_datatype_is_native_null(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_cmdlet_inputs import cmdlet_input
+        element = ET.fromstring('<parameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>')
+        self.assertIsNone(cmdlet_input(element, {'schema_ref': 'object_record', 'nullable': True},
+                                       lambda _: {}, lambda _: None))
+
+    def test_record_cmdlet_nil_rejects_wrong_explicit_datatype(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_cmdlet_inputs import cmdlet_input
+        element = ET.fromstring('<parameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" datatype="string"/>')
+        with self.assertRaisesRegex(ValueError, 'invalid nil input datatype'):
+            cmdlet_input(element, {'schema_ref': 'object_record', 'nullable': True},
+                         lambda _: {}, lambda _: None)
+
+class RecursionRecovery(unittest.TestCase):
+    def test_typed_equality_path_allows_downward_traversal(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_file_behaviors import traversal_behaviors
+        behaviors = ET.fromstring('<behaviors max_depth="2" recurse_direction="down"/>')
+        acquisition = {'directory': {'case_insensitive_equals': {'variable': 'root-variable'}}}
+        result = traversal_behaviors(behaviors, acquisition, windows=True)
+        self.assertEqual(result['traversal'], {'max_depth': 2, 'recurse': 'directories'})
+
+    def test_pattern_path_still_rejects_recursion(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_file_behaviors import traversal_behaviors
+        behaviors = ET.fromstring('<behaviors max_depth="2" recurse_direction="down"/>')
+        acquisition = {'directory': {'matches_regex': '^Windows$'}}
+        with self.assertRaisesRegex(ValueError, 'pattern-path recursion'):
+            traversal_behaviors(behaviors, acquisition, windows=True)
+
+class CountRecovery(unittest.TestCase):
+    def test_count_uses_the_canonical_function_call_envelope(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = ET.fromstring(f'<count xmlns="{OVAL}"><literal_component datatype="string">a</literal_component></count>')
+        expression = visitor.function(source)
+        self.assertEqual(expression['function']['name'], 'count')
+        self.assertEqual(expression['function']['options'], {})
+        self.assertEqual(len(expression['function']['arguments']), 1)
+
+    def test_count_requires_one_operand(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = ET.fromstring(f'<count xmlns="{OVAL}"/>')
+        with self.assertRaisesRegex(ValueError, 'function arity mismatch'):
+            visitor.function(source)
