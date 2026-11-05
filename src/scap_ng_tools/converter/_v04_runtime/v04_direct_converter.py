@@ -593,10 +593,11 @@ class AssessmentConverter:
         # the historical/default path, which remains byte-compatible.  Options
         # are copied from OVAL only after exact lexical/range/arity checks; no
         # value evaluation or implicit cast is performed here.
-        if self.native_recovery and operation in ('arithmetic', 'split', 'substring', 'count'):
+        if self.native_recovery and operation in ('arithmetic', 'split', 'substring', 'count', 'begin', 'end'):
             required = ({'arithmetic_operation'} if operation == 'arithmetic' else
                         {'delimiter'} if operation == 'split' else
-                        {'substring_start', 'substring_length'} if operation == 'substring' else set())
+                        {'substring_start', 'substring_length'} if operation == 'substring' else
+                        {'character'} if operation in ('begin', 'end') else set())
             attributes(element, required)
             ensure(set(element.attrib) == required, 'function options must be explicit')
             ensure(len(element) >= 2 if operation == 'arithmetic' else len(element) == 1,
@@ -616,7 +617,7 @@ class AssessmentConverter:
             from v04_variable_function_migration import canonical_expression
             # The migration envelope is recursive: nested OVAL functions must
             # not leave a legacy operator beside the canonical outer call.
-            arguments = [canonical_expression(self.function(child)) for child in element]
+            arguments = [canonical_expression(self.function(child), allow_existing=True) for child in element]
             expression = {'function': {'name': operation, 'arguments': arguments,
                                        'options': options}}
             self.conversion_warnings.append({'code': 'native_function_contract_v1',

@@ -11,7 +11,7 @@ class UnsupportedExpression(ValueError):
     pass
 
 
-def canonical_expression(node):
+def canonical_expression(node, *, allow_existing=False):
     """Return a new canonical function expression; reject unknown grammar."""
     if not isinstance(node, dict) or len(node) != 1:
         raise UnsupportedExpression('expression must have exactly one operator')
@@ -19,6 +19,8 @@ def canonical_expression(node):
     if op in ('literal', 'variable', 'values'):
         return deepcopy(node)
     if op == 'function':
+        if allow_existing:
+            return deepcopy(node)
         raise UnsupportedExpression('existing canonical calls require independent validation')
     if op == 'count':
         if not isinstance(value, dict):
@@ -41,7 +43,7 @@ def canonical_expression(node):
         arguments, options = [value], {}
     else:
         raise UnsupportedExpression(f'unrecognized legacy function: {op}')
-    return {'function': {'name': op, 'arguments': [canonical_expression(arg) for arg in arguments],
+    return {'function': {'name': op, 'arguments': [canonical_expression(arg, allow_existing=allow_existing) for arg in arguments],
                          'options': options}}
 
 

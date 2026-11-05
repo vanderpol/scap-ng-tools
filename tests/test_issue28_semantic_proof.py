@@ -228,3 +228,26 @@ class TypedAcquisitionParameterRecovery(unittest.TestCase):
         from v04_direct_converter import AssessmentConverter
         element = ET.fromstring('<module_version datatype="version">1.0.0.0</module_version>')
         self.assertEqual(AssessmentConverter(None, None, []).parameter(element, datatype='version'), '1.0.0.0')
+
+class RemainingFunctionRecovery(unittest.TestCase):
+    def test_end_uses_explicit_character_and_canonical_nested_operand(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = ET.fromstring(f'''<end xmlns="{OVAL}" character="\\">
+          <unique><literal_component datatype="string">a</literal_component></unique>
+        </end>''')
+        expression = visitor.function(source)
+        self.assertEqual(expression['function']['name'], 'end')
+        self.assertEqual(expression['function']['options'], {'character': '\\'})
+        self.assertEqual(expression['function']['arguments'][0]['function']['name'], 'unique')
+
+    def test_existing_canonical_nested_expression_is_rejected_by_default_migration(self):
+        import sys
+        sys.path.insert(0, str(__import__('pathlib').Path(__file__).parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'))
+        from v04_variable_function_migration import canonical_expression, UnsupportedExpression
+        with self.assertRaises(UnsupportedExpression):
+            canonical_expression({'function': {'name': 'unique', 'arguments': [], 'options': {}}})
