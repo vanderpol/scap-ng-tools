@@ -1,0 +1,158 @@
+assessment:
+  id: rhel9-audit-xattr-same-file-native-review-assessment
+  version: 1
+  assessment_title: RHEL 9 must audit all uses of the setxattr, fsetxattr, lsetxattr,
+    removexattr, fremovexattr, and lremovexattr system calls. UNPROVED audit sketch.
+  mode: automated
+  class: compliance
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  tests:
+    all-required-patterns-test:
+      test_title: All24 original regex obligations retained independently
+      capability: independent.textfilecontent54
+      object:
+        full_path:
+          equals: /etc/audit/audit.rules
+        pattern:
+          matches_regex: (?s)\A.*\Z
+        instance:
+          equals: 1
+          datatype: integer
+        ignore_case: false
+        multiline: false
+        singleline: true
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        field_requirement:
+          values_found: one_or_more
+          values_matching: every
+        and:
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+fsetxattr\s+|(\s+|,)fsetxattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+fsetxattr\s+|(\s+|,)fsetxattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+fsetxattr\s+|(\s+|,)fsetxattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+fsetxattr\s+|(\s+|,)fsetxattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(?:always,exit|exit,always)\s+-F\s+arch=b32\s+(?:-S\s+[,\w]+\s+)*-S\s+[,\w]*\blsetxattr\b[,\w]*\s+(?:-S\s+[,\w]+\s+)*-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(?:always,exit|exit,always)\s+-F\s+arch=b64\s+(?:-S\s+[,\w]+\s+)*-S\s+[,\w]*\blsetxattr\b[,\w]*\s+(?:-S\s+[,\w]+\s+)*-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(?:always,exit|exit,always)\s+-F\s+arch=b32\s+(?:-S\s+[,\w]+\s+)*-S\s+[,\w]*\blsetxattr\b[,\w]*\s+(?:-S\s+[,\w]+\s+)*-F\s+auid=0(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(?:always,exit|exit,always)\s+-F\s+arch=b32\s+(?:-S\s+[,\w]+\s+)*-S\s+[,\w]*\blsetxattr\b[,\w]*\s+(?:-S\s+[,\w]+\s+)*-F\s+auid=0(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+fremovexattr\s+|(\s+|,)fremovexattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+fremovexattr\s+|(\s+|,)fremovexattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+fremovexattr\s+|(\s+|,)fremovexattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+fremovexattr\s+|(\s+|,)fremovexattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+lremovexattr\s+|(\s+|,)lremovexattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+lremovexattr\s+|(\s+|,)lremovexattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+lremovexattr\s+|(\s+|,)lremovexattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+lremovexattr\s+|(\s+|,)lremovexattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(?:always,exit|exit,always)\s+-F\s+arch=b32\s+(?:-S\s+[,\w]+\s+)*-S\s+[,\w]*\bremovexattr\b[,\w]*\s+(?:-S\s+[,\w]+\s+)*-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(?:always,exit|exit,always)\s+-F\s+arch=b64\s+(?:-S\s+[,\w]+\s+)*-S\s+[,\w]*\bremovexattr\b[,\w]*\s+(?:-S\s+[,\w]+\s+)*-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(?:always,exit|exit,always)\s+-F\s+arch=b32\s+(?:-S\s+[,\w]+\s+)*-S\s+[,\w]*\bremovexattr\b[,\w]*\s+(?:-S\s+[,\w]+\s+)*-F\s+auid=0(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(?:always,exit|exit,always)\s+-F\s+arch=b32\s+(?:-S\s+[,\w]+\s+)*-S\s+[,\w]*\bremovexattr\b[,\w]*\s+(?:-S\s+[,\w]+\s+)*-F\s+auid=0(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+setxattr\s+|(\s+|,)setxattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+setxattr\s+|(\s+|,)setxattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+setxattr\s+|(\s+|,)setxattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+        - fields:
+            text:
+              matches_regex: (?m)^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+setxattr\s+|(\s+|,)setxattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$
+              values_found: one_or_more
+              values_matching: one_or_more
+      reported_elements: all
+  evaluate:
+    test: all-required-patterns-test

@@ -1,0 +1,1411 @@
+{
+  "format": "rhel9-audit-pattern-review/1",
+  "source_rule": "xccdf_mil.disa.stig_rule_SV-258179r1155601_rule",
+  "summary": {
+    "source_pattern_tests_checked": 133,
+    "rules_checked": 49,
+    "all_printed_example_patterns_match": true,
+    "full_scanner_equivalence_proofs": 0
+  },
+  "printed_example_screen": [
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258176r1155595_rule",
+      "native_test_count": 4,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k execpriv\n-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k execpriv\n-a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k execpriv\n-a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k execpriv\n",
+      "pattern_matches": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258177r1155597_rule",
+      "native_test_count": 6,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=-1 -F key=perm_mod\n",
+      "pattern_matches": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258178r1155599_rule",
+      "native_test_count": 8,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S lchown,fchown,chown,fchownat -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S chown,fchown,lchown,fchownat -F auid>=1000 -F auid!=-1 -F key=perm_mod\n",
+      "pattern_matches": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258179r1155601_rule",
+      "native_test_count": 24,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n",
+      "pattern_matches": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258180r1045325_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/umount -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-mount\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258181r1045328_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_mod\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258182r1045331_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_mod\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258183r1045334_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_mod\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258184r1045337_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/semanage -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-unix-update\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258185r1045340_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/setfiles -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-unix-update\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258186r1045343_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/setsebool -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258187r1155603_rule",
+      "native_test_count": 10,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S unlink,rename,rmdir,unlinkat,renameat -F auid>=1000 -F auid!=-1 -F key=delete\n-a always,exit -F arch=b64 -S rename,rmdir,unlink,unlinkat,renameat -F auid>=1000 -F auid!=-1 -F key=delete\n",
+      "pattern_matches": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258188r1155605_rule",
+      "native_test_count": 24,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat,open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=-1 -F key=perm_access\n-a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat,open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=-1 -F key=perm_access\n-a always,exit -F arch=b32 -S open,creat,truncate,ftruncate,openat,open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=-1 -F key=perm_access\n-a always,exit -F arch=b64 -S open,truncate,ftruncate,creat,openat,open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=-1 -F key=perm_access\n",
+      "pattern_matches": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258189r1155607_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S delete_module -F auid>=1000 -F auid!=-1 -F key=module_chng\n-a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=-1 -F key=module_chng\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258190r1155609_rule",
+      "native_test_count": 4,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S init_module,finit_module -F auid>=1000 -F auid!=-1 -F key=module_chng\n-a always,exit -F arch=b64 -S init_module,finit_module -F auid>=1000 -F auid!=-1 -F key=module_chng\n",
+      "pattern_matches": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258191r1045358_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/chage -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-chage\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258192r1045361_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/chsh -F perm=x -F auid>=1000 -F auid!=-1 -F key=priv_cmd\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258193r1045364_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/crontab -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-crontab\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258194r1045367_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/gpasswd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-gpasswd\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258195r1045370_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/kmod -F perm=x -F auid>=1000 -F auid!=-1 -F key=modules\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258196r1045373_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/newgrp -F perm=x -F auid>=1000 -F auid!=-1 -F key=priv_cmd\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258197r1045376_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-pam_timestamp_check\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258198r1045379_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/passwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-passwd\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258199r1045382_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/postdrop -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-unix-update\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258200r1045385_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/postqueue -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-unix-update\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258201r1045388_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/ssh-agent -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-ssh\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258202r1045391_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-ssh\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258203r1045394_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/su -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-priv_change\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258204r1045397_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/sudo -F perm=x -F auid>=1000 -F auid!=-1 -F key=priv_cmd\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258205r1045400_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/sudoedit -F perm=x -F auid>=1000 -F auid!=-1 -F key=priv_cmd\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258206r1045403_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/unix_chkpwd -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-unix-update\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258207r1045406_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/unix_update -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-unix-update\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258208r1045409_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/userhelper -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-unix-update\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258209r1045412_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-usermod\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258210r1045415_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/bin/mount -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-mount\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258211r1045418_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/init -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-init\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258212r1045421_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/poweroff -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-poweroff\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258213r1045424_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -S all -F path=/usr/sbin/reboot -F perm=x -F auid>=1000 -F auid!=-1 -F key=privileged-reboot\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258215r1155611_rule",
+      "native_test_count": 1,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -S umount -F auid>=1000 -F auid!=-1 -F key=privileged-umount\n",
+      "pattern_matches": [
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258216r1155613_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b64 -S umount2 -F auid>=1000 -F auid!=-1 -F key=privileged-umount\n-a always,exit -F arch=b32 -S umount2 -F auid>=1000 -F auid!=-1 -F key=privileged-umount\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258217r1210919_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/etc/sudoers -F perm=wa -k identity\n-a always,exit -F arch=b64 -F path=/etc/sudoers -F perm=wa -k identity\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258218r1210920_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/etc/sudoers.d -F perm=wa -k identity\n-a always,exit -F arch=b64 -F path=/etc/sudoers.d -F perm=wa -k identity\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258219r1210921_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/etc/group -F perm=wa -k identity\n-a always,exit -F arch=b64 -F path=/etc/group -F perm=wa -k identity\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258220r1210922_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/etc/gshadow -F perm=wa -k identity\n-a always,exit -F arch=b64 -F path=/etc/gshadow -F perm=wa -k identity\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258221r1210923_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/etc/security/opasswd -F perm=wa -k identity\n-a always,exit -F arch=b64 -F path=/etc/security/opasswd -F perm=wa -k identity\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258222r1210924_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/etc/passwd -F perm=wa -k identity\n-a always,exit -F arch=b64 -F path=/etc/passwd -F perm=wa -k identity\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258223r1210925_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/etc/shadow -F perm=wa -k identity\n-a always,exit -F arch=b64 -F path=/etc/shadow -F perm=wa -k identity\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258224r1210926_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/var/log/faillock -F perm=wa -F auid>=1000 -F auid!=unset -k logins\n-a always,exit -F arch=b64 -F path=/var/log/faillock -F perm=wa -F auid>=1000 -F auid!=unset -k logins\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    },
+    {
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258225r1210927_rule",
+      "native_test_count": 2,
+      "printed_manual_examples": "-a always,exit -F arch=b32 -F path=/var/log/lastlog -F perm=wa -F auid>=1000 -F auid!=unset -k logins\n-a always,exit -F arch=b64 -F path=/var/log/lastlog  -F perm=wa -F auid>=1000 -F auid!=unset -k logins\n",
+      "pattern_matches": [
+        true,
+        true
+      ],
+      "all_patterns_match": true,
+      "qualification": "Real PCRE/Python regex components on printed manual examples; not auditctl/OVAL/native scanner execution."
+    }
+  ],
+  "controlled_snapshot_fixtures": [
+    {
+      "case": "positive",
+      "input": "-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n",
+      "original_24_obligations": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "proposed_24_obligations": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "same_component_result": true,
+      "result": true,
+      "qualification": "Complete-file regex component equivalence only; no native collector run."
+    },
+    {
+      "case": "negative_missing_b32",
+      "input": "-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n",
+      "original_24_obligations": [
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true
+      ],
+      "proposed_24_obligations": [
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true
+      ],
+      "same_component_result": true,
+      "result": false,
+      "qualification": "Complete-file regex component equivalence only; no native collector run."
+    },
+    {
+      "case": "empty",
+      "input": "",
+      "original_24_obligations": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "proposed_24_obligations": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "same_component_result": true,
+      "result": false,
+      "qualification": "Complete-file regex component equivalence only; no native collector run."
+    },
+    {
+      "case": "malformed_line_split",
+      "input": "-a always,exit -F arch=b32\n-S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n",
+      "original_24_obligations": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "proposed_24_obligations": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "same_component_result": true,
+      "result": true,
+      "qualification": "Complete-file regex component equivalence only; no native collector run."
+    },
+    {
+      "case": "duplicate",
+      "input": "-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n",
+      "original_24_obligations": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "proposed_24_obligations": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "same_component_result": true,
+      "result": true,
+      "qualification": "Complete-file regex component equivalence only; no native collector run."
+    },
+    {
+      "case": "conflicting_extra_line",
+      "input": "-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid>=1000 -F auid!=-1 -F key=perm_mod\n-a always,exit -F arch=b32 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n-a always,exit -F arch=b64 -S setxattr,lsetxattr,fsetxattr,removexattr,lremovexattr,fremovexattr -F auid=0 -F key=perm_mod\n-a never,exit -F arch=b64 -S setxattr\n",
+      "original_24_obligations": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "proposed_24_obligations": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "same_component_result": true,
+      "result": true,
+      "qualification": "Complete-file regex component equivalence only; no native collector run."
+    }
+  ],
+  "input_status_probes": [
+    {
+      "case": "missing-file",
+      "observed_os_errno": 2,
+      "privilege": "current uid",
+      "native_collector_and_scanner_executed": false,
+      "qualification": "Real OS input failure only. Native status/require propagation remains a required differential proof."
+    },
+    {
+      "case": "permission-denied",
+      "observed_os_errno": 13,
+      "privilege": "current uid",
+      "native_collector_and_scanner_executed": false,
+      "qualification": "Real OS input failure only. Native status/require propagation remains a required differential proof."
+    }
+  ],
+  "status_cases_requiring_native_runtime": [
+    "missing file",
+    "permission denied",
+    "not collected/unknown",
+    "partial/incomplete collection",
+    "concurrent writes and snapshot boundaries"
+  ],
+  "sketches": [
+    {
+      "kind": "same-file-native",
+      "directory": "case-same-file-native",
+      "before_score": 64,
+      "after_score": 10,
+      "apparent_structural_reduction_percent": 84.38,
+      "tests_before": 24,
+      "tests_after": 1,
+      "original_regex_obligations_before": 24,
+      "original_regex_obligations_after": 24,
+      "folded_constant_variables": 8,
+      "raw_regex_mapping": [
+        {
+          "original_test": "audit-32-bit-invocations-of-fsetxattr-syscall-auid-1000-765141bc-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "90aee03ac983bc34a5aede293184b522b64b636d03d6eeb0bc7c5df613392901",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-fsetxattr-syscall-auid-1000-6809bce3-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "2dc115ab8e8b71c84948809faf30ddc88a073899828080d26542708f8e51c68c",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-fsetxattr-syscall-auid-0-0252bf7a-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "1b9b755424d381cbac69e5d7a673358021399d0d7dfd5c468b6903acb18e1381",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-fsetxattr-syscall-auid-0-7d89f6cd-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "2167423b4f18bedee48c30e2bfcf5b1051b24b57681217bf8b1860802b299bcc",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-the-lsetxattr-system-call-c27ef14f-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "89f56fb6d7e012aaae88e1459a8572805085b849c3c30171b377388fd5dfff87",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-the-lsetxattr-system-call-0ac26c7e-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "b7a4f99ca8c01e3e1daf60046f87479056dd6314a1ceaa2938d1ceb113df0a11",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-the-lsetxattr-system-call-by-root-user-6af24229-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "b31cf8546b7bcca9ca33c256626febd5b88d3aac0019848daaf763e678bfc8ec",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-the-lsetxattr-system-call-by-root-user-9fdb93ac-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "b31cf8546b7bcca9ca33c256626febd5b88d3aac0019848daaf763e678bfc8ec",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-fremovexattr-syscall-51efafab-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "83f9fe593a9fc9aad82fb22944b197f4b8bb10863c11c5245d5c159d57139229",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-fremovexattr-syscall-d949190e-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "96f255b920b8be85e51472afb1af927d6af1173d219d88d341f88cfb389d02a9",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-fremovexattr-syscall-by-root-a5ead35d-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "bf7cbce9a527ac834c4d5819f5703bc1a8dd4cf0b9570a89d0f78601d44a8b17",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-fremovexattr-syscall-by-root-5fa65a31-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "546fe5f40548d4a45c1b94c14782951f919749bf4af7209a69eabef6fbb4bad3",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-lremovexattr-syscall-2fd8a36b-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "abb8ac1768ae1b2df0fac42ddf93f4e1a55bb780c42f715297ff289de13a7ccd",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-lremovexattr-syscall-efa9df0e-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "8307c6ae60e1a85ab098b3f4c995175ad060f819c413a866e0616012459c3037",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-lremovexattr-syscall-by-root-342f7423-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "dd241edd302301d0e72578b03a3cead3ad9205847ded6619f2f5d9ddc5e56950",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-lremovexattr-syscall-by-root-14fd3d98-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "d18b563c61c956a835df2108b7cc18989faf7ea02c55b93e36d9c3f367213f6c",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-the-removexattr-system-call-1c686903-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "16416f304bc3091c7faf9350cd72f5d16ab84aaa2f59e50f7baca32959ec6ffb",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-the-removexattr-system-call-b190518f-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "916fe7890a68e07ad834e97c288184580a00f2b0451415588ad7f60ea7d8e31d",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-the-removexattr-system-call-by-root-user-0ad4d02e-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "e8892c136d9723d93b4bc547a6c87282e1f49b26b3fce55f1aab9023039dc060",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-the-removexattr-system-call-by-root-user-7270fddf-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "e8892c136d9723d93b4bc547a6c87282e1f49b26b3fce55f1aab9023039dc060",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-setxattr-syscall-auid-1000-ffc79ec4-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "34cb5db67c47077ecb737fdf6396f05f92e0fbb92604a3d342d3641dbee397cd",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-setxattr-syscall-auid-1000-14214abc-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "96d9e2314d697ec4d320a26e867e765fb2717e43a45a0cc7f70cc28408fa8ce8",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-setxattr-syscall-auid-0-73daa6d5-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "bc8aab41c9a1869afbf23315ba2942ebee9883fe7a08c358f7b8c9365dac4d2d",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-setxattr-syscall-auid-0-09a37828-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "0d6d0b322341419fe5850eeb89e0c754c0f8f149eaa5a98a5eac278fd07d538c",
+          "folded_variable": false
+        }
+      ],
+      "metric_after": {
+        "score": 10,
+        "parts": {
+          "tests": 1,
+          "boolean_nodes": 0,
+          "boolean_depth_excess": 0,
+          "variables_weighted": 0,
+          "functions": 0,
+          "chain_depth_excess": 0,
+          "sets_weighted": 0,
+          "filters_weighted": 0,
+          "cross_test_coupling_weighted": 0,
+          "repeated_collections": 0,
+          "distinct_semantic_operations": 9
+        },
+        "boolean_depth": 0,
+        "variable_function_chain_depth": 0,
+        "set_count": 0,
+        "filter_count": 0,
+        "cross_test_edges": [],
+        "collection_references": 1,
+        "unique_collections": 1,
+        "semantic_operations": [
+          "boolean:and",
+          "capability:independent.textfilecontent54",
+          "compare:equals",
+          "compare:matches_regex",
+          "items_found:one_or_more",
+          "items_satisfying:every",
+          "values_found:one_or_more",
+          "values_matching:every",
+          "values_matching:one_or_more"
+        ]
+      },
+      "native_scanner_equivalence": "UNPROVED",
+      "blockers": [
+        "Whole-file capture/status/completeness and regex-flag semantics need independent native runtime proof",
+        "No claim of70% less semantic work: all24 obligations remain"
+      ]
+    },
+    {
+      "kind": "runtime-shell",
+      "directory": "case-runtime-shell",
+      "before_score": 64,
+      "after_score": 10,
+      "apparent_structural_reduction_percent": 84.38,
+      "tests_before": 24,
+      "tests_after": 1,
+      "original_regex_obligations_before": 24,
+      "original_regex_obligations_after": 24,
+      "folded_constant_variables": 8,
+      "raw_regex_mapping": [
+        {
+          "original_test": "audit-32-bit-invocations-of-fsetxattr-syscall-auid-1000-765141bc-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "90aee03ac983bc34a5aede293184b522b64b636d03d6eeb0bc7c5df613392901",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-fsetxattr-syscall-auid-1000-6809bce3-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "2dc115ab8e8b71c84948809faf30ddc88a073899828080d26542708f8e51c68c",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-fsetxattr-syscall-auid-0-0252bf7a-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "1b9b755424d381cbac69e5d7a673358021399d0d7dfd5c468b6903acb18e1381",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-fsetxattr-syscall-auid-0-7d89f6cd-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fsetxattr\\s+|(\\s+|,)fsetxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "2167423b4f18bedee48c30e2bfcf5b1051b24b57681217bf8b1860802b299bcc",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-the-lsetxattr-system-call-c27ef14f-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "89f56fb6d7e012aaae88e1459a8572805085b849c3c30171b377388fd5dfff87",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-the-lsetxattr-system-call-0ac26c7e-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "b7a4f99ca8c01e3e1daf60046f87479056dd6314a1ceaa2938d1ceb113df0a11",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-the-lsetxattr-system-call-by-root-user-6af24229-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "b31cf8546b7bcca9ca33c256626febd5b88d3aac0019848daaf763e678bfc8ec",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-the-lsetxattr-system-call-by-root-user-9fdb93ac-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\blsetxattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "b31cf8546b7bcca9ca33c256626febd5b88d3aac0019848daaf763e678bfc8ec",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-fremovexattr-syscall-51efafab-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "83f9fe593a9fc9aad82fb22944b197f4b8bb10863c11c5245d5c159d57139229",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-fremovexattr-syscall-d949190e-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "96f255b920b8be85e51472afb1af927d6af1173d219d88d341f88cfb389d02a9",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-fremovexattr-syscall-by-root-a5ead35d-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "bf7cbce9a527ac834c4d5819f5703bc1a8dd4cf0b9570a89d0f78601d44a8b17",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-fremovexattr-syscall-by-root-5fa65a31-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+fremovexattr\\s+|(\\s+|,)fremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "546fe5f40548d4a45c1b94c14782951f919749bf4af7209a69eabef6fbb4bad3",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-lremovexattr-syscall-2fd8a36b-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "abb8ac1768ae1b2df0fac42ddf93f4e1a55bb780c42f715297ff289de13a7ccd",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-lremovexattr-syscall-efa9df0e-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "8307c6ae60e1a85ab098b3f4c995175ad060f819c413a866e0616012459c3037",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-lremovexattr-syscall-by-root-342f7423-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "dd241edd302301d0e72578b03a3cead3ad9205847ded6619f2f5d9ddc5e56950",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-lremovexattr-syscall-by-root-14fd3d98-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+lremovexattr\\s+|(\\s+|,)lremovexattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "d18b563c61c956a835df2108b7cc18989faf7ea02c55b93e36d9c3f367213f6c",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-the-removexattr-system-call-1c686903-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "16416f304bc3091c7faf9350cd72f5d16ab84aaa2f59e50f7baca32959ec6ffb",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-the-removexattr-system-call-b190518f-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid>=1000\\s+-F\\s+auid!=(?:4294967295|-1|unset)(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "916fe7890a68e07ad834e97c288184580a00f2b0451415588ad7f60ea7d8e31d",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-the-removexattr-system-call-by-root-user-0ad4d02e-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "e8892c136d9723d93b4bc547a6c87282e1f49b26b3fce55f1aab9023039dc060",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-the-removexattr-system-call-by-root-user-7270fddf-test",
+          "raw_regex": "^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(?:always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:-S\\s+[,\\w]+\\s+)*-S\\s+[,\\w]*\\bremovexattr\\b[,\\w]*\\s+(?:-S\\s+[,\\w]+\\s+)*-F\\s+auid=0(?:\\s+(?:-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "e8892c136d9723d93b4bc547a6c87282e1f49b26b3fce55f1aab9023039dc060",
+          "folded_variable": true
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-setxattr-syscall-auid-1000-ffc79ec4-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "34cb5db67c47077ecb737fdf6396f05f92e0fbb92604a3d342d3641dbee397cd",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-setxattr-syscall-auid-1000-14214abc-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid>=1000\\s+-F\\s+auid!=(4294967295|-1|unset)(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "96d9e2314d697ec4d320a26e867e765fb2717e43a45a0cc7f70cc28408fa8ce8",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-32-bit-invocations-of-setxattr-syscall-auid-0-73daa6d5-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b32\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "bc8aab41c9a1869afbf23315ba2942ebee9883fe7a08c358f7b8c9365dac4d2d",
+          "folded_variable": false
+        },
+        {
+          "original_test": "audit-64-bit-invocations-of-setxattr-syscall-auid-0-09a37828-test",
+          "raw_regex": "^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "effective_regex": "(?m)^\\s*-a\\s+(always,exit|exit,always)\\s+-F\\s+arch=b64\\s+(?:.*(-S\\s+setxattr\\s+|(\\s+|,)setxattr(\\s+|,))).*-F\\s+auid=0(\\s+(-k\\s+|-F\\s+key=)[-\\w]+)*\\s*$",
+          "raw_regex_sha256": "0d6d0b322341419fe5850eeb89e0c754c0f8f149eaa5a98a5eac278fd07d538c",
+          "folded_variable": false
+        }
+      ],
+      "metric_after": {
+        "score": 10,
+        "parts": {
+          "tests": 1,
+          "boolean_nodes": 0,
+          "boolean_depth_excess": 0,
+          "variables_weighted": 0,
+          "functions": 0,
+          "chain_depth_excess": 0,
+          "sets_weighted": 0,
+          "filters_weighted": 0,
+          "cross_test_coupling_weighted": 0,
+          "repeated_collections": 0,
+          "distinct_semantic_operations": 9
+        },
+        "boolean_depth": 0,
+        "variable_function_chain_depth": 0,
+        "set_count": 0,
+        "filter_count": 0,
+        "cross_test_edges": [],
+        "collection_references": 1,
+        "unique_collections": 1,
+        "semantic_operations": [
+          "boolean:and",
+          "capability:independent.shellcommand",
+          "compare:equals",
+          "compare:matches_regex",
+          "items_found:one_or_more",
+          "items_satisfying:every",
+          "values_found:one_or_more",
+          "values_matching:every",
+          "values_matching:one_or_more"
+        ]
+      },
+      "native_scanner_equivalence": "UNPROVED",
+      "blockers": [
+        "Owner decision: loaded rules instead of persisted audit.rules",
+        "Original no-enumeration criterion excludes auditctl -l unless explicitly excepted",
+        "Multi-line Item/field framing, canonicalized output and permission/error contracts unproved"
+      ]
+    }
+  ],
+  "production_changes": 0
+}
