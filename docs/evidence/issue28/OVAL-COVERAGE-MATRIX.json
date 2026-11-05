@@ -284,6 +284,16 @@
       "runtime": "must preserve path matching and traversal boundary",
       "proof": "10 primary Rules; .NET SV-225229 example",
       "status": "supported_mapping_missing"
+    },
+    {
+      "category": "Language/design boundary",
+      "feature": "Comparator-bearing absence (`check_existence=none_exist` plus operation)",
+      "schema": "native absence is explicitly comparator-free",
+      "compiler": "rejects combination",
+      "converter": "fails closed",
+      "runtime": "OVAL existence/comparator precedence requires proof",
+      "proof": "9 primary Rules; SLES 12 source sample",
+      "status": "native_language_gap"
     }
   ],
   "qualification": {
@@ -300,7 +310,8 @@
       "Finalize deterministic source-identity disambiguation for readable native IDs, preserving source IDs and the 64-character native identifier limit.",
       "Complete converter lowering for xsi:nil selectors using existing windows.cmdlet nullable contracts; add null, empty, and non-null regression vectors.",
       "Wire ordered float comparisons through the existing native float contract with explicit precision, NaN, infinity, and lexical-error semantics.",
-      "Treat case-insensitive equality as an equality path only where the capability contract proves identical traversal scope; retain pattern-path rejection."
+      "Treat case-insensitive equality as an equality path only where the capability contract proves identical traversal scope; retain pattern-path rejection.",
+      "Decide whether comparator-bearing OVAL absence is equivalent to comparator-free absence or requires an explicit native absence-with-predicate contract; do not silently drop the comparator."
     ]
   }
 }
