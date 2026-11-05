@@ -15,10 +15,12 @@ Rule binding. The Office 365 `SV-223296` pair is the corpus regression.
 ## Nil selectors
 
 `windows.cmdlet` record-valued nil inputs (`parameters` and `select`) now lower
-to the existing native `null` representation when OVAL omits `datatype`. An
-explicit datatype is still checked exactly; wrong datatypes, non-empty nil
-nodes, and empty-string values are not coerced. The capability position is the
-approved type for a nil record, not a value-level inference.
+to the existing native `null` representation when OVAL omits `datatype`.
+The same explicit null boundary is covered for nullable Registry `key` and
+`name` selectors. An explicit datatype is still checked exactly; wrong
+datatypes, comparator-bearing nil nodes, non-empty nil nodes, and empty-string
+values are not coerced. The capability position is the approved type for a nil
+record, not a value-level inference.
 
 ## Typed-equality recursion
 

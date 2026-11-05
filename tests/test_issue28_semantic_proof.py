@@ -123,6 +123,44 @@ class IdentityCollisionRecovery(unittest.TestCase):
         self.assertLessEqual(len(b), 64)
 
 class NilSelectorRecovery(unittest.TestCase):
+    def test_registry_key_and_name_nil_selectors_are_native_null(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        mapping = {'capability': 'windows.registry', 'native': {
+            'selector_map': {'key': 'key', 'name': 'name'},
+            'nullable_selectors': ('key', 'name'),
+            'field_datatypes': {'key': ['string'], 'name': ['string']},
+        }}
+        visitor = AssessmentConverter(None, None, [])
+        for field in ('key', 'name'):
+            element = ET.fromstring(
+                f'<{field} xmlns="{OVAL}#windows" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>')
+            with self.subTest(field=field):
+                self.assertIsNone(visitor.predicate(element, mapping, selector=True))
+
+    def test_registry_nil_selector_rejects_comparator_and_text(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        mapping = {'capability': 'windows.registry', 'native': {
+            'selector_map': {'key': 'key'}, 'nullable_selectors': ('key',),
+            'field_datatypes': {'key': ['string']},
+        }}
+        visitor = AssessmentConverter(None, None, [])
+        bad = ET.fromstring(
+            f'<key xmlns="{OVAL}#windows" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" operation="pattern match"/>')
+        with self.assertRaisesRegex(ValueError, 'unsupported attributes'):
+            visitor.predicate(bad, mapping, selector=True)
+        bad_text = ET.fromstring(
+            f'<key xmlns="{OVAL}#windows" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true">x</key>')
+        with self.assertRaisesRegex(ValueError, 'unsupported nil selector'):
+            visitor.predicate(bad_text, mapping, selector=True)
+
     def test_record_cmdlet_nil_without_datatype_is_native_null(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
