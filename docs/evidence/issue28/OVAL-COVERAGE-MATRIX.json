@@ -110,9 +110,9 @@
       "feature": "multi-component Variable aggregation",
       "schema": "collection expression contract",
       "compiler": "supported only for one collection operand",
-      "converter": "mapping missing for multi-component forms",
-      "runtime": "not available",
-      "proof": "blocker audit",
+      "converter": "mapping missing for multiple aggregation components",
+      "runtime": "ordered collection/empty/duplicate/error semantics must be preserved",
+      "proof": "30 primary blocker Rules; Firefox SV-251546 example",
       "status": "supported_mapping_missing"
     },
     {
@@ -255,7 +255,8 @@
       "Approve exact OCIL questionnaire-to-manual response mapping beyond the bounded procedure projection.",
       "Approve native capability contracts for remaining WMI/access-token features or retain explicit exclusions.",
       "Reclassify legacy wmi_* and accesstoken_* under one Deprecated OVAL Tests statistic; keep wmi57_* in supported WMI coverage.",
-      "Define the typed native Input/Parameter relation adapter for XCCDF Value operators (starting with less_than_or_equal), including allowed values, defaults, cardinality, and check-export binding."
+      "Define the typed native Input/Parameter relation adapter for XCCDF Value operators (starting with less_than_or_equal), including allowed values, defaults, cardinality, and check-export binding.",
+      "Define the native collection-expression lowering for multi-operand unique/merge without changing OVAL ordering, duplicate, empty, or error semantics."
     ]
   }
 }
