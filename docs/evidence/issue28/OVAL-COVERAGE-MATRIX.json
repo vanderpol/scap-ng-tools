@@ -274,6 +274,16 @@
       "runtime": "requires explicit binary32/float comparison semantics",
       "proof": "10 primary Rules; Ubuntu SV-219237 example",
       "status": "supported_mapping_missing"
+    },
+    {
+      "category": "Converter mapping",
+      "feature": "Recursion behaviors on equality path selectors",
+      "schema": "file traversal contract supports bounded downward recursion",
+      "compiler": "supported for equality path",
+      "converter": "does not recognize all typed equality forms and rejects valid combinations",
+      "runtime": "must preserve path matching and traversal boundary",
+      "proof": "10 primary Rules; .NET SV-225229 example",
+      "status": "supported_mapping_missing"
     }
   ],
   "qualification": {
@@ -289,7 +299,8 @@
       "Define the native collection-expression lowering for multi-operand unique/merge without changing OVAL ordering, duplicate, empty, or error semantics.",
       "Finalize deterministic source-identity disambiguation for readable native IDs, preserving source IDs and the 64-character native identifier limit.",
       "Complete converter lowering for xsi:nil selectors using existing windows.cmdlet nullable contracts; add null, empty, and non-null regression vectors.",
-      "Wire ordered float comparisons through the existing native float contract with explicit precision, NaN, infinity, and lexical-error semantics."
+      "Wire ordered float comparisons through the existing native float contract with explicit precision, NaN, infinity, and lexical-error semantics.",
+      "Treat case-insensitive equality as an equality path only where the capability contract proves identical traversal scope; retain pattern-path rejection."
     ]
   }
 }
