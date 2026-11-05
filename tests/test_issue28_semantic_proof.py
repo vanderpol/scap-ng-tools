@@ -4,11 +4,25 @@ from pathlib import Path
 import unittest
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'tools'))
-from issue28_semantics import (Outcome, arithmetic, concat, quantify, regex_capture,
-                               split, substring, unique, merge, EXISTENCE)
+from issue28_semantics import (Outcome, arithmetic, concat, count, flatten_components,
+                               quantify, regex_capture, split, substring, unique, merge,
+                               EXISTENCE)
 
 
 class OVALReferenceVectors(unittest.TestCase):
+    def test_count_and_multi_component_aggregation_preserve_source_population(self):
+        self.assertEqual(count([]), 0)
+        self.assertEqual(count(['', 'a']), 2)
+        self.assertEqual(count(flatten_components([['a', ''], ['a', 'b']])), 4)
+        self.assertEqual(unique(flatten_components([['a', ''], ['a', 'b']])), ['a', '', 'b'])
+        self.assertEqual(merge(flatten_components([['10'], ['2', '']]), ',', sort='document'),
+                         '10,2,')
+
+    def test_count_propagates_diagnostic_population_states(self):
+        self.assertEqual(count([Outcome.ERROR]), Outcome.ERROR)
+        self.assertEqual(count([Outcome.UNKNOWN]), Outcome.UNKNOWN)
+        self.assertEqual(count([Outcome.NOT_EVALUATED]), Outcome.NOT_EVALUATED)
+
     def test_function_vectors_include_empty_and_nested_values(self):
         self.assertEqual(split('', ','), [''])
         self.assertEqual(split('a,,b', ','), ['a', '', 'b'])

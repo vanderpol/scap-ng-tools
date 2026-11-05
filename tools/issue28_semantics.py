@@ -64,6 +64,26 @@ def quantify(values, requirement):
     raise ValueError('unknown requirement: ' + requirement)
 
 
+def count(values):
+    """Reference result for OVAL count over one or more components.
+
+    Components are concatenated in source order before cardinality is taken;
+    an empty collection is a valid population of size zero and diagnostic
+    outcomes are propagated rather than coerced into zero.
+    """
+    values = list(values)
+    diagnostic = _propagate(values)
+    return diagnostic if diagnostic is not None else len(values)
+
+
+def flatten_components(components):
+    """Flatten multi-component collections without changing order or duplicates."""
+    result = []
+    for component in components:
+        result.extend(component)
+    return result
+
+
 def split(value, delimiter):
     return value.split(delimiter)
 

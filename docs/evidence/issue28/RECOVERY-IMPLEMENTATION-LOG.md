@@ -36,7 +36,9 @@ and retains an inverse migration mapping. Extra operands are preserved rather
 than silently counted as one. The pinned 0.4 schema snapshot used by the
 current ledger does not yet admit that function in the Assessment Variable
 schema, so count Rules remain **blocked pending canonical schema/compiler
-admission**. No ledger count is presented as converted or proved.
+admission**. Independent vectors now cover zero, empty-string, duplicate,
+and error/unknown populations; no ledger count is presented as converted or
+proved.
 
 ## Ordered float comparisons
 
