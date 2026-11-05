@@ -1,7 +1,38 @@
 """Bounded, explicit XCCDF export -> Parameter -> Assessment Input drafting."""
-from v04_direct_scap_source import XCCDF, OVAL, attributes, ensure, native_identifier, digest, xml_identity
+from v04_direct_scap_source import XCCDF, OVAL, attributes, ensure, native_identifier, digest, xml_identity, local_name
 from v04_direct_datatypes import native_datatype
 from v04_draft_compatibility import DECISION
+
+
+def source_disambiguated_identifier(visitor, element, suffix, peers):
+    """Keep readable names unless source descriptors actually collide.
+
+    XCCDF Values and OVAL external Variables are globally benchmark-scoped,
+    while their titles/comments are not identities.  Add a deterministic
+    source-ID token only for duplicate descriptors so shared uses of the same
+    source node retain the original native name.
+    """
+    identifier = native_identifier(element, suffix)
+    descriptors = [native_identifier(peer, suffix) for peer in peers]
+    if descriptors.count(identifier) <= 1:
+        return identifier
+    token = digest(element.get('id'))[:10]
+    stem = identifier.removesuffix('-' + suffix)
+    budget = 64 - len(suffix) - len(token) - 2
+    ensure(budget >= 1, 'native source discriminator exceeds identifier budget')
+    return stem[:budget].rstrip('-') + '-' + token + '-' + suffix
+
+
+def value_parameter_identifier(visitor, value):
+    nodes = visitor.source.nodes.get(visitor.source.benchmark_component, {})
+    peers = [node for node in nodes.values() if node.tag == '{' + XCCDF + '}Value']
+    return source_disambiguated_identifier(visitor, value, 'parameter', peers)
+
+
+def external_input_identifier(visitor, element):
+    nodes = visitor.source.nodes.get(visitor.component_id, {})
+    peers = [node for node in nodes.values() if local_name(node) == 'external_variable']
+    return source_disambiguated_identifier(visitor, element, 'input', peers)
 
 
 def check_exports(source, rule):
@@ -46,8 +77,8 @@ def external_input(visitor, element):
            'check-export source/Variable datatype mismatch')
     defaults=[n for n in value.findall('{'+XCCDF+'}value') if not n.get('selector')]
     ensure(len(defaults)<=1 and all(not len(n) for n in value.findall('{'+XCCDF+'}value')), 'ambiguous/complex XCCDF default')
-    input_id=native_identifier(element,'input')
-    parameter_id=native_identifier(value,'parameter')
+    input_id=external_input_identifier(visitor, element)
+    parameter_id=value_parameter_identifier(visitor, value)
     contract={'datatype':native_datatype(datatype),'cardinality':'exactly_one','required':True,
               'description':value.findtext('{'+XCCDF+'}description','')}
     parameter={'id':parameter_id,'datatype':native_datatype(datatype),'cardinality':'one','required':True,

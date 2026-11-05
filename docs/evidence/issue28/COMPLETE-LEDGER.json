@@ -1,11 +1,6 @@
 {
   "all_blockers": [
     {
-      "category": "unsupported-construct",
-      "message": "unbound external Variable or unsupported possible_restriction",
-      "rules": 500
-    },
-    {
       "category": "unsupported-capability",
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
       "rules": 458
@@ -24,6 +19,11 @@
       "category": "unsupported-capability",
       "message": "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state",
       "rules": 248
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "unbound external Variable or unsupported possible_restriction",
+      "rules": 211
     },
     {
       "category": "unsupported-capability",
@@ -46,11 +46,6 @@
       "rules": 40
     },
     {
-      "category": "unsupported-construct",
-      "message": "unsupported acquisition parameter comparison/type",
-      "rules": 38
-    },
-    {
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:181",
       "rules": 38
@@ -69,6 +64,11 @@
       "category": "unsupported-capability",
       "message": "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_state",
       "rules": 29
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "unsupported acquisition parameter comparison/type",
+      "rules": 25
     },
     {
       "category": "unsupported-capability",
@@ -102,11 +102,6 @@
     },
     {
       "category": "unsupported-construct",
-      "message": "unsupported Test matching/absence combination",
-      "rules": 12
-    },
-    {
-      "category": "unsupported-construct",
       "message": "unsupported State field/namespace",
       "rules": 12
     },
@@ -114,11 +109,6 @@
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101",
       "rules": 11
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: firewall-state-parameter",
-      "rules": 10
     },
     {
       "category": "unsupported-capability",
@@ -139,16 +129,6 @@
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875201",
       "rules": 5
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: javapermissions-localcomputer-var-parameter",
-      "rules": 3
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: runnetframeworkreliantcompo-localcomputer-var-parameter",
-      "rules": 3
     },
     {
       "category": "unsupported-capability",
@@ -172,11 +152,6 @@
     },
     {
       "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: mss-disableipsourcerouting-against-packet-spoofing-parameter",
-      "rules": 3
-    },
-    {
-      "category": "unsupported-construct",
       "message": "existing canonical calls require independent validation",
       "rules": 3
     },
@@ -187,32 +162,7 @@
     },
     {
       "category": "unsupported-construct",
-      "message": "module_id: unsupported attributes ['{http://www.w3.org/2001/XMLSchema-instance}nil']",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: require-domain-users-when-setting-networks-location-parameter",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
       "message": "check-export source/Variable datatype mismatch",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: domain-member-digitally-channel-data-when-possible-parameter",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: inbound-connections-parameter",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: outbound-connections-parameter",
       "rules": 2
     },
     {
@@ -227,12 +177,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -262,12 +212,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -277,12 +227,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -312,12 +262,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -367,12 +317,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -422,12 +372,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -477,12 +427,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -523,76 +473,6 @@
     {
       "category": "schema-semantic",
       "message": "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json: Native Variable expression: Variable exchange-installation-drive-letter-variable/expression: {'function': {'name': 'substring', 'arguments': [{'values': {'object': 'shellcommand-object-true-msiinstallpath-msiinstallpath-w-object', 'field': 'stdout_line'}}], 'options': {'substring_start': 1, 'substring_length': 1}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: downloadsignedactivexcontro-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: allowapproveddomainstousetd-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: downloadunsignedactivexcont-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: initializescriptactivexcont-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: accessdatasourcesacrossdoma-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: allowdragdroporcopypastefil-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: launchingapplicationsandfil-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: allowcutcopypasteoperations-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: allowscriptinitiatedwindows-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: websitesinlessprivilegedweb-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: allowscriptingofinternetexp-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: includelocaldirectorypathwh-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: launchingprogramsandunsafef-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "message": "conflicting Benchmark Parameter binding: onlyallowapproveddomainstou-localcomputer-var-parameter",
       "rules": 1
     },
     {
@@ -647,6 +527,11 @@
     },
     {
       "category": "unsupported-construct",
+      "message": "module_id: unsupported attributes ['{http://www.w3.org/2001/XMLSchema-instance}nil']",
+      "rules": 1
+    },
+    {
+      "category": "unsupported-construct",
       "message": "module_version: unsupported attributes ['{http://www.w3.org/2001/XMLSchema-instance}nil']",
       "rules": 1
     },
@@ -687,12 +572,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -762,12 +647,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -812,12 +697,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -937,12 +822,12 @@
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
       "category": "schema-semantic",
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -987,8 +872,8 @@
     }
   ],
   "baseline": {
-    "blocked": 374,
-    "converted": 6728,
+    "blocked": 327,
+    "converted": 6775,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "total": 8892
@@ -1479,20 +1364,19 @@
       "source_sha256": "8f0b317cd9c17bc27f3285a5e8810a6560c0ac8ffe475a6d6e7bd72dae5fefd6"
     },
     {
-      "automated_converted": 8,
-      "blocked": 6,
+      "automated_converted": 9,
+      "blocked": 5,
       "blocker_categories": {
         "schema-semantic": 1,
         "unsupported-capability": 4,
-        "unsupported-construct": 3
+        "unsupported-construct": 2
       },
-      "converted": 8,
+      "converted": 9,
       "filename": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 3,
       "primary_blockers": {
         "authoring/direct-slice/assessments/digital-signatures-assemblies-verified-sv-225223-assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\StrongName\\\\Verification'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas": 1,
-        "unsupported acquisition parameter comparison/type": 1,
         "unsupported function: end": 2,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 4
       },
@@ -1551,34 +1435,14 @@
       "source_sha256": "46497542771fd7841cd96745d61dbdeb8ccf0d082415dcfa64a6694bf365f8f9"
     },
     {
-      "automated_converted": 117,
-      "blocked": 20,
-      "blocker_categories": {
-        "unsupported-construct": 20
-      },
-      "converted": 117,
+      "automated_converted": 137,
+      "blocked": 0,
+      "blocker_categories": {},
+      "converted": 137,
       "filename": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 0,
-      "primary_blockers": {
-        "conflicting Benchmark Parameter binding: accessdatasourcesacrossdoma-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: allowapproveddomainstousetd-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: allowcutcopypasteoperations-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: allowdragdroporcopypastefil-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: allowscriptingofinternetexp-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: allowscriptinitiatedwindows-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: downloadsignedactivexcontro-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: downloadunsignedactivexcont-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: includelocaldirectorypathwh-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: initializescriptactivexcont-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: javapermissions-localcomputer-var-parameter": 3,
-        "conflicting Benchmark Parameter binding: launchingapplicationsandfil-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: launchingprogramsandunsafef-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: onlyallowapproveddomainstou-localcomputer-var-parameter": 1,
-        "conflicting Benchmark Parameter binding: runnetframeworkreliantcompo-localcomputer-var-parameter": 3,
-        "conflicting Benchmark Parameter binding: websitesinlessprivilegedweb-localcomputer-var-parameter": 1,
-        "unbound external Variable or unsupported possible_restriction": 20
-      },
+      "primary_blockers": {},
       "scope": "in_scope",
       "source_rules": 137,
       "source_sha256": "c0d20d64249769c052f8ff9ecef3ddffb2944064b6211a9c8afb3f6dfb962f81"
@@ -1637,18 +1501,16 @@
       "source_sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae"
     },
     {
-      "automated_converted": 17,
-      "blocked": 2,
+      "automated_converted": 18,
+      "blocked": 1,
       "blocker_categories": {
-        "unsupported-capability": 1,
-        "unsupported-construct": 1
+        "unsupported-capability": 1
       },
-      "converted": 17,
+      "converted": 18,
       "filename": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 24,
       "primary_blockers": {
-        "unsupported Test matching/absence combination": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
       },
       "scope": "in_scope",
@@ -1656,14 +1518,14 @@
       "source_sha256": "3b2f7aa396dbfc647b73de8f7506a5bca1578ff5b79f96d40d13859da57613e4"
     },
     {
-      "automated_converted": 14,
-      "blocked": 6,
+      "automated_converted": 15,
+      "blocked": 5,
       "blocker_categories": {
         "schema-semantic": 1,
         "unsupported-capability": 4,
-        "unsupported-construct": 3
+        "unsupported-construct": 2
       },
-      "converted": 14,
+      "converted": 15,
       "filename": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 29,
@@ -1678,7 +1540,6 @@
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:81": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:93": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:94": 1,
-        "unsupported Test matching/absence combination": 1,
         "unsupported acquisition parameter comparison/type": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
       },
@@ -1765,20 +1626,18 @@
       "source_sha256": "5a05495768b1076a53ee6089949ba0209a0121d8728e766fd91b4b2442ad0f33"
     },
     {
-      "automated_converted": 224,
-      "blocked": 31,
+      "automated_converted": 225,
+      "blocked": 30,
       "blocker_categories": {
         "unsupported-capability": 29,
-        "unsupported-construct": 2
+        "unsupported-construct": 1
       },
-      "converted": 224,
+      "converted": 225,
       "filename": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 12,
       "primary_blockers": {
         "invalid original pattern-path recursion attributes": 1,
-        "module_id: unsupported attributes ['{http://www.w3.org/2001/XMLSchema-instance}nil']": 1,
-        "unsupported acquisition parameter comparison/type": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 28,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state": 28,
@@ -1812,23 +1671,20 @@
       "source_sha256": "e4b8d55b58aa80124bd0974977af4c7f7bde35c748e2940e02857419292d8c3d"
     },
     {
-      "automated_converted": 207,
-      "blocked": 61,
+      "automated_converted": 210,
+      "blocked": 58,
       "blocker_categories": {
         "unsupported-capability": 42,
-        "unsupported-construct": 19
+        "unsupported-construct": 16
       },
-      "converted": 207,
+      "converted": 210,
       "filename": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 96,
       "primary_blockers": {
         "XCCDF Value operator requires an explicit constraint adapter": 15,
         "check-export source/Variable datatype mismatch": 1,
-        "conflicting Benchmark Parameter binding: domain-member-digitally-channel-data-when-possible-parameter": 1,
-        "conflicting Benchmark Parameter binding: mss-disableipsourcerouting-against-packet-spoofing-parameter": 1,
-        "conflicting Benchmark Parameter binding: require-domain-users-when-setting-networks-location-parameter": 1,
-        "unbound external Variable or unsupported possible_restriction": 19,
+        "unbound external Variable or unsupported possible_restriction": 16,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 31,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 12,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state": 31,
@@ -1841,23 +1697,20 @@
       "source_sha256": "ecba937d43efc0a72037eefb501b46a2e417158088b2f2699f2c86b68bd1de9c"
     },
     {
-      "automated_converted": 188,
-      "blocked": 59,
+      "automated_converted": 191,
+      "blocked": 56,
       "blocker_categories": {
         "unsupported-capability": 39,
-        "unsupported-construct": 21
+        "unsupported-construct": 18
       },
-      "converted": 188,
+      "converted": 191,
       "filename": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 82,
       "primary_blockers": {
         "XCCDF Value operator requires an explicit constraint adapter": 16,
         "check-export source/Variable datatype mismatch": 1,
-        "conflicting Benchmark Parameter binding: domain-member-digitally-channel-data-when-possible-parameter": 1,
-        "conflicting Benchmark Parameter binding: mss-disableipsourcerouting-against-packet-spoofing-parameter": 1,
-        "conflicting Benchmark Parameter binding: require-domain-users-when-setting-networks-location-parameter": 1,
-        "unbound external Variable or unsupported possible_restriction": 21,
+        "unbound external Variable or unsupported possible_restriction": 18,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 30,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 3,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 9,
@@ -1873,41 +1726,33 @@
       "source_sha256": "3ad256b29d6f85fe69ba9a14b18502a6f50e923faea2880d9ce10246f780a50a"
     },
     {
-      "automated_converted": 6,
-      "blocked": 14,
-      "blocker_categories": {
-        "unsupported-construct": 14
-      },
-      "converted": 6,
+      "automated_converted": 20,
+      "blocked": 0,
+      "blocker_categories": {},
+      "converted": 20,
       "filename": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 1,
-      "primary_blockers": {
-        "conflicting Benchmark Parameter binding: firewall-state-parameter": 10,
-        "conflicting Benchmark Parameter binding: inbound-connections-parameter": 2,
-        "conflicting Benchmark Parameter binding: outbound-connections-parameter": 2,
-        "unbound external Variable or unsupported possible_restriction": 14
-      },
+      "primary_blockers": {},
       "scope": "in_scope",
       "source_rules": 21,
       "source_sha256": "d16c868152e14bab0a1e2ecdfa6ec889972e068625d4d20d4ac3f861ff2009ca"
     },
     {
-      "automated_converted": 197,
-      "blocked": 47,
+      "automated_converted": 198,
+      "blocked": 46,
       "blocker_categories": {
         "unsupported-capability": 40,
-        "unsupported-construct": 7
+        "unsupported-construct": 6
       },
-      "converted": 197,
+      "converted": 198,
       "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 28,
       "primary_blockers": {
         "XCCDF Value operator requires an explicit constraint adapter": 5,
-        "conflicting Benchmark Parameter binding: mss-disableipsourcerouting-against-packet-spoofing-parameter": 1,
         "invalid original pattern-path recursion attributes": 1,
-        "unbound external Variable or unsupported possible_restriction": 6,
+        "unbound external Variable or unsupported possible_restriction": 5,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 38,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 3,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state": 38,
@@ -2050,13 +1895,12 @@
       "source_sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29"
     },
     {
-      "automated_converted": 398,
-      "blocked": 10,
+      "automated_converted": 399,
+      "blocked": 9,
       "blocker_categories": {
-        "schema-semantic": 9,
-        "unsupported-construct": 1
+        "schema-semantic": 9
       },
-      "converted": 398,
+      "converted": 399,
       "filename": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 40,
@@ -2080,8 +1924,7 @@
         "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "unsupported Test matching/absence combination": 1
+        "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 448,
@@ -2139,13 +1982,12 @@
       "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5"
     },
     {
-      "automated_converted": 408,
-      "blocked": 10,
+      "automated_converted": 409,
+      "blocked": 9,
       "blocker_categories": {
-        "schema-semantic": 9,
-        "unsupported-construct": 1
+        "schema-semantic": 9
       },
-      "converted": 408,
+      "converted": 409,
       "filename": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 27,
@@ -2169,8 +2011,7 @@
         "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas": 1,
         "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: Native Variable expression: Variable count-of-unique-name-servers-variable/expression: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1,
-        "unsupported Test matching/absence combination": 1
+        "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'etc-resolv-conf-nameserver-entries-object', 'field': 'subexpression'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas": 1
       },
       "scope": "in_scope",
       "source_rules": 445,
@@ -2270,8 +2111,8 @@
   ],
   "classification": {
     "automated_converted_proved": 0,
-    "automated_converted_unproved": 6728,
-    "genuinely_blocked": 374,
+    "automated_converted_unproved": 6775,
+    "genuinely_blocked": 327,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "proof_note": "No Rules are independently proved by this authoring ledger."
@@ -2443,28 +2284,6 @@
       "rules": 10
     },
     {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-241990r922930_rule",
-          "title": "Windows Defender Firewall with Advanced Security must be enabled when connected to a private network."
-        },
-        {
-          "benchmark": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-241991r922932_rule",
-          "title": "Windows Defender Firewall with Advanced Security must be enabled when connected to a public network."
-        },
-        {
-          "benchmark": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-241999r922948_rule",
-          "title": "Windows Defender Firewall with Advanced Security log size must be configured for private network connections."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: firewall-state-parameter",
-      "rules": 10
-    },
-    {
       "category": "unsupported-capability",
       "examples": [
         {
@@ -2512,128 +2331,6 @@
       "category": "unsupported-construct",
       "examples": [
         {
-          "benchmark": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-258446r928857_rule",
-          "title": "The version of IIS running on the system must be a supported version."
-        },
-        {
-          "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-258445r928856_rule",
-          "title": "The version of IIS running on the system must be a supported version."
-        },
-        {
-          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-271451r1137691_rule",
-          "title": "OL 9 must require a unique superuser's name upon booting into single-user and maintenance modes."
-        }
-      ],
-      "message": "unsupported Test matching/absence combination",
-      "rules": 4
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223088r960963_rule",
-          "title": "Java permissions must be disallowed (Locked Down Intranet zone)."
-        },
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223089r960963_rule",
-          "title": "Java permissions must be disallowed (Locked Down Trusted Sites zone)."
-        },
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223090r960963_rule",
-          "title": "Java permissions must be disallowed (Locked Down Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: javapermissions-localcomputer-var-parameter",
-      "rules": 3
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223120r961863_rule",
-          "title": ".NET Framework-reliant components signed with Authenticode must be disallowed to run (Restricted Sites Zone)."
-        },
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223144r961863_rule",
-          "title": ".NET Framework-reliant components not signed with Authenticode must be disallowed to run (Internet zone)."
-        },
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223145r961863_rule",
-          "title": ".NET Framework-reliant components signed with Authenticode must be disallowed to run (Internet zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: runnetframeworkreliantcompo-localcomputer-var-parameter",
-      "rules": 3
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-226303r794595_rule",
-          "title": "The system must be configured to prevent IP source routing."
-        },
-        {
-          "benchmark": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-225480r569185_rule",
-          "title": "The system must be configured to prevent IP source routing."
-        },
-        {
-          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-224917r991589_rule",
-          "title": "Source routing must be configured to the highest protection level to prevent Internet Protocol (IP) source routing."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: mss-disableipsourcerouting-against-packet-spoofing-parameter",
-      "rules": 3
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-225226r961041_rule",
-          "title": "Encryption keys used for the .NET Strong Name Membership Condition must be protected."
-        },
-        {
-          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-220812r991589_rule",
-          "title": "Credential Guard must be running on Windows 10 domain-joined systems."
-        }
-      ],
-      "message": "unsupported acquisition parameter comparison/type",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-226140r794494_rule",
-          "title": "All Direct Access traffic must be routed through the internal network."
-        },
-        {
-          "benchmark": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-225319r569185_rule",
-          "title": "All Direct Access traffic must be routed through the internal network."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: require-domain-users-when-setting-networks-location-parameter",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
           "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
           "source_rule": "xccdf_mil.disa.fso_rule_SV-226276r794552_rule",
           "title": "Auditing of Backup and Restore Privileges must be turned off."
@@ -2645,57 +2342,6 @@
         }
       ],
       "message": "check-export source/Variable datatype mismatch",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-226281r916422_rule",
-          "title": "Outgoing secure channel traffic must be signed when possible."
-        },
-        {
-          "benchmark": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-225458r916422_rule",
-          "title": "Outgoing secure channel traffic must be signed when possible."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: domain-member-digitally-channel-data-when-possible-parameter",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-241997r922944_rule",
-          "title": "Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a private network."
-        },
-        {
-          "benchmark": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-242002r922954_rule",
-          "title": "Windows Defender Firewall with Advanced Security must block unsolicited inbound connections when connected to a public network."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: inbound-connections-parameter",
-      "rules": 2
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-241998r922946_rule",
-          "title": "Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a private network."
-        },
-        {
-          "benchmark": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-242003r922956_rule",
-          "title": "Windows Defender Firewall with Advanced Security must allow outbound connections, unless a rule explicitly blocks the connection when connected to a public network."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: outbound-connections-parameter",
       "rules": 2
     },
     {
@@ -2753,7 +2399,7 @@
           "title": "Amazon Linux 2023 must ensure all interactive users have unique User IDs (UIDs)."
         }
       ],
-      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2789,7 +2435,7 @@
           "title": "Ubuntu 22.04 LTS must uniquely identify interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2801,7 +2447,7 @@
           "title": "Ubuntu 24.04 LTS must uniquely identify interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2837,7 +2483,7 @@
           "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2897,7 +2543,7 @@
           "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -2957,7 +2603,7 @@
           "title": "The Cisco router must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3017,7 +2663,7 @@
           "title": "The Cisco switch must be configured to terminate all network connections associated with device management after five minutes of inactivity."
         }
       ],
-      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'iosxe.line', 'show_subcommand': {'equals': 'show running-config'}}, 'field': 'config_line'}}], 'options': {'delimiter': '\\\\n'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': {'capability': 'iosxe.global', 'global_command': {'matches_regex': '^line con \\\\d+|^line vty \\\\d+'}}, 'field': 'global_command'}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3078,174 +2724,6 @@
         }
       ],
       "message": "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json: {'function': {'name': 'substring', 'arguments': [{'values': {'object': 'shellcommand-object-true-msiinstallpath-msiinstallpath-w-object', 'field': 'stdout_line'}}], 'options': {'substring_start': 1, 'substring_length': 1}}} is not valid under any of the given schemas",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223051r961089_rule",
-          "title": "The Download signed ActiveX controls property must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: downloadsignedactivexcontro-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223052r960963_rule",
-          "title": "Use of the Tabular Data Control (TDC) ActiveX control must be disabled for the Restricted Sites Zone."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: allowapproveddomainstousetd-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223054r961089_rule",
-          "title": "The Download unsigned ActiveX controls property must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: downloadunsignedactivexcont-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223057r961092_rule",
-          "title": "The Initialize and script ActiveX controls not marked as safe property must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: initializescriptactivexcont-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223062r1117169_rule",
-          "title": "Accessing data sources across domains must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: accessdatasourcesacrossdoma-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223064r960963_rule",
-          "title": "Functionality to drag and drop or copy and paste files must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: allowdragdroporcopypastefil-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223065r960963_rule",
-          "title": "Launching programs and files in IFRAME must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: launchingapplicationsandfil-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223069r960963_rule",
-          "title": "Clipboard operations via script must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: allowcutcopypasteoperations-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223082r960963_rule",
-          "title": "Script-initiated windows without size or position constraints must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: allowscriptinitiatedwindows-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223098r1117169_rule",
-          "title": "Websites in less privileged web content zones must be prevented from navigating into the Restricted Sites zone."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: websitesinlessprivilegedweb-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223137r960963_rule",
-          "title": "Scripting of Internet Explorer WebBrowser Control must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: allowscriptingofinternetexp-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223138r960963_rule",
-          "title": "When uploading files to a server, the local directory path must be excluded (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: includelocaldirectorypathwh-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223139r961863_rule",
-          "title": "Security Warning for unsafe files must be disallowed (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: launchingprogramsandunsafef-localcomputer-var-parameter",
-      "rules": 1
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.fso_rule_SV-223140r961092_rule",
-          "title": "ActiveX controls without prompt property must be used in approved domains only (Restricted Sites zone)."
-        }
-      ],
-      "message": "conflicting Benchmark Parameter binding: onlyallowapproveddomainstou-localcomputer-var-parameter",
       "rules": 1
     },
     {
@@ -3437,7 +2915,7 @@
           "title": "OL 8 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3521,7 +2999,7 @@
           "title": "OL 9 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3569,7 +3047,7 @@
           "title": "RHEL 8 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3713,7 +3191,7 @@
           "title": "RHEL 9 duplicate User IDs (UIDs) must not exist for interactive users."
         }
       ],
-      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json: {'function': {'name': 'count', 'arguments': [{'function': {'name': 'unique', 'arguments': [{'values': {'object': 'interactive-users-object', 'field': 'user_id'}}], 'options': {}}}], 'options': {}}} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -3801,14 +3279,14 @@
       "total": 0
     },
     "concat": {
-      "blocked": 166,
-      "converted": 200,
-      "total": 382
+      "blocked": 164,
+      "converted": 201,
+      "total": 381
     },
     "constant_variable": {
-      "blocked": 12,
-      "converted": 330,
-      "total": 466
+      "blocked": 10,
+      "converted": 331,
+      "total": 465
     },
     "count": {
       "blocked": 74,
@@ -3821,14 +3299,14 @@
       "total": 4
     },
     "external_variable": {
-      "blocked": 162,
-      "converted": 289,
-      "total": 507
+      "blocked": 80,
+      "converted": 330,
+      "total": 466
     },
     "local_variable": {
-      "blocked": 258,
-      "converted": 365,
-      "total": 645
+      "blocked": 256,
+      "converted": 366,
+      "total": 644
     },
     "merge": {
       "blocked": 16,

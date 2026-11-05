@@ -52,3 +52,18 @@ are now admitted by the existing allowed-value Input/Parameter adapter. The
 warning is retained in the source Value XML provenance and is not interpreted
 as a constraint. Relational Value operators remain blocked until the typed
 relation contract is approved.
+
+## Additional converter recoveries
+
+- Benchmark-scoped XCCDF Value/Parameter and external-Variable/Input names now
+  use source-ID digest suffixes only when readable descriptors collide. This
+  prevents cross-Rule parameter overwrites while preserving stable names for
+  shared source identities.
+- Version-typed cmdlet acquisition parameters retain their declared version
+  datatype instead of being rejected as non-string inputs.
+- Shell-command acquisition accepts the explicitly mapped case-insensitive
+  equality operation for command/shell inputs; pattern inputs remain regex
+  acquisition values.
+- Test-level `check_existence="none_exist"` now takes precedence over State
+  matching. State controls are not executed, are retained in a provenance
+  warning, and cannot affect the native absence result.

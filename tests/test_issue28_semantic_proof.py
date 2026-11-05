@@ -201,3 +201,30 @@ class XccdfValueMetadataRecovery(unittest.TestCase):
         warnings = value.findall(f'{{{XCCDF}}}warning')
         self.assertEqual(len(warnings), 1)
         attributes(warnings[0], {'category', '{http://www.w3.org/XML/1998/namespace}lang'})
+
+class ParameterIdentityRecovery(unittest.TestCase):
+    def test_distinct_value_ids_disambiguate_identical_parameter_descriptors(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_draft_inputs import value_parameter_identifier
+        from v04_direct_scap_source import XCCDF
+        first = ET.fromstring(f'<Value xmlns="{XCCDF}" id="v-one"><title>Same parameter</title></Value>')
+        second = ET.fromstring(f'<Value xmlns="{XCCDF}" id="v-two"><title>Same parameter</title></Value>')
+        source = type('Source', (), {'nodes': {'benchmark': {'v-one': first, 'v-two': second}},
+                                     'benchmark_component': 'benchmark'})()
+        visitor = type('Visitor', (), {'source': source})()
+        a = value_parameter_identifier(visitor, first)
+        b = value_parameter_identifier(visitor, second)
+        self.assertNotEqual(a, b)
+        self.assertLessEqual(len(a), 64)
+        self.assertLessEqual(len(b), 64)
+
+class TypedAcquisitionParameterRecovery(unittest.TestCase):
+    def test_version_typed_cmdlet_parameter_keeps_version_lexical_domain(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        element = ET.fromstring('<module_version datatype="version">1.0.0.0</module_version>')
+        self.assertEqual(AssessmentConverter(None, None, []).parameter(element, datatype='version'), '1.0.0.0')

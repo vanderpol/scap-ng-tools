@@ -217,16 +217,21 @@ class AssessmentConverter:
             return {'test': identifier}
         objects = element.findall(f'{{{mapping["source"]["namespace"]}}}object')
         ensure(len(objects) == 1, 'one Test Object required')
+        found = element.get('check_existence', 'at_least_one_exists')
         conditions = []
+        state_refs = []
         for child in element:
             kind = local_name(child)
             ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
             attributes(child, {kind + '_ref'})
             ensure(not len(child), 'Test reference has children')
             if kind == 'state':
-                self.same_family(child.get('state_ref'), 'state', mapping)
-                conditions.append(self.reference(child.get('state_ref'), 'state'))
-        found = element.get('check_existence', 'at_least_one_exists')
+                state_refs.append(child.get('state_ref'))
+                # No Item can satisfy a none_exist Test. Do not execute or
+                # require its State graph merely to lower the absence result.
+                if found != 'none_exist':
+                    self.same_family(child.get('state_ref'), 'state', mapping)
+                    conditions.append(self.reference(child.get('state_ref'), 'state'))
         # Native 0.4's item_requirement explicitly defines all_exist as
         # one_or_more: collected Items have no synthetic does-not-exist
         # entries. Keep the source spelling in the trace, but do not gate this
@@ -234,8 +239,23 @@ class AssessmentConverter:
         if found == 'all_exist' and not self.native_recovery:
             ensure(False, 'unsupported Test existence: all_exist')
         requirement = {'items_found': native_items_found(found)}
+        if found == 'none_exist' and state_refs:
+            # OVAL Test existence is evaluated before State matching. An
+            # absent population has no Items on which a comparator or State
+            # expression can operate, so preserve only the absence
+            # requirement and retain the dropped source controls.
+            self.conversion_warnings.append({
+                'code': 'oval_test_absence_controls_ignored',
+                'source_test': element.get('id'),
+                'source_test_sha256': digest(xml_identity(element)),
+                'source_check': element.get('check'),
+                'source_state_operator': element.get('state_operator', 'AND'),
+                'source_state_refs': state_refs,
+                'semantic_basis': 'OVAL check_existence none_exist takes precedence',
+                'independent_static_proof': 'SOURCE_RULE_OWNER_DECISION',
+            })
         if conditions:
-            ensure(element.get('check') in MATCHING and found != 'none_exist', 'unsupported Test matching/absence combination')
+            ensure(element.get('check') in MATCHING, 'unsupported Test matching/absence combination')
             requirement.update(items_satisfying=MATCHING[element.get('check')])
             requirement.update(logical_condition(element.get('state_operator', 'AND'), conditions))
             if self.human_compact:
@@ -339,19 +359,24 @@ class AssessmentConverter:
                 ensure(target not in acquisition, 'duplicate Object field')
                 if mapping['capability'] == 'windows.cmdlet':
                     from v04_direct_cmdlet_inputs import cmdlet_input
-                    acquisition[target] = cmdlet_input(child, mapping['native']['collection_parameters'][target],
-                        lambda entity: self.predicate(entity, mapping, selector=True), self.parameter)
+                    contract = mapping['native']['collection_parameters'][target]
+                    acquisition[target] = cmdlet_input(child, contract,
+                        lambda entity: self.predicate(entity, mapping, selector=True),
+                        lambda entity: self.parameter(entity, datatype=contract.get('semantic_datatype', contract.get('type', 'string'))))
                 else:
                     if field in selectors:
                         acquisition[target] = self.predicate(child, mapping, selector=True)
                     else:
                         operations = ('equals',)
-                        if mapping['capability'] == 'independent.shellcommand' and field == 'pattern':
-                            # This field already denotes a regex acquisition input,
-                            # not a predicate over the command or returned Items.
+                        if mapping['capability'] == 'independent.shellcommand':
+                            # Shell and command acquisition inputs have
+                            # capability-specific case semantics. Pattern is
+                            # a regex input; command/shell may also use the
+                            # source's case-insensitive equality boundary.
+                            allowed = ('equals', 'case insensitive equals', 'pattern match')
                             operations = tuple(op for op in mapping['native'].get(
                                 'collection_parameter_source_operations', {}).get(field, ())
-                                if op in ('equals', 'pattern match'))
+                                if op in allowed)
                         acquisition[target] = self.parameter(child, operations=operations)
                 if (field in selectors and child.get('operation') == 'case insensitive equals'
                         and 'equals' in acquisition[target]):
@@ -631,9 +656,9 @@ class AssessmentConverter:
             return self.reference(element.get('var_ref'), 'variable')
         return self.literal(element.get('datatype', 'string'), element.text or '')
 
-    def parameter(self, element, *, operations=('equals',)):
+    def parameter(self, element, *, operations=('equals',), datatype='string'):
         attributes(element, {'datatype', 'operation', 'var_ref', 'var_check'})
-        ensure(not len(element) and element.get('datatype', 'string') == 'string' and
+        ensure(not len(element) and element.get('datatype', datatype) == datatype and
                element.get('operation', 'equals') in operations, 'unsupported acquisition parameter comparison/type')
         value = self.operand(element)
         if isinstance(value, list):
