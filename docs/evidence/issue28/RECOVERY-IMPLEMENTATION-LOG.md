@@ -67,3 +67,7 @@ relation contract is approved.
 - Test-level `check_existence="none_exist"` now takes precedence over State
   matching. State controls are not executed, are retained in a provenance
   warning, and cannot affect the native absence result.
+
+- Variable-source Object `var_ref` datatype/operation attributes are admitted
+  only for the exact string/equality boundary and retained in a conversion
+  warning; non-default typed or comparator-bearing references remain blocked.

@@ -324,8 +324,23 @@ class AssessmentConverter:
         if mapping['native'].get('test_source', {}).get('kind') == 'variable':
             references = element.findall(f'{{{mapping["source"]["namespace"]}}}var_ref')
             ensure(len(element) == len(references) == 1, 'Variable source requires one var_ref; Sets/Filters unsupported')
-            attributes(references[0], set())
+            # OVAL variable_object permits the entity's datatype/operation
+            # controls on its var_ref. A direct native Variable source has no
+            # second selector comparator, so drop them only after proving the
+            # source is the default string equality boundary.
+            attributes(references[0], {'datatype', 'operation'})
+            ensure(references[0].get('datatype', 'string') == 'string' and
+                   references[0].get('operation', 'equals') == 'equals',
+                   'Variable source var_ref comparator/type outside bounded proof')
             ensure(not len(references[0]), 'Variable source var_ref has children')
+            self.conversion_warnings.append({
+                'code': 'oval_variable_source_ref_controls_ignored',
+                'source_object': element.get('id'),
+                'source_object_sha256': digest(xml_identity(element)),
+                'source_var_ref_attributes': dict(references[0].attrib),
+                'semantic_basis': 'native Variable source is already the selected equality domain',
+                'independent_static_proof': 'SOURCE_TYPED_EQUALITY_BOUNDARY',
+            }) if references[0].attrib else None
             acquisition['variable'] = self.named_variable((references[0].text or '').strip())
             return acquisition
         if mapping['native'].get('test_source', {}).get('kind') == 'none':
