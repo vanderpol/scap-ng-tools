@@ -94,6 +94,14 @@ converter records each recovered source Test's original attributes and source
 hash in binding provenance. This is an authoring conversion only: it does not
 claim scanner, compiler, or independent proof equivalence.
 
+## Issue #28 native Input/Parameter recovery — draft
+
+The same opt-in native recovery mode accepts only explicit XCCDF
+`check-export` bindings to a matching `Value`: datatype, exact cardinality,
+and allowed-value constraints are retained. Unsupported Value operators remain
+blocked. Original external Variable/Value identities and the unproved runtime
+binding warning remain in provenance.
+
 ## Automatic benchmark authoring conversion — separately qualified
 
 The original 0.4 semantic passes were copied into `_v04_semantic/` and adapted

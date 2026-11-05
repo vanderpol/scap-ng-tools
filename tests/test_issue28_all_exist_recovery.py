@@ -8,6 +8,7 @@ import unittest
 from scap_ng_tools.converter.direct04 import load_runtime
 
 RECOVERY_REPORT = Path(__file__).resolve().parents[1] / 'docs/evidence/issue28/NATIVE-EXISTENCE-RECOVERY.json'
+INPUT_RECOVERY_REPORT = Path(__file__).resolve().parents[1] / 'docs/evidence/issue28/NATIVE-INPUT-RECOVERY.json'
 
 
 class NativeExistenceLowering(unittest.TestCase):
@@ -21,6 +22,16 @@ class NativeExistenceLowering(unittest.TestCase):
             'regressions': 0,
         })
         self.assertEqual(sum(item['recovered'] for item in report['benchmarks'].values()), 1716)
+
+    def test_native_input_recovery_delta_is_reconciled(self):
+        report = json.loads(INPUT_RECOVERY_REPORT.read_text(encoding='utf-8'))
+        self.assertEqual(report['candidate']['converted'], 6531)
+        self.assertEqual(report['candidate']['blocked'], 2361)
+        self.assertEqual(report['delta']['recovered'], 2007)
+        self.assertEqual(report['delta']['regressions'], 0)
+        self.assertEqual(report['delta']['check_import_export_recovered'], 291)
+        self.assertEqual(sum(item['recovered'] for item in report['benchmarks'].values()), 2007)
+        self.assertEqual(report['remaining_primary_blockers'][0]['rules'], 1653)
 
     def test_native_04_existence_mapping_boundaries(self):
         native_items_found = load_runtime().native_items_found
@@ -56,6 +67,30 @@ class NativeExistenceLowering(unittest.TestCase):
                           if path.endswith('.json') and 'assessments/' in path)
         self.assertTrue(any(test['require']['item_requirement']['items_found'] == 'one_or_more'
                             for test in assessment['tests'].values()))
+
+    def test_source_backed_check_export_becomes_native_input_parameter(self):
+        source_dir = os.environ.get('SCAP_NG_ISSUE28_SOURCE_DIR')
+        schema_root = os.environ.get('SCAP_NG_SCHEMA_ROOT')
+        if not source_dir or not schema_root:
+            self.skipTest('Issue #28 source and schema fixtures are required')
+        source = Path(source_dir) / 'U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip'
+        if not source.is_file():
+            self.skipTest('IE11 source fixture is not available')
+        from scap_ng_tools.converter.direct04 import convert_benchmark
+        source_hash = sha256(source.read_bytes()).hexdigest()
+        documents, trace, coverage = convert_benchmark(
+            schema_root=schema_root, source=source, sha256_pin=source_hash,
+            native_recovery=True)
+        source_rule = 'xccdf_mil.disa.fso_rule_SV-223017r961089_rule'
+        row = next(row for row in coverage['rules'] if row['source_rule'] == source_rule)
+        self.assertEqual(row['status'], 'converted')
+        binding = next(item for item in trace['rules'] if item['source_rule'] == source_rule)
+        self.assertTrue(binding['policy_parameters'])
+        self.assertEqual(binding['conversion_warnings'][0]['code'], 'native_input_binding_unproved')
+        assessment = next(document['assessment'] for path, document in documents.items()
+                          if path.endswith('.json') and 'assessments/' in path
+                          and document['assessment']['id'] == binding['assessment'])
+        self.assertTrue(assessment['inputs'])
 
 
 if __name__ == '__main__':

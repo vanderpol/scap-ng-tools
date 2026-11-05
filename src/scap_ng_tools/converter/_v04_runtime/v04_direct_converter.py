@@ -477,9 +477,11 @@ class AssessmentConverter:
     def convert_variable(self, element):
         datatype = element.get('datatype')
         ensure(datatype in SOURCE_TYPES, f'unsupported Variable datatype: {datatype}')
-        if local_name(element)=='external_variable' and getattr(self.source,'draft_compatibility',False):
+        if local_name(element) == 'external_variable' and (
+                getattr(self.source, 'draft_compatibility', False) or
+                getattr(self.source, 'native_recovery', False)):
             from v04_draft_inputs import external_input
-            return external_input(self,element)
+            return external_input(self, element)
         if local_name(element) == 'constant_variable':
             ensure(len(element) and all(child.tag == f'{{{OVAL}}}value' and not child.attrib and not len(child) for child in element), 'malformed constant Variable')
             # Immutable source constants become typed expected arrays. Keep the
@@ -882,7 +884,7 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     component, definition, omitted_checks = source.automated_check(rule)
     converter = AssessmentConverter(source, component, mappings, human_compact=human_compact,
                                      native_recovery=native_recovery)
-    if getattr(source,'draft_compatibility',False):
+    if getattr(source,'draft_compatibility',False) or getattr(source, 'native_recovery', False):
         from v04_draft_inputs import check_exports
         converter.bound_exports=check_exports(source,rule)
     expression = converter.reference(definition, 'definition')

@@ -59,10 +59,25 @@ def external_input(visitor, element):
     visitor.inputs[input_id]=contract
     visitor.policy_parameters[parameter_id]=parameter
     visitor.input_bindings[input_id]={'parameter':parameter_id}
-    visitor.conversion_warnings.append({'code':'check_export_binding_unproved','owner_decision':DECISION,
-        'source_external_variable':ident,'source_variable_sha256':digest(xml_identity(element)),
-        'source_value':value.get('id'),'source_value_sha256':digest(xml_identity(value)),
-        'source_value_xml':xml_identity(value),'input':input_id,'parameter':parameter_id,
-        'resolution':parameter['resolution'],'independent_static_proof':'UNPROVED','scanner_runtime':'NOT_RUN',
-        'message':'Explicit typed expected-value binding retained; policy/runtime binding equivalence independently unproved.'})
+    native = getattr(visitor, 'native_recovery', False)
+    visitor.conversion_warnings.append({
+        'code': 'native_input_binding_unproved' if native else 'check_export_binding_unproved',
+        'owner_decision': ('https://github.com/vanderpol/scap-ng/issues/8#issuecomment-6587857027'
+                           if native else DECISION),
+        'source_external_variable': ident,
+        'source_variable_sha256': digest(xml_identity(element)),
+        'source_value': value.get('id'),
+        'source_value_sha256': digest(xml_identity(value)),
+        'source_value_xml': xml_identity(value),
+        'input': input_id,
+        'parameter': parameter_id,
+        'resolution': parameter['resolution'],
+        'independent_static_proof': 'UNPROVED',
+        'scanner_runtime': 'NOT_RUN',
+        'message': ('Explicit typed native 0.4 Input/Parameter binding retained; '
+                    'policy/runtime binding equivalence independently unproved.'
+                    if native else
+                    'Explicit typed expected-value binding retained; policy/runtime '
+                    'binding equivalence independently unproved.'),
+    })
     return {'input':input_id}
