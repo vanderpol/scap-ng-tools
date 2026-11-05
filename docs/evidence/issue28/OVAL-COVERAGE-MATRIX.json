@@ -158,42 +158,42 @@
     {
       "category": "Function",
       "feature": "count",
-      "schema": "native function contract",
-      "compiler": "not mapped",
-      "converter": "native_recovery canonical call candidate preserves one-or-more operands",
-      "runtime": "canonical function admission and evaluation unavailable",
-      "proof": "single/multi-operand vectors; source equivalence unproved",
+      "schema": "canonical count candidate is not active in pinned schema",
+      "compiler": "semantic admission not active in pinned compiler contract",
+      "converter": "native_recovery canonical call preserves one-or-more operands, including nested functions",
+      "runtime": "count empty/status semantics remain unavailable in native runtime",
+      "proof": "independent zero/empty/duplicate/error vectors; 37 primary Rules rejected by schema admission",
       "status": "partially_implemented"
     },
     {
       "category": "Function",
       "feature": "split",
-      "schema": "native function contract",
-      "compiler": "not mapped",
-      "converter": "mapping missing",
-      "runtime": "not available",
-      "proof": "15 primary blocker Rules; independent vectors exist",
-      "status": "supported_mapping_missing"
+      "schema": "owner-directed canonical function candidate is documented but not active in pinned schema",
+      "compiler": "semantic validator implemented; compiler admission unavailable in pinned contract",
+      "converter": "native_recovery canonical call preserves one operand and literal delimiter",
+      "runtime": "source split semantics remain scanner/runtime unproved",
+      "proof": "independent empty/duplicate/delimiter vectors; 19 primary Rules rejected by schema admission",
+      "status": "partially_implemented"
     },
     {
       "category": "Function",
       "feature": "substring",
-      "schema": "native function contract",
-      "compiler": "not mapped",
-      "converter": "mapping missing",
-      "runtime": "not available",
-      "proof": "7 primary blocker Rules; independent vectors exist",
-      "status": "supported_mapping_missing"
+      "schema": "owner-directed canonical function candidate is documented but not active in pinned schema",
+      "compiler": "semantic validator enforces signed 32-bit options; compiler admission unavailable in pinned contract",
+      "converter": "native_recovery canonical call preserves one operand and explicit start/length",
+      "runtime": "source one-based/error/empty semantics remain scanner/runtime unproved",
+      "proof": "independent boundary vectors; 1 primary Rule rejected by schema admission",
+      "status": "partially_implemented"
     },
     {
       "category": "Function",
       "feature": "arithmetic and casting",
-      "schema": "typed function contract",
-      "compiler": "not mapped",
-      "converter": "mapping missing",
-      "runtime": "no implicit coercion permitted",
-      "proof": "source inventory",
-      "status": "supported_mapping_missing"
+      "schema": "owner-directed add/multiply candidate is documented but not active in pinned schema",
+      "compiler": "semantic validator enforces numeric operands and integer/float widening; compiler admission unavailable",
+      "converter": "native_recovery canonical call preserves operand order and operation; casts remain fail-closed",
+      "runtime": "Cartesian/status/error semantics remain scanner/runtime unproved",
+      "proof": "independent numeric/invalid-operand vectors; 3 primary Rules rejected by schema admission",
+      "status": "partially_implemented"
     },
     {
       "category": "Deprecated OVAL Tests",
@@ -260,10 +260,10 @@
       "feature": "xsi:nil Object selectors and nullable cmdlet parameters",
       "schema": "windows.cmdlet mapping already declares nullable fields",
       "compiler": "native null contract exists",
-      "converter": "nil selector lowering missing/incomplete",
+      "converter": "implemented for approved nullable selectors and record-valued cmdlet parameters; wrong type/comparator/text fail closed",
       "runtime": "native null means unconstrained/no parameter",
-      "proof": "11 primary Rules; SV-220698 source fixture",
-      "status": "supported_mapping_missing"
+      "proof": "source-shaped null/non-null/empty/wrong-datatype vectors; no runtime scanner proof",
+      "status": "partially_implemented"
     },
     {
       "category": "Converter/runtime mapping",
@@ -280,10 +280,10 @@
       "feature": "Recursion behaviors on equality path selectors",
       "schema": "file traversal contract supports bounded downward recursion",
       "compiler": "supported for equality path",
-      "converter": "does not recognize all typed equality forms and rejects valid combinations",
+      "converter": "implemented for typed equality paths in file and hierarchy traversal; pattern/full/upward boundaries remain fail-closed",
       "runtime": "must preserve path matching and traversal boundary",
-      "proof": "10 primary Rules; .NET SV-225229 example",
-      "status": "supported_mapping_missing"
+      "proof": "source-shaped equality and pattern vectors; 7 primary pattern-path Rules plus 1 native traversal admission Rule remain",
+      "status": "partially_implemented"
     },
     {
       "category": "Language/design boundary",

@@ -168,10 +168,13 @@ def main():
             target['examples'].extend(row['representative_rules'])
     matrix = json.loads((Path(__file__).parents[1] / 'docs/evidence/issue28/OVAL-COVERAGE-MATRIX.json').read_text())
     by_feature = {row['feature']: row for row in matrix['features']}
+    feature_aliases = {'arithmetic': 'arithmetic and casting'}
     operations = []
     for name, row in sorted(merged.items()):
-        match = next((value for value in by_feature.values()
-                      if value['feature'].split()[-1] == name or value['feature'] == name), None)
+        match = by_feature.get(feature_aliases.get(name, name))
+        if match is None:
+            match = next((value for value in by_feature.values()
+                          if value['feature'].split()[-1] == name), None)
         operations.append({**row, 'name': name, 'attributes': sorted(row['attributes']),
                            'representative_rules': sorted(set(row['examples']))[:3],
                            'matrix_status': match['status'] if match else 'unclassified'})

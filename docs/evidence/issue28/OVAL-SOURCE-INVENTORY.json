@@ -5297,7 +5297,7 @@
         "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
         "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "arithmetic",
       "occurrences": 9,
       "representative_rules": [
@@ -6290,7 +6290,7 @@
         "xccdf_mil.disa.stig_rule_SV-258045r958482_rule",
         "xccdf_mil.disa.stig_rule_SV-252935r991589_rule"
       ],
-      "matrix_status": "supported_mapping_missing",
+      "matrix_status": "partially_implemented",
       "name": "count",
       "occurrences": 47,
       "representative_rules": [
@@ -12300,7 +12300,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "parameters",
       "occurrences": 80,
       "representative_rules": [
@@ -16314,7 +16314,7 @@
         "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216066r959010_rule"
       ],
-      "matrix_status": "supported_mapping_missing",
+      "matrix_status": "partially_implemented",
       "name": "split",
       "occurrences": 29,
       "representative_rules": [
@@ -17086,7 +17086,7 @@
         "xccdf_mil.disa.stig_rule_SV-278143r1182092_rule",
         "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
       ],
-      "matrix_status": "supported_mapping_missing",
+      "matrix_status": "partially_implemented",
       "name": "substring",
       "occurrences": 21,
       "representative_rules": [
