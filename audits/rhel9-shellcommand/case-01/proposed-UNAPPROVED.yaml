@@ -1,0 +1,60 @@
+assessment:
+  version: 1
+  assessment_title: RHEL 9 must mount /var/log with the nodev option.
+  mode: automated
+  class: compliance
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  id: rhel9-shellcommand-audit-01-assessment
+  tests:
+    mounted-option-test:
+      test_title: /var/log is mounted with the nodev option
+      capability: linux.partition
+      object:
+        mount_point:
+          equals: /var/log
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        field_requirement:
+          values_found: one_or_more
+          values_matching: every
+        fields:
+          mount_options:
+            equals: nodev
+            values_found: one_or_more
+            values_matching: one_or_more
+      reported_elements: all
+    bounded-evidence-test:
+      test_title: 'Audit sketch: bounded evidence collection, equivalence NOT established'
+      capability: independent.shellcommand
+      object:
+        shell: bash
+        command: LC_ALL=C /usr/bin/findmnt --fstab --first-only --mountpoint /var/log
+          --noheadings --raw --output OPTIONS
+        error_if_exit_status_not_0: true
+        error_if_stderr_exists: true
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        field_requirement:
+          values_found: one_or_more
+          values_matching: every
+        fields:
+          exit_status:
+            values_found: one_or_more
+            values_matching: every
+            equals: 0
+            datatype: integer
+          stdout_line:
+            values_found: one_or_more
+            values_matching: every
+            matches_regex: (^|,)nodev(,|$)
+      reported_elements: all
+  evaluate:
+    and:
+    - test: mounted-option-test
+    - test: bounded-evidence-test

@@ -1,0 +1,521 @@
+{
+  "source_rule": "xccdf_mil.disa.stig_rule_SV-257873r958804_rule",
+  "source_rule_sha256": "e532fda0d59ebd7bde963c00060ddcc9b9a9571f8e2bba6b7d60a4e77448b088",
+  "original_oval_nodes": {
+    "oval:mil.disa.stig.rhel9os:def:257873": {
+      "sha256": "3a8864b01233f35f4209dc944f6e107a76d0f755bfc0c1b3db1ac4ff630e0d2e",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+        [
+          [
+            "class",
+            "compliance"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.rhel9os:def:257873"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+                [],
+                "RHEL-09-231160 - RHEL 9 must mount /var/log/audit with the nodev option.",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}affected",
+                [
+                  [
+                    "family",
+                    "unix"
+                  ]
+                ],
+                null,
+                [
+                  [
+                    "{http://oval.mitre.org/XMLSchema/oval-definitions-5}platform",
+                    [],
+                    "Red Hat Enterprise Linux 9",
+                    []
+                  ]
+                ]
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+                [],
+                "The \"nodev\" mount option causes the system to not interpret character or block special devices. Executing character or block special devices from untrusted file systems increases the opportunity for nonprivileged users to attain unauthorized administrative access.\n\nThe only legitimate location for device files is the \"/dev\" directory located on the root partition, with the exception of chroot jails if implemented.",
+                []
+              ]
+            ]
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}extend_definition",
+                [
+                  [
+                    "definition_ref",
+                    "oval:mil.disa.stig.defs:def:230517"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.defs:def:230517": {
+      "sha256": "946e1181f37329399f8d082e12bcd73df0203cb85505443a9440912f06589b70",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+        [
+          [
+            "class",
+            "compliance"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.defs:def:230517"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+                [],
+                "The operating system must mount /var/log/audit with the nodev option.",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+                [],
+                null,
+                []
+              ]
+            ]
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.linux:tst:23051700"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.ind:tst:23051701"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.ind:tst:23051702"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:tst:23051700": {
+      "sha256": "ddea0c6d5a41aa5313690d002c02507518b9b9d691d680127c2531ba3fa4c93d",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/var/log/audit is mounted with the nodev option"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.linux:tst:23051700"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.linux:obj:23051700"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}state",
+            [
+              [
+                "state_ref",
+                "oval:mil.disa.stig.linux:ste:20000001"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:ste:20000001": {
+      "sha256": "c9733c4d97e1d74cda64ab7e65dca37bae6f8795818c93781f2e4fb677775f29",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_state",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.linux:ste:20000001"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}mount_options",
+            [
+              [
+                "entity_check",
+                "at least one"
+              ]
+            ],
+            "nodev",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:obj:23051700": {
+      "sha256": "76a8ec18787e520d83dc5d73d966602b6b6b867891b9313e4c6466bbb7712736",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.linux:obj:23051700"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}mount_point",
+            [],
+            "/var/log/audit",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:tst:23051701": {
+      "sha256": "c957d2486bfafbf49c7b9df058128b5c8797362b1188feea0a14d04e32ecdd85",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/var/log/audit is configured with the nodev option in /etc/fstab"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.ind:tst:23051701"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.ind:obj:23051701"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+            [
+              [
+                "state_ref",
+                "oval:mil.disa.stig.ind:ste:23051700"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:ste:23051700": {
+      "sha256": "4e10913e02e5afbe30e452151e76f775bf81642912849a1bc7a3b3e62fb835ca",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_state",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:ste:23051700"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value",
+            [
+              [
+                "entity_check",
+                "at least one"
+              ]
+            ],
+            "nodev",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:obj:23051701": {
+      "sha256": "3b447ec4f01359952d1cfe7a93bfb80998a772a3c8331882f405112a9682e24d",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:obj:23051701"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}var_ref",
+            [],
+            "oval:mil.disa.stig.linux:var:23051700",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:var:23051700": {
+      "sha256": "78620bef47c38a3dc70f625fac80d1b59fe526487ea139892bb85abf87c29b3f",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+        [
+          [
+            "comment",
+            "Mount options for /var/log/audit in /etc/fstab"
+          ],
+          [
+            "datatype",
+            "string"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.linux:var:23051700"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}split",
+            [
+              [
+                "delimiter",
+                ","
+              ]
+            ],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+                [
+                  [
+                    "item_field",
+                    "subexpression"
+                  ],
+                  [
+                    "object_ref",
+                    "oval:mil.disa.stig.ind:obj:23051702"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:obj:23051702": {
+      "sha256": "70984197c5bb822af1119620914e25911be0f372009d63d7fad5a6cad32d5c6f",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:obj:23051702"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+            [],
+            "/etc/fstab",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+            [
+              [
+                "datatype",
+                "int"
+              ]
+            ],
+            "1",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:tst:23051702": {
+      "sha256": "297c2eca517ef51fa369899cf20059b043736f60244f15dcd0fdcbe8b2f081df",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/var/log/audit is configured in /etc/fstab"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.ind:tst:23051702"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.ind:obj:23051702"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    }
+  },
+  "source_platforms": [],
+  "disa_manual_member": "U_RHEL_9_V2R9_Manual_STIG/U_RHEL_9_STIG_V2R9_Manual-xccdf.xml",
+  "disa_manual_rule": "SV-257873r958804_rule",
+  "disa_manual_rule_sha256": "81a2d1e2a608f1fbc8db51114b3cd9f8f93c9ce38f52a1ebe0d850c6a8178ee7",
+  "disa_check": "Verify \"/var/log/audit\" is mounted with the \"nodev\" option:\n\n$ mount | grep /var/log/audit\n\n/dev/mapper/rhel-var-log-audit on /var/log/audit type xfs (rw,nodev,nosuid,noexec,seclabel)\n\nIf the \"/var/log/audit\" file system is mounted without the \"nodev\" option, this is a finding.",
+  "niwc_check": "Verify \"/var/log/audit\" is mounted with the \"nodev\" option:\n\n$ mount | grep /var/log/audit\n\n/dev/mapper/rhel-var-log-audit on /var/log/audit type xfs (rw,nodev,nosuid,noexec,seclabel)\n\nIf the \"/var/log/audit\" file system is mounted without the \"nodev\" option, this is a finding.",
+  "normalized_checks_identical": true,
+  "check_comparison": "Whitespace normalization only; revision and full text retained. No fuzzy equivalence."
+}

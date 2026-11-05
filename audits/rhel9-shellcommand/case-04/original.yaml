@@ -1,0 +1,69 @@
+assessment:
+  id: rhel-9-must-mount-var-log-with-the-nosuid-option-33c3aa42-assessment
+  version: 1
+  assessment_title: RHEL 9 must mount /var/log with the nosuid option.
+  mode: automated
+  class: compliance
+  purpose: assessment
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  shared_objects:
+    textfilecontent54-filepath-equals-etc-fstab-pattern-pattern-match-s-s-21b6c3d2-object:
+      capability: independent.textfilecontent54
+      full_path: {equals: /etc/fstab}
+      pattern: {matches_regex: '^\s*[^#\s]+\s+/var/log\s+\S+\s+(\S+)\s+\S+\s+\S+\s*$'}
+      instance: {equals: 1, datatype: integer}
+      ignore_case: false
+      multiline: true
+      singleline: false
+      item_creation: all_object_elements_fullfilled
+      filesystem: all
+      object_title: 'Textfilecontent54: filepath equals ''/etc/fstab''; pattern pattern match ''^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$''; instance equals ''1'''
+  variables:
+    mount-options-for-var-log-in-etc-fstab-c384e8e6-variable:
+      kind: local
+      datatype: string
+      expression:
+        function:
+          name: split
+          arguments:
+          - values:
+              object: textfilecontent54-filepath-equals-etc-fstab-pattern-pattern-match-s-s-21b6c3d2-object
+              field: subexpression
+          options:
+            delimiter: ','
+  tests:
+    var-log-is-mounted-with-the-nosuid-option-32fb577e-test:
+      test_title: /var/log is mounted with the nosuid option
+      capability: linux.partition
+      object:
+        mount_point: {equals: /var/log}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          mount_options: {equals: nosuid, values_found: one_or_more, values_matching: one_or_more}
+      reported_elements: all
+    var-log-is-configured-with-the-nosuid-option-in-etc-fstab-db9164bc-test:
+      test_title: /var/log is configured with the nosuid option in /etc/fstab
+      capability: variable.value
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          value: {equals: nosuid, values_found: one_or_more, values_matching: one_or_more}
+      reported_elements: all
+      variable: mount-options-for-var-log-in-etc-fstab-c384e8e6-variable
+    var-log-is-configured-in-etc-fstab-eb62b17f-test:
+      test_title: /var/log is configured in /etc/fstab
+      capability: independent.textfilecontent54
+      object: textfilecontent54-filepath-equals-etc-fstab-pattern-pattern-match-s-s-21b6c3d2-object
+      require:
+        items_found: one_or_more
+      reported_elements: all
+  evaluate:
+    and:
+    - test: var-log-is-mounted-with-the-nosuid-option-32fb577e-test
+    - test: var-log-is-configured-with-the-nosuid-option-in-etc-fstab-db9164bc-test
+    - test: var-log-is-configured-in-etc-fstab-eb62b17f-test

@@ -1,0 +1,69 @@
+assessment:
+  id: rhel-9-must-mount-tmp-with-the-nodev-option-cf376289-assessment
+  version: 1
+  assessment_title: RHEL 9 must mount /tmp with the nodev option.
+  mode: automated
+  class: compliance
+  purpose: assessment
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  shared_objects:
+    textfilecontent54-filepath-equals-etc-fstab-pattern-pattern-match-s-s-57c58709-object:
+      capability: independent.textfilecontent54
+      full_path: {equals: /etc/fstab}
+      pattern: {matches_regex: '^\s*[^#\s]+\s+/tmp\s+\S+\s+(\S+)\s+\S+\s+\S+\s*$'}
+      instance: {equals: 1, datatype: integer}
+      ignore_case: false
+      multiline: true
+      singleline: false
+      item_creation: all_object_elements_fullfilled
+      filesystem: all
+      object_title: 'Textfilecontent54: filepath equals ''/etc/fstab''; pattern pattern match ''^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$''; instance equals ''1'''
+  variables:
+    mount-options-for-tmp-in-etc-fstab-b5acbcb2-variable:
+      kind: local
+      datatype: string
+      expression:
+        function:
+          name: split
+          arguments:
+          - values:
+              object: textfilecontent54-filepath-equals-etc-fstab-pattern-pattern-match-s-s-57c58709-object
+              field: subexpression
+          options:
+            delimiter: ','
+  tests:
+    tmp-is-mounted-with-the-nodev-option-883b2ce1-test:
+      test_title: /tmp is mounted with the nodev option
+      capability: linux.partition
+      object:
+        mount_point: {equals: /tmp}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          mount_options: {equals: nodev, values_found: one_or_more, values_matching: one_or_more}
+      reported_elements: all
+    tmp-is-configured-with-the-nodev-option-in-etc-fstab-55b4d683-test:
+      test_title: /tmp is configured with the nodev option in /etc/fstab
+      capability: variable.value
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          value: {equals: nodev, values_found: one_or_more, values_matching: one_or_more}
+      reported_elements: all
+      variable: mount-options-for-tmp-in-etc-fstab-b5acbcb2-variable
+    tmp-is-configured-in-etc-fstab-bb8ebb2a-test:
+      test_title: /tmp is configured in /etc/fstab
+      capability: independent.textfilecontent54
+      object: textfilecontent54-filepath-equals-etc-fstab-pattern-pattern-match-s-s-57c58709-object
+      require:
+        items_found: one_or_more
+      reported_elements: all
+  evaluate:
+    and:
+    - test: tmp-is-mounted-with-the-nodev-option-883b2ce1-test
+    - test: tmp-is-configured-with-the-nodev-option-in-etc-fstab-55b4d683-test
+    - test: tmp-is-configured-in-etc-fstab-bb8ebb2a-test
