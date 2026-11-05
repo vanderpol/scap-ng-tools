@@ -77,13 +77,18 @@ def manual_rule(source, rule, *, title, rule_id, assessment_id):
     checks = [check for check in rule.findall('{' + XCCDF + '}check')
               if check.get('system') == OCIL]
     ensure(checks, 'manual projection requires an OCIL check')
-    # More than one OCIL check is preserved as alternatives only when they are
-    # byte-identical; otherwise choosing one would lose source semantics.
-    identities = [digest(xml_identity(check)) for check in checks]
-    ensure(len(set(identities)) == 1,
-           'multiple distinct OCIL checks require a questionnaire-choice adapter')
-    assessment, provenance = _choice_assessment(
-        source, rule, checks[0], assessment_id=assessment_id, title=title)
+    # A manual Rule may carry multiple OCIL checks.  Keep one native manual
+    # Assessment (the Rule still has one manual choice) while concatenating
+    # each source procedure and retaining every source check identity.  No
+    # Boolean OCIL workflow is inferred.
+    projections = [_choice_assessment(source, rule, check,
+                                      assessment_id=assessment_id, title=title)
+                   for check in checks]
+    assessment, provenance = projections[0]
+    for extra, extra_provenance in projections[1:]:
+        assessment['assessment']['procedure'] += '\n\n' + extra['assessment']['procedure']
+        assessment['assessment']['references'].extend(extra['assessment'].get('references', []))
+        provenance.setdefault('additional_source_checks', []).append(extra_provenance)
     native_rule = {'id': rule_id, 'version': rule.findtext('{' + XCCDF + '}version', ''),
         'title': title, 'severity': rule.get('severity', 'unknown'), 'role': 'full',
         'weight': float(rule.get('weight', '1')), 'discussion': rule.findtext('{' + XCCDF + '}description', ''),
