@@ -234,6 +234,16 @@
       "runtime": "unsupported",
       "proof": "66 dependency occurrences; four SQL benchmarks excluded from scope",
       "status": "intentionally_excluded"
+    },
+    {
+      "category": "XCCDF/Input",
+      "feature": "XCCDF Value relational operator via check-export",
+      "schema": "Input/Parameter constraint direction identified; exact native contract pending",
+      "compiler": "mapping missing",
+      "converter": "blocks non-equals operator rather than coercing",
+      "runtime": "must validate selected parameter against typed relation",
+      "proof": "SV-226057 source fixture; 36 Rules affected",
+      "status": "supported_mapping_missing"
     }
   ],
   "qualification": {
@@ -244,7 +254,8 @@
       "Approve or reject a native function-expression contract for count/split/substring/arithmetic.",
       "Approve exact OCIL questionnaire-to-manual response mapping beyond the bounded procedure projection.",
       "Approve native capability contracts for remaining WMI/access-token features or retain explicit exclusions.",
-      "Reclassify legacy wmi_* and accesstoken_* under one Deprecated OVAL Tests statistic; keep wmi57_* in supported WMI coverage."
+      "Reclassify legacy wmi_* and accesstoken_* under one Deprecated OVAL Tests statistic; keep wmi57_* in supported WMI coverage.",
+      "Define the typed native Input/Parameter relation adapter for XCCDF Value operators (starting with less_than_or_equal), including allowed values, defaults, cardinality, and check-export binding."
     ]
   }
 }
