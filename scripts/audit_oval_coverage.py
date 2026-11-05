@@ -18,6 +18,7 @@ import xml.etree.ElementTree as ET
 OVAL = 'http://oval.mitre.org/XMLSchema/oval-definitions-5'
 XCCDF = 'http://checklists.nist.gov/xccdf/1.2'
 O = '{' + OVAL + '}'
+OVAL_PREFIX = '{' + OVAL
 X = '{' + XCCDF + '}'
 
 
@@ -53,44 +54,92 @@ def inventory(archive: Path):
         if len(members) != 1:
             raise ValueError(f'{archive.name}: expected one XML member')
         root = ET.fromstring(package.read(members[0]))
+
+    DS = '{http://scap.nist.gov/schema/scap/source/1.2}'
+    components = {}
+    for component in root.findall(DS + 'component'):
+        if component.get('id') and len(component) == 1:
+            components[component.get('id')] = component[0]
+    stream = root.find(DS + 'data-stream')
+    refs = {} if stream is None else {
+        ref.get('id'): ref.get('{http://www.w3.org/1999/xlink}href', '')[1:]
+        for ref in stream.iter(DS + 'component-ref') if ref.get('id')
+    }
+    checklist = None if stream is None else stream.find(DS + 'checklists/' + DS + 'component-ref')
+    benchmark_component = refs.get(checklist.get('id')) if checklist is not None else None
+    benchmark = components.get(benchmark_component)
+    rules = {rule.get('id'): rule for rule in (benchmark.iter(X + 'Rule') if benchmark is not None else ())
+             if rule.get('id')}
+    indexes = {component: {node.get('id'): node for node in value.iter() if node.get('id')}
+               for component, value in components.items()}
+    catalog = {}
+    if stream is not None:
+        for ref in stream.iter(DS + 'component-ref'):
+            href = ref.get('{http://www.w3.org/1999/xlink}href', '')
+            component = refs.get(ref.get('id'))
+            if href.startswith('#'):
+                catalog[href] = component
+            # XCCDF check-content-ref uses the original component filename,
+            # while the data-stream component-ref is prefixed with `cref_`.
+            # Keep both aliases so selection inventory is provenance-exact.
+            ref_id = ref.get('id', '')
+            if '_cref_' in ref_id:
+                catalog[ref_id.split('_cref_', 1)[1]] = component
+
     rows = defaultdict(lambda: {'occurrences': 0, 'rules': set(), 'attributes': set(),
-                                'examples': []})
-    rules_by_id = {rule.get('id'): rule for rule in root.iter(X + 'Rule') if rule.get('id')}
-    for rule_id, rule in rules_by_id.items():
-        # A dependency is attributed to a Rule by component-local reference
-        # closure only in the converter. This source inventory intentionally
-        # reports direct Rule descendants and all source nodes separately.
-        for node in rule.iter():
-            name = lname(node)
-            if node.tag.startswith(O) or name in {'check', 'check-content-ref'}:
-                key = name
-                item = rows[key]
-                item['occurrences'] += 1
-                item['rules'].add(rule_id)
-                item['attributes'].update(node.attrib)
-                if len(item['examples']) < 3:
-                    item['examples'].append(rule_id)
-    for node in root.iter():
-        if not node.tag.startswith(O):
-            continue
-        name = lname(node)
-        # Function and capability names often occur only in the component,
-        # outside the XCCDF Rule subtree. Keep their source-level counts.
-        if name in rows:
-            continue
-        item = rows[name]
-        item['occurrences'] += 1
+                                'values': defaultdict(int), 'examples': []})
+
+    def add(node, rule_id):
+        if not node.tag.startswith(OVAL_PREFIX):
+            return
+        name = lname(node); item = rows[name]
+        item['occurrences'] += 1; item['rules'].add(rule_id)
         item['attributes'].update(node.attrib)
+        for key, value in node.attrib.items():
+            item['values'][key + '=' + value] += 1
         if len(item['examples']) < 3:
-            item['examples'].append(next(iter(rules_by_id), None))
+            item['examples'].append(rule_id)
+
+    def closure(component, identifier, rule_id, visited):
+        key = component, identifier
+        if key in visited:
+            return
+        visited.add(key)
+        node = indexes.get(component, {}).get(identifier)
+        if node is None:
+            return
+        add(node, rule_id)
+        for descendant in node.iter():
+            if descendant is not node:
+                add(descendant, rule_id)
+            for attribute, kind in (('definition_ref', 'definition'), ('test_ref', 'test'),
+                                    ('object_ref', 'object'), ('state_ref', 'state'),
+                                    ('var_ref', 'variable')):
+                target = descendant.get(attribute)
+                if target:
+                    closure(component, target, rule_id, visited)
+            if descendant.tag == O + 'object_reference':
+                closure(component, (descendant.text or '').strip(), rule_id, visited)
+            elif descendant.tag == O + 'filter':
+                closure(component, (descendant.text or '').strip(), rule_id, visited)
+
+    for rule_id, rule in rules.items():
+        visited = set()
+        for check in rule.findall('.//' + X + 'check'):
+            for reference in check.findall(X + 'check-content-ref'):
+                component = catalog.get(reference.get('href'))
+                if component and reference.get('name'):
+                    closure(component, reference.get('name'), rule_id, visited)
+
     result = []
     for name, item in sorted(rows.items()):
         result.append({'name': name, 'category': classify(name, None),
                        'occurrences': item['occurrences'], 'rules': len(item['rules']),
                        'attributes': sorted(item['attributes']),
-                       'representative_rules': sorted(x for x in item['examples'] if x)})
+                       'values': dict(sorted(item['values'].items())),
+                       'representative_rules': sorted(set(item['examples']))})
     return {'filename': archive.name, 'source_sha256': sha256(raw).hexdigest(),
-            'rules': len(rules_by_id), 'operations': result}
+            'rules': len(rules), 'operations': result}
 
 
 def main():
