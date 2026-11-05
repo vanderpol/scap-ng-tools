@@ -27,6 +27,10 @@ def lname(node):
 
 
 def classify(name, node):
+    # Some OVAL state fields end in `_state` but are not Test/Object/State
+    # capability names. Keep the inventory category source-accurate.
+    if name in {'current_state'}:
+        return 'OVAL element'
     if name.endswith('_test'):
         return 'Test capability'
     if name.endswith('_object'):
@@ -168,10 +172,13 @@ def main():
             target['examples'].extend(row['representative_rules'])
     matrix = json.loads((Path(__file__).parents[1] / 'docs/evidence/issue28/OVAL-COVERAGE-MATRIX.json').read_text())
     by_feature = {row['feature']: row for row in matrix['features']}
+    operation_coverage = {row['name']: row for row in matrix.get('operation_coverage', [])}
     feature_aliases = {'arithmetic': 'arithmetic and casting'}
     operations = []
     for name, row in sorted(merged.items()):
-        match = by_feature.get(feature_aliases.get(name, name))
+        match = operation_coverage.get(name)
+        if match is None:
+            match = by_feature.get(feature_aliases.get(name, name))
         if match is None:
             match = next((value for value in by_feature.values()
                           if value['feature'].split()[-1] == name), None)

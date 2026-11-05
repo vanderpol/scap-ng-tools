@@ -127,6 +127,16 @@
     },
     {
       "category": "Function",
+      "feature": "end",
+      "schema": "inactive canonical-call candidate; absent from active variable-expression",
+      "compiler": "not admitted by the pinned active schema",
+      "converter": "native_recovery canonical candidate; default path remains fail-closed",
+      "runtime": "character-boundary semantics and status propagation unproved",
+      "proof": "nested end recovery vectors; no independent scanner/source-result proof",
+      "status": "partially_implemented"
+    },
+    {
+      "category": "Function",
       "feature": "regex_capture",
       "schema": "legacy/native migration form",
       "compiler": "partial",
@@ -312,5 +322,3667 @@
       "Record compiler/scanner/runtime proof for the coordinated binary32 float contract; keep nonfinite expected values explicitly blocked.",
       "Treat case-insensitive equality as an equality path only where the capability contract proves identical traversal scope; retain pattern-path rejection."
     ]
-  }
+  },
+  "operation_coverage": [
+    {
+      "name": "access_system_security",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "accesstoken_object",
+      "category": "Object capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "accesstoken_state",
+      "category": "State capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "accesstoken_test",
+      "category": "Test capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "account_lockout",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "affected",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "anonymous_name_lookup",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "appcmd_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "appcmd_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "appcmd_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "appcmdlistconfig_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "appcmdlistconfig_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "appcmdlistconfig_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "arch",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "arithmetic",
+      "category": "Function",
+      "schema": "owner-directed add/multiply candidate is documented but not active in pinned schema",
+      "compiler": "semantic validator enforces numeric operands and integer/float widening; compiler admission unavailable",
+      "converter": "native_recovery canonical call preserves operand order and operation; casts remain fail-closed",
+      "runtime": "Cartesian/status/error semantics remain scanner/runtime unproved",
+      "proof": "independent numeric/invalid-operand vectors; 3 primary Rules rejected by schema admission",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "audit_policy_change",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "auditeventpolicysubcategories_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "auditeventpolicysubcategories_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "auditeventpolicysubcategories_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "authentication_policy_change",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "authorization_policy_change",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "behaviors",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "canonical_path",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "chg_allow",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "chg_req",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "cmdlet_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "cmdlet_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "cmdlet_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "command",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "command_line",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "computer_account_management",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "concat",
+      "category": "Function",
+      "schema": "legacy/native migration form",
+      "compiler": "partial",
+      "converter": "implemented for nested scalar forms",
+      "runtime": "datatype and empty collection proof incomplete",
+      "proof": "inventory only",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "config_line",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "configuration_file",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "constant_variable",
+      "category": "Variable construct",
+      "schema": "supported native Variable/Input forms for bounded shapes",
+      "compiler": "schema admission is available for bounded forms",
+      "converter": "implemented with datatype/cardinality gates",
+      "runtime": "empty/error/cast/status semantics are not scanner-proved",
+      "proof": "source-shaped vectors and provenance tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "count",
+      "category": "Function",
+      "schema": "canonical count candidate is not active in pinned schema",
+      "compiler": "semantic admission not active in pinned compiler contract",
+      "converter": "native_recovery canonical call preserves one-or-more operands, including nested functions",
+      "runtime": "count empty/status semantics remain unavailable in native runtime",
+      "proof": "independent zero/empty/duplicate/error vectors; 37 primary Rules rejected by schema admission",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "credential_validation",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "criteria",
+      "category": "Definition operator",
+      "schema": "supported native logical/dependency forms",
+      "compiler": "bounded schema admission",
+      "converter": "implemented for source-shaped criteria",
+      "runtime": "six-state/dependency equivalence is not scanner-proved",
+      "proof": "source inventory and static tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "criterion",
+      "category": "Definition operator",
+      "schema": "supported native logical/dependency forms",
+      "compiler": "bounded schema admission",
+      "converter": "implemented for source-shaped criteria",
+      "runtime": "six-state/dependency equivalence is not scanner-proved",
+      "proof": "source inventory and static tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "current_state",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "database",
+      "category": "OVAL element",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "days_since_modified",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "definition",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "description",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "detailed_file_share",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "device",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "directory_service_access",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "directory_service_changes",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "dpkginfo_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "dpkginfo_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "enabled",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "end",
+      "category": "Function",
+      "schema": "inactive canonical-call candidate; absent from active variable-expression",
+      "compiler": "not admitted by the pinned active schema",
+      "converter": "native_recovery canonical candidate; default path remains fail-closed",
+      "runtime": "character-boundary semantics and status propagation unproved",
+      "proof": "nested end recovery vectors; no independent scanner/source-result proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "engine",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "environmentvariable58_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "epoch",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "evr",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "exit_status",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "extend_definition",
+      "category": "Definition operator",
+      "schema": "supported native logical/dependency forms",
+      "compiler": "bounded schema admission",
+      "converter": "implemented for source-shaped criteria",
+      "runtime": "six-state/dependency equivalence is not scanner-proved",
+      "proof": "source inventory and static tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "external_variable",
+      "category": "Variable construct",
+      "schema": "supported native Variable/Input forms for bounded shapes",
+      "compiler": "schema admission is available for bounded forms",
+      "converter": "implemented with datatype/cardinality gates",
+      "runtime": "empty/error/cast/status semantics are not scanner-proved",
+      "proof": "source-shaped vectors and provenance tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "family",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "family_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "family_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "family_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "field",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_append_data",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_delete_child",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_execute",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_read_attributes",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_read_data",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_read_ea",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_share",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_system",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_write_attributes",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_write_data",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "file_write_ea",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "fileeffectiverights53_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "fileeffectiverights53_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "fileeffectiverights53_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "filename",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "filepath",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "filter",
+      "category": "Object operation",
+      "schema": "supported native Object operation contract",
+      "compiler": "bounded schema admission",
+      "converter": "implemented for bounded arity and filter/set shapes",
+      "runtime": "filter/set/error propagation is not scanner-proved",
+      "proof": "source-shaped tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "flag",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "fmri",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "force_logoff",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "fs_type",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "generic_all",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "generic_execute",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "generic_read",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "generic_write",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "gexec",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "ghost_file",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "global_command",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "global_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "global_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "global_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "gread",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "group",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "group_id",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "group_membership",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "gwrite",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "handle_manipulation",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "hive",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "home_dir",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "identifier",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "identifier_type",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "instance",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "interface_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "interface_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "interface_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "ipsec_driver",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "kerberos_authentication_service",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "kerberos_service_ticket_operations",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_create_link",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_create_sub_key",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_enumerate_sub_keys",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_notify",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_query_value",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_set_value",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_wow64_32key",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_wow64_64key",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "key_wow64_res",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "line_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "line_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "line_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "literal_component",
+      "category": "Variable construct",
+      "schema": "supported native Variable/Input forms for bounded shapes",
+      "compiler": "schema admission is available for bounded forms",
+      "converter": "implemented with datatype/cardinality gates",
+      "runtime": "empty/error/cast/status semantics are not scanner-proved",
+      "proof": "source-shaped vectors and provenance tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "local_variable",
+      "category": "Variable construct",
+      "schema": "supported native Variable/Input forms for bounded shapes",
+      "compiler": "schema admission is available for bounded forms",
+      "converter": "implemented with datatype/cardinality gates",
+      "runtime": "empty/error/cast/status semantics are not scanner-proved",
+      "proof": "source-shaped vectors and provenance tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "lockout_duration",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "lockout_observation_window",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "lockout_threshold",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "lockoutpolicy_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "lockoutpolicy_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "lockoutpolicy_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "login_shell",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "logoff",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "logon",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "max_passwd_age",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "md5_differs",
+      "category": "OVAL element",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "merge",
+      "category": "Function",
+      "schema": "legacy/native migration form",
+      "compiler": "partial",
+      "converter": "implemented for one operand; multi-operand canonical recovery candidate",
+      "runtime": "multi-operand ordered flatten/sort/status semantics remain schema/compiler gated",
+      "proof": "multi-operand recovery vectors; source equivalence unproved",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "metadata",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "min_passwd_age",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "min_passwd_len",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "module_id",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "module_name",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "module_version",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "mount_options",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "mount_point",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "mpssvc_rule_level_policy_change",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "name",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "namespace",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "noun",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "ntuser_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "ntuser_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "ntuser_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "object",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "object_component",
+      "category": "Variable construct",
+      "schema": "supported native Variable/Input forms for bounded shapes",
+      "compiler": "schema admission is available for bounded forms",
+      "converter": "implemented with datatype/cardinality gates",
+      "runtime": "empty/error/cast/status semantics are not scanner-proved",
+      "proof": "source-shaped vectors and provenance tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "object_reference",
+      "category": "Object operation",
+      "schema": "supported native Object operation contract",
+      "compiler": "bounded schema admission",
+      "converter": "implemented for bounded arity and filter/set shapes",
+      "runtime": "filter/set/error propagation is not scanner-proved",
+      "proof": "source-shaped tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "oexec",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "oread",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "os_name",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "os_release",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "os_version",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "other_account_management_events",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "other_logon_logoff_events",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "other_object_access_events",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "other_policy_change_events",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "other_system_events",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "owner",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "owrite",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "parameter",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "parameters",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "partition_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "partition_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "partition_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "password",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "password_age_days",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "password_complexity",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "password_hist_len",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "password_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "password_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "password_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "passwordpolicy_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "passwordpolicy_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "passwordpolicy_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "path",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "pattern",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "pid",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "platform",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "pnp_activity",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "possible_value",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "process58_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "process58_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "process_creation",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "processor_type",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "product",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "product_name",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "property",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "reference",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "regex_capture",
+      "category": "Function",
+      "schema": "legacy/native migration form",
+      "compiler": "partial",
+      "converter": "implemented",
+      "runtime": "capture absence/error propagation unproved",
+      "proof": "inventory only",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "registry",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "registry_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "registry_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "registry_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "regkeyeffectiverights53_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "regkeyeffectiverights53_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "regkeyeffectiverights53_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "release",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "removable_storage",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "result",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "reversible_encryption",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "rpminfo_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "rpminfo_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "rpminfo_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "rpmverifyfile_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "rpmverifyfile_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "rpmverifyfile_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seauditprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sebackupprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "secreateglobalprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "secreatepagefileprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "secreatepermanentprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "secreatesymboliclinkprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "secreatetokenprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "section",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "security_group_management",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "security_principle",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "security_state_change",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "security_system_extension",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sedebugprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sedenybatchLogonright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sedenyinteractivelogonright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sedenynetworklogonright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sedenyremoteInteractivelogonright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sedenyservicelogonright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seenabledelegationprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seimpersonateprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seincreasebasepriorityprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seinteractivelogonright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "select",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "selinuxsecuritycontext_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "selinuxsecuritycontext_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "selinuxsecuritycontext_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seloaddriverprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "selockmemoryprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "semachineaccountprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "semanagevolumeprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "senetworklogonright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sensitive_privilege_use",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seprofilesingleprocessprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seremoteinteractivelogonright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "seremoteshutdownprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "serestoreprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "service_name",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "service_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "service_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "service_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sesecurityprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sesystemenvironmentprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sesystemtimeprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "set",
+      "category": "Object operation",
+      "schema": "supported native Object operation contract",
+      "compiler": "bounded schema admission",
+      "converter": "implemented for bounded arity and filter/set shapes",
+      "runtime": "filter/set/error propagation is not scanner-proved",
+      "proof": "source-shaped tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "setakeownershipprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "setcbprivilege",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "setrustedcredmanaccessnameright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sgid",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "shadow_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "shadow_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "shadow_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "shell",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "shellcommand_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "shellcommand_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "shellcommand_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "show_subcommand",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sid_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sid_sid_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sid_sid_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sid_sid_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sid_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sid_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "size",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "smf_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "smf_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "smf_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "special_logon",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "split",
+      "category": "Function",
+      "schema": "owner-directed canonical function candidate is documented but not active in pinned schema",
+      "compiler": "semantic validator implemented; compiler admission unavailable in pinned contract",
+      "converter": "native_recovery canonical call preserves one operand and literal delimiter",
+      "runtime": "source split semantics remain scanner/runtime unproved",
+      "proof": "independent empty/duplicate/delimiter vectors; 19 primary Rules rejected by schema admission",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sql",
+      "category": "OVAL element",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "sqlext_object",
+      "category": "Object capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "sqlext_state",
+      "category": "State capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "sqlext_test",
+      "category": "Test capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "standard_delete",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "standard_read_control",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "standard_synchronize",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "standard_write_dac",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "standard_write_owner",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "start_type",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "state",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "stderr_line",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "stdout_line",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sticky",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "subexpression",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "substring",
+      "category": "Function",
+      "schema": "owner-directed canonical function candidate is documented but not active in pinned schema",
+      "compiler": "semantic validator enforces signed 32-bit options; compiler admission unavailable in pinned contract",
+      "converter": "native_recovery canonical call preserves one operand and explicit start/length",
+      "runtime": "source one-based/error/empty semantics remain scanner/runtime unproved",
+      "proof": "independent boundary vectors; 1 primary Rule rejected by schema admission",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "suid",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "symlink_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "symlink_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "symlink_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sysctl_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sysctl_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "sysctl_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "system_integrity",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "systemdunitproperty_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "systemdunitproperty_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "systemdunitproperty_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "text",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "textfilecontent54_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "textfilecontent54_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "textfilecontent54_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "title",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "trustee_name",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "trustee_sid",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "type",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "uexec",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "uname_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "uname_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "uname_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "unique",
+      "category": "Function",
+      "schema": "legacy/native migration form",
+      "compiler": "partial",
+      "converter": "implemented for one operand; multi-operand canonical recovery candidate",
+      "runtime": "multi-operand collection/status semantics remain schema/compiler gated",
+      "proof": "multi-operand recovery vectors; source equivalence unproved",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "unit",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "unknown_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "uread",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "user",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "user_account_management",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "user_id",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "user_object",
+      "category": "Object capability",
+      "schema": "no approved faithful native capability mapping",
+      "compiler": "unsupported",
+      "converter": "fail-closed; no SID-only substitution",
+      "runtime": "not available",
+      "proof": "source Rule XML and blocker ledger",
+      "status": "native_language_gap"
+    },
+    {
+      "name": "user_sid",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "user_sid55_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "user_sid55_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "user_sid55_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "user_state",
+      "category": "State capability",
+      "schema": "no approved faithful native capability mapping",
+      "compiler": "unsupported",
+      "converter": "fail-closed; no SID-only substitution",
+      "runtime": "not available",
+      "proof": "source Rule XML and blocker ledger",
+      "status": "native_language_gap"
+    },
+    {
+      "name": "user_test",
+      "category": "Test capability",
+      "schema": "no approved faithful native capability mapping",
+      "compiler": "unsupported",
+      "converter": "fail-closed; no SID-only substitution",
+      "runtime": "not available",
+      "proof": "source Rule XML and blocker ledger",
+      "status": "native_language_gap"
+    },
+    {
+      "name": "username",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "userright",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "userright_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "userright_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "userright_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "uwrite",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "value",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "value_of",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "var_ref",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "variable_component",
+      "category": "Variable construct",
+      "schema": "supported native Variable/Input forms for bounded shapes",
+      "compiler": "schema admission is available for bounded forms",
+      "converter": "implemented with datatype/cardinality gates",
+      "runtime": "empty/error/cast/status semantics are not scanner-proved",
+      "proof": "source-shaped vectors and provenance tests",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "variable_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "variable_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "variable_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "verb",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "version",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "wmi57_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "wmi57_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "wmi57_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "wmi_object",
+      "category": "Object capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "wmi_state",
+      "category": "State capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "wmi_test",
+      "category": "Test capability",
+      "schema": "not in supported 0.4 scope",
+      "compiler": "unsupported",
+      "converter": "preserved as an intentional exclusion or fail-closed blocker",
+      "runtime": "no equivalent is fabricated",
+      "proof": "source inventory and exclusion/blocker XML evidence",
+      "status": "intentionally_excluded"
+    },
+    {
+      "name": "wql",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "xmlfilecontent_object",
+      "category": "Object capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "xmlfilecontent_state",
+      "category": "State capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "xmlfilecontent_test",
+      "category": "Test capability",
+      "schema": "supported capability mapping",
+      "compiler": "schema admission is available for the mapped shape",
+      "converter": "mapping exists; source-specific shapes remain bounded",
+      "runtime": "collection/error/status semantics are not scanner-proved",
+      "proof": "source inventory and authoring/schema tests; no scanner comparison",
+      "status": "partially_implemented"
+    },
+    {
+      "name": "xpath",
+      "category": "OVAL element",
+      "schema": "OVAL source element inherited by its enclosing capability",
+      "compiler": "no standalone native construct",
+      "converter": "covered only through enclosing capability mapping",
+      "runtime": "field semantics are not scanner-proved",
+      "proof": "source inventory; no independent Rule proof",
+      "status": "partially_implemented"
+    }
+  ]
 }

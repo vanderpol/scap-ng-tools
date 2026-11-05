@@ -6,6 +6,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 LEDGER = ROOT / 'docs/evidence/issue28/COMPLETE-LEDGER.json'
 INVENTORY = ROOT / 'docs/evidence/issue28/OVAL-SOURCE-INVENTORY.json'
+MATRIX = ROOT / 'docs/evidence/issue28/OVAL-COVERAGE-MATRIX.json'
 
 
 class Issue28CompleteLedger(unittest.TestCase):
@@ -13,6 +14,7 @@ class Issue28CompleteLedger(unittest.TestCase):
     def setUpClass(cls):
         cls.ledger = json.loads(LEDGER.read_text())
         cls.inventory = json.loads(INVENTORY.read_text())
+        cls.matrix = json.loads(MATRIX.read_text())
 
     def test_mutually_exclusive_reconciliation(self):
         self.assertEqual(self.ledger['scope']['benchmarks'], 65)
@@ -56,6 +58,14 @@ class Issue28CompleteLedger(unittest.TestCase):
         self.assertEqual(operations['set']['category'], 'Object operation')
         self.assertEqual(operations['local_variable']['category'], 'Variable construct')
         self.assertEqual(operations['registry_test']['category'], 'Test capability')
+        covered = {row['name']: row for row in self.matrix['operation_coverage']}
+        self.assertEqual(set(covered), set(operations))
+        self.assertTrue(all(row['status'] in self.matrix['status_vocabulary']
+                            for row in covered.values()))
+        self.assertFalse([name for name, row in operations.items()
+                          if row['matrix_status'] == 'unclassified'])
+        self.assertEqual(operations['end']['matrix_status'], 'partially_implemented')
+        self.assertEqual(operations['current_state']['category'], 'OVAL element')
 
 
 if __name__ == '__main__':

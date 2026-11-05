@@ -4796,7 +4796,7 @@
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "access_system_security",
       "occurrences": 14,
       "representative_rules": [
@@ -4824,7 +4824,7 @@
         "xccdf_mil.disa.stig_rule_SV-224997r958472_rule",
         "xccdf_mil.disa.stig_rule_SV-224998r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "accesstoken_object",
       "occurrences": 295,
       "representative_rules": [
@@ -4851,7 +4851,7 @@
         "xccdf_mil.disa.fso_rule_SV-225546r569185_rule",
         "xccdf_mil.disa.stig_rule_SV-224997r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "accesstoken_state",
       "occurrences": 248,
       "representative_rules": [
@@ -4885,7 +4885,7 @@
         "xccdf_mil.disa.stig_rule_SV-224998r958726_rule",
         "xccdf_mil.disa.stig_rule_SV-224999r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "accesstoken_test",
       "occurrences": 168,
       "representative_rules": [
@@ -4912,7 +4912,7 @@
         "xccdf_mil.disa.stig_rule_SV-278055r1180871_rule",
         "xccdf_mil.disa.stig_rule_SV-278056r1180874_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "account_lockout",
       "occurrences": 18,
       "representative_rules": [
@@ -5056,7 +5056,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "affected",
       "occurrences": 6720,
       "representative_rules": [
@@ -5084,7 +5084,7 @@
         "xccdf_mil.disa.stig_rule_SV-254465r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278215r1181351_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "anonymous_name_lookup",
       "occurrences": 10,
       "representative_rules": [
@@ -5113,7 +5113,7 @@
         "xccdf_mil.disa.stig_rule_SV-254280r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278028r1182265_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "appcmd_object",
       "occurrences": 37,
       "representative_rules": [
@@ -5141,7 +5141,7 @@
         "xccdf_mil.disa.stig_rule_SV-254280r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278028r1182265_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "appcmd_state",
       "occurrences": 32,
       "representative_rules": [
@@ -5167,7 +5167,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214448r879562_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "appcmd_test",
       "occurrences": 36,
       "representative_rules": [
@@ -5202,7 +5202,7 @@
         "xccdf_mil.disa.stig_rule_SV-254279r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278027r1181803_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "appcmdlistconfig_object",
       "occurrences": 74,
       "representative_rules": [
@@ -5235,7 +5235,7 @@
         "xccdf_mil.disa.stig_rule_SV-254279r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278027r1181803_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "appcmdlistconfig_state",
       "occurrences": 93,
       "representative_rules": [
@@ -5271,7 +5271,7 @@
         "xccdf_mil.disa.stig_rule_SV-254279r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278027r1181803_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "appcmdlistconfig_test",
       "occurrences": 91,
       "representative_rules": [
@@ -5291,7 +5291,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "arch",
       "occurrences": 2,
       "representative_rules": [
@@ -5345,7 +5345,7 @@
         "xccdf_mil.disa.stig_rule_SV-278066r1180904_rule",
         "xccdf_mil.disa.stig_rule_SV-278067r1180907_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "audit_policy_change",
       "occurrences": 28,
       "representative_rules": [
@@ -5391,7 +5391,7 @@
         "xccdf_mil.disa.stig_rule_SV-278049r1180853_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259412r961125_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "auditeventpolicysubcategories_object",
       "occurrences": 311,
       "representative_rules": [
@@ -5429,7 +5429,7 @@
         "xccdf_mil.disa.stig_rule_SV-278048r1180850_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259412r961125_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "auditeventpolicysubcategories_state",
       "occurrences": 612,
       "representative_rules": [
@@ -5470,7 +5470,7 @@
         "xccdf_mil.disa.stig_rule_SV-278048r1180850_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259412r961125_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "auditeventpolicysubcategories_test",
       "occurrences": 541,
       "representative_rules": [
@@ -5497,7 +5497,7 @@
         "xccdf_mil.disa.stig_rule_SV-254321r958732_rule",
         "xccdf_mil.disa.stig_rule_SV-278068r1180910_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "authentication_policy_change",
       "occurrences": 16,
       "representative_rules": [
@@ -5524,7 +5524,7 @@
         "xccdf_mil.disa.stig_rule_SV-254322r958732_rule",
         "xccdf_mil.disa.stig_rule_SV-278069r1180913_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "authorization_policy_change",
       "occurrences": 16,
       "representative_rules": [
@@ -5638,7 +5638,7 @@
         "xccdf_mil.disa.stig_rule_SV-252911r958390_rule",
         "xccdf_mil.disa.stig_rule_SV-252928r1038944_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "behaviors",
       "occurrences": 1151,
       "representative_rules": [
@@ -5672,7 +5672,7 @@
         "xccdf_mil.disa.stig_rule_SV-257785r1044833_rule",
         "xccdf_mil.disa.stig_rule_SV-258236r1101920_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "canonical_path",
       "occurrences": 37,
       "representative_rules": [
@@ -5693,7 +5693,7 @@
         "xccdf_mil.disa.stig_rule_SV-221682r1015178_rule",
         "xccdf_mil.disa.stig_rule_SV-204419r982188_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "chg_allow",
       "occurrences": 2,
       "representative_rules": [
@@ -5720,7 +5720,7 @@
         "xccdf_mil.disa.stig_rule_SV-217131r1038967_rule",
         "xccdf_mil.disa.stig_rule_SV-234892r1038967_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "chg_req",
       "occurrences": 18,
       "representative_rules": [
@@ -5762,7 +5762,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "cmdlet_object",
       "occurrences": 80,
       "representative_rules": [
@@ -5803,7 +5803,7 @@
         "xccdf_mil.disa.stig_rule_SV-278031r1182046_rule",
         "xccdf_mil.disa.stig_rule_SV-278090r1182274_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "cmdlet_state",
       "occurrences": 71,
       "representative_rules": [
@@ -5845,7 +5845,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "cmdlet_test",
       "occurrences": 90,
       "representative_rules": [
@@ -5951,7 +5951,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252949r1155813_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "command",
       "occurrences": 1833,
       "representative_rules": [
@@ -5993,7 +5993,7 @@
         "xccdf_mil.disa.stig_rule_SV-252973r1016309_rule",
         "xccdf_mil.disa.stig_rule_SV-253051r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "command_line",
       "occurrences": 126,
       "representative_rules": [
@@ -6019,7 +6019,7 @@
         "xccdf_mil.disa.stig_rule_SV-254407r958368_rule",
         "xccdf_mil.disa.stig_rule_SV-278154r1182114_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "computer_account_management",
       "occurrences": 9,
       "representative_rules": [
@@ -6165,7 +6165,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "config_line",
       "occurrences": 259,
       "representative_rules": [
@@ -6185,7 +6185,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "configuration_file",
       "occurrences": 2,
       "representative_rules": [
@@ -6283,7 +6283,7 @@
         "xccdf_mil.disa.stig_rule_SV-252922r958528_rule",
         "xccdf_mil.disa.stig_rule_SV-252996r958412_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "constant_variable",
       "occurrences": 759,
       "representative_rules": [
@@ -6361,7 +6361,7 @@
         "xccdf_mil.disa.stig_rule_SV-278047r1180847_rule",
         "xccdf_mil.disa.stig_rule_SV-278048r1180850_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "credential_validation",
       "occurrences": 32,
       "representative_rules": [
@@ -6528,7 +6528,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252914r1137691_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "criteria",
       "occurrences": 12804,
       "representative_rules": [
@@ -6682,7 +6682,7 @@
         "xccdf_mil.disa.stig_rule_SV-252911r958390_rule",
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "criterion",
       "occurrences": 13027,
       "representative_rules": [
@@ -6695,7 +6695,7 @@
     {
       "attributes": [],
       "benchmarks": 5,
-      "category": "State capability",
+      "category": "OVAL element",
       "examples": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259635r961470_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259667r960963_rule",
@@ -6705,7 +6705,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271387r1111140_rule",
         "xccdf_mil.disa.stig_rule_SV-285313r1211167_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "current_state",
       "occurrences": 7,
       "representative_rules": [
@@ -6731,7 +6731,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271265r1108933_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271267r1108417_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "database",
       "occurrences": 200,
       "representative_rules": [
@@ -6762,7 +6762,7 @@
         "xccdf_mil.disa.stig_rule_SV-254490r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278240r1182207_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "days_since_modified",
       "occurrences": 131,
       "representative_rules": [
@@ -6950,7 +6950,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252914r1137691_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "definition",
       "occurrences": 11722,
       "representative_rules": [
@@ -7134,7 +7134,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252914r1137691_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "description",
       "occurrences": 11722,
       "representative_rules": [
@@ -7152,7 +7152,7 @@
         "xccdf_mil.disa.stig_rule_SV-220789r958412_rule",
         "xccdf_mil.disa.stig_rule_SV-253347r958412_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "detailed_file_share",
       "occurrences": 4,
       "representative_rules": [
@@ -7173,7 +7173,7 @@
         "xccdf_mil.disa.stig_rule_SV-230301r1184262_rule",
         "xccdf_mil.disa.stig_rule_SV-257881r1184299_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "device",
       "occurrences": 4,
       "representative_rules": [
@@ -7202,7 +7202,7 @@
         "xccdf_mil.disa.stig_rule_SV-278155r1182116_rule",
         "xccdf_mil.disa.stig_rule_SV-278156r1182118_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "directory_service_access",
       "occurrences": 20,
       "representative_rules": [
@@ -7227,7 +7227,7 @@
         "xccdf_mil.disa.stig_rule_SV-278157r1182120_rule",
         "xccdf_mil.disa.stig_rule_SV-278158r1182122_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "directory_service_changes",
       "occurrences": 12,
       "representative_rules": [
@@ -7259,7 +7259,7 @@
         "xccdf_mil.disa.stig_rule_SV-270646r1068358_rule",
         "xccdf_mil.disa.stig_rule_SV-270647r1066430_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "dpkginfo_object",
       "occurrences": 99,
       "representative_rules": [
@@ -7293,7 +7293,7 @@
         "xccdf_mil.disa.stig_rule_SV-270646r1068358_rule",
         "xccdf_mil.disa.stig_rule_SV-270647r1066430_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "dpkginfo_test",
       "occurrences": 99,
       "representative_rules": [
@@ -7343,7 +7343,7 @@
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
         "xccdf_mil.disa.stig_rule_SV-278240r1182207_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "enabled",
       "occurrences": 154,
       "representative_rules": [
@@ -7362,7 +7362,7 @@
       "examples": [
         "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "end",
       "occurrences": 6,
       "representative_rules": [
@@ -7384,7 +7384,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271265r1108933_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271267r1108417_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "engine",
       "occurrences": 200,
       "representative_rules": [
@@ -7415,7 +7415,7 @@
         "xccdf_mil.disa.stig_rule_SV-254280r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278028r1182265_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "environmentvariable58_object",
       "occurrences": 23,
       "representative_rules": [
@@ -7435,7 +7435,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "epoch",
       "occurrences": 2,
       "representative_rules": [
@@ -7457,7 +7457,7 @@
         "xccdf_mil.disa.stig_rule_SV-204588r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-204594r987796_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "evr",
       "occurrences": 4,
       "representative_rules": [
@@ -7523,7 +7523,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252949r1155813_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "exit_status",
       "occurrences": 378,
       "representative_rules": [
@@ -7614,7 +7614,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "extend_definition",
       "occurrences": 4522,
       "representative_rules": [
@@ -7668,7 +7668,7 @@
         "xccdf_mil.disa.stig_rule_SV-204418r982188_rule",
         "xccdf_mil.disa.stig_rule_SV-204420r982200_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "external_variable",
       "occurrences": 443,
       "representative_rules": [
@@ -7685,7 +7685,7 @@
       "examples": [
         "xccdf_mil.disa.stig_rule_SV-220706r1153413_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "family",
       "occurrences": 1,
       "representative_rules": [
@@ -7704,7 +7704,7 @@
       "examples": [
         "xccdf_mil.disa.stig_rule_SV-220706r1153413_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "family_object",
       "occurrences": 1,
       "representative_rules": [
@@ -7723,7 +7723,7 @@
       "examples": [
         "xccdf_mil.disa.stig_rule_SV-220706r1153413_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "family_state",
       "occurrences": 1,
       "representative_rules": [
@@ -7743,7 +7743,7 @@
       "examples": [
         "xccdf_mil.disa.stig_rule_SV-220706r1153413_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "family_test",
       "occurrences": 1,
       "representative_rules": [
@@ -7790,7 +7790,7 @@
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
         "xccdf_mil.disa.stig_rule_SV-277993r1212171_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "field",
       "occurrences": 758,
       "representative_rules": [
@@ -7823,7 +7823,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_append_data",
       "occurrences": 22,
       "representative_rules": [
@@ -7856,7 +7856,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_delete_child",
       "occurrences": 22,
       "representative_rules": [
@@ -7881,7 +7881,7 @@
         "xccdf_mil.disa.stig_rule_SV-285320r1256736_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_execute",
       "occurrences": 15,
       "representative_rules": [
@@ -7971,7 +7971,7 @@
         "xccdf_mil.disa.stig_rule_SV-252939r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_object",
       "occurrences": 819,
       "representative_rules": [
@@ -7996,7 +7996,7 @@
         "xccdf_mil.disa.stig_rule_SV-285320r1256736_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_read_attributes",
       "occurrences": 15,
       "representative_rules": [
@@ -8021,7 +8021,7 @@
         "xccdf_mil.disa.stig_rule_SV-285320r1256736_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_read_data",
       "occurrences": 15,
       "representative_rules": [
@@ -8046,7 +8046,7 @@
         "xccdf_mil.disa.stig_rule_SV-285320r1256736_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_read_ea",
       "occurrences": 15,
       "representative_rules": [
@@ -8068,7 +8068,7 @@
         "xccdf_mil.disa.stig_rule_SV-253319r991572_rule",
         "xccdf_mil.disa.stig_rule_SV-253320r991572_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_share",
       "occurrences": 8,
       "representative_rules": [
@@ -8133,7 +8133,7 @@
         "xccdf_mil.disa.stig_rule_SV-216070r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_state",
       "occurrences": 717,
       "representative_rules": [
@@ -8156,7 +8156,7 @@
         "xccdf_mil.disa.stig_rule_SV-278935r1135333_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259412r961125_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_system",
       "occurrences": 9,
       "representative_rules": [
@@ -8245,7 +8245,7 @@
         "xccdf_mil.disa.stig_rule_SV-252939r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_test",
       "occurrences": 738,
       "representative_rules": [
@@ -8278,7 +8278,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_write_attributes",
       "occurrences": 22,
       "representative_rules": [
@@ -8311,7 +8311,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_write_data",
       "occurrences": 22,
       "representative_rules": [
@@ -8344,7 +8344,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "file_write_ea",
       "occurrences": 22,
       "representative_rules": [
@@ -8375,7 +8375,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "fileeffectiverights53_object",
       "occurrences": 162,
       "representative_rules": [
@@ -8405,7 +8405,7 @@
         "xccdf_mil.disa.stig_rule_SV-278043r1180835_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "fileeffectiverights53_state",
       "occurrences": 131,
       "representative_rules": [
@@ -8445,7 +8445,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "fileeffectiverights53_test",
       "occurrences": 111,
       "representative_rules": [
@@ -8545,7 +8545,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252917r971535_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "filename",
       "occurrences": 1641,
       "representative_rules": [
@@ -8630,7 +8630,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252919r1190841_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "filepath",
       "occurrences": 4211,
       "representative_rules": [
@@ -8715,7 +8715,7 @@
         "xccdf_mil.disa.stig_rule_SV-216070r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "filter",
       "occurrences": 1485,
       "representative_rules": [
@@ -8743,7 +8743,7 @@
         "xccdf_mil.disa.stig_rule_SV-235027r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-253135r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "flag",
       "occurrences": 9,
       "representative_rules": [
@@ -8768,7 +8768,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "fmri",
       "occurrences": 50,
       "representative_rules": [
@@ -8789,7 +8789,7 @@
         "xccdf_mil.disa.fso_rule_SV-226329r794610_rule",
         "xccdf_mil.disa.fso_rule_SV-225506r569185_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "force_logoff",
       "occurrences": 2,
       "representative_rules": [
@@ -8819,7 +8819,7 @@
         "xccdf_mil.disa.stig_rule_SV-252920r958518_rule",
         "xccdf_mil.disa.stig_rule_SV-253095r958944_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "fs_type",
       "occurrences": 15,
       "representative_rules": [
@@ -8844,7 +8844,7 @@
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "generic_all",
       "occurrences": 14,
       "representative_rules": [
@@ -8873,7 +8873,7 @@
         "xccdf_mil.disa.stig_rule_SV-285320r1256736_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "generic_execute",
       "occurrences": 27,
       "representative_rules": [
@@ -8903,7 +8903,7 @@
         "xccdf_mil.disa.stig_rule_SV-285320r1256736_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "generic_read",
       "occurrences": 21,
       "representative_rules": [
@@ -8937,7 +8937,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "generic_write",
       "occurrences": 34,
       "representative_rules": [
@@ -9006,7 +9006,7 @@
         "xccdf_mil.disa.stig_rule_SV-252977r958434_rule",
         "xccdf_mil.disa.stig_rule_SV-252978r958434_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "gexec",
       "occurrences": 102,
       "representative_rules": [
@@ -9026,7 +9026,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "ghost_file",
       "occurrences": 2,
       "representative_rules": [
@@ -9050,7 +9050,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215662r1192908_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "global_command",
       "occurrences": 155,
       "representative_rules": [
@@ -9075,7 +9075,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215662r1192908_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "global_object",
       "occurrences": 122,
       "representative_rules": [
@@ -9104,7 +9104,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220587r1051115_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220617r1205840_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "global_state",
       "occurrences": 33,
       "representative_rules": [
@@ -9135,7 +9135,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220576r960840_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "global_test",
       "occurrences": 106,
       "representative_rules": [
@@ -9179,7 +9179,7 @@
         "xccdf_mil.disa.stig_rule_SV-252978r958434_rule",
         "xccdf_mil.disa.stig_rule_SV-253008r958444_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "gread",
       "occurrences": 40,
       "representative_rules": [
@@ -9202,7 +9202,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "group",
       "occurrences": 7,
       "representative_rules": [
@@ -9268,7 +9268,7 @@
         "xccdf_mil.disa.stig_rule_SV-252980r958434_rule",
         "xccdf_mil.disa.stig_rule_SV-252982r958434_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "group_id",
       "occurrences": 138,
       "representative_rules": [
@@ -9294,7 +9294,7 @@
         "xccdf_mil.disa.stig_rule_SV-254310r991578_rule",
         "xccdf_mil.disa.stig_rule_SV-278057r1180877_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "group_membership",
       "occurrences": 10,
       "representative_rules": [
@@ -9367,7 +9367,7 @@
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "gwrite",
       "occurrences": 174,
       "representative_rules": [
@@ -9392,7 +9392,7 @@
         "xccdf_mil.disa.stig_rule_SV-278944r1135361_rule",
         "xccdf_mil.disa.stig_rule_SV-279918r1181960_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "handle_manipulation",
       "occurrences": 14,
       "representative_rules": [
@@ -9467,7 +9467,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "hive",
       "occurrences": 2570,
       "representative_rules": [
@@ -9504,7 +9504,7 @@
         "xccdf_mil.disa.stig_rule_SV-216106r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216186r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "home_dir",
       "occurrences": 18,
       "representative_rules": [
@@ -9542,7 +9542,7 @@
         "xccdf_mil.disa.stig_rule_SV-278027r1181803_rule",
         "xccdf_mil.disa.stig_rule_SV-278028r1182265_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "identifier",
       "occurrences": 111,
       "representative_rules": [
@@ -9577,7 +9577,7 @@
         "xccdf_mil.disa.stig_rule_SV-278027r1181803_rule",
         "xccdf_mil.disa.stig_rule_SV-278028r1182265_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "identifier_type",
       "occurrences": 111,
       "representative_rules": [
@@ -9656,7 +9656,7 @@
         "xccdf_mil.disa.stig_rule_SV-252914r1137691_rule",
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "instance",
       "occurrences": 5091,
       "representative_rules": [
@@ -9690,7 +9690,7 @@
         "xccdf_mil.disa.stig_rule_SV-235027r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-253135r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "interface_object",
       "occurrences": 19,
       "representative_rules": [
@@ -9724,7 +9724,7 @@
         "xccdf_mil.disa.stig_rule_SV-235027r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-253135r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "interface_state",
       "occurrences": 19,
       "representative_rules": [
@@ -9755,7 +9755,7 @@
         "xccdf_mil.disa.stig_rule_SV-235027r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-253135r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "interface_test",
       "occurrences": 9,
       "representative_rules": [
@@ -9788,7 +9788,7 @@
         "xccdf_mil.disa.stig_rule_SV-278072r1180922_rule",
         "xccdf_mil.disa.stig_rule_SV-278073r1180925_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "ipsec_driver",
       "occurrences": 28,
       "representative_rules": [
@@ -9809,7 +9809,7 @@
       "examples": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-269097r1026170_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "kerberos_authentication_service",
       "occurrences": 1,
       "representative_rules": [
@@ -9828,7 +9828,7 @@
       "examples": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-269097r1026170_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "kerberos_service_ticket_operations",
       "occurrences": 1,
       "representative_rules": [
@@ -9905,7 +9905,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key",
       "occurrences": 2728,
       "representative_rules": [
@@ -9928,7 +9928,7 @@
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_create_link",
       "occurrences": 12,
       "representative_rules": [
@@ -9951,7 +9951,7 @@
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_create_sub_key",
       "occurrences": 12,
       "representative_rules": [
@@ -9976,7 +9976,7 @@
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225447r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_enumerate_sub_keys",
       "occurrences": 6,
       "representative_rules": [
@@ -10001,7 +10001,7 @@
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225447r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_notify",
       "occurrences": 6,
       "representative_rules": [
@@ -10026,7 +10026,7 @@
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225447r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_query_value",
       "occurrences": 6,
       "representative_rules": [
@@ -10049,7 +10049,7 @@
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_set_value",
       "occurrences": 12,
       "representative_rules": [
@@ -10072,7 +10072,7 @@
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_wow64_32key",
       "occurrences": 12,
       "representative_rules": [
@@ -10095,7 +10095,7 @@
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_wow64_64key",
       "occurrences": 12,
       "representative_rules": [
@@ -10118,7 +10118,7 @@
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225445r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "key_wow64_res",
       "occurrences": 12,
       "representative_rules": [
@@ -10153,7 +10153,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220577r960843_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "line_object",
       "occurrences": 105,
       "representative_rules": [
@@ -10183,7 +10183,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "line_state",
       "occurrences": 259,
       "representative_rules": [
@@ -10217,7 +10217,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "line_test",
       "occurrences": 258,
       "representative_rules": [
@@ -10318,7 +10318,7 @@
         "xccdf_mil.disa.stig_rule_SV-252996r958412_rule",
         "xccdf_mil.disa.stig_rule_SV-252999r958412_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "literal_component",
       "occurrences": 1113,
       "representative_rules": [
@@ -10437,7 +10437,7 @@
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule",
         "xccdf_mil.disa.stig_rule_SV-252977r958434_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "local_variable",
       "occurrences": 1450,
       "representative_rules": [
@@ -10465,7 +10465,7 @@
         "xccdf_mil.disa.stig_rule_SV-254285r958736_rule",
         "xccdf_mil.disa.stig_rule_SV-278033r1180805_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "lockout_duration",
       "occurrences": 24,
       "representative_rules": [
@@ -10493,7 +10493,7 @@
         "xccdf_mil.disa.stig_rule_SV-254287r958388_rule",
         "xccdf_mil.disa.stig_rule_SV-278035r1180811_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "lockout_observation_window",
       "occurrences": 8,
       "representative_rules": [
@@ -10529,7 +10529,7 @@
         "xccdf_mil.disa.stig_rule_SV-278033r1180805_rule",
         "xccdf_mil.disa.stig_rule_SV-278034r1180808_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "lockout_threshold",
       "occurrences": 32,
       "representative_rules": [
@@ -10573,7 +10573,7 @@
         "xccdf_mil.disa.stig_rule_SV-278034r1180808_rule",
         "xccdf_mil.disa.stig_rule_SV-278035r1180811_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "lockoutpolicy_object",
       "occurrences": 26,
       "representative_rules": [
@@ -10602,7 +10602,7 @@
         "xccdf_mil.disa.stig_rule_SV-254285r958736_rule",
         "xccdf_mil.disa.stig_rule_SV-278033r1180805_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "lockoutpolicy_state",
       "occurrences": 66,
       "representative_rules": [
@@ -10635,7 +10635,7 @@
         "xccdf_mil.disa.stig_rule_SV-254285r958736_rule",
         "xccdf_mil.disa.stig_rule_SV-278033r1180805_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "lockoutpolicy_test",
       "occurrences": 57,
       "representative_rules": [
@@ -10661,7 +10661,7 @@
         "xccdf_mil.disa.stig_rule_SV-258046r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "login_shell",
       "occurrences": 7,
       "representative_rules": [
@@ -10688,7 +10688,7 @@
         "xccdf_mil.disa.stig_rule_SV-254311r991581_rule",
         "xccdf_mil.disa.stig_rule_SV-278058r1180880_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "logoff",
       "occurrences": 16,
       "representative_rules": [
@@ -10723,7 +10723,7 @@
         "xccdf_mil.disa.stig_rule_SV-278059r1180883_rule",
         "xccdf_mil.disa.stig_rule_SV-278060r1180886_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "logon",
       "occurrences": 32,
       "representative_rules": [
@@ -10755,7 +10755,7 @@
         "xccdf_mil.disa.stig_rule_SV-254289r1051091_rule",
         "xccdf_mil.disa.stig_rule_SV-278037r1180817_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "max_passwd_age",
       "occurrences": 24,
       "representative_rules": [
@@ -10773,7 +10773,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "md5_differs",
       "occurrences": 2,
       "representative_rules": [
@@ -10996,7 +10996,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252914r1137691_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "metadata",
       "occurrences": 11722,
       "representative_rules": [
@@ -11028,7 +11028,7 @@
         "xccdf_mil.disa.stig_rule_SV-254290r1051092_rule",
         "xccdf_mil.disa.stig_rule_SV-278038r1180820_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "min_passwd_age",
       "occurrences": 12,
       "representative_rules": [
@@ -11063,7 +11063,7 @@
         "xccdf_mil.disa.stig_rule_SV-254291r1051093_rule",
         "xccdf_mil.disa.stig_rule_SV-277989r1181947_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "min_passwd_len",
       "occurrences": 15,
       "representative_rules": [
@@ -11103,7 +11103,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "module_id",
       "occurrences": 80,
       "representative_rules": [
@@ -11143,7 +11143,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "module_name",
       "occurrences": 80,
       "representative_rules": [
@@ -11184,7 +11184,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "module_version",
       "occurrences": 80,
       "representative_rules": [
@@ -11217,7 +11217,7 @@
         "xccdf_mil.disa.stig_rule_SV-257851r1044932_rule",
         "xccdf_mil.disa.stig_rule_SV-257852r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "mount_options",
       "occurrences": 87,
       "representative_rules": [
@@ -11263,7 +11263,7 @@
         "xccdf_mil.disa.stig_rule_SV-252920r958518_rule",
         "xccdf_mil.disa.stig_rule_SV-253095r958944_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "mount_point",
       "occurrences": 138,
       "representative_rules": [
@@ -11285,7 +11285,7 @@
         "xccdf_mil.disa.stig_rule_SV-253348r958412_rule",
         "xccdf_mil.disa.stig_rule_SV-253349r958412_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "mpssvc_rule_level_policy_change",
       "occurrences": 8,
       "representative_rules": [
@@ -11406,7 +11406,7 @@
         "xccdf_mil.disa.stig_rule_SV-252932r1016303_rule",
         "xccdf_mil.disa.stig_rule_SV-252934r958908_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "name",
       "occurrences": 3404,
       "representative_rules": [
@@ -11463,7 +11463,7 @@
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
         "xccdf_mil.disa.stig_rule_SV-277993r1212171_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "namespace",
       "occurrences": 226,
       "representative_rules": [
@@ -11501,7 +11501,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "noun",
       "occurrences": 80,
       "representative_rules": [
@@ -11546,7 +11546,7 @@
         "xccdf_mil.disa.stig_rule_SV-254490r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278240r1182207_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "ntuser_object",
       "occurrences": 158,
       "representative_rules": [
@@ -11582,7 +11582,7 @@
         "xccdf_mil.disa.stig_rule_SV-254490r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278240r1182207_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "ntuser_state",
       "occurrences": 429,
       "representative_rules": [
@@ -11630,7 +11630,7 @@
         "xccdf_mil.disa.stig_rule_SV-254490r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278240r1182207_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "ntuser_test",
       "occurrences": 158,
       "representative_rules": [
@@ -11785,7 +11785,7 @@
         "xccdf_mil.disa.stig_rule_SV-252911r958390_rule",
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "object",
       "occurrences": 12854,
       "representative_rules": [
@@ -11899,7 +11899,7 @@
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule",
         "xccdf_mil.disa.stig_rule_SV-252977r958434_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "object_component",
       "occurrences": 912,
       "representative_rules": [
@@ -11974,7 +11974,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252922r958528_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "object_reference",
       "occurrences": 1721,
       "representative_rules": [
@@ -12044,7 +12044,7 @@
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule",
         "xccdf_mil.disa.stig_rule_SV-252977r958434_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "oexec",
       "occurrences": 119,
       "representative_rules": [
@@ -12112,7 +12112,7 @@
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule",
         "xccdf_mil.disa.stig_rule_SV-252977r958434_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "oread",
       "occurrences": 95,
       "representative_rules": [
@@ -12134,7 +12134,7 @@
         "xccdf_mil.disa.stig_rule_SV-216442r1155800_rule",
         "xccdf_mil.disa.stig_rule_SV-216205r1155804_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "os_name",
       "occurrences": 2,
       "representative_rules": [
@@ -12155,7 +12155,7 @@
         "xccdf_mil.disa.stig_rule_SV-216442r1155800_rule",
         "xccdf_mil.disa.stig_rule_SV-216205r1155804_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "os_release",
       "occurrences": 2,
       "representative_rules": [
@@ -12179,7 +12179,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "os_version",
       "occurrences": 41,
       "representative_rules": [
@@ -12204,7 +12204,7 @@
         "xccdf_mil.disa.stig_rule_SV-254302r958732_rule",
         "xccdf_mil.disa.stig_rule_SV-278049r1180853_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "other_account_management_events",
       "occurrences": 12,
       "representative_rules": [
@@ -12226,7 +12226,7 @@
         "xccdf_mil.disa.stig_rule_SV-253345r958412_rule",
         "xccdf_mil.disa.stig_rule_SV-253346r958412_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "other_logon_logoff_events",
       "occurrences": 8,
       "representative_rules": [
@@ -12256,7 +12256,7 @@
         "xccdf_mil.disa.stig_rule_SV-278062r1180892_rule",
         "xccdf_mil.disa.stig_rule_SV-278063r1180895_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "other_object_access_events",
       "occurrences": 24,
       "representative_rules": [
@@ -12274,7 +12274,7 @@
         "xccdf_mil.disa.stig_rule_SV-220786r958412_rule",
         "xccdf_mil.disa.stig_rule_SV-253344r958412_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "other_policy_change_events",
       "occurrences": 4,
       "representative_rules": [
@@ -12307,7 +12307,7 @@
         "xccdf_mil.disa.stig_rule_SV-278074r1180928_rule",
         "xccdf_mil.disa.stig_rule_SV-278075r1180931_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "other_system_events",
       "occurrences": 32,
       "representative_rules": [
@@ -12327,7 +12327,7 @@
       "examples": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259368r1212359_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "owner",
       "occurrences": 1,
       "representative_rules": [
@@ -12398,7 +12398,7 @@
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "owrite",
       "occurrences": 197,
       "representative_rules": [
@@ -12433,7 +12433,7 @@
         "xccdf_mil.disa.stig_rule_SV-278027r1181803_rule",
         "xccdf_mil.disa.stig_rule_SV-278028r1182265_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "parameter",
       "occurrences": 111,
       "representative_rules": [
@@ -12519,7 +12519,7 @@
         "xccdf_mil.disa.stig_rule_SV-252920r958518_rule",
         "xccdf_mil.disa.stig_rule_SV-253095r958944_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "partition_object",
       "occurrences": 138,
       "representative_rules": [
@@ -12557,7 +12557,7 @@
         "xccdf_mil.disa.stig_rule_SV-252920r958518_rule",
         "xccdf_mil.disa.stig_rule_SV-253095r958944_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "partition_state",
       "occurrences": 106,
       "representative_rules": [
@@ -12604,7 +12604,7 @@
         "xccdf_mil.disa.stig_rule_SV-252920r958518_rule",
         "xccdf_mil.disa.stig_rule_SV-253095r958944_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "partition_test",
       "occurrences": 138,
       "representative_rules": [
@@ -12630,7 +12630,7 @@
         "xccdf_mil.disa.stig_rule_SV-216097r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216181r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "password",
       "occurrences": 45,
       "representative_rules": [
@@ -12651,7 +12651,7 @@
         "xccdf_mil.disa.stig_rule_SV-220952r1051038_rule",
         "xccdf_mil.disa.stig_rule_SV-253476r1210304_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "password_age_days",
       "occurrences": 2,
       "representative_rules": [
@@ -12681,7 +12681,7 @@
         "xccdf_mil.disa.stig_rule_SV-254292r1051094_rule",
         "xccdf_mil.disa.stig_rule_SV-278039r1180823_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "password_complexity",
       "occurrences": 12,
       "representative_rules": [
@@ -12713,7 +12713,7 @@
         "xccdf_mil.disa.stig_rule_SV-254288r1256690_rule",
         "xccdf_mil.disa.stig_rule_SV-278036r1256715_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "password_hist_len",
       "occurrences": 12,
       "representative_rules": [
@@ -12762,7 +12762,7 @@
         "xccdf_mil.disa.stig_rule_SV-252937r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "password_object",
       "occurrences": 129,
       "representative_rules": [
@@ -12803,7 +12803,7 @@
         "xccdf_mil.disa.stig_rule_SV-252937r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "password_state",
       "occurrences": 161,
       "representative_rules": [
@@ -12845,7 +12845,7 @@
         "xccdf_mil.disa.stig_rule_SV-216185r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-252937r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "password_test",
       "occurrences": 39,
       "representative_rules": [
@@ -12893,7 +12893,7 @@
         "xccdf_mil.disa.stig_rule_SV-278036r1256715_rule",
         "xccdf_mil.disa.stig_rule_SV-278037r1180817_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "passwordpolicy_object",
       "occurrences": 61,
       "representative_rules": [
@@ -12937,7 +12937,7 @@
         "xccdf_mil.disa.stig_rule_SV-278036r1256715_rule",
         "xccdf_mil.disa.stig_rule_SV-278037r1180817_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "passwordpolicy_state",
       "occurrences": 73,
       "representative_rules": [
@@ -12985,7 +12985,7 @@
         "xccdf_mil.disa.stig_rule_SV-278036r1256715_rule",
         "xccdf_mil.disa.stig_rule_SV-278037r1180817_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "passwordpolicy_test",
       "occurrences": 64,
       "representative_rules": [
@@ -13081,7 +13081,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252917r971535_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "path",
       "occurrences": 1651,
       "representative_rules": [
@@ -13188,7 +13188,7 @@
         "xccdf_mil.disa.stig_rule_SV-252911r958390_rule",
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "pattern",
       "occurrences": 5887,
       "representative_rules": [
@@ -13242,7 +13242,7 @@
         "xccdf_mil.disa.stig_rule_SV-252973r1016309_rule",
         "xccdf_mil.disa.stig_rule_SV-253051r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "pid",
       "occurrences": 149,
       "representative_rules": [
@@ -13347,7 +13347,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "platform",
       "occurrences": 8103,
       "representative_rules": [
@@ -13373,7 +13373,7 @@
         "xccdf_mil.disa.stig_rule_SV-254306r991583_rule",
         "xccdf_mil.disa.stig_rule_SV-278053r1180865_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "pnp_activity",
       "occurrences": 10,
       "representative_rules": [
@@ -13396,7 +13396,7 @@
         "xccdf_mil.disa.fso_rule_SV-241990r922930_rule",
         "xccdf_mil.disa.stig_rule_SV-224867r958388_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "possible_value",
       "occurrences": 648,
       "representative_rules": [
@@ -13439,7 +13439,7 @@
         "xccdf_mil.disa.stig_rule_SV-252973r1016309_rule",
         "xccdf_mil.disa.stig_rule_SV-253051r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "process58_object",
       "occurrences": 126,
       "representative_rules": [
@@ -13484,7 +13484,7 @@
         "xccdf_mil.disa.stig_rule_SV-252973r1016309_rule",
         "xccdf_mil.disa.stig_rule_SV-253051r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "process58_test",
       "occurrences": 117,
       "representative_rules": [
@@ -13513,7 +13513,7 @@
         "xccdf_mil.disa.stig_rule_SV-254307r958732_rule",
         "xccdf_mil.disa.stig_rule_SV-278054r1180868_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "process_creation",
       "occurrences": 20,
       "representative_rules": [
@@ -13533,7 +13533,7 @@
         "xccdf_mil.disa.stig_rule_SV-221777r958732_rule",
         "xccdf_mil.disa.stig_rule_SV-204516r958732_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "processor_type",
       "occurrences": 60,
       "representative_rules": [
@@ -13587,7 +13587,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-215531r961092_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-215532r961092_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "product",
       "occurrences": 748,
       "representative_rules": [
@@ -13604,7 +13604,7 @@
       "examples": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-275978r1111822_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "product_name",
       "occurrences": 1,
       "representative_rules": [
@@ -13638,7 +13638,7 @@
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule",
         "xccdf_mil.disa.stig_rule_SV-252927r991562_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "property",
       "occurrences": 119,
       "representative_rules": [
@@ -13687,7 +13687,7 @@
         "xccdf_mil.disa.stig_rule_SV-221719r1134841_rule",
         "xccdf_mil.disa.stig_rule_SV-204393r958390_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "reference",
       "occurrences": 3179,
       "representative_rules": [
@@ -13779,7 +13779,7 @@
         "xccdf_mil.disa.stig_rule_SV-279920r1181966_rule",
         "xccdf_mil.disa.stig_rule_SV-279921r1181969_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "registry",
       "occurrences": 20,
       "representative_rules": [
@@ -13855,7 +13855,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "registry_object",
       "occurrences": 2860,
       "representative_rules": [
@@ -13932,7 +13932,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "registry_state",
       "occurrences": 1756,
       "representative_rules": [
@@ -14008,7 +14008,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "registry_test",
       "occurrences": 2308,
       "representative_rules": [
@@ -14030,7 +14030,7 @@
         "xccdf_mil.disa.fso_rule_SV-226268r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "regkeyeffectiverights53_object",
       "occurrences": 24,
       "representative_rules": [
@@ -14051,7 +14051,7 @@
         "xccdf_mil.disa.fso_rule_SV-226268r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "regkeyeffectiverights53_state",
       "occurrences": 40,
       "representative_rules": [
@@ -14074,7 +14074,7 @@
         "xccdf_mil.disa.fso_rule_SV-226268r877392_rule",
         "xccdf_mil.disa.fso_rule_SV-225444r877392_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "regkeyeffectiverights53_test",
       "occurrences": 32,
       "representative_rules": [
@@ -14093,7 +14093,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "release",
       "occurrences": 2,
       "representative_rules": [
@@ -14124,7 +14124,7 @@
         "xccdf_mil.disa.stig_rule_SV-278064r1180898_rule",
         "xccdf_mil.disa.stig_rule_SV-278065r1180901_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "removable_storage",
       "occurrences": 20,
       "representative_rules": [
@@ -14178,7 +14178,7 @@
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
         "xccdf_mil.disa.stig_rule_SV-277993r1212171_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "result",
       "occurrences": 577,
       "representative_rules": [
@@ -14209,7 +14209,7 @@
         "xccdf_mil.disa.stig_rule_SV-254293r1051095_rule",
         "xccdf_mil.disa.stig_rule_SV-278040r1180826_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "reversible_encryption",
       "occurrences": 12,
       "representative_rules": [
@@ -14258,7 +14258,7 @@
         "xccdf_mil.disa.stig_rule_SV-252934r958908_rule",
         "xccdf_mil.disa.stig_rule_SV-252973r1016309_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "rpminfo_object",
       "occurrences": 319,
       "representative_rules": [
@@ -14282,7 +14282,7 @@
         "xccdf_mil.disa.stig_rule_SV-221856r987796_rule",
         "xccdf_mil.disa.stig_rule_SV-204458r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "rpminfo_state",
       "occurrences": 9,
       "representative_rules": [
@@ -14333,7 +14333,7 @@
         "xccdf_mil.disa.stig_rule_SV-252934r958908_rule",
         "xccdf_mil.disa.stig_rule_SV-252973r1016309_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "rpminfo_test",
       "occurrences": 323,
       "representative_rules": [
@@ -14355,7 +14355,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "rpmverifyfile_object",
       "occurrences": 2,
       "representative_rules": [
@@ -14376,7 +14376,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "rpmverifyfile_state",
       "occurrences": 6,
       "representative_rules": [
@@ -14399,7 +14399,7 @@
         "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
         "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "rpmverifyfile_test",
       "occurrences": 2,
       "representative_rules": [
@@ -14420,7 +14420,7 @@
         "xccdf_mil.disa.fso_rule_SV-225564r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225081r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seauditprivilege",
       "occurrences": 3,
       "representative_rules": [
@@ -14443,7 +14443,7 @@
         "xccdf_mil.disa.fso_rule_SV-225550r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225073r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sebackupprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -14466,7 +14466,7 @@
         "xccdf_mil.disa.fso_rule_SV-225553r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225076r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "secreateglobalprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -14489,7 +14489,7 @@
         "xccdf_mil.disa.fso_rule_SV-225551r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225074r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "secreatepagefileprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -14512,7 +14512,7 @@
         "xccdf_mil.disa.fso_rule_SV-225554r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225077r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "secreatepermanentprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -14535,7 +14535,7 @@
         "xccdf_mil.disa.fso_rule_SV-225555r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225078r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "secreatesymboliclinkprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -14558,7 +14558,7 @@
         "xccdf_mil.disa.fso_rule_SV-225552r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225091r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "secreatetokenprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -14589,7 +14589,7 @@
         "xccdf_mil.disa.stig_rule_SV-254279r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-278027r1181803_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "section",
       "occurrences": 74,
       "representative_rules": [
@@ -14616,7 +14616,7 @@
         "xccdf_mil.disa.stig_rule_SV-254303r958368_rule",
         "xccdf_mil.disa.stig_rule_SV-278050r1180856_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "security_group_management",
       "occurrences": 16,
       "representative_rules": [
@@ -14642,7 +14642,7 @@
         "xccdf_mil.disa.fso_rule_SV-225546r569185_rule",
         "xccdf_mil.disa.stig_rule_SV-224997r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "security_principle",
       "occurrences": 307,
       "representative_rules": [
@@ -14669,7 +14669,7 @@
         "xccdf_mil.disa.stig_rule_SV-254329r958732_rule",
         "xccdf_mil.disa.stig_rule_SV-278076r1180934_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "security_state_change",
       "occurrences": 16,
       "representative_rules": [
@@ -14696,7 +14696,7 @@
         "xccdf_mil.disa.stig_rule_SV-254330r958732_rule",
         "xccdf_mil.disa.stig_rule_SV-278077r1180937_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "security_system_extension",
       "occurrences": 16,
       "representative_rules": [
@@ -14719,7 +14719,7 @@
         "xccdf_mil.disa.fso_rule_SV-225556r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225079r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sedebugprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -14743,7 +14743,7 @@
         "xccdf_mil.disa.stig_rule_SV-225001r958472_rule",
         "xccdf_mil.disa.stig_rule_SV-225016r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sedenybatchLogonright",
       "occurrences": 5,
       "representative_rules": [
@@ -14767,7 +14767,7 @@
         "xccdf_mil.disa.stig_rule_SV-225003r958472_rule",
         "xccdf_mil.disa.stig_rule_SV-225018r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sedenyinteractivelogonright",
       "occurrences": 5,
       "representative_rules": [
@@ -14791,7 +14791,7 @@
         "xccdf_mil.disa.stig_rule_SV-225000r958472_rule",
         "xccdf_mil.disa.stig_rule_SV-225015r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sedenynetworklogonright",
       "occurrences": 5,
       "representative_rules": [
@@ -14815,7 +14815,7 @@
         "xccdf_mil.disa.stig_rule_SV-225004r958672_rule",
         "xccdf_mil.disa.stig_rule_SV-225019r958672_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sedenyremoteInteractivelogonright",
       "occurrences": 5,
       "representative_rules": [
@@ -14839,7 +14839,7 @@
         "xccdf_mil.disa.stig_rule_SV-225002r958472_rule",
         "xccdf_mil.disa.stig_rule_SV-225017r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sedenyservicelogonright",
       "occurrences": 6,
       "representative_rules": [
@@ -14863,7 +14863,7 @@
         "xccdf_mil.disa.stig_rule_SV-225005r958726_rule",
         "xccdf_mil.disa.stig_rule_SV-225020r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seenabledelegationprivilege",
       "occurrences": 5,
       "representative_rules": [
@@ -14886,7 +14886,7 @@
         "xccdf_mil.disa.fso_rule_SV-225565r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225082r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seimpersonateprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -14908,7 +14908,7 @@
         "xccdf_mil.disa.fso_rule_SV-225566r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225083r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seincreasebasepriorityprivilege",
       "occurrences": 3,
       "representative_rules": [
@@ -14931,7 +14931,7 @@
         "xccdf_mil.disa.fso_rule_SV-225548r569185_rule",
         "xccdf_mil.disa.stig_rule_SV-225072r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seinteractivelogonright",
       "occurrences": 4,
       "representative_rules": [
@@ -14971,7 +14971,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "select",
       "occurrences": 80,
       "representative_rules": [
@@ -14995,7 +14995,7 @@
         "xccdf_mil.disa.stig_rule_SV-250315r1017356_rule",
         "xccdf_mil.disa.stig_rule_SV-258080r1045162_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "selinuxsecuritycontext_object",
       "occurrences": 4,
       "representative_rules": [
@@ -15019,7 +15019,7 @@
         "xccdf_mil.disa.stig_rule_SV-250315r1017356_rule",
         "xccdf_mil.disa.stig_rule_SV-258080r1045162_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "selinuxsecuritycontext_state",
       "occurrences": 4,
       "representative_rules": [
@@ -15045,7 +15045,7 @@
         "xccdf_mil.disa.stig_rule_SV-250315r1017356_rule",
         "xccdf_mil.disa.stig_rule_SV-258080r1045162_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "selinuxsecuritycontext_test",
       "occurrences": 4,
       "representative_rules": [
@@ -15068,7 +15068,7 @@
         "xccdf_mil.disa.fso_rule_SV-225567r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225084r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seloaddriverprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15091,7 +15091,7 @@
         "xccdf_mil.disa.fso_rule_SV-225568r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225085r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "selockmemoryprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15112,7 +15112,7 @@
         "xccdf_mil.disa.fso_rule_SV-226399r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-224998r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "semachineaccountprivilege",
       "occurrences": 2,
       "representative_rules": [
@@ -15134,7 +15134,7 @@
         "xccdf_mil.disa.fso_rule_SV-225571r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225088r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "semanagevolumeprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15158,7 +15158,7 @@
         "xccdf_mil.disa.stig_rule_SV-224997r958472_rule",
         "xccdf_mil.disa.stig_rule_SV-225014r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "senetworklogonright",
       "occurrences": 5,
       "representative_rules": [
@@ -15193,7 +15193,7 @@
         "xccdf_mil.disa.stig_rule_SV-278070r1180916_rule",
         "xccdf_mil.disa.stig_rule_SV-278071r1180919_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sensitive_privilege_use",
       "occurrences": 52,
       "representative_rules": [
@@ -15216,7 +15216,7 @@
         "xccdf_mil.disa.fso_rule_SV-225572r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225089r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seprofilesingleprocessprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15238,7 +15238,7 @@
         "xccdf_mil.disa.fso_rule_SV-225549r569185_rule",
         "xccdf_mil.disa.stig_rule_SV-224999r958472_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seremoteinteractivelogonright",
       "occurrences": 3,
       "representative_rules": [
@@ -15261,7 +15261,7 @@
         "xccdf_mil.disa.fso_rule_SV-225563r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225080r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "seremoteshutdownprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15284,7 +15284,7 @@
         "xccdf_mil.disa.fso_rule_SV-225573r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225092r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "serestoreprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15315,7 +15315,7 @@
         "xccdf_mil.disa.stig_rule_SV-278018r1180760_rule",
         "xccdf_mil.disa.stig_rule_SV-285313r1211167_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "service_name",
       "occurrences": 19,
       "representative_rules": [
@@ -15347,7 +15347,7 @@
         "xccdf_mil.disa.stig_rule_SV-278018r1180760_rule",
         "xccdf_mil.disa.stig_rule_SV-285313r1211167_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "service_object",
       "occurrences": 19,
       "representative_rules": [
@@ -15383,7 +15383,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "service_state",
       "occurrences": 44,
       "representative_rules": [
@@ -15417,7 +15417,7 @@
         "xccdf_mil.disa.stig_rule_SV-278018r1180760_rule",
         "xccdf_mil.disa.stig_rule_SV-285313r1211167_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "service_test",
       "occurrences": 19,
       "representative_rules": [
@@ -15440,7 +15440,7 @@
         "xccdf_mil.disa.fso_rule_SV-225569r852282_rule",
         "xccdf_mil.disa.stig_rule_SV-225086r958434_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sesecurityprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15463,7 +15463,7 @@
         "xccdf_mil.disa.fso_rule_SV-225570r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225087r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sesystemenvironmentprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15482,7 +15482,7 @@
       "examples": [
         "xccdf_mil.disa.stig_rule_SV-220961r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sesystemtimeprivilege",
       "occurrences": 1,
       "representative_rules": [
@@ -15566,7 +15566,7 @@
         "xccdf_mil.disa.stig_rule_SV-252922r958528_rule",
         "xccdf_mil.disa.stig_rule_SV-252931r1050791_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "set",
       "occurrences": 979,
       "representative_rules": [
@@ -15589,7 +15589,7 @@
         "xccdf_mil.disa.fso_rule_SV-225574r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225093r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "setakeownershipprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15612,7 +15612,7 @@
         "xccdf_mil.disa.fso_rule_SV-225547r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225071r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "setcbprivilege",
       "occurrences": 4,
       "representative_rules": [
@@ -15635,7 +15635,7 @@
         "xccdf_mil.disa.fso_rule_SV-225545r877392_rule",
         "xccdf_mil.disa.stig_rule_SV-225070r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "setrustedcredmanaccessnameright",
       "occurrences": 4,
       "representative_rules": [
@@ -15703,7 +15703,7 @@
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sgid",
       "occurrences": 138,
       "representative_rules": [
@@ -15740,7 +15740,7 @@
         "xccdf_mil.disa.stig_rule_SV-216097r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216181r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "shadow_object",
       "occurrences": 45,
       "representative_rules": [
@@ -15777,7 +15777,7 @@
         "xccdf_mil.disa.stig_rule_SV-216097r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216181r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "shadow_state",
       "occurrences": 74,
       "representative_rules": [
@@ -15814,7 +15814,7 @@
         "xccdf_mil.disa.stig_rule_SV-216332r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216097r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "shadow_test",
       "occurrences": 25,
       "representative_rules": [
@@ -15919,7 +15919,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252949r1155813_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "shell",
       "occurrences": 1826,
       "representative_rules": [
@@ -16031,7 +16031,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252949r1155813_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "shellcommand_object",
       "occurrences": 1833,
       "representative_rules": [
@@ -16144,7 +16144,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252949r1155813_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "shellcommand_state",
       "occurrences": 1584,
       "representative_rules": [
@@ -16264,7 +16264,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252949r1155813_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "shellcommand_test",
       "occurrences": 1581,
       "representative_rules": [
@@ -16289,7 +16289,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215662r1192908_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "show_subcommand",
       "occurrences": 240,
       "representative_rules": [
@@ -16312,7 +16312,7 @@
         "xccdf_mil.disa.fso_rule_SV-225450r569185_rule",
         "xccdf_mil.disa.fso_rule_SV-225451r569185_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sid_object",
       "occurrences": 3,
       "representative_rules": [
@@ -16338,7 +16338,7 @@
         "xccdf_mil.disa.stig_rule_SV-253435r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-253436r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sid_sid_object",
       "occurrences": 6,
       "representative_rules": [
@@ -16362,7 +16362,7 @@
         "xccdf_mil.disa.stig_rule_SV-253435r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-253436r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sid_sid_state",
       "occurrences": 8,
       "representative_rules": [
@@ -16389,7 +16389,7 @@
         "xccdf_mil.disa.stig_rule_SV-253435r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-253436r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sid_sid_test",
       "occurrences": 4,
       "representative_rules": [
@@ -16412,7 +16412,7 @@
         "xccdf_mil.disa.fso_rule_SV-225450r569185_rule",
         "xccdf_mil.disa.fso_rule_SV-225451r569185_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sid_state",
       "occurrences": 3,
       "representative_rules": [
@@ -16436,7 +16436,7 @@
         "xccdf_mil.disa.fso_rule_SV-225448r569185_rule",
         "xccdf_mil.disa.fso_rule_SV-225451r569185_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sid_test",
       "occurrences": 2,
       "representative_rules": [
@@ -16459,7 +16459,7 @@
         "xccdf_mil.disa.stig_rule_SV-216338r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216103r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "size",
       "occurrences": 5,
       "representative_rules": [
@@ -16485,7 +16485,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "smf_object",
       "occurrences": 50,
       "representative_rules": [
@@ -16511,7 +16511,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "smf_state",
       "occurrences": 36,
       "representative_rules": [
@@ -16539,7 +16539,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "smf_test",
       "occurrences": 50,
       "representative_rules": [
@@ -16566,7 +16566,7 @@
         "xccdf_mil.disa.stig_rule_SV-254314r991578_rule",
         "xccdf_mil.disa.stig_rule_SV-278061r1180889_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "special_logon",
       "occurrences": 16,
       "representative_rules": [
@@ -16626,7 +16626,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271265r1108933_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271267r1108417_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "sql",
       "occurrences": 200,
       "representative_rules": [
@@ -16652,7 +16652,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271265r1108933_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271267r1108417_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "sqlext_object",
       "occurrences": 200,
       "representative_rules": [
@@ -16678,7 +16678,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271265r1108933_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271268r1136917_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "sqlext_state",
       "occurrences": 158,
       "representative_rules": [
@@ -16706,7 +16706,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271265r1108933_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271268r1136917_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "sqlext_test",
       "occurrences": 214,
       "representative_rules": [
@@ -16740,7 +16740,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "standard_delete",
       "occurrences": 34,
       "representative_rules": [
@@ -16770,7 +16770,7 @@
         "xccdf_mil.disa.stig_rule_SV-285320r1256736_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "standard_read_control",
       "occurrences": 21,
       "representative_rules": [
@@ -16795,7 +16795,7 @@
         "xccdf_mil.disa.stig_rule_SV-285320r1256736_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "standard_synchronize",
       "occurrences": 15,
       "representative_rules": [
@@ -16829,7 +16829,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "standard_write_dac",
       "occurrences": 34,
       "representative_rules": [
@@ -16863,7 +16863,7 @@
         "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259367r1212357_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "standard_write_owner",
       "occurrences": 34,
       "representative_rules": [
@@ -16886,7 +16886,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271387r1111140_rule",
         "xccdf_mil.disa.stig_rule_SV-278018r1180760_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "start_type",
       "occurrences": 7,
       "representative_rules": [
@@ -17042,7 +17042,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "state",
       "occurrences": 9238,
       "representative_rules": [
@@ -17081,7 +17081,7 @@
         "xccdf_mil.disa.stig_rule_SV-217172r1184438_rule",
         "xccdf_mil.disa.stig_rule_SV-234992r1184471_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "stderr_line",
       "occurrences": 26,
       "representative_rules": [
@@ -17197,7 +17197,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252961r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "stdout_line",
       "occurrences": 1460,
       "representative_rules": [
@@ -17261,7 +17261,7 @@
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sticky",
       "occurrences": 141,
       "representative_rules": [
@@ -17362,7 +17362,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252919r1190841_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "subexpression",
       "occurrences": 1612,
       "representative_rules": [
@@ -17457,7 +17457,7 @@
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "suid",
       "occurrences": 138,
       "representative_rules": [
@@ -17493,7 +17493,7 @@
         "xccdf_mil.disa.stig_rule_SV-257785r1044833_rule",
         "xccdf_mil.disa.stig_rule_SV-258236r1101920_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "symlink_object",
       "occurrences": 37,
       "representative_rules": [
@@ -17529,7 +17529,7 @@
         "xccdf_mil.disa.stig_rule_SV-257785r1044833_rule",
         "xccdf_mil.disa.stig_rule_SV-258236r1101920_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "symlink_state",
       "occurrences": 37,
       "representative_rules": [
@@ -17567,7 +17567,7 @@
         "xccdf_mil.disa.stig_rule_SV-257785r1044833_rule",
         "xccdf_mil.disa.stig_rule_SV-258236r1101920_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "symlink_test",
       "occurrences": 37,
       "representative_rules": [
@@ -17625,7 +17625,7 @@
         "xccdf_mil.disa.stig_rule_SV-252922r958528_rule",
         "xccdf_mil.disa.stig_rule_SV-252941r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sysctl_object",
       "occurrences": 221,
       "representative_rules": [
@@ -17684,7 +17684,7 @@
         "xccdf_mil.disa.stig_rule_SV-252941r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-253113r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sysctl_state",
       "occurrences": 220,
       "representative_rules": [
@@ -17745,7 +17745,7 @@
         "xccdf_mil.disa.stig_rule_SV-252922r958528_rule",
         "xccdf_mil.disa.stig_rule_SV-252941r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "sysctl_test",
       "occurrences": 221,
       "representative_rules": [
@@ -17780,7 +17780,7 @@
         "xccdf_mil.disa.stig_rule_SV-278078r1180940_rule",
         "xccdf_mil.disa.stig_rule_SV-278079r1180943_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "system_integrity",
       "occurrences": 32,
       "representative_rules": [
@@ -17820,7 +17820,7 @@
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule",
         "xccdf_mil.disa.stig_rule_SV-252927r991562_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "systemdunitproperty_object",
       "occurrences": 114,
       "representative_rules": [
@@ -17860,7 +17860,7 @@
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule",
         "xccdf_mil.disa.stig_rule_SV-252927r991562_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "systemdunitproperty_state",
       "occurrences": 101,
       "representative_rules": [
@@ -17902,7 +17902,7 @@
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule",
         "xccdf_mil.disa.stig_rule_SV-252927r991562_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "systemdunitproperty_test",
       "occurrences": 115,
       "representative_rules": [
@@ -17961,7 +17961,7 @@
         "xccdf_mil.disa.stig_rule_SV-252930r1016301_rule",
         "xccdf_mil.disa.stig_rule_SV-253057r958408_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "text",
       "occurrences": 98,
       "representative_rules": [
@@ -18037,7 +18037,7 @@
         "xccdf_mil.disa.stig_rule_SV-252914r1137691_rule",
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "textfilecontent54_object",
       "occurrences": 5250,
       "representative_rules": [
@@ -18116,7 +18116,7 @@
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule",
         "xccdf_mil.disa.stig_rule_SV-252919r1190841_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "textfilecontent54_state",
       "occurrences": 1599,
       "representative_rules": [
@@ -18194,7 +18194,7 @@
         "xccdf_mil.disa.stig_rule_SV-252914r1137691_rule",
         "xccdf_mil.disa.stig_rule_SV-252915r1016299_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "textfilecontent54_test",
       "occurrences": 4420,
       "representative_rules": [
@@ -18378,7 +18378,7 @@
         "xccdf_mil.disa.stig_rule_SV-252912r1016298_rule",
         "xccdf_mil.disa.stig_rule_SV-252914r1137691_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "title",
       "occurrences": 11722,
       "representative_rules": [
@@ -18415,7 +18415,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259395r961152_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "trustee_name",
       "occurrences": 337,
       "representative_rules": [
@@ -18451,7 +18451,7 @@
         "xccdf_mil.disa.stig_rule_SV-278043r1180835_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "trustee_sid",
       "occurrences": 275,
       "representative_rules": [
@@ -18557,7 +18557,7 @@
         "xccdf_mil.disa.stig_rule_SV-216070r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216071r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "type",
       "occurrences": 1940,
       "representative_rules": [
@@ -18623,7 +18623,7 @@
         "xccdf_mil.disa.stig_rule_SV-252977r958434_rule",
         "xccdf_mil.disa.stig_rule_SV-253008r958444_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "uexec",
       "occurrences": 86,
       "representative_rules": [
@@ -18651,7 +18651,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "uname_object",
       "occurrences": 103,
       "representative_rules": [
@@ -18679,7 +18679,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "uname_state",
       "occurrences": 105,
       "representative_rules": [
@@ -18709,7 +18709,7 @@
         "xccdf_mil.disa.stig_rule_SV-216014r958430_rule",
         "xccdf_mil.disa.stig_rule_SV-216015r958442_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "uname_test",
       "occurrences": 105,
       "representative_rules": [
@@ -18794,7 +18794,7 @@
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule",
         "xccdf_mil.disa.stig_rule_SV-252927r991562_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "unit",
       "occurrences": 114,
       "representative_rules": [
@@ -18832,7 +18832,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-283673r1193224_rule",
         "xccdf_mil.disa.stig_rule_SV-220812r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "unknown_test",
       "occurrences": 34,
       "representative_rules": [
@@ -18860,7 +18860,7 @@
         "xccdf_mil.disa.stig_rule_SV-216439r958566_rule",
         "xccdf_mil.disa.stig_rule_SV-216202r958566_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "uread",
       "occurrences": 13,
       "representative_rules": [
@@ -18890,7 +18890,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "user",
       "occurrences": 16,
       "representative_rules": [
@@ -18925,7 +18925,7 @@
         "xccdf_mil.disa.stig_rule_SV-278051r1180859_rule",
         "xccdf_mil.disa.stig_rule_SV-278052r1180862_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "user_account_management",
       "occurrences": 32,
       "representative_rules": [
@@ -18991,7 +18991,7 @@
         "xccdf_mil.disa.stig_rule_SV-252955r958566_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "user_id",
       "occurrences": 259,
       "representative_rules": [
@@ -19021,7 +19021,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "native_language_gap",
       "name": "user_object",
       "occurrences": 14,
       "representative_rules": [
@@ -19042,7 +19042,7 @@
         "xccdf_mil.disa.stig_rule_SV-220909r958504_rule",
         "xccdf_mil.disa.stig_rule_SV-253433r958504_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "user_sid",
       "occurrences": 2,
       "representative_rules": [
@@ -19063,7 +19063,7 @@
         "xccdf_mil.disa.stig_rule_SV-220909r958504_rule",
         "xccdf_mil.disa.stig_rule_SV-253433r958504_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "user_sid55_object",
       "occurrences": 2,
       "representative_rules": [
@@ -19083,7 +19083,7 @@
         "xccdf_mil.disa.stig_rule_SV-220909r958504_rule",
         "xccdf_mil.disa.stig_rule_SV-253433r958504_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "user_sid55_state",
       "occurrences": 2,
       "representative_rules": [
@@ -19106,7 +19106,7 @@
         "xccdf_mil.disa.stig_rule_SV-220909r958504_rule",
         "xccdf_mil.disa.stig_rule_SV-253433r958504_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "user_sid55_test",
       "occurrences": 2,
       "representative_rules": [
@@ -19135,7 +19135,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "native_language_gap",
       "name": "user_state",
       "occurrences": 21,
       "representative_rules": [
@@ -19167,7 +19167,7 @@
         "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "native_language_gap",
       "name": "user_test",
       "occurrences": 10,
       "representative_rules": [
@@ -19221,7 +19221,7 @@
         "xccdf_mil.disa.stig_rule_SV-252937r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-252969r1190845_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "username",
       "occurrences": 131,
       "representative_rules": [
@@ -19255,7 +19255,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259395r961152_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "userright",
       "occurrences": 152,
       "representative_rules": [
@@ -19291,7 +19291,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259395r961152_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "userright_object",
       "occurrences": 152,
       "representative_rules": [
@@ -19324,7 +19324,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259395r961152_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "userright_state",
       "occurrences": 326,
       "representative_rules": [
@@ -19363,7 +19363,7 @@
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259395r961152_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "userright_test",
       "occurrences": 202,
       "representative_rules": [
@@ -19391,7 +19391,7 @@
         "xccdf_mil.disa.stig_rule_SV-216439r958566_rule",
         "xccdf_mil.disa.stig_rule_SV-216202r958566_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "uwrite",
       "occurrences": 13,
       "representative_rules": [
@@ -19516,7 +19516,7 @@
         "xccdf_mil.disa.stig_rule_SV-252916r958498_rule",
         "xccdf_mil.disa.stig_rule_SV-252922r958528_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "value",
       "occurrences": 4906,
       "representative_rules": [
@@ -19540,7 +19540,7 @@
         "xccdf_mil.disa.stig_rule_SV-216475r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216239r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "value_of",
       "occurrences": 10,
       "representative_rules": [
@@ -19608,7 +19608,7 @@
         "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-252935r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "var_ref",
       "occurrences": 85,
       "representative_rules": [
@@ -19671,7 +19671,7 @@
         "xccdf_mil.disa.stig_rule_SV-216239r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-252996r958412_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "variable_component",
       "occurrences": 1297,
       "representative_rules": [
@@ -19740,7 +19740,7 @@
         "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-252935r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "variable_object",
       "occurrences": 87,
       "representative_rules": [
@@ -19807,7 +19807,7 @@
         "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-252935r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "variable_state",
       "occurrences": 81,
       "representative_rules": [
@@ -19877,7 +19877,7 @@
         "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-252935r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "variable_test",
       "occurrences": 80,
       "representative_rules": [
@@ -19915,7 +19915,7 @@
         "xccdf_mil.disa.stig_rule_SV-278004r1182256_rule",
         "xccdf_mil.disa.stig_rule_SV-278005r1182259_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "verb",
       "occurrences": 80,
       "representative_rules": [
@@ -19946,7 +19946,7 @@
         "xccdf_mil.disa.stig_rule_SV-221719r1134841_rule",
         "xccdf_mil.disa.stig_rule_SV-204458r991589_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "version",
       "occurrences": 230,
       "representative_rules": [
@@ -19996,7 +19996,7 @@
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
         "xccdf_mil.disa.stig_rule_SV-277993r1212171_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "wmi57_object",
       "occurrences": 185,
       "representative_rules": [
@@ -20042,7 +20042,7 @@
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
         "xccdf_mil.disa.stig_rule_SV-277993r1212171_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "wmi57_state",
       "occurrences": 282,
       "representative_rules": [
@@ -20093,7 +20093,7 @@
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
         "xccdf_mil.disa.stig_rule_SV-277993r1212171_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "wmi57_test",
       "occurrences": 228,
       "representative_rules": [
@@ -20134,7 +20134,7 @@
         "xccdf_mil.disa.stig_rule_SV-254396r1137695_rule",
         "xccdf_mil.disa.stig_rule_SV-278143r1182092_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "wmi_object",
       "occurrences": 38,
       "representative_rules": [
@@ -20161,7 +20161,7 @@
         "xccdf_mil.disa.stig_rule_SV-224921r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-225078r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "wmi_state",
       "occurrences": 29,
       "representative_rules": [
@@ -20190,7 +20190,7 @@
         "xccdf_mil.disa.stig_rule_SV-224921r991589_rule",
         "xccdf_mil.disa.stig_rule_SV-225078r958726_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "intentionally_excluded",
       "name": "wmi_test",
       "occurrences": 36,
       "representative_rules": [
@@ -20247,7 +20247,7 @@
         "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
         "xccdf_mil.disa.stig_rule_SV-277993r1212171_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "wql",
       "occurrences": 226,
       "representative_rules": [
@@ -20271,7 +20271,7 @@
         "xccdf_mil.disa.stig_rule_SV-216475r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216239r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "xmlfilecontent_object",
       "occurrences": 15,
       "representative_rules": [
@@ -20296,7 +20296,7 @@
         "xccdf_mil.disa.stig_rule_SV-216475r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216239r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "xmlfilecontent_state",
       "occurrences": 10,
       "representative_rules": [
@@ -20322,7 +20322,7 @@
         "xccdf_mil.disa.stig_rule_SV-216475r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216239r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "xmlfilecontent_test",
       "occurrences": 13,
       "representative_rules": [
@@ -20345,7 +20345,7 @@
         "xccdf_mil.disa.stig_rule_SV-216475r959010_rule",
         "xccdf_mil.disa.stig_rule_SV-216239r959010_rule"
       ],
-      "matrix_status": "unclassified",
+      "matrix_status": "partially_implemented",
       "name": "xpath",
       "occurrences": 13,
       "representative_rules": [
