@@ -264,6 +264,16 @@
       "runtime": "native null means unconstrained/no parameter",
       "proof": "11 primary Rules; SV-220698 source fixture",
       "status": "supported_mapping_missing"
+    },
+    {
+      "category": "Converter/runtime mapping",
+      "feature": "Ordered float comparisons",
+      "schema": "native float datatype and typed comparisons exist",
+      "compiler": "float precision contract not wired into converter",
+      "converter": "currently rejects non-integer ordered expansion",
+      "runtime": "requires explicit binary32/float comparison semantics",
+      "proof": "10 primary Rules; Ubuntu SV-219237 example",
+      "status": "supported_mapping_missing"
     }
   ],
   "qualification": {
@@ -278,7 +288,8 @@
       "Define the typed native Input/Parameter relation adapter for XCCDF Value operators (starting with less_than_or_equal), including allowed values, defaults, cardinality, and check-export binding.",
       "Define the native collection-expression lowering for multi-operand unique/merge without changing OVAL ordering, duplicate, empty, or error semantics.",
       "Finalize deterministic source-identity disambiguation for readable native IDs, preserving source IDs and the 64-character native identifier limit.",
-      "Complete converter lowering for xsi:nil selectors using existing windows.cmdlet nullable contracts; add null, empty, and non-null regression vectors."
+      "Complete converter lowering for xsi:nil selectors using existing windows.cmdlet nullable contracts; add null, empty, and non-null regression vectors.",
+      "Wire ordered float comparisons through the existing native float contract with explicit precision, NaN, infinity, and lexical-error semantics."
     ]
   }
 }
