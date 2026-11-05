@@ -244,6 +244,16 @@
       "runtime": "must validate selected parameter against typed relation",
       "proof": "SV-226057 source fixture; 36 Rules affected",
       "status": "supported_mapping_missing"
+    },
+    {
+      "category": "Converter identity",
+      "feature": "Distinct OVAL nodes with identical human comments",
+      "schema": "native IDs must remain unique",
+      "compiler": "blocked on collision",
+      "converter": "source-ID discriminator not yet applied in all collision cases",
+      "runtime": "not reached",
+      "proof": "45 primary collision Rules; Office 365 SV-223296 example",
+      "status": "supported_mapping_missing"
     }
   ],
   "qualification": {
@@ -256,7 +266,8 @@
       "Approve native capability contracts for remaining WMI/access-token features or retain explicit exclusions.",
       "Reclassify legacy wmi_* and accesstoken_* under one Deprecated OVAL Tests statistic; keep wmi57_* in supported WMI coverage.",
       "Define the typed native Input/Parameter relation adapter for XCCDF Value operators (starting with less_than_or_equal), including allowed values, defaults, cardinality, and check-export binding.",
-      "Define the native collection-expression lowering for multi-operand unique/merge without changing OVAL ordering, duplicate, empty, or error semantics."
+      "Define the native collection-expression lowering for multi-operand unique/merge without changing OVAL ordering, duplicate, empty, or error semantics.",
+      "Finalize deterministic source-identity disambiguation for readable native IDs, preserving source IDs and the 64-character native identifier limit."
     ]
   }
 }
