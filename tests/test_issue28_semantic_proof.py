@@ -173,3 +173,31 @@ class CountRecovery(unittest.TestCase):
         source = ET.fromstring(f'<count xmlns="{OVAL}"/>')
         with self.assertRaisesRegex(ValueError, 'function arity mismatch'):
             visitor.function(source)
+
+class NestedCountRecovery(unittest.TestCase):
+    def test_nested_legacy_function_is_migrated_inside_count(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = ET.fromstring(f'''<count xmlns="{OVAL}">
+          <unique><literal_component datatype="string">a</literal_component></unique>
+        </count>''')
+        expression = visitor.function(source)
+        self.assertEqual(expression['function']['arguments'][0]['function']['name'], 'unique')
+
+class XccdfValueMetadataRecovery(unittest.TestCase):
+    def test_non_executable_value_warning_is_accepted_as_provenance_metadata(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_scap_source import attributes, XCCDF
+        value = ET.fromstring(f'''<Value xmlns="{XCCDF}" id="v" type="number">
+          <warning category="general">Informational guidance</warning>
+          <value>1</value>
+        </Value>''')
+        warnings = value.findall(f'{{{XCCDF}}}warning')
+        self.assertEqual(len(warnings), 1)
+        attributes(warnings[0], {'category', '{http://www.w3.org/XML/1998/namespace}lang'})

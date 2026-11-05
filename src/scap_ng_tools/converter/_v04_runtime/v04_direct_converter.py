@@ -588,7 +588,10 @@ class AssessmentConverter:
                     ensure(-2147483648 <= number <= 2147483647,
                            'substring option outside xsd:int')
                     options[key] = number
-            arguments = [self.function(child) for child in element]
+            from v04_variable_function_migration import canonical_expression
+            # The migration envelope is recursive: nested OVAL functions must
+            # not leave a legacy operator beside the canonical outer call.
+            arguments = [canonical_expression(self.function(child)) for child in element]
             expression = {'function': {'name': operation, 'arguments': arguments,
                                        'options': options}}
             self.conversion_warnings.append({'code': 'native_function_contract_v1',

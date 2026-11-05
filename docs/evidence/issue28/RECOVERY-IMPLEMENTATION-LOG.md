@@ -44,3 +44,11 @@ expression in the pinned contract. XCCDF relational Value constraints likewise
 need a native typed Parameter/Input relation contract; an allowed-values list
 is not a substitute. Both remain explicit blockers rather than silently
 changing source semantics.
+
+## XCCDF Value metadata
+
+Equality-valued XCCDF Values that contain non-executable `<warning>` metadata
+are now admitted by the existing allowed-value Input/Parameter adapter. The
+warning is retained in the source Value XML provenance and is not interpreted
+as a constraint. Relational Value operators remain blocked until the typed
+relation contract is approved.

@@ -30,8 +30,16 @@ def external_input(visitor, element):
            'unbound external Variable or unsupported possible_restriction')
     attributes(value, {'id','type','operator','interactive','interfaceHint','hidden'})
     ensure(value.get('operator','equals')=='equals', 'XCCDF Value operator requires an explicit constraint adapter')
-    ensure(all(n.tag in {'{'+XCCDF+'}'+name for name in ['title','description','value','reference']} for n in value),
+    allowed_children = {'{'+XCCDF+'}'+name for name in
+                       ['title', 'description', 'value', 'reference', 'warning']}
+    ensure(all(n.tag in allowed_children for n in value),
            'XCCDF Value constraints require a supported Parameter adapter')
+    # XCCDF warning text is non-executable guidance. It is retained in the
+    # source Value XML provenance below; it must not be mistaken for an
+    # allowed-value or relational constraint in the native Parameter.
+    for warning in value.findall('{'+XCCDF+'}warning'):
+        attributes(warning, {'category', '{http://www.w3.org/XML/1998/namespace}lang'})
+        ensure(not len(warning), 'complex XCCDF warning is unsupported')
     datatype=element.get('datatype')
     source_type=value.get('type','string')
     ensure(source_type=={'string':'string','boolean':'boolean','int':'number','float':'number'}.get(datatype),
