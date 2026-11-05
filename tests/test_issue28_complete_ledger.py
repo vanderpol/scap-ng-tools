@@ -34,6 +34,7 @@ class Issue28CompleteLedger(unittest.TestCase):
         self.assertEqual(stats['deprecated_oval_tests']['legacy_wmi']['source_rules_nonexcluded'], 37)
         self.assertEqual(stats['wmi57_supported']['source_rules_nonexcluded'], 169)
         self.assertEqual(stats['count_function']['source_rules_nonexcluded'], 37)
+        self.assertEqual(stats['count_function']['primary_blocker_rules'], 37)
 
     def test_primary_blockers_are_stable_root_causes(self):
         for row in self.ledger['primary_blockers']:
