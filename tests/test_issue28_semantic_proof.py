@@ -236,7 +236,24 @@ class RecursionRecovery(unittest.TestCase):
         result = traversal_behaviors(behaviors, acquisition, windows=True, native_recovery=True)
         self.assertEqual(result['traversal'], {'max_depth': 2, 'recurse': 'directories'})
 
-    def test_pattern_path_still_rejects_recursion(self):
+    def test_pattern_path_recovery_drops_invalid_recursion_and_logs(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_file_behaviors import traversal_behaviors
+        behaviors = ET.fromstring('<behaviors max_depth="2" recurse="junctions" recurse_direction="down"/>')
+        acquisition = {'directory': {'matches_regex': '^Windows$'}}
+        warnings = []
+        result = traversal_behaviors(behaviors, acquisition, windows=True,
+                                     native_recovery=True, warnings=warnings)
+        self.assertEqual(result, {'filesystem': 'all'})
+        self.assertEqual(len(warnings), 1)
+        self.assertEqual(warnings[0]['code'], 'oval_invalid_path_recursion_removed')
+        self.assertEqual(warnings[0]['path_kind'], 'pattern_path')
+        self.assertEqual(set(warnings[0]['removed_attributes']),
+                         {'max_depth', 'recurse', 'recurse_direction'})
+
+    def test_pattern_path_still_rejects_recursion_in_historical_mode(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -245,6 +262,21 @@ class RecursionRecovery(unittest.TestCase):
         acquisition = {'directory': {'matches_regex': '^Windows$'}}
         with self.assertRaisesRegex(ValueError, 'pattern-path recursion'):
             traversal_behaviors(behaviors, acquisition, windows=True)
+
+    def test_full_path_recovery_drops_invalid_recursion_and_preserves_filesystem(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_file_behaviors import traversal_behaviors
+        behaviors = ET.fromstring('<behaviors max_depth="bogus" recurse_direction="down" recurse_file_system="local"/>')
+        acquisition = {'full_path': {'equals': 'C:\\Windows\\System32\\x.dll'}}
+        warnings = []
+        result = traversal_behaviors(behaviors, acquisition, windows=True,
+                                     native_recovery=True, warnings=warnings)
+        self.assertEqual(result, {'filesystem': 'local'})
+        self.assertEqual(warnings[0]['path_kind'], 'full_path')
+        self.assertEqual(set(warnings[0]['removed_attributes']),
+                         {'max_depth', 'recurse_direction'})
 
     def test_typed_case_insensitive_hierarchy_key_allows_downward_traversal(self):
         import xml.etree.ElementTree as ET

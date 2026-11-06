@@ -9,9 +9,9 @@ Rules: **8892** across **65** benchmarks.
 | Category | Rules |
 |---|---:|
 | `automated_converted_proved` | 0 |
-| `automated_converted_unproved` | 6785 |
+| `automated_converted_unproved` | 6792 |
 | `manual_only` | 1581 |
-| `genuinely_blocked` | 317 |
+| `genuinely_blocked` | 310 |
 | `intentionally_excluded` | 209 |
 
 No Rules are independently proved by this authoring ledger.
@@ -54,7 +54,7 @@ No Rules are independently proved by this authoring ledger.
 | U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip | 68 | 53 | 13 | 2 | 0 |
 | U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip | 66 | 50 | 15 | 1 | 0 |
 | U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip | 137 | 137 | 0 | 0 | 0 |
-| U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip | 40 | 22 | 15 | 3 | 0 |
+| U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip | 40 | 23 | 15 | 2 | 0 |
 | U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip | 44 | 26 | 11 | 7 | 0 |
 | U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip | 43 | 18 | 24 | 1 | 0 |
 | U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip | 49 | 15 | 29 | 5 | 0 |
@@ -64,15 +64,15 @@ No Rules are independently proved by this authoring ledger.
 | U_MS_SQL_Server_2016_Instance_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip | 84 | 0 | 0 | 0 | 84 |
 | U_MS_SQL_Server_2022_Database_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip | 23 | 0 | 0 | 0 | 23 |
 | U_MS_SQL_Server_2022_Instance_V1R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip | 79 | 0 | 0 | 0 | 79 |
-| U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip | 267 | 225 | 12 | 30 | 0 |
-| U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip | 257 | 244 | 11 | 2 | 0 |
+| U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip | 267 | 226 | 12 | 29 | 0 |
+| U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip | 257 | 245 | 11 | 1 | 0 |
 | U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip | 364 | 210 | 96 | 58 | 0 |
 | U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip | 329 | 191 | 82 | 56 | 0 |
 | U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip | 21 | 20 | 1 | 0 | 0 |
-| U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip | 272 | 198 | 28 | 46 | 0 |
-| U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip | 282 | 252 | 27 | 3 | 0 |
-| U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip | 278 | 248 | 27 | 3 | 0 |
-| U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip | 291 | 258 | 30 | 3 | 0 |
+| U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip | 272 | 199 | 28 | 45 | 0 |
+| U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip | 282 | 253 | 27 | 2 | 0 |
+| U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip | 278 | 249 | 27 | 2 | 0 |
+| U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip | 291 | 259 | 30 | 2 | 0 |
 | U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip | 81 | 39 | 40 | 2 | 0 |
 | U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip | 243 | 169 | 72 | 2 | 0 |
 | U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip | 376 | 322 | 52 | 2 | 0 |
@@ -98,7 +98,6 @@ No Rules are independently proved by this authoring ledger.
 | schema-semantic | native function contract admission: split | 19 | xccdf_mil.disa.stig_rule_SV-219147r958472_rule, xccdf_mil.disa.stig_rule_SV-219148r958472_rule, xccdf_mil.disa.stig_rule_SV-271653r1091671_rule |
 | unsupported-capability | unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object | 14 | xccdf_mil.disa.fso_rule_SV-225230r1117185_rule, xccdf_mil.disa.fso_rule_SV-225232r1050651_rule, xccdf_mil.disa.fso_rule_SV-225234r1188289_rule |
 | unsupported-capability | unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test | 8 | xccdf_mil.disa.stig_rule_SV-220952r1051038_rule, xccdf_mil.disa.stig_rule_SV-253476r1210304_rule, xccdf_mil.disa.fso_rule_SV-225448r569185_rule |
-| unsupported-construct | invalid original pattern-path recursion attributes | 7 | xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218801r961083_rule, xccdf_mil.disa.stig_rule_SV-220723r991589_rule, xccdf_mil.disa.stig_rule_SV-253280r991589_rule |
 | schema-semantic | native function contract admission: arithmetic | 3 | xccdf_mil.disa.stig_rule_SV-274067r1120653_rule, xccdf_mil.disa.stig_rule_SV-271596r1091500_rule, xccdf_mil.disa.stig_rule_SV-258155r1045300_rule |
 | schema-semantic | native Variable declared/derived datatype mismatch | 3 | xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule, xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule, xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214492r879887_rule |
 | unsupported-construct | check-export source/Variable datatype mismatch | 2 | xccdf_mil.disa.fso_rule_SV-226276r794552_rule, xccdf_mil.disa.fso_rule_SV-225453r569185_rule |

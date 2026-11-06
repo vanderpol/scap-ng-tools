@@ -12,7 +12,6 @@ The complete ledger now groups generated schema diagnostics by stable root cause
 | schema-semantic | native function contract admission: split | 19 | `xccdf_mil.disa.stig_rule_SV-219147r958472_rule` |
 | unsupported-capability | unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object | 14 | `xccdf_mil.disa.fso_rule_SV-225230r1117185_rule` |
 | unsupported-capability | unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test | 8 | `xccdf_mil.disa.stig_rule_SV-220952r1051038_rule` |
-| unsupported-construct | invalid original pattern-path recursion attributes | 7 | `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218801r961083_rule` |
 | schema-semantic | native function contract admission: arithmetic | 3 | `xccdf_mil.disa.stig_rule_SV-274067r1120653_rule` |
 | schema-semantic | native Variable declared/derived datatype mismatch | 3 | `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule` |
 | unsupported-construct | check-export source/Variable datatype mismatch | 2 | `xccdf_mil.disa.fso_rule_SV-226276r794552_rule` |
@@ -29,7 +28,7 @@ The complete ledger now groups generated schema diagnostics by stable root cause
 | unsupported-capability | state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180 | 1 | `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule` |
 | unsupported-construct | Assessment Input function composition requires a supported typed expression | 1 | `xccdf_mil.disa.stig_rule_SV-221718r991590_rule` |
 
-**Primary total: 317 genuinely blocked Rules.** The mutually exclusive classification remains 6,785 automated converted but unproved, 1,581 manual-only, 317 genuinely blocked, 209 intentionally excluded, and 0 independently proved out of 8,892 Rules.
+**Primary total: 310 genuinely blocked Rules.** The mutually exclusive classification is 6,792 automated converted but unproved, 1,581 manual-only, 310 genuinely blocked, 209 intentionally excluded, and 0 independently proved out of 8,892 Rules.
 
 ## Overlapping feature diagnostics and intentional exclusions
 
@@ -42,14 +41,14 @@ The complete ledger now groups generated schema diagnostics by stable root cause
 | Float ordered comparisons | 10 | Finite binary32 conversion recovered; all remain independently unproved |
 | SQLEXT-dependent SQL | 209 | Intentionally excluded from conversion scope; source retained and counted separately |
 
-These feature rows are diagnostic and may overlap a Rule; they are not added to the 317 primary total.
+These feature rows are diagnostic and may overlap a Rule; they are not added to the 310 primary total.
 
 ## Genuine language and contract gaps
 
 - XCCDF relational Value constraints require a typed Input/Parameter relation contract; allowed-values-only lowering is not faithful.
 - Multi-component `unique`/`merge` require collection-expression admission that preserves source order, duplicates, empty values, and error/unknown propagation.
 - Native function admission remains pending for arithmetic, `count`, `split`, `substring`, and related recovered forms. The pinned active Assessment schema rejects canonical function calls.
-- Native traversal admission remains pending for one registry traversal shape; pattern paths, full paths, and upward recursion remain fail-closed.
+- Native traversal admission remains pending for one registry traversal shape. Source-invalid pattern/full-path recursion controls are now removed in native recovery with provenance warnings; upward/deprecated recursion remains fail-closed.
 - Three Rules have a declared/derived Variable datatype mismatch, and one has an explicit unsupported cast boundary. No silent cast is applied.
 - Remaining IIS/NGINX capability mismatches, unsupported `windows.user_*`, and composed Input expressions require approved mappings/contracts.
 

@@ -127,7 +127,7 @@ A source ordered comparison carries an explicit non-integer datatype:
 <windows:version datatype="version" operation="greater than or equal">25</windows:version>
 ```
 
-## Invalid pattern-path recursion attributes
+## Recovered source shape: invalid pattern-path recursion attributes
 
 .NET Framework source file object behavior:
 

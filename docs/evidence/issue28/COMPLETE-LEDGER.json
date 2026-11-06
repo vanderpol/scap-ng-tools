@@ -46,11 +46,6 @@
       "rules": 48
     },
     {
-      "category": "unsupported-construct",
-      "message": "invalid original pattern-path recursion attributes",
-      "rules": 40
-    },
-    {
       "category": "unsupported-capability",
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:181",
       "rules": 38
@@ -217,8 +212,8 @@
     }
   ],
   "baseline": {
-    "blocked": 317,
-    "converted": 6785,
+    "blocked": 310,
+    "converted": 6792,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "total": 8892
@@ -838,19 +833,18 @@
       "source_sha256": "c0d20d64249769c052f8ff9ecef3ddffb2944064b6211a9c8afb3f6dfb962f81"
     },
     {
-      "automated_converted": 22,
-      "blocked": 3,
+      "automated_converted": 23,
+      "blocked": 2,
       "blocker_categories": {
         "unsupported-capability": 1,
-        "unsupported-construct": 2
+        "unsupported-construct": 1
       },
-      "converted": 22,
+      "converted": 23,
       "filename": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 15,
       "primary_blockers": {
         "Variable cast outside bounded proof": 1,
-        "invalid original pattern-path recursion attributes": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
       },
       "scope": "in_scope",
@@ -1016,18 +1010,16 @@
       "source_sha256": "5a05495768b1076a53ee6089949ba0209a0121d8728e766fd91b4b2442ad0f33"
     },
     {
-      "automated_converted": 225,
-      "blocked": 30,
+      "automated_converted": 226,
+      "blocked": 29,
       "blocker_categories": {
-        "unsupported-capability": 29,
-        "unsupported-construct": 1
+        "unsupported-capability": 29
       },
-      "converted": 225,
+      "converted": 226,
       "filename": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 12,
       "primary_blockers": {
-        "invalid original pattern-path recursion attributes": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 28,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state": 28,
@@ -1040,18 +1032,16 @@
       "source_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee"
     },
     {
-      "automated_converted": 244,
-      "blocked": 2,
+      "automated_converted": 245,
+      "blocked": 1,
       "blocker_categories": {
-        "unsupported-capability": 1,
-        "unsupported-construct": 1
+        "unsupported-capability": 1
       },
-      "converted": 244,
+      "converted": 245,
       "filename": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 11,
       "primary_blockers": {
-        "invalid original pattern-path recursion attributes": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_state": 1,
         "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test": 1
@@ -1129,19 +1119,18 @@
       "source_sha256": "d16c868152e14bab0a1e2ecdfa6ec889972e068625d4d20d4ac3f861ff2009ca"
     },
     {
-      "automated_converted": 198,
-      "blocked": 46,
+      "automated_converted": 199,
+      "blocked": 45,
       "blocker_categories": {
         "unsupported-capability": 40,
-        "unsupported-construct": 6
+        "unsupported-construct": 5
       },
-      "converted": 198,
+      "converted": 199,
       "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 28,
       "primary_blockers": {
         "XCCDF Value operator requires an explicit constraint adapter": 5,
-        "invalid original pattern-path recursion attributes": 1,
         "unbound external Variable or unsupported possible_restriction": 5,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 38,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 3,
@@ -1155,18 +1144,16 @@
       "source_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8"
     },
     {
-      "automated_converted": 252,
-      "blocked": 3,
+      "automated_converted": 253,
+      "blocked": 2,
       "blocker_categories": {
-        "unsupported-capability": 2,
-        "unsupported-construct": 1
+        "unsupported-capability": 2
       },
-      "converted": 252,
+      "converted": 253,
       "filename": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 27,
       "primary_blockers": {
-        "invalid original pattern-path recursion attributes": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_state": 1,
@@ -1177,18 +1164,16 @@
       "source_sha256": "54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1"
     },
     {
-      "automated_converted": 248,
-      "blocked": 3,
+      "automated_converted": 249,
+      "blocked": 2,
       "blocker_categories": {
-        "unsupported-capability": 2,
-        "unsupported-construct": 1
+        "unsupported-capability": 2
       },
-      "converted": 248,
+      "converted": 249,
       "filename": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 27,
       "primary_blockers": {
-        "invalid original pattern-path recursion attributes": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_state": 1,
@@ -1199,18 +1184,16 @@
       "source_sha256": "5ba5577961a13ded0d4e9a0c6603f93b8201b4fc74d23ef679eba7726e0182f4"
     },
     {
-      "automated_converted": 258,
-      "blocked": 3,
+      "automated_converted": 259,
+      "blocked": 2,
       "blocker_categories": {
-        "unsupported-capability": 2,
-        "unsupported-construct": 1
+        "unsupported-capability": 2
       },
-      "converted": 258,
+      "converted": 259,
       "filename": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 30,
       "primary_blockers": {
-        "invalid original pattern-path recursion attributes": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_state": 1,
@@ -1489,8 +1472,8 @@
   ],
   "classification": {
     "automated_converted_proved": 0,
-    "automated_converted_unproved": 6785,
-    "genuinely_blocked": 317,
+    "automated_converted_unproved": 6792,
+    "genuinely_blocked": 310,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "proof_note": "No Rules are independently proved by this authoring ledger."
@@ -1704,28 +1687,6 @@
       ],
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
       "rules": 8
-    },
-    {
-      "category": "unsupported-construct",
-      "examples": [
-        {
-          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218801r961083_rule",
-          "title": "Java software installed on a production IIS 10.0 web server must be limited to .class files and the Java Virtual Machine."
-        },
-        {
-          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-220723r991589_rule",
-          "title": "Software certificate installation files must be removed from Windows 10."
-        },
-        {
-          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
-          "source_rule": "xccdf_mil.disa.stig_rule_SV-253280r991589_rule",
-          "title": "Software certificate installation files must be removed from Windows 11."
-        }
-      ],
-      "message": "invalid original pattern-path recursion attributes",
-      "rules": 7
     },
     {
       "category": "schema-semantic",

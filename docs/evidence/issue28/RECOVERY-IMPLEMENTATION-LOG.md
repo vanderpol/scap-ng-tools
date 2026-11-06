@@ -30,6 +30,17 @@ recursion. Pattern paths still reject recursion attributes, full paths remain
 non-recursive, and upward/deprecated directions remain rejected. The .NET
 Framework `SV-225229` source Rule is a focused corpus regression.
 
+## Invalid path-pattern recursion
+
+The seven source Rules previously blocked by OVAL-invalid `max_depth`, `recurse`,
+or `recurse_direction` attributes on Windows pattern/full paths now use a narrow
+native recovery. The selector and filesystem scope are preserved; only the invalid
+recursion controls are removed, with source element identity, removed values, and
+scanner-unproved status recorded under `oval_invalid_path_recursion_removed`.
+No default filesystem traversal is fabricated, and the historical converter still
+rejects the source shape. The rebuilt 65-benchmark ledger moves these 7 Rules from
+blocked to automated-converted-unproved; this is not an independent semantic proof.
+
 ## Count
 
 The recovery visitor now emits the canonical 0.4 function-call envelope

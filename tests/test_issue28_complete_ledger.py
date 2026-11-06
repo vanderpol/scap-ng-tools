@@ -25,9 +25,9 @@ class Issue28CompleteLedger(unittest.TestCase):
             'automated_converted_proved', 'automated_converted_unproved',
             'manual_only', 'genuinely_blocked', 'intentionally_excluded')), 8892)
         self.assertEqual(classification['automated_converted_proved'], 0)
-        self.assertEqual(classification['automated_converted_unproved'], 6785)
+        self.assertEqual(classification['automated_converted_unproved'], 6792)
         self.assertEqual(classification['manual_only'], 1581)
-        self.assertEqual(classification['genuinely_blocked'], 317)
+        self.assertEqual(classification['genuinely_blocked'], 310)
         self.assertEqual(classification['intentionally_excluded'], 209)
 
     def test_deprecated_and_supported_wmi_stats_are_separate(self):
@@ -43,7 +43,7 @@ class Issue28CompleteLedger(unittest.TestCase):
             if row['category'] == 'schema-semantic':
                 self.assertNotIn('authoring/direct-slice', row['message'])
                 self.assertNotIn("'function':", row['message'])
-        self.assertEqual(sum(row['rules'] for row in self.ledger['primary_blockers']), 317)
+        self.assertEqual(sum(row['rules'] for row in self.ledger['primary_blockers']), 310)
 
     def test_source_inventory_matches_owner_baseline(self):
         self.assertEqual(self.inventory['source_count'], 65)

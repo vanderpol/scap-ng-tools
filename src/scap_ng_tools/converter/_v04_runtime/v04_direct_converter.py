@@ -428,7 +428,8 @@ class AssessmentConverter:
                 text_part, traversal_part = split_behaviors(behaviors,
                     {'ignore_case', 'multiline', 'singleline', 'item_creation'},
                     {'max_depth', 'recurse', 'recurse_direction', 'recurse_file_system'})
-                textfile_path_controls(traversal_part, acquisition, native_recovery=self.native_recovery)
+                textfile_path_controls(traversal_part, acquisition, native_recovery=self.native_recovery,
+                                     warnings=self.conversion_warnings)
                 acquisition.update(file_behaviors(text_part))
             if mapping['capability'] == 'independent.shellcommand':
                 from v04_direct_command_behaviors import command_behaviors
@@ -441,7 +442,7 @@ class AssessmentConverter:
                     acquisition.update(traversal_behaviors(traversal_part, acquisition,
                         windows=mapping['native']['traversal_definition'] == 'windows_file_traversal',
                         selector_map=mapping['native'].get('selector_map', {}),
-                        native_recovery=self.native_recovery))
+                        native_recovery=self.native_recovery, warnings=self.conversion_warnings))
                 if 'content' not in acquisition:
                     acquisition.setdefault('filesystem', 'all')
             if mapping['native'].get('traversal_definition') == 'hierarchy_traversal':
