@@ -5,9 +5,9 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'tools'))
-from issue28_semantics import (Outcome, arithmetic, concat, count, flatten_components,
-                               quantify, regex_capture, split, substring, unique, merge,
-                               EXISTENCE)
+from issue28_semantics import (Outcome, arithmetic, arithmetic_components, concat, concat_components,
+                               count, flatten_components, quantify, regex_capture, split, substring,
+                               unique, merge, EXISTENCE)
 
 
 class OVALReferenceVectors(unittest.TestCase):
@@ -27,15 +27,26 @@ class OVALReferenceVectors(unittest.TestCase):
     def test_function_vectors_include_empty_and_nested_values(self):
         self.assertEqual(split('', ','), [''])
         self.assertEqual(split('a,,b', ','), ['a', '', 'b'])
-        self.assertEqual(substring('abcdef', 1, 3), 'bcd')
+        self.assertEqual(substring('abcdef', 1, 3), 'abc')
         self.assertEqual(substring('abcdef', 0, 0), '')
         self.assertEqual(concat(['', 'a', '']), 'a')
         self.assertEqual(regex_capture('id=42', r'id=(\d+)'), ['42'])
-        self.assertEqual(regex_capture('no match', r'id=(\d+)'), [])
+        self.assertEqual(regex_capture('no match', r'id=(\d+)'), [''])
         self.assertEqual(unique(['b', 'a', 'b', '']), ['b', 'a', ''])
         self.assertEqual(merge(['10', '2'], ',', sort='numeric'), '2,10')
         self.assertEqual(arithmetic([1, 2, 3], 'add'), 6)
         self.assertEqual(arithmetic([2, 3, 4], 'multiply'), 24)
+
+    def test_oval_cartesian_and_boundary_vectors(self):
+        self.assertEqual(arithmetic_components([[1, 2], [10, 20]], 'add'), [11, 21, 12, 22])
+        self.assertEqual(concat_components([['a', 'b'], ['1', '2']]),
+                         ['a1', 'a2', 'b1', 'b2'])
+        self.assertEqual(split('', ''), [''])
+        self.assertEqual(substring('abcdef', 0, 2), 'ab')
+        self.assertEqual(substring('abcdef', 3, -1), 'cdef')
+        self.assertEqual(substring('abcdef', 99, 1), Outcome.ERROR)
+        self.assertEqual(merge(['b', 'a'], ',', sort='document', order='descending'), 'b,a')
+        self.assertEqual(merge(['10', '2'], ',', sort='numeric', order='descending'), '10,2')
 
     def test_cardinality_and_error_propagation_vectors(self):
         self.assertEqual(quantify([], 'one_or_more'), Outcome.FALSE)
@@ -121,6 +132,36 @@ class NativeFunctionContractSemantics(unittest.TestCase):
                                   'options': {'substring_start': 1, 'substring_length': 2}}}
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
                                          'expression': substring})['result-variable'], 'string')
+
+    def test_recovered_function_contract_accepts_count_and_multi_component_aggregation(self):
+        count = {'function': {'name': 'count', 'arguments': [
+            self._literal('string', ['a', 'b']),
+            self._literal('integer', [1, 2])], 'options': {}}}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'integer',
+                                         'expression': count})['result-variable'], 'integer')
+        unique = {'function': {'name': 'unique', 'arguments': [
+            self._literal('string', ['a', 'b']), self._literal('string', ['b', 'c'])],
+            'options': {}}}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
+                                         'expression': unique})['result-variable'], 'string')
+        merge = {'function': {'name': 'merge', 'arguments': [
+            self._literal('integer', [10, 2]), self._literal('string', [''])],
+            'options': {'delimiter': ',', 'sort': 'numeric', 'order': 'ascending'}}}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
+                                         'expression': merge})['result-variable'], 'string')
+
+    def test_recovered_function_contract_rejects_bad_domains_and_arity(self):
+        empty_concat = {'function': {'name': 'concat', 'arguments': [
+            self._literal('string', [])], 'options': {}}}
+        with self.assertRaisesRegex(ValueError, 'at least two'):
+            self._validate({'kind': 'local', 'datatype': 'string', 'expression': empty_concat})
+        bad_unique = {'function': {'name': 'unique', 'arguments': [
+            self._literal('integer', [1, 2])], 'options': {}}}
+        with self.assertRaisesRegex(ValueError, 'string operands'):
+            self._validate({'kind': 'local', 'datatype': 'string', 'expression': bad_unique})
+        bad_count = {'function': {'name': 'count', 'arguments': [], 'options': {}}}
+        with self.assertRaisesRegex(ValueError, 'one or more'):
+            self._validate({'kind': 'local', 'datatype': 'integer', 'expression': bad_count})
 
     def test_owner_function_subset_rejects_implicit_casts_and_bad_options(self):
         numeric_split = {'function': {'name': 'split', 'arguments': [self._literal('integer', 2)],
@@ -314,6 +355,8 @@ class CountRecovery(unittest.TestCase):
 
     def test_count_requires_at_least_one_operand(self):
         import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
         from v04_direct_converter import AssessmentConverter
         from v04_direct_scap_source import OVAL
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
@@ -323,6 +366,8 @@ class CountRecovery(unittest.TestCase):
 
     def test_count_preserves_all_source_components(self):
         import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
         from v04_direct_converter import AssessmentConverter
         from v04_direct_scap_source import OVAL
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
@@ -338,6 +383,8 @@ class CountRecovery(unittest.TestCase):
 class MultiComponentAggregationRecovery(unittest.TestCase):
     def test_unique_preserves_ordered_components_in_recovery_envelope(self):
         import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
         from v04_direct_converter import AssessmentConverter
         from v04_direct_scap_source import OVAL
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
@@ -353,6 +400,8 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
 
     def test_merge_preserves_options_and_components_in_recovery_envelope(self):
         import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
         from v04_direct_converter import AssessmentConverter
         from v04_direct_scap_source import OVAL
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
@@ -368,6 +417,8 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
 
     def test_default_path_still_rejects_multi_component_aggregation(self):
         import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
         from v04_direct_converter import AssessmentConverter
         from v04_direct_scap_source import OVAL
         visitor = AssessmentConverter(None, None, [])

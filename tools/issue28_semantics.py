@@ -7,6 +7,7 @@ non-Boolean outcomes.
 """
 from __future__ import annotations
 
+import itertools
 import re
 from enum import Enum
 
@@ -18,6 +19,8 @@ class Outcome(str, Enum):
     UNKNOWN = 'unknown'
     NOT_EVALUATED = 'not_evaluated'
     NOT_APPLICABLE = 'not_applicable'
+    INCOMPLETE = 'incomplete'
+    NOT_COLLECTED = 'not_collected'
 
 
 # The outer OVAL Test population contract and the native 0.4 contract are
@@ -33,7 +36,8 @@ EXISTENCE = {
 
 
 def _propagate(values):
-    for status in (Outcome.ERROR, Outcome.UNKNOWN, Outcome.NOT_APPLICABLE,
+    for status in (Outcome.ERROR, Outcome.UNKNOWN, Outcome.INCOMPLETE,
+                   Outcome.NOT_COLLECTED, Outcome.NOT_APPLICABLE,
                    Outcome.NOT_EVALUATED):
         if status in values:
             return status
@@ -84,23 +88,52 @@ def flatten_components(components):
     return result
 
 
+def cartesian_components(components, operation):
+    """Apply *operation* to the OVAL ordered Cartesian product.
+
+    A component is a collection, not a scalar shortcut.  An empty component
+    therefore yields an empty result population; diagnostic statuses remain
+    caller-visible rather than being converted to empty strings.
+    """
+    populations = [list(component) for component in components]
+    if any(not population for population in populations):
+        return []
+    return [operation(*values) for values in itertools.product(*populations)]
+
+
 def split(value, delimiter):
-    return value.split(delimiter)
+    # Empty is a literal delimiter: it occurs nowhere, so the source value is
+    # one preserved value rather than a host-language regex/split error.
+    return [value] if delimiter == '' else value.split(delimiter)
 
 
 def substring(value, start, length):
-    if start < 0 or length < 0:
-        raise ValueError('OVAL substring requires non-negative start/length')
-    return value[start:start + length]
+    # OVAL positions are one-based.  Values below one clamp to the first
+    # character, values beyond the end are evaluation errors, and negative or
+    # oversized lengths mean the remainder.
+    start = max(1, start)
+    if start > len(value):
+        return Outcome.ERROR
+    offset = start - 1
+    if length < 0 or length > len(value) - offset:
+        return value[offset:]
+    return value[offset:offset + length]
 
 
 def concat(values):
     return ''.join(values)
 
 
+def concat_components(components):
+    return cartesian_components(components, lambda *values: ''.join(values))
+
+
 def regex_capture(value, pattern):
     match = re.search(pattern, value)
-    return [] if match is None else [match.group(1) if match.groups() else match.group(0)]
+    # OVAL returns an empty string for both no capture and no match.
+    if match is None or not match.groups():
+        return ['']
+    return [match.group(1)]
 
 
 def unique(values):
@@ -120,9 +153,13 @@ def merge(values, delimiter='', sort='document', order='ascending'):
     elif sort == 'natural':
         values.sort(key=lambda value: [int(token) if token.isdigit() else token
                                        for token in re.split(r'(\d+)', str(value))])
-    if order == 'descending':
+    if order == 'descending' and sort != 'document':
         values.reverse()
     return delimiter.join(str(value) for value in values)
+
+
+def arithmetic_components(components, operation):
+    return cartesian_components(components, lambda *values: arithmetic(values, operation))
 
 
 def arithmetic(values, operation):

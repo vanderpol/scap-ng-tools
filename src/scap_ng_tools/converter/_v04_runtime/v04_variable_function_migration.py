@@ -1,4 +1,4 @@
-"""Pure, opt-in migration of the five currently emitted/recovered OVAL function forms.
+"""Pure, opt-in migration of the recovered OVAL variable-function forms.
 
 This module does not modify source files or change production converter output.
 The caller is responsible for validating the result and preserving provenance.

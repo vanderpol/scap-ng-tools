@@ -1,8 +1,8 @@
-"""Decision 29: closed native expression/type validation, never value execution.
+"""Closed native expression/type validation, never value execution.
 
-The active function branch is intentionally limited to the owner-directed
-arithmetic, split, and substring contract. Collection flags, multiplicities,
-and runtime lexical-cast failures are not evaluated here.
+Function calls are checked as typed collection transformations.  This module
+does not execute values: cardinality, Cartesian products, ordering and status
+propagation are runtime contracts covered by the independent OVAL oracle.
 """
 from functools import lru_cache
 import json
@@ -54,9 +54,10 @@ def assessment_variable_expressions(assessment):
             return {domain}
         values = value if isinstance(value, list) else [value]
         if not values:
-            if expected is None:
-                raise ValueError('empty literal array needs its declared datatype')
-            return {expected}
+            # Empty collections carry no scalar datatype.  Consumers such as
+            # count may still operate on them; typed string consumers pass an
+            # expected domain and therefore remain explicit.
+            return set() if expected is None else {expected}
         types = {scalar_type(v) for v in values}
         if expected in TEXT_TYPES and types == {'string'}:
             return {expected}
@@ -115,36 +116,78 @@ def assessment_variable_expressions(assessment):
                     if any(isinstance(options[key], bool) or not isinstance(options[key], int)
                            or not -2147483648 <= options[key] <= 2147483647 for key in required):
                         raise ValueError('substring options must be signed 32-bit integers')
-                domain = expression(arguments[0])
+                domain = expression(arguments[0], 'string')
                 if not domain or not domain <= {'string'}:
                     raise ValueError(name + ' requires string operands')
                 return {'string'}
+            if name == 'count':
+                if len(arguments) < 1 or options:
+                    raise ValueError('count requires one or more arguments and no options')
+                # Count is the one function in this group whose input domain
+                # is intentionally unconstrained: OVAL counts flattened
+                # values, including records and empty populations.
+                for argument in arguments:
+                    expression(argument)
+                return {'integer'}
+            if name == 'concat':
+                if len(arguments) < 2 or options:
+                    raise ValueError('concat requires at least two arguments and no options')
+                for argument in arguments:
+                    domain = expression(argument, 'string')
+                    if not domain or not domain <= {'string'}:
+                        raise ValueError('concat requires string operands')
+                return {'string'}
+            if name == 'regex_capture':
+                if len(arguments) != 1 or set(options) != {'pattern'} or not isinstance(options['pattern'], str):
+                    raise ValueError('regex_capture requires one string argument and a pattern')
+                domain = expression(arguments[0], 'string')
+                if not domain or not domain <= {'string'}:
+                    raise ValueError('regex_capture requires string operands')
+                return {'string'}
+            if name == 'unique':
+                if len(arguments) < 1 or options:
+                    raise ValueError('unique requires one or more arguments and no options')
+                for argument in arguments:
+                    domain = expression(argument, 'string')
+                    if not domain or 'record' in domain or not domain <= {'string'}:
+                        raise ValueError('unique requires string operands')
+                return {'string'}
+            if name == 'merge':
+                required = {'delimiter', 'sort', 'order'}
+                if len(arguments) < 1 or set(options) != required:
+                    raise ValueError('merge requires one or more arguments and explicit options')
+                if (not isinstance(options['delimiter'], str) or
+                        options['sort'] not in ('document', 'lexical', 'numeric', 'natural') or
+                        options['order'] not in ('ascending', 'descending')):
+                    raise ValueError('merge has invalid explicit options')
+                for argument in arguments:
+                    domain = expression(argument)
+                    # OVAL merge stringifies simple values, but a record is
+                    # not a simple value and cannot be silently flattened.
+                    if not domain or 'record' in domain:
+                        raise ValueError('merge requires scalar values')
+                return {'string'}
             raise ValueError('unsupported native Variable function: ' + str(name))
         if op == 'unique':
-            domains = expression(value, declared)
-            if 'record' in domains:
-                raise ValueError('unique supports scalar values, not record transformations')
-            return domains
+            domains = expression(value, 'string')
+            if not domains or 'record' in domains or not domains <= {'string'}:
+                raise ValueError('unique requires string operands')
+            return {'string'}
         if op == 'concat':
             for arg in value:
-                compatible(expression(arg), 'string', 'concat argument')
+                domain = expression(arg, 'string')
+                if not domain or not domain <= {'string'}:
+                    raise ValueError('concat requires string operands')
             return {'string'}
         if op in ('regex_capture', 'merge'):
             arg = value['value' if op == 'regex_capture' else 'values']
-            argument_types = expression(arg)
+            argument_types = expression(arg, 'string' if op == 'regex_capture' else None)
             if op == 'merge':
-                if 'record' in argument_types:
+                if not argument_types or 'record' in argument_types:
                     raise ValueError('merge requires scalar values')
-            else:
-                compatible(argument_types, 'string', op + ' argument')
-            if op == 'regex_capture':
-                # Existing explicit local-Variable result-type boundary. The
-                # captured lexical result may be integer 5; the text input is
-                # not parsed as an integer. Runtime invalid/empty lexical values
-                # remain errors/empty populations, never fabricated zeroes.
-                if declared == 'record':
-                    raise ValueError('regex_capture cannot derive a record')
-                return {declared or 'string'}
+                return {'string'}
+            if not argument_types or not argument_types <= {'string'}:
+                raise ValueError('regex_capture requires string operands')
             return {'string'}
         raise ValueError('unsupported native Variable expression: ' + op)
 
