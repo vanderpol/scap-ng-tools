@@ -87,6 +87,13 @@ class VariableDatatypeInventory(unittest.TestCase):
         self.assertEqual(self.audit['inventory']['dependency_audit']['unresolved_references'], [])
         self.assertEqual(self.audit['inventory']['dependency_audit']['cycle_count'], 0)
 
+    def test_report_contains_owner_design_gate_and_no_implicit_cast_claim(self):
+        report = (ROOT / 'docs/evidence/issue28/OVAL-VARIABLE-DATATYPE-AUDIT.md').read_text()
+        for design in ('**A. Optional datatype', '**B. Omit datatype', '**C. Retain explicit'):
+            self.assertIn(design, report)
+        self.assertIn('0.4 schema, compiler', report)
+        self.assertIn('No source declaration', report)
+
     def test_oval_lexical_boundary_vectors(self):
         audit = load_audit_script()
         self.assertTrue(audit.lexical_valid('+001', 'int'))

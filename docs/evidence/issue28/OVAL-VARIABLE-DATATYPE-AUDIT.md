@@ -98,6 +98,52 @@ The JSON contains the original XML declaration for every function-bearing or mis
 
 The existing OpenSCAP 1.3.9 receipt in [`OVAL-FUNCTION-DATATYPE-EVALUATOR.txt`](OVAL-FUNCTION-DATATYPE-EVALUATOR.txt) observes numeric-to-string and per-value split-to-int behavior with `--skip-validation`. OpenSCAP advertises OVAL 5.11.1, so this is evaluator behavior evidence only—not independent OVAL 5.12.3 equivalence proof. No SCAP-NG compiler/runtime executable is present in the checked-out schema/tools repositories.
 
+## Design alternatives and migration compatibility
+
+| Design | 0.4 compatibility | Dynamic/object/external safety | Assessment |
+| --- | --- | --- | --- |
+| **A. Optional datatype with inferred defaults** | Existing explicit declarations remain valid; omitted declarations are additive only if every consumer accepts an inferred domain. | Not sound at object, external, union, empty, or error boundaries; compiler/runtime agreement would still be required. | Do not adopt for 0.4 without a complete contract. |
+| **B. Omit datatype when safely inferable; require it at ambiguous boundaries** | Changes authoring requirements and diagnostics; migration must decide how old explicit declarations interact with inferred results. | Better than A but still needs compiler analysis and explicit handling of dynamic values, cycles, and status propagation. | A possible future design, not implemented. |
+| **C. Retain explicit 0.4 declarations; defer inference/casts to 0.5** | Fully backward-compatible; current valid YAML and source provenance remain unchanged. | Keeps ambiguity visible and fail-closed; a future explicit cast can be independently specified. | **Recommended.** |
+
+JSON Schema can enforce the required datatype, allowed datatype tokens, function names/options, and local structural shapes. It cannot soundly enforce the transitive result domain of an expression involving collected object fields, external Inputs, unions, missing/error statuses, or recursive Variable references. Those checks belong to compiler/semantic analysis and runtime tests; no such native runtime executable is present in the checked-out repositories.
+
+Current native 0.4 form (explicit and compatible):
+
+```yaml
+variables:
+  record-count:
+    kind: local
+    datatype: integer
+    expression:
+      function:
+        name: count
+        arguments:
+          - values: {object: interactive-users, field: user_id}
+        options: {}
+```
+
+The eight active source mismatches cannot be repaired by changing only the declaration. A possible 0.5-only explicit cast proposal is:
+
+```yaml
+variables:
+  source-count:
+    kind: local
+    datatype: string
+    expression:
+      function:
+        name: cast
+        arguments:
+          - function:
+              name: count
+              arguments:
+                - values: {object: interactive-users, field: user_id}
+              options: {}
+        options: {datatype: string}
+```
+
+This proposal is intentionally **not** in the 0.4 schema, compiler, converter, or editor metadata. If approved later, migration would preserve all existing explicit declarations, add casts only at reviewed source boundaries, warn on conversion failure, and require positive/negative/empty/missing/error independent vectors before promotion.
+
 ## Design decision recommendation
 
 **0.4.0: do not make a breaking grammar or schema change.** Keep `datatype` explicit and required, retain the current static compatibility check, and publish diagnostics/evidence. Do not omit declarations, override source declarations, or add a generic hidden cast. This is the only safe behavior for object-collected fields, external/organizational inputs, empty populations, conversion errors, unknown/not-collected statuses, and nested Variables.
