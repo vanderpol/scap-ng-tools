@@ -7,7 +7,7 @@ Windows Server 2012/2012 R2 benchmarks and never mutates the historical report.
 """
 from __future__ import annotations
 from collections import Counter
-import argparse, gzip, json
+import argparse, gzip, json, io
 from pathlib import Path
 
 EXCLUDED_MARKER = 'Windows_2012_and_2012_R2'
@@ -81,10 +81,12 @@ def main():
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(output, indent=2, sort_keys=True) + '\n')
     if args.rules_output:
-        with gzip.open(args.rules_output, 'wt', encoding='utf-8') as fh:
-            json.dump({'format': 'scap-ng-tools/issue28-active-rule-records/1',
-                       'scope': output['scope'], 'rules': active_rules}, fh, separators=(',', ':'))
-            fh.write('\n')
+        payload = json.dumps({'format': 'scap-ng-tools/issue28-active-rule-records/1',
+                              'scope': output['scope'], 'rules': active_rules},
+                             separators=(',', ':')) + '\n'
+        with args.rules_output.open('wb') as raw:
+            with gzip.GzipFile(fileobj=raw, mode='wb', mtime=0) as fh:
+                fh.write(payload.encode('utf-8'))
     print(json.dumps({'classification': statuses, 'recovered_function_rules': output['recovered_function_rules']}, sort_keys=True))
 
 if __name__ == '__main__':
