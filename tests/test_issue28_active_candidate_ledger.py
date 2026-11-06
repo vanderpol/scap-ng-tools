@@ -64,3 +64,16 @@ class ActiveCandidateLedger(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class FinalBlockerMatrix(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.matrix = json.loads((ROOT / 'docs/evidence/issue28/FINAL-BLOCKER-MATRIX.json').read_text())
+
+    def test_every_active_blocker_has_one_stable_review_root(self):
+        self.assertEqual(self.matrix['qualification']['individual_rule_rows'], 108)
+        self.assertEqual(len(self.matrix['rules']), 108)
+        self.assertEqual(sum(self.matrix['counts_by_root_cause'].values()), 108)
+        self.assertEqual(self.matrix['counts_by_root_cause']['legacy_wmi_record_projection'], 14)
+        self.assertEqual(self.matrix['counts_by_root_cause']['deprecated_accesstoken'], 66)
+        self.assertFalse(self.matrix['qualification']['independent_proof_claim'])

@@ -1088,7 +1088,7 @@
       "rules": 1
     },
     {
-      "message": "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: {'function': {'name': 'end', 'arguments': [{'values': {'object': {'capability': 'windows.wmi.query', 'namespace': 'root\\\\cimv2', 'query': 'SELECT name FROM win32_logicaldisk WHERE drivetype=3'}, 'field': 'result'}}], 'options': {'character': '\\\\'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: {'concat': [{'function': {'name': 'end', 'arguments': [{'values': {'object': 'system-root-directory-registry-object-object', 'field': 'value'}}], 'options': {'character': '\\\\'}}}, {'literal': {'datatype': 'string', 'value': 'WinSxS'}}]} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1100,7 +1100,7 @@
       "rules": 1
     },
     {
-      "message": "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: {'function': {'name': 'end', 'arguments': [{'values': {'object': {'capability': 'windows.wmi.query', 'namespace': 'root\\\\cimv2', 'query': 'SELECT name FROM win32_logicaldisk WHERE drivetype=3'}, 'field': 'result'}}], 'options': {'character': '\\\\'}}} is not valid under any of the given schemas",
+      "message": "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: {'concat': [{'function': {'name': 'end', 'arguments': [{'values': {'object': 'system-root-directory-registry-object-object', 'field': 'value'}}], 'options': {'character': '\\\\'}}}, {'literal': {'datatype': 'string', 'value': 'WinSxS'}}]} is not valid under any of the given schemas",
       "rules": 1
     },
     {
@@ -1227,5 +1227,5 @@
     "schema_family_sha256": "6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0",
     "source_revision": "niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5"
   },
-  "source_report": "/tmp/issue28-complete-candidate.json"
+  "source_report": "full-65 candidate audit from pinned source ZIPs via scripts/build_issue28_ledger.py"
 }

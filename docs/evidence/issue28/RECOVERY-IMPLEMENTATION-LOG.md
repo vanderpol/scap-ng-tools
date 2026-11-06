@@ -129,3 +129,14 @@ semantic pack is regenerated and pinned in the tools candidate. The active
 candidate ledger is 6,479 automated converted/unproved, 1,403 manual-only, 108
 genuinely blocked, and 209 intentionally excluded (8,199 total). Independent
 proof, compiler execution, and scanner equivalence remain unclaimed.
+
+
+## Final targeted blocker audit
+
+The final pinned 65-benchmark rebuild preserved the active result at 6,479
+automated converted/unproved, 1,403 manual-only, 108 genuinely blocked, and
+209 SQLEXT exclusions. `FINAL-BLOCKER-MATRIX.json` contains one row for every
+blocked Rule; `FINAL-BLOCKER-AUDIT.md` records the WMI review, disposition,
+proposed contracts, and executable-reference next step. No additional
+converter-only recovery was safe: all remaining reductions require a native
+language/source contract or the deferred 0.5 datatype decision.

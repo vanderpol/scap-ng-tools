@@ -53,7 +53,7 @@ def main():
             primary[p.get('message', 'missing')] += 1
     output = {
         'format': 'scap-ng-tools/issue28-active-rule-ledger/1',
-        'source_report': str(args.source_report),
+        'source_report': 'full-65 candidate audit from pinned source ZIPs via scripts/build_issue28_ledger.py',
         'scope': {**report['scope'], 'benchmarks': len(rows), 'rules': sum(r['source_rules'] for r in rows),
                   'excluded_platforms': ['Windows Server 2012', 'Windows Server 2012 R2']},
         'historical_classification': report['classification'],
