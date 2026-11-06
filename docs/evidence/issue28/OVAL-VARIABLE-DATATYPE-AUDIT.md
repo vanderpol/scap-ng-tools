@@ -37,6 +37,12 @@ The pinned XSD states that a Variable’s returned values must comply with its r
 
 Counts are occurrences in Variable expressions, including nested functions. `arithmetic` remains a domain of integer/float until operands are independently known; object fields and external values are runtime-dependent.
 
+## Source and native field-type evidence
+
+The source declaration tokens are `string` 1,899, `int` 475, `boolean` 9, and `binary` 2. Literal components are `string` 1,026 and explicit `int` 4. Object projections are retained as field names rather than guessed scalar values (the most frequent are `stdout_line` 277, `subexpression` 168, `value` 142, and `result` 57); an object may return zero, one, or many Items and may report an evaluation error.
+
+For comparison, the pinned SCAP-NG 0.4 semantic pack declares field domains in these counts: string 309, integer 81, boolean 84, version 24, rpm_evr 14, binary 13, debian_evr 13, float 12, fileset_revision 12, ios_version 12, ipv4 12, ipv6 12, and record 5. These are capability-field domains, not permission to infer or override an OVAL Variable declaration; `record` remains valid for collected object fields but prohibited for Variables. The complete field-by-field evidence is in the machine inventory.
+
 ## Inference inventory
 
 | Classification | Variables | Meaning |

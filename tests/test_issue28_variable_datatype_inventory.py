@@ -46,6 +46,13 @@ class VariableDatatypeInventory(unittest.TestCase):
         self.assertEqual(sum(b['source_rules'] for b in self.audit['benchmarks']), 8892)
 
     def test_function_occurrences_and_result_domains_are_pinned(self):
+        self.assertEqual(self.audit['inventory']['declared_datatype_tokens'], {
+            'binary': 2, 'boolean': 9, 'int': 475, 'string': 1899,
+        })
+        self.assertEqual(self.audit['inventory']['literal_datatype_tokens'], {
+            'int': 4, 'string': 1026,
+        })
+        self.assertEqual(self.audit['inventory']['semantic_pack_field_datatypes']['record'], 5)
         self.assertEqual(self.audit['inventory']['function_occurrences'], {
             'arithmetic': 9, 'concat': 750, 'count': 47, 'end': 3,
             'merge': 106, 'regex_capture': 320, 'split': 29,

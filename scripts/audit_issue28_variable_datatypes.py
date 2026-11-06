@@ -268,6 +268,7 @@ def audit_archive(path, source_revision, schema_xsd_hash, schema_root):
 
     records = []
     totals = Counter(); mismatches = []
+    declared_tokens = Counter(); literal_tokens = Counter(); object_fields = Counter()
     function_occurrences = Counter(); function_rules = defaultdict(set)
     rule_function_vars = defaultdict(set)
     for vid, (component_id, var) in sorted(variables.items()):
@@ -275,12 +276,18 @@ def audit_archive(path, source_revision, schema_xsd_hash, schema_root):
         functions = []; components = []
         if child is not None:
             flatten_shape(child, functions, components)
+        for component in components:
+            if component['kind'] == 'literal_component':
+                literal_tokens[component['attributes'].get('datatype', 'string')] += 1
+            elif component['kind'] == 'object_component':
+                object_fields[component['attributes'].get('item_field', '')] += 1
         for f in functions:
             function_occurrences[f['name']] += 1
             for rid in model['variable_rules'].get(vid, ()):
                 function_rules[f['name']].add(rid)
                 rule_function_vars[rid].add(vid)
         declared = norm_type(var.get('datatype'))
+        declared_tokens[var.get('datatype', 'string')] += 1
         if kind == 'constant_variable':
             values = [text_value(n) for n in var if lname(n) == 'value']
             validity = [lexical_valid(v, declared) for v in values]
@@ -416,6 +423,9 @@ def audit_archive(path, source_revision, schema_xsd_hash, schema_root):
         'source_xml_member': members[0], 'source_rules': len(model['rules']),
         'check_selection': dict(sorted(check_counts.items())),
         'variable_counts': dict(Counter(r['kind'] for r in records)),
+        'declared_datatype_tokens': dict(sorted(declared_tokens.items())),
+        'literal_datatype_tokens': dict(sorted(literal_tokens.items())),
+        'object_component_fields': dict(sorted(object_fields.items())),
         'function_occurrences': dict(sorted(function_occurrences.items())),
         'mismatch_count': len(mismatches), 'mismatches': mismatches,
         'inference_classes': dict(sorted(totals.items())),
@@ -439,11 +449,13 @@ def main():
     xsd_hash = sha_file(args.oval_xsd)
     reports = [audit_archive(p, 'niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5', xsd_hash, args.schema_root) for p in sources]
     functions = Counter(); variable_counts = Counter(); classes = Counter(); mismatches = []
+    declared_tokens = Counter(); literal_tokens = Counter(); object_fields = Counter()
     source_rules = 0; selection = Counter(); dependency_edges = 0
     unresolved = []; cycles = 0
     for report in reports:
         source_rules += report['source_rules']; functions.update(report['function_occurrences'])
         variable_counts.update(report['variable_counts']); classes.update(report['inference_classes']); selection.update(report['check_selection'])
+        declared_tokens.update(report['declared_datatype_tokens']); literal_tokens.update(report['literal_datatype_tokens']); object_fields.update(report['object_component_fields'])
         dependency_edges += report['dependency_audit']['reference_edges']
         unresolved.extend({'benchmark': report['filename'], **item} for item in report['dependency_audit']['unresolved_references'])
         cycles += report['dependency_audit']['cycle_count']
@@ -452,6 +464,13 @@ def main():
     schema_dir = args.schema_root / 'schema'
     schema_json = json.loads((schema_dir / 'variable-expression.schema.json').read_text())
     native_functions = sorted(schema_json['$defs']['function_expression']['properties']['function']['properties']['name']['enum'])
+    pack_path = Path(__file__).parents[1] / 'src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.0.json'
+    pack = json.loads(pack_path.read_text())
+    pack_field_types = Counter()
+    for capability in pack.get('capabilities', {}).values():
+        for types in capability.get('fields', {}).values():
+            for datatype in types:
+                pack_field_types[datatype] += 1
     result = {
         'format': 'scap-ng-tools/issue28-variable-datatype-inventory/2',
         'scope': {'benchmarks': len(reports), 'rules': source_rules, 'owner_rule_baseline': 8892,
@@ -475,6 +494,10 @@ def main():
         },
         'inventory': {
             'variable_counts': dict(sorted(variable_counts.items())),
+            'declared_datatype_tokens': dict(sorted(declared_tokens.items())),
+            'literal_datatype_tokens': dict(sorted(literal_tokens.items())),
+            'object_component_fields': dict(sorted(object_fields.items())),
+            'semantic_pack_field_datatypes': dict(sorted(pack_field_types.items())),
             'function_occurrences': dict(sorted(functions.items())),
             'inference_classes': dict(sorted(classes.items())),
             'check_selection': dict(sorted(selection.items())),
