@@ -16,6 +16,7 @@ def canonical_json(value):
 
 PRESENCE_VERSION = 1
 CARDS = {'exactly_one', 'zero_or_one', 'one_or_more', 'zero_or_more'}
+RELATION_OPERATORS = {'less_than', 'less_than_or_equal', 'greater_than', 'greater_than_or_equal'}
 DOMAINS = {'string', 'integer', 'boolean', 'float', 'binary', 'version', 'ipv4',
            'ipv6', 'rpm_evr', 'debian_evr', 'fileset_revision', 'ios_version', 'record'}
 
@@ -34,11 +35,18 @@ def input_contracts(assessment):
         if set(decl)-{'datatype','cardinality','required','description','constraints'}:
             raise ValueError('unsupported Input declaration control; no implicit default: ' + name)
         constraints = decl.get('constraints', {})
-        if not isinstance(constraints,dict) or set(constraints)-{'allowed'}:
+        if not isinstance(constraints,dict) or set(constraints)-{'allowed', 'relation'}:
             raise ValueError('unsupported Input constraints: ' + name)
         if 'allowed' in constraints and (not isinstance(constraints['allowed'],list) or
                 any(not _value_valid(v,decl['datatype']) for v in constraints['allowed'])):
             raise ValueError('invalid typed Input allowed-value constraints: ' + name)
+        if 'relation' in constraints:
+            relation = constraints['relation']
+            if (not isinstance(relation, dict) or set(relation) != {'operator', 'value'} or
+                    relation['operator'] not in RELATION_OPERATORS or
+                    decl['datatype'] not in {'integer', 'float'} or
+                    not _value_valid(relation['value'], decl['datatype'])):
+                raise ValueError('invalid typed Input relational constraint: ' + name)
     return json.loads(canonical_json(inputs))
 
 
@@ -199,6 +207,19 @@ def _value_valid(value, datatype):
     return True  # Other approved text domains keep lexical data; no comparison executes.
 
 
+def _relation_valid(value, operator, bound):
+    """Compare already-typed numeric Input values; never coerce lexical data."""
+    if type(value) is bool or type(bound) is bool:
+        return False
+    try:
+        return {'less_than': value < bound,
+                'less_than_or_equal': value <= bound,
+                'greater_than': value > bound,
+                'greater_than_or_equal': value >= bound}[operator]
+    except (KeyError, TypeError):
+        return False
+
+
 def bind_inputs(contracts, bindings, *, invocation_id):
     """Bind explicit states, not wire syntax. No missing entry is inferred omitted."""
     contracts = input_contracts({'inputs': contracts})
@@ -238,11 +259,18 @@ def bind_inputs(contracts, bindings, *, invocation_id):
                 elif any(not _value_valid(v, contract['datatype']) for v in values):
                     reason = 'provided Input violates datatype'
                 constraints = contract.get('constraints', {})
-                if not isinstance(constraints, dict) or set(constraints) - {'allowed'}:
+                if not isinstance(constraints, dict) or set(constraints) - {'allowed', 'relation'}:
                     reason = 'unsupported Input constraints; binding cannot be validated'
                 elif 'allowed' in constraints and (not isinstance(constraints['allowed'],list) or
                         any(not any(canonical_json(v) == canonical_json(a) for a in constraints['allowed']) for v in values)):
                     reason = 'provided Input violates allowed values'
+                elif 'relation' in constraints:
+                    relation = constraints['relation']
+                    if (not isinstance(relation, dict) or set(relation) != {'operator', 'value'} or
+                            relation.get('operator') not in RELATION_OPERATORS):
+                        reason = 'invalid Input relational constraint'
+                    elif any(not _relation_valid(v, relation['operator'], relation['value']) for v in values):
+                        reason = 'provided Input violates relational constraint'
         if reason:
             # Preserve attempted values/source as evidence, never substitute a value.
             entry['state'], entry['reason'] = 'error', reason

@@ -1,0 +1,456 @@
+{
+  "format": "scap-ng-tools/issue28-oval-function-datatype-audit/1",
+  "source_revision": "niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "oval_schema": "OVAL 5.12.3 pinned XSD in .external/oval-v5.12.3",
+  "evaluator": {
+    "name": "OpenSCAP",
+    "version": "1.3.9",
+    "qualification": "available behavior probe only; OpenSCAP advertises OVAL 5.11.1 and fixtures used --skip-validation; not an independent OVAL 5.12.3 proof"
+  },
+  "conclusion": {
+    "recoverable_without_new_native_cast": 0,
+    "requires_owner_cast_decision": 8,
+    "source_declarations_overridden": false,
+    "implicit_casts_added": false,
+    "rules_promoted": false
+  },
+  "records": [
+    {
+      "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "source_sha256": "88cc35f98c9ff96c567110c284c06e6adfc556fd59967019bdec6fd1cc5a204f",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
+      "variable_id": "oval:mil.disa.stig.defs:var:25815500",
+      "declared_datatype": "string",
+      "function": "arithmetic",
+      "function_attributes": {
+        "arithmetic_operation": "multiply"
+      },
+      "function_output_datatype": "integer or float",
+      "original_variable_xml": "<ns0:local_variable xmlns:ns0=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\" id=\"oval:mil.disa.stig.defs:var:25815500\" version=\"1\" datatype=\"string\" comment=\"audit partition total size in bytes\">\n          <ns0:arithmetic arithmetic_operation=\"multiply\">\n            <ns0:object_component object_ref=\"oval:mil.disa.stig.linux:obj:23029400\" item_field=\"block_size\" />\n            <ns0:object_component object_ref=\"oval:mil.disa.stig.linux:obj:23029400\" item_field=\"total_space\" />\n          </ns0:arithmetic>\n        </ns0:local_variable>\n      ",
+      "components": [
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:mil.disa.stig.linux:obj:23029400",
+            "item_field": "block_size"
+          },
+          "text": ""
+        },
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:mil.disa.stig.linux:obj:23029400",
+            "item_field": "total_space"
+          },
+          "text": ""
+        }
+      ],
+      "expected_oval_conversion": "Arithmetic computes numeric values (integer/float), then the enclosing Variable declaration requires values to comply with datatype=string. The available evaluator converts the numeric result to its lexical string form; non-numeric components remain arithmetic errors.",
+      "representative_values": {
+        "success": {
+          "operands": [
+            4096,
+            1024
+          ],
+          "function_result": 4194304,
+          "declared_variable_value": "4194304"
+        },
+        "error": {
+          "operands": [
+            "4096",
+            "not-a-number"
+          ],
+          "result": "error"
+        }
+      },
+      "evaluator_observation": "OpenSCAP 1.3.9 with validation skipped evaluated a literal add fixture declared string as true and recorded tested_variable value 3. This is evaluator evidence, not a 5.12.3 qualification.",
+      "native_preservation": "Not preservable by the current native grammar without an explicit numeric-to-string cast or a deliberate source-declaration repair.",
+      "pinned_oval_evidence": {
+        "xsd": "oval-definitions-schema.xsd VariableType documentation around line 534; function-specific documentation/arithmetic Schematron around lines 731-740, split 845-860, count 955-960.",
+        "schematron": "The pinned Schematron restricts arithmetic components to int/float and split components to string, but does not assert that local_variable @datatype equals a function result datatype. XML Schema/Schematron acceptance therefore does not prove evaluator conversion.",
+        "documentation": "VariableType says returned values must comply with declared datatype, otherwise an error should be reported; FunctionGroup says attempted casts occur when a component is the wrong type. The enclosing-result cast is not specified as a general native function operation."
+      }
+    },
+    {
+      "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "source_sha256": "82e2d4bf65abc53bb6da01874944c555efae51dbc98d80e6e42423d1025e7efa",
+      "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
+      "variable_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:var:21583304",
+      "declared_datatype": "int",
+      "function": "split",
+      "function_attributes": {
+        "delimiter": "\\n"
+      },
+      "function_output_datatype": "string",
+      "original_variable_xml": "<ns0:local_variable xmlns:ns0=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\" id=\"oval:navy.navwar.niwcatlantic.scc.iosxe:var:21583304\" version=\"18\" comment=\"Split the configuration into separate lines\" datatype=\"int\">\n          <ns0:split delimiter=\"\\n\">\n            <ns0:object_component object_ref=\"oval:navy.navwar.niwcatlantic.scc.iosxe:obj:21583303\" item_field=\"config_line\" />\n          </ns0:split>\n        </ns0:local_variable>\n        ",
+      "components": [
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:navy.navwar.niwcatlantic.scc.iosxe:obj:21583303",
+            "item_field": "config_line"
+          },
+          "text": ""
+        }
+      ],
+      "expected_oval_conversion": "Split produces a collection of strings. The enclosing datatype=int requires each produced lexical string to be converted to integer; every value must be valid or the Variable evaluation is an error.",
+      "representative_values": {
+        "success": {
+          "input": "1\\n2",
+          "split_values": [
+            "1",
+            "2"
+          ],
+          "declared_values": [
+            1,
+            2
+          ]
+        },
+        "error": {
+          "input": "1\\nx",
+          "split_values": [
+            "1",
+            "x"
+          ],
+          "result": "error converting x to integer"
+        },
+        "source_like": {
+          "input": "line vty 0\\n exec-timeout 5",
+          "result": "error converting configuration text to integer"
+        }
+      },
+      "evaluator_observation": "OpenSCAP 1.3.9 with validation skipped recorded split values 1 and 2 for an int-declared Variable; with 1 and x it emitted conversion failure and an error result. This confirms available evaluator behavior only.",
+      "native_preservation": "Not preservable by the current native grammar without an explicit per-element string-to-integer cast, including error semantics.",
+      "pinned_oval_evidence": {
+        "xsd": "oval-definitions-schema.xsd VariableType documentation around line 534; function-specific documentation/arithmetic Schematron around lines 731-740, split 845-860, count 955-960.",
+        "schematron": "The pinned Schematron restricts arithmetic components to int/float and split components to string, but does not assert that local_variable @datatype equals a function result datatype. XML Schema/Schematron acceptance therefore does not prove evaluator conversion.",
+        "documentation": "VariableType says returned values must comply with declared datatype, otherwise an error should be reported; FunctionGroup says attempted casts occur when a component is the wrong type. The enclosing-result cast is not specified as a general native function operation."
+      }
+    },
+    {
+      "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "source_sha256": "0bd07f9acdf6cae7e6b2f0549c7bf42ce368114953b18f37f460fa66563aa600",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
+      "variable_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:var:22054404",
+      "declared_datatype": "int",
+      "function": "split",
+      "function_attributes": {
+        "delimiter": "\\n"
+      },
+      "function_output_datatype": "string",
+      "original_variable_xml": "<ns0:local_variable xmlns:ns0=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\" id=\"oval:navy.navwar.niwcatlantic.scc.iosxe:var:22054404\" version=\"6\" comment=\"Split the configuration into separate lines\" datatype=\"int\">\n          <ns0:split delimiter=\"\\n\">\n            <ns0:object_component object_ref=\"oval:navy.navwar.niwcatlantic.scc.iosxe:obj:22054403\" item_field=\"config_line\" />\n          </ns0:split>\n        </ns0:local_variable>\n        ",
+      "components": [
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:navy.navwar.niwcatlantic.scc.iosxe:obj:22054403",
+            "item_field": "config_line"
+          },
+          "text": ""
+        }
+      ],
+      "expected_oval_conversion": "Split produces a collection of strings. The enclosing datatype=int requires each produced lexical string to be converted to integer; every value must be valid or the Variable evaluation is an error.",
+      "representative_values": {
+        "success": {
+          "input": "1\\n2",
+          "split_values": [
+            "1",
+            "2"
+          ],
+          "declared_values": [
+            1,
+            2
+          ]
+        },
+        "error": {
+          "input": "1\\nx",
+          "split_values": [
+            "1",
+            "x"
+          ],
+          "result": "error converting x to integer"
+        },
+        "source_like": {
+          "input": "line vty 0\\n exec-timeout 5",
+          "result": "error converting configuration text to integer"
+        }
+      },
+      "evaluator_observation": "OpenSCAP 1.3.9 with validation skipped recorded split values 1 and 2 for an int-declared Variable; with 1 and x it emitted conversion failure and an error result. This confirms available evaluator behavior only.",
+      "native_preservation": "Not preservable by the current native grammar without an explicit per-element string-to-integer cast, including error semantics.",
+      "pinned_oval_evidence": {
+        "xsd": "oval-definitions-schema.xsd VariableType documentation around line 534; function-specific documentation/arithmetic Schematron around lines 731-740, split 845-860, count 955-960.",
+        "schematron": "The pinned Schematron restricts arithmetic components to int/float and split components to string, but does not assert that local_variable @datatype equals a function result datatype. XML Schema/Schematron acceptance therefore does not prove evaluator conversion.",
+        "documentation": "VariableType says returned values must comply with declared datatype, otherwise an error should be reported; FunctionGroup says attempted casts occur when a component is the wrong type. The enclosing-result cast is not specified as a general native function operation."
+      }
+    },
+    {
+      "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "source_sha256": "cc90109437f9e26ab5ec6cbd43b6e83b1c60717b4da02ce0d5580a07bcdb147d",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
+      "variable_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:var:21568804",
+      "declared_datatype": "int",
+      "function": "split",
+      "function_attributes": {
+        "delimiter": "\\n"
+      },
+      "function_output_datatype": "string",
+      "original_variable_xml": "<ns0:local_variable xmlns:ns0=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\" id=\"oval:navy.navwar.niwcatlantic.scc.iosxe:var:21568804\" version=\"6\" comment=\"Split the configuration into separate lines\" datatype=\"int\">\n          <ns0:split delimiter=\"\\n\">\n            <ns0:object_component object_ref=\"oval:navy.navwar.niwcatlantic.scc.iosxe:obj:21568803\" item_field=\"config_line\" />\n          </ns0:split>\n        </ns0:local_variable>\n        ",
+      "components": [
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:navy.navwar.niwcatlantic.scc.iosxe:obj:21568803",
+            "item_field": "config_line"
+          },
+          "text": ""
+        }
+      ],
+      "expected_oval_conversion": "Split produces a collection of strings. The enclosing datatype=int requires each produced lexical string to be converted to integer; every value must be valid or the Variable evaluation is an error.",
+      "representative_values": {
+        "success": {
+          "input": "1\\n2",
+          "split_values": [
+            "1",
+            "2"
+          ],
+          "declared_values": [
+            1,
+            2
+          ]
+        },
+        "error": {
+          "input": "1\\nx",
+          "split_values": [
+            "1",
+            "x"
+          ],
+          "result": "error converting x to integer"
+        },
+        "source_like": {
+          "input": "line vty 0\\n exec-timeout 5",
+          "result": "error converting configuration text to integer"
+        }
+      },
+      "evaluator_observation": "OpenSCAP 1.3.9 with validation skipped recorded split values 1 and 2 for an int-declared Variable; with 1 and x it emitted conversion failure and an error result. This confirms available evaluator behavior only.",
+      "native_preservation": "Not preservable by the current native grammar without an explicit per-element string-to-integer cast, including error semantics.",
+      "pinned_oval_evidence": {
+        "xsd": "oval-definitions-schema.xsd VariableType documentation around line 534; function-specific documentation/arithmetic Schematron around lines 731-740, split 845-860, count 955-960.",
+        "schematron": "The pinned Schematron restricts arithmetic components to int/float and split components to string, but does not assert that local_variable @datatype equals a function result datatype. XML Schema/Schematron acceptance therefore does not prove evaluator conversion.",
+        "documentation": "VariableType says returned values must comply with declared datatype, otherwise an error should be reported; FunctionGroup says attempted casts occur when a component is the wrong type. The enclosing-result cast is not specified as a general native function operation."
+      }
+    },
+    {
+      "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "source_sha256": "1d33596c80208a4b3d77004397b209b5038badfefe97e5e5d27ec536b1211b70",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
+      "variable_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:var:22059604",
+      "declared_datatype": "int",
+      "function": "split",
+      "function_attributes": {
+        "delimiter": "\\n"
+      },
+      "function_output_datatype": "string",
+      "original_variable_xml": "<ns0:local_variable xmlns:ns0=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\" id=\"oval:navy.navwar.niwcatlantic.scc.iosxe:var:22059604\" version=\"6\" comment=\"Split the configuration into separate lines\" datatype=\"int\">\n          <ns0:split delimiter=\"\\n\">\n            <ns0:object_component object_ref=\"oval:navy.navwar.niwcatlantic.scc.iosxe:obj:22059603\" item_field=\"config_line\" />\n          </ns0:split>\n        </ns0:local_variable>\n        ",
+      "components": [
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:navy.navwar.niwcatlantic.scc.iosxe:obj:22059603",
+            "item_field": "config_line"
+          },
+          "text": ""
+        }
+      ],
+      "expected_oval_conversion": "Split produces a collection of strings. The enclosing datatype=int requires each produced lexical string to be converted to integer; every value must be valid or the Variable evaluation is an error.",
+      "representative_values": {
+        "success": {
+          "input": "1\\n2",
+          "split_values": [
+            "1",
+            "2"
+          ],
+          "declared_values": [
+            1,
+            2
+          ]
+        },
+        "error": {
+          "input": "1\\nx",
+          "split_values": [
+            "1",
+            "x"
+          ],
+          "result": "error converting x to integer"
+        },
+        "source_like": {
+          "input": "line vty 0\\n exec-timeout 5",
+          "result": "error converting configuration text to integer"
+        }
+      },
+      "evaluator_observation": "OpenSCAP 1.3.9 with validation skipped recorded split values 1 and 2 for an int-declared Variable; with 1 and x it emitted conversion failure and an error result. This confirms available evaluator behavior only.",
+      "native_preservation": "Not preservable by the current native grammar without an explicit per-element string-to-integer cast, including error semantics.",
+      "pinned_oval_evidence": {
+        "xsd": "oval-definitions-schema.xsd VariableType documentation around line 534; function-specific documentation/arithmetic Schematron around lines 731-740, split 845-860, count 955-960.",
+        "schematron": "The pinned Schematron restricts arithmetic components to int/float and split components to string, but does not assert that local_variable @datatype equals a function result datatype. XML Schema/Schematron acceptance therefore does not prove evaluator conversion.",
+        "documentation": "VariableType says returned values must comply with declared datatype, otherwise an error should be reported; FunctionGroup says attempted casts occur when a component is the wrong type. The enclosing-result cast is not specified as a general native function operation."
+      }
+    },
+    {
+      "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
+      "variable_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877101",
+      "declared_datatype": "string",
+      "function": "count",
+      "function_attributes": {},
+      "function_output_datatype": "integer",
+      "original_variable_xml": "<ns0:local_variable xmlns:ns0=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\" id=\"oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877101\" version=\"19\" datatype=\"string\" comment=\"A count of the Captured Unique Application Pool Names assigned to a website\">\n          <ns0:count>\n            <ns0:unique>\n              <ns0:object_component object_ref=\"oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21877102\" item_field=\"result\" />\n            </ns0:unique>\n          </ns0:count>\n        </ns0:local_variable>\n        ",
+      "components": [
+        {
+          "kind": "unique",
+          "attributes": {},
+          "text": ""
+        }
+      ],
+      "expected_oval_conversion": "Count returns the number of flattened values (integer). The enclosing datatype=string requires the integer count to be represented as a lexical string; missing/error population status must remain diagnostic, not become zero.",
+      "representative_values": {
+        "success": {
+          "values": [
+            "pool-a",
+            "pool-a"
+          ],
+          "function_result": 2,
+          "declared_variable_value": "2"
+        },
+        "empty": {
+          "values": [],
+          "function_result": 0,
+          "declared_variable_value": "0"
+        },
+        "error": {
+          "values": "not-collected",
+          "result": "error/unknown, not 0"
+        }
+      },
+      "evaluator_observation": "OpenSCAP 1.3.9 with validation skipped evaluated a literal count fixture declared string as true. This confirms available evaluator behavior only.",
+      "native_preservation": "Not preservable by the current native grammar without an explicit integer-to-string cast.",
+      "pinned_oval_evidence": {
+        "xsd": "oval-definitions-schema.xsd VariableType documentation around line 534; function-specific documentation/arithmetic Schematron around lines 731-740, split 845-860, count 955-960.",
+        "schematron": "The pinned Schematron restricts arithmetic components to int/float and split components to string, but does not assert that local_variable @datatype equals a function result datatype. XML Schema/Schematron acceptance therefore does not prove evaluator conversion.",
+        "documentation": "VariableType says returned values must comply with declared datatype, otherwise an error should be reported; FunctionGroup says attempted casts occur when a component is the wrong type. The enclosing-result cast is not specified as a general native function operation."
+      }
+    },
+    {
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
+      "variable_id": "oval:mil.disa.stig.defs:var:25815500",
+      "declared_datatype": "string",
+      "function": "arithmetic",
+      "function_attributes": {
+        "arithmetic_operation": "multiply"
+      },
+      "function_output_datatype": "integer or float",
+      "original_variable_xml": "<ns0:local_variable xmlns:ns0=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\" id=\"oval:mil.disa.stig.defs:var:25815500\" version=\"1\" datatype=\"string\" comment=\"audit partition total size in bytes\">\n          <ns0:arithmetic arithmetic_operation=\"multiply\">\n            <ns0:object_component object_ref=\"oval:mil.disa.stig.linux:obj:23029400\" item_field=\"block_size\" />\n            <ns0:object_component object_ref=\"oval:mil.disa.stig.linux:obj:23029400\" item_field=\"total_space\" />\n          </ns0:arithmetic>\n        </ns0:local_variable>\n        ",
+      "components": [
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:mil.disa.stig.linux:obj:23029400",
+            "item_field": "block_size"
+          },
+          "text": ""
+        },
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:mil.disa.stig.linux:obj:23029400",
+            "item_field": "total_space"
+          },
+          "text": ""
+        }
+      ],
+      "expected_oval_conversion": "Arithmetic computes numeric values (integer/float), then the enclosing Variable declaration requires values to comply with datatype=string. The available evaluator converts the numeric result to its lexical string form; non-numeric components remain arithmetic errors.",
+      "representative_values": {
+        "success": {
+          "operands": [
+            4096,
+            1024
+          ],
+          "function_result": 4194304,
+          "declared_variable_value": "4194304"
+        },
+        "error": {
+          "operands": [
+            "4096",
+            "not-a-number"
+          ],
+          "result": "error"
+        }
+      },
+      "evaluator_observation": "OpenSCAP 1.3.9 with validation skipped evaluated a literal add fixture declared string as true and recorded tested_variable value 3. This is evaluator evidence, not a 5.12.3 qualification.",
+      "native_preservation": "Not preservable by the current native grammar without an explicit numeric-to-string cast or a deliberate source-declaration repair.",
+      "pinned_oval_evidence": {
+        "xsd": "oval-definitions-schema.xsd VariableType documentation around line 534; function-specific documentation/arithmetic Schematron around lines 731-740, split 845-860, count 955-960.",
+        "schematron": "The pinned Schematron restricts arithmetic components to int/float and split components to string, but does not assert that local_variable @datatype equals a function result datatype. XML Schema/Schematron acceptance therefore does not prove evaluator conversion.",
+        "documentation": "VariableType says returned values must comply with declared datatype, otherwise an error should be reported; FunctionGroup says attempted casts occur when a component is the wrong type. The enclosing-result cast is not specified as a general native function operation."
+      }
+    },
+    {
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "source_rule": "xccdf_mil.disa.fso_rule_SV-258155r1045300_rule",
+      "variable_id": "oval:mil.disa.stig.defs:var:25815500",
+      "declared_datatype": "string",
+      "function": "arithmetic",
+      "function_attributes": {
+        "arithmetic_operation": "multiply"
+      },
+      "function_output_datatype": "integer or float",
+      "original_variable_xml": "<ns0:local_variable xmlns:ns0=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\" id=\"oval:mil.disa.stig.defs:var:25815500\" version=\"1\" datatype=\"string\" comment=\"audit partition total size in bytes\">\n          <ns0:arithmetic arithmetic_operation=\"multiply\">\n            <ns0:object_component object_ref=\"oval:mil.disa.stig.linux:obj:23029400\" item_field=\"block_size\" />\n            <ns0:object_component object_ref=\"oval:mil.disa.stig.linux:obj:23029400\" item_field=\"total_space\" />\n          </ns0:arithmetic>\n        </ns0:local_variable>\n        ",
+      "components": [
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:mil.disa.stig.linux:obj:23029400",
+            "item_field": "block_size"
+          },
+          "text": ""
+        },
+        {
+          "kind": "object_component",
+          "attributes": {
+            "object_ref": "oval:mil.disa.stig.linux:obj:23029400",
+            "item_field": "total_space"
+          },
+          "text": ""
+        }
+      ],
+      "expected_oval_conversion": "Arithmetic computes numeric values (integer/float), then the enclosing Variable declaration requires values to comply with datatype=string. The available evaluator converts the numeric result to its lexical string form; non-numeric components remain arithmetic errors.",
+      "representative_values": {
+        "success": {
+          "operands": [
+            4096,
+            1024
+          ],
+          "function_result": 4194304,
+          "declared_variable_value": "4194304"
+        },
+        "error": {
+          "operands": [
+            "4096",
+            "not-a-number"
+          ],
+          "result": "error"
+        }
+      },
+      "evaluator_observation": "OpenSCAP 1.3.9 with validation skipped evaluated a literal add fixture declared string as true and recorded tested_variable value 3. This is evaluator evidence, not a 5.12.3 qualification.",
+      "native_preservation": "Not preservable by the current native grammar without an explicit numeric-to-string cast or a deliberate source-declaration repair.",
+      "pinned_oval_evidence": {
+        "xsd": "oval-definitions-schema.xsd VariableType documentation around line 534; function-specific documentation/arithmetic Schematron around lines 731-740, split 845-860, count 955-960.",
+        "schematron": "The pinned Schematron restricts arithmetic components to int/float and split components to string, but does not assert that local_variable @datatype equals a function result datatype. XML Schema/Schematron acceptance therefore does not prove evaluator conversion.",
+        "documentation": "VariableType says returned values must comply with declared datatype, otherwise an error should be reported; FunctionGroup says attempted casts occur when a component is the wrong type. The enclosing-result cast is not specified as a general native function operation."
+      }
+    }
+  ]
+}

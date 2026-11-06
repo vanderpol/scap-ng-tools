@@ -15,7 +15,7 @@ from scap_ng_tools.converter import convert_focused
 ZIP_SHA = '2f46264b5fa21c8a033236121794ebe372314bf7458dac0aca4f81179fe7ece0'
 # Owner-approved 0.4 re-freeze: Item counts are nested under item_requirement.
 # The old baseline remains available in Git history; no semantic proof is claimed.
-NATIVE_SHA = '8beb7b1c31c6321aa24ef4a0cfbbdd900dcd6dc349c8963887a9db28ee04d493'
+NATIVE_SHA = '006d50d0cf84ef48bac6594f5286a74fe3fcbfd770a8c8558cf385896a2c1bd6'
 RULES = [
     'xccdf_mil.disa.stig_rule_SV-278139r1182083_rule',
     'xccdf_mil.disa.stig_rule_SV-278080r1180946_rule',
@@ -36,7 +36,7 @@ class FocusedConverterTests(unittest.TestCase):
         documents, trace = convert_focused(
             schema_root=self.schema, source=self.fixture,
             sha256_pin=ZIP_SHA, rule_ids=RULES)
-        self.assertEqual(len(documents), 6)
+        self.assertEqual(len(documents), 8)
         self.assertTrue(trace)
         payload = json.dumps(documents, sort_keys=True).encode('utf-8')
         self.assertEqual(sha256(payload).hexdigest(), NATIVE_SHA)
@@ -51,8 +51,8 @@ class FocusedConverterTests(unittest.TestCase):
                 command.extend(['--rule', rule])
             result = subprocess.run(command, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
-            self.assertEqual(len(list(output.rglob('*.yaml'))), 6)
-            self.assertEqual(len(list(output.rglob('*.json'))), 8)
+            self.assertEqual(len(list(output.rglob('*.yaml'))), 8)
+            self.assertEqual(len(list(output.rglob('*.json'))), 10)
             scope = json.loads((output / 'conversion-scope.json').read_text())
             self.assertEqual(scope['conversion_status'], 'CONVERTED_UNVERIFIED')
             self.assertFalse(scope['independent_semantic_proof'])
