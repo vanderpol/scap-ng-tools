@@ -19,8 +19,8 @@ from scap_ng_tools.converter.direct04 import convert_benchmark
 EXPECTED_BENCHMARKS = 65
 EXPECTED_RULES = 8892
 SOURCE_REVISION = 'niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5'
-SCHEMA_COMMIT = 'a036357'
-SCHEMA_FAMILY = '094cc95219a0fad3640c5fda366b8ff865eb73e255013d92f46edd24cb579c6b'
+SCHEMA_COMMIT = '919732d4c570b521edf82196a7694dfd8c27fe50'
+SCHEMA_FAMILY = '6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0'
 
 
 def issue_key(problem):

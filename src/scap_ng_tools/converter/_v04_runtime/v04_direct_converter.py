@@ -38,6 +38,31 @@ COMPARISONS = {'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'm
 SET_OPERATORS = {'UNION': 'union', 'INTERSECTION': 'intersection', 'COMPLEMENT': 'difference'}
 
 
+def legacy_wmi_selected_field(wql):
+    """Return the one projected field permitted by legacy OVAL WMI."""
+    match = re.fullmatch(r'\s*select\s+([A-Za-z_][A-Za-z0-9_]*)\s+from\s+\S+.*', wql or '', re.IGNORECASE | re.DOTALL)
+    ensure(match is not None, 'legacy WMI query is not a single named field projection')
+    return match.group(1)
+
+
+def legacy_wmi_record_predicate(element, field, visitor):
+    """Adapt one legacy scalar result State to the existing WMI record State."""
+    attributes(element, {'id', 'version', 'comment', 'operator'})
+    children = list(element)
+    ensure(len(children) == 1 and local_name(children[0]) == 'result' and not len(children[0]),
+           'legacy WMI State requires exactly one scalar result')
+    child = children[0]
+    value = visitor.predicate(child, visitor._wmi_mapping, record_field=True)
+    found = element.get('check_existence', 'at_least_one_exists')
+    matching = element.get('entity_check', 'all')
+    ensure(found in FIELD_EXISTENCE and found != 'none_exist' and matching in MATCHING,
+           'legacy WMI State record absence/quantifier outside bounded proof')
+    return {'fields': {'result': {'record': {
+        'records_found': FIELD_EXISTENCE[found],
+        'records_matching': MATCHING[matching],
+        'fields': {field: value}}}}}
+
+
 def native_items_found(source_value):
     """Lower the OVAL Test population to the native 0.4 cardinality."""
     ensure(source_value in EXISTENCE or source_value == 'all_exist',
@@ -97,6 +122,12 @@ class AssessmentConverter:
     def capability(self, element, kind):
         matches = [mapping for mapping in self.mappings if element.tag ==
                    f'{{{mapping["source"]["namespace"]}}}{mapping["source"].get(kind)}']
+        if not matches and self.native_recovery and element.tag == f'{{{OVAL}#windows}}wmi_{kind}':
+            # OVAL 5.12.3 legacy wmi_* has the same namespace/query selectors
+            # as wmi57_*, but its scalar result must be wrapped as a named
+            # record member.  Keep this alias opt-in and fail closed elsewhere.
+            matches = [mapping for mapping in self.mappings
+                       if mapping['capability'] == 'windows.wmi.query']
         ensure(len(matches) == 1, f'unsupported {kind} capability: {element.tag}')
         return matches[0]
 
@@ -220,6 +251,30 @@ class AssessmentConverter:
         found = element.get('check_existence', 'at_least_one_exists')
         conditions = []
         state_refs = []
+        self._wmi_legacy_fields = {}
+        self._wmi_mapping = mapping
+        object_id = objects[0].get('object_ref')
+        object_source = self.source.node(self.component_id, object_id, 'object')
+        if local_name(object_source) == 'wmi_object':
+            wql = next((child.text for child in object_source
+                        if local_name(child) == 'wql'), None)
+            field = legacy_wmi_selected_field(wql)
+            # Establish the projection before State references are evaluated.
+            self._wmi_legacy_fields = {child.get('state_ref'): field
+                                       for child in element if local_name(child) == 'state'}
+            self.conversion_warnings.append({
+                'code': 'legacy_wmi_migrated_to_wmi_query',
+                'source_test': element.get('id'),
+                'source_object': object_id,
+                'source_states': sorted(self._wmi_legacy_fields),
+                'selected_field': field,
+                'source_test_sha256': digest(xml_identity(element)),
+                'source_object_sha256': digest(xml_identity(object_source)),
+                'mapping': 'windows.wmi.query',
+                'semantic_basis': 'OVAL legacy wmi selects exactly one named simple field; native wmi query returns a record with that named field',
+                'independent_static_proof': 'UNPROVED',
+                'scanner_evaluated': False,
+            })
         for child in element:
             kind = local_name(child)
             ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
@@ -264,7 +319,6 @@ class AssessmentConverter:
                 if edit:
                     self.human_compaction.append({'source_test': element.get('id'), **edit})
                     requirement = compacted
-        object_id = objects[0].get('object_ref')
         from v04_direct_authoring_contract import test_requirement
         requirement = test_requirement(requirement)
         self.same_family(object_id, 'object', mapping)
@@ -292,6 +346,11 @@ class AssessmentConverter:
     def convert_state(self, element):
         from v04_direct_system_policy import policy_entity
         mapping = self.capability(element, 'state')
+        if local_name(element) == 'wmi_state':
+            field = getattr(self, '_wmi_legacy_fields', {}).get(element.get('id'))
+            ensure(field and getattr(self, '_wmi_mapping', None) is mapping,
+                   'legacy WMI State requires a paired legacy WMI Test projection')
+            return legacy_wmi_record_predicate(element, field, self)
         conditions, seen = [], set()
         for child in element:
             field = local_name(child)

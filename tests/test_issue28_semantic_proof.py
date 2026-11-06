@@ -506,3 +506,89 @@ class RemainingFunctionRecovery(unittest.TestCase):
         from v04_variable_function_migration import canonical_expression, UnsupportedExpression
         with self.assertRaises(UnsupportedExpression):
             canonical_expression({'function': {'name': 'unique', 'arguments': [], 'options': {}}})
+
+class LegacyWmiRecovery(unittest.TestCase):
+    def test_single_named_projection_is_the_only_migrated_shape(self):
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import legacy_wmi_selected_field
+        self.assertEqual(legacy_wmi_selected_field(
+            ' SELECT DomainRole FROM Win32_ComputerSystem '), 'DomainRole')
+        for query in ('SELECT * FROM Win32_ComputerSystem',
+                       'SELECT Name, DomainRole FROM Win32_ComputerSystem',
+                       'SELECT field FROM', 'not WQL'):
+            with self.subTest(query=query), self.assertRaisesRegex(ValueError, 'single named field'):
+                legacy_wmi_selected_field(query)
+
+    def test_legacy_scalar_state_is_wrapped_as_native_wmi_record(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import legacy_wmi_record_predicate
+        from v04_direct_scap_source import OVAL
+
+        class Visitor:
+            _wmi_mapping = {'capability': 'windows.wmi.query'}
+            def predicate(self, element, mapping, *, record_field=False):
+                self.record_field = record_field
+                return {'equals': int(element.text)}
+
+        state = ET.fromstring(
+            f'<wmi_state xmlns="{OVAL}#windows" id="s" version="1">'
+            '<result datatype="int">2</result></wmi_state>')
+        visitor = Visitor()
+        self.assertEqual(legacy_wmi_record_predicate(state, 'DomainRole', visitor), {
+            'fields': {'result': {'record': {
+                'records_found': 'one_or_more', 'records_matching': 'every',
+                'fields': {'DomainRole': {'equals': 2}}}}}})
+        self.assertTrue(visitor.record_field)
+
+    def test_legacy_state_with_nested_result_is_fail_closed(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import legacy_wmi_record_predicate
+        from v04_direct_scap_source import OVAL
+        state = ET.fromstring(
+            f'<wmi_state xmlns="{OVAL}#windows" id="s" version="1">'
+            '<result datatype="int"><nested/></result></wmi_state>')
+        with self.assertRaisesRegex(ValueError, 'exactly one scalar result'):
+            legacy_wmi_record_predicate(state, 'DomainRole', object())
+
+
+class XccdfRelationalInputRecovery(unittest.TestCase):
+    def setUp(self):
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from scap_ng_tools.converter._v04_semantic.v04_input_presence import bind_inputs, input_contracts
+        self.bind_inputs = bind_inputs
+        self.input_contracts = input_contracts
+
+    def contract(self, operator, bound=10, *, allowed=None):
+        constraints = {'relation': {'operator': operator, 'value': bound}}
+        if allowed is not None:
+            constraints['allowed'] = allowed
+        return {'limit-input': {'datatype': 'integer', 'cardinality': 'exactly_one',
+                                'required': True, 'constraints': constraints}}
+
+    def binding(self, value):
+        return {'limit-input': {'state': 'provided', 'source': 'test', 'values': [value]}}
+
+    def test_inclusive_and_strict_boundaries(self):
+        for operator, accepted, rejected in (
+                ('less_than_or_equal', 10, 11), ('greater_than_or_equal', 10, 9),
+                ('less_than', 9, 10), ('greater_than', 11, 10)):
+            with self.subTest(operator=operator):
+                good = self.bind_inputs(self.contract(operator), self.binding(accepted), invocation_id='good')
+                self.assertEqual(good.state('limit-input'), 'true')
+                bad = self.bind_inputs(self.contract(operator), self.binding(rejected), invocation_id='bad')
+                self.assertEqual(bad.state('limit-input'), 'error')
+
+    def test_allowed_and_relation_are_both_enforced_without_casts(self):
+        contract = self.contract('less_than_or_equal', 10, allowed=[8, 10])
+        self.assertEqual(self.bind_inputs(contract, self.binding(8), invocation_id='allowed').state('limit-input'), 'true')
+        self.assertEqual(self.bind_inputs(contract, self.binding(9), invocation_id='not-allowed').state('limit-input'), 'error')
+        self.assertEqual(self.bind_inputs(contract, self.binding('8'), invocation_id='string').state('limit-input'), 'error')
+        self.assertRaises(ValueError, self.input_contracts, {'inputs': {
+            'limit-input': {'datatype': 'integer', 'cardinality': 'exactly_one', 'required': True,
+                            'constraints': {'relation': {'operator': 'less_than', 'value': '10'}}}}})

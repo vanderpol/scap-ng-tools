@@ -7,11 +7,13 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 LEDGER = ROOT / 'docs/evidence/issue28/ACTIVE-CANDIDATE-LEDGER.json'
 RULES = ROOT / 'docs/evidence/issue28/ACTIVE-CANDIDATE-RULES.json.gz'
+RECOVERY = ROOT / 'docs/evidence/issue28/RECOVERY-RESULTS.json'
 
 class ActiveCandidateLedger(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.ledger = json.loads(LEDGER.read_text())
+        cls.recovery = json.loads(RECOVERY.read_text())
         with gzip.open(RULES, 'rt', encoding='utf-8') as stream:
             cls.records = json.load(stream)
 
@@ -20,9 +22,9 @@ class ActiveCandidateLedger(unittest.TestCase):
         self.assertEqual(sum(classification.values()), 8199)
         self.assertEqual(classification, {
             'automated_converted_proved': 0,
-            'automated_converted_unproved': 6473,
+            'automated_converted_unproved': 6479,
             'manual_only': 1403,
-            'genuinely_blocked': 114,
+            'genuinely_blocked': 108,
             'intentionally_excluded': 209,
         })
         statuses = {r['status'] for r in self.records['rules']}
@@ -38,10 +40,25 @@ class ActiveCandidateLedger(unittest.TestCase):
         self.assertEqual(recovery['multi_component_aggregation'],
                          {'historical_blockers': 30, 'recovered': 30, 'remaining': 0})
 
+    def test_wmi_and_xccdf_recovery_counts_are_separate_from_function_counts(self):
+        self.assertEqual(self.ledger['recovery_targets']['legacy_wmi'],
+                         {'historical_blockers': 15, 'migration_candidates': 15,
+                          'recovered': 1, 'remaining': 14})
+        self.assertEqual(self.ledger['recovery_targets']['xccdf_value_constraints'],
+                         {'historical_blockers': 5, 'recovered': 5, 'remaining': 0})
+        self.assertEqual(self.ledger['recovered_blocker_rules'], 6)
+
+    def test_recovery_results_reconcile_source_rule_transitions(self):
+        self.assertEqual(len(self.recovery['status_transitions']), 6)
+        self.assertEqual(self.recovery['legacy_wmi']['fully_recovered'], 1)
+        self.assertEqual(self.recovery['legacy_wmi']['remaining_downstream_blockers'], 14)
+        self.assertEqual(self.recovery['xccdf_value_constraints']['recovered'], 5)
+        self.assertFalse(self.recovery['qualification']['independently_proved'])
+
     def test_candidate_pin_and_no_proof_claim(self):
-        self.assertEqual(self.ledger['scope']['schema_commit'], 'a036357')
+        self.assertEqual(self.ledger['scope']['schema_commit'], '919732d4c570b521edf82196a7694dfd8c27fe50')
         self.assertEqual(self.ledger['scope']['schema_family_sha256'],
-                         '094cc95219a0fad3640c5fda366b8ff865eb73e255013d92f46edd24cb579c6b')
+                         '6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0')
         self.assertFalse(self.ledger['provenance']['independent_proof_claim'])
         self.assertFalse(self.ledger['provenance']['compiler_scanner_equivalence_claim'])
 

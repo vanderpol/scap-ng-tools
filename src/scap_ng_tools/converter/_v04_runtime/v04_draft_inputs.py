@@ -4,6 +4,23 @@ from v04_direct_datatypes import native_datatype
 from v04_draft_compatibility import DECISION
 
 
+XCCDF_RELATIONS = {
+    'less than': 'less_than',
+    'less than or equal': 'less_than_or_equal',
+    'greater than': 'greater_than',
+    'greater than or equal': 'greater_than_or_equal',
+}
+
+
+def _relation_satisfied(value, operator, bound):
+    if type(value) is bool or type(bound) is bool:
+        return False
+    return {'less_than': value < bound,
+            'less_than_or_equal': value <= bound,
+            'greater_than': value > bound,
+            'greater_than_or_equal': value >= bound}[operator]
+
+
 def source_disambiguated_identifier(visitor, element, suffix, peers):
     """Keep readable names unless source descriptors actually collide.
 
@@ -61,7 +78,9 @@ def external_input(visitor, element):
     ensure(value is not None and all(n.tag=='{'+OVAL+'}possible_value' for n in element),
            'unbound external Variable or unsupported possible_restriction')
     attributes(value, {'id','type','operator','interactive','interfaceHint','hidden'})
-    ensure(value.get('operator','equals')=='equals', 'XCCDF Value operator requires an explicit constraint adapter')
+    value_operator = value.get('operator', 'equals')
+    ensure(value_operator == 'equals' or value_operator in XCCDF_RELATIONS,
+           'XCCDF Value operator requires a supported typed constraint adapter')
     allowed_names = ['title', 'description', 'value', 'reference']
     if recovery:
         allowed_names.append('warning')
@@ -101,6 +120,17 @@ def external_input(visitor, element):
         contract['constraints']={'allowed':allowed}
         parameter['constraints']={'allowed':allowed}
         ensure(not defaults or parameter['value'] in allowed,'publisher default violates external Variable allowed values')
+    if value_operator != 'equals':
+        bound_text = defaults[0].text if defaults else value.findtext('{'+XCCDF+'}value', '')
+        relation = {'operator': XCCDF_RELATIONS[value_operator],
+                    'value': visitor.literal(datatype, bound_text or '')}
+        ensure(type(relation['value']) is not bool and isinstance(relation['value'], (int, float)),
+               'XCCDF relational Value requires a numeric typed bound')
+        contract.setdefault('constraints', {})['relation'] = relation
+        parameter.setdefault('constraints', {})['relation'] = relation
+        if defaults:
+            ensure(_relation_satisfied(parameter['value'], relation['operator'], relation['value']),
+                   'publisher default violates XCCDF relational Value constraint')
     visitor.inputs[input_id]=contract
     visitor.policy_parameters[parameter_id]=parameter
     visitor.input_bindings[input_id]={'parameter':parameter_id}
@@ -113,6 +143,7 @@ def external_input(visitor, element):
         'source_variable_sha256': digest(xml_identity(element)),
         'source_value': value.get('id'),
         'source_value_sha256': digest(xml_identity(value)),
+        'source_value_operator': value_operator,
         'source_value_xml': xml_identity(value),
         'input': input_id,
         'parameter': parameter_id,

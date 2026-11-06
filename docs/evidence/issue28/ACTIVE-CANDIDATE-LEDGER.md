@@ -1,66 +1,59 @@
 # Issue #28 active candidate ledger
 
 This is the rebuilt candidate ledger after integrating the OVAL variable
-function contract and excluding Windows Server 2012/2012 R2 from active
-modernization. The historical all-65 audit and original ZIP provenance remain
-separate. The compressed Rule record companion contains one record per active
-Rule; it is not source content and does not replace the preserved historical
-ledger.
+function recovery, typed XCCDF Value relations, and the bounded legacy-WMI
+migration. Windows Server 2012/2012 R2 remain historical-only. The historical
+all-65 audit and original ZIP provenance remain separate.
 
 ## Active accounting
 
 | Classification | Rules |
 |---|---:|
 | Automated converted, independently proved | 0 |
-| Automated converted, unproved | 6,473 |
+| Automated converted, unproved | 6,479 |
 | Manual-only Assessment | 1,403 |
-| Genuinely blocked | 114 |
+| Genuinely blocked | 108 |
 | Intentionally excluded SQLEXT | 209 |
 | **Total** | **8,199** |
 
-Compared with the active pre-integration baseline, **82 Rules were recovered**:
-6,391 → 6,473 converted; 196 → 114 blocked. None are independently proved.
+Six previously blocked active Rules are recovered: five XCCDF Value relation
+Rules and one direct legacy-WMI Rule. None are independently proved.
 
-## Function recovery
+## Recovery counts
 
-| Function/recovery | Historical candidate blockers | Recovered | Still blocked |
+| Recovery | Historical active candidates | Recovered | Remaining |
 |---|---:|---:|---:|
 | `count` | 37 | 36 | 1 |
 | Multi-component aggregation | 30 | 30 | 0 |
 | `split` | 19 | 15 | 4 |
 | `arithmetic` | 3 | 0 | 3 |
 | `substring` | 1 | 1 | 0 |
-| **Total** | **90** | **82** | **8** |
+| **Function total** | **90** | **82** | **8** |
+| Legacy WMI migration candidates | 15 | 1 | 14 |
+| XCCDF Value constraints | 5 | 5 | 0 |
 
-The eight residual function Rules are explicit datatype-boundary cases, not
-schema-shape failures: one `count` result is declared string, four `split`
-results are declared integer, and three arithmetic results are declared
-string. No silent cast was added.
+Legacy WMI migration is not counted as 15 recovered Rules: the 14 remaining
+Rules use WMI results through unsupported scalar Variable/function or Set
+shapes. Their WMI query projection is retained only where the resulting native
+Assessment remains valid.
 
-## Active blocker inventory
+## Remaining active blocker groups
 
-The mutually exclusive active Rule-level primary blocker counts are in the JSON
-ledger. Important remaining groups include:
-
-- AccessToken: 66 primary Rules remain (Windows 10 and Windows Server 2016).
-  The source audit has 66 supported-platform AccessToken Rules; 59 of the
-  historical 125 primary AccessToken blockers were in the excluded benchmarks.
-- Legacy WMI: **15 primary Rules** remain (14 object and 1 test); no WMI
-  equivalence is claimed.
-- XCCDF Value constraints: 5 active Rules still require the typed constraint
-  adapter.
-- Other remaining gaps include unsupported `user_*` (5 Rules), 5 XCCDF Value
-  constraint Rules, 2 unsupported State-field Rules, seven IIS/NGINX capability
-  mismatch Rules, traversal admission, Input composition, one cast boundary,
-  three pre-existing Variable datatype mismatches, and the eight explicit
-  function datatype boundaries.
-
-Diagnostic feature counts may overlap, but the `genuinely_blocked: 114`
-classification is mutually exclusive and authoritative.
+- AccessToken: 66 primary Rules on supported platforms; intentionally
+  unsupported for automatic conversion.
+- Legacy WMI downstream record/scalar boundaries: 14 Rules remain blocked after
+  capability migration; no scalar `result` flattening is fabricated.
+- OVAL function datatype boundaries: eight Rules remain deferred under the
+  Issue #28 0.4 strict-datatype decision (3 arithmetic, 4 split, 1 count).
+- Other capability/converter roots: five `user_test` Rules, two variable-source
+  Set/Filter Rules, two State-field gaps, one traversal admission, one bounded
+  cast boundary, one NGINX state mismatch, six IIS state mismatches, and five
+  other native schema/function admission Rules.
+- SQLEXT: 209 Rules intentionally excluded from active modernization.
 
 ## Qualification boundary
 
-Schema validation, semantic validation, conversion, and ledger generation pass
-for this candidate. Runtime/compiler/scanner equivalence and independent OVAL
-proof remain unclaimed. AccessToken and SQLEXT remain intentionally unsupported;
-all source IDs, manual alternatives, and provenance are retained.
+The candidate artifacts are schema-validated, converter-tested, and ledger
+reconciled. No Rule is independently proved by this ledger; compiler and
+scanner execution is not claimed. Source Rule IDs, check selection, manual
+alternatives, provenance, and historical artifacts are retained.

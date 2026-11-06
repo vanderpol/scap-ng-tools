@@ -55,3 +55,12 @@ These feature rows are diagnostic and may overlap a Rule; they are not added to 
 ## Verification boundary
 
 The ledger performs pinned-schema validation and source tracing. This tools branch does not provide compiler/scanner execution or independent OVAL-result comparison. YAML validity, schema validity, and conversion admission therefore do not promote any Rule to proved.
+
+## Candidate recovery update
+
+The legacy-WMI capability migration and typed XCCDF Value relation adapter are
+implemented only in the linked candidate. The active ledger records one fully
+recovered legacy-WMI Rule and five recovered XCCDF Value Rules. Fourteen other
+active legacy-WMI Rules retain downstream scalar record/function or Set/Filter
+blockers; they are not counted as recovered. The eight Variable datatype
+mismatches remain deferred under the Issue #28 0.4 strict-datatype decision.

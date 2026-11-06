@@ -1,21 +1,79 @@
 # XCCDF Value relational-constraint adapter
 
-This is a valid, low-frequency conversion gap—not an unsupported capability.
-The pinned corpus has **36 Rules** whose XCCDF `Value` is exported to an OVAL
-external Variable while carrying a non-equality operator. `SV-226057` is a
-representative source case.
+The pinned corpus contains five active Rules whose selected OVAL check exports an
+XCCDF `Value` with a non-equality operator. These are converter gaps, not
+unsupported capabilities. The 0.4 candidate extends the existing typed
+`Input`/`Parameter` contract; it does not create a second Value mechanism.
 
-The first native contract should preserve, without coercion:
+## Original source example
 
-1. the XCCDF datatype and selected/default value;
-2. the check-export `value-id` → OVAL Variable identity;
-3. finite `possible_value`/allowed-value constraints;
-4. the relational operator (`less_than_or_equal` first);
-5. cardinality and omitted/empty/invalid Input states.
+Representative source (`SV-224867`, Windows Server 2016):
 
-The compiler must reject an invalid organization value and the runtime must
-apply the same typed relation. An allowed-values list alone is insufficient:
-it preserves the candidates but not the XCCDF operator. This remains an
-explicit design decision until the native Input/Parameter constraint contract
-is approved; the converter currently blocks these Rules rather than silently
-changing their policy.
+```xml
+<xccdf:Value id="xccdf_mil.disa.stig_val_3" type="number" operator="less than or equal">
+  <xccdf:title>Maximum allowed value</xccdf:title>
+  <xccdf:value>3</xccdf:value>
+</xccdf:Value>
+<!-- selected OVAL check: -->
+<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+             selector="">
+  <xccdf:check-export export-name="oval:...:var:3"
+                     value-id="xccdf_mil.disa.stig_val_3"/>
+</xccdf:check>
+<!-- OVAL declaration: -->
+<oval:external_variable id="oval:...:var:3" datatype="int"/>
+```
+
+The other four active source Values use `greater than or equal` or
+`less than or equal` and OVAL `datatype="int"`; finite possible values are
+also preserved when present. The source XML, IDs, check selection, and Value
+hash are retained in each conversion warning.
+
+## Native candidate
+
+The existing organizational Input and Parameter carry the same typed relation:
+
+```yaml
+inputs:
+  maximum-allowed-value-input:
+    datatype: integer
+    cardinality: exactly_one
+    required: true
+    constraints:
+      allowed: [3, 5, 10, 50]
+      relation:
+        operator: less_than_or_equal
+        value: 3
+
+parameters:
+  maximum-allowed-value-parameter:
+    id: maximum-allowed-value-parameter
+    datatype: integer
+    cardinality: one
+    required: true
+    resolution: publisher
+    value: 3
+    constraints:
+      allowed: [3, 5, 10, 50]
+      relation:
+        operator: less_than_or_equal
+        value: 3
+```
+
+The converter maps XCCDF operators as follows: `less than` → `less_than`,
+`less than or equal` → `less_than_or_equal`, `greater than` → `greater_than`,
+and `greater than or equal` → `greater_than_or_equal`.
+
+## Contract and qualification
+
+- Only integer and float Inputs may carry `relation`; bounds must already have
+  the declared datatype. No lexical or Boolean coercion is performed.
+- `allowed` and `relation` are conjunctive. Defaults and supplied values are
+  validated; violating, missing, invalid, error, and unknown bindings remain
+  explicit states and are never replaced.
+- Inclusive and strict boundary vectors, allowed-plus-relation, bad datatype,
+  Boolean, empty, missing, and error cases are covered by
+  `tests/test_issue28_semantic_proof.py` and the Input presence tests.
+- The five Rules move from blocked to automated converted/unproved in the
+  candidate ledger. This is schema/compiler-adapter coverage, not independent
+  OVAL/scanner equivalence proof.

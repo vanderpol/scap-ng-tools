@@ -111,3 +111,21 @@ relation contract is approved.
 - Variable-source Object `var_ref` datatype/operation attributes are admitted
   only for the exact string/equality boundary and retained in a conversion
   warning; non-default typed or comparator-bearing references remain blocked.
+
+## Legacy WMI and XCCDF Value recovery (candidate)
+
+The coordinated candidate schema commit `919732d4c570b521edf82196a7694dfd8c27fe50`
+adds typed numeric Input `constraints.relation` to the existing 0.4 contract.
+The converter maps the five active XCCDF relational Value Rules without casts;
+all five are now automated converted/unproved. The same candidate migrates
+single-field legacy `wmi_*` projections to `windows.wmi.query` record results.
+One active Rule is fully admitted; fourteen remain blocked at downstream scalar
+record/function or Set boundaries. See `XCCDF-VALUE-CONSTRAINT-ADAPTER.md` and
+`LEGACY-WMI-RECOVERY.md`.
+
+The repinned schema family is
+`6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0`; the
+semantic pack is regenerated and pinned in the tools candidate. The active
+candidate ledger is 6,479 automated converted/unproved, 1,403 manual-only, 108
+genuinely blocked, and 209 intentionally excluded (8,199 total). Independent
+proof, compiler execution, and scanner equivalence remain unclaimed.

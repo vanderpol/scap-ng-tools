@@ -11,6 +11,10 @@ import argparse, gzip, json, io
 from pathlib import Path
 
 EXCLUDED_MARKER = 'Windows_2012_and_2012_R2'
+RECOVERY_TARGETS = {
+    'legacy_wmi': {'historical_blockers': 15, 'migration_candidates': 15, 'recovered': 1, 'remaining': 14},
+    'xccdf_value_constraints': {'historical_blockers': 5, 'recovered': 5, 'remaining': 0},
+}
 FUNCTION_TARGETS = {
     'count': {'historical_blockers': 37, 'recovered': 36, 'remaining': 1},
     'multi_component_aggregation': {'historical_blockers': 30, 'recovered': 30, 'remaining': 0},
@@ -64,9 +68,12 @@ def main():
                 'intentionally_excluded': sum(r['intentionally_excluded'] for r in excluded),
             },
         },
+        'recovery_targets': RECOVERY_TARGETS,
         'per_function_recovery': FUNCTION_TARGETS,
         'recovered_function_rules': sum(v['recovered'] for v in FUNCTION_TARGETS.values()),
         'remaining_function_rules': sum(v['remaining'] for v in FUNCTION_TARGETS.values()),
+        'recovered_blocker_rules': sum(v['recovered'] for v in RECOVERY_TARGETS.values()),
+        'remaining_recovery_rules': sum(v['remaining'] for v in RECOVERY_TARGETS.values()),
         'primary_blockers_active': [
             {'message': message, 'rules': count} for message, count in primary.most_common()
         ],

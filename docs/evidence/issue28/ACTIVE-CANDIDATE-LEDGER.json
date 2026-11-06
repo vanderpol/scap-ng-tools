@@ -412,8 +412,7 @@
       "automated_converted": 9,
       "blocked": 5,
       "blocker_categories": {
-        "schema-semantic": 1,
-        "unsupported-capability": 4
+        "schema-semantic": 5
       },
       "converted": 9,
       "filename": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
@@ -421,7 +420,16 @@
       "manual_only": 3,
       "primary_blockers": {
         "authoring/direct-slice/assessments/digital-signatures-assemblies-verified-sv-225223-assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\StrongName\\\\Verification'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas": 1,
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 4
+        "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: Native Variable expression: Variable all-local-disk-volumes-in-x-format-variable/expression: {'function': {'name': 'end', 'arguments': [{'values': {'object': {'capability': 'windows.wmi.query', 'namespace': 'root\\\\cimv2', 'query': 'SELECT name FROM win32_logicaldisk WHERE drivetype=3'}, 'field': 'result'}}], 'options': {'character': '\\\\'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: {'concat': [{'function': {'name': 'end', 'arguments': [{'values': {'object': 'system-root-directory-registry-object-object', 'field': 'value'}}], 'options': {'character': '\\\\'}}}, {'literal': {'datatype': 'string', 'value': 'WinSxS'}}]} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: {'concat': [{'function': {'name': 'end', 'arguments': [{'values': {'object': 'system-root-directory-registry-object-object', 'field': 'value'}}], 'options': {'character': '\\\\'}}}, {'literal': {'datatype': 'string', 'value': 'servicing\\\\LCU'}}]} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: {'function': {'name': 'end', 'arguments': [{'values': {'object': {'capability': 'windows.wmi.query', 'namespace': 'root\\\\cimv2', 'query': 'SELECT name FROM win32_logicaldisk WHERE drivetype=3'}, 'field': 'result'}}], 'options': {'character': '\\\\'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/net-applications-that-of-net-stig-guidance-sv-225232-assessment.json: Native Variable expression: concat requires a scalar text operand": 1,
+        "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: Native Variable expression: Variable all-local-disk-volumes-in-x-format-variable/expression: {'function': {'name': 'end', 'arguments': [{'values': {'object': {'capability': 'windows.wmi.query', 'namespace': 'root\\\\cimv2', 'query': 'SELECT name FROM win32_logicaldisk WHERE drivetype=3'}, 'field': 'result'}}], 'options': {'character': '\\\\'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: {'concat': [{'function': {'name': 'end', 'arguments': [{'values': {'object': 'system-root-directory-registry-object-object', 'field': 'value'}}], 'options': {'character': '\\\\'}}}, {'literal': {'datatype': 'string', 'value': 'WinSxS'}}]} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: {'concat': [{'function': {'name': 'end', 'arguments': [{'values': {'object': 'system-root-directory-registry-object-object', 'field': 'value'}}], 'options': {'character': '\\\\'}}}, {'literal': {'datatype': 'string', 'value': 'servicing\\\\LCU'}}]} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: {'function': {'name': 'end', 'arguments': [{'values': {'object': {'capability': 'windows.wmi.query', 'namespace': 'root\\\\cimv2', 'query': 'SELECT name FROM win32_logicaldisk WHERE drivetype=3'}, 'field': 'result'}}], 'options': {'character': '\\\\'}}} is not valid under any of the given schemas": 1,
+        "authoring/direct-slice/assessments/net-default-proxy-reviewed-and-approved-sv-225234-assessment.json: Native Variable expression: concat requires a scalar text operand": 1
       },
       "scope": "in_scope",
       "source_rules": 17,
@@ -444,14 +452,14 @@
       "automated_converted": 54,
       "blocked": 1,
       "blocker_categories": {
-        "unsupported-capability": 1
+        "schema-semantic": 1
       },
       "converted": 54,
       "filename": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 13,
       "primary_blockers": {
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
+        "authoring/direct-slice/assessments/exchange-software-partition-from-os-sv-259637-assessment.json: Native Variable expression: substring requires a scalar text operand": 1
       },
       "scope": "in_scope",
       "source_rules": 68,
@@ -461,14 +469,14 @@
       "automated_converted": 50,
       "blocked": 1,
       "blocker_categories": {
-        "unsupported-capability": 1
+        "schema-semantic": 1
       },
       "converted": 50,
       "filename": "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 15,
       "primary_blockers": {
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
+        "authoring/direct-slice/assessments/exchange-email-with-another-application-sv-259704-assessment.json: Native Variable expression: substring requires a scalar text operand": 1
       },
       "scope": "in_scope",
       "source_rules": 66,
@@ -491,7 +499,7 @@
       "automated_converted": 23,
       "blocked": 2,
       "blocker_categories": {
-        "unsupported-capability": 1,
+        "schema-semantic": 1,
         "unsupported-construct": 1
       },
       "converted": 23,
@@ -500,7 +508,7 @@
       "manual_only": 15,
       "primary_blockers": {
         "Variable cast outside bounded proof": 1,
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
+        "authoring/direct-slice/assessments/all-iis-10-0-web-server-iis-10-0-server-sv-218795-assessment.json: Native Variable expression: concat requires a scalar text operand": 1
       },
       "scope": "in_scope",
       "source_rules": 40,
@@ -531,8 +539,7 @@
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875201": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875202": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101": 1,
-        "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878102": 1,
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
+        "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878102": 1
       },
       "scope": "in_scope",
       "source_rules": 44,
@@ -542,14 +549,14 @@
       "automated_converted": 18,
       "blocked": 1,
       "blocker_categories": {
-        "unsupported-capability": 1
+        "schema-semantic": 1
       },
       "converted": 18,
       "filename": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 24,
       "primary_blockers": {
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
+        "authoring/direct-slice/assessments/java-software-installed-virtual-machine-sv-214416-assessment.json: Native Variable expression: concat requires a scalar text operand": 1
       },
       "scope": "in_scope",
       "source_rules": 43,
@@ -578,8 +585,7 @@
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:81": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:93": 1,
         "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:94": 1,
-        "unsupported acquisition parameter comparison/type": 1,
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1
+        "unsupported acquisition parameter comparison/type": 1
       },
       "scope": "in_scope",
       "source_rules": 49,
@@ -718,25 +724,23 @@
       "source_sha256": "d16c868152e14bab0a1e2ecdfa6ec889972e068625d4d20d4ac3f861ff2009ca"
     },
     {
-      "automated_converted": 199,
-      "blocked": 45,
+      "automated_converted": 205,
+      "blocked": 39,
       "blocker_categories": {
-        "unsupported-capability": 40,
-        "unsupported-construct": 5
+        "schema-semantic": 1,
+        "unsupported-capability": 38,
+        "unsupported-construct": 1
       },
-      "converted": 199,
+      "converted": 205,
       "filename": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 28,
       "primary_blockers": {
-        "XCCDF Value operator requires an explicit constraint adapter": 5,
-        "unbound external Variable or unsupported possible_restriction": 5,
+        "authoring/direct-slice/assessments/data-files-owned-by-users-data-files-sv-224975-assessment.json: Native Variable expression: substring requires a scalar text operand": 1,
+        "legacy WMI State requires a paired legacy WMI Test projection": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 38,
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 3,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state": 38,
-        "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_state": 2,
-        "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test": 38,
-        "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_test": 2
+        "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test": 38
       },
       "scope": "in_scope",
       "source_rules": 272,
@@ -746,15 +750,16 @@
       "automated_converted": 253,
       "blocked": 2,
       "blocker_categories": {
-        "unsupported-capability": 2
+        "schema-semantic": 1,
+        "unsupported-capability": 1
       },
       "converted": 253,
       "filename": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 27,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/windows-server-2019-data-server-data-files-sv-205723-assessment.json: Native Variable expression: substring requires a scalar text operand": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_state": 1,
         "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test": 1
       },
@@ -766,15 +771,16 @@
       "automated_converted": 249,
       "blocked": 2,
       "blocker_categories": {
-        "unsupported-capability": 2
+        "schema-semantic": 1,
+        "unsupported-capability": 1
       },
       "converted": 249,
       "filename": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 27,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/windows-server-2022-data-server-data-files-sv-254396-assessment.json: Native Variable expression: substring requires a scalar text operand": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_state": 1,
         "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test": 1
       },
@@ -786,15 +792,16 @@
       "automated_converted": 259,
       "blocked": 2,
       "blocker_categories": {
-        "unsupported-capability": 2
+        "schema-semantic": 1,
+        "unsupported-capability": 1
       },
       "converted": 259,
       "filename": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
       "intentionally_excluded": 0,
       "manual_only": 30,
       "primary_blockers": {
+        "authoring/direct-slice/assessments/windows-server-2025-data-server-data-files-sv-278143-assessment.json: Native Variable expression: substring requires a scalar text operand": 1,
         "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 1,
-        "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 1,
         "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_state": 1,
         "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test": 1
       },
@@ -981,8 +988,8 @@
   ],
   "classification": {
     "automated_converted_proved": 0,
-    "automated_converted_unproved": 6473,
-    "genuinely_blocked": 114,
+    "automated_converted_unproved": 6479,
+    "genuinely_blocked": 108,
     "intentionally_excluded": 209,
     "manual_only": 1403
   },
@@ -992,8 +999,8 @@
       "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip"
     ],
     "classification": {
-      "automated_converted_unproved": 401,
-      "genuinely_blocked": 114,
+      "automated_converted_unproved": 449,
+      "genuinely_blocked": 66,
       "intentionally_excluded": 0,
       "manual_only": 178
     },
@@ -1002,8 +1009,8 @@
   "format": "scap-ng-tools/issue28-active-rule-ledger/1",
   "historical_classification": {
     "automated_converted_proved": 0,
-    "automated_converted_unproved": 6874,
-    "genuinely_blocked": 228,
+    "automated_converted_unproved": 6928,
+    "genuinely_blocked": 174,
     "intentionally_excluded": 209,
     "manual_only": 1581,
     "proof_note": "No Rules are independently proved by this authoring ledger."
@@ -1041,16 +1048,12 @@
       "rules": 66
     },
     {
-      "message": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
-      "rules": 14
-    },
-    {
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
       "rules": 5
     },
     {
-      "message": "XCCDF Value operator requires an explicit constraint adapter",
-      "rules": 5
+      "message": "Variable source requires one var_ref; Sets/Filters unsupported",
+      "rules": 2
     },
     {
       "message": "unsupported State field/namespace",
@@ -1085,6 +1088,34 @@
       "rules": 1
     },
     {
+      "message": "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: {'function': {'name': 'end', 'arguments': [{'values': {'object': {'capability': 'windows.wmi.query', 'namespace': 'root\\\\cimv2', 'query': 'SELECT name FROM win32_logicaldisk WHERE drivetype=3'}, 'field': 'result'}}], 'options': {'character': '\\\\'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/net-applications-that-of-net-stig-guidance-sv-225232-assessment.json: Native Variable expression: concat requires a scalar text operand",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/net-default-proxy-reviewed-and-approved-sv-225234-assessment.json: Native Variable expression: concat requires a scalar text operand",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: {'function': {'name': 'end', 'arguments': [{'values': {'object': {'capability': 'windows.wmi.query', 'namespace': 'root\\\\cimv2', 'query': 'SELECT name FROM win32_logicaldisk WHERE drivetype=3'}, 'field': 'result'}}], 'options': {'character': '\\\\'}}} is not valid under any of the given schemas",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/exchange-software-partition-from-os-sv-259637-assessment.json: Native Variable expression: substring requires a scalar text operand",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/exchange-email-with-another-application-sv-259704-assessment.json: Native Variable expression: substring requires a scalar text operand",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/all-iis-10-0-web-server-iis-10-0-server-sv-218795-assessment.json: Native Variable expression: concat requires a scalar text operand",
+      "rules": 1
+    },
+    {
       "message": "Variable cast outside bounded proof",
       "rules": 1
     },
@@ -1113,6 +1144,10 @@
       "rules": 1
     },
     {
+      "message": "authoring/direct-slice/assessments/java-software-installed-virtual-machine-sv-214416-assessment.json: Native Variable expression: concat requires a scalar text operand",
+      "rules": 1
+    },
+    {
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:80",
       "rules": 1
     },
@@ -1129,7 +1164,19 @@
       "rules": 1
     },
     {
-      "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_test",
+      "message": "authoring/direct-slice/assessments/data-files-owned-by-users-data-files-sv-224975-assessment.json: Native Variable expression: substring requires a scalar text operand",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/windows-server-2019-data-server-data-files-sv-205723-assessment.json: Native Variable expression: substring requires a scalar text operand",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/windows-server-2022-data-server-data-files-sv-254396-assessment.json: Native Variable expression: substring requires a scalar text operand",
+      "rules": 1
+    },
+    {
+      "message": "authoring/direct-slice/assessments/windows-server-2025-data-server-data-files-sv-278143-assessment.json: Native Variable expression: substring requires a scalar text operand",
       "rules": 1
     },
     {
@@ -1151,8 +1198,23 @@
     "independent_proof_claim": false,
     "original_rule_ids_retained": true
   },
+  "recovered_blocker_rules": 6,
   "recovered_function_rules": 82,
+  "recovery_targets": {
+    "legacy_wmi": {
+      "historical_blockers": 15,
+      "migration_candidates": 15,
+      "recovered": 1,
+      "remaining": 14
+    },
+    "xccdf_value_constraints": {
+      "historical_blockers": 5,
+      "recovered": 5,
+      "remaining": 0
+    }
+  },
   "remaining_function_rules": 8,
+  "remaining_recovery_rules": 14,
   "scope": {
     "benchmarks": 63,
     "excluded_platforms": [
@@ -1161,9 +1223,9 @@
     ],
     "ledger_access": "public pinned Q3 2026 ZIPs; VM-private ledger was not used",
     "rules": 8199,
-    "schema_commit": "a036357",
-    "schema_family_sha256": "094cc95219a0fad3640c5fda366b8ff865eb73e255013d92f46edd24cb579c6b",
+    "schema_commit": "919732d4c570b521edf82196a7694dfd8c27fe50",
+    "schema_family_sha256": "6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0",
     "source_revision": "niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5"
   },
-  "source_report": "candidate full-65 audit from original pinned source ZIPs via scripts/audit_issue28_blockers.py"
+  "source_report": "/tmp/issue28-complete-candidate.json"
 }

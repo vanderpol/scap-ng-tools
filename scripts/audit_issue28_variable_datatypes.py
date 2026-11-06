@@ -507,8 +507,8 @@ def main():
             'mismatch_count': len(mismatches), 'mismatches': mismatches,
         },
         'native_contract_snapshot': {
-            'schema_root': 'vanderpol/scap-ng@a036357',
-            'schema_family_digest': '094cc95219a0fad3640c5fda366b8ff865eb73e255013d92f46edd24cb579c6b',
+            'schema_root': 'vanderpol/scap-ng@919732d4c570b521edf82196a7694dfd8c27fe50',
+            'schema_family_digest': '6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0',
             'native_schema_functions': native_functions,
             'compiler': 'No separate SCAP-NG compiler executable is present in checked-out repositories.',
             'runtime': 'No SCAP-NG runtime executable is present; source/evaluator probes are separate evidence.',
