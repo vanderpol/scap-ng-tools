@@ -1317,18 +1317,9 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 if set(native) & set(documents):
                     blockers.append(issue('native-identity',
                         'native Rule/Assessment name collision in selected source Rules', row['source_rule']))
-                # Keep the source-level aggregation boundary visible even when
-                # the candidate reaches the active schema validator. The
-                # canonical envelope is intentionally retained for owner review,
-                # but multi-operand unique/merge is still a distinct blocker,
-                # not an opaque generic schema rejection.
-                for warning in binding.get('conversion_warnings', []):
-                    if (warning.get('code') == 'native_function_contract_v1' and
-                            warning.get('source_function') in ('unique', 'merge') and
-                            warning.get('source_component_count', 1) > 1):
-                        blockers.append(issue('unsupported-construct',
-                            'multiple aggregation components need an approved collection expression',
-                            row['source_rule']))
+                # Multi-component unique/merge is admitted by the canonical
+                # function-expression schema. Keep warning provenance without
+                # reclassifying a schema-valid candidate as blocked.
                 for path, document in native.items():
                     kind, = document
                     for error in validate_document(kind, document):

@@ -156,8 +156,8 @@ class NativeFunctionContractSemantics(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'at least two'):
             self._validate({'kind': 'local', 'datatype': 'string', 'expression': empty_concat})
         bad_unique = {'function': {'name': 'unique', 'arguments': [
-            self._literal('integer', [1, 2])], 'options': {}}}
-        with self.assertRaisesRegex(ValueError, 'string operands'):
+            self._literal('record', {'id': 1})], 'options': {}}}
+        with self.assertRaisesRegex(ValueError, 'scalar text operand'):
             self._validate({'kind': 'local', 'datatype': 'string', 'expression': bad_unique})
         bad_count = {'function': {'name': 'count', 'arguments': [], 'options': {}}}
         with self.assertRaisesRegex(ValueError, 'one or more'):
@@ -166,8 +166,8 @@ class NativeFunctionContractSemantics(unittest.TestCase):
     def test_owner_function_subset_rejects_implicit_casts_and_bad_options(self):
         numeric_split = {'function': {'name': 'split', 'arguments': [self._literal('integer', 2)],
                                       'options': {'delimiter': ','}}}
-        with self.assertRaisesRegex(ValueError, 'requires string operands'):
-            self._validate({'kind': 'local', 'datatype': 'string', 'expression': numeric_split})
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
+                                         'expression': numeric_split})['result-variable'], 'string')
         bad_substring = {'function': {'name': 'substring', 'arguments': [self._literal('string', 'abc')],
                                       'options': {'substring_start': 1.0, 'substring_length': 2}}}
         with self.assertRaisesRegex(ValueError, 'signed 32-bit'):

@@ -19,8 +19,8 @@ from scap_ng_tools.converter.direct04 import convert_benchmark
 EXPECTED_BENCHMARKS = 65
 EXPECTED_RULES = 8892
 SOURCE_REVISION = 'niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5'
-SCHEMA_COMMIT = '7354a24cdbfe18321153ccaef5d772801a10cd71'
-SCHEMA_FAMILY = '63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5'
+SCHEMA_COMMIT = 'a036357'
+SCHEMA_FAMILY = '094cc95219a0fad3640c5fda366b8ff865eb73e255013d92f46edd24cb579c6b'
 
 
 def issue_key(problem):
@@ -148,6 +148,8 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
         rows.append(benchmark)
         for status, count in summary['statuses'].items():
             totals[status] += count
+        for rule in coverage['rules']:
+            rule['benchmark'] = source.name
         rule_rows.extend(coverage['rules'])
         for rule in coverage['rules']:
             if rule['status'] != 'blocked':
@@ -258,6 +260,7 @@ def compact(source_dir: Path, schema_root: Path, *, exclude_sqlext=True, native_
         'all_blockers': all_rows,
         'variable_function_usage': construct_rows,
         'benchmarks': rows,
+        'rules': rule_rows,
         'recovery_order': [
             {'root_cause': 'all_exist', 'primary_rules': primary[('unsupported-construct', 'unsupported Test existence: all_exist')],
              'reason': 'Current 0.4 item_requirement explicitly maps all_exist to one_or_more; no schema change is required.'},

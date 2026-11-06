@@ -43,6 +43,16 @@ def assessment_variable_expressions(assessment):
         if expected not in actual and not (expected == 'float' and 'integer' in actual):
             raise ValueError(f'{where}: declared/derived datatype conflict ({sorted(actual)} vs {expected})')
 
+    def text_operand(actual, where):
+        # OVAL FunctionGroup permits an attempted cast to string for textual
+        # functions.  Preserve that explicit lexical boundary: records and
+        # unknown/empty domains are not silently flattened, while scalar
+        # integer/float/boolean values are stringified by the runtime contract.
+        scalar_domains = TEXT_TYPES | {'integer', 'float', 'boolean'}
+        if not actual or 'record' in actual or not actual <= scalar_domains:
+            raise ValueError(f'{where} requires a scalar text operand')
+        return actual
+
     def literal(value, expected=None):
         if isinstance(value, dict):
             domain = value['datatype']
@@ -116,9 +126,7 @@ def assessment_variable_expressions(assessment):
                     if any(isinstance(options[key], bool) or not isinstance(options[key], int)
                            or not -2147483648 <= options[key] <= 2147483647 for key in required):
                         raise ValueError('substring options must be signed 32-bit integers')
-                domain = expression(arguments[0], 'string')
-                if not domain or not domain <= {'string'}:
-                    raise ValueError(name + ' requires string operands')
+                domain = text_operand(expression(arguments[0]), name)
                 return {'string'}
             if name == 'count':
                 if len(arguments) < 1 or options:
@@ -133,24 +141,18 @@ def assessment_variable_expressions(assessment):
                 if len(arguments) < 2 or options:
                     raise ValueError('concat requires at least two arguments and no options')
                 for argument in arguments:
-                    domain = expression(argument, 'string')
-                    if not domain or not domain <= {'string'}:
-                        raise ValueError('concat requires string operands')
+                    text_operand(expression(argument), 'concat')
                 return {'string'}
             if name == 'regex_capture':
                 if len(arguments) != 1 or set(options) != {'pattern'} or not isinstance(options['pattern'], str):
                     raise ValueError('regex_capture requires one string argument and a pattern')
-                domain = expression(arguments[0], 'string')
-                if not domain or not domain <= {'string'}:
-                    raise ValueError('regex_capture requires string operands')
+                text_operand(expression(arguments[0]), 'regex_capture')
                 return {'string'}
             if name == 'unique':
                 if len(arguments) < 1 or options:
                     raise ValueError('unique requires one or more arguments and no options')
                 for argument in arguments:
-                    domain = expression(argument, 'string')
-                    if not domain or 'record' in domain or not domain <= {'string'}:
-                        raise ValueError('unique requires string operands')
+                    text_operand(expression(argument), 'unique')
                 return {'string'}
             if name == 'merge':
                 required = {'delimiter', 'sort', 'order'}
@@ -169,25 +171,20 @@ def assessment_variable_expressions(assessment):
                 return {'string'}
             raise ValueError('unsupported native Variable function: ' + str(name))
         if op == 'unique':
-            domains = expression(value, 'string')
-            if not domains or 'record' in domains or not domains <= {'string'}:
-                raise ValueError('unique requires string operands')
+            text_operand(expression(value), 'unique')
             return {'string'}
         if op == 'concat':
             for arg in value:
-                domain = expression(arg, 'string')
-                if not domain or not domain <= {'string'}:
-                    raise ValueError('concat requires string operands')
+                text_operand(expression(arg), 'concat')
             return {'string'}
         if op in ('regex_capture', 'merge'):
             arg = value['value' if op == 'regex_capture' else 'values']
-            argument_types = expression(arg, 'string' if op == 'regex_capture' else None)
+            argument_types = expression(arg)
             if op == 'merge':
                 if not argument_types or 'record' in argument_types:
                     raise ValueError('merge requires scalar values')
                 return {'string'}
-            if not argument_types or not argument_types <= {'string'}:
-                raise ValueError('regex_capture requires string operands')
+            text_operand(argument_types, 'regex_capture')
             return {'string'}
         raise ValueError('unsupported native Variable expression: ' + op)
 

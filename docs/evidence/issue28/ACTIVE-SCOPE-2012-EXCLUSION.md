@@ -1,5 +1,9 @@
 # Active-scope exclusion: Windows Server 2012 / 2012 R2
 
+> This document records the pre-function-integration scope baseline. The rebuilt
+> candidate counts are in [ACTIVE-CANDIDATE-LEDGER.md](ACTIVE-CANDIDATE-LEDGER.md);
+> that ledger supersedes the baseline counts below for current recovery status.
+
 Owner decision: Windows Server 2012 and Windows Server 2012 R2 are not active
 SCAP-NG modernization targets. This is a scope classification, not deletion or
 conversion. The original benchmark ZIPs, source XML, IDs, provenance, and the
