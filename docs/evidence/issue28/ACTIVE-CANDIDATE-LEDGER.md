@@ -45,12 +45,14 @@ ledger. Important remaining groups include:
 - AccessToken: 66 primary Rules remain (Windows 10 and Windows Server 2016).
   The source audit has 66 supported-platform AccessToken Rules; 59 of the
   historical 125 primary AccessToken blockers were in the excluded benchmarks.
-- Legacy WMI: remaining diagnostics are retained as unsupported; no WMI
+- Legacy WMI: **15 primary Rules** remain (14 object and 1 test); no WMI
   equivalence is claimed.
 - XCCDF Value constraints: 5 active Rules still require the typed constraint
   adapter.
-- Other remaining gaps include unsupported `user_*`, State/capability
-  mismatches, traversal admission, Input composition, and the eight explicit
+- Other remaining gaps include unsupported `user_*` (5 Rules), 5 XCCDF Value
+  constraint Rules, 2 unsupported State-field Rules, seven IIS/NGINX capability
+  mismatch Rules, traversal admission, Input composition, one cast boundary,
+  three pre-existing Variable datatype mismatches, and the eight explicit
   function datatype boundaries.
 
 Diagnostic feature counts may overlap, but the `genuinely_blocked: 114`
