@@ -15,7 +15,7 @@ UNCHANGED_SOURCE_SHA256 = 'de52a62d54bf73838457c9b91a2bdb3a5ad993dc000c0a6c4e1f1
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
-    'v04_direct_converter.py': 'bfd7b417274a66ade2cbb30b3b59f6f071c7eb8a75ec497ce4af009ec51e581d',
+    'v04_direct_converter.py': 'eeea670e908262286c79c3f7d6d48e9b624041e83548ee60e8e90c5e25e62daa',
     'v04_direct_cmdlet_inputs.py': 'b6a6154538e477095772fc70c6ec2d2637b64d581f32d9c09bd5fa47d42a5c44',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_scap_source.py': 'fb1bf16d2a1e24d729742c3e2a7b711b4a7926d7ed4d23063f16e61369316b5d',
