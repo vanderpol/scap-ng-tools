@@ -207,6 +207,12 @@ def conversion_identity(snapshot):
             'schema_family_sha256': FROZEN_DIGEST}
 
 
+def convert_oval_definition(**arguments):
+    """Source adapter to the same production visitor and validation gates."""
+    from .oval_variables import convert_definition
+    return convert_definition(**arguments)
+
+
 def safe_relative_filename(root, relative):
     filename = PurePosixPath(relative)
     if not relative or filename.is_absolute() or '..' in filename.parts or '\\' in relative:
@@ -222,13 +228,16 @@ def main():
     parser.add_argument('--schema-root', type=Path, required=True,
                         help='exact offline SCAP-NG 0.4 checkout or flat schema/ directory')
     parser.add_argument('source', nargs='?', type=Path,
-                        help='original CLI positional source ZIP')
+                        help='original SCAP ZIP, or standalone OVAL XML with --oval-definition')
     parser.add_argument('--source', dest='source_option', type=Path,
-                        help='equivalent explicit source ZIP path')
+                        help='equivalent explicit source path')
     parser.add_argument('--sha256', required=True, help='exact SHA-256 of original source ZIP')
     parser.add_argument('--rule', action='append', help='selected source Rule ID; repeatable')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument('--oval-definition', help='standalone original OVAL Definition ID; source is XML')
+    parser.add_argument('--source-commit', help='exact declared original source revision for standalone OVAL')
+    parser.add_argument('--source-path', help='original repository-relative XML path for standalone OVAL')
     for option in ('--verify', '--compile', '--all-rules', '--inventory-only', '--draft'):
         parser.add_argument(option, action='store_true')
     arguments = parser.parse_args()
@@ -240,8 +249,12 @@ def main():
                      'these modes require separate owner-qualified ports')
     if arguments.inventory_only and arguments.rule:
         parser.error('--inventory-only must not be combined with --rule')
-    if sum(bool(x) for x in (arguments.inventory_only, arguments.all_rules, arguments.rule)) != 1:
-        parser.error('select exactly one of --inventory-only, --all-rules or --rule')
+    if sum(bool(x) for x in (arguments.inventory_only, arguments.all_rules, arguments.rule, arguments.oval_definition)) != 1:
+        parser.error('select exactly one of --inventory-only, --all-rules, --rule or --oval-definition')
+    if arguments.oval_definition and not (arguments.source_commit and arguments.source_path):
+        parser.error('standalone OVAL requires --source-commit and --source-path')
+    if not arguments.oval_definition and (arguments.source_commit or arguments.source_path):
+        parser.error('--source-commit/--source-path require --oval-definition')
     if arguments.output.exists():
         parser.error('output path already exists; refusing overwrite')
     try:
@@ -260,7 +273,12 @@ def main():
             print(json.dumps({'source_rules': coverage['summary']['source_rules'],
                               'status': 'INVENTORIED_UNVERIFIED', 'native_documents': 0}))
             return
-        if arguments.all_rules:
+        if arguments.oval_definition:
+            documents, trace = convert_oval_definition(
+                schema_root=arguments.schema_root, source=selected_source, sha256_pin=arguments.sha256,
+                definition_id=arguments.oval_definition, source_commit=arguments.source_commit,
+                source_path=arguments.source_path)
+        elif arguments.all_rules:
             documents, trace, coverage = convert_benchmark(
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, human_compact=arguments.human_compact)
@@ -296,10 +314,13 @@ def main():
             'scanner_execution': False,
             'compile_and_verify_modes': 'not_migrated',
             'source_sha256': arguments.sha256,
+            'source_commit': arguments.source_commit,
+            'source_path': arguments.source_path,
+            'source_definition': arguments.oval_definition,
             'rule_ids': arguments.rule,
             'automatic_benchmark_subset': bool(arguments.all_rules),
             'semantic_validation': ('frozen 0.4 capability contract and semantic gates'
-                                    if arguments.all_rules else 'not independently qualified'),
+                                    if arguments.all_rules or arguments.oval_definition else 'not independently qualified'),
         }, indent=2) + '\n', encoding='utf-8')
     except (OSError, ValueError) as error:
         raise SystemExit(str(error))
