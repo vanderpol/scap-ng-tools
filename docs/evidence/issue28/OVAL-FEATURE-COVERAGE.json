@@ -1,0 +1,1611 @@
+{
+  "contract": "Schema admission is not runtime equivalence or independent proof.",
+  "features": [
+    {
+      "benchmarks": 4,
+      "classification": "missing/unsupported",
+      "compiler": "diagnostic blocker / no lowering",
+      "converter": "diagnostic blocker / no lowering",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:25815500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ol7:var:3814",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ol7:var:4192",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
+        }
+      ],
+      "feature": "arithmetic",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "inactive broader function schema",
+      "source_occurrences": 5
+    },
+    {
+      "benchmarks": 1,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.ind:tst:10000000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220706r1153413_rule"
+        }
+      ],
+      "feature": "capability:independent.family",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 1
+    },
+    {
+      "benchmarks": 45,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:24346602",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243466r959010_rule"
+        },
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:24346602",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243467r959010_rule"
+        },
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:24347001",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243470r959010_rule"
+        }
+      ],
+      "feature": "capability:independent.shellcommand",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 1581
+    },
+    {
+      "benchmarks": 24,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.ind:tst:23026500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-273996r1119976_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.ind:tst:25782000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-273997r1119979_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.ind:tst:23026400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-273998r1119982_rule"
+        }
+      ],
+      "feature": "capability:independent.textfilecontent",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 4420
+    },
+    {
+      "benchmarks": 7,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:24346601",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243466r959010_rule"
+        },
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:24346601",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243467r959010_rule"
+        },
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:24347301",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243473r959010_rule"
+        }
+      ],
+      "feature": "capability:independent.unknown",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 34
+    },
+    {
+      "benchmarks": 3,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "node": "oval:mil.disa.fso.dotnet:tst:900",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule"
+        },
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "node": "oval:mil.disa.fso.dotnet:tst:901",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule"
+        },
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.dotnet:tst:22523201",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule"
+        }
+      ],
+      "feature": "capability:independent.xmlfilecontent",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 13
+    },
+    {
+      "benchmarks": 5,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:21580701",
+          "rule": "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule"
+        },
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:21580702",
+          "rule": "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule"
+        },
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:mil.disa.stig.cisco.iosxe:tst:10600",
+          "rule": "xccdf_mil.disa.stig.cisco_rule_SV-215813r960840_rule"
+        }
+      ],
+      "feature": "capability:iosxe.global",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 106
+    },
+    {
+      "benchmarks": 5,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:21580703",
+          "rule": "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule"
+        },
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:21580704",
+          "rule": "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule"
+        },
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:mil.disa.stig.cisco.iosxe:tst:10100",
+          "rule": "xccdf_mil.disa.stig.cisco_rule_SV-215808r1186320_rule"
+        }
+      ],
+      "feature": "capability:iosxe.line",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 258
+    },
+    {
+      "benchmarks": 4,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ubuntu1804:tst:10900",
+          "rule": "xccdf_mil.disa.stig_rule_SV-219157r958478_rule"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ubuntu1804:tst:11000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-219158r958478_rule"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ubuntu1804:tst:28200",
+          "rule": "xccdf_mil.disa.stig_rule_SV-219160r991562_rule"
+        }
+      ],
+      "feature": "capability:linux.dpkginfo",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 99
+    },
+    {
+      "benchmarks": 10,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:23029400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:23029400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274068r1120192_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:23024000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274152r1120738_rule"
+        }
+      ],
+      "feature": "capability:linux.partition",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 138
+    },
+    {
+      "benchmarks": 10,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:27400700",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274007r1120009_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:23048900",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274008r1120012_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:25782800",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274009r1120015_rule"
+        }
+      ],
+      "feature": "capability:linux.rpminfo",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 323
+    },
+    {
+      "benchmarks": 2,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ol7:tst:1341",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule"
+        },
+        {
+          "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "node": "oval:mil.disa.stig.rhel7:tst:1341",
+          "rule": "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
+        }
+      ],
+      "feature": "capability:linux.rpmverifyfile",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 2
+    },
+    {
+      "benchmarks": 4,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:25808000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-248669r958388_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:25808000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-271836r1092637_rule"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:25808000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-250315r1017356_rule"
+        }
+      ],
+      "feature": "capability:linux.selinuxsecuritycontext",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 4
+    },
+    {
+      "benchmarks": 9,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:25778300",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274000r1119988_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:25815200",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274018r1120042_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.linux:tst:25815201",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274018r1120042_rule"
+        }
+      ],
+      "feature": "capability:linux.systemdunitproperty",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 115
+    },
+    {
+      "benchmarks": 2,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:mil.disa.stig.solaris11:tst:11000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-216246r986419_rule"
+        },
+        {
+          "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:mil.disa.stig.solaris11:tst:11000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-216249r958430_rule"
+        },
+        {
+          "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:mil.disa.stig.solaris11:tst:11000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-216251r958446_rule"
+        }
+      ],
+      "feature": "capability:solaris.smf",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 50
+    },
+    {
+      "benchmarks": 19,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:28513401",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274024r1190697_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:25823607",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274058r1186176_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:23047200",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274101r1120291_rule"
+        }
+      ],
+      "feature": "capability:unix.file",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 692
+    },
+    {
+      "benchmarks": 9,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.linux:tst:22188223055400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221882r991589_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:23055400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-248899r991589_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:23055400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-271862r1092298_rule"
+        }
+      ],
+      "feature": "capability:unix.interface",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 9
+    },
+    {
+      "benchmarks": 11,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:25804800",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274159r1120465_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ol7:tst:8663500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221728r991589_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ol7:tst:8663501",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221728r991589_rule"
+        }
+      ],
+      "feature": "capability:unix.password",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 39
+    },
+    {
+      "benchmarks": 10,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ubuntu1804:tst:28201",
+          "rule": "xccdf_mil.disa.stig_rule_SV-219160r991562_rule"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ubuntu1804:tst:28201",
+          "rule": "xccdf_mil.disa.stig_rule_SV-219191r958566_rule"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ubuntu1804:tst:9500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-219213r958446_rule"
+        }
+      ],
+      "feature": "capability:unix.process",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 117
+    },
+    {
+      "benchmarks": 13,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:23036700",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274148r1120432_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:23036701",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274148r1120432_rule"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:23832900",
+          "rule": "xccdf_mil.disa.stig_rule_SV-260542r1015006_rule"
+        }
+      ],
+      "feature": "capability:unix.shadow",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 25
+    },
+    {
+      "benchmarks": 8,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:25823600",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274058r1186176_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:25823601",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274058r1186176_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:25823602",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274058r1186176_rule"
+        }
+      ],
+      "feature": "capability:unix.symlink",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 37
+    },
+    {
+      "benchmarks": 14,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:24857900",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274001r1198253_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:24858000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274002r1198253_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.unix:tst:25780000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274003r1198253_rule"
+        }
+      ],
+      "feature": "capability:unix.sysctl",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 221
+    },
+    {
+      "benchmarks": 4,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ol7:tst:1429",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221777r958732_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ol7:tst:1430",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221777r958732_rule"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ol7:tst:1432",
+          "rule": "xccdf_mil.disa.stig_rule_SV-221777r958732_rule"
+        }
+      ],
+      "feature": "capability:unix.uname",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 105
+    },
+    {
+      "benchmarks": 27,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.ind:tst:25815500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.ind:tst:25804500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "node": "oval:mil.disa.stig.ind:tst:25804500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-260543r958482_rule"
+        }
+      ],
+      "feature": "capability:variable.value",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 80
+    },
+    {
+      "benchmarks": 3,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:25971202",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259712r961863_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:tst:21873901",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218739r1022675_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:tst:21874101",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule"
+        }
+      ],
+      "feature": "capability:windows.appcmd",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 36
+    },
+    {
+      "benchmarks": 8,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:tst:21878601",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218786r1022652_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:tst:21878803",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218788r1156543_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:tst:21878901",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218789r1156546_rule"
+        }
+      ],
+      "feature": "capability:windows.appcmdlistconfig",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 91
+    },
+    {
+      "benchmarks": 10,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:26909702",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-269097r1026170_rule"
+        },
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:26909703",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-269097r1026170_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25330600",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220748r991578_rule"
+        }
+      ],
+      "feature": "capability:windows.auditeventpolicysubcategories",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 541
+    },
+    {
+      "benchmarks": 12,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MOZ_Firefox_Windows_V6R8_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.firefox.windows:tst:25156002",
+          "rule": "xccdf_mil.disa.stig_rule_SV-251560r1067559_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:tst:21878801",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218788r1156543_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:tst:21878802",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218788r1156543_rule"
+        }
+      ],
+      "feature": "capability:windows.cmdlet",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 90
+    },
+    {
+      "benchmarks": 18,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Apache_Server_2-4_Windows_Site_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows.apache:tst:21438301",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214383r961167_rule"
+        },
+        {
+          "benchmark": "U_Apache_Server_2-4_Windows_Site_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows.apache:tst:21438303",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214383r961167_rule"
+        },
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.dotnet:tst:22522901",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225229r1188309_rule"
+        }
+      ],
+      "feature": "capability:windows.file",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 46
+    },
+    {
+      "benchmarks": 10,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:tst:310",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:tst:311",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:tst:312",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule"
+        }
+      ],
+      "feature": "capability:windows.fileeffectiverights",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 111
+    },
+    {
+      "benchmarks": 8,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25329700",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220739r958736_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25329701",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220739r958736_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25329801",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220739r958736_rule"
+        }
+      ],
+      "feature": "capability:windows.lockoutpolicy",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 57
+    },
+    {
+      "benchmarks": 12,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:21312600",
+          "rule": "xccdf_mil.disa.stig_rule_SV-213126r766535_rule"
+        },
+        {
+          "benchmark": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:21313800",
+          "rule": "xccdf_mil.disa.stig_rule_SV-213138r766568_rule"
+        },
+        {
+          "benchmark": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:24587400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-245874r766580_rule"
+        }
+      ],
+      "feature": "capability:windows.ntuser",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 158
+    },
+    {
+      "benchmarks": 12,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_SQL_Server_2016_Database_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.sql.server.db:tst:21391103",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213911r961128_rule"
+        },
+        {
+          "benchmark": "U_MS_SQL_Server_2016_Instance_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.sql.server.inst:tst:21396405",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213964r1112499_rule"
+        },
+        {
+          "benchmark": "U_MS_SQL_Server_2022_Database_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.sql.server.db:tst:27116903",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271169r1109188_rule"
+        }
+      ],
+      "feature": "capability:windows.passwordpolicy",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 64
+    },
+    {
+      "benchmarks": 29,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:26909701",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-269097r1026170_rule"
+        },
+        {
+          "benchmark": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:21311700",
+          "rule": "xccdf_mil.disa.stig_rule_SV-213117r766511_rule"
+        },
+        {
+          "benchmark": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:21311800",
+          "rule": "xccdf_mil.disa.stig_rule_SV-213118r766514_rule"
+        }
+      ],
+      "feature": "capability:windows.registry",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 2308
+    },
+    {
+      "benchmarks": 2,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:mil.disa.fso.windows:tst:498003",
+          "rule": "xccdf_mil.disa.fso_rule_SV-226268r877392_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:mil.disa.fso.windows:tst:498004",
+          "rule": "xccdf_mil.disa.fso_rule_SV-226268r877392_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:mil.disa.fso.windows:tst:517600",
+          "rule": "xccdf_mil.disa.fso_rule_SV-226268r877392_rule"
+        }
+      ],
+      "feature": "capability:windows.regkeyeffectiverights",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 32
+    },
+    {
+      "benchmarks": 8,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:25963503",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259635r961470_rule"
+        },
+        {
+          "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:25963504",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259635r961470_rule"
+        },
+        {
+          "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:25963505",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259635r961470_rule"
+        }
+      ],
+      "feature": "capability:windows.service",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 19
+    },
+    {
+      "benchmarks": 1,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:mil.disa.fso.windows:tst:453901",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225448r569185_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:mil.disa.fso.windows:tst:453901",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225451r569185_rule"
+        }
+      ],
+      "feature": "capability:windows.sid",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 2
+    },
+    {
+      "benchmarks": 2,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25343500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220911r991589_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25343600",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220912r991589_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25343500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-253435r991589_rule"
+        }
+      ],
+      "feature": "capability:windows.sid_sid",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 4
+    },
+    {
+      "benchmarks": 2,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25343300",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220909r958504_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25343300",
+          "rule": "xccdf_mil.disa.stig_rule_SV-253433r958504_rule"
+        }
+      ],
+      "feature": "capability:windows.user_sid",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 2
+    },
+    {
+      "benchmarks": 7,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:22073301",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220733r991589_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:25329001",
+          "rule": "xccdf_mil.disa.stig_rule_SV-253290r991589_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25347901",
+          "rule": "xccdf_mil.disa.stig_rule_SV-253479r958726_rule"
+        }
+      ],
+      "feature": "capability:windows.userright",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 202
+    },
+    {
+      "benchmarks": 15,
+      "classification": "supported-but-proof-gated",
+      "compiler": "converter mapping present",
+      "converter": "converter mapping present",
+      "examples": [
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "node": "oval:mil.disa.fso.dotnet:tst:1601",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225238r1069480_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:tst:350",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214433r879756_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:tst:270",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214473r903097_rule"
+        }
+      ],
+      "feature": "capability:windows.wmi.query",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "supported",
+      "source_occurrences": 228
+    },
+    {
+      "benchmarks": 4,
+      "classification": "missing/unsupported",
+      "compiler": "not enabled in direct converter",
+      "converter": "not enabled in direct converter",
+      "examples": [
+        {
+          "benchmark": "U_MS_SQL_Server_2016_Database_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.sql.server.db:tst:21390001",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213900r1043176_rule"
+        },
+        {
+          "benchmark": "U_MS_SQL_Server_2016_Database_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.sql.server.db:tst:21390002",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213900r1043176_rule"
+        },
+        {
+          "benchmark": "U_MS_SQL_Server_2016_Database_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.sql.server.db:tst:21390003",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213900r1043176_rule"
+        }
+      ],
+      "feature": "capability:{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}sqlext",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "not admitted by snapshot",
+      "source_occurrences": 214
+    },
+    {
+      "benchmarks": 4,
+      "classification": "missing/unsupported",
+      "compiler": "not enabled in direct converter",
+      "converter": "not enabled in direct converter",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25347900",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220956r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25348000",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220957r1137691_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.stig.win:tst:25348100",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220958r958726_rule"
+        }
+      ],
+      "feature": "capability:{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "not admitted by snapshot",
+      "source_occurrences": 168
+    },
+    {
+      "benchmarks": 8,
+      "classification": "missing/unsupported",
+      "compiler": "not enabled in direct converter",
+      "converter": "not enabled in direct converter",
+      "examples": [
+        {
+          "benchmark": "U_MS_SQL_Server_2016_Instance_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.sql.server.inst:tst:21398801",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-213988r961461_rule"
+        },
+        {
+          "benchmark": "U_MS_SQL_Server_2022_Instance_V1R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.ms.sql.server.inst:tst:27134901",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-271349r1108938_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:tst:22095201",
+          "rule": "xccdf_mil.disa.stig_rule_SV-220952r1051038_rule"
+        }
+      ],
+      "feature": "capability:{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "not admitted by snapshot",
+      "source_occurrences": 10
+    },
+    {
+      "benchmarks": 3,
+      "classification": "missing/unsupported",
+      "compiler": "not enabled in direct converter",
+      "converter": "not enabled in direct converter",
+      "examples": [
+        {
+          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:mil.disa.fso.windows:tst:469600",
+          "rule": "xccdf_mil.disa.fso_rule_SV-226065r794383_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:mil.disa.fso.windows:tst:469601",
+          "rule": "xccdf_mil.disa.fso_rule_SV-226065r794383_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "node": "oval:mil.disa.fso.windows:tst:469700",
+          "rule": "xccdf_mil.disa.fso_rule_SV-226066r794792_rule"
+        }
+      ],
+      "feature": "capability:{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "capability-specific runtime contract; independent scanner proof not established",
+      "schema": "not admitted by snapshot",
+      "source_occurrences": 36
+    },
+    {
+      "benchmarks": 48,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented",
+      "converter": "implemented",
+      "examples": [
+        {
+          "benchmark": "U_Active_Directory_Forest_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:var:24350301",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243503r1026201_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:23029401",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274068r1120192_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:25303500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274089r1120255_rule"
+        }
+      ],
+      "feature": "concat",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "active native grammar",
+      "source_occurrences": 768
+    },
+    {
+      "benchmarks": 34,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented for admitted forms",
+      "converter": "implemented for admitted forms",
+      "examples": [
+        {
+          "benchmark": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:var:26909702",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-269097r1026170_rule"
+        },
+        {
+          "benchmark": "U_Active_Directory_Forest_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:var:24350601",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243506r1026208_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:20000006",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274089r1120255_rule"
+        }
+      ],
+      "feature": "constant_variable",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "source conversion and native authoring validation; runtime proof is separate",
+      "schema": "active bounded Variable grammar",
+      "source_occurrences": 759
+    },
+    {
+      "benchmarks": 14,
+      "classification": "missing/unsupported",
+      "compiler": "diagnostic blocker / no lowering",
+      "converter": "diagnostic blocker / no lowering",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:25804500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:25804501",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:25804500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-260543r958482_rule"
+        }
+      ],
+      "feature": "count",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "inactive broader function schema",
+      "source_occurrences": 47
+    },
+    {
+      "benchmarks": 1,
+      "classification": "missing/unsupported",
+      "compiler": "diagnostic blocker / no lowering",
+      "converter": "diagnostic blocker / no lowering",
+      "examples": [
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "node": "oval:mil.disa.fso.dotnet:var:902",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule"
+        },
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "node": "oval:mil.disa.fso.dotnet:var:904",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule"
+        },
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "node": "oval:mil.disa.fso.windows:var:439700",
+          "rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule"
+        }
+      ],
+      "feature": "end",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "inactive broader function schema",
+      "source_occurrences": 6
+    },
+    {
+      "benchmarks": 11,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented for admitted forms",
+      "converter": "implemented for admitted forms",
+      "examples": [
+        {
+          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.fso.ie:var:42200",
+          "rule": "xccdf_mil.disa.fso_rule_SV-223017r961089_rule"
+        },
+        {
+          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.fso.ie:var:42300",
+          "rule": "xccdf_mil.disa.fso_rule_SV-223018r961089_rule"
+        },
+        {
+          "benchmark": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "node": "oval:mil.disa.fso.ie:var:42400",
+          "rule": "xccdf_mil.disa.fso_rule_SV-223019r961092_rule"
+        }
+      ],
+      "feature": "external_variable",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "source conversion and native authoring validation; runtime proof is separate",
+      "schema": "active bounded Variable grammar",
+      "source_occurrences": 443
+    },
+    {
+      "benchmarks": 37,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented where mapping exists",
+      "converter": "implemented where mapping exists",
+      "examples": [
+        {
+          "benchmark": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:mil.disa.stig.win:obj:21312600",
+          "rule": "xccdf_mil.disa.stig_rule_SV-213126r766535_rule"
+        },
+        {
+          "benchmark": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:mil.disa.stig.win:obj:21313800",
+          "rule": "xccdf_mil.disa.stig_rule_SV-213138r766568_rule"
+        },
+        {
+          "benchmark": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:mil.disa.stig.win:obj:24587400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-245874r766580_rule"
+        }
+      ],
+      "feature": "filter:operation",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "independent source proof required",
+      "schema": "active 0.4 contract where capability-specific",
+      "source_occurrences": 738
+    },
+    {
+      "benchmarks": 49,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented for admitted forms",
+      "converter": "implemented for admitted forms",
+      "examples": [
+        {
+          "benchmark": "U_Active_Directory_Forest_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:var:24350301",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-243503r1026201_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:23029400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:25815500",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule"
+        }
+      ],
+      "feature": "local_variable",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "source conversion and native authoring validation; runtime proof is separate",
+      "schema": "active bounded Variable grammar",
+      "source_occurrences": 1450
+    },
+    {
+      "benchmarks": 15,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented",
+      "converter": "implemented",
+      "examples": [
+        {
+          "benchmark": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.unix.apache:var:21422842",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule"
+        },
+        {
+          "benchmark": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.unix.apache:var:21422852",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule"
+        },
+        {
+          "benchmark": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.unix.apache:var:21423042",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214230r1210990_rule"
+        }
+      ],
+      "feature": "merge",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "active native grammar",
+      "source_occurrences": 98
+    },
+    {
+      "benchmarks": 26,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented",
+      "converter": "implemented",
+      "examples": [
+        {
+          "benchmark": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.unix.apache:var:21422801",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule"
+        },
+        {
+          "benchmark": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.unix.apache:var:21422804",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule"
+        },
+        {
+          "benchmark": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.unix.apache:var:21422805",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule"
+        }
+      ],
+      "feature": "regex_capture",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "active native grammar",
+      "source_occurrences": 308
+    },
+    {
+      "benchmarks": 33,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented where mapping exists",
+      "converter": "implemented where mapping exists",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.ind:obj:23764302",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274014r1120030_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.ind:obj:25814400",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274021r1120695_rule"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.ind:obj:25814401",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274021r1120695_rule"
+        }
+      ],
+      "feature": "set:operation",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "independent source proof required",
+      "schema": "active 0.4 contract where capability-specific",
+      "source_occurrences": 979
+    },
+    {
+      "benchmarks": 10,
+      "classification": "missing/unsupported",
+      "compiler": "diagnostic blocker / no lowering",
+      "converter": "diagnostic blocker / no lowering",
+      "examples": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ubuntu1804:var:10001",
+          "rule": "xccdf_mil.disa.stig_rule_SV-219147r958472_rule"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "node": "oval:mil.disa.stig.ubuntu1804:var:10101",
+          "rule": "xccdf_mil.disa.stig_rule_SV-219148r958472_rule"
+        },
+        {
+          "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.iosxe:var:21583304",
+          "rule": "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule"
+        }
+      ],
+      "feature": "split",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "inactive broader function schema",
+      "source_occurrences": 29
+    },
+    {
+      "benchmarks": 7,
+      "classification": "missing/unsupported",
+      "compiler": "diagnostic blocker / no lowering",
+      "converter": "diagnostic blocker / no lowering",
+      "examples": [
+        {
+          "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:var:25959202",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule"
+        },
+        {
+          "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:var:25963701",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule"
+        },
+        {
+          "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.windows:var:25963702",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule"
+        }
+      ],
+      "feature": "substring",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "inactive broader function schema",
+      "source_occurrences": 21
+    },
+    {
+      "benchmarks": 15,
+      "classification": "supported-but-proof-gated",
+      "compiler": "implemented",
+      "converter": "implemented",
+      "examples": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "node": "oval:mil.disa.stig.defs:var:25804501",
+          "rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule"
+        },
+        {
+          "benchmark": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.unix.apache:var:21422851",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214228r960735_rule"
+        },
+        {
+          "benchmark": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "node": "oval:navy.navwar.niwcatlantic.scc.unix.apache:var:21423051",
+          "rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-214230r1210990_rule"
+        }
+      ],
+      "feature": "unique",
+      "proof": "source-backed proof not established by conversion",
+      "runtime": "converter lowering only; independent OVAL parity not established",
+      "schema": "active native grammar",
+      "source_occurrences": 87
+    }
+  ],
+  "format": "scap-ng-tools/issue28-oval-feature-coverage/1",
+  "oval_baseline": "5.12.3",
+  "schema_version": "0.4.0",
+  "scope": {
+    "benchmarks": 65,
+    "source_revision": "niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5"
+  }
+}

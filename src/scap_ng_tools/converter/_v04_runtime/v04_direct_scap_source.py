@@ -15,6 +15,7 @@ DS = 'http://scap.nist.gov/schema/scap/source/1.2'
 XCCDF = 'http://checklists.nist.gov/xccdf/1.2'
 OVAL = 'http://oval.mitre.org/XMLSchema/oval-definitions-5'
 OCIL = 'http://scap.nist.gov/schema/ocil/2'
+OCIL20 = 'http://scap.nist.gov/schema/ocil/2.0'
 XLINK = '{http://www.w3.org/1999/xlink}href'
 
 
@@ -183,20 +184,92 @@ class SourceModel:
         ensure(local_name(element) == kind or local_name(element).endswith('_' + kind), f'wrong reference kind: {identifier}')
         return element
 
-    def automated_check(self, rule):
-        """A default OVAL check, optionally repeated as 'automated', is required.
+    def _component_for_check_href(self, href):
+        """Resolve an XCCDF check-content-ref to its named SCAP component.
 
-        Explicit OCIL 'manual' choices are reported as omitted, never claimed as
-        converted. Other selectors/systems could change which check executes:
-        rejecting them avoids guessing XCCDF conditional-selection semantics.
+        OCIL references are not catalog entries in many signed streams.  The
+        component-ref href is nevertheless a complete, local identity; match
+        only that basename, and reject ambiguity rather than searching by
+        source ID or namespace.
         """
+        ensure(href, 'missing check-content-ref href')
+        candidates = [identifier for identifier in self.components
+                      if identifier == href or identifier.endswith('_' + href)]
+        ensure(len(candidates) == 1, f'unresolved/ambiguous check component href: {href}')
+        return candidates[0]
+
+    def _ocil_details(self, check):
+        """Return source-backed OCIL response material without lowering a workflow."""
+        reference = check.find(f'{{{XCCDF}}}check-content-ref')
+        ensure(reference is not None, 'OCIL check missing check-content-ref')
+        attributes(reference, {'href', 'name'})
+        component = self._component_for_check_href(reference.get('href'))
+        questionnaire = self.nodes[component].get(reference.get('name'))
+        ensure(questionnaire is not None and local_name(questionnaire) == 'questionnaire',
+               f'unresolved OCIL questionnaire: {reference.get("name")}')
+        question = None
+        action = None
+        for child in questionnaire.iter():
+            if local_name(child) == 'test_action_ref' and (child.text or '').strip():
+                action = self.nodes[component].get((child.text or '').strip())
+                break
+        if action is not None:
+            question_ref = action.get('question_ref')
+            if question_ref:
+                question = self.nodes[component].get(question_ref)
+        procedure = (check.findtext(f'{{{XCCDF}}}check-content') or '').strip()
+        if not procedure and question is not None:
+            procedure = (question.findtext(f'{{{OCIL20}}}question_text') or
+                         question.findtext(f'{{{OCIL}}}question_text') or '').strip()
+        if not procedure:
+            procedure = (questionnaire.findtext(f'{{{OCIL20}}}description') or
+                         questionnaire.findtext(f'{{{OCIL}}}description') or '').strip()
+        ensure(procedure, f'OCIL questionnaire has no usable procedure: {reference.get("name")}')
+        choices = []
+        if action is not None:
+            for when in action:
+                if local_name(when) != 'when_choice':
+                    continue
+                choice_ref = (when.findtext(f'{{{OCIL20}}}choice_ref') or
+                              when.findtext(f'{{{OCIL}}}choice_ref') or '').strip()
+                choice = self.nodes[component].get(choice_ref)
+                label = (choice.text or '').strip() if choice is not None else choice_ref
+                result = (when.findtext(f'{{{OCIL20}}}result') or
+                          when.findtext(f'{{{OCIL}}}result') or '').strip()
+                outcome = {'PASS': 'true', 'FAIL': 'false', 'NOT_APPLICABLE': 'not_applicable',
+                           'NOT_TESTED': 'not_evaluated'}.get(result, 'unknown')
+                ensure(label and result, f'unsupported OCIL choice mapping: {reference.get("name")}')
+                choices.append({'value': label, 'label': label, 'outcome': outcome,
+                                'source_choice_ref': choice_ref, 'source_result': result})
+        ensure(choices, f'OCIL questionnaire has no supported choice action: {reference.get("name")}')
+        return {'system': check.get('system'), 'selector': check.get('selector', ''),
+                'check_sha256': digest(xml_identity(check)), 'href': reference.get('href'),
+                'name': reference.get('name'), 'component': component,
+                'questionnaire_sha256': digest(xml_identity(questionnaire)),
+                'questionnaire_id': questionnaire.get('id'),
+                'test_action_sha256': digest(xml_identity(action)) if action is not None else None,
+                'question_sha256': digest(xml_identity(question)) if question is not None else None,
+                'procedure': procedure, 'choices': choices,
+                'inline_content': check.find(f'{{{XCCDF}}}check-content') is not None}
+
+    def manual_checks(self, rule):
+        """Collect OCIL alternatives; OVAL selection remains authoritative."""
+        return [self._ocil_details(check) for check in rule.findall(f'{{{XCCDF}}}check')
+                if check.get('system') == OCIL and check.get('selector', '') in ('', 'manual')]
+
+    def automated_check(self, rule, *, allow_manual=False):
+        """Select the default OVAL check; optionally admit OCIL-only Rules manually."""
         ensure(not rule.findall(f'{{{XCCDF}}}complex-check'), 'XCCDF complex-check unsupported')
-        choices, omitted, selectors = [], [], []
+        choices, omitted, selectors, manuals = [], [], [], []
         for check in rule.findall(f'{{{XCCDF}}}check'):
             attributes(check, {'system', 'selector'})
             selector, system = check.get('selector', ''), check.get('system')
             if system != OVAL:
-                ensure(system == OCIL and selector == 'manual', 'unsupported competing non-OVAL check/selector')
+                ensure(system == OCIL and selector in ('', 'manual'),
+                       'unsupported competing non-OVAL check/selector')
+                detail = self._ocil_details(check) if allow_manual else None
+                if detail is not None:
+                    manuals.append(detail)
                 omitted.append({'system': system, 'selector': selector,
                                 'sha256': digest(xml_identity(check))})
                 continue
@@ -204,7 +277,7 @@ class SourceModel:
             ensure(selector not in selectors, 'duplicate OVAL selector unsupported')
             selectors.append(selector)
             references = check.findall(f'{{{XCCDF}}}check-content-ref')
-            if self.draft_compatibility:
+            if self.draft_compatibility or getattr(self, 'native_recovery', False):
                 ensure(len(references)==1 and all(c.tag in {f'{{{XCCDF}}}check-export',f'{{{XCCDF}}}check-content-ref'}
                        for c in check), 'OVAL check-import/result binding or complex check unsupported')
             else:
@@ -213,9 +286,12 @@ class SourceModel:
             attributes(reference, {'href', 'name'})
             ensure(reference.get('href') in self.catalog, 'unresolved checklist catalog href')
             choices.append((self.catalog[reference.get('href')], reference.get('name')))
+        if not selectors:
+            ensure(allow_manual and manuals, 'unsupported competing non-OVAL check/selector')
+            return None, None, omitted, manuals
         ensure('' in selectors and len(set(choices)) == 1, 'unambiguous default OVAL check required')
         component_id, definition_id = choices[0]
-        return component_id, definition_id, omitted
+        return component_id, definition_id, omitted, manuals
 
     def rule_selected(self, rule, profile=None):
         overrides = {}
