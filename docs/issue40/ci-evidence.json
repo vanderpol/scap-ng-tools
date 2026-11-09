@@ -1,0 +1,90 @@
+{
+  "issue": "https://github.com/vanderpol/scap-ng-tools/issues/40",
+  "shared_runtime_gate_commit": "053eeeb3b33e3ee5f683604fd66ae8c833450cd0",
+  "completion": "OPEN_FOR_FINAL_DEPLOYMENT_VERIFICATION",
+  "integration_ci": [
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "pr": 279,
+      "head": "ce81b38264dfdf3b8b61b9e9c0e77569261829cf",
+      "run_id": 42659464136,
+      "job_id": 129306783728,
+      "conclusion": "success",
+      "checkout": "actual PR head explicitly checked out and asserted",
+      "tests": 7,
+      "skips": 0,
+      "unguarded_identified_workflow_sinks": 0
+    },
+    {
+      "repository": "vanderpol/scap-ng-evidence",
+      "pr": 2,
+      "head": "3f6e8bcbf9fa080f6a97b594dd6f980f4a3858e9",
+      "run_id": 42658149158,
+      "job_id": 129302129037,
+      "conclusion": "success",
+      "checkout": "actual PR head explicitly checked out and asserted",
+      "tests": 3,
+      "skips": 0,
+      "unguarded_identified_workflow_sinks": 0
+    },
+    {
+      "repository": "vanderpol/scap-ng",
+      "pr": 49,
+      "head": "b1da4ecc295dcc16a3a394e06671eb413ead061b",
+      "run_id": 42658166582,
+      "job_id": 129302189162,
+      "conclusion": "success",
+      "checkout": "actual PR head explicitly checked out and asserted",
+      "tests": 0,
+      "scope": "structured publication inventory, zero baseline publication sinks; all 37 existing tests also passed locally",
+      "unguarded_identified_workflow_sinks": 0
+    }
+  ],
+  "prior_tools_ci": {
+    "review_head": "053eeeb3b33e3ee5f683604fd66ae8c833450cd0",
+    "run_id": 42654450272,
+    "job_id": 129289081975,
+    "checkout": "GitHub synthetic merge ref associated with this reviewed head; final workflow now explicitly asserts actual head",
+    "tests": 72,
+    "skips": 0,
+    "conclusion": "success",
+    "actual_current_publication_action": "admission succeeded; upload step intentionally skipped",
+    "archive_sha256": "1dc911c14590a8508001aa78e8c3dbec2a267452718fec8c579ed17e58763427",
+    "tier": "authoring_validated",
+    "scanner_equivalent": false
+  },
+  "final_tools_head_receipt": "Recorded in PR #41 conversation/checks after committing this ledger; no self-referential in-tree final-head claim.",
+  "other_ci_limits": [
+    "Research overall CI is not green. Quota-blocked historical upload jobs and historical conversion/assertion failures remain. Do not treat the new boundary lane as a substitute for their results.",
+    "The earlier commit-reference rejection and raw-upload expectation regression were corrected without history rewrites; seven boundary tests and twenty related converter-contract tests passed locally.",
+    "No quota-blocked upload was manually retried. No release command or full-65 conversion was manually executed."
+  ],
+  "explicit_status_followup": {
+    "command": "SCAP_NG_PUBLICATION_REQUIRED=1 SCAP_NG_APPROVED_CONVERTER_ROOT=/workspace/work/tools37 SCAP_NG_SCHEMA_ROOT=/workspace/work/rhel9-shellcommand-audit/ci-spec SCAP_NG_OVAL_TEST_CONTENT=/tmp/ri35-public-corpus PYTHONPATH=src python -m unittest discover -s tests -p test_publication_gate.py -v",
+    "exit_status": 0,
+    "tests": 14,
+    "skips": 0,
+    "log_sha256": "ed4d41bc08d15c995f85a3b136fac0a7ba6ac81016cc5d8e2f14a259800bee42",
+    "change": "Current manifests explicitly record schema_validated and final_serializations_validated. Missing/false statuses fail closed. Historical sealer/denial at pinned 053eeeb remains unchanged.",
+    "final_ci_receipt": "PR #41 conversation after exact-head required suite completes."
+  },
+  "administrative_access_interpretation": "Inspection limitation only; does not block development, supported qualification, or CI; no permission defect or historical-workflow bypass demonstrated.",
+  "access_and_deployment_status": "integration-blockers.json",
+  "administrative_access_correction": {
+    "change": "Interpret HTTP 403 only as limited administrative inspection. Add real CLI success and tamper-rejection witnesses with administrative HTTP denied; no runtime gate, schema, permission, or credential changes.",
+    "required_fixture_command": "SCAP_NG_PUBLICATION_REQUIRED=1 SCAP_NG_APPROVED_CONVERTER_ROOT=/workspace/work/tools37 SCAP_NG_SCHEMA_ROOT=/workspace/work/rhel9-shellcommand-audit/ci-spec SCAP_NG_OVAL_TEST_CONTENT=/tmp/ri35-public-corpus PYTHONPATH=src python -m unittest discover -s tests -p test_publication_gate.py -v",
+    "tests": 15,
+    "skips": 0,
+    "exit_code": 0,
+    "log_sha256": "6128b1115dd95f04bcc035ebe03ad82993e1616c49e278f6b684a99345a25146",
+    "audit_tests": {
+      "command": "PYTHONPATH=src python -m unittest discover -s tests -p test_publication_audit.py -v",
+      "tests": 3,
+      "skips": 0,
+      "exit_code": 0
+    },
+    "administrative_access_required": false,
+    "further_administrative_queries_or_permission_changes": 0,
+    "final_exact_head_ci": "PR #41 conversation/checks after this checkpoint is pushed."
+  }
+}

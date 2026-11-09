@@ -1,0 +1,4989 @@
+{
+  "scope": "Exact source entrypoint/dependency candidates, not proof that every candidate is an active publisher. Historical workflow sinks are separately enumerated and guarded. No private source code or call bodies included.",
+  "baseline_research_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+  "candidate_count": 198,
+  "supported_production_facade": {
+    "repository": "vanderpol/scap-ng-tools",
+    "commit": "f97ff187460f52da78bd16f5009f7d182664812b",
+    "console_entrypoint": "scapng-convert-v04 = scap_ng_tools.converter.direct04:main",
+    "admission_entrypoint": "scapng-publish-v04 = scap_ng_tools.publication.gate:main",
+    "modes": [
+      "focused",
+      "benchmark automatic_subset",
+      "oval-definition"
+    ],
+    "full_65": "NOT_SUPPORTED; claim denied"
+  },
+  "entries": [
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/analyze_oval_foreach_candidates.py",
+      "sha256": "a8cc8cc4f6bd8677b57ccbc4c473d7c2ac49d68174d2a858ac113313756f56a7",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "foreach_equivalence",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/foreach-modernization-research.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/analyze_result_bundle.py",
+      "sha256": "06dbaded847dbfc7dc8fa8ecc25bc5ebc2644b94ab9f2d30e4c835d0d09959db",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_and_or_corpus.py",
+      "sha256": "9ed902342ac462171a305bbb15a106875d53f06d1a6c571b8a7d3e8198d7a713",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "audit_v04_and_or_scope_projection",
+        "collections",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-and-or-scope-proof.yml#canonical-040-and-or-quantifiers"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_authoring_blockers.py",
+      "sha256": "790086804a29bf8edf62b2f96ba836668c9dd126882fdabd920dedd593785b94",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_bluetooth_oval_source.py",
+      "sha256": "b5d96a9ab9c5081728b8a3b0dca7890adb38968dd96804b2eec08b5b802db1be",
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-bluetooth-source-audit.yml#exact-source"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_bounded_source_validation.py",
+      "sha256": "3cb7aec92265bf9c8272005a8baf7adc755fc8ee76ac409834afed6ecc434713",
+      "dependencies": [
+        "argparse",
+        "audit_v04_eight_assessment_pilot",
+        "collections",
+        "hashlib",
+        "inventory_v04_six_source_requirements",
+        "json",
+        "lxml",
+        "oval_result_truth_tables",
+        "oval_source_validation",
+        "pathlib",
+        "v04_expanded_source_proof",
+        "v04_native_bundle_compiler",
+        "v04_source_package_semantics",
+        "validate_native_json_schemas",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_clean_environment.py",
+      "sha256": "72719124bd7a79b2abc26568f048ec10d05ce5dd462c1bc1a564def335de80d7",
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "shutil",
+        "subprocess",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_condition_fields_preview.py",
+      "sha256": "1b5924c18929c25409065eaf1997e984fd395000014826d8d83e330df989b1f7",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "json",
+        "migrate_v04_states_match_to_logic",
+        "pathlib",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-state-alternatives-and-or.yml#original-state-boolean-normalization"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_direct_benchmark.py",
+      "sha256": "0df9c56cca7c2adc4bda598f46d79b277892b2ffc8183d9de56bf7526dc62849",
+      "dependencies": [
+        "argparse",
+        "audit_v04_eight_assessment_pilot",
+        "copy",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "statistics",
+        "subprocess",
+        "sys",
+        "time",
+        "v04_direct_inventory",
+        "v04_direct_scap_source",
+        "v04_expanded_source_proof",
+        "v04_source_package_semantics",
+        "validate_native_json_schemas",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_eight_assessment_pilot.py",
+      "sha256": "49098407dbc922f42c59be559a97c3e59b5992f291c10b145ca137adf37a6e5b",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "csv",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "re",
+        "v04_source_package_semantics",
+        "verify_v04_package_consumer",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_evaluate_six_state.py",
+      "sha256": "7278840e08cbc36039c55c6a4d185d12bf54c53bf610ea6610023a4607ea7b5c",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "research_v04_oval_logic_scopes",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-complete-boolean-preview.yml#full-boolean-scope-candidate"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_filtered_union_oval_provenance.py",
+      "sha256": "e8f4076107676ed2238ff0cbe3fcf4965e29d910dd7e23bdd99edc97193afd93",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-bluetooth-source-audit.yml#exact-source",
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_full_schema.py",
+      "sha256": "a1d57360ecce8d9292a99a12d643d4d052bf1c8b04fec07ca2c057bc9d51748a",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "referencing",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_object_processing.py",
+      "sha256": "5e151be4086b12e30ae432664f9e1a0da24d7c12c2283d97863cc5360fa7c06a",
+      "dependencies": [
+        "argparse",
+        "audit_v04_eight_assessment_pilot",
+        "collections",
+        "csv",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "tempfile",
+        "test_v04_package_consumer",
+        "test_v04_public_cli_smoke",
+        "v04_a_authoring_graph_index",
+        "v04_expanded_source_proof",
+        "v04_flat_object_authoring",
+        "v04_native_bundle_compiler",
+        "v04_object_contract",
+        "verify_v04_package_consumer",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_original_source_ledger.py",
+      "sha256": "83f17c85abef6459f669d50185e0b5beea06e50a880cb2bb227ae6d44968c356",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "csv",
+        "hashlib",
+        "json",
+        "migrate_v04_six_stig_review_archive",
+        "pathlib",
+        "scap_converter_core",
+        "scap_ng_roundtrip_v003.compare_oval_semantics",
+        "tempfile",
+        "verify_v04_package_consumer",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_original_state_or_proof.py",
+      "sha256": "e1f60846e010bb7b870e638d74be9160e5e96a7301dc1d999fee1bcc6186d15c",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "io",
+        "json",
+        "migrate_v04_states_match_to_logic",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-state-alternatives-and-or.yml#original-state-boolean-normalization"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_oval_boolean_scopes.py",
+      "sha256": "04cebe0cfee9b82eeddf38f2ac0bedd96280b92a6c0ae123b74b9168d6671205",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-oval-boolean-scope-research.yml#oval-5123-boolean-scope"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_oval_test_corpus.py",
+      "sha256": "3ea7cec093b1958b7618089030c8632a1bb84b47181172f34d85442f9b522663",
+      "dependencies": [
+        "argparse",
+        "audit_v04_eight_assessment_pilot",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "time",
+        "v04_direct_converter",
+        "v04_direct_inventory",
+        "v04_direct_scap_source",
+        "v04_expanded_source_proof",
+        "v04_native_bundle_compiler",
+        "v04_source_package_semantics",
+        "validate_native_json_schemas",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-oval-test-corpus.yml#coverage"
+      ],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_package_acceptance.py",
+      "sha256": "0bdc66854489e5bd727c07c961946268f926091f6ee24449925f49415bd543b5",
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "tempfile",
+        "verify_v04_package_consumer",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_proof_expansion.py",
+      "sha256": "fdef85dd6afc9681a54e85164cbd92576619de10919b7e83d03220c235988b56",
+      "dependencies": [
+        "argparse",
+        "audit_v04_eight_assessment_pilot",
+        "collections",
+        "csv",
+        "hashlib",
+        "json",
+        "pathlib",
+        "resource",
+        "time",
+        "v04_expanded_source_proof",
+        "v04_source_package_semantics",
+        "verify_v04_package_consumer",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_readiness_acceptance.py",
+      "sha256": "82bfe9893067a963448d4a7108bce3c15f4bf22c573f9ff9b471782362363fda",
+      "dependencies": [
+        "argparse",
+        "build_v04_canonical_six_stigs",
+        "hashlib",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "test_v04_approved_pipeline",
+        "test_v04_field_requirement_conversion",
+        "v04_native_bundle_compiler",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_release_candidate.py",
+      "sha256": "90508944da81fe45c8b1d5989c7c6006849c7d60324c15a2993f405ae787506e",
+      "dependencies": [
+        "argparse",
+        "copy",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "v04_direct_scap_source",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/audit_v04_remaining_singletons_oval.py",
+      "sha256": "039cedd9911a34496ca1e87b4229ddeb55eed04b8b0b624326df254e337631ac",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "audit_v04_filtered_union_oval_provenance",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "v04_a_authoring_graph_index",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs",
+        ".github/workflows/v04-singleton-source-triage.yml#singleton-source"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_scapng_from_converted_source.py",
+      "sha256": "b18ce9fc6fcbae55015f4a0909f5ae5509cc351b00d89d3bae21b02819338711",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "base64",
+        "cryptography.hazmat.primitives",
+        "cryptography.hazmat.primitives.asymmetric.ed25519",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/convert-rhel9-scap14-to-ng.yml#convert",
+        ".github/workflows/convert-windows11-scap14-to-ng.yml#convert",
+        ".github/workflows/four-anchor-reuse-analysis.yml#convert"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_shared_layout_preview.py",
+      "sha256": "7cf35ff30830554279c42a6221a88ababe345e1a7134d6b78ae237b54520cd94",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "scap_ng_content_compiler",
+        "shutil",
+        "subprocess",
+        "sys",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/shared-assessment-layout-preview.yml#validate-and-publish"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_six_stig_release_assets.py",
+      "sha256": "32f057681728e00cc2cafd020806109879309aba6e996040211f2c2f03dcaaf2",
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "shutil",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/0.3-candidate-human-review.yml#publish_preview"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_v04_and_or_candidate.py",
+      "sha256": "97b452c7792018557e076b3de07ffbb4649c3b459c196efd8e70be4a8b9c0d3e",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "migrate_v04_states_match_to_logic",
+        "pathlib",
+        "v04_canonical_source_ir",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-state-alternatives-and-or.yml#original-state-boolean-normalization"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_v04_and_or_fields_candidate.py",
+      "sha256": "13712fbd51bca17c1f0b0665ea1405707fb7f60fb90886eb1b84fec3e885f920",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "migrate_v04_states_match_to_logic",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-and-or-fields-candidate.yml#source-reversible-040-operator-fields"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_v04_canonical_six_stigs.py",
+      "sha256": "8be5a01646e7e50f1f0026916021256631024a6293307a77f36f036b6d65b4c2",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "migrate_v04_additional_source_filters",
+        "migrate_v04_evaluate_and_or",
+        "migrate_v04_oval_proven_direct_filters",
+        "pathlib",
+        "research_04_one_grammar_proof",
+        "scap_upconvert_v003.embed_predicates",
+        "v04_a_benchmark_spec_migration_preview",
+        "v04_canonical_requirement_oracle",
+        "v04_field_requirement",
+        "v04_flat_object_authoring",
+        "v04_native_capability_names",
+        "v04_native_identities",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_v04_complete_boolean_preview.py",
+      "sha256": "1f843abf74789c8a19ba23f77bbcd3748b2754a05c7d9d1beb3ff10f01a08225",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "build_v04_and_or_candidate",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "migrate_v04_evaluate_and_or",
+        "pathlib",
+        "shutil",
+        "tempfile",
+        "v04_canonical_source_ir",
+        "validate_v04_fields_condition_preview",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-complete-boolean-preview.yml#full-boolean-scope-candidate"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_v04_full_draft.py",
+      "sha256": "9f1f33562df12f95219850eb9ebd05958c11553ea11df8e3eae913feedea564d",
+      "dependencies": [
+        "argparse",
+        "audit_v04_direct_benchmark",
+        "audit_v04_eight_assessment_pilot",
+        "collections",
+        "concurrent.futures",
+        "csv",
+        "finalize_v04_full_draft",
+        "hashlib",
+        "html",
+        "json",
+        "pathlib",
+        "shutil",
+        "time",
+        "v04_direct_converter",
+        "v04_direct_scap_source",
+        "v04_direct_yaml",
+        "v04_native_bundle_compiler",
+        "xml.etree.ElementTree"
+      ],
+      "role": "explicit_historical_entrypoint",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; qualified full-65/obsolete Variable publication rejected"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_v04_full_proposed_authoring_draft.py",
+      "sha256": "540b7a48a1a0b88b7111e5f81b72b950025229b061f8ae018904ba035800cb84",
+      "dependencies": [
+        "argparse",
+        "build_v04_proposed_authoring_review",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "v04_direct_yaml",
+        "v04_native_bundle_compiler",
+        "validate_native_json_schemas",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_v04_residual_review_ledger.py",
+      "sha256": "3d93a980e555863909a5de9a8a420c5cc44c76c394850c5f0668b7c362395838",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_versioned_toolchain.py",
+      "sha256": "1b6f30157d12917066b5de8a54754f59d38b80d0f18c6cb87b8a17ebce7867c6",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "re",
+        "subprocess",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/versioned-toolchain-checkpoint.yml#candidate-snapshot"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/build_windows11_all_items_preview.py",
+      "sha256": "0279cedb2bc29915bf6bbcf8b1d4f6890207894a5f417f6d42372f1cebee4f11",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04a-win11-all-items-preview.yml#windows11-review"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/census_oval_attribute_values.py",
+      "sha256": "9744860f28814a9585030f95039bd299fc8b023f48e19a620ed40a3e13aa3e84",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/audit-oval-deprecated-behavior-usage.yml#deprecated-behavior-census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/census_oval_mask_usage.py",
+      "sha256": "6b4acdbf9bab6fb8aa9e54ff7bfbd5f7e8e81f1ec22ee651f0c393bbde776186",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "dataclasses",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/audit-oval-mask-usage.yml#mask-census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/convert_v04_oval_independent_variable_test.py",
+      "sha256": "9eddf5bdf564148307f0944aab555af703d8d088880886232eeeb2aca1bfa9b7",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "audit_v04_original_oval_variable_test",
+        "hashlib",
+        "json",
+        "pathlib",
+        "v04_a_authoring_graph_index",
+        "v04_source_proof_contract",
+        "xml.etree.ElementTree"
+      ],
+      "role": "explicit_historical_entrypoint",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-oval-variable-value-roundtrip.yml#native-variable-value"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; qualified full-65/obsolete Variable publication rejected"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/curate_native_authoring_zip.py",
+      "sha256": "677bf02258ec79fb3f6ed147868bb1411cbe14023693d7ffc635a782e5b7e4ed",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/publish-six-stig-no-default-choice.yml#validate-and-release",
+        ".github/workflows/publish-verified-six-stig-downloads.yml#publish"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/drop_redundant_default.py",
+      "sha256": "3e90617c2a2a6b5cb49924d08324755a5b1c9ec140e003d7a940dfd0e3582e48",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/publish-six-stig-no-default-choice.yml#validate-and-release"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/enrich_research_04.py",
+      "sha256": "f50be2df76ca8b256e11b42a24e1e18f507a705ecfcf3142c01524aff9baaaec",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "csv",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "research_04_self_contained_inline",
+        "research_04_variable_census",
+        "shutil",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-variable-candidates.yml#census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/export_v04_interim_authoring.py",
+      "sha256": "5cc217d731cda04075d9eb4bf32cd893295f445529f59d4871d2c21a850230e9",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "migrate_v04_enum_selectors",
+        "pathlib",
+        "research_04_native_deep_content_census",
+        "research_04_one_grammar_proof",
+        "research_04_rhel9_compact_preview",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/export-v04-interim-authoring.yml#preview"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/export_v04_joval_six_format_preview.py",
+      "sha256": "69017aef5bc7a3730165158788040bc0b6cb6855cf292dae3deefa1ea04fc8ad",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "datetime",
+        "hashlib",
+        "json",
+        "migrate_v04_enum_selectors",
+        "pathlib",
+        "research_04_native_deep_content_census",
+        "research_04_one_grammar_proof",
+        "research_04_rhel9_compact_preview",
+        "research_04_scoped_schema",
+        "research_04_scoped_state_require",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-joval-six-format-preview.yml#verified-discussion-preview"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/export_v04_oval_single_showcase.py",
+      "sha256": "e1684f3e176060825e5f95efe03b7a70a25ec977e549ed38fb3b5ec8619d1b15",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-oval-single-showcase.yml#showcase"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/extract_oval_nodes.py",
+      "sha256": "39b10a62904051b9018e623512c4e1f32fc98577e7beaea8a0bf9f4098c1dbc5",
+      "dependencies": [
+        "argparse",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/foreach-candidate-rule-mapping.yml#map"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/extract_v04_win11_bluetooth_oval.py",
+      "sha256": "069af7739d2f6dbdbd6d49721f1540a981d163c22b6bc58d8c813115f82dff8e",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-oval-bluetooth-xml-pilot.yml#actual-v04-xml-roundtrip"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/finalize_v04_full_draft.py",
+      "sha256": "f3c9825b1614be86a33ff87a3eb394dcbfee8e055ecf16d8f5e308c207eb80c7",
+      "dependencies": [
+        "collections",
+        "csv",
+        "hashlib",
+        "html",
+        "json",
+        "pathlib",
+        "v04_direct_inventory",
+        "v04_direct_scap_source",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/generate_niwc_current_review.py",
+      "sha256": "9ac18ab911ebc8bf7ed24690fd0e107e9661e786f7d4d0a3a92d98de28c8d694",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "subprocess",
+        "sys",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/0.3-candidate-human-review.yml#render",
+        ".github/workflows/apache-authoring-reuse-research.yml#analyze",
+        ".github/workflows/evaluate-structure-research.yml#measure",
+        ".github/workflows/full-0.3-modernization-census.yml#census",
+        ".github/workflows/post-modernization-residual-patterns.yml#analyze",
+        ".github/workflows/post-modernization-variable-patterns.yml#analyze",
+        ".github/workflows/private-component-locality-research.yml#generate",
+        ".github/workflows/research-04-full-corpus-shorthand.yml#measure",
+        ".github/workflows/residual-complexity-pattern-census.yml#measure",
+        ".github/workflows/rhel-dconf-observation-research.yml#prove",
+        ".github/workflows/scap-ng-blocked-package-regression.yml#blocked-packages",
+        ".github/workflows/scap-ng-fast-conversion-regression.yml#convert",
+        ".github/workflows/scap-ng-full-current-native-normalize-compile.yml#generate",
+        ".github/workflows/scap-ng-full-current-v03-release.yml#generate",
+        ".github/workflows/windows-observation-reuse-research.yml#prove"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/hoist_v04_inherited_fields_requirement_preview.py",
+      "sha256": "0f39ed8e2f5a3a38c58cc81489fbd4fe1116e7e5f4830f60e2ef6a5ff096dc44",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-fields-condition-preview.yml#source-reversible-fields-scope"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/inventory_v04_six_source_requirements.py",
+      "sha256": "8d3ced38c0097fe3c8bcbde69510f8ed2f35456663eb09ec584d71f02dbd1f81",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "json",
+        "lxml",
+        "oval_source_validation",
+        "pathlib",
+        "time",
+        "v04_direct_converter",
+        "v04_direct_inventory",
+        "v04_direct_platform_inventory",
+        "v04_direct_scap_source",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-direct-six-requirements.yml#inventory"
+      ],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/inventory_v04_wheelhouse.py",
+      "sha256": "3bb1aff5391153d9d9ee3b7e259fbfade75c088788d84821394a1a1afa3cdf7e",
+      "dependencies": [
+        "argparse",
+        "email.parser",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/inventory_xccdf_valid_gaps.py",
+      "sha256": "f7e76f4037a2714638ad53ba346d6ff9e177b5284261679b7e8e81e04dcd5fc4",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/inventory-xccdf-valid-gaps.yml#inventory"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/map_oval_tests_to_xccdf_rules.py",
+      "sha256": "917553e2f94e1a54877105284232c5205bf98b3fb9b92325987478d3f8cc72e8",
+      "dependencies": [
+        "argparse",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/foreach-candidate-rule-mapping.yml#map"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/measure_oval_authoring_complexity.py",
+      "sha256": "0085fc54679f6ecac751b7468a069f28e9b7f9b34c00413f29f623d18f72de17",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/oval-authoring-complexity-census.yml#measure"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/measure_oval_conditional_patterns.py",
+      "sha256": "91057252d79b1312083ab948e0b438bc94d5a732c9d0a7d5602db6f98b4d034e",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/oval-conditional-shape-census.yml#measure"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/migrate_v04_six_stig_review_archive.py",
+      "sha256": "aed2b6d600f014d1026936e6ab7a16d962996d6044a67d22e262d1bfae614cfb",
+      "dependencies": [
+        "argparse",
+        "build_v04_canonical_six_stigs",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "v04_a_authoring_graph_index",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-fixed-unknown-source.yml#fixed-result-unknown-source"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/migrate_v04_states_match_to_logic.py",
+      "sha256": "87f0f76eb96fefd41cfffe28ceaf4a06a47f4e0e004511fc7d9b6a75de07ba1b",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-state-alternatives-and-or.yml#original-state-boolean-normalization"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/package_v04_human_library.py",
+      "sha256": "8cc3866c3535b154bc9c55ad08aabbf3a72504dae80df7759e6db510a7ed2476",
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/prove_v04_published_bluetooth_source.py",
+      "sha256": "5e11cdffc2c943e831b4f872a5f0cd12260a1012a74a52aa07a08e758a8df80d",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "copy",
+        "export_v04_oval_shellcommand_pilot",
+        "hashlib",
+        "json",
+        "pathlib",
+        "test_generate_capability_schema_v04",
+        "v04_canonical_source_ir",
+        "validate_v04_oval_5123",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-bluetooth-archive.yml#published-windows11-bluetooth"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/publish_authoring_and_bundle_previews.py",
+      "sha256": "2ac1eef227e9ba29c2cfcbb5d7c654c98bde18fba86311934f7f60dfc0bdd5ae",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "curate_native_authoring_zip",
+        "hashlib",
+        "json",
+        "pathlib",
+        "scap_ng_content_compiler",
+        "scap_ng_repo_normalizer",
+        "shutil",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/six-stig-two-product-preview.yml#create-and-verify"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/publish_logical_authoring.py",
+      "sha256": "617f659106725be0ff5acade9af1fa8766cb535533653068e0f9ac09f3981fb5",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "posixpath",
+        "re",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/publish-six-stig-no-default-choice.yml#validate-and-release",
+        ".github/workflows/publish-verified-six-stig-downloads.yml#publish"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/publish_typed_operation_authoring.py",
+      "sha256": "e68e7809b8ef0ad151b99084f051c59c95cde0d3fdc6f54242af3467ac17ecc6",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "io",
+        "json",
+        "native_v03_authoring_codec",
+        "pathlib",
+        "research_type_syntax_codec",
+        "ruamel.yaml",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/publish-v03-typed-operator-authoring.yml#parity-and-release"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/rename_v04_field_requirement_preview.py",
+      "sha256": "7790973405dbfe2d39f30ed1b45239ce9e9aa59429d95ee6913309c7e8e6bea6",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-fields-condition-preview.yml#source-reversible-fields-scope",
+        ".github/workflows/v04-flat-object-six-stig.yml#six-stig-review"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/render_stig_audit_outputs.py",
+      "sha256": "ca37b7b6b0c06427eae2ac24ebb31b2dc94367aa3b6c0e9134a492d5ce0dae52",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "html",
+        "json",
+        "pathlib",
+        "re",
+        "xml.sax.saxutils",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/stig-manual-audit-outputs.yml#active-directory-forest",
+        ".github/workflows/stig-manual-audit-outputs.yml#google-chrome"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_all_exist_intent_census.py",
+      "sha256": "de44df8b9bfaba3db0ba0e85a79a8f3fc360ab49c47f30c7a86ce7a756e5a6f8",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-fixed-requirements-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_all_exist_native_semantics.py",
+      "sha256": "41ef450162643b101941472515e3413f7914eb348907bf8452bc7fe49549d8bb",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "itertools",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "research_04_all_exist_intent_census",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-fixed-requirements-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_apache_source_import.py",
+      "sha256": "81b7f154aeb9697d798e3f893ac033af90e5eb45f4d5458ede5091cf51a5c7f4",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "prove_apache_observation",
+        "re",
+        "research_04_variable_census",
+        "shutil",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-variable-candidates.yml#census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_authoring_macro_candidates.py",
+      "sha256": "0e3443546af00f495a663b71c8b4a199ee1f94af3a27cdf7b6d9154f64f24723",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-authoring-macro-census.yml#survey"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_canonical_operators.py",
+      "sha256": "29d338e9e0c8b21129db0c7502d3c15ba9886f5ee7fcc9f0a477e7f9f10e5b7a",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "research_04_consistent_quantifiers",
+        "research_04_fixed_require_editor",
+        "research_04_flat_require",
+        "research_english_first_04_complex",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-canonical-operators-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_compiled_authoring_macros.py",
+      "sha256": "15b160975f4fcf96ae3ff47343bd4edbd566a4a6379c33daa319de8e1c35df91",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-compiled-authoring-macros.yml#prove"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_consistent_quantifiers.py",
+      "sha256": "102dbba48cad46ba9174909ac249172a8d00f4b40233983f5c2c2ae5125409fe",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "research_04_fixed_require_editor",
+        "research_04_flat_require",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-consistent-quantifiers-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_existence_oddballs.py",
+      "sha256": "91bd0b14f04ad8cc73adb1c84aa3a4c8f49d32d1262110be721213f840331e8b",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-none-existence-audit.yml#audit"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_field_key_authoring.py",
+      "sha256": "a3f0d5c7f3f89758378d561b543ef14bb388772887d7848b0a321f906003cd54",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-field-key-authoring.yml#verify"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_field_presence_policy.py",
+      "sha256": "275911a52d34d4b661a848dac7904584e3eefea1477ba6cbe217794a72864702",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "research_04_canonical_operators",
+        "research_04_consistent_quantifiers",
+        "research_04_fixed_require_editor",
+        "research_04_flat_require",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-field-presence-policy-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_fixed_require_editor.py",
+      "sha256": "13423de6c655f0fb80613af38f69841d5bb0f8cd7474f41d55ae3d0cd959827e",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "research_english_first_04_auditor_candidate",
+        "research_english_first_04_compact_layout",
+        "research_english_first_04_complex",
+        "sys",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-fixed-require-editor-04.yml#real-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_flat_require.py",
+      "sha256": "173558d79641e3d0a1d9185d2802e710d0e9c653bc09dc30462a4494835b4d94",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "research_04_fixed_require_editor",
+        "research_04_require_presentation_comparison",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-flat-require-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_flow_patterns.py",
+      "sha256": "81abe0317913789598c0651821108fe3a794464915cd269bc9a17c718a62d21a",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "csv",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "research_04_self_contained_inline",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-variable-candidates.yml#census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_item_creation_census.py",
+      "sha256": "4cd384093c13ac1acc9484474829f80e9d33dbb6e2d3fa5b8575acd4d246e45c",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_04_all_exist_intent_census",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-fixed-requirements-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_native_deep_content_census.py",
+      "sha256": "f9cea01501de0438deb35aba23fbb61b9d35f11f9eefa148de63c916d696b841",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "generate_capability_schema_v04",
+        "json",
+        "jsonschema",
+        "migrate_v04_enum_selectors",
+        "pathlib",
+        "referencing",
+        "research_04_one_grammar_proof",
+        "research_04_rhel9_compact_preview",
+        "research_04_three_benchmark_quantifier",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-native-content-deep-validation.yml#audit"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_none_exist_alias.py",
+      "sha256": "cafe5403bd7b1b55f78c38a98cf1f291457e2c121feca44fd6869dfeb7cbbc8d",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-none-existence-alias.yml#verify"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_none_exist_original_oval.py",
+      "sha256": "cff091996f24f16dda9a450b507249b0fca0c21c13e4b9a29e9a49a06b82a65e",
+      "dependencies": [
+        "argparse",
+        "json",
+        "pathlib",
+        "research_04_source_author_edge_census",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-source-author-edge-04.yml#source-six"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_one_grammar_proof.py",
+      "sha256": "e79c9f0a0fff795a38473da3d4973942a99ae8034f0f4e668bcc41588c2257d3",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "research_04_field_key_authoring",
+        "research_04_rhel9_compact_preview",
+        "research_04_three_benchmark_quantifier",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-one-grammar-proof.yml#compiler-proof"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_quantifier_aliases.py",
+      "sha256": "17ee0c4306ea9ba1d8a2c0ac8f84df4c1d3ef2964169ee50e7f23a6ebe10ef9f",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-quantifier-aliases.yml#quantify"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_record_aware_canonical.py",
+      "sha256": "e46ee12d97a49dcafee46324de318442f81c96cf024efcba331718b95a068448",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "research_04_compiled_authoring_macros",
+        "research_04_rhel9_compact_preview",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-record-quantifier-canonical.yml#record-quantifiers"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_require_presentation_comparison.py",
+      "sha256": "92608cf943b4f353703b4c5582ee1ec88f4423b77e85d3949104b7aeae18e2b0",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "research_04_fixed_require_editor",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-require-presentations-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_rhel9_compact_preview.py",
+      "sha256": "e533105fe335f6200ac7f04e57937a1ebef0ce185606c9ee009d467de26de645",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "csv",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "research_04_compiled_authoring_macros",
+        "research_04_field_key_authoring",
+        "research_04_quantifier_aliases",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-rhel9-compact-preview.yml#preview"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_rhel9_residual_pair_sensitivity.py",
+      "sha256": "d6a24617fd5fc73884eab012a5c1fa747009cf147d7b41590a47cf1336cf847a",
+      "dependencies": [
+        "argparse",
+        "json",
+        "pathlib",
+        "research_04_rhel9_compact_preview",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-rhel9-residual-pair-sensitivity.yml#analyze"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_scope_target_audit.py",
+      "sha256": "b268f839a101f17e830c69fb32ccd56cf6b1348b31d60b00b876e2c78d8ac561",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_04_fixed_require_editor",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-scope-targets-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_scoped_state_require.py",
+      "sha256": "eb9d59f1a41d00b814fcc15d4fde93c9c460b02a2e1c555e653e23e87d8be945",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "migrate_v04_enum_selectors",
+        "pathlib",
+        "research_04_native_deep_content_census",
+        "research_04_one_grammar_proof",
+        "research_04_rhel9_compact_preview",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-scoped-state-require.yml#six-anchor"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_source_author_edge_census.py",
+      "sha256": "c0aa671dfac90152334886bb9c282d9563aee04d514d8162b8abbcbb4a3a595d",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-source-author-edge-04.yml#source-six"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_source_oval_macro_census.py",
+      "sha256": "17cffa830feedf493edbb805dec0d7d0456ed9eca82e86b7bc4a98339c1ad560",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-source-oval-cardinality.yml#source-census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_source_semantic_edges.py",
+      "sha256": "7fd5864db2e205e06525c2d2254c20b2a256e6cac78c31b95ca99c1d8f27bed8",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib",
+        "research_04_source_author_edge_census",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-source-author-edge-04.yml#source-six"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_three_benchmark_quantifier.py",
+      "sha256": "7597f29245457d0563817b4a0bee1ad7d84b4d792aa0b138ed4124ca75512e26",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "research_04_rhel9_compact_preview",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-three-benchmark-quantifier.yml#coverage"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_userright_varcheck_source.py",
+      "sha256": "c32af18d072ed5735b3125edfa024ceacdc6e13cd50b01cb64812dc61b12e5d6",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-userright-varcheck-source.yml#source-proof"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_variable_census.py",
+      "sha256": "948cf72bfed38403be64dbf3d555339389d82210d8ae4db3aee5f2a26092de2b",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "csv",
+        "hashlib",
+        "json",
+        "measure_post_modernization_variable_patterns",
+        "pathlib",
+        "re",
+        "shutil",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-variable-candidates.yml#census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_04_variable_debug_trace.py",
+      "sha256": "cc4c166171d18801f72827e974ce03ce5be6695d423dd4eb207b4f290d451082",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "csv",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_04_flow_patterns",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-variable-candidates.yml#census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_b_full_corpus_import.py",
+      "sha256": "9fece6bf046f70fda1605f1653a1afc5555792045cf5537f275e1e29a494d972",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-b-six-stig-source-import.yml#import-accounting"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_b_original_six_scap14_inventory.py",
+      "sha256": "013ac4e1af5b39acd27be669b576afa9efa52b688dd94fb63405edf03a9a95fe",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_b_six_stream_compiler.py",
+      "sha256": "a15db9e4f992827decb5d8ac0262704c430abf39205abffafb6ab5a50c2363a5",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "research_b_apache_version_graph",
+        "research_b_compiled_ir",
+        "research_b_full_corpus_import",
+        "research_b_manual_lowering",
+        "research_b_source_boolean_lowering",
+        "research_b_source_partition_lowering",
+        "research_b_source_registry_lowering",
+        "research_b_source_shell_lowering",
+        "research_b_source_textfile_lowering",
+        "research_b_source_textfile_state_lowering",
+        "research_b_source_wmi_lowering",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-b-six-stig-source-import.yml#import-accounting"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_datatype_operator_inventory.py",
+      "sha256": "cacc3407182202a98b47c3594492a3b0eb683dbb15878bd2bdbd88b5e9fa9a41",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_auditor_candidate.py",
+      "sha256": "5aa75da5c6977f22af2514274c8be4c358d108e9d0e1d173e68eb83b022f92cd",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_english_first_04_compact_layout",
+        "research_english_first_04_complex",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_census.py",
+      "sha256": "c2641071417c6f475fcacfafc914e55c8dacb7b0e61f737bde2e39f50843a68e",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "research_english_first_04",
+        "sys",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_compact_layout.py",
+      "sha256": "8f638e5e4f48d2ce73ff181e9bc38a2470c468f9a953e07178870be5593f2ac5",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_english_first_04_complex",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_existence_audit.py",
+      "sha256": "23bacb3a10a51400db8476a538f406405706d32f9426fba94f199bc2b63ff2c4",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "hashlib",
+        "itertools",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "research_english_first_04_compact_layout",
+        "research_english_first_04_complex",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_fixed_requirement_census.py",
+      "sha256": "cdd78aea9f82820aa57dba09b6f52469fa7a96a3a411ff220b65fd5053acdfd3",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-fixed-requirements-04.yml#six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_full_corpus.py",
+      "sha256": "d7bbbcb46fe3481a258a87163719f1a2555708f8169323b722740f52c92d4b27",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_english_first_04_complex",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_none_exist_state_boundary.py",
+      "sha256": "af77c8f1b174cd777c449403032cca445d582b46c9debd97545f5f2556c57e18",
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_objectless.py",
+      "sha256": "43e53d52291d612777307822ef30d723554fc974d0afec41fcede92ffdcd13a0",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_oval_schema_boundary.py",
+      "sha256": "c1a4abe5b8e1baab74734b9d2ed68be90ef12326e06fdcc3b2cd609cdf022ecf",
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_presence.py",
+      "sha256": "f32ab4f4f6566a158d2ec741a4189d832318ade62b6eb536da4ca064103d9fbc",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_publish.py",
+      "sha256": "8528519d1de5515f9df858cf306c58372c6a25ac2041bb80ddf02a29ea2aad57",
+      "dependencies": [
+        "argparse",
+        "base64",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_references.py",
+      "sha256": "1a2dcad0282f25d09ac4c3e3ce9a17bc6c9af6e799a9328f82ad7aeb55af1575",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_english_first_04_compact_layout",
+        "research_english_first_04_complex",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_scalar.py",
+      "sha256": "051921ee9390cda91ec64643400546087a879cd7f3bce4c8ffcc8d1d766f5bf5",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_shape_census.py",
+      "sha256": "227d25fd612824e9559511a27f8c4d31d16133e067b76d20b518038c78dd66b4",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_english_first_04_vocabulary_variants.py",
+      "sha256": "c002bbe07dace96f16aa1c68e1c54fa54a69d930801ae9f3754609ad6f2a629e",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_english_first_04_compact_layout",
+        "research_english_first_04_complex",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-english-first-census-04.yml#full-six-stig"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/research_type_syntax_codec.py",
+      "sha256": "368af2eee10d8547ae04d3dfd3e1261c6b297259d48470f528aa1989ac7b5318",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "math",
+        "pathlib",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-datatype-authoring-prototype.yml#source-type-parity"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/result_package_v02.py",
+      "sha256": "14d2a428e2515e77540eef78e03201ee485274497da78eb6e181813ad86ad398",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "assessment_expression",
+        "assessment_results_v02",
+        "collected_item_contract_v02",
+        "collections",
+        "hashlib",
+        "item_materialization_v02",
+        "json",
+        "pathlib",
+        "re",
+        "reported_elements",
+        "stat",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/scap14_corpus_convert.py",
+      "sha256": "380cce6e22bf55ade597a23908287ae3d272d0845efbafb624b229f17d9d6e0e",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/scap14-public-corpus-coverage.yml#niwc-current-ingestion"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/scap14_rule_splitter.py",
+      "sha256": "6535c73e1ad1bda6c7c9cba2b90d37fb2f2309e09cd7c58b9b32d32c33658ca7",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "copy",
+        "hashlib",
+        "json",
+        "lxml",
+        "pathlib",
+        "re",
+        "shutil",
+        "sys",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/authoring-simplification-census.yml#census",
+        ".github/workflows/check-selector-conformance.yml#selector-conformance",
+        ".github/workflows/convert-rhel9-scap14-to-ng.yml#convert",
+        ".github/workflows/convert-windows11-scap14-to-ng.yml#convert",
+        ".github/workflows/diverse-platform-oval-roundtrip-expansion.yml#roundtrip",
+        ".github/workflows/four-anchor-reuse-analysis.yml#convert",
+        ".github/workflows/full-corpus-reuse-analysis.yml#inventory",
+        ".github/workflows/full-current-oval-roundtrip-census.yml#roundtrip",
+        ".github/workflows/generate-priority-niwc-rule-splits.yml#split-and-parse",
+        ".github/workflows/linux-platform-oval-roundtrip-expansion.yml#roundtrip",
+        ".github/workflows/research-04-variable-candidates.yml#census",
+        ".github/workflows/scap-ng-windows11-current-full-review.yml#full-package",
+        ".github/workflows/source-oval-fanout-research.yml#measure",
+        ".github/workflows/windows-platform-oval-roundtrip-expansion.yml#roundtrip"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/scap_ng_content_compiler.py",
+      "sha256": "f70b0cab0d716e8e5a8f2beefd822126643b910d196db1346620362bd0eed73a",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "assessment_expression",
+        "capability_registry",
+        "cryptography",
+        "cryptography.hazmat.primitives",
+        "cryptography.hazmat.primitives.asymmetric",
+        "cryptography.hazmat.primitives.serialization",
+        "cryptography.x509.oid",
+        "datetime",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "native_v03_authoring_codec",
+        "os",
+        "pathlib",
+        "re",
+        "reported_elements",
+        "shutil",
+        "subprocess",
+        "tempfile",
+        "typing",
+        "validate_generated_capability_semantics",
+        "validate_native_json_schemas",
+        "validate_v03_input_contracts",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/publish-six-stig-no-default-choice.yml#validate-and-release",
+        ".github/workflows/publish-v03-typed-operator-authoring.yml#parity-and-release",
+        ".github/workflows/scap-ng-fast-conversion-regression.yml#validate",
+        ".github/workflows/scap-ng-full-current-native-normalize-compile.yml#normalize_compile",
+        ".github/workflows/scap-ng-full-current-v03-release.yml#normalize_compile"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/scap_ng_library_cli.py",
+      "sha256": "dff7c2d77b23005391c59acd3bece57c3e591064f960b7951cc85ef09c7d4f1a",
+      "dependencies": [
+        "scap_ng_library.cli"
+      ],
+      "role": "explicit_historical_entrypoint",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; qualified full-65/obsolete Variable publication rejected"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/stig_manual_to_scapng.py",
+      "sha256": "79fc53c76b8443361485903363619708dff41f91a86240359d9b214fed120f0d",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "group_mapping",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "re",
+        "shutil",
+        "xml.etree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/stig-manual-audit-outputs.yml#active-directory-forest",
+        ".github/workflows/stig-manual-audit-outputs.yml#google-chrome"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_audit_v04_review_readiness.py",
+      "sha256": "0660710601b640c80ff8ca032f20a2779ce4b5452e096fdf9b6eeab12b3c8072",
+      "dependencies": [
+        "__future__",
+        "audit_v04_review_readiness",
+        "copy",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "unittest",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_build_v04_full_draft.py",
+      "sha256": "7ff7b99a1ab165578752871eb7375df2bf5fa9b78a7863168e79517a7d04ff53",
+      "dependencies": [
+        "build_v04_full_draft",
+        "copy",
+        "finalize_v04_full_draft",
+        "hashlib",
+        "json",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "unittest.mock",
+        "v04_direct_converter",
+        "v04_direct_scap_source"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_build_versioned_toolchain.py",
+      "sha256": "a0f35938cbb98231bb8ae67c5edf8802e3ae2333c86300d003105c1e014bebc8",
+      "dependencies": [
+        "importlib.util",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/versioned-toolchain-checkpoint.yml#focused-tests"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_census_oval_attribute_values.py",
+      "sha256": "30012667983095eb69d8b2f09bbab4fcd556541e41b867348c14462f3a2539b5",
+      "dependencies": [
+        "census_oval_attribute_values",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_census_oval_mask_usage.py",
+      "sha256": "0c69f5a9c877210f504ba7c6ec40e6abe35b0b1c6a88db5b813a6e43d365bd34",
+      "dependencies": [
+        "census_oval_mask_usage",
+        "json",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_curate_native_authoring_zip.py",
+      "sha256": "d0c2c27ec53ced2351ec0c45a34e5bfc529c2bbdc8742f9292e8b227134794c9",
+      "dependencies": [
+        "curate_native_authoring_zip",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/publish-verified-six-stig-downloads.yml#publish"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_drop_redundant_default.py",
+      "sha256": "6f84e6c484103cb5024bd4f2c7b0e294a513b4a093ea9c1779b98600f1fe5552",
+      "dependencies": [
+        "drop_redundant_default",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_named_collection_graph.py",
+      "sha256": "ce29b98417128caa3dbf3807c2e58feaf447c65889fe5590ae88147a62c077e4",
+      "dependencies": [
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "scap_ng_roundtrip_v003.compare_oval_semantics",
+        "scap_ng_roundtrip_v003.native_assessment_to_oval",
+        "scap_upconvert_v003.build_rhel9_review_slice",
+        "scap_upconvert_v003.collection_graph",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "test_variable_filter_dependencies",
+        "unittest",
+        "unittest.mock",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/scap-ng-collection-graph.yml#graph-and-local-cli",
+        ".github/workflows/scap-ng-current-regression.yml#contracts"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_research_04_single_grammar_schema.py",
+      "sha256": "c1c2eb62df3366c32bc420b19036cb8c938d52554e2a466ecb672aa33ee69b44",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "research_04_one_grammar_proof",
+        "research_04_rhel9_compact_preview",
+        "research_04_three_benchmark_quantifier",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-draft-language-schema.yml#draft-schema"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_research_04_source_oval_macro_census.py",
+      "sha256": "49d86ebbf13f6cae92852e73efc2f33af3cc54af70393b3ed2bef2076749336d",
+      "dependencies": [
+        "pathlib",
+        "research_04_source_oval_macro_census",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-04-source-oval-cardinality.yml#source-census"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_research_b_full_corpus_import.py",
+      "sha256": "610f4517dde59b19aa8f229d4c86ff9c5caba01d1d9dc75b6d88905c68b5a9e5",
+      "dependencies": [
+        "__future__",
+        "io",
+        "pathlib",
+        "research_b_full_corpus_import",
+        "sys",
+        "tempfile",
+        "unittest",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-b-six-stig-source-import.yml#import-accounting"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_research_b_original_six_scap14_inventory.py",
+      "sha256": "899b71369ea8e636fd57efecd1ca6e039dc096a59447656dac9471adab4634b6",
+      "dependencies": [
+        "__future__",
+        "pathlib",
+        "research_b_original_six_scap14_inventory",
+        "sys",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_research_b_six_stream_compiler.py",
+      "sha256": "f3393ce7e72d9ef9674daa13b36181f17d9be01e0a4257e63c049674e98b7feb",
+      "dependencies": [
+        "__future__",
+        "copy",
+        "hashlib",
+        "io",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "research_b_compiled_ir",
+        "research_b_full_corpus_import",
+        "research_b_six_stream_compiler",
+        "sys",
+        "tempfile",
+        "unittest",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-b-six-stig-source-import.yml#import-accounting"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_result_package_v02.py",
+      "sha256": "73cd755acbe6dda56a5102364c05cbdc9b7ed011fd011ea0d4e0fe3d17624352",
+      "dependencies": [
+        "copy",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "result_package_v02",
+        "tempfile",
+        "test_assessment_results_v02",
+        "unittest",
+        "warnings",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/scap-ng-current-regression.yml#contracts"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_scap14_splitter_extended_component.py",
+      "sha256": "553f72c0daaf1f272522c6452625ac007c3b0ba6e872a583bb7ae8efdc6045a8",
+      "dependencies": [
+        "lxml",
+        "pathlib",
+        "scap14_rule_splitter",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/scap-ng-current-regression.yml#contracts"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_scap_ng_content_compiler.py",
+      "sha256": "9ae36c75cb94a687f4696cb2995bd2d35cbd6001abedf85ff12e24005c052148",
+      "dependencies": [
+        "json",
+        "pathlib",
+        "scap_ng_content_compiler",
+        "tempfile",
+        "unittest",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/scap-ng-current-regression.yml#contracts"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_scap_ng_library.py",
+      "sha256": "01a7aa6b79919dbc6ddf190784474bfab117043524e4ac11020a893a05289f4a",
+      "dependencies": [
+        "copy",
+        "hashlib",
+        "json",
+        "package_v04_human_library",
+        "pathlib",
+        "scap_ng_library.advisory",
+        "scap_ng_library.documents",
+        "scap_ng_library.export",
+        "scap_ng_library.index",
+        "scap_ng_library.records",
+        "scap_ng_library.reflow",
+        "scap_ng_library.transaction",
+        "select",
+        "shutil",
+        "signal",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "unittest.mock",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_stig_manual_audit_outputs.py",
+      "sha256": "89060f8d564c3188fa9292218ffc8bf28e619b1589edcde465dc2b975d243161",
+      "dependencies": [
+        "__future__",
+        "jsonschema",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "xml.etree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/stig-manual-audit-outputs.yml#active-directory-forest"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_a_authoring_graph_index.py",
+      "sha256": "642a99f45b24016ceeca00e49f7c6c908176b0cf284d40a6fe61da845b22a722",
+      "dependencies": [
+        "copy",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "unittest",
+        "v04_a_authoring_graph_index",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-integrated-base-authoring.yml#six-stig-input-to-base-research-package",
+        ".github/workflows/research-a-parsed-graph-index.yml#format-neutral-a-authoring-index",
+        ".github/workflows/v04-native-format-parity.yml#native-format-parity"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_a_benchmark_choice_version_closure.py",
+      "sha256": "917b905f681b3fc63454f5ad5ae79e5ceacf37e36390c1e38d62ff477905056e",
+      "dependencies": [
+        "contextlib",
+        "copy",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "unittest",
+        "v04_a_benchmark_choice_version_closure",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-benchmark-choice-closure.yml#six-stig-reference-closure"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_a_benchmark_spec_migration_preview.py",
+      "sha256": "1ff5a67f34af743c90422b450c206b9b6f37cc07c25679ea4d4306fcfaf07b57",
+      "dependencies": [
+        "contextlib",
+        "copy",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "test_v04_a_benchmark_choice_version_closure",
+        "unittest",
+        "v04_a_authoring_graph_index",
+        "v04_a_benchmark_choice_version_closure",
+        "v04_a_benchmark_spec_migration_preview",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-benchmark-spec-preview.yml#staged-candidate-only"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_a_compile_verified_ir.py",
+      "sha256": "7b9e9ce83eff75afa3f45eccaf0265a9ce719c347bd37e97d085fa8a7a9f6f23",
+      "dependencies": [
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "test_v04_a_end_to_end_base_authoring",
+        "unittest",
+        "v04_a_compile_verified_ir",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-integrated-base-authoring.yml#six-stig-input-to-base-research-package"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_a_deterministic_research_container.py",
+      "sha256": "45832bba2740b43739af32d417ae5236a3557e80dc9b50fa3bc2571688a30d30",
+      "dependencies": [
+        "copy",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "test_v04_a_benchmark_choice_version_closure",
+        "unittest",
+        "v04_a_deterministic_research_container",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-deterministic-container.yml#deterministic-graph-package-only"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_a_lower_scoped_to_base.py",
+      "sha256": "e9c55b8c9f7075dfc71cec22fd65098e19f820df898b2a372627b6288abf20ad",
+      "dependencies": [
+        "contextlib",
+        "copy",
+        "io",
+        "json",
+        "pathlib",
+        "research_04_scoped_state_require",
+        "sys",
+        "tempfile",
+        "unittest",
+        "v04_a_lower_scoped_to_base",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-scoped-lowering.yml#six-stig-strict-base-lowering"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_a_specification_version_gate.py",
+      "sha256": "304526d71e6aae62dd725d388348002d6f27c8229e88274353f82fe6c82e4ab9",
+      "dependencies": [
+        "contextlib",
+        "copy",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "unittest",
+        "v04_a_specification_version_gate",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-version-contract.yml#block-implicit-migration"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_absence_only_integration.py",
+      "sha256": "0a7454f580e02dc6eaeec3d76b6bc859a537ae29e7d4b821f9d5e5a06241b23a",
+      "dependencies": [
+        "build_v04_canonical_six_stigs",
+        "copy",
+        "hashlib",
+        "io",
+        "json",
+        "lxml",
+        "oval_result_truth_tables",
+        "pathlib",
+        "prove_v04_oval_macos_gatekeeper_source",
+        "scap_converter_core",
+        "scap_ng_roundtrip_v003.compare_oval_semantics",
+        "scap_ng_roundtrip_v003.native_assessment_to_oval",
+        "scap_upconvert_v003.build_rhel9_review_slice",
+        "scap_upconvert_v003.convert_collection_review",
+        "tempfile",
+        "test_v04_field_requirement_conversion",
+        "unittest",
+        "v04_canonical_source_ir",
+        "v04_field_requirement",
+        "v04_native_bundle_compiler",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/schema-v04-draft.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_all_exist_normalization.py",
+      "sha256": "4dc2e57846086beb552cef41e11e30f4b26a81f44cac3700a9833898346bb20e",
+      "dependencies": [
+        "build_v04_canonical_six_stigs",
+        "copy",
+        "hashlib",
+        "io",
+        "json",
+        "jsonschema",
+        "oval_result_truth_tables",
+        "pathlib",
+        "scap_converter_core",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "test_v04_field_requirement_conversion",
+        "unittest",
+        "unittest.mock",
+        "v04_all_exist_normalization",
+        "v04_canonical_source_ir",
+        "v04_field_requirement",
+        "v04_native_bundle_compiler",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-converter-core-bridge.yml#converter-bridge"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_apache_preview_compatibility.py",
+      "sha256": "f90fd4bde7b53214b605c5bde4eed3c6d9f0ad4e53bbd986ec2f611cb5e9975f",
+      "dependencies": [
+        "build_v04_and_or_fields_candidate",
+        "build_v04_canonical_six_stigs",
+        "copy",
+        "hashlib",
+        "json",
+        "migrate_v04_states_match_to_logic",
+        "pathlib",
+        "rename_v04_field_requirement_preview",
+        "tempfile",
+        "test_v04_public_cli_smoke",
+        "unittest",
+        "v04_canonical_source_ir",
+        "v04_field_requirement",
+        "v04_flat_object_authoring",
+        "v04_native_identities",
+        "v04_restore_missing_applicability",
+        "validate_v04_fields_condition_preview",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-complete-boolean-preview.yml#full-boolean-scope-candidate",
+        ".github/workflows/v04-flat-object-six-stig.yml#six-stig-review",
+        ".github/workflows/v04-state-alternatives-and-or.yml#original-state-boolean-normalization"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_approved_pipeline.py",
+      "sha256": "ebffdcbb738091f87d8f4c344407537c9312242a33b6f9310dc299791767c288",
+      "dependencies": [
+        "build_v04_canonical_six_stigs",
+        "copy",
+        "hashlib",
+        "io",
+        "json",
+        "os",
+        "oval_result_truth_tables",
+        "pathlib",
+        "research_04_one_grammar_proof",
+        "scap_converter_core",
+        "scap_ng_roundtrip_v003.compare_oval_semantics",
+        "scap_ng_roundtrip_v003.native_assessment_to_oval",
+        "scap_upconvert_v003.build_rhel9_review_slice",
+        "scap_upconvert_v003.convert_collection_review",
+        "scap_upconvert_v003.embed_predicates",
+        "tempfile",
+        "test_v04_field_requirement_conversion",
+        "unittest",
+        "v04_all_exist_normalization",
+        "v04_canonical_requirement_oracle",
+        "v04_canonical_source_ir",
+        "v04_flat_object_authoring",
+        "v04_native_bundle_compiler",
+        "v04_native_identities",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/schema-v04-draft.yml#focused",
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-converter-core-bridge.yml#converter-bridge"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_authoring_blocker_audit.py",
+      "sha256": "384501d38df1026b2501a52bee15fe56aa668969ab315fb06ef0916e7851dbf9",
+      "dependencies": [
+        "audit_v04_authoring_blockers",
+        "json",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_canonical_authoring_guard.py",
+      "sha256": "5a6aba25527194f3b1ef81823501c296b14c19d87874f4222c30856f042cb08b",
+      "dependencies": [
+        "argparse",
+        "build_v04_canonical_six_stigs",
+        "json",
+        "migrate_v04_evaluate_and_or",
+        "pathlib",
+        "v04_field_requirement",
+        "v04_flat_object_authoring",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_canonical_signed_source_package.py",
+      "sha256": "7aeebcfb346cda4b51379e8ac692f69edbf3661b008f4defc23ca81b68c95a4b",
+      "dependencies": [
+        "copy",
+        "cryptography",
+        "cryptography.hazmat.primitives",
+        "cryptography.hazmat.primitives.asymmetric",
+        "cryptography.x509.oid",
+        "datetime",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "shutil",
+        "sys",
+        "test_v04_canonical_source_ir",
+        "unittest",
+        "v04_canonical_signed_source_package",
+        "v04_canonical_unsigned_package",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs",
+        ".github/workflows/v04-source-cms-proof.yml#verify-ephemeral-source-signer"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_canonical_source_ir.py",
+      "sha256": "5b16684cbb39926181f59f48df95d0448bff79dab5e71cd554e55f7b383f5bef",
+      "dependencies": [
+        "copy",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "unittest",
+        "v04_canonical_source_ir",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/schema-v04-draft.yml#focused",
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs",
+        ".github/workflows/v04-native-format-parity.yml#native-format-parity"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_canonical_unsigned_package.py",
+      "sha256": "f46d4ae057d0d517a1eb8174db2aae80d7d9f8b875af8bc616e4b9ccfc209bf7",
+      "dependencies": [
+        "copy",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "test_v04_canonical_source_ir",
+        "unittest",
+        "unittest.mock",
+        "v04_a_authoring_graph_index",
+        "v04_canonical_source_ir",
+        "v04_canonical_unsigned_package",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs",
+        ".github/workflows/v04-native-compiled-release.yml#compile-native"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_canonical_version_preview.py",
+      "sha256": "f77f777312beb2edeb9b74b7f1705cde01bdc04891149aa064fab59130660f52",
+      "dependencies": [
+        "copy",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "test_v04_canonical_source_ir",
+        "unittest",
+        "v04_canonical_version_preview",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_current_source_acceptance.py",
+      "sha256": "762f291eabc7522a07ade719ac09ea241d0fc1212c2517384b0f9bea342fc57b",
+      "dependencies": [
+        "audit_v04_eight_assessment_pilot",
+        "build_v04_canonical_six_stigs",
+        "copy",
+        "importlib",
+        "json",
+        "pathlib",
+        "prove_v04_current_bluetooth_source",
+        "prove_v04_oval_macos_statefree_source",
+        "prove_v04_oval_windows_shellcommand_source",
+        "tempfile",
+        "test_v04_oval_set_filter_source",
+        "unittest",
+        "v04_canonical_source_ir",
+        "v04_direct_converter",
+        "v04_direct_scap_source",
+        "v04_object_contract",
+        "v04_source_proof_contract",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_direct_benchmark.py",
+      "sha256": "582148fca1c0ab7eadae6dd9783d6a5a101a1f400ba77234a56733c885188b8f",
+      "dependencies": [
+        "audit_v04_direct_benchmark",
+        "copy",
+        "io",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "v04_direct_converter",
+        "v04_direct_inventory",
+        "v04_direct_scap_source",
+        "v04_native_bundle_compiler",
+        "validate_native_json_schemas",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_direct_conversion_prototype.py",
+      "sha256": "0df1b8ca137548a12d5c7409ac5fe8c0ab82cecf126c93d31dfef10a54a9a34d",
+      "dependencies": [
+        "ast",
+        "audit_v04_eight_assessment_pilot",
+        "cProfile",
+        "copy",
+        "io",
+        "json",
+        "pathlib",
+        "pstats",
+        "resource",
+        "statistics",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "test_v04_public_cli_smoke",
+        "time",
+        "unittest",
+        "unittest.mock",
+        "v04_direct_conversion_prototype",
+        "v04_expanded_source_proof",
+        "v04_native_bundle_compiler",
+        "v04_source_package_semantics",
+        "validate_native_json_schemas",
+        "verify_v04_package_consumer",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_direct_converter.py",
+      "sha256": "a52dc58c538423a69d5b7244d7baf6b540707f117f777bbaf788b09ffbfa9f1f",
+      "dependencies": [
+        "audit_v04_direct_benchmark",
+        "audit_v04_eight_assessment_pilot",
+        "cProfile",
+        "copy",
+        "hashlib",
+        "io",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "pstats",
+        "resource",
+        "statistics",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "time",
+        "unittest",
+        "unittest.mock",
+        "v04_direct_converter",
+        "v04_direct_scap_source",
+        "v04_expanded_source_proof",
+        "v04_native_bundle_compiler",
+        "v04_object_contract",
+        "v04_source_package_semantics",
+        "validate_native_json_schemas",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_expanded_source_proof.py",
+      "sha256": "6c4cb05b8010c67fa4ba69dd9ac13b9fab5e288fbca49a0031c34855ed0e3b15",
+      "dependencies": [
+        "audit_v04_eight_assessment_pilot",
+        "audit_v04_proof_expansion",
+        "copy",
+        "csv",
+        "hashlib",
+        "importlib.util",
+        "itertools",
+        "json",
+        "oval_result_truth_tables",
+        "pathlib",
+        "re",
+        "sys",
+        "tempfile",
+        "test_v04_package_consumer",
+        "test_v04_source_package_semantics",
+        "unittest",
+        "unittest.mock",
+        "v04_direct_authoring_contract",
+        "v04_expanded_source_proof",
+        "v04_native_bundle_compiler",
+        "v04_native_identities",
+        "v04_source_package_semantics",
+        "verify_v04_package_consumer",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_field_requirement_conversion.py",
+      "sha256": "5ef5d20a063b199e2850371a324687e29dcceea2ace9f62f31d8cea385a293f9",
+      "dependencies": [
+        "build_v04_canonical_six_stigs",
+        "copy",
+        "hashlib",
+        "json",
+        "migrate_v04_evaluate_and_or",
+        "pathlib",
+        "research_04_one_grammar_proof",
+        "scap_ng_roundtrip_v003.compare_oval_semantics",
+        "scap_ng_roundtrip_v003.native_assessment_to_oval",
+        "scap_upconvert_v003.build_rhel9_review_slice",
+        "scap_upconvert_v003.convert_collection_review",
+        "scap_upconvert_v003.embed_predicates",
+        "tempfile",
+        "test_v04_field_requirement_schema",
+        "unittest",
+        "v04_canonical_source_ir",
+        "v04_field_requirement",
+        "v04_flat_object_authoring",
+        "v04_native_bundle_compiler",
+        "v04_native_identities",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/schema-v04-draft.yml#focused",
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_fixed_unknown_minimal.py",
+      "sha256": "9fdf75b401eb5c30f04331320f5a3456954c2253f5ba4e436e06a1632d0871b0",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "test_generate_capability_schema_v04",
+        "unittest",
+        "v04_a_authoring_graph_index",
+        "v04_canonical_source_ir",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-fixed-unknown-archive.yml#fixed-result-unknown-source",
+        ".github/workflows/v04-fixed-unknown-source.yml#fixed-result-unknown-source"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_input_presence.py",
+      "sha256": "5751031a71fe925de15f6960f7d3355aca63afe9ae2a3ea2ed7d6e8322b66091",
+      "dependencies": [
+        "copy",
+        "dataclasses",
+        "functools",
+        "hashlib",
+        "io",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "referencing",
+        "tempfile",
+        "test_v04_comparison_types",
+        "test_v04_package_consumer",
+        "unittest",
+        "v04_a_authoring_graph_index",
+        "v04_canonical_result_plan",
+        "v04_input_presence",
+        "v04_native_bundle_compiler",
+        "v04_object_contract",
+        "validate_native_json_schemas",
+        "verify_v04_package_consumer",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_joval_rule_choice_closure.py",
+      "sha256": "6f90ea013b70f2b395fa270d78d0f138fd92495d3e793984b79ee184a005599b",
+      "dependencies": [
+        "export_v04_joval_six_format_preview",
+        "io",
+        "unittest",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-joval-six-format-preview.yml#verified-discussion-preview"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_json_authoring_readiness.py",
+      "sha256": "ee21edd22a47fe9138289f6d562d32e6f25e6b9bcefe9a959b57b46ae54ae5c0",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "research_04_scoped_schema",
+        "tempfile",
+        "test_v04_review_reference_graph",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs",
+        ".github/workflows/v04-json-authoring-schema.yml#json-candidate",
+        ".github/workflows/v04a-win11-all-items-preview.yml#windows11-review"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_native_bundle_compiler.py",
+      "sha256": "a1802492e28bd9d66b3805044d7acdea5a58a9dba42579f6db7f067a25db1012",
+      "dependencies": [
+        "copy",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "test_v04_canonical_source_ir",
+        "unittest",
+        "unittest.mock",
+        "v04_a_authoring_graph_index",
+        "v04_canonical_source_ir",
+        "v04_canonical_unsigned_package",
+        "v04_native_bundle_compiler",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/schema-v04-draft.yml#focused",
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-native-compiled-release.yml#compile-native",
+        ".github/workflows/v04-native-format-parity.yml#native-format-parity"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_native_bundle_signing.py",
+      "sha256": "b8ed950df5df7cf96fbc06a201edb813321d718ec63dd4434ab1e98e9f893d1e",
+      "dependencies": [
+        "io",
+        "json",
+        "pathlib",
+        "shutil",
+        "sys",
+        "test_v04_canonical_signed_source_package",
+        "test_v04_native_bundle_compiler",
+        "unittest",
+        "v04_a_authoring_graph_index",
+        "v04_canonical_signed_source_package",
+        "v04_native_bundle_compiler",
+        "v04_native_bundle_signing",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_original_source_ledger.py",
+      "sha256": "35db0a899025341edd8a242def88c1c12684c74e0ae2622605c491d6cb6f16b6",
+      "dependencies": [
+        "audit_v04_original_source_ledger",
+        "hashlib",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_oval_test_corpus.py",
+      "sha256": "9fa31dd2a4de130b3d92bf07c47c8b623c7964b564a53661c2045ff3bec61595",
+      "dependencies": [
+        "audit_v04_oval_test_corpus",
+        "copy",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "v04_direct_converter",
+        "v04_direct_inventory",
+        "v04_direct_scap_source",
+        "validate_native_json_schemas",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_package_consumer.py",
+      "sha256": "2c5344e6cba9705ba49968dadfe85bdb942b88fb3743d06ee412f5231bb197e2",
+      "dependencies": [
+        "ast",
+        "copy",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "test_v04_public_cli_smoke",
+        "unittest",
+        "v04_native_bundle_compiler",
+        "verify_v04_package_consumer",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_public_cli_smoke.py",
+      "sha256": "d22d0e1a315468aebb8d49ae90ac8fa3d0bf0284b21578751977a35998d46937",
+      "dependencies": [
+        "__future__",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "v04_a_authoring_graph_index",
+        "v04_canonical_unsigned_package",
+        "v04_native_bundle_compiler",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-converter-core-bridge.yml#converter-bridge"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_review_reference_graph.py",
+      "sha256": "8fe3d96ee7712a9676e3256931976649e96eb3f2471c3b9205fb860e709a83db",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "json",
+        "unittest",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused",
+        ".github/workflows/v04-review-reference-graph.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_source_package_semantics.py",
+      "sha256": "39600519ba9ece8b0eb778ed324b265aad5e933c25254b7068cd2f13ca238b26",
+      "dependencies": [
+        "ast",
+        "audit_v04_eight_assessment_pilot",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "v04_source_package_semantics",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-fast.yml#focused"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/test_v04_toolchain_clean_extract.py",
+      "sha256": "6c8ba02ba681218a49cf2e39e7597184fb7428cfff3228b1cff19bd080f01cad",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "importlib.metadata",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "zipfile"
+      ],
+      "role": "test_or_audit_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-toolchain-release-smoke.yml#clean-extract"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_a_authoring_graph_index.py",
+      "sha256": "e8ec4895641c8a9d1c28d4e34cf9bfd4a3434ddbd93850049a8cb881b1d6b4c2",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "test_v04_review_reference_graph",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-parsed-graph-index.yml#format-neutral-a-authoring-index"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_a_deterministic_research_container.py",
+      "sha256": "e4c1d4d1ad8e832ce1b21ee5e6a8216b3e1ad4db296e582aed22e1e1cd7bf500",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "v04_a_authoring_graph_index",
+        "v04_a_benchmark_choice_version_closure",
+        "v04_a_benchmark_spec_migration_preview",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/research-a-deterministic-container.yml#deterministic-graph-package-only"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_a_end_to_end_base_authoring.py",
+      "sha256": "52fc90f7febf66a4730b0889be07e578c0bd487a8ab4d0fd2a52cba959b0669f",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "research_04_native_deep_content_census",
+        "v04_a_authoring_graph_index",
+        "v04_a_benchmark_choice_version_closure",
+        "v04_a_benchmark_spec_migration_preview",
+        "v04_a_deterministic_research_container",
+        "v04_a_lower_scoped_to_base",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_canonical_signed_source_package.py",
+      "sha256": "1967a02760f0b17ab0294bd5c518d1a2c9097e6ba7a533c57a9131120707ba64",
+      "dependencies": [
+        "__future__",
+        "copy",
+        "cryptography",
+        "cryptography.hazmat.primitives",
+        "cryptography.hazmat.primitives.asymmetric",
+        "cryptography.hazmat.primitives.serialization",
+        "hashlib",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "shutil",
+        "subprocess",
+        "tempfile",
+        "v04_a_authoring_graph_index",
+        "v04_canonical_unsigned_package",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_canonical_unsigned_package.py",
+      "sha256": "b397c0b1ec87bfdba1527d7198e3733a1cc50838cea5663b4a2459b1033e28d5",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "functools",
+        "hashlib",
+        "io",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "v04_a_authoring_graph_index",
+        "v04_a_benchmark_choice_version_closure",
+        "v04_canonical_source_ir",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_direct_conversion_prototype.py",
+      "sha256": "161baa21bdd42732bf7248d4ab09cd6a6f5851751f86a3d604f00e0a9d371095",
+      "dependencies": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "resource",
+        "time",
+        "xml.etree.ElementTree",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_direct_converter.py",
+      "sha256": "37f2f9090f31db3c6f9c3d8581b50b9d1f33c6e3ffe367c432f59bca2b7063d3",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "re",
+        "resource",
+        "time",
+        "v04_direct_authoring_contract",
+        "v04_direct_cmdlet_inputs",
+        "v04_direct_command_behaviors",
+        "v04_direct_datatypes",
+        "v04_direct_enum_variables",
+        "v04_direct_file_behaviors",
+        "v04_direct_inventory",
+        "v04_direct_scalar_behaviors",
+        "v04_direct_scap_source",
+        "v04_direct_system_policy",
+        "v04_direct_yaml",
+        "v04_direct_yaml_records",
+        "v04_draft_compatibility",
+        "v04_draft_inputs",
+        "v04_human_authoring_compact",
+        "v04_native_bundle_compiler",
+        "v04_variable_function_migration",
+        "validate_native_json_schemas",
+        "verify_v04_direct_scope",
+        "verify_v04_package_consumer",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_direct_scap_source.py",
+      "sha256": "9e2dffbd118b47a4c988fbbe13c8aa1c732c36c681693d42cf41424bfbbc1319",
+      "dependencies": [
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "v04_draft_compatibility",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_flat_object_authoring.py",
+      "sha256": "86eb14fbb4eaede3541cb85e3bfc2a5142c14e86fe6b595e2faea4d34967cc15",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "audit_v04_flat_object_names",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "v04_a_authoring_graph_index",
+        "v04_object_contract",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs",
+        ".github/workflows/v04-flat-object-six-stig.yml#six-stig-review"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_native_bundle_compiler.py",
+      "sha256": "4da7b47c1987cc686798fafd1653a2620c70edb7f9fbf54bd7ae42b498277319",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "copy",
+        "functools",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "re",
+        "v04_a_authoring_graph_index",
+        "v04_a_benchmark_choice_version_closure",
+        "v04_a_dataflow_index",
+        "v04_canonical_result_plan",
+        "v04_canonical_source_ir",
+        "v04_canonical_unsigned_package",
+        "v04_comparison_types",
+        "v04_field_requirement",
+        "v04_native_identities",
+        "v04_object_contract",
+        "v04_variable_expressions",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-native-compiled-release.yml#compile-native",
+        ".github/workflows/v04-native-format-parity.yml#native-format-parity"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_restore_missing_applicability.py",
+      "sha256": "047e506df0141bb28dd76a9556538d5f11b3327e6c243eee9b1dbacaee010c82",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "collections",
+        "copy",
+        "hashlib",
+        "json",
+        "migrate_v04_enum_selectors",
+        "pathlib",
+        "research_04_native_deep_content_census",
+        "research_04_one_grammar_proof",
+        "research_04_scoped_state_require",
+        "test_v04_review_reference_graph",
+        "v04_a_authoring_graph_index",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/v04_source_proof_contract.py",
+      "sha256": "af89f5a096c86ab3016e1445008ded12f107bbdd670f429732033057dae51700",
+      "dependencies": [
+        "build_v04_canonical_six_stigs",
+        "copy",
+        "functools",
+        "io",
+        "json",
+        "pathlib",
+        "research_04_one_grammar_proof",
+        "v04_canonical_source_ir",
+        "v04_native_bundle_compiler",
+        "verify_v04_package_consumer",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/verify_scapng_prototype_bundle.py",
+      "sha256": "c3b5a38a14bc3e4dbf42de1ea308371b1076bdf362fb52243dc9ec7670e56af0",
+      "dependencies": [
+        "__future__",
+        "argparse",
+        "base64",
+        "cryptography.hazmat.primitives.asymmetric.ed25519",
+        "hashlib",
+        "json",
+        "pathlib",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/build-scapng-iteration001.yml#build-and-verify",
+        ".github/workflows/convert-rhel9-scap14-to-ng.yml#convert",
+        ".github/workflows/convert-windows11-scap14-to-ng.yml#convert",
+        ".github/workflows/four-anchor-reuse-analysis.yml#convert"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/verify_v04_direct_scope.py",
+      "sha256": "9467d4326ac34bd7cc3be39a88dc0926b75c447682d16a4b05edbe23ffcbf704",
+      "dependencies": [
+        "argparse",
+        "audit_v04_direct_benchmark",
+        "audit_v04_eight_assessment_pilot",
+        "collections",
+        "inventory_v04_six_source_requirements",
+        "json",
+        "lxml",
+        "oval_source_validation",
+        "pathlib",
+        "v04_direct_converter",
+        "v04_direct_inventory",
+        "v04_direct_platform_inventory",
+        "v04_direct_scap_source",
+        "v04_direct_yaml",
+        "v04_expanded_source_proof",
+        "v04_native_bundle_compiler",
+        "validate_native_json_schemas",
+        "verify_v04_package_consumer",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-direct-six-requirements.yml#inventory"
+      ],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/verify_v04_owner_review_download.py",
+      "sha256": "7a16f7ebe6e7db0067f5480ac002304e2126eaf848c77eb4b50440db199b5c2d",
+      "dependencies": [
+        "argparse",
+        "csv",
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib",
+        "stat",
+        "tempfile",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/verify_v04_package_consumer.py",
+      "sha256": "c636e9566025e769ceab0a9a7e4dfac1ec8512eb8b7296252f24d64ca7b3b94c",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "functools",
+        "hashlib",
+        "json",
+        "jsonschema",
+        "pathlib",
+        "referencing",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/verify_v04_signed_source_corpus.py",
+      "sha256": "50faf88f8cb886f6b7d4dc42395ac00da82178f264d5877131278a86eeacd1cb",
+      "dependencies": [
+        "argparse",
+        "cryptography",
+        "cryptography.hazmat.primitives",
+        "cryptography.hazmat.primitives.asymmetric",
+        "cryptography.x509.oid",
+        "datetime",
+        "hashlib",
+        "io",
+        "json",
+        "pathlib",
+        "shutil",
+        "v04_canonical_signed_source_package",
+        "v04_canonical_unsigned_package",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-canonical-six-stig.yml#six-stigs",
+        ".github/workflows/v04-source-cms-proof.yml#verify-ephemeral-source-signer"
+      ],
+      "historical_visitor_dependency": false,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "path": "tools/verify_v04_unix_password.py",
+      "sha256": "d31af51f4eab90ece64cb898e1828189933709736b62e410a35fcf42f945e11d",
+      "dependencies": [
+        "argparse",
+        "audit_v04_direct_benchmark",
+        "copy",
+        "inventory_v04_six_source_requirements",
+        "json",
+        "lxml",
+        "oval_source_validation",
+        "pathlib",
+        "v04_direct_converter",
+        "v04_direct_inventory",
+        "v04_direct_scap_source",
+        "v04_direct_yaml",
+        "v04_expanded_source_proof",
+        "v04_native_bundle_compiler",
+        "validate_native_json_schemas",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "builder_or_publication_candidate",
+      "recognized_direct_workflow_references": [
+        ".github/workflows/v04-direct-unix-password.yml#original-source"
+      ],
+      "historical_visitor_dependency": true,
+      "publication_status": "HISTORICAL_DRAFT_UNQUALIFIED_ONLY; direct remote publication denied in proposed sinks; no current qualification"
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "audited_commit": "a86408bcfb53ac22da965deb51463f08c365caf9",
+      "path": "scripts/audit_publication_paths.py",
+      "sha256": "41272f2a7ee81d62bf2915abbf7930cce9914139415785ff0e99e835cec39b05",
+      "dependencies": [
+        "argparse",
+        "ast",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "subprocess",
+        "sys",
+        "yaml"
+      ],
+      "role": "publication_gate_or_audit_source; not the producer facade",
+      "publication_status": "Only pinned production facade output reproduced and admitted by current publication gate can qualify"
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "audited_commit": "f97ff187460f52da78bd16f5009f7d182664812b",
+      "path": "src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py",
+      "sha256": "783b4864ccf2777bd7d72ec2b6ae46777898985aabea133d21df090f2b48c9f1",
+      "dependencies": [
+        "argparse",
+        "collections",
+        "copy",
+        "json",
+        "pathlib",
+        "re",
+        "resource",
+        "scap_ng_tools.authoring.input_discovery",
+        "scap_ng_tools.converter._v04_semantic.v04_input_presence",
+        "time",
+        "v04_direct_authoring_contract",
+        "v04_direct_cmdlet_inputs",
+        "v04_direct_command_behaviors",
+        "v04_direct_datatypes",
+        "v04_direct_enum_variables",
+        "v04_direct_file_behaviors",
+        "v04_direct_inventory",
+        "v04_direct_scalar_behaviors",
+        "v04_direct_scap_source",
+        "v04_direct_system_policy",
+        "v04_direct_yaml",
+        "v04_direct_yaml_records",
+        "v04_draft_compatibility",
+        "v04_draft_inputs",
+        "v04_human_authoring_compact",
+        "v04_native_bundle_compiler",
+        "v04_variable_function_migration",
+        "validate_native_json_schemas",
+        "verify_v04_direct_scope",
+        "verify_v04_package_consumer",
+        "zipfile"
+      ],
+      "role": "supported_package_or_test_candidate",
+      "publication_status": "Only pinned production facade output reproduced and admitted by current publication gate can qualify"
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "audited_commit": "f97ff187460f52da78bd16f5009f7d182664812b",
+      "path": "src/scap_ng_tools/converter/_v04_runtime/v04_direct_scap_source.py",
+      "sha256": "9e2dffbd118b47a4c988fbbe13c8aa1c732c36c681693d42cf41424bfbbc1319",
+      "dependencies": [
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "v04_draft_compatibility",
+        "xml.etree.ElementTree",
+        "zipfile"
+      ],
+      "role": "supported_package_or_test_candidate",
+      "publication_status": "Only pinned production facade output reproduced and admitted by current publication gate can qualify"
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "audited_commit": "a86408bcfb53ac22da965deb51463f08c365caf9",
+      "path": "src/scap_ng_tools/publication/gate.py",
+      "sha256": "e0f281b37d91a5b98503055b3d3dcd9d6eb1ac810a78c0c3a0c26e0e6d940da4",
+      "dependencies": [
+        "argparse",
+        "glob",
+        "hashlib",
+        "importlib.metadata",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "scap_ng_tools.contracts",
+        "scap_ng_tools.converter.direct04",
+        "shutil",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "tomllib",
+        "urllib.parse",
+        "yaml",
+        "zipfile"
+      ],
+      "role": "publication_gate_or_audit_source; not the producer facade",
+      "publication_status": "Only pinned production facade output reproduced and admitted by current publication gate can qualify"
+    }
+  ],
+  "limits": [
+    "Recognized direct workflow references enumerate literal script paths in current-main-derived workflows; imports/dynamic dispatch may introduce additional callers.",
+    "Canonical/Evidence source audits identified no candidate Python builder/publisher scripts; Evidence release is inline shell and listed in the sink ledger.",
+    "An out-of-band historical-ref bypass is hypothetical and not demonstrated. Administrative inspection limitations do not block supported qualification; final repository deployment verification remains pending."
+  ],
+  "source_identity_verification": {
+    "method": "Compare all 198 recorded SHA-256 values with exact Git commit:path blob bytes.",
+    "verified": 198,
+    "failed": 0,
+    "correction": "The new publication/audit sources are pinned at a86408b with its actual immutable bytes. They are not falsely attributed to the earlier f97 producer. Other candidate source identities are unchanged."
+  }
+}

@@ -1,0 +1,49 @@
+name: Current native publication admission
+description: Reproduce and validate final bytes; upload only the admitted archive.
+inputs:
+  candidate:
+    required: true
+  producer-root:
+    required: true
+  schema-root:
+    required: true
+  source-root:
+    required: true
+  dry-run:
+    default: 'true'
+outputs:
+  archive:
+    value: ${{ steps.admit.outputs.archive }}
+runs:
+  using: composite
+  steps:
+    - name: Admit exact current native bytes
+      id: admit
+      shell: bash
+      env:
+        PUB_CANDIDATE: ${{ inputs.candidate }}
+        PUB_PRODUCER: ${{ inputs.producer-root }}
+        PUB_SCHEMA: ${{ inputs.schema-root }}
+        PUB_SOURCE: ${{ inputs.source-root }}
+      run: |
+        python -I -B - <<'PY'
+        import json,os,sys,tempfile
+        from pathlib import Path
+        root=Path(os.environ['GITHUB_ACTION_PATH']).resolve().parents[2]
+        sys.path.insert(0,str(root/'src'))
+        from scap_ng_tools.publication.gate import admit
+        stage=Path(tempfile.mkdtemp(prefix='current-native-admission-',dir=os.environ['RUNNER_TEMP']))
+        output=stage/'CURRENT_NATIVE_AUTHORING_VALIDATED.zip'
+        result=admit(candidate=os.environ['PUB_CANDIDATE'],producer_root=os.environ['PUB_PRODUCER'],
+                     schema_root=os.environ['PUB_SCHEMA'],source_root=os.environ['PUB_SOURCE'],output=output)
+        with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('archive='+str(output)+'\n')
+        with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('```json\n'+json.dumps(result,sort_keys=True)+'\n```\n')
+        print(json.dumps(result,sort_keys=True))
+        PY
+    - name: Publish only the archive produced by admission
+      if: inputs.dry-run == 'false'
+      uses: actions/upload-artifact@v4
+      with:
+        name: CURRENT_NATIVE_AUTHORING_VALIDATED
+        path: ${{ steps.admit.outputs.archive }}
+        if-no-files-found: error

@@ -1,0 +1,165 @@
+{
+  "issue": "https://github.com/vanderpol/scap-ng-tools/issues/40",
+  "completion": "OPEN_FOR_FINAL_DEPLOYMENT_VERIFICATION",
+  "observed_date_utc": "2026-11-09",
+  "research_workflow_api": {
+    "command": "gh api --paginate repos/vanderpol/scap-ng-research/actions/workflows --jq '.workflows[] | [.path,.state] | @tsv'",
+    "records": 222,
+    "active_records": 222,
+    "current_main_workflows": 212,
+    "response_sha256": "16e6cfc5b9e96014acf33b236a4ff06e151da5ebc3fd8545bafff343cd15d1ba",
+    "records_absent_from_main": [
+      {
+        "path": ".github/workflows/ci-artifact-policy.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/for-each-correlation-audit.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/for-each-correlation-full-corpus.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/ol9-roundtrip-coverage.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/oval-variable-instance-differential.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/rhel9-benchmark-semantics.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/rhel9-roundtrip-coverage.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/rhel9-v003-regeneration.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/windows-server-2025-roundtrip-coverage.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      },
+      {
+        "path": ".github/workflows/windows11-roundtrip-coverage.yml",
+        "state": "active",
+        "status": "INVENTORY_OBSERVATION_ACTIVE_RECORD_ABSENT_FROM_MAIN",
+        "execution_or_write_authority_demonstrated": false
+      }
+    ]
+  },
+  "inaccessible_settings": [
+    {
+      "repository": "vanderpol/scap-ng",
+      "command": "gh api repos/vanderpol/scap-ng/actions/permissions/workflow",
+      "http_status": 403,
+      "reason": "Resource not accessible by integration",
+      "status": "ACCESS_LIMITATION_ONLY",
+      "endpoint": "GET /repos/vanderpol/scap-ng/actions/permissions/workflow",
+      "fields_not_inspected": [
+        "default_workflow_permissions",
+        "can_approve_pull_request_reviews"
+      ],
+      "configuration_defect_demonstrated": false,
+      "blocks_development": false,
+      "blocks_qualified_testing": false
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "command": "gh api repos/vanderpol/scap-ng-tools/actions/permissions/workflow",
+      "http_status": 403,
+      "reason": "Resource not accessible by integration",
+      "status": "ACCESS_LIMITATION_ONLY",
+      "endpoint": "GET /repos/vanderpol/scap-ng-tools/actions/permissions/workflow",
+      "fields_not_inspected": [
+        "default_workflow_permissions",
+        "can_approve_pull_request_reviews"
+      ],
+      "configuration_defect_demonstrated": false,
+      "blocks_development": false,
+      "blocks_qualified_testing": false
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "command": "gh api repos/vanderpol/scap-ng-research/actions/permissions/workflow",
+      "http_status": 403,
+      "reason": "Resource not accessible by integration",
+      "status": "ACCESS_LIMITATION_ONLY",
+      "endpoint": "GET /repos/vanderpol/scap-ng-research/actions/permissions/workflow",
+      "fields_not_inspected": [
+        "default_workflow_permissions",
+        "can_approve_pull_request_reviews"
+      ],
+      "configuration_defect_demonstrated": false,
+      "blocks_development": false,
+      "blocks_qualified_testing": false
+    },
+    {
+      "repository": "vanderpol/scap-ng-evidence",
+      "command": "gh api repos/vanderpol/scap-ng-evidence/actions/permissions/workflow",
+      "http_status": 403,
+      "reason": "Resource not accessible by integration",
+      "status": "ACCESS_LIMITATION_ONLY",
+      "endpoint": "GET /repos/vanderpol/scap-ng-evidence/actions/permissions/workflow",
+      "fields_not_inspected": [
+        "default_workflow_permissions",
+        "can_approve_pull_request_reviews"
+      ],
+      "configuration_defect_demonstrated": false,
+      "blocks_development": false,
+      "blocks_qualified_testing": false
+    }
+  ],
+  "additional_blockers": [
+    {
+      "status": "FINAL_DEPLOYMENT_VERIFICATION_PENDING",
+      "scope": "Four draft PRs and Tools dependencies are unmerged. Verify intended sink bindings and qualification at reviewed deployed commits through the normal process."
+    },
+    {
+      "status": "UNSUPPORTED_QUALIFIED_FULL65_FAILS_CLOSED",
+      "scope": "Current full-65 qualification is unsupported and rejected. This does not block supported focused, automatic-subset Benchmark, or standalone Definition testing."
+    }
+  ],
+  "recommendation": "Complete repository-level tests and normal review/deployment verification. No elevated credentials or repository permission changes are requested or recommended without a demonstrated security problem.",
+  "interpretation_correction": {
+    "supersedes": "066442216c576eb50f8451493640b0efbc879d49: prior administrative/ref blocker interpretation",
+    "reason": "Owner clarification: HTTP 403 is an inspection limitation, not a configuration defect or a development/qualified-testing blocker.",
+    "blocks_development": false,
+    "blocks_qualified_testing": false,
+    "administrative_configuration_defect_demonstrated": false,
+    "historical_workflow_security_bypass_demonstrated": false
+  },
+  "not_inspected_by_this_endpoint": [
+    "Branch/tag rulesets and protections",
+    "Protected-environment deployment policies",
+    "External credential scopes and publisher identities",
+    "Organization-level policy settings"
+  ],
+  "historical_ref_risk": {
+    "classification": "HYPOTHETICAL_NOT_DEMONSTRATED",
+    "description": "Potential publication outside the guarded current tree has not been executed or shown authorized. Active API records and HTTP 403 do not demonstrate a working bypass."
+  }
+}

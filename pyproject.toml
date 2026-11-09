@@ -12,10 +12,12 @@ dependencies = ["PyYAML>=6.0,<7", "jsonschema>=4.24,<5"]
 
 [project.scripts]
 scapng-convert-v04 = "scap_ng_tools.converter.direct04:main"
+scapng-publish-v04 = "scap_ng_tools.publication.gate:main"
 
 [tool.setuptools.package-data]
 "scap_ng_tools.converter._v04_runtime" = ["*.json"]
 "scap_ng_tools.converter._v04_semantic" = ["*.json"]
+"scap_ng_tools.publication" = ["*.json"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

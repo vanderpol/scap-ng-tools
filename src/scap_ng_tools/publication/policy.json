@@ -1,0 +1,33 @@
+{
+  "format": "scap-ng-publication-policy/1",
+  "producer": {
+    "repository": "https://github.com/vanderpol/scap-ng-tools",
+    "commit": "f97ff187460f52da78bd16f5009f7d182664812b",
+    "distribution": "scap-ng-tools",
+    "distribution_version": "0.0.0",
+    "entrypoint": "scapng-convert-v04 = scap_ng_tools.converter.direct04:main",
+    "source_tree_sha256": "93c9f298e01eef50b0839d5be4b8970715828418821f1d0debe15c09f134e48c"
+  },
+  "schema": {
+    "commits": [
+      "6012ae25281352a9c2d8a4fde7cb5a4968b4432c",
+      "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b"
+    ],
+    "version": "0.4.0",
+    "family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5"
+  },
+  "qualification_tiers": [
+    "authoring_validated"
+  ],
+  "unsupported_claims": [
+    "source_proved",
+    "ri_executed",
+    "scanner_equivalent",
+    "full_65_complete",
+    "release_ready"
+  ],
+  "source_repositories": {
+    "e3538595c5083b9c34d937a81d319234df9bbfaa": "https://github.com/OVAL-Community/SCAP-Self-Assertion",
+    "8c8e5dff860af6b1290ee9273a282db24278f8d5": "https://github.com/niwc-atlantic/scap-content-library"
+  }
+}

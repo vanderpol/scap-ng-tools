@@ -1,0 +1,14 @@
+{
+  "failed_head": "f7198b167f8dc4699b7323ddcce4622e276e54a3",
+  "failed_run": "https://github.com/vanderpol/scap-ng-tools/actions/runs/42651950975",
+  "failed_command": "python -m unittest discover -s tests -v",
+  "actual": "69 tests, one test fixture error; the shallow approved-producer checkout did not contain c5f5b2 history. Required test was not skipped.",
+  "correction": "Create an otherwise byte-identical test-only unapproved commit in the temporary local clone. This proves exact commit allowlisting without fetching older history or weakening admission.",
+  "local_followup": "17 publication/audit tests passed with all fixtures; production conversion/schema semantics unchanged.",
+  "other_limits": [
+    "Four permission-policy reads returned HTTP 403.",
+    "Ten active Research Actions records are absent from current main.",
+    "No qualified full-65 reproduction is available."
+  ],
+  "scanner_equivalence": false
+}
