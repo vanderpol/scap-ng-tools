@@ -18,6 +18,10 @@
 - `docs/evidence/issue28/OVAL-FEATURE-COVERAGE.json` — 72896 bytes — `dd09e90f16566c7ee05e81a367aa3578524dafd7f4471489cd10356289b9169a`
 - `docs/evidence/issue28/OVAL-FEATURE-COVERAGE.md` — 8445 bytes — `5166f127cca087690b6ea4b6d6d7f764ebe0cc78813aa3a247f6dbb30e686641`
 
+## Preserved pipeline source copies
+
+The small source-only pipeline subset is copied under `nov5-full65-pipeline/`; each file is listed in the JSON manifest. Generated outputs and receipts remain excluded.
+
 ## Excluded from Git commit
 
 - **issue28 source ZIP copies**: `/home/u1239716047117002/Documents/scap-ng-vscode/.external/scap-ng-tools/.worktrees/issue28-variable-recovery/.issue28-sources` — source archives and bulk input data; retained in VM only; 65 ZIPs not committed.
