@@ -3,6 +3,15 @@
 Development-stage, Apache-2.0-licensed tools intended to be shared by SCAP-NG
 converters, authoring applications, and post-conversion normalization workflows.
 
+**Producing 0.4 Assessments:** use `scapng-convert-v04` (or the identical
+`python -m scap_ng_tools.converter.direct04` entry point). The current facade
+checks the approved frozen schema and validates final API documents plus actual
+JSON/YAML payloads before publication. Output remains `CONVERTED_UNVERIFIED`;
+schema validation does not establish scanner behavior. See the
+[toolchain inventory and consolidation plan](docs/ISSUE37-TOOLCHAIN-PLAN.md).
+Historical research tools and the optional differential probe are not production
+alternatives. Compile, independent proof and draft flags remain explicitly gated.
+
 ## Current limited import
 
 This first **copy-first** checkpoint includes two dependency-free, presentation-only
@@ -18,7 +27,7 @@ locator** (`scap_ng_tools.contracts.FrozenSchemaSnapshot`). The historical
 pre-selector checkpoint was 143 files/34 roots/242 references; the current
 coordinated Issue #14/#19 candidate is pinned to 145 JSON files, 35 roots, 673
 references and aggregate SHA-256
-`d2d8d59bcc722eacdba80342232f6d92d5bba812aab077753486268c3f74aa2d`, under an
+`63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5`, under an
 explicitly selected flat `schema/` directory.
 No schema files or source corpus are vendored into this tool package.
 
