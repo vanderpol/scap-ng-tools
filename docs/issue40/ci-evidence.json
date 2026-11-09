@@ -59,5 +59,14 @@
     "The earlier commit-reference rejection and raw-upload expectation regression were corrected without history rewrites; seven boundary tests and twenty related converter-contract tests passed locally.",
     "No quota-blocked upload was manually retried. No release command or full-65 conversion was manually executed."
   ],
-  "access_and_deployment_blockers": "integration-blockers.json"
+  "access_and_deployment_blockers": "integration-blockers.json",
+  "explicit_status_followup": {
+    "command": "SCAP_NG_PUBLICATION_REQUIRED=1 SCAP_NG_APPROVED_CONVERTER_ROOT=/workspace/work/tools37 SCAP_NG_SCHEMA_ROOT=/workspace/work/rhel9-shellcommand-audit/ci-spec SCAP_NG_OVAL_TEST_CONTENT=/tmp/ri35-public-corpus PYTHONPATH=src python -m unittest discover -s tests -p test_publication_gate.py -v",
+    "exit_status": 0,
+    "tests": 14,
+    "skips": 0,
+    "log_sha256": "ed4d41bc08d15c995f85a3b136fac0a7ba6ac81016cc5d8e2f14a259800bee42",
+    "change": "Current manifests explicitly record schema_validated and final_serializations_validated. Missing/false statuses fail closed. Historical sealer/denial at pinned 053eeeb remains unchanged.",
+    "final_ci_receipt": "PR #41 conversation after exact-head required suite completes."
+  }
 }

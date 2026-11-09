@@ -88,6 +88,9 @@ class CurrentPublication(unittest.TestCase):
                 self.assertEqual(len(original['assessment']['evaluate']['and']), 2)
                 self.assertEqual(yaml.safe_load(archive.read('payload/assessment.yaml')), original)
                 self.assertEqual(archive.read('publication-manifest.json'), (self.candidate / 'publication-manifest.json').read_bytes())
+                status = json.loads(archive.read('publication-manifest.json'))['qualification']
+                self.assertIs(status['schema_validated'], True)
+                self.assertIs(status['final_serializations_validated'], True)
 
     def test_historical_and_renamed_producers_rejected_with_rehashed_manifest(self):
         for key, value in [('commit', 'a08c9beb9dcf781a726adbdf05676f5ae2e57309'),
@@ -99,6 +102,10 @@ class CurrentPublication(unittest.TestCase):
     def test_missing_provenance_and_wrong_schema_digest_rejected(self):
         self.reject(lambda c: self.refresh(c, lambda m: m['producer'].pop('commit')))
         self.reject(lambda c: self.refresh(c, lambda m: m['schema'].__setitem__('family_sha256', '0' * 64)))
+        for field in ('schema_validated', 'final_serializations_validated'):
+            with self.subTest(field=field):
+                self.reject(lambda c: self.refresh(c, lambda m: m['qualification'].pop(field)))
+                self.reject(lambda c: self.refresh(c, lambda m: m['qualification'].__setitem__(field, False)))
 
     def test_post_validation_byte_mutation_rejected(self):
         self.reject(lambda c: (c / 'payload/assessment.yaml').write_bytes((c / 'payload/assessment.yaml').read_bytes() + b'\n# changed\n'))

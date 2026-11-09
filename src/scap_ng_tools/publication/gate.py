@@ -235,7 +235,8 @@ def prepare(*, output, **inputs):
     manifest = {'format': 'scap-ng-current-native-publication/1', 'producer': producer,
                 'schema': schema, 'source': source, 'request': inputs['request'],
                 'qualification': {'tier': 'authoring_validated', 'scope': inputs['request']['mode'],
-                                  'converted_status': 'CONVERTED_UNVERIFIED', 'source_proved': False,
+                                  'converted_status': 'CONVERTED_UNVERIFIED', 'schema_validated': True,
+                                  'final_serializations_validated': True, 'source_proved': False,
                                   'ri_executed': False, 'scanner_equivalent': False, 'full_65_complete': False},
                 'files': {n: {'sha256': digest(b), 'bytes': len(b)} for n, b in sorted(files.items())}}
     output.mkdir(parents=True)
@@ -267,7 +268,8 @@ def admit(*, candidate, output, producer_root, schema_root, source_root):
     ensure(manifest['schema']['commit'] in policy['schema']['commits'] and
            manifest['schema']['family_sha256'] == policy['schema']['family_sha256'], 'unapproved schema provenance')
     expected_qualification = {'tier': 'authoring_validated', 'scope': manifest['request'].get('mode'),
-                              'converted_status': 'CONVERTED_UNVERIFIED', 'source_proved': False,
+                              'converted_status': 'CONVERTED_UNVERIFIED', 'schema_validated': True,
+                              'final_serializations_validated': True, 'source_proved': False,
                               'ri_executed': False, 'scanner_equivalent': False, 'full_65_complete': False}
     ensure(canonical(manifest['qualification']) == canonical(expected_qualification), 'unproved qualification/coverage claim')
     payload = {n.removeprefix('payload/'): b for n, b in all_files.items() if n.startswith('payload/')}
