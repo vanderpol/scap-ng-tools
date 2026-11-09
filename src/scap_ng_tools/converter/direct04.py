@@ -75,7 +75,7 @@ def validate_native_documents(snapshot, documents):
 
 
 def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
-                    human_compact=True, native_recovery=False):
+                    human_compact=True, native_recovery=False, recover_manual=False):
     """Return a verified-structure native document set and original source trace.
 
     Output provenance may truthfully say schema-validated and source-traced, but
@@ -96,7 +96,8 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
         source_model.native_recovery = native_recovery
         documents, trace = engine.convert(source_model, list(rule_ids),
                                           human_compact=human_compact,
-                                          native_recovery=native_recovery)
+                                          native_recovery=native_recovery,
+                                          recover_manual=recover_manual)
     finally:
         engine.load_mappings = previous
     validate_native_documents(snapshot, documents)
@@ -126,7 +127,7 @@ def inventory_benchmark(*, schema_root, source, sha256_pin):
 
 
 def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
-                      native_recovery=False):
+                      native_recovery=False, recover_manual=False, exclude_sqlext=False):
     """Admit automated Rules through a pinned, strictly version-local semantic gate.
 
     Blocked Rules retain original inventory diagnostics. Admitted Rules are
@@ -144,8 +145,9 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
     documents, trace, coverage = engine.convert_benchmark(
         original, mappings=mappings, human_compact=human_compact,
         validate_document=lambda kind, doc: document_errors(snapshot, kind, doc),
-        native_recovery=native_recovery)
-    if (coverage.get('mode') != 'automatic' or
+        native_recovery=native_recovery, recover_manual=recover_manual,
+        exclude_sqlext=exclude_sqlext)
+    if (coverage.get('mode') not in ('automatic', 'automatic+manual', 'excluded') or
             any(row['proof_level'] not in ('none', 'authoring_validated')
                 for row in coverage['rules'])):
         raise QualifiedConversionError('unexpected promotion beyond unverified authoring')
@@ -175,6 +177,8 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument('--recover-native', action='store_true', help='opt into owner-review native recovery candidates')
+    parser.add_argument('--recover-manual', action='store_true', help='preserve OCIL checks as native manual Assessments; OVAL remains default')
+    parser.add_argument('--exclude-sqlext', action='store_true', help='exclude SQLEXT-dependent SQL benchmark content from conversion scope')
     for option in ('--verify', '--compile', '--all-rules', '--inventory-only', '--draft'):
         parser.add_argument(option, action='store_true')
     arguments = parser.parse_args()
@@ -210,12 +214,14 @@ def main():
             documents, trace, coverage = convert_benchmark(
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, human_compact=arguments.human_compact,
-                native_recovery=arguments.recover_native)
+                native_recovery=arguments.recover_native, recover_manual=arguments.recover_manual,
+                exclude_sqlext=arguments.exclude_sqlext)
         else:
             documents, trace = convert_focused(
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, rule_ids=arguments.rule,
-                human_compact=arguments.human_compact, native_recovery=arguments.recover_native)
+                human_compact=arguments.human_compact, native_recovery=arguments.recover_native,
+                recover_manual=arguments.recover_manual)
         from v04_direct_yaml import authoring_yaml
         targets = {name: safe_relative_filename(arguments.output, name)
                    for name in documents}
