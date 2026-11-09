@@ -89,6 +89,22 @@ scapng-convert-v04 --schema-root /path/to/pinned-scap-ng \
 This command requires the converter dependencies installed from this package;
 it does not fetch schema files, SCAP input or scanner data over the network.
 
+For a complete original OVAL Variable Definition, use that **same CLI**:
+
+```sh
+scapng-convert-v04 --schema-root /path/to/pinned-scap-ng \
+  --source /path/to/oval-def_constant_variable.xml \
+  --sha256 57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91 \
+  --oval-definition oval:org.mitre.oval.test:def:92 \
+  --source-commit e3538595c5083b9c34d937a81d319234df9bbfaa \
+  --source-path SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_constant_variable.xml \
+  --output /path/to/new-variable-review
+```
+
+This bounded source adapter preserves complete Definitions, constants and alias
+dependencies through the production visitor. [Scope, provenance and holds](docs/ISSUE37-STANDALONE.md).
+It produces validated **unverified authoring**, not computed scanner results.
+
 For a complete **inventory without conversion**:
 
 ```sh
