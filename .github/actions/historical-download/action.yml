@@ -1,0 +1,44 @@
+name: Download classified historical artifacts
+description: Preserve existing proof aggregation paths while reading only the historical namespace.
+inputs:
+  name:
+    default: ''
+  pattern:
+    default: '*'
+  path:
+    default: '.'
+  merge-multiple:
+    default: 'false'
+runs:
+  using: composite
+  steps:
+    - if: inputs.name != ''
+      uses: actions/download-artifact@v4
+      with:
+        name: HISTORICAL_DRAFT_UNQUALIFIED-${{ inputs.name }}
+        path: ${{ inputs.path }}
+    - if: inputs.name == ''
+      uses: actions/download-artifact@v4
+      with:
+        pattern: HISTORICAL_DRAFT_UNQUALIFIED-${{ inputs.pattern }}
+        path: ${{ inputs.path }}
+        merge-multiple: ${{ inputs.merge-multiple }}
+    - name: Restore original per-artifact aggregation directory names
+      if: inputs.name == '' && inputs.merge-multiple != 'true'
+      shell: bash
+      env:
+        HISTORICAL_DOWNLOAD_PATH: ${{ inputs.path }}
+      run: |
+        python -I -B - <<'PY'
+        import os
+        from pathlib import Path
+        root=Path(os.environ['HISTORICAL_DOWNLOAD_PATH'])
+        prefix='HISTORICAL_DRAFT_UNQUALIFIED-'
+        for path in root.iterdir():
+            if path.is_dir() and path.name.startswith(prefix):
+                name=path.name[len(prefix):]
+                if name in ('','.','..') or Path(name).name!=name:raise SystemExit('Unsafe historical artifact name')
+                destination=path.with_name(name)
+                if destination.exists():raise SystemExit('Refusing to overwrite existing aggregation directory')
+                path.rename(destination)
+        PY

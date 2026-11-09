@@ -19,6 +19,13 @@ jobs:
           ref: f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b
           path: spec-snapshot
           persist-credentials: false
+      - name: Checkout the exact admitted production converter distribution
+        uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng-tools
+          ref: f97ff187460f52da78bd16f5009f7d182664812b
+          path: approved-producer
+          persist-credentials: false
       - name: Checkout immutable Q3 2026 NIWC signed benchmark archive
         uses: actions/checkout@v4
         with:
@@ -75,4 +82,30 @@ jobs:
           SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/signed-source/Archive/2026_Q3/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
           SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/signed-source/Archive/2026_Q3
           SCAP_NG_OVAL_TEST_CONTENT: ${{ github.workspace }}/self-assertion
+          SCAP_NG_APPROVED_CONVERTER_ROOT: ${{ github.workspace }}/approved-producer
+          SCAP_NG_PUBLICATION_REQUIRED: '1'
         run: python -m unittest discover -s tests -v
+      - name: Prepare actual current converter output for publication dry-run
+        env:
+          PYTHONPATH: src
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          request={'mode':'oval-definition','source_commit':'e3538595c5083b9c34d937a81d319234df9bbfaa',
+                   'source_path':'SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_constant_variable.xml',
+                   'source_sha256':'57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91',
+                   'selection':'oval:org.mitre.oval.test:def:92'}
+          (Path(os.environ['RUNNER_TEMP'])/'publication-request.json').write_text(json.dumps(request))
+          PY
+          python -m scap_ng_tools.publication prepare \
+            --producer-root approved-producer --schema-root spec-snapshot --source-root self-assertion \
+            --request "$RUNNER_TEMP/publication-request.json" --output "$RUNNER_TEMP/current-candidate"
+      - name: Execute the actual shared publication action without uploading
+        uses: ./.github/actions/current-publication
+        with:
+          candidate: ${{ runner.temp }}/current-candidate
+          producer-root: approved-producer
+          schema-root: spec-snapshot
+          source-root: self-assertion
+          dry-run: 'true'

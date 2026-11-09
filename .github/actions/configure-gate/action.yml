@@ -1,0 +1,15 @@
+name: Configure the pinned publication boundary
+description: Expose this exact gate snapshot to explicit legacy publication denials.
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        python -I -B - <<'PY'
+        import os
+        from pathlib import Path
+        root=Path(os.environ['GITHUB_ACTION_PATH']).resolve().parents[2]
+        with open(os.environ['GITHUB_ENV'],'a') as f:
+            f.write('SCAPNG_PUBLICATION_GATE_SRC='+str(root/'src')+'\n')
+        PY
+

@@ -1,0 +1,151 @@
+{
+  "assessment": {
+    "id": "oval-independent-variable-four-way-assessment",
+    "version": 1,
+    "assessment_title": "Evaluate to true if the ind-def:variable_test is properly supported",
+    "mode": "automated",
+    "class": "miscellaneous",
+    "specification": {
+      "id": "scap-ng.pre-alpha.assessment",
+      "version": "0.4.0"
+    },
+    "variables": {
+      "first-source-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "title": "This variable represents the string values 'a', 'b', and 'c'.",
+        "expression": {
+          "literal": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        }
+      },
+      "second-source-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "title": "This variable represents the string values 'a', 'b', and 'c'.",
+        "expression": {
+          "literal": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        }
+      }
+    },
+    "tests": {
+      "first-to-second-variable-test": {
+        "test_title": "Test that the variable_object is supported.(diff vars )",
+        "capability": "variable.value",
+        "variable": "first-source-variable",
+        "reported_elements": "all",
+        "require": {
+          "items_found": "one_or_more",
+          "items_satisfying": "one_or_more",
+          "fields": {
+            "value": {
+              "equals": {
+                "variable": "second-source-variable"
+              },
+              "datatype": "string",
+              "value_match": "one_or_more"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "one_or_more"
+          }
+        }
+      },
+      "second-to-first-variable-test": {
+        "test_title": "Test that the variable_object is supported.(diff vars alt)",
+        "capability": "variable.value",
+        "variable": "second-source-variable",
+        "reported_elements": "all",
+        "require": {
+          "items_found": "one_or_more",
+          "items_satisfying": "one_or_more",
+          "fields": {
+            "value": {
+              "equals": {
+                "variable": "first-source-variable"
+              },
+              "datatype": "string",
+              "value_match": "one_or_more"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "one_or_more"
+          }
+        }
+      },
+      "first-to-first-variable-test": {
+        "test_title": "Test that the variable_object is supported.(same vars)",
+        "capability": "variable.value",
+        "variable": "first-source-variable",
+        "reported_elements": "all",
+        "require": {
+          "items_found": "one_or_more",
+          "items_satisfying": "one_or_more",
+          "fields": {
+            "value": {
+              "equals": {
+                "variable": "first-source-variable"
+              },
+              "datatype": "string",
+              "value_match": "one_or_more"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "one_or_more"
+          }
+        }
+      },
+      "second-to-second-variable-test": {
+        "test_title": "Test that the variable_object is supported.(same vars alt)",
+        "capability": "variable.value",
+        "variable": "second-source-variable",
+        "reported_elements": "all",
+        "require": {
+          "items_found": "one_or_more",
+          "items_satisfying": "one_or_more",
+          "fields": {
+            "value": {
+              "equals": {
+                "variable": "second-source-variable"
+              },
+              "datatype": "string",
+              "value_match": "one_or_more"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "one_or_more"
+          }
+        }
+      }
+    },
+    "evaluate": {
+      "and": [
+        {
+          "test": "first-to-second-variable-test"
+        },
+        {
+          "test": "second-to-first-variable-test"
+        },
+        {
+          "test": "first-to-first-variable-test"
+        },
+        {
+          "test": "second-to-second-variable-test"
+        }
+      ]
+    }
+  }
+}

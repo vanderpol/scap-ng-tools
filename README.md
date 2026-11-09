@@ -1,5 +1,7 @@
 # SCAP-NG Tools
 
+[Current-native publication admission](docs/issue40/PUBLICATION.md) validates provenance and actual final bytes by reproducing through the pinned production converter. Converter output alone cannot establish a qualified publication. Historical artifacts and proofs remain preserved; cross-repository and server-policy blockers are tracked explicitly.
+
 Development-stage, Apache-2.0-licensed tools intended to be shared by SCAP-NG
 converters, authoring applications, and post-conversion normalization workflows.
 

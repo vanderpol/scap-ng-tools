@@ -1,0 +1,25 @@
+{
+  "repository": "vanderpol/scap-ng-evidence",
+  "baseline_commit": "7dc17f0982cdb5b17281f8f8e4373dbd87f86f58",
+  "preserved_git_trees": {
+    "runs": "b05f2b75dce97bc1273a114f045c39406f59b3bb",
+    "manifests": "0a0b263c0d5e90f8f6afe0b9d71fd23f50201364",
+    "summaries": "9490b53453c88fb5983f7433d2aa50277cfea879"
+  },
+  "historical_65_lineage": {
+    "builder": "tools/build_v04_full_draft.py",
+    "builder_commit": "a08c9beb9dcf781a726adbdf05676f5ae2e57309",
+    "underlying_visitor": "tools/v04_direct_converter.py",
+    "normalized_export": "tools/scap_ng_library_cli.py export-draft",
+    "export_commit": "03ddc6beda8dcda5ff57439b0c3d7a2d12763d1b",
+    "normalized_archive_sha256": "a01ea589501bf8a53e5df68e50ca9478f19543d2bd3844546667fde743c28d8c"
+  },
+  "separate_obsolete_Require_lineage": {
+    "producer": "tools/convert_v04_oval_independent_variable_test.py",
+    "commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+    "native_schema_validated": false,
+    "fixture": "tests/fixtures/publication/obsolete-variable-assessment.json"
+  },
+  "current_production_Require_defect": false,
+  "no_retrospective_promotion": true
+}

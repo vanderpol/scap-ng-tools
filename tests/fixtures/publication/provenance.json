@@ -1,0 +1,18 @@
+{
+  "repository": "vanderpol/scap-ng-ri",
+  "commit": "4e4fa47c632000767b6f59a8d2999a6a8ba9cc89",
+  "historical_producer_repository": "vanderpol/scap-ng-research",
+  "historical_producer_commit": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+  "historical_script": "tools/convert_v04_oval_independent_variable_test.py",
+  "scope": "Actual historical four-Test replay, distinct from the 65-Benchmark historical builder. Preserved defect evidence, never current native authoring.",
+  "files": {
+    "obsolete-variable-assessment.json": {
+      "source_path": "docs/evidence/issue35/replayed-variable-test.json",
+      "sha256": "75b00677a418c26b3fe81249aa8cb06eb633ee431e55da3d30075ce647383c96"
+    },
+    "NOTICES.txt": {
+      "source_path": "docs/evidence/issue35/NOTICES.txt",
+      "sha256": "009967c7a726db825301a52ee5e57e0c81145ceec42f0884dca637c10a569c0f"
+    }
+  }
+}

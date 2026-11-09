@@ -1,0 +1,58 @@
+name: Historical unqualified artifact publication
+description: Preserve research bytes while denying current-native qualification.
+inputs:
+  name:
+    default: artifact
+  path:
+    required: true
+  if-no-files-found:
+    default: warn
+  retention-days:
+    default: '0'
+  compression-level:
+    default: '6'
+outputs:
+  artifact-id:
+    value: ${{ steps.upload.outputs.artifact-id }}
+  artifact-url:
+    value: ${{ steps.upload.outputs.artifact-url }}
+  artifact-digest:
+    value: ${{ steps.upload.outputs.artifact-digest }}
+runs:
+  using: composite
+  steps:
+    - name: Seal the declared historical byte selection
+      id: seal
+      shell: bash
+      env:
+        PUBLICATION_PATTERNS: ${{ inputs.path }}
+        PUBLICATION_MISSING: ${{ inputs.if-no-files-found }}
+      run: |
+        python -I -B - <<'PY'
+        import json,os,sys,tempfile
+        from pathlib import Path
+        root=Path(os.environ['GITHUB_ACTION_PATH']).resolve().parents[2]
+        sys.path.insert(0,str(root/'src'))
+        from scap_ng_tools.publication.gate import stage_historical
+        stage=Path(tempfile.mkdtemp(prefix='historical-unqualified-',dir=os.environ['RUNNER_TEMP']))
+        result=stage_historical(patterns=os.environ['PUBLICATION_PATTERNS'],output=stage/'payload',
+                                receipt=stage/'receipt.json',missing=os.environ['PUBLICATION_MISSING'])
+        with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+            f.write('available='+str(result['status']!='NO_FILES_NOT_PUBLISHED').lower()+'\n')
+            f.write('directory='+str(stage/'payload')+'\n')
+        with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+            f.write('Historical DRAFT/unqualified publication; no current-native admission.\n\n')
+            f.write('```json\n'+json.dumps(result,sort_keys=True)+'\n```\n')
+        print(json.dumps(result,sort_keys=True))
+        PY
+    - name: Upload only the staged historical bytes
+      id: upload
+      if: steps.seal.outputs.available == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: HISTORICAL_DRAFT_UNQUALIFIED-${{ inputs.name }}
+        path: ${{ steps.seal.outputs.directory }}/
+        if-no-files-found: error
+        retention-days: ${{ inputs.retention-days }}
+        compression-level: ${{ inputs.compression-level }}
+
