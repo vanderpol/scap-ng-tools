@@ -1,0 +1,58 @@
+{
+  "status": "UNQUALIFIED_REVIEW_REQUIRED",
+  "foundation": {
+    "validation_pr38_pr39": "f97ff187460f52da78bd16f5009f7d182664812b",
+    "recovery_pr33": "7106c6dd8093ee7b74ccfbad88ae1667a24c5516",
+    "preservation_pr42": "8188c99",
+    "publication_pr41": "2dfba3f9bd1f83c021c39c1a34c4414ba7668efd",
+    "schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
+    "schema_family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5"
+  },
+  "manual_adapter": "PR42 source-backed OCIL adapter only; PR33 manual04.py not carried",
+  "default_golden_policy": "preserved",
+  "full65_qualification": "not_run",
+  "independent_equivalence": "not_claimed",
+  "compiler_execution": "not_claimed",
+  "scanner_execution": "not_claimed",
+  "tests": {
+    "pr42_corrected_full_fixture": {
+      "ran": 52,
+      "failures": 0,
+      "skips": 0
+    },
+    "integration_full_fixture_suite": {
+      "ran": 53,
+      "failures": 0,
+      "expected_skips": 1
+    },
+    "integration_default_parity": {
+      "ran": 4,
+      "failures": 0
+    },
+    "integration_inventory_parity": {
+      "status": "passed"
+    },
+    "explicit_recovery_metadata": {
+      "ran": 3,
+      "failures": 0
+    },
+    "standalone_oval_self_assertion": {
+      "status": "expected_skip",
+      "reason": "public four-file corpus absent from VM"
+    },
+    "explicit_recovery_probes": {
+      "native_recovery": {
+        "converted": 259,
+        "blocked": 32,
+        "function_schema_gate": "substring candidate remains blocked"
+      },
+      "recover_manual": {
+        "automated": 247,
+        "manual": 30,
+        "blocked": 14
+      }
+    }
+  },
+  "next_gate": "owner review before full-65 qualification",
+  "schema_pr27_adoption": "not_adopted"
+}

@@ -10,13 +10,18 @@ RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
 # Prior main snapshot retained; standalone identity/reference opt-in only.
 PRIOR_RUNTIME_SHA256 = 'd0c8fbfa73c4239c2ab40d623a389f3907c693ae43fa9b6ca8f5df6459381d68'
-CURRENT_RUNTIME_SHA256 = '126be67b664b640a721468fedcd4293017e83b7a26834fb3bde6fa9cd8f5f768'
-UNCHANGED_SOURCE_SHA256 = 'c305756046c66989c07910dd9c0ffd0ce1510f1ddb827ac09209b0e92c718ae4'
+CURRENT_RUNTIME_SHA256 = '7e34cff4aa06418fe10c1dee48cd7b438b466cd0c779965c65f6eef96673f6c9'
+UNCHANGED_SOURCE_SHA256 = 'de52a62d54bf73838457c9b91a2bdb3a5ad993dc000c0a6c4e1f1545d30c5ccf'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
-    'v04_direct_converter.py': '783b4864ccf2777bd7d72ec2b6ae46777898985aabea133d21df090f2b48c9f1',
-    'v04_direct_file_behaviors.py': '251d43546d15ddeda730f75bf271c31caf8a7a9c3b266e01a273cffeadeb6ba9',
+    'v04_direct_converter.py': 'bfd7b417274a66ade2cbb30b3b59f6f071c7eb8a75ec497ce4af009ec51e581d',
+    'v04_direct_cmdlet_inputs.py': 'b6a6154538e477095772fc70c6ec2d2637b64d581f32d9c09bd5fa47d42a5c44',
+    'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
+    'v04_direct_scap_source.py': 'fb1bf16d2a1e24d729742c3e2a7b711b4a7926d7ed4d23063f16e61369316b5d',
+    'v04_draft_inputs.py': '6373bc9a7208f7ad2b2b3cbcd4674c2683d3ecf971c7380d1e3566b7d1367f07',
+    'v04_variable_function_migration.py': '7195ea643101cdf38667caf99c6492d56fca12bc579696dcf0af639ba2b19faa',
+    'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
     'v04_direct_inventory.py': '99a324754b739a9b51d0ae62abed76f8a14d5a172b54ff65beec6fd7ff58d904',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
 }
