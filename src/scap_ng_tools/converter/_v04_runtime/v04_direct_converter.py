@@ -1067,7 +1067,8 @@ def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True, nat
         ensure(not set(native) & set(documents), 'native Rule/Assessment name collision in selected source Rules')
         documents.update(native)
         bindings.append(binding)
-    return assemble_subset(source, documents, bindings, mappings, native_recovery=native_recovery)
+    return assemble_subset(source, documents, bindings, mappings,
+                           native_recovery=native_recovery, recover_manual=recover_manual)
 
 
 def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=False, recover_manual=False):
@@ -1112,13 +1113,17 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
     if not native_recovery:
         unsupported.append('all_exist')
     unsupported.append('other capabilities/functions')
+    recovery_requested = native_recovery or recover_manual
+    trace_scope = ('Automated and explicitly recovered manual Assessment subset; not full Rule-policy or Benchmark conversion'
+                   if recovery_requested else
+                   'Automated Assessment/selection subset, not full Rule-policy or Benchmark conversion')
     trace = {'format': 'direct-converter-spike/1', 'source_zip_sha256': source.zip_sha256, 'source_xml_sha256': source.xml_sha256,
         'source_member': source.member, 'source_benchmark_component': source.benchmark_component,
         'component_hashes': source.component_hashes, 'rules': rule_trace, 'profiles': profile_trace,
         'source_benchmark_metadata': [xml_identity(child) for child in benchmark if local_name(child) not in ('Group', 'Rule', 'Profile', 'Value')],
         'omitted_rules': sorted(set(source.rules) - set(rule_ids)), 'xml_parse_calls': source.parse_count,
         'component_index_passes': len(source.components), 'mapping_sha256': {m['capability']: digest(m) for m in mappings},
-        'scope': 'Automated and explicitly recovered manual Assessment subset; not full Rule-policy or Benchmark conversion',
+        'scope': trace_scope,
         'unsupported': unsupported,
         'coverage_promoted': False, 'scanner_evaluated': False}
     return documents, trace
@@ -1222,17 +1227,26 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
     started = time.perf_counter()
     documents, trace = assemble_subset(source, documents, bindings, mappings,
                                       native_recovery=native_recovery, recover_manual=recover_manual)
+    recovery_requested = native_recovery or recover_manual or exclude_sqlext
     manifest = {'format': 'direct-benchmark-coverage/1', 'source_zip_sha256': source.zip_sha256,
         'source_xml_sha256': source.xml_sha256, 'source_member': source.member,
         'source_benchmark_component': source.benchmark_component,
         'component_hashes': source.component_hashes, 'mode': 'inventory' if inventory_only else ('excluded' if excluded else ('automatic+manual' if recover_manual else 'automatic')),
-        'scope': 'Automated plus explicitly recovered manual Assessments; not complete Benchmark, applicability or policy equivalence',
-        'recovery': {'native_recovery': native_recovery, 'manual_recovery': recover_manual,
-                     'excluded_sqlext': excluded, 'sqlext_nodes': sqlext_nodes},
+        'scope': ('Automated plus explicitly recovered manual Assessments; not complete Benchmark, applicability or policy equivalence'
+                  if recovery_requested else
+                  'Automated subset only; not complete Benchmark, manual, applicability or policy equivalence'),
         'proof_contract': 'Conversion emits authoring_validated only. Compilation and independent source proof are separate gates.',
         'blocker_contract': 'All reference/selection inventory problems, conversion/schema diagnostics, dependency-node failures and independent supported entity/function/filter/quantifier obligations. Unsupported capability internals are not interpreted; further blockers may become discoverable only after implementation.',
         'inventory': inventory_counts, 'summary': summarize(rows), 'rules': rows,
         'coverage_promoted': False, 'scanner_evaluated': False}
+    # Recovery metadata is opt-in.  The default path is intentionally byte-
+    # compatible with the frozen golden coverage manifest; merely adding a
+    # false-valued recovery object would be a provenance regression.
+    if recovery_requested:
+        manifest['recovery'] = {'native_recovery': native_recovery,
+                                'manual_recovery': recover_manual,
+                                'excluded_sqlext': excluded,
+                                'sqlext_nodes': sqlext_nodes}
     measured['assembly'] = time.perf_counter() - started
     if timings is not None:
         timings.update(measured)
