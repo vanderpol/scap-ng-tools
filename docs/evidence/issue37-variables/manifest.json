@@ -1,0 +1,211 @@
+{
+  "producer_code_commit": "329332ad8d24f0ee4605733b7b90dce1c95dc500",
+  "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "schema_repository": "vanderpol/scap-ng",
+  "schema_commit": "6012ae25281352a9c2d8a4fde7cb5a4968b4432c",
+  "schema_digest": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+  "original_definitions": 4,
+  "original_tests_schema_validated": 18,
+  "source_pin_checks": true,
+  "scanner_equivalence": false,
+  "native_evaluation": "Separate RI handoff; no output inferred from schema validation.",
+  "cases": [
+    {
+      "source_file": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_constant_variable.xml",
+      "source_sha256": "57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91",
+      "definition_id": "oval:org.mitre.oval.test:def:92",
+      "original_tests": 2,
+      "variable_declarations": 2,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "scap_ng_tools.converter.direct04",
+        "--schema-root",
+        "/workspace/work/documentation-examples",
+        "--source",
+        "/tmp/ri35-public-corpus/SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_constant_variable.xml",
+        "--sha256",
+        "57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91",
+        "--oval-definition",
+        "oval:org.mitre.oval.test:def:92",
+        "--source-commit",
+        "e3538595c5083b9c34d937a81d319234df9bbfaa",
+        "--source-path",
+        "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_constant_variable.xml",
+        "--output",
+        "/workspace/work/tools37/docs/evidence/issue37-variables/oval-def_constant_variable"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"documents\": 1, \"source_sha256\": \"57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}\n",
+      "stderr": "",
+      "independent_schema_validation": "PASS; separate Draft202012Validator/Registry over exact approved schemas",
+      "json_yaml_equal": true,
+      "artifacts": {
+        "docs/evidence/issue37-variables/oval-def_constant_variable/assessment.yaml": {
+          "sha256": "9cc8319868c2f22031e49837a0fb10a24c6dee02d34f2f065b1641e799415aa8",
+          "bytes": 1803
+        },
+        "docs/evidence/issue37-variables/oval-def_constant_variable/conversion-scope.json": {
+          "sha256": "0655f88147c2d6f01f0b687e1d7d520748804288825ea8fdefd3f1a3b46e4540",
+          "bytes": 1047
+        },
+        "docs/evidence/issue37-variables/oval-def_constant_variable/assessment.json": {
+          "sha256": "2a2a81f93240d62960342752bc5bf7ed2235dc9c9a0e591cd55c6bca187e89a4",
+          "bytes": 2508
+        },
+        "docs/evidence/issue37-variables/oval-def_constant_variable/source-trace.json": {
+          "sha256": "b0db8bff1fcd882718f0c8de6fc071ee8097904dba51702f33853c6ce40fcb87",
+          "bytes": 5812
+        }
+      }
+    },
+    {
+      "source_file": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_variable_component.xml",
+      "source_sha256": "5d32d88d7773bd89438f9afcb95f0afb9c3b9c6eca199899799b409b12abf2be",
+      "definition_id": "oval:org.mitre.oval.test:def:118",
+      "original_tests": 2,
+      "variable_declarations": 4,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "scap_ng_tools.converter.direct04",
+        "--schema-root",
+        "/workspace/work/documentation-examples",
+        "--source",
+        "/tmp/ri35-public-corpus/SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_variable_component.xml",
+        "--sha256",
+        "5d32d88d7773bd89438f9afcb95f0afb9c3b9c6eca199899799b409b12abf2be",
+        "--oval-definition",
+        "oval:org.mitre.oval.test:def:118",
+        "--source-commit",
+        "e3538595c5083b9c34d937a81d319234df9bbfaa",
+        "--source-path",
+        "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_variable_component.xml",
+        "--output",
+        "/workspace/work/tools37/docs/evidence/issue37-variables/oval-def_variable_component"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"documents\": 1, \"source_sha256\": \"5d32d88d7773bd89438f9afcb95f0afb9c3b9c6eca199899799b409b12abf2be\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}\n",
+      "stderr": "",
+      "independent_schema_validation": "PASS; separate Draft202012Validator/Registry over exact approved schemas",
+      "json_yaml_equal": true,
+      "artifacts": {
+        "docs/evidence/issue37-variables/oval-def_variable_component/assessment.yaml": {
+          "sha256": "849483f01f659c5289fad7ece668682628ebc66e2c280b53b975e0e5e42b5f09",
+          "bytes": 2300
+        },
+        "docs/evidence/issue37-variables/oval-def_variable_component/conversion-scope.json": {
+          "sha256": "156dde48fcc115e587ce4c172fa47f37a17be450b5c0b9401897612805768818",
+          "bytes": 1049
+        },
+        "docs/evidence/issue37-variables/oval-def_variable_component/assessment.json": {
+          "sha256": "bc18a0386fa851f7a56ce08a8901209e150d65b62f56d1a6a65850600d3de9b2",
+          "bytes": 3112
+        },
+        "docs/evidence/issue37-variables/oval-def_variable_component/source-trace.json": {
+          "sha256": "706a246560a9518d5c5a0dc1d2f39f93b018ae098b58208a615fbd0fb35ad1cc",
+          "bytes": 6673
+        }
+      }
+    },
+    {
+      "source_file": "SCAP_1.4/OVAL_Test_Content/agnostic/ind-def_variable_test.xml",
+      "source_sha256": "878fa0adc9e27e518fbdac75756b04ef8ed0c9facf937caf98576dc185414b85",
+      "definition_id": "oval:org.mitre.oval.test:def:538",
+      "original_tests": 4,
+      "variable_declarations": 2,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "scap_ng_tools.converter.direct04",
+        "--schema-root",
+        "/workspace/work/documentation-examples",
+        "--source",
+        "/tmp/ri35-public-corpus/SCAP_1.4/OVAL_Test_Content/agnostic/ind-def_variable_test.xml",
+        "--sha256",
+        "878fa0adc9e27e518fbdac75756b04ef8ed0c9facf937caf98576dc185414b85",
+        "--oval-definition",
+        "oval:org.mitre.oval.test:def:538",
+        "--source-commit",
+        "e3538595c5083b9c34d937a81d319234df9bbfaa",
+        "--source-path",
+        "SCAP_1.4/OVAL_Test_Content/agnostic/ind-def_variable_test.xml",
+        "--output",
+        "/workspace/work/tools37/docs/evidence/issue37-variables/ind-def_variable_test"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"documents\": 1, \"source_sha256\": \"878fa0adc9e27e518fbdac75756b04ef8ed0c9facf937caf98576dc185414b85\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}\n",
+      "stderr": "",
+      "independent_schema_validation": "PASS; separate Draft202012Validator/Registry over exact approved schemas",
+      "json_yaml_equal": true,
+      "artifacts": {
+        "docs/evidence/issue37-variables/ind-def_variable_test/assessment.yaml": {
+          "sha256": "7eb4adf077604021425770adde9a127f0fdd8e112838412d6eccbc335ea8808c",
+          "bytes": 3136
+        },
+        "docs/evidence/issue37-variables/ind-def_variable_test/conversion-scope.json": {
+          "sha256": "63d25bf77f79c6422df1624debf6504e2eb960488adbc56e6588ca0fd36a2dde",
+          "bytes": 1043
+        },
+        "docs/evidence/issue37-variables/ind-def_variable_test/assessment.json": {
+          "sha256": "cb2566084914b15948df83bde1ea36d844b015854fc06f5ac5fee60631fd8510",
+          "bytes": 4390
+        },
+        "docs/evidence/issue37-variables/ind-def_variable_test/source-trace.json": {
+          "sha256": "a45d0dc092d4dc72628b5bc24e244b87b7bdc32ed3b0cc67eeb2f7dc0d85f28d",
+          "bytes": 7131
+        }
+      }
+    },
+    {
+      "source_file": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_check_enumeration_variable_values.xml",
+      "source_sha256": "cb317fa5d8073a9fe994175e4ba270857f4278c3f00bd895096147e962e6e8be",
+      "definition_id": "oval:org.mitre.oval.test:def:170",
+      "original_tests": 10,
+      "variable_declarations": 2,
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-m",
+        "scap_ng_tools.converter.direct04",
+        "--schema-root",
+        "/workspace/work/documentation-examples",
+        "--source",
+        "/tmp/ri35-public-corpus/SCAP_1.4/OVAL_Test_Content/agnostic/oval_check_enumeration_variable_values.xml",
+        "--sha256",
+        "cb317fa5d8073a9fe994175e4ba270857f4278c3f00bd895096147e962e6e8be",
+        "--oval-definition",
+        "oval:org.mitre.oval.test:def:170",
+        "--source-commit",
+        "e3538595c5083b9c34d937a81d319234df9bbfaa",
+        "--source-path",
+        "SCAP_1.4/OVAL_Test_Content/agnostic/oval_check_enumeration_variable_values.xml",
+        "--output",
+        "/workspace/work/tools37/docs/evidence/issue37-variables/oval_check_enumeration_variable_values"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"documents\": 1, \"source_sha256\": \"cb317fa5d8073a9fe994175e4ba270857f4278c3f00bd895096147e962e6e8be\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}\n",
+      "stderr": "",
+      "independent_schema_validation": "PASS; separate Draft202012Validator/Registry over exact approved schemas",
+      "json_yaml_equal": true,
+      "artifacts": {
+        "docs/evidence/issue37-variables/oval_check_enumeration_variable_values/assessment.yaml": {
+          "sha256": "0808443619446c3d78ac0a77de034c4c8093cbdad2e61262a02e73b784cc7704",
+          "bytes": 7683
+        },
+        "docs/evidence/issue37-variables/oval_check_enumeration_variable_values/conversion-scope.json": {
+          "sha256": "6acb2bfd33d0137fb2f71bbe5b6f1ee59ba7ad0711543ccca6cb556ddca6a495",
+          "bytes": 1060
+        },
+        "docs/evidence/issue37-variables/oval_check_enumeration_variable_values/assessment.json": {
+          "sha256": "2475c2a558fcf6149a1d8b42cfe42a7c6ae44c839503c174ee1acb98fda6d61e",
+          "bytes": 10467
+        },
+        "docs/evidence/issue37-variables/oval_check_enumeration_variable_values/source-trace.json": {
+          "sha256": "f025e5ce2e4400a923b72a0930c62aaf6b1c166ebcac7bd70069f7170d460eee",
+          "bytes": 18056
+        }
+      }
+    }
+  ]
+}

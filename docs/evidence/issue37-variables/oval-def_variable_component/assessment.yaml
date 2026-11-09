@@ -1,0 +1,63 @@
+assessment:
+  id: oval-org-mitre-oval-test-def-118-assessment
+  version: 1
+  assessment_title: Evaluate to true if the oval-def:variable_component construct is properly supported
+  mode: automated
+  class: miscellaneous
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  variables:
+    oval-org-mitre-oval-test-var-721-variable:
+      kind: constant
+      datatype: string
+      expression:
+        literal:
+        - Validation Test String
+    oval-org-mitre-oval-test-var-817-variable:
+      kind: local
+      datatype: string
+      expression:
+        variable: oval-org-mitre-oval-test-var-721-variable
+    oval-org-mitre-oval-test-var-852-variable:
+      kind: constant
+      datatype: string
+      expression:
+        literal:
+        - Validation Test String1
+        - Validation Test String2
+        - Validation Test String3
+    oval-org-mitre-oval-test-var-866-variable:
+      kind: local
+      datatype: string
+      expression:
+        variable: oval-org-mitre-oval-test-var-852-variable
+  tests:
+    oval-org-mitre-oval-test-tst-311-test:
+      test_title: Test that the variable_object is supported with the var_ref attribute referencing an OVAL Variable that contains a single value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value: {equals: Validation Test String}
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-817-variable
+    oval-org-mitre-oval-test-tst-180-test:
+      test_title: Test that the variable_object is supported with the var_ref attribute referencing an OVAL Variable that contains multiple values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value: {matches_regex: 'Validation Test String[0-9]'}
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-866-variable
+  evaluate:
+    and:
+    - test: oval-org-mitre-oval-test-tst-311-test
+    - test: oval-org-mitre-oval-test-tst-180-test

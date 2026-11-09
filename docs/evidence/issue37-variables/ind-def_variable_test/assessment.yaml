@@ -1,0 +1,95 @@
+assessment:
+  id: oval-org-mitre-oval-test-def-538-assessment
+  version: 1
+  assessment_title: Evaluate to true if the ind-def:variable_test is properly supported
+  mode: automated
+  class: miscellaneous
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  variables:
+    oval-org-mitre-oval-test-var-2-variable:
+      kind: constant
+      datatype: string
+      expression:
+        literal:
+        - a
+        - b
+        - c
+        - d
+    oval-org-mitre-oval-test-var-1-variable:
+      kind: constant
+      datatype: string
+      expression:
+        literal:
+        - a
+        - b
+        - c
+        - d
+  tests:
+    oval-org-mitre-oval-test-tst-1-test:
+      test_title: Test that the variable_object is supported.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            equals:
+              variable: oval-org-mitre-oval-test-var-2-variable
+            value_match: one_or_more
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-1-variable
+    oval-org-mitre-oval-test-tst-2-test:
+      test_title: Test that the variable_object is supported.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            equals:
+              variable: oval-org-mitre-oval-test-var-1-variable
+            value_match: one_or_more
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-2-variable
+    oval-org-mitre-oval-test-tst-3-test:
+      test_title: Test that the variable_object is supported.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            equals:
+              variable: oval-org-mitre-oval-test-var-1-variable
+            value_match: one_or_more
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-1-variable
+    oval-org-mitre-oval-test-tst-4-test:
+      test_title: Test that the variable_object is supported.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            equals:
+              variable: oval-org-mitre-oval-test-var-2-variable
+            value_match: one_or_more
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-2-variable
+  evaluate:
+    and:
+    - test: oval-org-mitre-oval-test-tst-1-test
+    - test: oval-org-mitre-oval-test-tst-2-test
+    - test: oval-org-mitre-oval-test-tst-3-test
+    - test: oval-org-mitre-oval-test-tst-4-test
