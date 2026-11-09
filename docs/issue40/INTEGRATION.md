@@ -1,6 +1,6 @@
 # Publication integrations and remaining owner/admin work
 
-Issue #40 remains **not complete**. Source guards are proposed in four draft PRs; none is deployed. [Machine-readable matrix](integration-matrix.json) records exact baselines, proposed heads, and sink counts. [Access/ref blockers](integration-blockers.json) retain the read-only API evidence.
+Issue #40 remains **not complete**. The [entrypoint/dependency matrix](entrypoint-matrix.json) preserves exact paths, source hashes, dependency references, recognized workflow callers, and qualification restrictions; candidate builders are distinguished from active publication sinks. Source guards are proposed in four draft PRs; none is deployed. [Machine-readable matrix](integration-matrix.json) records exact baselines, proposed heads, and sink counts. [Access/ref blockers](integration-blockers.json) retain the read-only API evidence.
 
 | Review | Proposed boundary | Required evidence |
 | --- | --- | --- |
