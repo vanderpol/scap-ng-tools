@@ -1,0 +1,109 @@
+{
+  "issue": "https://github.com/vanderpol/scap-ng-tools/issues/40",
+  "completion": "NOT_COMPLETE",
+  "observed_date_utc": "2026-11-09",
+  "research_workflow_api": {
+    "command": "gh api --paginate repos/vanderpol/scap-ng-research/actions/workflows --jq '.workflows[] | [.path,.state] | @tsv'",
+    "records": 222,
+    "active_records": 222,
+    "current_main_workflows": 212,
+    "response_sha256": "16e6cfc5b9e96014acf33b236a4ff06e151da5ebc3fd8545bafff343cd15d1ba",
+    "records_absent_from_main": [
+      {
+        "path": ".github/workflows/ci-artifact-policy.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/for-each-correlation-audit.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/for-each-correlation-full-corpus.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/ol9-roundtrip-coverage.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/oval-variable-instance-differential.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/rhel9-benchmark-semantics.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/rhel9-roundtrip-coverage.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/rhel9-v003-regeneration.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/windows-server-2025-roundtrip-coverage.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      },
+      {
+        "path": ".github/workflows/windows11-roundtrip-coverage.yml",
+        "state": "active",
+        "status": "BLOCKER_ACTIVE_API_RECORD_ABSENT_FROM_MAIN"
+      }
+    ]
+  },
+  "inaccessible_settings": [
+    {
+      "repository": "vanderpol/scap-ng",
+      "command": "gh api repos/vanderpol/scap-ng/actions/permissions/workflow",
+      "http_status": 403,
+      "reason": "Resource not accessible by integration",
+      "status": "BLOCKER_PERMISSION_POLICY_UNVERIFIED"
+    },
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "command": "gh api repos/vanderpol/scap-ng-tools/actions/permissions/workflow",
+      "http_status": 403,
+      "reason": "Resource not accessible by integration",
+      "status": "BLOCKER_PERMISSION_POLICY_UNVERIFIED"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "command": "gh api repos/vanderpol/scap-ng-research/actions/permissions/workflow",
+      "http_status": 403,
+      "reason": "Resource not accessible by integration",
+      "status": "BLOCKER_PERMISSION_POLICY_UNVERIFIED"
+    },
+    {
+      "repository": "vanderpol/scap-ng-evidence",
+      "command": "gh api repos/vanderpol/scap-ng-evidence/actions/permissions/workflow",
+      "http_status": 403,
+      "reason": "Resource not accessible by integration",
+      "status": "BLOCKER_PERMISSION_POLICY_UNVERIFIED"
+    }
+  ],
+  "additional_blockers": [
+    {
+      "status": "BLOCKER_OLD_REF_OR_OUT_OF_BAND_PUBLICATION_UNVERIFIED",
+      "scope": "Historical workflow refs, tags, external credentials, Actions environments and official publication namespace controls. Main-branch changes cannot retroactively guard them."
+    },
+    {
+      "status": "BLOCKER_REVIEW_AND_DEPLOYMENT_REQUIRED",
+      "scope": "Four draft PRs and Tools dependency stack are unmerged. Current main publication remains unguarded until reviewed deployment and server controls are verified."
+    },
+    {
+      "status": "BLOCKER_CURRENT_FULL65_UNSUPPORTED",
+      "scope": "No qualified full-65 producer is admitted; legacy full-65 release attempts are denied. Existing immutable artifacts/proofs remain preserved."
+    }
+  ],
+  "recommendation": "After review of source integrations, require an owner/admin to verify and restrict authoritative publication credentials and ref/environment permissions. Preserve immutable historical refs and artifacts; do not rewrite history to imply protection."
+}

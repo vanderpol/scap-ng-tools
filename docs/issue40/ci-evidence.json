@@ -1,0 +1,63 @@
+{
+  "issue": "https://github.com/vanderpol/scap-ng-tools/issues/40",
+  "shared_runtime_gate_commit": "053eeeb3b33e3ee5f683604fd66ae8c833450cd0",
+  "completion": "NOT_COMPLETE",
+  "integration_ci": [
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "pr": 279,
+      "head": "ce81b38264dfdf3b8b61b9e9c0e77569261829cf",
+      "run_id": 42659464136,
+      "job_id": 129306783728,
+      "conclusion": "success",
+      "checkout": "actual PR head explicitly checked out and asserted",
+      "tests": 7,
+      "skips": 0,
+      "unguarded_identified_workflow_sinks": 0
+    },
+    {
+      "repository": "vanderpol/scap-ng-evidence",
+      "pr": 2,
+      "head": "3f6e8bcbf9fa080f6a97b594dd6f980f4a3858e9",
+      "run_id": 42658149158,
+      "job_id": 129302129037,
+      "conclusion": "success",
+      "checkout": "actual PR head explicitly checked out and asserted",
+      "tests": 3,
+      "skips": 0,
+      "unguarded_identified_workflow_sinks": 0
+    },
+    {
+      "repository": "vanderpol/scap-ng",
+      "pr": 49,
+      "head": "b1da4ecc295dcc16a3a394e06671eb413ead061b",
+      "run_id": 42658166582,
+      "job_id": 129302189162,
+      "conclusion": "success",
+      "checkout": "actual PR head explicitly checked out and asserted",
+      "tests": 0,
+      "scope": "structured publication inventory, zero baseline publication sinks; all 37 existing tests also passed locally",
+      "unguarded_identified_workflow_sinks": 0
+    }
+  ],
+  "prior_tools_ci": {
+    "review_head": "053eeeb3b33e3ee5f683604fd66ae8c833450cd0",
+    "run_id": 42654450272,
+    "job_id": 129289081975,
+    "checkout": "GitHub synthetic merge ref associated with this reviewed head; final workflow now explicitly asserts actual head",
+    "tests": 72,
+    "skips": 0,
+    "conclusion": "success",
+    "actual_current_publication_action": "admission succeeded; upload step intentionally skipped",
+    "archive_sha256": "1dc911c14590a8508001aa78e8c3dbec2a267452718fec8c579ed17e58763427",
+    "tier": "authoring_validated",
+    "scanner_equivalent": false
+  },
+  "final_tools_head_receipt": "Recorded in PR #41 conversation/checks after committing this ledger; no self-referential in-tree final-head claim.",
+  "other_ci_limits": [
+    "Research overall CI is not green. Quota-blocked historical upload jobs and historical conversion/assertion failures remain. Do not treat the new boundary lane as a substitute for their results.",
+    "The earlier commit-reference rejection and raw-upload expectation regression were corrected without history rewrites; seven boundary tests and twenty related converter-contract tests passed locally.",
+    "No quota-blocked upload was manually retried. No release command or full-65 conversion was manually executed."
+  ],
+  "access_and_deployment_blockers": "integration-blockers.json"
+}

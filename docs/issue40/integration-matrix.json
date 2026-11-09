@@ -1,0 +1,51 @@
+{
+  "shared_runtime_gate_commit": "053eeeb3b33e3ee5f683604fd66ae8c833450cd0",
+  "tools_review_base": "f97ff187460f52da78bd16f5009f7d182664812b",
+  "repositories": [
+    {
+      "repository": "vanderpol/scap-ng-tools",
+      "audited_main": "c5f5b215000a1f9149ed56541320da5d7918c94a",
+      "review_pr": "https://github.com/vanderpol/scap-ng-tools/pull/41",
+      "integration_head_before_final_evidence_commit": "053eeeb3b33e3ee5f683604fd66ae8c833450cd0",
+      "identified_baseline_sinks": 0,
+      "historical_uploads_guarded_in_proposal": 0,
+      "direct_writers_denied_in_proposal": 0,
+      "status": "PROPOSED_CURRENT_TREE_GUARDS_NOT_DEPLOYED"
+    },
+    {
+      "repository": "vanderpol/scap-ng",
+      "audited_main": "7354a24cdbfe18321153ccaef5d772801a10cd71",
+      "review_pr": "https://github.com/vanderpol/scap-ng/pull/49",
+      "integration_head_before_final_evidence_commit": "b1da4ecc295dcc16a3a394e06671eb413ead061b",
+      "identified_baseline_sinks": 0,
+      "historical_uploads_guarded_in_proposal": 0,
+      "direct_writers_denied_in_proposal": 0,
+      "status": "PROPOSED_CURRENT_TREE_GUARDS_NOT_DEPLOYED"
+    },
+    {
+      "repository": "vanderpol/scap-ng-research",
+      "audited_main": "fc62031c7d8bea470e6bdbc6629bc1c96deb597a",
+      "review_pr": "https://github.com/vanderpol/scap-ng-research/pull/279",
+      "integration_head_before_final_evidence_commit": "ce81b38264dfdf3b8b61b9e9c0e77569261829cf",
+      "identified_baseline_sinks": 227,
+      "historical_uploads_guarded_in_proposal": 186,
+      "direct_writers_denied_in_proposal": 41,
+      "status": "PROPOSED_CURRENT_TREE_GUARDS_NOT_DEPLOYED"
+    },
+    {
+      "repository": "vanderpol/scap-ng-evidence",
+      "audited_main": "7dc17f0982cdb5b17281f8f8e4373dbd87f86f58",
+      "review_pr": "https://github.com/vanderpol/scap-ng-evidence/pull/2",
+      "integration_head_before_final_evidence_commit": "3f6e8bcbf9fa080f6a97b594dd6f980f4a3858e9",
+      "identified_baseline_sinks": 1,
+      "historical_uploads_guarded_in_proposal": 0,
+      "direct_writers_denied_in_proposal": 1,
+      "status": "PROPOSED_CURRENT_TREE_GUARDS_NOT_DEPLOYED"
+    }
+  ],
+  "same_run_download_adapters": 21,
+  "external_or_older_run_downloads_preserved": 5,
+  "research_standalone_writer": "tools/research_english_first_04_publish.py:git_api",
+  "blockers": "integration-blockers.json",
+  "ci": "See exact-head PR receipts; synthetic merge runs are labeled separately."
+}

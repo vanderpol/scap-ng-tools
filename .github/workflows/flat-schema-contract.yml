@@ -6,12 +6,22 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   flat-schema:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout tools under review
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Verify the exact reviewed head
+        env:
+          REVIEW_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: test "$(git rev-parse HEAD)" = "$REVIEW_HEAD"
       - name: Checkout exact owner-amended pre-release 0.4 schema snapshot
         uses: actions/checkout@v4
         with:
@@ -109,3 +119,7 @@ jobs:
           schema-root: spec-snapshot
           source-root: self-assertion
           dry-run: 'true'
+      - name: Reject publication paths outside the shared gate
+        run: |
+          python scripts/audit_publication_paths.py --root . --repository vanderpol/scap-ng-tools \
+            --trusted-gate-commit 053eeeb3b33e3ee5f683604fd66ae8c833450cd0 --check

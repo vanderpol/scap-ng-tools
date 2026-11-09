@@ -60,6 +60,8 @@ For focused/benchmark modes use the approved NIWC revision `8c8e5dff860af6b1290e
 
 Historical uploads use shared `historical-upload`: copied/hashed selected bytes, unchanged relative payload paths, forced `HISTORICAL_DRAFT_UNQUALIFIED-…` artifact names. A companion downloader restores original aggregation directory names. Receipts stay outside payloads so proof readers do not consume invented records. Historical content has no current admission manifest. Direct legacy release/Git writes are denied through the common gate; old bodies and tags remain preserved.
 
+See the [integration PRs, safe dependency order, and owner/admin decision packet](INTEGRATION.md).
+
 ## Evidence and integration limits
 
 The required flat-schema CI lane supplies every fixture; missing required publication fixtures fail. Tests execute actual converter → serialize → parse/schema validate → reproduce → admit ZIP dry-run. Negatives include an **actual public historical Variable replay**, obsolete Require, old/renamed producers, dirty/unapproved checkout, wrong schema digest, missing provenance, post-validation mutation, duplicate YAML keys, JSON/YAML mismatch, swapped schema-valid bytes with rehashed manifests, and invalid tier/coverage promotion. Failures must be nonzero without publication. Existing goldens and frozen schema bytes remain unchanged. CI also runs the actual shared publication action in dry-run mode, with no artifact upload retries.
