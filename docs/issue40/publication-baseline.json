@@ -7369,8 +7369,16 @@
       "vanderpol/scap-ng-evidence"
     ],
     "result": "HTTP 403 Resource not accessible by integration for every repository",
-    "status": "BLOCKER_CANNOT_VERIFY_REF_AND_TOKEN_PUBLICATION_POLICY"
+    "status": "ACCESS_LIMITATION_ONLY",
+    "fields_not_inspected": [
+      "default_workflow_permissions",
+      "can_approve_pull_request_reviews"
+    ],
+    "configuration_defect_demonstrated": false,
+    "blocks_development": false,
+    "blocks_qualified_testing": false
   },
-  "completion": "NOT_COMPLETE: integration and inaccessible server/old-ref controls remain open.",
-  "audit_correction": "Initial Tools scan used the f97ff18 functional review worktree. Actual Tools main is c5f5b2 with zero publication sinks. Its review stack introduces the gated local dry-run. The expanded Python/heredoc audit is recorded separately; the initial shell-only counts are not complete coverage."
+  "completion": "Historical baseline source inventory; Issue #40 remains open for final repository deployment verification. Administrative inspection does not block supported work.",
+  "audit_correction": "Initial Tools scan used the f97ff18 functional review worktree. Actual Tools main is c5f5b2 with zero publication sinks. Its review stack introduces the gated local dry-run. The expanded Python/heredoc audit is recorded separately; the initial shell-only counts are not complete coverage.",
+  "interpretation_correction": "The 403 response concerns only the attempted default workflow-permissions endpoint. No historical-ref execution or permission defect was demonstrated; see INTEGRATION.md."
 }

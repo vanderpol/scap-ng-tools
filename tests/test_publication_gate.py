@@ -44,8 +44,23 @@ class CurrentPublication(unittest.TestCase):
         shutil.copytree(self.candidate, target)
         return target
 
-    def admit_cli(self, candidate, output):
-        command = [sys.executable, '-m', 'scap_ng_tools.publication', 'admit',
+    def admit_cli(self, candidate, output, administrative_access_unavailable=False):
+        prefix = [sys.executable, '-m', 'scap_ng_tools.publication']
+        if administrative_access_unavailable:
+            # Exercise the real CLI with a denied administrative HTTP client and
+            # prohibit network connections in the admission process. Pinned Git
+            # blobs and the producer's offline converter remain the inputs.
+            bootstrap = """
+import runpy,sys,urllib.error
+from unittest.mock import patch
+sys.argv = ['scap_ng_tools.publication', *sys.argv[1:]]
+denied = urllib.error.HTTPError('https://api.github.com/', 403, 'Resource not accessible by integration', {}, None)
+with patch('urllib.request.urlopen', side_effect=denied) as administrative_http, patch('socket.socket.connect', side_effect=AssertionError('Admission must not query the network')):
+    runpy.run_module('scap_ng_tools.publication', run_name='__main__')
+    assert not administrative_http.called, 'Admission queried an administrative API'
+"""
+            prefix = [sys.executable, '-c', bootstrap]
+        command = [*prefix, 'admit',
                    '--candidate', str(candidate), '--output', str(output)]
         for key, value in self.inputs.items():
             command += ['--' + key.replace('_', '-'), value]
@@ -91,6 +106,23 @@ class CurrentPublication(unittest.TestCase):
                 status = json.loads(archive.read('publication-manifest.json'))['qualification']
                 self.assertIs(status['schema_validated'], True)
                 self.assertIs(status['final_serializations_validated'], True)
+
+    def test_admission_and_tamper_rejection_do_not_depend_on_administrative_access(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / 'current.zip'
+            proc = self.admit_cli(self.candidate, output, administrative_access_unavailable=True)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            self.assertTrue(output.is_file())
+            result = json.loads(proc.stdout)
+            self.assertEqual(result['tier'], 'authoring_validated')
+            self.assertFalse(result['scanner_equivalent'])
+            candidate = self.candidate_copy(directory)
+            self.refresh(candidate, lambda m: m['schema'].__setitem__('family_sha256', '0' * 64))
+            rejected = Path(directory) / 'must-not-publish.zip'
+            proc = self.admit_cli(candidate, rejected, administrative_access_unavailable=True)
+            self.assertNotEqual(proc.returncode, 0)
+            self.assertIn('unapproved schema provenance', proc.stderr)
+            self.assertFalse(rejected.exists())
 
     def test_historical_and_renamed_producers_rejected_with_rehashed_manifest(self):
         for key, value in [('commit', 'a08c9beb9dcf781a726adbdf05676f5ae2e57309'),

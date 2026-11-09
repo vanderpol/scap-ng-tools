@@ -46,6 +46,6 @@
   "same_run_download_adapters": 21,
   "external_or_older_run_downloads_preserved": 5,
   "research_standalone_writer": "tools/research_english_first_04_publish.py:git_api",
-  "blockers": "integration-blockers.json",
-  "ci": "See exact-head PR receipts; synthetic merge runs are labeled separately."
+  "ci": "See exact-head PR receipts; synthetic merge runs are labeled separately.",
+  "access_observations_and_deployment_status": "integration-blockers.json"
 }

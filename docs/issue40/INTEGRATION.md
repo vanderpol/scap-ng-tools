@@ -1,28 +1,48 @@
-# Publication integrations and remaining owner/admin work
+# Publication safeguards and deployment verification
 
-Issue #40 remains **not complete**. The [entrypoint/dependency matrix](entrypoint-matrix.json) preserves exact paths, source hashes, dependency references, recognized workflow callers, and qualification restrictions; candidate builders are distinguished from active publication sinks. Source guards are proposed in four draft PRs; none is deployed. [Machine-readable matrix](integration-matrix.json) records exact baselines, proposed heads, and sink counts. [Access/ref blockers](integration-blockers.json) retain the read-only API evidence.
+Issue #40 stays open for **final deployment verification**. Repository-level safeguards and qualified testing proceed independently of administrative API access. The four draft integrations remain unmerged; no deployment is claimed.
 
-| Review | Proposed boundary | Required evidence |
+| Review | Independently testable safeguard | Evidence |
 | --- | --- | --- |
-| [Tools #41](https://github.com/vanderpol/scap-ng-tools/pull/41) | Pinned converter → actual schema validation → independent byte reproduction → admitted ZIP; historical sealer and denial shared actions | Required fixture-backed tests and actual composite action dry-run, no upload |
-| [Research #279](https://github.com/vanderpol/scap-ng-research/pull/279) | 186 historical uploads; 41 direct writers denied; standalone Contents API writer denied; 21 download namespace adapters | Six tests, full baseline workflow comparison, real denial/staging witnesses, structured sink audit |
-| [Evidence #2](https://github.com/vanderpol/scap-ng-evidence/pull/2) | Full-65 release fails closed before download and before release | Three tests, actual denial, original workflow reconstruction and unchanged runs/manifests/summaries Git trees |
-| [Canonical #49](https://github.com/vanderpol/scap-ng/pull/49) | No current publisher at baseline; reject future bypass sinks | Structured audit; existing 37 local tests and regeneration checks |
+| [Tools #41](https://github.com/vanderpol/scap-ng-tools/pull/41) | Pinned producer/schema/source, final byte validation/reproduction, admitted ZIP; historical sealer and direct-write denial | Required fixture-backed suite, tampering negatives, actual composite admission dry-run without upload |
+| [Research #279](https://github.com/vanderpol/scap-ng-research/pull/279) | 186 historical uploads, 41 direct writers denied, standalone Contents API guard, 21 download adapters | Seven boundary tests; original workflow comparison; executable denial/staging witnesses |
+| [Evidence #2](https://github.com/vanderpol/scap-ng-evidence/pull/2) | Unsupported full-65 release denied before download/reflow and release | Three tests; executable denial; original workflow reconstruction; unchanged historical Git trees |
+| [Canonical #49](https://github.com/vanderpol/scap-ng/pull/49) | No baseline content publisher; tripwire for recognized future publication transports | Structured audit; 37 existing tests and regeneration checks |
 
-Tools #41 is stacked on Tools #39 (`f97ff187460f52da78bd16f5009f7d182664812b`), which includes Tools #38. Review/land those dependencies before the gate. The policy's source-distribution pin is a proposed allowlist admission, not a claim that the unmerged commit is already a released package. Review Tools #41's immutable shared action commit `053eeeb3b33e3ee5f683604fd66ae8c833450cd0` before dependent integrations. Integrations can then be reviewed independently; enforce server controls before representing repository-wide coverage as complete. No PR is merged by this work.
+The [entrypoint matrix](entrypoint-matrix.json) records 198 candidate source hashes/dependencies; candidates are not automatically active publishers. The [integration matrix](integration-matrix.json) records repository baselines and proposed safeguards. [Access observations and deployment status](integration-blockers.json) retain exact API results; the existing filename is retained for link compatibility.
 
-Initial CI runs used GitHub's synthetic merge ref. The final validation lanes explicitly check out and assert the PR head SHA (or push SHA), avoiding ambiguity about tested bytes. Earlier passing merge-ref runs remain evidence for their named tested commits, never substituted for the final exact-head receipt. New qualification lanes perform no uploads. Existing unrelated historical lanes may upload explicitly unqualified artifacts and may encounter quota limits; they are not retried or represented as current qualification.
+Tools #41 depends on #39 (`f97ff187460f52da78bd16f5009f7d182664812b`), which includes #38. Review those dependencies before the gate. Historical sealer/denial actions are pinned to `053eeeb3b33e3ee5f683604fd66ae8c833450cd0`. Current admission is tested at the exact Tools PR head. The allowlist describes a proposed development source distribution, not a released package. Subsequent deployments must retain reviewed immutable pins. No merge is authorized by this report.
 
-## Decision needed for server enforcement
+## What was and was not demonstrated
 
-Four Actions permission-policy reads returned HTTP 403. The Research API reports 222 active workflow records; ten have no file in the 212-workflow main tree. Their old-ref behavior, inherited credentials, environment restrictions, and out-of-band publishers are **unverified**. A static inventory or new main workflow cannot constrain those permissions. Admission manifests provide reproducibility under a trusted runner and sink; they are not signed publisher authentication.
+| Observation | Evidence level | Conclusion |
+| --- | --- | --- |
+| 227 Research publication steps and one Evidence release step lacked the new gate at their audited baselines | Source inspection | Demonstrated integration gap in those source trees; not a remotely executed security bypass |
+| Historical/obsolete output, changed payloads and forged provenance fail current admission | Executed negative tests | The proposed gate rejects those concrete inputs without a qualified archive |
+| Exact bound direct-write denials stop harmless local sentinels | Executed witnesses | The proposed command bodies stop before transport; no historical release body was executed |
+| Ten Research API records report `active` but have no current-main file | Inventory observation | Does not establish that an old ref is executable, has write authority, or can bypass the gate |
+| An old ref or external credential might publish outside the guarded path | Hypothetical, not demonstrated | No administrative misconfiguration or working bypass has been shown |
 
-| Alternative | Effect and limitation |
-| --- | --- |
-| Main-branch guards only | Covers the proposed source tree after deployment. Leaves old refs/credentials unverified; insufficient to close #40. |
-| Restrict official publication authority to a reviewed publisher identity and allowed refs/environments; retain historical refs | Recommended. Requires owner/admin access and execution-policy evidence. Historical bytes remain readable; old research tokens cannot qualify new content. |
-| Rewrite/delete historical refs or rely on artifact names/hashes alone | Not recommended. Rewriting destroys provenance; names and unsigned hashes do not establish authority. |
+## Exact administrative inspection limitation
 
-The smallest remaining owner/admin action is to identify the official content-publishing credentials/environments, inspect the ten active historical workflow records, and supply verifiable ref/token policy or apply reviewed restrictions. Check that a guarded current-ref admission is allowed while an old-ref publication attempt lacks authoritative write permission. Use harmless namespace/sentinel tests; do not publish or rewrite old content as a probe. Disabling an obsolete workflow record can be a reviewed mitigation, but is not a substitute for credential/ref restrictions.
+For each of `vanderpol/scap-ng`, `vanderpol/scap-ng-tools`, `vanderpol/scap-ng-research`, and `vanderpol/scap-ng-evidence`, the attempted endpoint was:
 
-Until those controls and the reviewed integrations are deployed and tested, all four repositories retain an explicit deployment/ref-policy blocker. Full-65 current qualification remains unsupported and denied. Historical 65-Benchmark content and prior proofs are preserved without promotion. No scanner-equivalence, release-readiness, or SCC claim is made.
+```text
+GET /repos/{owner}/{repo}/actions/permissions/workflow
+HTTP 403: Resource not accessible by integration
+```
+
+This endpoint reports `default_workflow_permissions` (repository default `GITHUB_TOKEN` permission setting) and `can_approve_pull_request_reviews` (whether Actions may approve pull-request reviews). Neither value could be inspected through this integration. The 403 establishes an **access limitation only**, with no conclusion about the configured values or their safety.
+
+Branch/tag rulesets, protected-environment deployment policies, external credential scopes, publisher identities, and organization-level policies were not inspected by that endpoint. We did not obtain a denial for those separate settings and do not label them inaccessible or defective based on this response. Workflow-level `permissions:` declarations visible in source remain separately inspectable.
+
+No elevated credentials, repository permission changes, new publisher identities, or administrative restrictions are requested or recommended on the basis of these observations. Administrative access is not a prerequisite for development, authoring validation, current admission tests, or their passing status. A regression executes successful admission and rejection with administrative HTTP access denied in the admission process.
+
+## Final deployment checks
+
+1. Review and deploy the repository changes in dependency order using the normal approved process; preserve frozen schemas and historical evidence.
+2. Verify deployed workflow/action pins and run the fixture-backed qualification suite plus actual admission dry-run at the deployed commits. Confirm rejected inputs produce no qualified archive.
+3. Check that the intended publication path uses the admitted bytes and historical paths remain explicitly unqualified or denied. Artifact quota can limit an actual upload check; do not retry quota-blocked uploads.
+4. Record deployed commits, exact commands/results, and any concrete unguarded path discovered. Investigate a historical-ref bypass only when there is specific source/execution evidence; an API record alone is insufficient.
+
+Close #40 after final deployment verification, or retain an explicit, concrete deployment gap. The administrative inspection limitation alone does not block normal work or qualified testing. Full-65 current qualification remains unsupported and fails closed. No release, scanner-equivalence, or SCC claim is made.

@@ -1,6 +1,6 @@
 # Current-native publication gate — Tools #40
 
-**Review implementation; not deployed completion.** The [exact-main baseline](publication-baseline.json) initially identified 217 unguarded Research upload/write steps and one Evidence release step. The [expanded AST/heredoc audit](publication-expanded-baseline.json) identifies **227 Research steps: 186 uploads and 41 direct writers**, including ten missed by the initial shell-only pass. Canonical has no native-content publisher. Integrations are separate review changes. Four permission-policy queries returned HTTP 403; ten active Research Actions records have no file on current main. These remain explicit blockers until enforcement is verified.
+**Review implementation; not deployed completion.** The [exact-main baseline](publication-baseline.json) initially identified 217 unguarded Research upload/write steps and one Evidence release step. The [expanded AST/heredoc audit](publication-expanded-baseline.json) identifies **227 Research steps: 186 uploads and 41 direct writers**, including ten missed by the initial shell-only pass. Canonical has no native-content publisher. Integrations are separate review changes. Four default workflow-permission queries returned HTTP 403: an inspection limitation only. Ten active Research API records have no current-main file; their execution or write authority has not been demonstrated. Supported development and qualified testing continue; #40 stays open for final deployment verification.
 
 ## Contract and trust boundary
 
@@ -12,7 +12,7 @@ The closed manifest records distribution/version, entrypoint, source commit and 
 
 Admission checks actual JSON/YAML, duplicate keys, counterpart equality, native schema validation and the exact file set. It then **reproduces every payload byte through the pinned current converter**, including trace/scope sidecars. Rehashing a forged manifest cannot authorize historical or changed content. The admitted ZIP is written only from checked byte buffers, preventing later filesystem substitution. Failures exit nonzero and produce no qualified archive. The shared current-publication action uploads only this admitted ZIP and defaults to dry-run.
 
-Hashes alone are not signatures or proof of an earlier process. Admission establishes reproducible current authoring **now**, under trusted gate code, runner/interpreter/dependencies and sink configuration. It cannot stop an administrator bypassing the controlled sink. Server permission/environment restrictions and old-ref execution need separate evidence; inaccessible settings and unguarded refs remain blockers. No repository-wide completion is claimed.
+Hashes alone are not signatures or proof of an earlier process. Admission establishes reproducible current authoring **now**, under trusted gate code, runner/interpreter/dependencies and sink configuration. This trust boundary does not demonstrate any administrative defect or historical-ref bypass. The unavailable default workflow-permission settings are documented separately; their inspection is not required for supported development or qualification. Final repository deployment verification remains pending.
 
 ## Qualification tiers
 
@@ -60,12 +60,12 @@ For focused/benchmark modes use the approved NIWC revision `8c8e5dff860af6b1290e
 
 Historical uploads use shared `historical-upload`: copied/hashed selected bytes, unchanged relative payload paths, forced `HISTORICAL_DRAFT_UNQUALIFIED-…` artifact names. A companion downloader restores original aggregation directory names. Receipts stay outside payloads so proof readers do not consume invented records. Historical content has no current admission manifest. Direct legacy release/Git writes are denied through the common gate; old bodies and tags remain preserved.
 
-See the [integration PRs, safe dependency order, and owner/admin decision packet](INTEGRATION.md).
+See the [integration PRs, safe dependency order, and deployment verification and access-observation report](INTEGRATION.md).
 
 ## Evidence and integration limits
 
 The required flat-schema CI lane supplies every fixture; missing required publication fixtures fail. Tests execute actual converter → serialize → parse/schema validate → reproduce → admit ZIP dry-run. Negatives include an **actual public historical Variable replay**, obsolete Require, old/renamed producers, dirty/unapproved checkout, wrong schema digest, missing provenance, post-validation mutation, duplicate YAML keys, JSON/YAML mismatch, swapped schema-valid bytes with rehashed manifests, and invalid tier/coverage promotion. Failures must be nonzero without publication. Existing goldens and frozen schema bytes remain unchanged. CI also runs the actual shared publication action in dry-run mode, with no artifact upload retries.
 
-The structured workflow/AST inventory is evidence and a tripwire, not admission. Runtime calls must guard actual sinks. Cross-repository integration, exact-head CI, server policy and historical-ref controls must be verified before claiming complete coverage. Unknown, inaccessible and unguarded paths remain blockers.
+The structured workflow/AST inventory is evidence and a tripwire, not admission. Runtime calls must guard actual sinks. Cross-repository source integration and exact-head CI are independently testable. Final deployment verification checks the intended sinks at deployed commits. A specific unguarded publication path is a concrete gap; a hypothetical old-ref risk or unavailable administrative setting is not evidence of a bypass and does not block normal work.
 
-The final current-admission manifest requires both explicit validation status flags; missing/false flags reject. The pinned historical actions at `053eeeb` retain the same sealer/denial behavior and do not issue current qualification. Current admission code is reviewed/tested at the Tools PR head; old-ref current-admission authority remains part of the server-policy blocker.
+The final current-admission manifest requires both explicit validation status flags; missing/false flags reject. The pinned historical actions at `053eeeb` retain the same sealer/denial behavior and do not issue current qualification. Current admission code is reviewed/tested at the Tools PR head; old-ref publication outside this boundary remains a hypothetical risk, not a demonstrated bypass or a block on supported testing.

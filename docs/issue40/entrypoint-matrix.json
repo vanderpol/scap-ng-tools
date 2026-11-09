@@ -4978,7 +4978,7 @@
   "limits": [
     "Recognized direct workflow references enumerate literal script paths in current-main-derived workflows; imports/dynamic dispatch may introduce additional callers.",
     "Canonical/Evidence source audits identified no candidate Python builder/publisher scripts; Evidence release is inline shell and listed in the sink ledger.",
-    "Out-of-band historical scripts cannot authenticate current qualification; server authority/ref restrictions remain inaccessible blockers."
+    "An out-of-band historical-ref bypass is hypothetical and not demonstrated. Administrative inspection limitations do not block supported qualification; final repository deployment verification remains pending."
   ],
   "source_identity_verification": {
     "method": "Compare all 198 recorded SHA-256 values with exact Git commit:path blob bytes.",
