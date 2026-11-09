@@ -10,7 +10,7 @@ RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
 # Prior main snapshot retained; standalone identity/reference opt-in only.
 PRIOR_RUNTIME_SHA256 = 'd0c8fbfa73c4239c2ab40d623a389f3907c693ae43fa9b6ca8f5df6459381d68'
-CURRENT_RUNTIME_SHA256 = '7e34cff4aa06418fe10c1dee48cd7b438b466cd0c779965c65f6eef96673f6c9'
+CURRENT_RUNTIME_SHA256 = '4bed4546f65480d8d72e4a306e5fa7937cd60c8b8e6afd14bcc41bd6971e871b'
 UNCHANGED_SOURCE_SHA256 = 'de52a62d54bf73838457c9b91a2bdb3a5ad993dc000c0a6c4e1f1545d30c5ccf'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
