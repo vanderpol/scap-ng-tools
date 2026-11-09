@@ -10,6 +10,7 @@ SCHEMA_PINS = {'f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b',
                '6012ae25281352a9c2d8a4fde7cb5a4968b4432c'}
 FORBIDDEN = ('scap_upconvert_v003', 'scap-ng-research', 'scap_ng_library_cli.py',
              'convert_v04_oval_independent_variable_test.py', 'verify_flat_converter.py',
+             '_v04_runtime', 'v04_direct_converter',
              'schema/v0.3', 'schema/v0.2', 'schema/v0.1')
 
 
@@ -36,7 +37,9 @@ class ProductionToolchain(unittest.TestCase):
         self.assertIn("if __name__ == '__main__':\n    main()", source)
 
     def test_production_workflows_have_no_obsolete_converter_or_schema(self):
-        for path in (ROOT / '.github/workflows').glob('*.yml'):
+        for path in sorted((ROOT / '.github/workflows').iterdir()):
+            if path.suffix not in ('.yml', '.yaml'):
+                continue
             with self.subTest(path.name):
                 check_workflow(path.read_text())
 
