@@ -876,26 +876,103 @@ def dependency_blockers(source, node, mappings, *, native_recovery=False):
     return problems
 
 
-def convert_rule(source, source_id, mappings, *, human_compact=True, native_recovery=False):
-    """Convert one entire automated closure; failures leave no emitted artifacts."""
+def _manual_assessment(source, rule, details, assessment_id):
+    """Lower OCIL to the deliberately small 0.4 manual-assessment contract.
+
+    This is not an OCIL workflow emulator.  It retains the author-facing
+    procedure, response vocabulary, and source hashes while making the
+    resulting document a manual alternative.  Any richer OCIL behavior stays
+    in provenance and is not claimed as native runtime equivalence.
+    """
+    ensure(details, 'OCIL manual assessment has no source check')
+    procedures = [item['procedure'] for item in details if item.get('procedure')]
+    ensure(procedures, 'OCIL manual assessment has no procedure')
+    choices, seen = [], set()
+    for item in details:
+        for choice in item.get('choices', []):
+            value = choice['value']
+            if value in seen:
+                continue
+            seen.add(value)
+            choices.append({'value': value, 'label': choice.get('label'),
+                            'outcome': choice['outcome']})
+    ensure(choices, 'OCIL manual assessment has no response choices')
+    # OVAL definition classes are already canonical; OCIL-only Rules have no
+    # equivalent source class and therefore use the 0.4 compliance default.
+    source_class = None
+    if details and details[0].get('definition_class'):
+        source_class = details[0]['definition_class']
+    if source_class not in {'compliance', 'vulnerability', 'patch', 'inventory', 'miscellaneous'}:
+        source_class = 'compliance'
+    return {'id': assessment_id, 'version': 1,
+            'assessment_title': rule.findtext(f'{{{XCCDF}}}title', ''), 'mode': 'manual',
+            'class': source_class, 'procedure': '\n\n'.join(dict.fromkeys(procedures)),
+            'response': {'type': 'ocil-choice', 'choices': choices,
+                         'allow_comment': True, 'allow_evidence': True},
+            'evidence_guidance': 'Manual response retained from the source OCIL check; '
+                                 'this document does not emulate OCIL workflow execution.'}
+
+
+def _manual_trace(details):
+    """Keep source OCIL identity separate from native manual grammar."""
+    return [{key: value for key, value in detail.items() if key != 'choices'} |
+            {'choices': [{key: value for key, value in choice.items()
+                          if key in ('value', 'label', 'outcome', 'source_choice_ref', 'source_result')}
+                         for choice in detail.get('choices', [])]}
+            for detail in details]
+
+
+def convert_rule(source, source_id, mappings, *, human_compact=True, native_recovery=False,
+                 recover_manual=False):
+    """Convert one source Rule; OCIL-only recovery is explicit and atomic."""
     documents = {}
     ensure(source_id in source.rules, f'source Rule not found: {source_id}')
     rule = source.rules[source_id]
-    component, definition, omitted_checks = source.automated_check(rule)
+    selected = source.automated_check(rule, allow_manual=recover_manual)
+    component, definition, omitted_checks, manual_checks = selected
+    title = rule.findtext(f'{{{XCCDF}}}title', '')
+    control = re.search(r'SV-\d+', source_id)
+    local_title = title + (' ' + control.group() if control else '')
+    rule_id = native_identifier(rule, 'rule', local_title)
+    automated_assessment_id = native_identifier(rule, 'assessment', local_title)
+    manual_assessment_id = native_identifier(rule, 'manual', local_title)
+
+    if component is None:
+        # OCIL-only Rule: no automated native Assessment is fabricated.
+        manual = _manual_assessment(source, rule, manual_checks, manual_assessment_id)
+        documents[f'authoring/direct-slice/assessments/{manual_assessment_id}.json'] = {'assessment': manual}
+        native_rule = {'id': rule_id, 'version': rule.findtext(f'{{{XCCDF}}}version', ''),
+            'title': title, 'severity': rule.get('severity', 'unknown'), 'role': 'full',
+            'weight': float(rule.get('weight', '1')), 'discussion': rule.findtext(f'{{{XCCDF}}}description', ''),
+            'rationale': None, 'extensions': {}, 'warnings': [], 'identifiers': [], 'references': [],
+            'requires': [], 'conflicts': [], 'applicability': [], 'parameters': {}, 'remediation': {},
+            'organizational_input_requirements': {},
+            'assessment_choices': {'manual': {'assessment': manual_assessment_id}},
+            'default_assessment_choice': 'manual'}
+        optional_metadata = ('discussion', 'rationale', 'extensions', 'warnings', 'identifiers',
+                             'references', 'remediation')
+        for key in [key for key in optional_metadata if native_rule[key] in (None, '', [], {})]:
+            native_rule.pop(key)
+        documents[f'authoring/direct-slice/rules/{rule_id}.json'] = {'rule': native_rule}
+        binding = {'source_rule': source_id, 'source_rule_sha256': digest(xml_identity(rule)),
+            'component': None, 'definition': None, 'native_rule': rule_id,
+            'assessment': manual_assessment_id, 'manual_assessment': manual_assessment_id,
+            'dependencies': {}, 'omitted_checks': omitted_checks,
+            'manual_checks': _manual_trace(manual_checks), 'source_platforms':
+            [child.get('idref') for child in rule.findall(f'{{{XCCDF}}}platform')],
+            'conversion_status': 'MANUAL_OCIL_ONLY_PRESERVED',
+            'independent_static_proof_eligible': False,
+            'conversion_warnings': [{'code': 'manual_ocil_only',
+                'message': 'OCIL-only Rule was preserved as a native manual Assessment; no automated equivalent was inferred.'}]}
+        return documents, binding
+
     converter = AssessmentConverter(source, component, mappings, human_compact=human_compact,
                                      native_recovery=native_recovery)
     if getattr(source,'draft_compatibility',False) or getattr(source, 'native_recovery', False):
         from v04_draft_inputs import check_exports
         converter.bound_exports=check_exports(source,rule)
     expression = converter.reference(definition, 'definition')
-    title = rule.findtext(f'{{{XCCDF}}}title', '')
-    # Local Assessments retain a human-recognizable source control discriminator.
-    # These are not promoted/global shared-library names (Decision 11/12).
-    control = re.search(r'SV-\d+', source_id)
-    local_title = title + (' ' + control.group() if control else '')
-    rule_id = native_identifier(rule, 'rule', local_title)
-    assessment_id = native_identifier(rule, 'assessment', local_title)
-    assessment = {'id': assessment_id, 'version': 1, 'assessment_title': title,
+    assessment = {'id': automated_assessment_id, 'version': 1, 'assessment_title': title,
         'mode': 'automated', 'class': source.node(component, definition, 'definition').get('class'),
         'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'}}
     for section in ('shared_objects', 'variables'):
@@ -904,14 +981,18 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     if converter.inputs:
         assessment['inputs']=converter.inputs
     assessment.update(tests=converter.tests, evaluate=expression)
-    documents[f'authoring/direct-slice/assessments/{assessment_id}.json'] = {'assessment': assessment}
-    # This is a compilation fixture, not a full Rule-policy renderer.
+    documents[f'authoring/direct-slice/assessments/{automated_assessment_id}.json'] = {'assessment': assessment}
     native_rule = {'id': rule_id, 'version': rule.findtext(f'{{{XCCDF}}}version', ''), 'title': title,
         'severity': rule.get('severity', 'unknown'), 'role': 'full', 'weight': float(rule.get('weight', '1')),
         'discussion': rule.findtext(f'{{{XCCDF}}}description', ''), 'rationale': None,
         'extensions': {}, 'warnings': [], 'identifiers': [], 'references': [], 'requires': [], 'conflicts': [],
         'applicability': [], 'parameters': {}, 'remediation': {}, 'organizational_input_requirements': {},
-        'assessment_choices': {'automated': {'assessment': assessment_id}}, 'default_assessment_choice': 'automated'}
+        'assessment_choices': {'automated': {'assessment': automated_assessment_id}},
+        'default_assessment_choice': 'automated'}
+    if recover_manual and manual_checks:
+        manual = _manual_assessment(source, rule, manual_checks, manual_assessment_id)
+        documents[f'authoring/direct-slice/assessments/{manual_assessment_id}.json'] = {'assessment': manual}
+        native_rule['assessment_choices']['manual'] = {'assessment': manual_assessment_id}
     optional_metadata = ('discussion', 'rationale', 'extensions', 'warnings', 'identifiers', 'references', 'remediation')
     omitted_metadata = [key for key in optional_metadata if native_rule[key] in (None, '', [], {})]
     for key in omitted_metadata:
@@ -921,31 +1002,27 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     from scap_ng_tools.authoring.input_discovery import validate_choice_map
     if converter.input_bindings:
         native_rule['assessment_choices']['automated']['inputs'] = converter.input_bindings
-    # Validate all native Input consumers before emitting a Rule. The direct
-    # converter has no author-supplied discovery map, so the packaged map is
-    # always the exact compiler derivation (including the empty case).
     if converter.inputs or converter.input_bindings:
         presence_contract(assessment)
         parameters = {p['id']: p for p in converter.policy_parameters.values()}
         rows = validate_choice_map(assessment, converter.input_bindings, parameters)
         native_rule['organizational_input_requirements'] = {'automated': rows} if rows else {}
     binding = {'source_rule': source_id, 'source_rule_sha256': digest(xml_identity(rule)),
-        'component': component, 'definition': definition, 'native_rule': rule_id, 'assessment': assessment_id,
+        'component': component, 'definition': definition, 'native_rule': rule_id, 'assessment': automated_assessment_id,
         'dependencies': converter.used, 'omitted_checks': omitted_checks,
         'source_platforms': [child.get('idref') for child in rule.findall(f'{{{XCCDF}}}platform')]}
+    if manual_checks:
+        binding['manual_assessment'] = manual_assessment_id
+        binding['manual_checks'] = _manual_trace(manual_checks)
     recovered_controls = []
     for identifier, used in sorted(converter.used.items()):
         if used.get('kind') != 'test':
             continue
         test_source = source.node(component, identifier, 'test')
         if native_recovery and test_source.get('check_existence') == 'all_exist':
-            recovered_controls.append({
-                'source_test': identifier,
-                'source_test_sha256': digest(xml_identity(test_source)),
-                'source_test_attributes': dict(test_source.attrib),
-                'native_items_found': 'one_or_more',
-                'semantic_basis': 'SCAP-NG 0.4 item_requirement one_or_more; no synthetic nonexistent Items',
-            })
+            recovered_controls.append({'source_test': identifier, 'source_test_sha256': digest(xml_identity(test_source)),
+                'source_test_attributes': dict(test_source.attrib), 'native_items_found': 'one_or_more',
+                'semantic_basis': 'SCAP-NG 0.4 item_requirement one_or_more; no synthetic nonexistent Items'})
     if recovered_controls:
         binding['source_test_controls'] = recovered_controls
     binding['authoring_contract_migration'] = {'owner_decision_date': '2026-10-31',
@@ -958,7 +1035,6 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     if converter.enum_variable_equivalences:
         binding['enum_variable_equivalences'] = converter.enum_variable_equivalences
     if converter.human_compaction:
-        # Explicitly separate presentation candidates from accepted source proofs.
         binding['human_authoring_compaction_review'] = converter.human_compaction
         binding['independent_static_proof_eligible'] = False
         binding['conversion_status'] = 'CONVERTED_UNVERIFIED'
@@ -981,20 +1057,20 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     return documents, binding
 
 
-def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True, native_recovery=False):
+def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True, native_recovery=False, recover_manual=False):
     """Strict focused API; any unsupported selection fails the entire request."""
     ensure(rule_ids and len(set(rule_ids)) == len(rule_ids), 'distinct source Rules required')
     mappings = load_mappings()
     documents, bindings = {}, []
     for source_id in rule_ids:
-        native, binding = convert_rule(source, source_id, mappings, human_compact=human_compact, native_recovery=native_recovery)
+        native, binding = convert_rule(source, source_id, mappings, human_compact=human_compact, native_recovery=native_recovery, recover_manual=recover_manual)
         ensure(not set(native) & set(documents), 'native Rule/Assessment name collision in selected source Rules')
         documents.update(native)
         bindings.append(binding)
     return assemble_subset(source, documents, bindings, mappings, native_recovery=native_recovery)
 
 
-def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=False):
+def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=False, recover_manual=False):
     """Project selection only over emitted Rules; an empty subset has no package."""
     rule_ids = [row['source_rule'] for row in rule_trace]
     rule_links = {row['source_rule']: row['native_rule'] for row in rule_trace}
@@ -1042,7 +1118,7 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
         'source_benchmark_metadata': [xml_identity(child) for child in benchmark if local_name(child) not in ('Group', 'Rule', 'Profile', 'Value')],
         'omitted_rules': sorted(set(source.rules) - set(rule_ids)), 'xml_parse_calls': source.parse_count,
         'component_index_passes': len(source.components), 'mapping_sha256': {m['capability']: digest(m) for m in mappings},
-        'scope': 'Automated Assessment/selection subset, not full Rule-policy or Benchmark conversion',
+        'scope': 'Automated and explicitly recovered manual Assessment subset; not full Rule-policy or Benchmark conversion',
         'unsupported': unsupported,
         'coverage_promoted': False, 'scanner_evaluated': False}
     return documents, trace
@@ -1059,7 +1135,8 @@ def blocker_category(message):
 
 
 def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=None,
-                      human_compact=True, validate_document=None, native_recovery=False):
+                      human_compact=True, validate_document=None, native_recovery=False,
+                      recover_manual=False, exclude_sqlext=False):
     """Inventory all Rules; isolate expected per-Rule failures and validate admission.
 
     Native output is atomic per Rule. Diagnostic probes of blocked closures are
@@ -1075,7 +1152,16 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
     measured = {'inventory': time.perf_counter() - started, 'conversion': 0.0,
                 'validation': 0.0, 'diagnostics': 0.0}
     documents, bindings, probes, accepted_parameters = {}, [], {}, {}
-    if not inventory_only:
+    sqlext_nodes = sorted({node['id'] for row in rows for node in row['dependencies']
+                           if 'sqlext' in (node.get('tag') or '').lower() or
+                              'sqlext' in (node.get('capability') or '').lower()})
+    excluded = bool(exclude_sqlext and sqlext_nodes)
+    if excluded:
+        for row in rows:
+            row.update(status='excluded', proof_level='none', conversion_status='EXCLUDED_SQLEXT',
+                       exclusion={'reason': 'SQLEXT-dependent SQL benchmark is outside Issue #28 conversion scope.',
+                                  'source_nodes': sqlext_nodes})
+    if not inventory_only and not excluded:
         if validate_document is None:
             from validate_native_json_schemas import build_validators, document_errors
             validators = build_validators(ROOT / 'schema/v0.4.0')
@@ -1089,7 +1175,8 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 ensure(source.rule_selected(rule), 'disabled source defaults unsupported')
                 native, binding = convert_rule(source, row['source_rule'], mappings,
                                                human_compact=human_compact,
-                                               native_recovery=native_recovery)
+                                               native_recovery=native_recovery,
+                                               recover_manual=recover_manual)
                 for key, parameter in binding.get('policy_parameters', {}).items():
                     ensure(key not in accepted_parameters or accepted_parameters[key] == parameter,
                            'conflicting Benchmark Parameter binding: '+key)
@@ -1124,20 +1211,24 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 documents.update(native)
                 accepted_parameters.update(binding.get('policy_parameters', {}))
                 bindings.append(binding)
-                row.update(status='converted', proof_level='authoring_validated', artifacts=sorted(native),
-                           conversion_status='CONVERTED_UNVERIFIED')
+                is_manual_only = binding.get('conversion_status') == 'MANUAL_OCIL_ONLY_PRESERVED'
+                row.update(status='manual' if is_manual_only else 'converted',
+                           proof_level='authoring_validated', artifacts=sorted(native),
+                           conversion_status=binding.get('conversion_status', 'CONVERTED_UNVERIFIED'))
                 if binding.get('conversion_warnings'):
                     row['conversion_warnings'] = binding['conversion_warnings']
                     row['independent_static_proof_eligible'] = False
             measured['diagnostics'] += time.perf_counter() - started
     started = time.perf_counter()
     documents, trace = assemble_subset(source, documents, bindings, mappings,
-                                      native_recovery=native_recovery)
+                                      native_recovery=native_recovery, recover_manual=recover_manual)
     manifest = {'format': 'direct-benchmark-coverage/1', 'source_zip_sha256': source.zip_sha256,
         'source_xml_sha256': source.xml_sha256, 'source_member': source.member,
         'source_benchmark_component': source.benchmark_component,
-        'component_hashes': source.component_hashes, 'mode': 'inventory' if inventory_only else 'automatic',
-        'scope': 'Automated subset only; not complete Benchmark, manual, applicability or policy equivalence',
+        'component_hashes': source.component_hashes, 'mode': 'inventory' if inventory_only else ('excluded' if excluded else ('automatic+manual' if recover_manual else 'automatic')),
+        'scope': 'Automated plus explicitly recovered manual Assessments; not complete Benchmark, applicability or policy equivalence',
+        'recovery': {'native_recovery': native_recovery, 'manual_recovery': recover_manual,
+                     'excluded_sqlext': excluded, 'sqlext_nodes': sqlext_nodes},
         'proof_contract': 'Conversion emits authoring_validated only. Compilation and independent source proof are separate gates.',
         'blocker_contract': 'All reference/selection inventory problems, conversion/schema diagnostics, dependency-node failures and independent supported entity/function/filter/quantifier obligations. Unsupported capability internals are not interpreted; further blockers may become discoverable only after implementation.',
         'inventory': inventory_counts, 'summary': summarize(rows), 'rules': rows,
