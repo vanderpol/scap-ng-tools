@@ -99,7 +99,7 @@ class StandaloneVariables(unittest.TestCase):
 
     def test_source_mutations_do_not_return_partial_conversions(self):
         original = ET.parse(self.source / PREFIX / CASES[0][0]).getroot()
-        for change in ('wrong_kind', 'identity', 'cast', 'function', 'alias_cycle'):
+        for change in ('wrong_kind', 'identity', 'cast', 'function', 'alias_cycle', 'fake_definition'):
             with tempfile.TemporaryDirectory() as directory:
                 root = deepcopy(original)
                 if change == 'wrong_kind':
@@ -108,6 +108,8 @@ class StandaloneVariables(unittest.TestCase):
                     ET.SubElement(root.find(O + 'states')[0], I + 'var_ref').text = 'oval:org.mitre.oval.test:var:831'
                 elif change == 'cast':
                     root.find(O + 'variables')[0].set('datatype', 'string')
+                elif change == 'fake_definition':
+                    root.find(O + 'definitions')[0].tag = O + 'unknown_definition'
                 else:
                     node = root.find(O + 'variables')[0]
                     node.tag = O + 'local_variable'

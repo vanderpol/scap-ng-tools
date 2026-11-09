@@ -23,14 +23,31 @@ class OvalSource:
         ensure(b'<!DOCTYPE' not in raw and b'<!ENTITY' not in raw, 'OVAL XML declarations forbidden')
         root = ET.fromstring(raw)
         ensure(root.tag == '{' + OVAL + '}oval_definitions', 'expected original OVAL Definitions XML')
+        ensure(set(root.attrib) <= {'{http://www.w3.org/2001/XMLSchema-instance}schemaLocation'},
+               'unsupported OVAL root attributes')
         self.components, self.nodes = {component: root}, {component: {}}
-        allowed = {'definitions', 'tests', 'objects', 'states', 'variables'}
+        allowed = {
+            'definitions': {'{' + OVAL + '}definition'},
+            'tests': {'{' + INDEPENDENT + '}variable_test'},
+            'objects': {'{' + INDEPENDENT + '}variable_object'},
+            'states': {'{' + INDEPENDENT + '}variable_state'},
+            'variables': {'{' + OVAL + '}' + name for name in
+                          ('constant_variable', 'local_variable', 'external_variable')},
+        }
+        generators = root.findall('{' + OVAL + '}generator')
+        ensure(len(generators) == 1 and generators[0].findtext(
+            '{http://oval.mitre.org/XMLSchema/oval-common-5}schema_version') == '5.12.3',
+            'standalone source must declare OVAL 5.12.3')
+        seen = set()
         for group in root:
             if group.tag == '{' + OVAL + '}generator':
                 continue
             ensure(group.tag.startswith('{' + OVAL + '}') and group.tag.split('}')[-1] in allowed,
                    'unsupported OVAL document section')
+            ensure(group.tag not in seen and not group.attrib, 'duplicate/unsupported OVAL section')
+            seen.add(group.tag)
             for node in group:
+                ensure(node.tag in allowed[group.tag.split('}')[-1]], 'unsupported OVAL declaration kind/namespace')
                 ident = node.get('id')
                 ensure(ident and ident not in self.nodes[component], 'duplicate/missing original OVAL ID')
                 self.nodes[component][ident] = node
