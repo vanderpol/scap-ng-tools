@@ -77,6 +77,7 @@ def inventory(root, repository, trusted_commit=None):
                 if shared and trusted_commit and target.endswith('@' + trusted_commit):
                     leaf = target.split('/.github/actions/', 1)[1].split('@')[0]
                     status = {'historical-upload': 'HISTORICAL_SEALED',
+                              'historical-download': 'HISTORICAL_READ_ONLY',
                               'current-publication': 'CURRENT_ADMISSION',
                               'configure-gate': 'GATE_BOOTSTRAP'}.get(leaf, 'BLOCKER_UNKNOWN_SHARED_ACTION')
                 elif target == './.github/actions/current-publication' and repository == 'vanderpol/scap-ng-tools':
@@ -87,7 +88,8 @@ def inventory(root, repository, trusted_commit=None):
                                   'path': file.relative_to(root).as_posix(), 'sha256': sha256(raw).hexdigest(),
                                   'events': document.get('on'), 'job': job_id, 'job_if': job.get('if'),
                                   'step': number, 'step_name': step.get('name'), 'step_if': step.get('if'),
-                                  'uses': target, 'kind': 'upload' if upload or shared else 'direct_write',
+                                  'uses': target, 'kind': ('helper' if shared and any('/' + leaf + '@' in target for leaf in ('historical-download', 'configure-gate'))
+                                                         else 'upload' if upload or shared else 'direct_write'),
                                   'status': status,
                                   'referenced_python': references})
     for folder in ('tools', 'scripts', 'src'):
