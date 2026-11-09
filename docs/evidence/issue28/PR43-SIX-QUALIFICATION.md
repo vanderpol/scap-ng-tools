@@ -70,4 +70,4 @@ Each stream passed: pinned source ZIP SHA-256; original XCCDF Rule ID and count 
 
 ## Qualification boundary
 
-This is not independent OVAL equivalence proof, compiler/scanner qualification, or a claim that blocked Rules are converted. The six-stream gate passed. The all-65 run is being evaluated separately; no goldens, merges, releases, or VS Code files were changed.
+This is not independent OVAL equivalence proof, compiler/scanner qualification, or a claim that blocked Rules are converted. The six-stream gate passed. The full-65 run subsequently passed; see `PR43-FULL65-QUALIFICATION.md`. No goldens, merges, releases, or VS Code files were changed.
