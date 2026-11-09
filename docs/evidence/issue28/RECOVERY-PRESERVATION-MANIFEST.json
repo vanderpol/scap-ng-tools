@@ -1,0 +1,650 @@
+{
+  "artifact_hashes": {
+    "full65_pipeline": {
+      "bytes": 6128251,
+      "file_count": 25,
+      "files": [
+        {
+          "bytes": 484,
+          "path": "README.md",
+          "sha256": "af45853e529c32d5cdcbbed1ebf2d8fc5e08411efc276c7efd67c32747971c23"
+        },
+        {
+          "bytes": 6411,
+          "path": "build_current_draft.py",
+          "sha256": "c229bb9300636dcb8cd5dee6fe75b4856983b5b708103bf04ad02481a786a81e"
+        },
+        {
+          "bytes": 1218,
+          "path": "compare_stage_a.py",
+          "sha256": "5fcaa0c06717ebc7cd83aa72c2c94faaca092d17c97c67eac0e001e40406678a"
+        },
+        {
+          "bytes": 1775,
+          "path": "compare_stage_a_semantic.py",
+          "sha256": "683dd0dd022266c8b62ae4898df67d4c2b324020c11394ee27aa23981b68acfe"
+        },
+        {
+          "bytes": 9745,
+          "path": "historical-full-six.log",
+          "sha256": "a1a2a71b4fc75c342c8b89d7f7c5b6fbf774c07a85d83cd5ec7b9270726037fb"
+        },
+        {
+          "bytes": 16221,
+          "path": "historical-six-current-validation.json",
+          "sha256": "04c2bd90c4cbaa71a09464f3f699925dae68b0b9040531c9713ee14138fc076b"
+        },
+        {
+          "bytes": 0,
+          "path": "historical-six.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 286,
+          "path": "historical-six.stdout",
+          "sha256": "ca3585a19ca62e3c466eca2f08612135282574ca9abdc62fa62c6cc59812e75e"
+        },
+        {
+          "bytes": 2600,
+          "path": "issue27-report.md",
+          "sha256": "1826340257053388de5f2a8c5b0f29364c972c09a8f68118863d5c56660a9ebd"
+        },
+        {
+          "bytes": 6174,
+          "path": "make_reports.py",
+          "sha256": "35775353f83314373c08fb401c8e5c066feea62bf33ebed03524f45392146db6"
+        },
+        {
+          "bytes": 2688,
+          "path": "run_stage_a.py",
+          "sha256": "dbe4621b7323ef280cc2cbf9fb8d0d3e1ec91fcf52e51e10510f5e8208c0033b"
+        },
+        {
+          "bytes": 2709,
+          "path": "run_stage_a_repeat.py",
+          "sha256": "9ccdbace9fea90c26dfa55c9aba06395a686dbf33c520031f55f1172c922aff4"
+        },
+        {
+          "bytes": 25161,
+          "path": "source-pins.json",
+          "sha256": "0b1846caf05f201c64dded534dfca530831eb5a0c0348acef0ee1ff77685931f"
+        },
+        {
+          "bytes": 75632,
+          "path": "source-verification.json",
+          "sha256": "5d1fd9c2c131e1b5815d771721eee09f3af45e8f2a66f91ea2ed5cd282736948"
+        },
+        {
+          "bytes": 11180,
+          "path": "stage-a-canonical-reproducibility.json",
+          "sha256": "630d6127d8139eedfc478bdd96f072c5531f834f010e9bd8d51e003c635365ae"
+        },
+        {
+          "bytes": 5508226,
+          "path": "stage-a-file-manifest.json",
+          "sha256": "52c32f4527bb43c36a6be43e7d77171100a0127435454d81cee229afadc931ac"
+        },
+        {
+          "bytes": 224782,
+          "path": "stage-a-ledger.json",
+          "sha256": "751a456374d834364ebc11422b4f4c4ce7f756ea9f8341c9d391f0bc3d8b2b51"
+        },
+        {
+          "bytes": 96959,
+          "path": "stage-a-repeat-run.json",
+          "sha256": "8136edc0b73c551070541db80765f3be116322d438a2a84e227e010d1208efa4"
+        },
+        {
+          "bytes": 14515,
+          "path": "stage-a-report.md",
+          "sha256": "a687ebf1c71bb526b7d3bbc067c31ca7d19c6da46a6d202b828c20a421420252"
+        },
+        {
+          "bytes": 13020,
+          "path": "stage-a-reproducibility.json",
+          "sha256": "a586c6a88b186cf12c90d4e421e5f9066b02d1997fa0c6c01d7df947125fb1d4"
+        },
+        {
+          "bytes": 96047,
+          "path": "stage-a-run.json",
+          "sha256": "8890ff304e2cf9bad0174666314d8a744b7c645447f238a8aee1b5cba09fa443"
+        },
+        {
+          "bytes": 89,
+          "path": "stage-b-native-copy-verification.json",
+          "sha256": "7a97745ca981f577dccc28129cb6e628c2b1d0252efa42f699b86c3183261702"
+        },
+        {
+          "bytes": 2485,
+          "path": "stage-b-report.json",
+          "sha256": "51977032b5987deb244b2733fb5bd11e7bbd5f20286ee13b52b02356ef53411f"
+        },
+        {
+          "bytes": 2347,
+          "path": "stage-b-report.md",
+          "sha256": "8b6cb59d3e24605be33e624f12b9171d5391f8604671b393b9f883e0e9fa9436"
+        },
+        {
+          "bytes": 7497,
+          "path": "validate_stage_a.py",
+          "sha256": "44709df6060283b698074146a544505d8bf8ebbd2a68f789703b397a6cf4ce91"
+        }
+      ],
+      "root": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/full65-current/pipeline-issue27-20261105",
+      "tree_sha256": "bb9749558ae7138d59d96ae999c4e18bfe7b20c881d408f874f7c3ee033a4be7"
+    },
+    "issue26_receipts": {
+      "bytes": 66940967,
+      "file_count": 8945,
+      "root": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/issue26-receipts-20261105",
+      "tree_sha256": "702758ee0882b2402366cd4d8b2320226a16de569310c87d918784bf3e116ffa"
+    },
+    "issue28_analysis": {
+      "bytes": 45695731,
+      "file_count": 5,
+      "files": [
+        {
+          "bytes": 31730796,
+          "path": "blocker-audit.json",
+          "sha256": "05ad1f06c1e8ec08df6366ac9dec42bd7e1815da99d90dc3263eef1d366fb802"
+        },
+        {
+          "bytes": 108903,
+          "path": "blocker-histogram.json",
+          "sha256": "7c232c174a71a0062c4bcf04ea19908c2d1b1609b99ec7ebed4b70bbf9f85221"
+        },
+        {
+          "bytes": 1543627,
+          "path": "default-server-trace.json",
+          "sha256": "e83367fb0164141299d7f4d7929e52df820fdc25eb0608da1beb3a0cc1999dc8"
+        },
+        {
+          "bytes": 5935355,
+          "path": "native-input-recovery.json",
+          "sha256": "43acb042c1a002250df6ff2f5a5793d3660e403f7fc9b9273748a557b1e18996"
+        },
+        {
+          "bytes": 6377050,
+          "path": "native-recovery.json",
+          "sha256": "0e5e0b82b9effd09a9dc0fc6891332684f6864adbc02a3b53e61b6e50ce35cd5"
+        }
+      ],
+      "root": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/scap-ng-tools/.worktrees/issue28-variable-recovery/.issue28-analysis",
+      "tree_sha256": "4020345373609ff0fcfbcc40091a49b068cb1e79f89d1b6949cd53ccd13114e7"
+    },
+    "issue28_sources": {
+      "bytes": 8613828,
+      "file_count": 65,
+      "files": [
+        {
+          "bytes": 48897,
+          "path": "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "sha256": "94740b7929dd868043ab1b476c3b568712fc26d045a4d450359cea90effbfa1c"
+        },
+        {
+          "bytes": 17823,
+          "path": "U_Active_Directory_Forest_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "sha256": "0d7ac019b7133db86f30b83e4922ecfb8f07e364c09d789c3bbd7262bb57fda0"
+        },
+        {
+          "bytes": 26764,
+          "path": "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "sha256": "01bdb16fcfee60d27f475cedbf25263919df52cb78aa58bb2242b259d409694b"
+        },
+        {
+          "bytes": 25573,
+          "path": "U_Adobe_Acrobat_Reader_DC_Continuous_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+          "sha256": "e1611d05432ed262238755cfee8fad770c4a76e064c915a10272c79448d5eb21"
+        },
+        {
+          "bytes": 189211,
+          "path": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "sha256": "88cc35f98c9ff96c567110c284c06e6adfc556fd59967019bdec6fd1cc5a204f"
+        },
+        {
+          "bytes": 66035,
+          "path": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "sha256": "8894123788ba415373625eaecdbbd834f190668697803c3319393c11889f1b80"
+        },
+        {
+          "bytes": 28989,
+          "path": "U_Apache_Server_2-4_UNIX_Site_V2R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "sha256": "9c93cbe5d8283bb8ab3ceb2221ef63cd6be16352e2bcf94939a1b2b576afb88c"
+        },
+        {
+          "bytes": 65943,
+          "path": "U_Apache_Server_2-4_Windows_Server_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "sha256": "d83045885c4e7eebe197d11b02f898ec41ecfac8da7949bc9a5b7538c8220408"
+        },
+        {
+          "bytes": 25485,
+          "path": "U_Apache_Server_2-4_Windows_Site_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+          "sha256": "9efd70c07316fce84255d1b092a4824b7cd4d47961598511f480783c3020f2ed"
+        },
+        {
+          "bytes": 71061,
+          "path": "U_Apache_Tomcat_Application_Server_9_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "sha256": "ac4160a0f0f9541507836ba44272ba479fe6f1f8e8da3aff9793700ee482288d"
+        },
+        {
+          "bytes": 104447,
+          "path": "U_Apple_macOS_13_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "sha256": "0fbdff446bba6b8e0efc320d599b1a38c02bc018f99f0127fc258bde583249de"
+        },
+        {
+          "bytes": 128239,
+          "path": "U_Apple_macOS_14_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "sha256": "5f3cd35984615828ce36b94ac2a2d7c81d49fb656c03b4b7ce522c71435a1efe"
+        },
+        {
+          "bytes": 135818,
+          "path": "U_Apple_macOS_15_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "sha256": "da8ff53600d31adf8917b49a3bf3a7b4eb6188edde6d21fbdcf7b54eed9d3c19"
+        },
+        {
+          "bytes": 134666,
+          "path": "U_Apple_macOS_26_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "sha256": "f4ad086a9d017dda38fdaf76590c4f4081d3927f54cd0c8a0953e85541561955"
+        },
+        {
+          "bytes": 175084,
+          "path": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49"
+        },
+        {
+          "bytes": 177959,
+          "path": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "sha256": "85cc4348a0bd85becf757f50e6f0d3ef67169c87e26f12f045c94914d7099ef5"
+        },
+        {
+          "bytes": 197387,
+          "path": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "sha256": "dbbc87ffe6d0c84688993d96cd7007e76bf83b9206508109b586ccc5bf88b6b2"
+        },
+        {
+          "bytes": 202319,
+          "path": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "sha256": "40229cd7a41e6ff4a8cfb675523f767292d1460edbc68fe9ba5258c530c8b4a7"
+        },
+        {
+          "bytes": 56381,
+          "path": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "sha256": "82e2d4bf65abc53bb6da01874944c555efae51dbc98d80e6e42423d1025e7efa"
+        },
+        {
+          "bytes": 106183,
+          "path": "U_Cisco_IOS-XE_Router_RTR_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "sha256": "e2a2e23823d0610ca91c5ba2d73a952a4dbbb1afab7daf5874f6e416df50a095"
+        },
+        {
+          "bytes": 54596,
+          "path": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "sha256": "0bd07f9acdf6cae7e6b2f0549c7bf42ce368114953b18f37f460fa66563aa600"
+        },
+        {
+          "bytes": 52485,
+          "path": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "sha256": "cc90109437f9e26ab5ec6cbd43b6e83b1c60717b4da02ce0d5580a07bcdb147d"
+        },
+        {
+          "bytes": 53221,
+          "path": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+          "sha256": "1d33596c80208a4b3d77004397b209b5038badfefe97e5e5d27ec536b1211b70"
+        },
+        {
+          "bytes": 62688,
+          "path": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "sha256": "1e8e828b22f0c73673cbac1900dd56fd68537baf0dd2afd0a2379df9a2b0664f"
+        },
+        {
+          "bytes": 46737,
+          "path": "U_Google_Chrome_V2R11_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "sha256": "78e58d9ce76f458e8c436de80cb2b30e15ebce35d1527bf6e38aca5069e6bfd1"
+        },
+        {
+          "bytes": 74056,
+          "path": "U_Kubernetes_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "sha256": "3772f25da835952e83bdd3b230dbf2d73b42e9849e129982ce1efe6497e71ae0"
+        },
+        {
+          "bytes": 31715,
+          "path": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+          "sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7"
+        },
+        {
+          "bytes": 33731,
+          "path": "U_MOZ_Firefox_Windows_V6R8_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "sha256": "ad37668f0f43cd0b973e7544ad1d44e21dac9388f750fa2dab2c43893e781f41"
+        },
+        {
+          "bytes": 58983,
+          "path": "U_MS_Defender_Antivirus_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "sha256": "8f0b317cd9c17bc27f3285a5e8810a6560c0ac8ffe475a6d6e7bd72dae5fefd6"
+        },
+        {
+          "bytes": 45955,
+          "path": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "sha256": "9578b414bc8e406e15226b91d663d31f227f1164f8bca7c4d5ea3507d8f520c9"
+        },
+        {
+          "bytes": 53236,
+          "path": "U_MS_Edge_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "sha256": "612a1ee2696ca6453cdc363f236c364549981b5ef84a4cc9144afb9dafc77339"
+        },
+        {
+          "bytes": 81795,
+          "path": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "sha256": "b6bd7ad2a458f464eca99deb9eac50aaeafa74d435cf0bb2ca76d0424d916692"
+        },
+        {
+          "bytes": 82917,
+          "path": "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "sha256": "46497542771fd7841cd96745d61dbdeb8ccf0d082415dcfa64a6694bf365f8f9"
+        },
+        {
+          "bytes": 108850,
+          "path": "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "sha256": "c0d20d64249769c052f8ff9ecef3ddffb2944064b6211a9c8afb3f6dfb962f81"
+        },
+        {
+          "bytes": 60318,
+          "path": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "sha256": "8bfa016748ea4c6478655a6777dc2aab9d601581b0429388e4d1ba0e3696ca1b"
+        },
+        {
+          "bytes": 63171,
+          "path": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae"
+        },
+        {
+          "bytes": 58980,
+          "path": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "sha256": "3b2f7aa396dbfc647b73de8f7506a5bca1578ff5b79f96d40d13859da57613e4"
+        },
+        {
+          "bytes": 60217,
+          "path": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "sha256": "21f5e5e7809b14e8bfb21b4571f156bb150a3db0afe449d2fdb0da9d06add27f"
+        },
+        {
+          "bytes": 138597,
+          "path": "U_MS_Office_365_ProPlus_V3R8_STIG_SCAP_1-4_Benchmark-enhancedV11-signed.zip",
+          "sha256": "1129b2253c25cc52ff59a9c0a9a3213cf011cbccea801046514ec0ed8bb3c2eb"
+        },
+        {
+          "bytes": 18004,
+          "path": "U_MS_OneDrive_V2R4_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+          "sha256": "144d5d76eefb0707d5afe95ad804f0ee7ca696b061c77093d33892a193f1e592"
+        },
+        {
+          "bytes": 60539,
+          "path": "U_MS_SQL_Server_2016_Database_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "sha256": "b4ec35e6175b37f1e1ac798612092afe54066b8878f9b0ff9126e5b7e787c6ae"
+        },
+        {
+          "bytes": 147784,
+          "path": "U_MS_SQL_Server_2016_Instance_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
+          "sha256": "15ac7e34b3fbc687092f71cb62d3043664e34061ddaed81988ce4a7d2cc1a45c"
+        },
+        {
+          "bytes": 61083,
+          "path": "U_MS_SQL_Server_2022_Database_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "sha256": "f278c41721a40c7a80e04e48353e42169747f215377eb63795058166a0b7ce48"
+        },
+        {
+          "bytes": 144244,
+          "path": "U_MS_SQL_Server_2022_Instance_V1R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "sha256": "5a05495768b1076a53ee6089949ba0209a0121d8728e766fd91b4b2442ad0f33"
+        },
+        {
+          "bytes": 223157,
+          "path": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee"
+        },
+        {
+          "bytes": 209207,
+          "path": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "sha256": "e4b8d55b58aa80124bd0974977af4c7f7bde35c748e2940e02857419292d8c3d"
+        },
+        {
+          "bytes": 277994,
+          "path": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "sha256": "ecba937d43efc0a72037eefb501b46a2e417158088b2f2699f2c86b68bd1de9c"
+        },
+        {
+          "bytes": 239788,
+          "path": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "sha256": "3ad256b29d6f85fe69ba9a14b18502a6f50e923faea2880d9ce10246f780a50a"
+        },
+        {
+          "bytes": 19927,
+          "path": "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
+          "sha256": "d16c868152e14bab0a1e2ecdfa6ec889972e068625d4d20d4ac3f861ff2009ca"
+        },
+        {
+          "bytes": 235790,
+          "path": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8"
+        },
+        {
+          "bytes": 251174,
+          "path": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "sha256": "54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1"
+        },
+        {
+          "bytes": 238978,
+          "path": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "sha256": "5ba5577961a13ded0d4e9a0c6603f93b8201b4fc74d23ef679eba7726e0182f4"
+        },
+        {
+          "bytes": 254194,
+          "path": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "sha256": "2f46264b5fa21c8a033236121794ebe372314bf7458dac0aca4f81179fe7ece0"
+        },
+        {
+          "bytes": 103675,
+          "path": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "sha256": "f674b67e74acbd3037093d50e33dc20765bd9d45a6c9ed2be5d463d009a6c6b8"
+        },
+        {
+          "bytes": 230408,
+          "path": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "sha256": "0235429534dfc1149824f1a6b5144f73e16dc28d84d899c638cc5ede31da8c1a"
+        },
+        {
+          "bytes": 355022,
+          "path": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29"
+        },
+        {
+          "bytes": 372511,
+          "path": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d"
+        },
+        {
+          "bytes": 238091,
+          "path": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "sha256": "17c3ddd4d4ae40bd7ca3443dae0a0c9ed921444a57c34bff357f9f885e0d9ab8"
+        },
+        {
+          "bytes": 379646,
+          "path": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5"
+        },
+        {
+          "bytes": 393068,
+          "path": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5"
+        },
+        {
+          "bytes": 190971,
+          "path": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5"
+        },
+        {
+          "bytes": 193619,
+          "path": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c"
+        },
+        {
+          "bytes": 170313,
+          "path": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "sha256": "b8ae7486d503b46e25ca885cfd53b9b47c40f313b9b4117683f88102c7222b1d"
+        },
+        {
+          "bytes": 170325,
+          "path": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "sha256": "f988154cba7cf0ab39fa3063e510398c716e5d7d5865ae5cc187dc10d2071f2a"
+        },
+        {
+          "bytes": 227804,
+          "path": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d"
+        }
+      ],
+      "root": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/scap-ng-tools/.worktrees/issue28-variable-recovery/.issue28-sources",
+      "tree_sha256": "cb1c33b28db2895ceac104195f88e15218ee2be076e85288b6adc600801a98d9"
+    },
+    "stage_a": {
+      "bytes": 174041998,
+      "file_count": 18585,
+      "root": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/full65-current/automated-subset-7354a24cdbfe18321153ccaef5d772801a10cd71-20261105",
+      "tree_sha256": "95804fed7f49a7dab5c2db0d21bead1e8dfb15dd0547c97369901ea17e924d25"
+    },
+    "stage_a_repeat": {
+      "bytes": 168367230,
+      "file_count": 18581,
+      "root": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/full65-current/automated-subset-repeat-7354a24cdbfe18321153ccaef5d772801a10cd71-20261105",
+      "tree_sha256": "4001c9dd1fccd28b1aa21cd126c9c81cc10ffada0cdcc369f93b6095f7168e11"
+    },
+    "stage_b": {
+      "bytes": 325857200,
+      "file_count": 27803,
+      "root": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/full65-current/draft-source-preserving-7354a24cdbfe18321153ccaef5d772801a10cd71-20261105",
+      "tree_sha256": "70fc35825a2967bb7fa9d2c0fb4623b899028b938a9a3a5a75492a4a93380293"
+    }
+  },
+  "excluded_local_material": [
+    {
+      "label": "issue28 source ZIP copies",
+      "path": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/scap-ng-tools/.worktrees/issue28-variable-recovery/.issue28-sources",
+      "preservation": "retained in VM only; 65 ZIPs not committed",
+      "reason": "source archives and bulk input data"
+    },
+    {
+      "label": "issue28 analysis reports",
+      "path": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/scap-ng-tools/.worktrees/issue28-variable-recovery/.issue28-analysis",
+      "preservation": "retained in VM only; root and file hashes recorded below",
+      "reason": "large generated audit artifacts"
+    },
+    {
+      "label": "full65 pipeline scripts and receipts",
+      "path": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/full65-current/pipeline-issue27-20261105",
+      "preservation": "retained in VM only; root and file hashes recorded below",
+      "reason": "VM-local orchestration implementation; separate recovery work required"
+    },
+    {
+      "label": "full65 Stage A generated output",
+      "path": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/full65-current/automated-subset-7354a24cdbfe18321153ccaef5d772801a10cd71-20261105",
+      "preservation": "retained in VM only; root and file hashes recorded below",
+      "reason": "large generated corpus"
+    },
+    {
+      "label": "full65 Stage A repeat output",
+      "path": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/full65-current/automated-subset-repeat-7354a24cdbfe18321153ccaef5d772801a10cd71-20261105",
+      "preservation": "retained in VM only; root and file hashes recorded below",
+      "reason": "large generated corpus"
+    },
+    {
+      "label": "full65 Stage B source-preserving DRAFT",
+      "path": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/full65-current/draft-source-preserving-7354a24cdbfe18321153ccaef5d772801a10cd71-20261105",
+      "preservation": "retained in VM only; root and file hashes recorded below",
+      "reason": "27,799-file generated DRAFT corpus"
+    },
+    {
+      "label": "Issue #26 receipts",
+      "path": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/issue26-receipts-20261105",
+      "preservation": "retained in VM only; root hash recorded below",
+      "reason": "historical evidence bundle; not copied to PR"
+    }
+  ],
+  "format": "scap-ng-tools/issue28-preservation-manifest/1",
+  "generated_utc": "2026-11-09T18:37:09.597406+00:00",
+  "hash_algorithm": "SHA-256",
+  "included_source_changes": [
+    {
+      "bytes": 86599,
+      "path": "src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py",
+      "preservation": "included in recovery commit",
+      "sha256": "b6d4df379adb350283229051cedaab2a46b26bdc63c3a3d5e65721b167e36cee"
+    },
+    {
+      "bytes": 18284,
+      "path": "src/scap_ng_tools/converter/_v04_runtime/v04_direct_scap_source.py",
+      "preservation": "included in recovery commit",
+      "sha256": "fb1bf16d2a1e24d729742c3e2a7b711b4a7926d7ed4d23063f16e61369316b5d"
+    },
+    {
+      "bytes": 14153,
+      "path": "src/scap_ng_tools/converter/direct04.py",
+      "preservation": "included in recovery commit",
+      "sha256": "e78735dbe508de2f20f41686816647fe0bf56ee39a5a541d251e37fb0943c9a2"
+    },
+    {
+      "bytes": 4233,
+      "path": "tests/test_converter_provenance.py",
+      "preservation": "included in recovery commit",
+      "sha256": "b1bd32a3b9766d2ca975ced0cb7a477ec821c94c21521ea2941ee4a6d918fca7"
+    },
+    {
+      "bytes": 5295,
+      "path": "scripts/build_issue28_conversion_ledger.py",
+      "preservation": "included in recovery commit",
+      "sha256": "03d2d4adf51c5084a726ecb7d041c06580ebb8d12a64e03a4e08a2cb3e3bf118"
+    },
+    {
+      "bytes": 6922,
+      "path": "scripts/build_issue28_feature_matrix.py",
+      "preservation": "included in recovery commit",
+      "sha256": "93d77ef769810c67a5bc668ef40d8d2893b55ed3af8fac1a6a8aa6a5ee66767a"
+    },
+    {
+      "bytes": 3205,
+      "path": "tests/test_issue28_manual_recovery.py",
+      "preservation": "included in recovery commit",
+      "sha256": "9b9805a1f185ca074f919a32c0c3479b1dc1e0ca7be33b1a7e02de2d9883b759"
+    },
+    {
+      "bytes": 72896,
+      "path": "docs/evidence/issue28/OVAL-FEATURE-COVERAGE.json",
+      "preservation": "included in recovery commit",
+      "sha256": "dd09e90f16566c7ee05e81a367aa3578524dafd7f4471489cd10356289b9169a"
+    },
+    {
+      "bytes": 8445,
+      "path": "docs/evidence/issue28/OVAL-FEATURE-COVERAGE.md",
+      "preservation": "included in recovery commit",
+      "sha256": "5166f127cca087690b6ea4b6d6d7f764ebe0cc78813aa3a247f6dbb30e686641"
+    }
+  ],
+  "notes": [
+    "Included code/tests/docs are preserved exactly from the dirty worktree; no semantic repair was performed.",
+    "The local manual-recovery test contains a VM-specific schema path and is intentionally preserved as-is for review.",
+    "The VM-local full65 orchestrator remains separate and is not included in this small recovery PR."
+  ],
+  "qualification": "UNQUALIFIED_RECOVERY_ONLY",
+  "read_only_source_worktree": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/scap-ng-tools/.worktrees/issue28-variable-recovery",
+  "recovery_base": "545580211384c55e80ed2b4b6589e2cfc23dc184",
+  "recovery_branch": "codex/issue28-preservation-recovery",
+  "safety_checks": {
+    "active_source_worktree_modified_by_preservation": false,
+    "compiler_or_scanner_claimed": false,
+    "credentials_or_private_research_files_committed": false,
+    "independent_proof_claimed": false,
+    "large_generated_artifacts_committed": false,
+    "source_zip_files_committed": false
+  },
+  "source_branch": "codex/issue28-variable-recovery",
+  "source_head": "545580211384c55e80ed2b4b6589e2cfc23dc184",
+  "tree_hash_algorithm": "for each sorted relative path: sha256.update(path UTF-8 + NUL + raw file bytes + NUL)"
+}
