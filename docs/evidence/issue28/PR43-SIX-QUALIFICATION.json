@@ -12,6 +12,8 @@
     "aggregate_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
     "external_snapshot_required": true
   },
+  "tools_commit": "1de1798",
+  "schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
   "streams": [
     {
       "file": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
@@ -49,8 +51,8 @@
         "source_rule_xml_count": 45,
         "manual_ocil_rules_retained": 45,
         "native_documents": 40,
-        "packaged_tree_sha256": "cde04f6d90781d4add20cbac1bbe97485af3a99e5e95136731f16461b3a79ec3",
-        "repeat_packaged_tree_sha256": "cde04f6d90781d4add20cbac1bbe97485af3a99e5e95136731f16461b3a79ec3",
+        "packaged_tree_sha256": "14404d872350533befc258cf772bcdfd72f8d74868263dc1f6d2165a1c3d5f69",
+        "repeat_packaged_tree_sha256": "14404d872350533befc258cf772bcdfd72f8d74868263dc1f6d2165a1c3d5f69",
         "deterministic_packaged_repeat": true,
         "source_preservation": "PASS"
       }
@@ -92,8 +94,8 @@
         "source_rule_xml_count": 257,
         "manual_ocil_rules_retained": 257,
         "native_documents": 884,
-        "packaged_tree_sha256": "c52c9757573f423eee6443795efce2627da862342ac102e6aae859c6052e0d40",
-        "repeat_packaged_tree_sha256": "c52c9757573f423eee6443795efce2627da862342ac102e6aae859c6052e0d40",
+        "packaged_tree_sha256": "0c1d2c8b1913a4fe17e920004babdc9ccb11cd3d758a37e4deb045c64de34449",
+        "repeat_packaged_tree_sha256": "0c1d2c8b1913a4fe17e920004babdc9ccb11cd3d758a37e4deb045c64de34449",
         "deterministic_packaged_repeat": true,
         "source_preservation": "PASS"
       }
@@ -137,8 +139,8 @@
         "source_rule_xml_count": 291,
         "manual_ocil_rules_retained": 291,
         "native_documents": 992,
-        "packaged_tree_sha256": "deeb62d057f2635370d7c15b5877829f85fcee25f4b43289dc197ae9ee008cf4",
-        "repeat_packaged_tree_sha256": "deeb62d057f2635370d7c15b5877829f85fcee25f4b43289dc197ae9ee008cf4",
+        "packaged_tree_sha256": "9bb6d77d0584916cecb7842e78c72eda5f233f0aed268b0efc08a86a61692046",
+        "repeat_packaged_tree_sha256": "9bb6d77d0584916cecb7842e78c72eda5f233f0aed268b0efc08a86a61692046",
         "deterministic_packaged_repeat": true,
         "source_preservation": "PASS"
       }
@@ -181,8 +183,8 @@
         "source_rule_xml_count": 81,
         "manual_ocil_rules_retained": 81,
         "native_documents": 152,
-        "packaged_tree_sha256": "3dc223797fa3bb6f04fb07972afe4c0fedc92f4a6ef2adca3c24ce24cb82f726",
-        "repeat_packaged_tree_sha256": "3dc223797fa3bb6f04fb07972afe4c0fedc92f4a6ef2adca3c24ce24cb82f726",
+        "packaged_tree_sha256": "da0dd9056ea7c00fcdb6d835c515fc6283d5d98fe84cfa5b58eba65ae72be7cc",
+        "repeat_packaged_tree_sha256": "da0dd9056ea7c00fcdb6d835c515fc6283d5d98fe84cfa5b58eba65ae72be7cc",
         "deterministic_packaged_repeat": true,
         "source_preservation": "PASS"
       }
@@ -227,8 +229,8 @@
         "source_rule_xml_count": 448,
         "manual_ocil_rules_retained": 448,
         "native_documents": 1164,
-        "packaged_tree_sha256": "6b9f06a9f4af604fb27b1ee22e5771c771a3908f2fef19d90a7693c7fc66fbac",
-        "repeat_packaged_tree_sha256": "6b9f06a9f4af604fb27b1ee22e5771c771a3908f2fef19d90a7693c7fc66fbac",
+        "packaged_tree_sha256": "5bbba1eb198b608ae4899418002ae5bfafc9c1b51376495d33b74095c89857dc",
+        "repeat_packaged_tree_sha256": "5bbba1eb198b608ae4899418002ae5bfafc9c1b51376495d33b74095c89857dc",
         "deterministic_packaged_repeat": true,
         "source_preservation": "PASS"
       }
@@ -273,8 +275,8 @@
         "source_rule_xml_count": 445,
         "manual_ocil_rules_retained": 445,
         "native_documents": 1212,
-        "packaged_tree_sha256": "d5879c777c0afa8bad6fddfac7300582f646a2e6dcedf62704b74ad1886bfe18",
-        "repeat_packaged_tree_sha256": "d5879c777c0afa8bad6fddfac7300582f646a2e6dcedf62704b74ad1886bfe18",
+        "packaged_tree_sha256": "018f15a3a5c8e0ae9abc37f661d22a938ba87ec920e8e11d4c966178ec6be6e3",
+        "repeat_packaged_tree_sha256": "018f15a3a5c8e0ae9abc37f661d22a938ba87ec920e8e11d4c966178ec6be6e3",
         "deterministic_packaged_repeat": true,
         "source_preservation": "PASS"
       }

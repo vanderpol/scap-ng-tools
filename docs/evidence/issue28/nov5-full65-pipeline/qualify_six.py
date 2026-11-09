@@ -139,7 +139,7 @@ def validate_stage(stage: Path, repeat: Path, source: Path, pin: dict, snapshot)
     }
 
 
-def validate_packaged(packaged: Path, packaged_repeat: Path, source: Path, pin: dict, stage_row: dict, snapshot) -> dict:
+def validate_packaged(packaged: Path, packaged_repeat: Path, source: Path, pin: dict, stage_row: dict, snapshot, expected_tools: str, expected_schema: str) -> dict:
     errors = []
     target = packaged / source.stem
     repeat_target = packaged_repeat / source.stem
@@ -170,6 +170,10 @@ def validate_packaged(packaged: Path, packaged_repeat: Path, source: Path, pin: 
     manifest = json.loads((target.parent / "stage-b-manifest.json").read_text())
     if manifest["status"] != "SOURCE_PRESERVING_AUTOMATED_SUBSET":
         errors.append("unexpected packager status")
+    if manifest.get("tools_commit") != expected_tools:
+        errors.append("packager tools commit does not match qualification pin")
+    if manifest.get("schema_commit") != expected_schema:
+        errors.append("packager schema commit does not match qualification pin")
     first_tree, first_files = tree_digest(target)
     repeat_tree, repeat_files = tree_digest(repeat_target)
     if first_files != repeat_files:
@@ -199,6 +203,8 @@ def main() -> int:
     parser.add_argument("--packaged", type=Path, required=True)
     parser.add_argument("--packaged-repeat", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--tools-commit", required=True)
+    parser.add_argument("--schema-commit", required=True)
     args = parser.parse_args()
     snapshot = FrozenSchemaSnapshot(args.schema_root)
     pins = {row["file"]: row for row in json.loads(args.pins.read_text())["sources"]}
@@ -207,12 +213,14 @@ def main() -> int:
         name = run.name.removesuffix(".run.json") + ".zip"
         source = args.sources / name
         stage_row = validate_stage(args.stage_a, args.stage_repeat, source, pins[name], snapshot)
-        packaged_row = validate_packaged(args.packaged, args.packaged_repeat, source, pins[name], stage_row, snapshot)
+        packaged_row = validate_packaged(args.packaged, args.packaged_repeat, source, pins[name], stage_row, snapshot, args.tools_commit, args.schema_commit)
         streams.append({"file": name, "stage": stage_row, "packaged": packaged_row})
     report = {
         "format": "scap-ng-tools-issue27-six-qualification/1",
         "status": "PASS" if all(row["stage"]["validation"] == "PASS" and row["packaged"]["validation"] == "PASS" for row in streams) else "FAIL",
         "schema": snapshot.manifest(),
+        "tools_commit": args.tools_commit,
+        "schema_commit": args.schema_commit,
         "streams": streams,
         "totals": {
             "source_rules": sum(row["stage"].get("source_rules", 0) for row in streams),

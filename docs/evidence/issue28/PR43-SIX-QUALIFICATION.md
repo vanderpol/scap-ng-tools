@@ -6,6 +6,8 @@ PASS means source-preserving conversion and current-schema authoring validation 
 
 ## Pinned contracts
 
+- Tools commit: `1de1798`
+- Schema commit: `f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b`
 - Schema version: `0.4.0`
 - Schema snapshot aggregate SHA-256: `63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5`
 - Schema snapshot root/ref counts: 35/673
@@ -16,12 +18,12 @@ PASS means source-preserving conversion and current-schema authoring validation 
 
 | Benchmark | Rules | Converted | Blocked | Native docs | OCIL/manual source Rules retained | Stage repeat | Packager repeat | Result |
 |---|---:|---:|---:|---:|---:|---|---|---|
-| `U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed` | 45 | 9 | 36 | 40 | 45 | `8d34b31210a8` = `8d34b31210a8` | `cde04f6d9078` = `cde04f6d9078` | **PASS** |
-| `U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed` | 257 | 220 | 37 | 884 | 257 | `b1074504ec4b` = `b1074504ec4b` | `c52c9757573f` = `c52c9757573f` | **PASS** |
-| `U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed` | 291 | 247 | 44 | 992 | 291 | `c65c3a9d1a44` = `c65c3a9d1a44` | `deeb62d057f2` = `deeb62d057f2` | **PASS** |
-| `U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed` | 81 | 37 | 44 | 152 | 81 | `3275d0c23e0b` = `3275d0c23e0b` | `3dc223797fa3` = `3dc223797fa3` | **PASS** |
-| `U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed` | 448 | 290 | 158 | 1164 | 448 | `131ed3b826e4` = `131ed3b826e4` | `6b9f06a9f4af` = `6b9f06a9f4af` | **PASS** |
-| `U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed` | 445 | 302 | 143 | 1212 | 445 | `47a1c293c11e` = `47a1c293c11e` | `d5879c777c0a` = `d5879c777c0a` | **PASS** |
+| `U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed` | 45 | 9 | 36 | 40 | 45 | `8d34b31210a8` = `8d34b31210a8` | `14404d872350` = `14404d872350` | **PASS** |
+| `U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed` | 257 | 220 | 37 | 884 | 257 | `b1074504ec4b` = `b1074504ec4b` | `0c1d2c8b1913` = `0c1d2c8b1913` | **PASS** |
+| `U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed` | 291 | 247 | 44 | 992 | 291 | `c65c3a9d1a44` = `c65c3a9d1a44` | `9bb6d77d0584` = `9bb6d77d0584` | **PASS** |
+| `U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed` | 81 | 37 | 44 | 152 | 81 | `3275d0c23e0b` = `3275d0c23e0b` | `da0dd9056ea7` = `da0dd9056ea7` | **PASS** |
+| `U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed` | 448 | 290 | 158 | 1164 | 448 | `131ed3b826e4` = `131ed3b826e4` | `5bbba1eb198b` = `5bbba1eb198b` | **PASS** |
+| `U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed` | 445 | 302 | 143 | 1212 | 445 | `47a1c293c11e` = `47a1c293c11e` | `018f15a3a5c8` = `018f15a3a5c8` | **PASS** |
 
 ## Pinned source hashes
 
@@ -36,7 +38,7 @@ PASS means source-preserving conversion and current-schema authoring validation 
 
 ## Source and provenance checks
 
-Each stream passed the following gates: pinned source ZIP SHA-256; original XCCDF Rule ID and count preservation; exact retention of the source archive and XML datastream members; OCIL Rule ID retention; current frozen-schema validation of generated JSON/YAML; and deterministic repeated generation. The packager remains a source-preserving automated-subset draft and does not fabricate native manual Assessments.
+Each stream passed: pinned source ZIP SHA-256; original XCCDF Rule ID and count preservation; exact retention of the source archive and XML datastream members; OCIL Rule ID retention; current frozen-schema validation of generated JSON/YAML; packager metadata pin checks; and deterministic repeated generation. The packager remains a source-preserving automated-subset draft and does not fabricate native manual Assessments.
 
 ## Unsupported function hold
 
@@ -61,11 +63,11 @@ Each stream passed the following gates: pinned source ZIP SHA-256; original XCCD
 ## Test receipts
 
 - Fixture restore: `OVAL-Community/SCAP-Self-Assertion@e3538595c5083b9c34d937a81d319234df9bbfaa`.
-- Fixture-backed converter suite: **60 passed, 0 failed, 0 skipped** (receipt: `/tmp/pr43-full-final-qualified2.txt`).
+- Fixture-backed converter suite: **60 passed, 0 failed, 0 skipped** (receipt: `/tmp/pr43-full-final-qualified2.txt`; rerun: 60 passed, 39 subtests passed).
 - Six Stage A conversions: **6/6 return code 0**, each converter receipt reports `schema_validated: true`.
 - Stage A repeated conversion: **6/6 byte/tree-identical**.
 - Recovered source-preserving packager and repeat: **6/6 pass; byte/tree-identical**.
 
 ## Qualification boundary
 
-This is not independent OVAL equivalence proof, compiler/scanner qualification, or a claim that blocked Rules are converted. Stop condition for this task is satisfied: the six streams passed all gates, so the all-65 run was not started. No goldens, merges, releases, or VS Code files were changed.
+This is not independent OVAL equivalence proof, compiler/scanner qualification, or a claim that blocked Rules are converted. The six-stream gate passed. The all-65 run is being evaluated separately; no goldens, merges, releases, or VS Code files were changed.
