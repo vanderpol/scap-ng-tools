@@ -1,0 +1,291 @@
+{
+  "format": "scap-ng-tools-issue27-six-qualification/1",
+  "status": "PASS",
+  "schema": {
+    "schema_version": "0.4.0",
+    "physical_layout": "schema/",
+    "logical_id_prefix": "https://scap-ng.dev/schema/v0.4.0/",
+    "schema_json_count": 145,
+    "root_schema_count": 35,
+    "root_ref_count": 673,
+    "supported_capability_count": 100,
+    "aggregate_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+    "external_snapshot_required": true
+  },
+  "streams": [
+    {
+      "file": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip",
+      "stage": {
+        "validation": "PASS",
+        "errors": [],
+        "source_sha256": "8894123788ba415373625eaecdbbd834f190668697803c3319393c11889f1b80",
+        "source_bytes": 66035,
+        "source_git_blob_sha": "01b08ac54811cc190c4b677f9cf3d26613e3a4b7",
+        "source_rules": 45,
+        "converted_rules": 9,
+        "blocked_rules": 36,
+        "proof_levels": {
+          "authoring_validated": 9,
+          "none": 36
+        },
+        "blocker_categories": {
+          "unsupported-construct": 13,
+          "unsupported-selection": 23
+        },
+        "native_documents": 40,
+        "repeat_native_documents": 40,
+        "stage_tree_sha256": "8d34b31210a8fc73a8f7f98604ad43600bfba5cc4c7722926ffee325aa54b003",
+        "repeat_stage_tree_sha256": "8d34b31210a8fc73a8f7f98604ad43600bfba5cc4c7722926ffee325aa54b003",
+        "deterministic_stage_repeat": true,
+        "unsupported_function_blockers": {}
+      },
+      "packaged": {
+        "validation": "PASS",
+        "errors": [],
+        "source_xml_member": "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.xml",
+        "source_xml_sha256": {
+          "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.xml": "14f9e57f012d2d5538ada2eddc83704aac7571bc150a871ae6c69d8bcfb9943f"
+        },
+        "source_rule_xml_count": 45,
+        "manual_ocil_rules_retained": 45,
+        "native_documents": 40,
+        "packaged_tree_sha256": "cde04f6d90781d4add20cbac1bbe97485af3a99e5e95136731f16461b3a79ec3",
+        "repeat_packaged_tree_sha256": "cde04f6d90781d4add20cbac1bbe97485af3a99e5e95136731f16461b3a79ec3",
+        "deterministic_packaged_repeat": true,
+        "source_preservation": "PASS"
+      }
+    },
+    {
+      "file": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "stage": {
+        "validation": "PASS",
+        "errors": [],
+        "source_sha256": "e4b8d55b58aa80124bd0974977af4c7f7bde35c748e2940e02857419292d8c3d",
+        "source_bytes": 209207,
+        "source_git_blob_sha": "712cc3176b1e44616aaf2f3ba5e62b299ad0643c",
+        "source_rules": 257,
+        "converted_rules": 220,
+        "blocked_rules": 37,
+        "proof_levels": {
+          "authoring_validated": 220,
+          "none": 37
+        },
+        "blocker_categories": {
+          "unsupported-capability": 1,
+          "unsupported-construct": 25,
+          "unsupported-selection": 11
+        },
+        "native_documents": 884,
+        "repeat_native_documents": 884,
+        "stage_tree_sha256": "b1074504ec4b8a72c2a3dce16ed1e2fa9557e7e4aab666919247bb7f46a95582",
+        "repeat_stage_tree_sha256": "b1074504ec4b8a72c2a3dce16ed1e2fa9557e7e4aab666919247bb7f46a95582",
+        "deterministic_stage_repeat": true,
+        "unsupported_function_blockers": {}
+      },
+      "packaged": {
+        "validation": "PASS",
+        "errors": [],
+        "source_xml_member": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.xml",
+        "source_xml_sha256": {
+          "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.xml": "cfc5061d275235f6c5e0719cc384fb887f8624ae6e0dbac03f4a9cb3f43c06a5"
+        },
+        "source_rule_xml_count": 257,
+        "manual_ocil_rules_retained": 257,
+        "native_documents": 884,
+        "packaged_tree_sha256": "c52c9757573f423eee6443795efce2627da862342ac102e6aae859c6052e0d40",
+        "repeat_packaged_tree_sha256": "c52c9757573f423eee6443795efce2627da862342ac102e6aae859c6052e0d40",
+        "deterministic_packaged_repeat": true,
+        "source_preservation": "PASS"
+      }
+    },
+    {
+      "file": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "stage": {
+        "validation": "PASS",
+        "errors": [],
+        "source_sha256": "2f46264b5fa21c8a033236121794ebe372314bf7458dac0aca4f81179fe7ece0",
+        "source_bytes": 254194,
+        "source_git_blob_sha": "f6ba90413cd8a6ab3f9f5acc82603d9b52aca9cf",
+        "source_rules": 291,
+        "converted_rules": 247,
+        "blocked_rules": 44,
+        "proof_levels": {
+          "authoring_validated": 247,
+          "none": 44
+        },
+        "blocker_categories": {
+          "unsupported-capability": 2,
+          "unsupported-construct": 13,
+          "unsupported-selection": 30
+        },
+        "native_documents": 992,
+        "repeat_native_documents": 992,
+        "stage_tree_sha256": "c65c3a9d1a4415efbed1198f7c5dbbd0a9981c5c56ec92446184b7e6cb72061e",
+        "repeat_stage_tree_sha256": "c65c3a9d1a4415efbed1198f7c5dbbd0a9981c5c56ec92446184b7e6cb72061e",
+        "deterministic_stage_repeat": true,
+        "unsupported_function_blockers": {
+          "substring": 11
+        }
+      },
+      "packaged": {
+        "validation": "PASS",
+        "errors": [],
+        "source_xml_member": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.xml",
+        "source_xml_sha256": {
+          "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.xml": "52b7918ea577095cb1c130589e5061c52ef4b12370ebb4ce84d2dfba68757440"
+        },
+        "source_rule_xml_count": 291,
+        "manual_ocil_rules_retained": 291,
+        "native_documents": 992,
+        "packaged_tree_sha256": "deeb62d057f2635370d7c15b5877829f85fcee25f4b43289dc197ae9ee008cf4",
+        "repeat_packaged_tree_sha256": "deeb62d057f2635370d7c15b5877829f85fcee25f4b43289dc197ae9ee008cf4",
+        "deterministic_packaged_repeat": true,
+        "source_preservation": "PASS"
+      }
+    },
+    {
+      "file": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "stage": {
+        "validation": "PASS",
+        "errors": [],
+        "source_sha256": "f674b67e74acbd3037093d50e33dc20765bd9d45a6c9ed2be5d463d009a6c6b8",
+        "source_bytes": 103675,
+        "source_git_blob_sha": "eca2b802a66f5ba103bd180db5f7ec8279e00709",
+        "source_rules": 81,
+        "converted_rules": 37,
+        "blocked_rules": 44,
+        "proof_levels": {
+          "authoring_validated": 37,
+          "none": 44
+        },
+        "blocker_categories": {
+          "unsupported-construct": 4,
+          "unsupported-selection": 40
+        },
+        "native_documents": 152,
+        "repeat_native_documents": 152,
+        "stage_tree_sha256": "3275d0c23e0b04be8b1c499c3df9f94c0bc1c5bf4efba12a4ab7ffed84145cda",
+        "repeat_stage_tree_sha256": "3275d0c23e0b04be8b1c499c3df9f94c0bc1c5bf4efba12a4ab7ffed84145cda",
+        "deterministic_stage_repeat": true,
+        "unsupported_function_blockers": {
+          "count": 13
+        }
+      },
+      "packaged": {
+        "validation": "PASS",
+        "errors": [],
+        "source_xml_member": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.xml",
+        "source_xml_sha256": {
+          "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.xml": "17ea87e0c528072eef99c7a28e306d9351b5f4b00c7440b13c4bdf00c354d0ba"
+        },
+        "source_rule_xml_count": 81,
+        "manual_ocil_rules_retained": 81,
+        "native_documents": 152,
+        "packaged_tree_sha256": "3dc223797fa3bb6f04fb07972afe4c0fedc92f4a6ef2adca3c24ce24cb82f726",
+        "repeat_packaged_tree_sha256": "3dc223797fa3bb6f04fb07972afe4c0fedc92f4a6ef2adca3c24ce24cb82f726",
+        "deterministic_packaged_repeat": true,
+        "source_preservation": "PASS"
+      }
+    },
+    {
+      "file": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "stage": {
+        "validation": "PASS",
+        "errors": [],
+        "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+        "source_bytes": 372511,
+        "source_git_blob_sha": "4250e3eae3b1a15ad5db270b1f28db71007c64ff",
+        "source_rules": 448,
+        "converted_rules": 290,
+        "blocked_rules": 158,
+        "proof_levels": {
+          "authoring_validated": 290,
+          "none": 158
+        },
+        "blocker_categories": {
+          "unsupported-construct": 118,
+          "unsupported-selection": 40
+        },
+        "native_documents": 1164,
+        "repeat_native_documents": 1164,
+        "stage_tree_sha256": "131ed3b826e4cb4bd4ee60e731f356588f96ad30a492c4135e41ba63328ae330",
+        "repeat_stage_tree_sha256": "131ed3b826e4cb4bd4ee60e731f356588f96ad30a492c4135e41ba63328ae330",
+        "deterministic_stage_repeat": true,
+        "unsupported_function_blockers": {
+          "arithmetic": 3,
+          "split": 35,
+          "count": 29
+        }
+      },
+      "packaged": {
+        "validation": "PASS",
+        "errors": [],
+        "source_xml_member": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.xml",
+        "source_xml_sha256": {
+          "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.xml": "a1ebd18e378a28cba2f2479ceeb9813c4672e5083593f2d66e21379077e505e8"
+        },
+        "source_rule_xml_count": 448,
+        "manual_ocil_rules_retained": 448,
+        "native_documents": 1164,
+        "packaged_tree_sha256": "6b9f06a9f4af604fb27b1ee22e5771c771a3908f2fef19d90a7693c7fc66fbac",
+        "repeat_packaged_tree_sha256": "6b9f06a9f4af604fb27b1ee22e5771c771a3908f2fef19d90a7693c7fc66fbac",
+        "deterministic_packaged_repeat": true,
+        "source_preservation": "PASS"
+      }
+    },
+    {
+      "file": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "stage": {
+        "validation": "PASS",
+        "errors": [],
+        "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+        "source_bytes": 393068,
+        "source_git_blob_sha": "349b8e162696717079bd05139afe30d789c80f6a",
+        "source_rules": 445,
+        "converted_rules": 302,
+        "blocked_rules": 143,
+        "proof_levels": {
+          "authoring_validated": 302,
+          "none": 143
+        },
+        "blocker_categories": {
+          "unsupported-construct": 116,
+          "unsupported-selection": 27
+        },
+        "native_documents": 1212,
+        "repeat_native_documents": 1212,
+        "stage_tree_sha256": "47a1c293c11e52ee9c8d8ee9383491be5fb8ada42d5fa3b6ca9e7e00c2507ad1",
+        "repeat_stage_tree_sha256": "47a1c293c11e52ee9c8d8ee9383491be5fb8ada42d5fa3b6ca9e7e00c2507ad1",
+        "deterministic_stage_repeat": true,
+        "unsupported_function_blockers": {
+          "split": 35,
+          "count": 29,
+          "arithmetic": 3
+        }
+      },
+      "packaged": {
+        "validation": "PASS",
+        "errors": [],
+        "source_xml_member": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.xml",
+        "source_xml_sha256": {
+          "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.xml": "bc0f1c04e3371f52121a71ba3c8fc47095bdfe5356c90992ca232341d25538e4"
+        },
+        "source_rule_xml_count": 445,
+        "manual_ocil_rules_retained": 445,
+        "native_documents": 1212,
+        "packaged_tree_sha256": "d5879c777c0afa8bad6fddfac7300582f646a2e6dcedf62704b74ad1886bfe18",
+        "repeat_packaged_tree_sha256": "d5879c777c0afa8bad6fddfac7300582f646a2e6dcedf62704b74ad1886bfe18",
+        "deterministic_packaged_repeat": true,
+        "source_preservation": "PASS"
+      }
+    }
+  ],
+  "totals": {
+    "source_rules": 1567,
+    "converted_rules": 1105,
+    "blocked_rules": 462,
+    "native_documents": 4444,
+    "manual_ocil_rules_retained": 1567
+  },
+  "qualification_boundary": "PASS means source-preserving conversion and current-schema authoring validation only; no independent OVAL semantic proof or scanner qualification is claimed."
+}
