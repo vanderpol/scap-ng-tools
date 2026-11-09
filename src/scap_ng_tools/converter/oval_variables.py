@@ -159,5 +159,3 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
         ensure(blob.returncode == 0 and blob.stdout == raw, 'source commit/path does not match original XML bytes')
         trace['source_commit_blob_verified'] = True
     return documents, trace
-
-
