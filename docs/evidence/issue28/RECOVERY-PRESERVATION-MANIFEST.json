@@ -632,6 +632,63 @@
     "The local manual-recovery test contains a VM-specific schema path and is intentionally preserved as-is for review.",
     "The VM-local full65 orchestrator remains separate and is not included in this small recovery PR."
   ],
+  "pipeline_source_copies": [
+    {
+      "bytes": 484,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/README.md",
+      "sha256": "af45853e529c32d5cdcbbed1ebf2d8fc5e08411efc276c7efd67c32747971c23"
+    },
+    {
+      "bytes": 6411,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/build_current_draft.py",
+      "sha256": "c229bb9300636dcb8cd5dee6fe75b4856983b5b708103bf04ad02481a786a81e"
+    },
+    {
+      "bytes": 1218,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/compare_stage_a.py",
+      "sha256": "5fcaa0c06717ebc7cd83aa72c2c94faaca092d17c97c67eac0e001e40406678a"
+    },
+    {
+      "bytes": 1775,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/compare_stage_a_semantic.py",
+      "sha256": "683dd0dd022266c8b62ae4898df67d4c2b324020c11394ee27aa23981b68acfe"
+    },
+    {
+      "bytes": 2600,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/issue27-report.md",
+      "sha256": "1826340257053388de5f2a8c5b0f29364c972c09a8f68118863d5c56660a9ebd"
+    },
+    {
+      "bytes": 6174,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/make_reports.py",
+      "sha256": "35775353f83314373c08fb401c8e5c066feea62bf33ebed03524f45392146db6"
+    },
+    {
+      "bytes": 2688,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/run_stage_a.py",
+      "sha256": "dbe4621b7323ef280cc2cbf9fb8d0d3e1ec91fcf52e51e10510f5e8208c0033b"
+    },
+    {
+      "bytes": 2709,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/run_stage_a_repeat.py",
+      "sha256": "9ccdbace9fea90c26dfa55c9aba06395a686dbf33c520031f55f1172c922aff4"
+    },
+    {
+      "bytes": 25161,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/source-pins.json",
+      "sha256": "0b1846caf05f201c64dded534dfca530831eb5a0c0348acef0ee1ff77685931f"
+    },
+    {
+      "bytes": 75632,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/source-verification.json",
+      "sha256": "5d1fd9c2c131e1b5815d771721eee09f3af45e8f2a66f91ea2ed5cd282736948"
+    },
+    {
+      "bytes": 7497,
+      "path": "docs/evidence/issue28/nov5-full65-pipeline/validate_stage_a.py",
+      "sha256": "44709df6060283b698074146a544505d8bf8ebbd2a68f789703b397a6cf4ce91"
+    }
+  ],
   "qualification": "UNQUALIFIED_RECOVERY_ONLY",
   "read_only_source_worktree": "/home/u1239716047117002/Documents/scap-ng-vscode/.external/scap-ng-tools/.worktrees/issue28-variable-recovery",
   "recovery_base": "545580211384c55e80ed2b4b6589e2cfc23dc184",
