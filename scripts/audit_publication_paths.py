@@ -20,9 +20,41 @@ TRANSPORT = re.compile(r'\bgh\s+release\s+(?:create|upload)\b|\bgit\s+push\b|\bg
 BUILDER = re.compile(r'ZipFile|make_archive|tarfile|export-draft|build_v04_full_draft|package_v04_human_library')
 
 
+def python_transport(text):
+    """Inspect actual subprocess argv/HTTP calls, including quoted Python PUTs."""
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return False
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.List, ast.Tuple)):
+            tokens = [value.value if isinstance(value, ast.Constant) and isinstance(value.value, str)
+                      else '<dynamic>' for value in node.elts]
+            if TRANSPORT.search(' '.join(tokens)):
+                return True
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
+            if isinstance(node.func.value, ast.Name) and node.func.value.id in ('requests', 'httpx') and node.func.attr in ('put', 'post', 'patch'):
+                return True
+    return False
+
+
+def run_transport(text):
+    if TRANSPORT.search(text) or python_transport(text):
+        return True
+    for match in re.finditer(r"\bpython(?:3)?[^\n]*<<\s*['\"]?(\w+)['\"]?\s*\n(.*?)^\1\s*$", text, re.M | re.S):
+        if python_transport(match.group(2)):
+            return True
+    return False
+
+
 def inventory(root, repository, trusted_commit=None):
     root = Path(root)
     commit = subprocess.check_output(['git', '-C', str(root), 'rev-parse', 'HEAD'], text=True).strip()
+    writers = set()
+    for folder in ('tools', 'scripts', 'src'):
+        for file in (root / folder).rglob('*.py'):
+            if python_transport(file.read_text()):
+                writers.add(file.relative_to(root).as_posix())
     workflows, scripts = [], []
     for file in sorted((root / '.github/workflows').glob('*')):
         if file.suffix not in ('.yml', '.yaml'):
@@ -37,7 +69,8 @@ def inventory(root, repository, trusted_commit=None):
                 target, run = step.get('uses', ''), step.get('run', '')
                 upload = any(name in target for name in ('upload-artifact', 'action-gh-release', 'release-action', 'deploy-pages'))
                 shared = 'vanderpol/scap-ng-tools/.github/actions/' in target
-                direct = bool(TRANSPORT.search(run))
+                references = sorted(set(re.findall(r'(?:tools|scripts)/[\w/.-]+\.py', run)))
+                direct = run_transport(run) or any(reference in writers for reference in references)
                 if not (upload or shared or direct):
                     continue
                 status = 'BLOCKER_UNGUARDED'
@@ -56,7 +89,7 @@ def inventory(root, repository, trusted_commit=None):
                                   'step': number, 'step_name': step.get('name'), 'step_if': step.get('if'),
                                   'uses': target, 'kind': 'upload' if upload or shared else 'direct_write',
                                   'status': status,
-                                  'referenced_python': sorted(set(re.findall(r'(?:tools|scripts)/[\w/.-]+\.py', run)))})
+                                  'referenced_python': references})
     for folder in ('tools', 'scripts', 'src'):
         for file in sorted((root / folder).rglob('*.py')):
             raw = file.read_bytes()

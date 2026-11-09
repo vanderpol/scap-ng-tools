@@ -3,7 +3,7 @@
   "repositories": [
     {
       "repository": "vanderpol/scap-ng-tools",
-      "main_commit": "f97ff187460f52da78bd16f5009f7d182664812b",
+      "main_commit": "c5f5b215000a1f9149ed56541320da5d7918c94a",
       "candidate_publication_steps": 0,
       "unguarded_at_baseline": 0,
       "workflow_paths": [],
@@ -7371,5 +7371,6 @@
     "result": "HTTP 403 Resource not accessible by integration for every repository",
     "status": "BLOCKER_CANNOT_VERIFY_REF_AND_TOKEN_PUBLICATION_POLICY"
   },
-  "completion": "NOT_COMPLETE: integration and inaccessible server/old-ref controls remain open."
+  "completion": "NOT_COMPLETE: integration and inaccessible server/old-ref controls remain open.",
+  "audit_correction": "Initial Tools scan used the f97ff18 functional review worktree. Actual Tools main is c5f5b2 with zero publication sinks. Its review stack introduces the gated local dry-run. The expanded Python/heredoc audit is recorded separately; the initial shell-only counts are not complete coverage."
 }

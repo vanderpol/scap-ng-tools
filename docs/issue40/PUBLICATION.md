@@ -1,6 +1,6 @@
 # Current-native publication gate — Tools #40
 
-**Review implementation; not deployed completion.** The [exact-main baseline](publication-baseline.json) identifies 217 unguarded Research upload/write steps and one Evidence release step. Canonical has no native-content publisher. Integrations are separate review changes. Four permission-policy queries returned HTTP 403; ten active Research Actions records have no file on current main. These remain explicit blockers until enforcement is verified.
+**Review implementation; not deployed completion.** The [exact-main baseline](publication-baseline.json) initially identified 217 unguarded Research upload/write steps and one Evidence release step. The [expanded AST/heredoc audit](publication-expanded-baseline.json) identifies **227 Research steps: 186 uploads and 41 direct writers**, including ten missed by the initial shell-only pass. Canonical has no native-content publisher. Integrations are separate review changes. Four permission-policy queries returned HTTP 403; ten active Research Actions records have no file on current main. These remain explicit blockers until enforcement is verified.
 
 ## Contract and trust boundary
 

@@ -176,8 +176,12 @@ class CurrentPublication(unittest.TestCase):
                             output=Path(directory) / ('blocked-' + state))
                 if state == 'dirty':
                     shadow.unlink()
-                    subprocess.run(['git', '-C', str(clone), 'checkout', '--quiet', '--detach',
-                                    'c5f5b215000a1f9149ed56541320da5d7918c94a'], check=True, capture_output=True)
+                    # A shallow CI checkout need not contain old history. An
+                    # otherwise identical, unapproved commit must also reject.
+                    subprocess.run(['git', '-C', str(clone), '-c', 'user.name=Publication fixture',
+                                    '-c', 'user.email=publication-fixture@example.invalid',
+                                    'commit', '--quiet', '--allow-empty', '-m', 'Unapproved test-only producer revision'],
+                                   check=True, capture_output=True)
 
     def test_legacy_direct_publication_is_nonzero(self):
         proc = subprocess.run([sys.executable, '-m', 'scap_ng_tools.publication', 'deny-legacy-publication'],
