@@ -38,6 +38,14 @@ class RecoveryMetadataContract(unittest.TestCase):
         self.assertEqual(coverage['recovery'], {
             'native_recovery': True, 'manual_recovery': False,
             'excluded_sqlext': False, 'sqlext_nodes': []})
+        # The visitor emits the PR #33 candidate envelope, but the frozen 0.4
+        # schema intentionally rejects it until the owner approves the schema
+        # contract. This is an explicit hold, not a silently claimed recovery.
+        row = next(item for item in coverage['rules']
+                   if item['source_rule'] == 'xccdf_mil.disa.stig_rule_SV-278143r1182092_rule')
+        self.assertEqual(row['status'], 'blocked')
+        self.assertEqual(row['primary_blocker']['category'], 'schema-semantic')
+        self.assertIn('substring', row['primary_blocker']['message'])
 
     def test_manual_recovery_metadata_is_explicit_for_focused_conversion(self):
         # This Rule has both OVAL and OCIL checks in the pinned IE11 source.
