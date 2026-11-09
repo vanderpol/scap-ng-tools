@@ -8,6 +8,7 @@ Read-only baseline: main `c5f5b215000a1f9149ed56541320da5d7918c94a`. [Exact file
 | `src/scap_ng_tools/converter/direct04.py` | CLI and focused/benchmark APIs; imports the package-owned visitor, `FrozenSchemaSnapshot`, semantic admission and YAML renderer | Add final returned-set and rendered-artifact validation here |
 | `src/scap_ng_tools/converter/__init__.py` | Lazy API aliases to the same facade | Keep; not a duplicate implementation |
 | `src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py` | Production OVAL/SCAP visitor; owns source lowering, names and references | Reuse; no historical script is authoritative |
+| Same file, `main()` / `if __name__ == '__main__'` | Preserved historical CLI body: implicit `ROOT/schema/v0.4.0`, old compiler/proof imports; no explicit flat schema argument | Not an installed/supported production entry point; do not invoke it directly. Preserve the source, but guard workflows against this bypass of the facade |
 | `_v04_runtime/v04_direct_authoring_contract.py` | `test_requirement` creates current `item_requirement` | Already correct in production; retain goldens |
 | `src/scap_ng_tools/contracts/schema_snapshot.py` | Explicit offline flat schema; exact bytes/digest/IDs/count checks | Authoritative schema admission; no fallback |
 | `src/scap_ng_tools/converter/_v04_semantic/validation.py` | Structural validation plus Object/comparison/Variable/Input semantic gates; generated pack under `_v04_semantic/` | Retain all semantic gates; structural validation cannot replace them |
@@ -18,6 +19,8 @@ Read-only baseline: main `c5f5b215000a1f9149ed56541320da5d7918c94a`. [Exact file
 | `.github/workflows/authoring-foundation.yml` | Standalone package tests, no source/schema fixtures | Keep its limited proof scope explicit |
 
 There is one production CLI and two spellings of that same function (console script / `python -m`). No historical Variable converter is installed. No active workflow invokes research/v003 conversion. The nested `schema/v0.4.0` strings in audited generator helpers are build-time compatibility paths; logical `$id` URIs containing `v0.4.0` are required. Neither is an obsolete production schema selection.
+
+The copied visitor also retains its historical `main()` body; it is not a second qualified CLI. Its `load_mappings()` and fallback benchmark validator expect the absent nested legacy schema tree; `--verify` / `--compile` import helpers not shipped as a qualified path. The facade instead supplies the pinned mappings and validation callbacks, blocks these flags and validates final artifacts. Do not add the internal runtime directory to `PYTHONPATH` to resurrect the historical CLI. Workflow guards reject both `_v04_runtime` invocation and the raw `v04_direct_converter` module, including workflows named `.yaml`. Historical source/provenance and optional research comparisons remain intact.
 
 The workflow's earlier schema commit is **not** an outdated grammar: both inspected snapshots pass frozen digest `63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5` (145 JSON files, 35 root schemas, 673 references). README's digest `d2d8...` is stale documentation. Older `docs/CONVERTER-CUTOVER.md` figures describe historical checkpoints and need a clear current-reference link, not deletion or proof relabeling.
 

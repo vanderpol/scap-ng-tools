@@ -38,5 +38,21 @@
   "review_split": [
     "Consolidation/validation PR: document authority, guard production paths, enforce final API and artifact validation; no new conversions.",
     "Functional PR stacked separately: standalone OVAL source adapter through the same visitor and same CLI."
-  ]
+  ],
+  "preserved_internal_cli": {
+    "path": "src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py",
+    "symbols": [
+      "main",
+      "load_mappings",
+      "convert_benchmark (fallback validator)"
+    ],
+    "production_admission": false,
+    "dependencies": [
+      "ROOT/schema/v0.4.0/capability-mappings/supported/*.json",
+      "v04_native_bundle_compiler",
+      "verify_v04_package_consumer",
+      "verify_v04_direct_scope"
+    ],
+    "disposition": "Preserve historical body and source hashes; no installed entry point or working packaged legacy schema/proof environment. Production facade supplies explicit pinned mappings/validators instead. Guard .yml and .yaml workflows against invoking the raw module/internal runtime."
+  }
 }
