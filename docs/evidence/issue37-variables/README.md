@@ -6,6 +6,8 @@ The sole production CLI generated each `assessment.json` / `assessment.yaml` pai
 
 [validation.json](validation.json) records the full **54-test, zero-skip** Tools run, exact environment/command and source hashes. The CI fixture uses `f7e5e84`; its frozen schema bytes equal approved `6012ae2`. Existing 535-Rule / 766-document native and trace goldens remain passing.
 
+[review-validation.json](review-validation.json) records the subsequent **55-test, zero-skip** review run. Its added check verifies every committed handoff artifact's hash/size, schema and YAML equality, then joins its native document and source bindings to a fresh production conversion. The immutable handoff remains artifact commit `d326e9d025c81f0292eadfb3dbf86e768960219d`.
+
 Native execution is a separate RI handoff. This pack does not establish Variable materialization, scanner equivalence, SCC qualification or execution of any original Test. See [source fidelity and holds](../../ISSUE37-STANDALONE.md). The source-Test expectations in RI PR #37 are external comparison evidence, never converter/evaluator input.
 
 Original XML and frozen schemas are unchanged. [NOTICES.txt](NOTICES.txt) preserves public source terms and derivative attribution. Prior historical artifacts/proofs are retained and are not requalified by these files.

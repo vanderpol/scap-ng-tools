@@ -97,6 +97,31 @@ class StandaloneVariables(unittest.TestCase):
         self.assertEqual(len({left for left, _ in pairs}), 2)
         self.assertEqual(len({right for _, right in pairs}), 2)
 
+    def test_committed_handoff_artifacts_match_sources_and_current_native_output(self):
+        repository = Path(__file__).resolve().parents[1]
+        manifest = json.loads((repository / 'docs/evidence/issue37-variables/manifest.json').read_text())
+        self.assertEqual(manifest['source_commit'], PIN)
+        self.assertEqual(manifest['original_tests_schema_validated'], 18)
+        self.assertEqual(len(manifest['cases']), len(CASES))
+        for case, entry in zip(CASES, manifest['cases']):
+            self.assertEqual(entry['source_file'], PREFIX + case[0])
+            self.assertEqual(entry['source_sha256'], case[4])
+            payloads = {}
+            for path, integrity in entry['artifacts'].items():
+                raw = (repository / path).read_bytes()
+                self.assertEqual(sha256(raw).hexdigest(), integrity['sha256'])
+                self.assertEqual(len(raw), integrity['bytes'])
+                payloads[Path(path).name] = raw
+            doc = json.loads(payloads['assessment.json'])
+            self.assertEqual(yaml.safe_load(payloads['assessment.yaml']), doc)
+            validate_native_documents(self.snapshot, {'assessment.json': doc})
+            current, trace = self.convert(case)
+            self.assertEqual(current['assessment.json'], doc)
+            recorded = json.loads(payloads['source-trace.json'])
+            self.assertEqual(recorded['source_nodes'], trace['source_nodes'])
+            self.assertEqual(recorded['test_bindings'], trace['test_bindings'])
+            self.assertEqual(recorded['native_identities'], trace['native_identities'])
+
     def test_source_mutations_do_not_return_partial_conversions(self):
         original = ET.parse(self.source / PREFIX / CASES[0][0]).getroot()
         for change in ('wrong_kind', 'identity', 'cast', 'function', 'alias_cycle', 'fake_definition'):
