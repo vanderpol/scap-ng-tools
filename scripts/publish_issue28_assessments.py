@@ -129,7 +129,9 @@ def build(args):
         emitted={}
         for path in sorted((staging/'documents').rglob('*.json')):
             emitted[str(path.relative_to(staging))]=json.loads(path.read_text(encoding='utf-8'))
-        validate_native_documents(snapshot, emitted)
+        # The converter has already semantically gated each JSON document. Validate
+        # the actual emitted YAML objects once against the exact pinned schema;
+        # JSON and YAML are required to round-trip to the same object below.
         yaml_docs={str(path.relative_to(staging)): yaml.safe_load(path.read_text(encoding='utf-8')) for path in sorted((staging/'documents').rglob('*.yaml'))}
         validate_native_documents(snapshot, yaml_docs)
         metadata={'format':'scap-ng-assessment-corpus/1','version':args.root_name,'candidate':candidate,'tools_commit':tools_commit,'source_repository':'niwc-atlantic/scap-content-library','source_checkout_commit':EXPECTED_SOURCE,'schema_checkout_commit':EXPECTED_SCHEMA,'schema_family_sha256':EXPECTED_SCHEMA_DIGEST,'counts':{'source_rules':8199,'generated_assessment_rules':7882,'automated_converted':6479,'manual_only':1403,'blocked':108,'intentionally_excluded':209,'generated_json_documents':len(emitted),'generated_yaml_documents':len(yaml_docs),'assessment_yaml_files':len(assessment_index)},'generated_documents':sorted(emitted),'assessment_index':sorted(assessment_index,key=lambda x:(x['benchmark'],x['source_rule'],x['assessment'])),'validation':{'json_schema':'Draft 2020-12 exact pinned SCAP-NG 0.4 snapshot','json_documents':len(emitted),'yaml_documents':len(yaml_docs),'errors':[],'independent_proof':False,'compiler_execution':False,'scanner_execution':False,'runtime_equivalence_claim':False},'discrepancies':{'raw_converter_statuses':dict(raw_status),'expected_excluded_raw_status_delta':dict(Counter(raw_status)-Counter({'converted':6479,'manual_only':1403,'blocked':108})),'notes':['The converter evaluates all 8,199 source Rules; 209 SQLEXT Rules are intentionally excluded from publication per the candidate ledger.','Schema validation is authoring validation only and is not a runtime-equivalence claim.']}}
