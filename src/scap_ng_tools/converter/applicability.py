@@ -241,6 +241,10 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             if semantic_key in fact_cache:
                 result = fact_cache[semantic_key]
                 fact_cache[identity] = result
+                assessment_id = result[0]
+                trace = shared_traces.get(assessment_id)
+                if trace is not None:
+                    trace.setdefault('source_fact_refs', []).append(source_fact)
                 return result
             # SQLEXT is deliberately not treated as a supported native fact
             # merely because a same-named capability happens to exist.
@@ -257,6 +261,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                 source_fact=source_fact)
             shared[assessment_id] = document
             trace['semantic_fingerprint'] = definition_hash
+            trace['source_fact_refs'] = [source_fact]
             shared_traces[assessment_id] = trace
             result = (assessment_id, semantic_key)
             fact_cache[semantic_key] = result
