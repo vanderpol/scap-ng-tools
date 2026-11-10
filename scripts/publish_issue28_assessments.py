@@ -143,7 +143,7 @@ def build(args):
         # Regenerate manifest after provenance is present, then hashes once more (manifest is included in sums).
         metadata['provenance_files']=['provenance/ACTIVE-CANDIDATE-LEDGER.json','provenance/ACTIVE-CANDIDATE-RULES.json.gz','provenance/schema-manifest.json']; write_json(staging/'manifest.json',metadata)
         sums=[f'{sha(path)}  {path.relative_to(staging).as_posix()}' for path in sorted(p for p in staging.rglob('*') if p.is_file() and p.name!='SHA256SUMS')]; (staging/'SHA256SUMS').write_text('\n'.join(sums)+'\n',encoding='utf-8')
-        make_archive(Path(temp),args.output,args.root_name)
+        make_archive(staging,args.output,args.root_name)
     print(json.dumps({'archive':str(args.output),'archive_sha256':sha(args.output),'candidate_digest':candidate['candidate_digest'],'counts':dict(included_status),'raw_converter_statuses':dict(raw_status)},sort_keys=True))
 
 def main():
