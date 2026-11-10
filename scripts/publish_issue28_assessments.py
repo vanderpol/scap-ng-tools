@@ -9,6 +9,7 @@ validation only, not compiler/scanner/runtime equivalence.
 from __future__ import annotations
 import argparse, gzip, hashlib, json, os, shutil, subprocess, tempfile
 from collections import Counter
+from copy import deepcopy
 from pathlib import Path, PurePosixPath
 import yaml
 
@@ -59,6 +60,17 @@ def source_paths(source_root: Path, benchmarks):
 
 def assessment_artifacts(row):
     return sorted(p for p in row.get('artifacts', []) if p.startswith('authoring/') and '/assessments/' in p and p.endswith('.json'))
+
+def stable_coverage(value):
+    """Normalize diagnostic ordering before putting coverage in an archive."""
+    result = deepcopy(value)
+    for row in result.get('rules', []):
+        blockers = row.get('blockers')
+        if blockers:
+            blockers = sorted(blockers, key=lambda item: json.dumps(item, sort_keys=True, separators=(',', ':')))
+            row['blockers'] = blockers
+            row['primary_blocker'] = blockers[0]
+    return result
 
 def write_json(path: Path, value: object):
     path.parent.mkdir(parents=True, exist_ok=True); path.write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8')
@@ -144,7 +156,7 @@ def build(args):
                     dest.with_suffix('.yaml').write_text(authoring_yaml(document), encoding='utf-8')
             evidence_root = staging / 'evidence' / f'{number:02d}-{safe_name(benchmark["filename"].removesuffix(".zip"))}'
             write_json(evidence_root / 'applicability-trace.json', coverage.get('applicability', {}))
-            write_json(evidence_root / 'coverage.json', coverage)
+            write_json(evidence_root / 'coverage.json', stable_coverage(coverage))
             trace_files.extend([str((evidence_root / 'applicability-trace.json').relative_to(staging)), str((evidence_root / 'coverage.json').relative_to(staging))])
         if mismatches: raise ValueError('candidate/converter discrepancies: '+json.dumps(mismatches[:8], sort_keys=True))
         if dict(included_status) != {'converted':6479,'manual_only':1403,'blocked':108}: raise ValueError(f'included counts differ: {dict(included_status)}')
