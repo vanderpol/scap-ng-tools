@@ -75,7 +75,7 @@ def validate_native_documents(snapshot, documents):
 
 
 def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
-                    human_compact=True, native_recovery=False):
+                    human_compact=True, native_recovery=False, include_applicability=False):
     """Return a verified-structure native document set and original source trace.
 
     Output provenance may truthfully say schema-validated and source-traced, but
@@ -99,6 +99,14 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
                                           native_recovery=native_recovery)
     finally:
         engine.load_mappings = previous
+    if include_applicability:
+        from .applicability import build_applicability
+        documents, applicability_trace = build_applicability(
+            source_model, documents, {'rules': [
+                {'source_rule': binding['source_rule'], 'status': 'manual_only' if binding.get('source_selection_policy') is None else 'converted',
+                 'artifacts': sorted(documents)} for binding in trace.get('rules', [])
+            ]}, mappings, human_compact=human_compact, native_recovery=native_recovery)
+        trace['applicability'] = applicability_trace
     validate_native_documents(snapshot, documents)
     return documents, trace
 
@@ -126,7 +134,7 @@ def inventory_benchmark(*, schema_root, source, sha256_pin):
 
 
 def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
-                      native_recovery=False):
+                      native_recovery=False, include_applicability=False, applicability_rule_ids=None):
     """Admit automated Rules through a pinned, strictly version-local semantic gate.
 
     Blocked Rules retain original inventory diagnostics. Admitted Rules are
@@ -149,6 +157,13 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
             any(row['proof_level'] not in ('none', 'authoring_validated')
                 for row in coverage['rules'])):
         raise QualifiedConversionError('unexpected promotion beyond unverified authoring')
+    if include_applicability:
+        from .applicability import build_applicability
+        documents, applicability_trace = build_applicability(
+            original, documents, coverage, mappings, human_compact=human_compact,
+            native_recovery=native_recovery, rule_ids=applicability_rule_ids)
+        trace['applicability'] = applicability_trace
+        validate_native_documents(snapshot, documents)
     return documents, trace, coverage
 
 
@@ -175,6 +190,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument('--recover-native', action='store_true', help='opt into owner-review native recovery candidates')
+    parser.add_argument('--include-applicability', action='store_true', help='lower source platform applicability into shared native Assessments')
     for option in ('--verify', '--compile', '--all-rules', '--inventory-only', '--draft'):
         parser.add_argument(option, action='store_true')
     arguments = parser.parse_args()
@@ -210,12 +226,13 @@ def main():
             documents, trace, coverage = convert_benchmark(
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, human_compact=arguments.human_compact,
-                native_recovery=arguments.recover_native)
+                native_recovery=arguments.recover_native, include_applicability=arguments.include_applicability)
         else:
             documents, trace = convert_focused(
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, rule_ids=arguments.rule,
-                human_compact=arguments.human_compact, native_recovery=arguments.recover_native)
+                human_compact=arguments.human_compact, native_recovery=arguments.recover_native,
+                include_applicability=arguments.include_applicability)
         from v04_direct_yaml import authoring_yaml
         targets = {name: safe_relative_filename(arguments.output, name)
                    for name in documents}

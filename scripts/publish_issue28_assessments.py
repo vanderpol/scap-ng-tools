@@ -88,13 +88,23 @@ def build(args):
     rows = {(r['benchmark'], r['source_rule']): r for r in rules_doc['rules']}
     with tempfile.TemporaryDirectory(prefix='scapng-issue28-build-') as temp:
         staging = Path(temp) / args.root_name; staging.mkdir()
-        doc_count = Counter(); assessment_index=[]; validation = []
+        doc_count = Counter(); assessment_index=[]; validation = []; applicability_reports=[]; trace_files=[]
         raw_status = Counter(); included_status = Counter(); mismatches=[]
         for number, benchmark in enumerate(ledger['benchmarks'], 1):
             src = paths[benchmark['filename']]
-            docs, trace, coverage = convert_benchmark(schema_root=args.schema_root, source=src, sha256_pin=benchmark['source_sha256'], native_recovery=True)
-            raw_status.update(coverage['summary']['statuses'])
             expected = {r['source_rule']: r for r in rules_doc['rules'] if r['benchmark'] == benchmark['filename']}
+            applicability_rule_ids = {rid for rid, row in expected.items() if row['status'] in ('converted', 'manual_only')}
+            docs, trace, coverage = convert_benchmark(schema_root=args.schema_root, source=src, sha256_pin=benchmark['source_sha256'], native_recovery=True, include_applicability=True, applicability_rule_ids=applicability_rule_ids)
+            raw_status.update(coverage['summary']['statuses'])
+            app_trace = coverage.get('applicability', {})
+            applicability_reports.append({
+                'benchmark': benchmark['filename'],
+                'shared_assessments': app_trace.get('shared_assessment_count', 0),
+                'conditions': app_trace.get('catalog_condition_count', 0),
+                'rules_attached': app_trace.get('source_rule_count_attached', 0),
+                'rule_platform_refs_attached': app_trace.get('source_platform_ref_count_attached', 0),
+                'unsupported': app_trace.get('unsupported', []),
+            })
             got = {r['source_rule']: r for r in coverage['rules']}
             for rid, row in expected.items():
                 if row['status'] == 'intentionally_excluded': continue
@@ -118,11 +128,24 @@ def build(args):
                     doc_count[dest.suffix] += 1
                 for artifact in expected_paths:
                     assessment_index.append({'benchmark': benchmark['filename'], 'source_rule': rid, 'status': row['status'], 'source_rule_sha256': row['source_rule_sha256'], 'assessment': str((bench_root / artifact).with_suffix('.yaml').relative_to(staging)).replace(os.sep,'/')})
-            # applicability is shared per benchmark only when at least one accepted doc exists.
+            # Publish the benchmark wrapper, applicability catalog, and all
+            # shared applicability Assessments.  They are deliberately kept
+            # outside per-Rule candidate artifact lists, but are part of the
+            # same benchmark package and are referenced by those Rules.
             if any(r['benchmark']==benchmark['filename'] and r['status'] in ('converted','manual_only') for r in rules_doc['rules']):
-                for artifact, document in docs.items():
-                    if artifact.endswith('/applicability.json'):
-                        dest=staging/'documents'/f'{number:02d}-{safe_name(benchmark["filename"].removesuffix(".zip"))}'/PurePosixPath(artifact); write_json(dest,document); dest.with_suffix('.yaml').write_text(authoring_yaml(document),encoding='utf-8'); doc_count[dest.suffix]+=1
+                bench_root = staging / 'documents' / f'{number:02d}-{safe_name(benchmark["filename"].removesuffix(".zip"))}'
+                for artifact, document in sorted(docs.items()):
+                    if not artifact.startswith('authoring/direct-slice/'):
+                        continue
+                    if '/rules/' in artifact:
+                        continue
+                    dest = bench_root / PurePosixPath(artifact)
+                    write_json(dest, document)
+                    dest.with_suffix('.yaml').write_text(authoring_yaml(document), encoding='utf-8')
+                evidence_root = staging / 'evidence' / f'{number:02d}-{safe_name(benchmark["filename"].removesuffix(".zip"))}'
+                write_json(evidence_root / 'applicability-trace.json', coverage.get('applicability', {}))
+                write_json(evidence_root / 'coverage.json', coverage)
+                trace_files.extend([str((evidence_root / 'applicability-trace.json').relative_to(staging)), str((evidence_root / 'coverage.json').relative_to(staging))])
         if mismatches: raise ValueError('candidate/converter discrepancies: '+json.dumps(mismatches[:8], sort_keys=True))
         if dict(included_status) != {'converted':6479,'manual_only':1403,'blocked':108}: raise ValueError(f'included counts differ: {dict(included_status)}')
         # Validate every emitted JSON and its actual YAML serialization against the exact pin.
@@ -134,7 +157,7 @@ def build(args):
         # JSON and YAML are required to round-trip to the same object below.
         yaml_docs={str(path.relative_to(staging)): yaml.safe_load(path.read_text(encoding='utf-8')) for path in sorted((staging/'documents').rglob('*.yaml'))}
         validate_native_documents(snapshot, yaml_docs)
-        metadata={'format':'scap-ng-assessment-corpus/1','version':args.root_name,'candidate':candidate,'tools_commit':tools_commit,'source_repository':'niwc-atlantic/scap-content-library','source_checkout_commit':EXPECTED_SOURCE,'schema_checkout_commit':EXPECTED_SCHEMA,'schema_family_sha256':EXPECTED_SCHEMA_DIGEST,'counts':{'source_rules':8199,'generated_assessment_rules':7882,'automated_converted':6479,'manual_only':1403,'blocked':108,'intentionally_excluded':209,'generated_json_documents':len(emitted),'generated_yaml_documents':len(yaml_docs),'assessment_yaml_files':len(assessment_index)},'generated_documents':sorted(emitted),'assessment_index':sorted(assessment_index,key=lambda x:(x['benchmark'],x['source_rule'],x['assessment'])),'validation':{'json_schema':'Draft 2020-12 exact pinned SCAP-NG 0.4 snapshot','json_documents':len(emitted),'yaml_documents':len(yaml_docs),'errors':[],'independent_proof':False,'compiler_execution':False,'scanner_execution':False,'runtime_equivalence_claim':False},'discrepancies':{'raw_converter_statuses':dict(raw_status),'expected_excluded_raw_status_delta':dict(Counter(raw_status)-Counter({'converted':6479,'manual_only':1403,'blocked':108})),'notes':['The converter evaluates all 8,199 source Rules; 209 SQLEXT Rules are intentionally excluded from publication per the candidate ledger.','Schema validation is authoring validation only and is not a runtime-equivalence claim.']}}
+        metadata={'format':'scap-ng-assessment-corpus/1','version':args.root_name,'candidate':candidate,'tools_commit':tools_commit,'source_repository':'niwc-atlantic/scap-content-library','source_checkout_commit':EXPECTED_SOURCE,'schema_checkout_commit':EXPECTED_SCHEMA,'schema_family_sha256':EXPECTED_SCHEMA_DIGEST,'counts':{'source_rules':8199,'generated_assessment_rules':7882,'automated_converted':6479,'manual_only':1403,'blocked':108,'intentionally_excluded':209,'generated_json_documents':len(emitted),'generated_yaml_documents':len(yaml_docs),'assessment_yaml_files':len(assessment_index)},'generated_documents':sorted(emitted),'trace_files':sorted(trace_files),'assessment_index':sorted(assessment_index,key=lambda x:(x['benchmark'],x['source_rule'],x['assessment'])),'validation':{'json_schema':'Draft 2020-12 exact pinned SCAP-NG 0.4 snapshot','json_documents':len(emitted),'yaml_documents':len(yaml_docs),'errors':[],'independent_proof':False,'compiler_execution':False,'scanner_execution':False,'runtime_equivalence_claim':False},'discrepancies':{'raw_converter_statuses':dict(raw_status),'expected_excluded_raw_status_delta':dict(Counter(raw_status)-Counter({'converted':6479,'manual_only':1403,'blocked':108})),'notes':['The converter evaluates all 8,199 source Rules; 209 SQLEXT Rules are intentionally excluded from publication per the candidate ledger.','Schema validation is authoring validation only and is not a runtime-equivalence claim.']},'applicability':{'reports':applicability_reports,'reference_resolution':'validated per benchmark by converter; independent archive scan required','runtime_equivalence':False}}
         write_json(staging/'manifest.json',metadata)
         sums=[]
         for path in sorted(p for p in staging.rglob('*') if p.is_file() and p.name!='SHA256SUMS'):
