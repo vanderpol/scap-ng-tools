@@ -1470,7 +1470,7 @@
     "evidence": [
       "v04_direct_converter.assemble_subset hard-codes fixture-platform and fixture-applicability with empty conditions.",
       "The same function explicitly lists CPE/platform execution as unsupported.",
-      "SourceModel indexes XCCDF platform refs and CPE platform-specification fact refs, but no lowering path consumes them.",
+      "The source XML/component graph retains the XCCDF platform refs and CPE platform-specification fact refs, but no applicability lowering path consumes them.",
       "All 185 source platform fact refs resolve; 183 closures use existing supported capability mappings and two are SQLEXT."
     ],
     "finding": "intentional_conversion_pipeline_limitation",
