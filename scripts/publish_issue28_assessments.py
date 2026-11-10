@@ -42,16 +42,15 @@ def read_candidate(ledger_path: Path, rules_path: Path):
     return ledger, rules, candidate
 
 def source_paths(source_root: Path, benchmarks):
-    by_name = {}
+    candidates = {}
     for path in source_root.rglob('*.zip'):
-        if path.name in by_name: raise ValueError(f'duplicate source ZIP name: {path.name}')
-        by_name[path.name] = path
+        candidates.setdefault(path.name, []).append(path)
     result = {}
     for row in benchmarks:
-        path = by_name.get(row['filename'])
-        if path is None: raise ValueError('source ZIP missing: '+row['filename'])
-        if sha(path) != row['source_sha256']: raise ValueError('source ZIP SHA-256 mismatch: '+row['filename'])
-        result[row['filename']] = path
+        matches = [path for path in candidates.get(row['filename'], []) if sha(path) == row['source_sha256']]
+        if len(matches) != 1:
+            raise ValueError(f'source ZIP pin did not resolve uniquely: {row["filename"]} matches={len(matches)}')
+        result[row['filename']] = matches[0]
     return result
 
 def assessment_artifacts(row):
