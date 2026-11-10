@@ -48,9 +48,13 @@ def source_paths(source_root: Path, benchmarks):
     result = {}
     for row in benchmarks:
         matches = [path for path in candidates.get(row['filename'], []) if sha(path) == row['source_sha256']]
-        if len(matches) != 1:
-            raise ValueError(f'source ZIP pin did not resolve uniquely: {row["filename"]} matches={len(matches)}')
-        result[row['filename']] = matches[0]
+        if not matches:
+            raise ValueError(f'source ZIP pin did not resolve: {row["filename"]}')
+        # Archives can be duplicated in the public library; equal-byte copies
+        # are equivalent, but a distinct match would make provenance ambiguous.
+        if len({sha(path) for path in matches}) != 1:
+            raise ValueError(f'source ZIP pin has conflicting matches: {row["filename"]}')
+        result[row['filename']] = sorted(matches)[0]
     return result
 
 def assessment_artifacts(row):
