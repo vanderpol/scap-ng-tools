@@ -35,7 +35,8 @@ The released archive is unchanged. Empty catalogs are an explicit limitation, no
 ## Smallest corrective implementation
 
 - Add a source applicability graph extractor for inherited XCCDF platform refs, CPE URIs, and CPE platform-specification logical-test/fact-ref nodes.
-- Reuse the existing OVAL-to-native Assessment conversion for each unique supported platform fact closure, emitting shared applicability Assessments rather than duplicating Tests.
+- Reuse the existing OVAL-to-native Assessment conversion for each unique supported platform fact closure in the 183 supported active fact closures, emitting shared applicability Assessments rather than duplicating Tests.
 - Emit applicability catalog condition keys and references, then attach inherited platform condition references to native Rules/Benchmark using the existing 0.4 shared Assessment mechanism.
+- Keep the 58 CPE URI identities and 92 custom platform identities as provenance until a native executable identity contract exists; never turn them into fabricated checks.
 - Keep SQLEXT fact closures explicitly blocked/excluded; do not infer or fabricate platform semantics.
 - Add source identity, resolution, and no-runtime-equivalence receipts before changing publication output.
