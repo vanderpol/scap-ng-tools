@@ -142,10 +142,10 @@ def build(args):
                     dest = bench_root / PurePosixPath(artifact)
                     write_json(dest, document)
                     dest.with_suffix('.yaml').write_text(authoring_yaml(document), encoding='utf-8')
-                evidence_root = staging / 'evidence' / f'{number:02d}-{safe_name(benchmark["filename"].removesuffix(".zip"))}'
-                write_json(evidence_root / 'applicability-trace.json', coverage.get('applicability', {}))
-                write_json(evidence_root / 'coverage.json', coverage)
-                trace_files.extend([str((evidence_root / 'applicability-trace.json').relative_to(staging)), str((evidence_root / 'coverage.json').relative_to(staging))])
+            evidence_root = staging / 'evidence' / f'{number:02d}-{safe_name(benchmark["filename"].removesuffix(".zip"))}'
+            write_json(evidence_root / 'applicability-trace.json', coverage.get('applicability', {}))
+            write_json(evidence_root / 'coverage.json', coverage)
+            trace_files.extend([str((evidence_root / 'applicability-trace.json').relative_to(staging)), str((evidence_root / 'coverage.json').relative_to(staging))])
         if mismatches: raise ValueError('candidate/converter discrepancies: '+json.dumps(mismatches[:8], sort_keys=True))
         if dict(included_status) != {'converted':6479,'manual_only':1403,'blocked':108}: raise ValueError(f'included counts differ: {dict(included_status)}')
         # Validate every emitted JSON and its actual YAML serialization against the exact pin.
