@@ -1,0 +1,26 @@
+{
+  "format": "scap-ng-tools/issue28-count-conversion-delta/1",
+  "baseline": {
+    "converted": 6479,
+    "manual_only": 1403,
+    "blocked": 108,
+    "excluded": 209
+  },
+  "candidate": {
+    "converted": 6424,
+    "manual_only": 1403,
+    "blocked": 163,
+    "excluded": 209
+  },
+  "delta": {
+    "converted": -55,
+    "manual_only": 0,
+    "blocked": 55,
+    "excluded": 0
+  },
+  "notes": [
+    "Statuses are recomputed against exact pinned schema and converter.",
+    "The candidate does not expand the active 63-benchmark scope or include Server 2012/2012 R2.",
+    "No runtime/scanner equivalence is claimed."
+  ]
+}
