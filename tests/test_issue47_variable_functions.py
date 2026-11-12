@@ -79,6 +79,33 @@ class ActiveCountVectors(unittest.TestCase):
                                      "expression": {"variable": "missing-variable"}}
             }})
 
+    def test_restored_forms_have_semantic_datatypes_and_nested_arrays(self):
+        from scap_ng_tools.converter._v04_semantic.v04_variable_expressions import (
+            assessment_variable_expressions)
+        class NoSchemaErrors:
+            @staticmethod
+            def iter_errors(_):
+                return iter(())
+        declarations = {
+            'split-variable': {'kind': 'local', 'datatype': 'string', 'expression':
+                {'split': {'delimiter': ',', 'value': {'literal': 'a,b'}}}},
+            'substring-variable': {'kind': 'local', 'datatype': 'string', 'expression':
+                {'substring': {'substring_start': 1, 'substring_length': 1, 'value': {'literal': 'ab'}}}},
+            'arithmetic-variable': {'kind': 'local', 'datatype': 'integer', 'expression':
+                {'arithmetic': {'arithmetic_operation': 'add', 'values': [
+                    {'literal': 1}, {'literal': [2, 3]}]}}},
+            'unique-variable': {'kind': 'local', 'datatype': 'string', 'expression':
+                {'unique': [{'literal': ['a', 'a']}, {'literal': ['b']}] }},
+            'merge-variable': {'kind': 'local', 'datatype': 'string', 'expression':
+                {'merge': {'delimiter': ',', 'sort': 'document', 'order': 'ascending',
+                           'values': [{'literal': ['a']}, {'literal': ['b']}]}}},
+        }
+        with patch('scap_ng_tools.converter._v04_semantic.v04_variable_expressions.declaration_validator',
+                   return_value=NoSchemaErrors()):
+            result = assessment_variable_expressions({'variables': declarations})
+        self.assertEqual(result['arithmetic-variable'], 'integer')
+        self.assertEqual(result['merge-variable'], 'string')
+
     def test_count_result_is_integer_typed(self):
         from scap_ng_tools.converter._v04_semantic.v04_variable_expressions import (
             assessment_variable_expressions)
@@ -110,19 +137,34 @@ class ActiveConverterAdmission(unittest.TestCase):
         self.assertEqual(visitor.function(source), {"count": {"count": {
             "literal": {"datatype": "string", "value": "x"}}}})
 
-    def test_inactive_functions_and_variadic_aggregations_fail_closed(self):
+    def test_restored_functions_and_variadic_aggregations_use_native_forms(self):
         import xml.etree.ElementTree as ET
         self._visitor()  # load the runtime module aliases
         from v04_direct_scap_source import OVAL
-        for operation, attrs, children in (
-            ("split", " delimiter=','", "<literal_component datatype='string'>a,b</literal_component>"),
-            ("arithmetic", " arithmetic_operation='add'", "<literal_component datatype='integer'>1</literal_component><literal_component datatype='integer'>2</literal_component>"),
-            ("unique", "", "<literal_component datatype='string'>a</literal_component><literal_component datatype='string'>b</literal_component>"),
-        ):
+        cases = (
+            ('split', " delimiter=','", "<literal_component datatype='string'>a,b</literal_component>",
+             {'split': {'delimiter': ',', 'value': {'literal': {'datatype': 'string', 'value': 'a,b'}}}}),
+            ('arithmetic', " arithmetic_operation='add'", "<literal_component datatype='int'>1</literal_component><literal_component datatype='int'>2</literal_component>",
+             {'arithmetic': {'arithmetic_operation': 'add', 'values': [
+                 {'literal': {'datatype': 'integer', 'value': 1}},
+                 {'literal': {'datatype': 'integer', 'value': 2}}]}}),
+            ('unique', '', "<literal_component datatype='string'>a</literal_component><literal_component datatype='string'>b</literal_component>",
+             {'unique': [{'literal': {'datatype': 'string', 'value': 'a'}},
+                         {'literal': {'datatype': 'string', 'value': 'b'}}]}),
+        )
+        for operation, attrs, children, expected in cases:
             with self.subTest(operation=operation):
                 source = ET.fromstring(f"<{operation} xmlns='{OVAL}'{attrs}>{children}</{operation}>")
-                with self.assertRaises(ValueError):
-                    self._visitor().function(source)
+                self.assertEqual(self._visitor().function(source), expected)
+
+    def test_inactive_generic_function_envelope_remains_rejected(self):
+        from pathlib import Path
+        import sys
+        sys.path.insert(0, str(Path(__file__).parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'))
+        from v04_variable_function_migration import canonical_expression, UnsupportedExpression
+        with self.assertRaisesRegex(UnsupportedExpression, 'inactive function envelope'):
+            canonical_expression({'function': {'name': 'split', 'arguments': [], 'options': {}}})
+
 
 
 if __name__ == "__main__":

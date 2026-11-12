@@ -136,6 +136,18 @@ def regex_capture(value, pattern):
     return [match.group(1)]
 
 
+def begin(values, character):
+    """OVAL BeginFunctionType reference transformation."""
+    return [value if str(value).startswith(character) else character + str(value)
+            for value in values]
+
+
+def end(values, character):
+    """OVAL EndFunctionType reference transformation."""
+    return [value if str(value).endswith(character) else str(value) + character
+            for value in values]
+
+
 def unique(values):
     result = []
     for value in values:

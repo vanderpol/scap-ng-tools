@@ -175,21 +175,71 @@ def assessment_variable_expressions(assessment):
             # nested collection status and returns one integer only on success.
             expression(value)
             return {'integer'}
+        if op in ('split', 'substring', 'begin', 'end'):
+            required = {
+                'split': {'delimiter', 'value'},
+                'substring': {'substring_start', 'substring_length', 'value'},
+                'begin': {'character', 'value'},
+                'end': {'character', 'value'},
+            }[op]
+            if not isinstance(value, dict) or set(value) != required:
+                raise ValueError(f'{op} requires explicit options and one value')
+            if op == 'split' and not isinstance(value['delimiter'], str):
+                raise ValueError('split delimiter must be a string')
+            if op in ('begin', 'end') and not isinstance(value['character'], str):
+                raise ValueError(f'{op} character must be a string')
+            if op == 'substring':
+                for key in ('substring_start', 'substring_length'):
+                    option = value[key]
+                    if (isinstance(option, bool) or not isinstance(option, int) or
+                            not -2147483648 <= option <= 2147483647):
+                        raise ValueError('substring options must be signed 32-bit integers')
+            text_operand(expression(value['value']), op)
+            return {'string'}
+        if op == 'arithmetic':
+            if (not isinstance(value, dict) or
+                    set(value) != {'arithmetic_operation', 'values'} or
+                    value['arithmetic_operation'] not in ('add', 'multiply') or
+                    not isinstance(value['values'], list) or len(value['values']) < 2):
+                raise ValueError('arithmetic requires two or more numeric values and an operation')
+            domains = [expression(argument) for argument in value['values']]
+            if any(not domain or not domain <= {'integer', 'float'} for domain in domains):
+                raise ValueError('arithmetic requires numeric operands')
+            return {'float'} if any('float' in domain for domain in domains) else {'integer'}
         if op == 'unique':
-            text_operand(expression(value), 'unique')
+            operands = value if isinstance(value, list) else [value]
+            if not operands:
+                raise ValueError('unique requires one or more values')
+            for operand in operands:
+                text_operand(expression(operand), 'unique')
             return {'string'}
         if op == 'concat':
             for arg in value:
                 text_operand(expression(arg), 'concat')
             return {'string'}
         if op in ('regex_capture', 'merge'):
-            arg = value['value' if op == 'regex_capture' else 'values']
-            argument_types = expression(arg)
-            if op == 'merge':
-                if not argument_types or 'record' in argument_types:
-                    raise ValueError('merge requires scalar values')
-                return {'string'}
-            text_operand(argument_types, 'regex_capture')
+            if op == 'regex_capture':
+                if not isinstance(value, dict) or set(value) != {'pattern', 'value'}:
+                    raise ValueError('regex_capture requires pattern and value')
+                argument = value['value']
+            else:
+                if not isinstance(value, dict) or set(value) != {'delimiter', 'sort', 'order', 'values'}:
+                    raise ValueError('merge requires explicit options and values')
+                if (not isinstance(value['delimiter'], str) or
+                        value['sort'] not in ('document', 'lexical', 'numeric', 'natural') or
+                        value['order'] not in ('ascending', 'descending')):
+                    raise ValueError('merge has invalid explicit options')
+                argument = value['values']
+            operands = argument if isinstance(argument, list) else [argument]
+            if not operands:
+                raise ValueError(op + ' requires one or more values')
+            for operand in operands:
+                argument_types = expression(operand)
+                if op == 'merge':
+                    if not argument_types or 'record' in argument_types:
+                        raise ValueError('merge requires scalar values')
+                else:
+                    text_operand(argument_types, 'regex_capture')
             return {'string'}
         raise ValueError('unsupported native Variable expression: ' + op)
 

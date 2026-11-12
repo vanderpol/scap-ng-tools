@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'tools'))
 from issue28_semantics import (Outcome, arithmetic, arithmetic_components, concat, concat_components,
-                               count, flatten_components, quantify, regex_capture, split, substring,
+                               count, flatten_components, quantify, regex_capture, split, substring, begin, end,
                                unique, merge, EXISTENCE)
 
 
@@ -35,6 +35,8 @@ class OVALReferenceVectors(unittest.TestCase):
         self.assertEqual(regex_capture('no match', r'id=(\d+)'), [''])
         self.assertEqual(unique(['b', 'a', 'b', '']), ['b', 'a', ''])
         self.assertEqual(merge(['10', '2'], ',', sort='numeric'), '2,10')
+        self.assertEqual(begin(['etc', '/etc'], '/'), ['/etc', '/etc'])
+        self.assertEqual(end(['etc', 'etc/'], '/'), ['etc/', 'etc/'])
         self.assertEqual(arithmetic([1, 2, 3], 'add'), 6)
         self.assertEqual(arithmetic([2, 3, 4], 'multiply'), 24)
 
@@ -111,11 +113,11 @@ class RecoveryFunctionBoundary(unittest.TestCase):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = ET.fromstring(
             f'<split xmlns="{OVAL}" delimiter=","><literal_component datatype="string">a,b</literal_component></split>')
-        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: split'):
-            visitor.function(source)
+        self.assertEqual(visitor.function(source), {'split': {
+            'delimiter': ',', 'value': {'literal': {'datatype': 'string', 'value': 'a,b'}}}})
         bad = ET.fromstring(
             f'<substring xmlns="{OVAL}" substring_start="1.0" substring_length="1"><literal_component datatype="string">x</literal_component></substring>')
-        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: substring'):
+        with self.assertRaisesRegex(ValueError, 'xsd:int'):
             visitor.function(bad)
 
 class NativeFunctionContractSemantics(unittest.TestCase):
@@ -409,8 +411,9 @@ class MultiComponentAggregationFailClosed(unittest.TestCase):
           <literal_component datatype="string">a</literal_component>
           <literal_component datatype="string">b</literal_component>
         </unique>''')
-        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
-            visitor.function(source)
+        self.assertEqual(visitor.function(source), {'unique': [
+            {'literal': {'datatype': 'string', 'value': 'a'}},
+            {'literal': {'datatype': 'string', 'value': 'b'}}]})
 
     def test_merge_rejects_components_outside_active_grammar(self):
         import xml.etree.ElementTree as ET
@@ -423,8 +426,11 @@ class MultiComponentAggregationFailClosed(unittest.TestCase):
           <literal_component datatype="string">10</literal_component>
           <literal_component datatype="string">2</literal_component>
         </merge>''')
-        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
-            visitor.function(source)
+        self.assertEqual(visitor.function(source), {'merge': {
+            'delimiter': ',', 'sort': 'numeric', 'order': 'descending',
+            'values': [
+                {'literal': {'datatype': 'string', 'value': '10'}},
+                {'literal': {'datatype': 'string', 'value': '2'}}]}})
 
     def test_default_path_rejects_multi_component_aggregation(self):
         import xml.etree.ElementTree as ET
@@ -437,7 +443,7 @@ class MultiComponentAggregationFailClosed(unittest.TestCase):
           <literal_component datatype="string">a</literal_component>
           <literal_component datatype="string">b</literal_component>
         </unique>''')
-        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
+        with self.assertRaisesRegex(ValueError, 'multiple components requires native recovery'):
             visitor.function(source)
 
 class NestedCountRecovery(unittest.TestCase):
@@ -506,8 +512,9 @@ class RemainingFunctionRecovery(unittest.TestCase):
         source = ET.fromstring(f'''<end xmlns="{OVAL}" character="\\">
           <unique><literal_component datatype="string">a</literal_component></unique>
         </end>''')
-        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: end'):
-            visitor.function(source)
+        self.assertEqual(visitor.function(source), {'end': {
+            'character': '\\', 'value': {'unique': {
+                'literal': {'datatype': 'string', 'value': 'a'}}}}})
 
     def test_existing_canonical_nested_expression_is_rejected_by_default_migration(self):
         import sys

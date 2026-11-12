@@ -18,9 +18,9 @@ from scap_ng_tools.converter.direct04 import convert_benchmark, validate_native_
 from scap_ng_tools.converter._v04_runtime.v04_direct_yaml import authoring_yaml
 
 EXPECTED_SOURCE = '8c8e5dff860af6b1290ee9273a282db24278f8d5'
-EXPECTED_SCHEMA = '8f8e219e4fb2db8b37a6d0e1ca418e8a392c38e3'
-EXPECTED_SCHEMA_DIGEST = '910beeebfb90a63c773615907289a0e4b93095ee41cd1ad41b33652363900c74'
-EXPECTED_COUNTS = {'converted': 6479, 'manual_only': 1403, 'blocked': 108, 'intentionally_excluded': 209}
+EXPECTED_SCHEMA = '63110e7762f4963d3e4d407e90b9fcfd9cfe86ad'
+EXPECTED_SCHEMA_DIGEST = '5d3b7f9507318c5ca2e85009fd8bc284d906d357b58cd278219c84f9481536a1'
+EXPECTED_COUNTS = {'converted': 6474, 'manual_only': 1403, 'blocked': 113, 'intentionally_excluded': 209}
 
 def sha(path: Path) -> str: return hashlib.sha256(path.read_bytes()).hexdigest()
 def stable(value: object) -> str: return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':')).encode() + b'\n').hexdigest()

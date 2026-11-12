@@ -8,12 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = 'c317f23f76c6753e261e0015df957213a2622e8d9a2933ef8ffbbbd76b1de49b'
+CURRENT_RUNTIME_SHA256 = '7b6a63f035853936e11d4ed1fee14005249061058d4d25c7458ca4962505ed18'
 UNCHANGED_SOURCE_SHA256 = 'de52a62d54bf73838457c9b91a2bdb3a5ad993dc000c0a6c4e1f1545d30c5ccf'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
-    'v04_direct_converter.py': '7ae435b2d001f432cfa3dcfc349b57fcc93ce649afd1205e72ba8c7e6b775ff5',
+    'v04_direct_converter.py': '215abe0d2063a465bffab334ee498296a56c3f90f67bcbc05a80638234557421',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
@@ -21,13 +21,13 @@ AUDITED_ADAPTATIONS = {
     'v04_draft_inputs.py': '6373bc9a7208f7ad2b2b3cbcd4674c2683d3ecf971c7380d1e3566b7d1367f07',
     'v04_direct_inventory.py': '99a324754b739a9b51d0ae62abed76f8a14d5a172b54ff65beec6fd7ff58d904',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
-    'v04_variable_function_migration.py': 'b313152b8aaa2b7d5409829f2bbfe16dfaaacd17a7a976ba9172379412ed01b3',
+    'v04_variable_function_migration.py': '8e93ed66f17902913217d1d117790ddf46193b3846da42f88ce2ecc33752b34e',
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'aa2782f9ed3b23d7282ac7b69450650b0827ac76704878e4c6df2539f75394ea',
     'v04_input_presence.py': '32fec8715cb69ba56453984b84becc7b43e53e5a2f896680e0752996e011d49e',
     'v04_object_contract.py': 'e86aab6bf1e0145c14c4f6313928894fd09d041cb0042498174420721aa78d29',
-    'v04_variable_expressions.py': 'f6eaf72151b6ec7be2a58e20e68c8179179ba21cb70a58a90ae8fba194036ae5',
+    'v04_variable_expressions.py': '3152f52228c45a4537f2cb44fb5df8c2a2100f53768890008196da2cd3925703',
 }
 SOURCE_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 PINNED_GENERATOR_HELPERS = {

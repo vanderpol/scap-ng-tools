@@ -673,34 +673,77 @@ class AssessmentConverter:
             return {'values': {'object': self.reference(identifier, 'object'),
                                'field': mapping['native']['state_field_map'][element.get('item_field')]}}
         # The active 0.4 schema has a deliberately closed function grammar.
-        # Count is the only recovered OVAL operation admitted here because its
-        # native form is the recursive ``{count: expression}`` expression.
-        # Never emit the historical generic ``function`` envelope: it is not
-        # an active 0.4 schema form and would turn a converter defect into a
-        # schema-invalid candidate document. Unsupported operations fail closed
-        # and remain visible in the Rule blocker ledger.
+        # Recovered source functions use explicit recursive native forms; the
+        # historical generic ``function`` envelope is never emitted.
         if self.native_recovery and operation in (
                 'arithmetic', 'split', 'substring', 'count', 'begin', 'end'):
-            ensure(operation == 'count',
-                   f'unsupported active 0.4 Variable function: {operation}')
-            attributes(element, set())
-            ensure(len(element) == 1,
-                   'active native count grammar accepts exactly one nested expression')
             from v04_variable_function_migration import canonical_expression
-            argument = canonical_expression(self.function(element[0]), allow_existing=True)
-            return {'count': argument}
+            if operation == 'count':
+                attributes(element, set())
+                ensure(len(element) == 1,
+                       'active native count grammar accepts exactly one nested expression')
+                return {'count': canonical_expression(self.function(element[0]),
+                                                       allow_existing=True)}
+            if operation == 'arithmetic':
+                attributes(element, {'arithmetic_operation'})
+                ensure(len(element) >= 2 and element.get('arithmetic_operation') in
+                       ('add', 'multiply'),
+                       'arithmetic requires two or more operands and add/multiply')
+                return {'arithmetic': {
+                    'arithmetic_operation': element.get('arithmetic_operation'),
+                    'values': [canonical_expression(self.function(child), allow_existing=True)
+                               for child in element]}}
+            if operation == 'split':
+                attributes(element, {'delimiter'})
+                ensure(len(element) == 1, 'split requires exactly one operand')
+                return {'split': {'delimiter': element.get('delimiter'),
+                                  'value': canonical_expression(self.function(element[0]),
+                                                                 allow_existing=True)}}
+            if operation == 'substring':
+                attributes(element, {'substring_start', 'substring_length'})
+                ensure(len(element) == 1, 'substring requires exactly one operand')
+                options = {}
+                for key in ('substring_start', 'substring_length'):
+                    value = element.get(key)
+                    ensure(re.fullmatch(r'[+-]?[0-9]+', value.strip()) is not None,
+                           'substring option must be xsd:int')
+                    number = int(value)
+                    ensure(-2147483648 <= number <= 2147483647,
+                           'substring option outside xsd:int')
+                    options[key] = number
+                options['value'] = canonical_expression(self.function(element[0]),
+                                                        allow_existing=True)
+                return {'substring': options}
+            if operation in ('begin', 'end'):
+                attributes(element, {'character'})
+                ensure(len(element) == 1, operation + ' requires exactly one operand')
+                return {operation: {'character': element.get('character'),
+                                    'value': canonical_expression(self.function(element[0]),
+                                                                   allow_existing=True)}}
         ensure(operation in ('concat', 'regex_capture', 'merge', 'unique'), f'unsupported function: {operation}')
         attributes(element, {'pattern'} if operation == 'regex_capture' else
                    {'delimiter', 'sort', 'order'} if operation == 'merge' else set())
         ensure(len(element) and (operation != 'regex_capture' or (len(element) == 1 and 'pattern' in element.attrib)), 'function arity/pattern')
         values = [self.function(child) for child in element]
         if operation in ('merge', 'unique'):
-            # OVAL unique/merge flatten multiple source components. 0.4 has
-            # no active variadic collection expression, so preserve semantics
-            # by rejecting this shape rather than emitting an inactive
-            # generic function envelope.
-            ensure(len(values) == 1,
-                   f'{operation} with multiple components is unsupported by active 0.4 grammar')
+            # Native arrays preserve OVAL's ordered flattening for multiple
+            # components. The one-expression form remains unchanged.
+            if len(values) > 1:
+                ensure(self.native_recovery,
+                       f'{operation} with multiple components requires native recovery')
+                from v04_variable_function_migration import canonical_expression
+                operands = [canonical_expression(value, allow_existing=True)
+                            for value in values]
+                if operation == 'unique':
+                    return {'unique': operands}
+                ensure(element.get('sort', 'document') in
+                       ('document', 'lexical', 'numeric', 'natural') and
+                       element.get('order', 'ascending') in ('ascending', 'descending'),
+                       'unsupported merge sort/order')
+                return {'merge': {'delimiter': element.get('delimiter', ''),
+                                  'sort': element.get('sort', 'document'),
+                                  'order': element.get('order', 'ascending'),
+                                  'values': operands}}
             if operation == 'unique':
                 return {'unique': values[0]}
             ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')

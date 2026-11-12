@@ -12,10 +12,12 @@ class UnsupportedExpression(ValueError):
 
 
 def canonical_expression(node, *, allow_existing=False):
-    """Return the active 0.4 expression grammar; reject inactive envelopes.
+    """Return the active 0.4 recursive expression grammar.
 
-    Native 0.4 uses one-key recursive expressions.  The historical
-    ``function`` envelope is intentionally never emitted by this migration.
+    The active grammar uses one explicit operator per expression.  This
+    normalizer accepts the restored function forms and rejects the historical
+    generic ``function`` envelope; it never evaluates values or changes
+    collection/status semantics.
     """
     if not isinstance(node, dict) or len(node) != 1:
         raise UnsupportedExpression('expression must have exactly one operator')
@@ -28,6 +30,29 @@ def canonical_expression(node, *, allow_existing=False):
         if not isinstance(value, dict):
             raise UnsupportedExpression('count requires exactly one nested expression')
         return {'count': canonical_expression(value)}
+    if op in ('split', 'substring', 'begin', 'end'):
+        required = {
+            'split': {'delimiter', 'value'},
+            'substring': {'substring_start', 'substring_length', 'value'},
+            'begin': {'character', 'value'},
+            'end': {'character', 'value'},
+        }[op]
+        if not isinstance(value, dict) or set(value) != required:
+            raise UnsupportedExpression(f'{op} requires explicit options and one value')
+        result = deepcopy(value)
+        result['value'] = canonical_expression(value['value'])
+        return {op: result}
+    if op == 'arithmetic':
+        if not isinstance(value, dict) or set(value) != {'arithmetic_operation', 'values'}:
+            raise UnsupportedExpression('arithmetic requires explicit operation and values')
+        if value['arithmetic_operation'] not in ('add', 'multiply'):
+            raise UnsupportedExpression('unsupported arithmetic operation')
+        if not isinstance(value['values'], list) or len(value['values']) < 2:
+            raise UnsupportedExpression('arithmetic requires two or more values')
+        return {'arithmetic': {
+            'arithmetic_operation': value['arithmetic_operation'],
+            'values': [canonical_expression(item) for item in value['values']],
+        }}
     if op == 'concat':
         if not isinstance(value, list) or len(value) < 2:
             raise UnsupportedExpression('concat requires at least two arguments')
@@ -38,11 +63,21 @@ def canonical_expression(node, *, allow_existing=False):
         return {'regex_capture': {'pattern': value['pattern'], 'value': canonical_expression(value['value'])}}
     if op == 'merge':
         if not isinstance(value, dict) or set(value) != {'delimiter', 'sort', 'order', 'values'}:
-            raise UnsupportedExpression('merge requires exact existing operands and options')
-        return {'merge': {'delimiter': value['delimiter'], 'sort': value['sort'], 'order': value['order'], 'values': canonical_expression(value['values'])}}
+            raise UnsupportedExpression('merge requires exact options and values')
+        values = value['values']
+        if isinstance(values, list):
+            if not values:
+                raise UnsupportedExpression('merge requires one or more values')
+            values = [canonical_expression(item) for item in values]
+        else:
+            values = canonical_expression(values)
+        return {'merge': {'delimiter': value['delimiter'], 'sort': value['sort'],
+                          'order': value['order'], 'values': values}}
     if op == 'unique':
-        if not isinstance(value, dict):
-            raise UnsupportedExpression('unique requires exactly one nested expression')
+        if isinstance(value, list):
+            if not value:
+                raise UnsupportedExpression('unique requires one or more values')
+            return {'unique': [canonical_expression(item) for item in value]}
         return {'unique': canonical_expression(value)}
     raise UnsupportedExpression(f'unrecognized native expression: {op}')
 
