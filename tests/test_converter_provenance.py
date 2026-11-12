@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
 CURRENT_RUNTIME_SHA256 = '11b3167b4b6613deb061fb512968969e3297159e329a0f76e9d052a5a8cae060'
-UNCHANGED_SOURCE_SHA256 = '523acaf988aea0c188b415cdb8309bccdad838e784618344dbedeb6a57e41c86'
+UNCHANGED_SOURCE_SHA256 = 'de52a62d54bf73838457c9b91a2bdb3a5ad993dc000c0a6c4e1f1545d30c5ccf'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
