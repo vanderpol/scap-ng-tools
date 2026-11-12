@@ -67,6 +67,7 @@ def main():
                 sha256_pin=source_sha256, rule_ids=[source_rule],
                 native_recovery=True)
             row.update(status='converted', document_count=len(documents),
+                       artifacts=sorted(documents),
                        trace_rule_count=len(trace.get('rules', [])),
                        schema_validation='passed', runtime_equivalence=False)
         except Exception as error:  # targeted qualification records blockers, never hides them

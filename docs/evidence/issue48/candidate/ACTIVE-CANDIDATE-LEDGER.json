@@ -2760,7 +2760,7 @@
     "rules": 163
   },
   "candidate": {
-    "candidate_digest": "a5db1622af7e91f29abf4e9bd7cf5fcdc636f339b6b632f65fbbc8b60d93c18f",
+    "candidate_digest": "bbd045996fa5fa2833eae2d583d60dd9d37dacc70817eb580a014c16d74ff3da",
     "schema_commit": "63110e7762f4963d3e4d407e90b9fcfd9cfe86ad",
     "schema_family_sha256": "5d3b7f9507318c5ca2e85009fd8bc284d906d357b58cd278219c84f9481536a1",
     "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
