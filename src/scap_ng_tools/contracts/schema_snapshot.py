@@ -12,11 +12,11 @@ import re
 
 
 FROZEN_VERSION = '0.4.0'
-FROZEN_DIGEST = '6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0'
+FROZEN_DIGEST = '910beeebfb90a63c773615907289a0e4b93095ee41cd1ad41b33652363900c74'
 LOGICAL_PREFIX = 'https://scap-ng.dev/schema/v0.4.0/'
 EXPECTED_JSON = 145
 EXPECTED_SCHEMAS = 35
-EXPECTED_REFS = 675
+EXPECTED_REFS = 674
 NAME = re.compile(r'^[a-z][a-z0-9]*(?:[._][a-z0-9]+)*$')
 
 

@@ -16,7 +16,7 @@ RECOVERY_TARGETS = {
     'xccdf_value_constraints': {'historical_blockers': 5, 'recovered': 5, 'remaining': 0},
 }
 FUNCTION_TARGETS = {
-    'count': {'historical_blockers': 37, 'recovered': 36, 'remaining': 1},
+    'count': {'historical_blockers': 37, 'recovered': 37, 'remaining': 0},
     'multi_component_aggregation': {'historical_blockers': 30, 'recovered': 30, 'remaining': 0},
     'split': {'historical_blockers': 19, 'recovered': 15, 'remaining': 4},
     'arithmetic': {'historical_blockers': 3, 'recovered': 0, 'remaining': 3},

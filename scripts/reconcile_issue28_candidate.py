@@ -11,7 +11,7 @@ import argparse, gzip, hashlib, json
 from pathlib import Path
 
 SOURCE_REPO = 'niwc-atlantic/scap-content-library'
-SCHEMA_FAMILY = '6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0'
+SCHEMA_FAMILY = '910beeebfb90a63c773615907289a0e4b93095ee41cd1ad41b33652363900c74'
 
 def canonical_digest(rules: dict) -> str:
     core = {k: rules[k] for k in ('format', 'scope', 'rules')}
@@ -36,14 +36,16 @@ def main() -> None:
         elif rule['status'] == 'intentionally_excluded':
             rule['disposition_reason'] = ('intentionally excluded from active modernization: SQLEXT is outside '
                                           'the supported SCAP-NG 0.4 capability contract; no conversion was attempted.')
-    digest = canonical_digest(rules)
-    candidate = {'source_commit': args.source_commit, 'schema_commit': args.schema_commit,
-                 'schema_family_sha256': SCHEMA_FAMILY, 'candidate_digest': digest}
-    rules['candidate'] = candidate; ledger['candidate'] = candidate
     for scope in (ledger['scope'], rules['scope']):
         scope['source_revision'] = SOURCE_REPO + '@' + args.source_commit
         scope['schema_commit'] = args.schema_commit
         scope['schema_family_sha256'] = SCHEMA_FAMILY
+    # Digest the final rules core, including the reconciled pins and explicit
+    # disposition reasons; both ledger and rules must verify this exact value.
+    digest = canonical_digest(rules)
+    candidate = {'source_commit': args.source_commit, 'schema_commit': args.schema_commit,
+                 'schema_family_sha256': SCHEMA_FAMILY, 'candidate_digest': digest}
+    rules['candidate'] = candidate; ledger['candidate'] = candidate
     blocked, excluded = [], []
     for rule in rules['rules']:
         if rule['status'] not in ('blocked', 'intentionally_excluded'): continue
@@ -61,8 +63,10 @@ def main() -> None:
         'capability': '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}sqlext',
         'source_rules_retained_in_active_candidate_rules': True}
     ledger['excluded_rule_reasons'] = excluded
-    if len(blocked) != 108 or len(excluded) != 209:
-        raise SystemExit(f'unexpected disposition counts: blocked={len(blocked)} excluded={len(excluded)}')
+    expected_blocked = int(ledger['classification']['genuinely_blocked'])
+    expected_excluded = int(ledger['classification']['intentionally_excluded'])
+    if len(blocked) != expected_blocked or len(excluded) != expected_excluded:
+        raise SystemExit(f'unexpected disposition counts: blocked={len(blocked)} excluded={len(excluded)} expected={expected_blocked}/{expected_excluded}')
     args.ledger.write_text(json.dumps(ledger, indent=2, sort_keys=True) + '\n', encoding='utf-8')
     payload = json.dumps(rules, indent=2, sort_keys=True).encode() + b'\n'
     with args.rules.open('wb') as raw:

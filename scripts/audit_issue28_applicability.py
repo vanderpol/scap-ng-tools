@@ -14,7 +14,7 @@ from scap_ng_tools.converter.direct04 import load_runtime
 
 SOURCE_COMMIT = '8c8e5dff860af6b1290ee9273a282db24278f8d5'
 SCHEMA_COMMIT = '919732d4c570b521edf82196a7694dfd8c27fe50'
-SCHEMA_DIGEST = '6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0'
+SCHEMA_DIGEST = '910beeebfb90a63c773615907289a0e4b93095ee41cd1ad41b33652363900c74'
 XCCDF = 'http://checklists.nist.gov/xccdf/1.2'
 CPE = 'http://cpe.mitre.org/language/2.0'
 CPE_DICT = 'http://cpe.mitre.org/dictionary/2.0'

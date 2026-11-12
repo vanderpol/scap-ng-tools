@@ -707,6 +707,10 @@ class AssessmentConverter:
             # The migration envelope is recursive: nested OVAL functions must
             # not leave a legacy operator beside the canonical outer call.
             arguments = [canonical_expression(self.function(child), allow_existing=True) for child in element]
+            if operation == 'count':
+                ensure(len(arguments) == 1,
+                       'active native count grammar accepts exactly one nested expression')
+                return {'count': arguments[0]}
             expression = {'function': {'name': operation, 'arguments': arguments,
                                        'options': options}}
             self.conversion_warnings.append({'code': 'native_function_contract_v1',
