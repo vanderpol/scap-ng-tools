@@ -8,7 +8,7 @@
     "schema_metadata_generation_seconds": 4.015,
     "converter_execution_seconds": 290,
     "corpus_generation_seconds": 1040,
-    "json_yaml_validation_seconds": null,
+    "json_yaml_validation_seconds": 668,
     "independent_archive_audit_seconds": 515,
     "reproducibility_rebuild_seconds": 1254
   },
@@ -22,6 +22,6 @@
     "validation_not_weakened": true,
     "qualified_release_under_five_minutes": false,
     "bottleneck": "Draft 2020-12 validation and recursive dependency graph walk over the full emitted inventory",
-    "note": "The JSON/YAML validation measurement is filled only after the separately timed validation command completes."
+    "note": "Measured by extracting the candidate and running the independent schema_audit over all 22,483 JSON/YAML documents; no generator checks were reused."
   }
 }
