@@ -1,0 +1,22 @@
+{
+  "format": "scap-ng-tools/issue28-ocil-selection-recovery/1",
+  "source_revision": "niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "benchmarks": 65,
+  "rules": 8892,
+  "ocil_only_rules": 1653,
+  "oval_and_ocil_rules": 7239,
+  "ocil_only_projection": {
+    "status": "manual_only",
+    "assessment": "SCAP-NG 0.4 manual Assessment",
+    "automated_equivalent": false,
+    "source_check_xml_and_catalog_refs_retained": true,
+    "source_procedure_execution": false,
+    "independent_equivalence_proof": false
+  },
+  "oval_preference": {
+    "mixed_rules_default": "automated OVAL",
+    "ocil_alternative": "preserved as non-default manual choice",
+    "both_choices_mandatory": false
+  },
+  "qualification": "Source selection and authoring projection evidence; not scanner execution or OCIL questionnaire equivalence."
+}
