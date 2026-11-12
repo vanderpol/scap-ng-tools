@@ -72,7 +72,7 @@ def extract_platform_specifications(source):
         identifier = platform.get('id')
         if not identifier:
             continue
-        specifications[identifier] = {
+        record = {
             'id': identifier,
             'title': platform.findtext(f'{{{CPE}}}title', identifier),
             'logical_tests': [
@@ -81,6 +81,12 @@ def extract_platform_specifications(source):
             ],
             'source_xml_sha256': _xml_digest(platform),
         }
+        if identifier in specifications:
+            prior = specifications[identifier]
+            if _canonical(prior) != _canonical(record):
+                raise ValueError(f'conflicting duplicate CPE platform ID: {identifier}')
+            raise ValueError(f'duplicate CPE platform ID: {identifier}')
+        specifications[identifier] = record
     return specifications
 
 
@@ -167,20 +173,24 @@ def _make_composite(title, source_key, child_ids, operator, negate, shared, trac
     }
     fingerprint = hashlib.sha256(_canonical(semantic).encode()).hexdigest()
     assessment_id = _slug(f'{source_key}-{fingerprint}', 'platform-', '-assessment')
-    if assessment_id not in shared:
-        dependencies = {
-            f'condition-{i}': {
-                'assessment': child, 'expected_version': 1,
-                'purpose': 'applicability',
-            } for i, child in enumerate(child_ids)
-        }
-        shared[assessment_id] = {'assessment': {
-            'id': assessment_id, 'version': 1,
-            'assessment_title': f'Applicability: {title}',
-            'mode': 'automated', 'class': 'compliance',
-            'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'},
-            'tests': {}, 'dependencies': dependencies, 'evaluate': expression,
-        }}
+    dependencies = {
+        f'condition-{i}': {
+            'assessment': child, 'expected_version': 1,
+            'purpose': 'applicability',
+        } for i, child in enumerate(child_ids)
+    }
+    document = {'assessment': {
+        'id': assessment_id, 'version': 1,
+        'assessment_title': f'Applicability: {title}',
+        'mode': 'automated', 'class': 'compliance',
+        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'},
+        'tests': {}, 'dependencies': dependencies, 'evaluate': expression,
+    }}
+    existing = shared.get(assessment_id)
+    if existing is not None and _canonical(existing) != _canonical(document):
+        raise ValueError(f'conflicting generated Assessment identity: {assessment_id}')
+    if existing is None:
+        shared[assessment_id] = document
         traces[assessment_id] = {
             'assessment': assessment_id, 'source_identity': source_key,
             'semantic': semantic,
@@ -199,19 +209,35 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
     unsupported, attached_rule_ids = [], set()
     fact_cache = {}
 
+    def add_shared(assessment_id, document, trace):
+        existing = shared.get(assessment_id)
+        if existing is not None and _canonical(existing) != _canonical(document):
+            raise ValueError(f'conflicting generated Assessment identity: {assessment_id}')
+        if existing is None:
+            shared[assessment_id] = document
+        if trace is not None:
+            prior_trace = shared_traces.get(assessment_id)
+            if prior_trace is not None and prior_trace.get('semantic_fingerprint') != trace.get('semantic_fingerprint'):
+                raise ValueError(f'conflicting generated Assessment trace identity: {assessment_id}')
+            shared_traces.setdefault(assessment_id, trace)
+
+    def add_condition(condition_id, value):
+        existing = conditions.get(condition_id)
+        if existing is not None and _canonical(existing) != _canonical(value):
+            raise ValueError(f'conflicting generated applicability condition identity: {condition_id}')
+        conditions[condition_id] = value
+
     def unsupported_condition(identity, title, reason):
         key = ('unsupported', identity, reason)
         if key not in condition_cache:
             condition_id = _slug(identity, 'platform-', '-condition')
             assessment_id = _slug(f'{identity}-{reason}', 'platform-', '-assessment')
-            if assessment_id not in shared:
-                shared[assessment_id] = _not_evaluated(assessment_id, title, reason)
-                shared_traces[assessment_id] = {
-                    'assessment': assessment_id, 'source_identity': identity,
-                    'conversion_status': 'APPLICABILITY_UNSUPPORTED_NOT_EVALUATED',
-                    'reason': reason,
-                }
-            conditions[condition_id] = {'assessment': assessment_id}
+            add_shared(assessment_id, _not_evaluated(assessment_id, title, reason), {
+                'assessment': assessment_id, 'source_identity': identity,
+                'conversion_status': 'APPLICABILITY_UNSUPPORTED_NOT_EVALUATED',
+                'reason': reason,
+            })
+            add_condition(condition_id, {'assessment': assessment_id})
             condition_cache[key] = condition_id
         return condition_cache[key]
 
@@ -259,10 +285,9 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                 'Applicability: ' + title, mappings,
                 human_compact=human_compact, native_recovery=native_recovery,
                 source_fact=source_fact)
-            shared[assessment_id] = document
             trace['semantic_fingerprint'] = definition_hash
             trace['source_fact_refs'] = [source_fact]
-            shared_traces[assessment_id] = trace
+            add_shared(assessment_id, document, trace)
             result = (assessment_id, semantic_key)
             fact_cache[semantic_key] = result
             fact_cache[identity] = result
@@ -310,7 +335,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                 unsupported.append({'kind': 'platform', 'identity': platform_id, 'reason': reason})
                 condition = unsupported_condition(platform_id, spec['title'], reason)
             condition_id = _slug(platform_id, 'platform-', '-condition')
-            conditions[condition_id] = {'assessment': condition}
+            add_condition(condition_id, {'assessment': condition})
             condition_cache[semantic] = condition_id
             return condition_id
         reason = 'CPE identity has no established executable SCAP-NG applicability mapping: ' + ref

@@ -89,13 +89,108 @@ def make_archive(staging: Path, output: Path, root_name: str):
     output.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(['tar', '--sort=name', '--mtime=UTC 1970-01-01', '--owner=0', '--group=0', '--numeric-owner', '-I', 'gzip -n', '-cf', str(output), '-C', str(staging.parent), root_name], check=True)
 
+def _expression_assessment_refs(value):
+    if isinstance(value, dict):
+        if isinstance(value.get('assessment'), str):
+            yield value['assessment']
+        for child in value.values():
+            yield from _expression_assessment_refs(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from _expression_assessment_refs(child)
+
+
+def verify_published_inventory(emitted):
+    """Independently verify native document inventory and Assessment graph."""
+    packages = {}
+    for path, document in emitted.items():
+        parts = PurePosixPath(path).parts
+        if len(parts) < 3 or parts[0] != 'documents':
+            raise ValueError(f'unsafe or misplaced emitted document: {path}')
+        package = parts[1]
+        packages.setdefault(package, {})[path] = document
+    if not packages:
+        raise ValueError('publication emitted no benchmark packages')
+    for package, docs in packages.items():
+        json_paths = set(docs)
+        for path in json_paths:
+            if not path.endswith('.json'):
+                raise ValueError(f'non-JSON native document inventory entry: {path}')
+        assessments = {}
+        for path, document in docs.items():
+            if 'assessment' in document:
+                aid = document['assessment'].get('id')
+                if not aid:
+                    raise ValueError(f'Assessment missing id: {path}')
+                if aid in assessments:
+                    raise ValueError(f'duplicate Assessment ID in package {package}: {aid}')
+                assessments[aid] = document['assessment']
+        if not assessments:
+            raise ValueError(f'package has no Assessments: {package}')
+        edges = {aid: set() for aid in assessments}
+        for aid, assessment in assessments.items():
+            for alias, dependency in assessment.get('dependencies', {}).items():
+                target = dependency.get('assessment')
+                if not isinstance(target, str) or target not in assessments:
+                    raise ValueError(f'unresolved Assessment dependency {package}/{aid}:{alias} -> {target}')
+                if dependency.get('expected_id') not in (None, target):
+                    raise ValueError(f'Assessment dependency expected_id mismatch: {package}/{aid}:{alias}')
+                edges[aid].add(target)
+            for target in _expression_assessment_refs(assessment.get('evaluate')):
+                if target not in assessments:
+                    raise ValueError(f'unresolved Assessment expression reference {package}/{aid} -> {target}')
+                edges[aid].add(target)
+        visiting, visited = set(), set()
+        def visit(aid):
+            if aid in visiting:
+                raise ValueError(f'Assessment dependency cycle in package {package}: {aid}')
+            if aid in visited:
+                return
+            visiting.add(aid)
+            for target in sorted(edges[aid]):
+                visit(target)
+            visiting.remove(aid); visited.add(aid)
+        for aid in sorted(assessments):
+            visit(aid)
+        catalogs = [document['applicability'] for document in docs.values() if 'applicability' in document]
+        if len(catalogs) != 1:
+            raise ValueError(f'package must contain exactly one applicability catalog: {package}')
+        catalog = catalogs[0]
+        condition_ids = set(catalog['conditions'])
+        for condition_id, condition in catalog['conditions'].items():
+            target = condition['assessment']
+            if target not in assessments:
+                raise ValueError(f'unresolved catalog Assessment {package}/{condition_id} -> {target}')
+        for path, document in docs.items():
+            if 'rule' in document:
+                missing = set(document['rule'].get('applicability', [])) - condition_ids
+                if missing:
+                    raise ValueError(f'unresolved Rule applicability {path}: {sorted(missing)}')
+                for choice in document['rule'].get('assessment_choices', {}).values():
+                    target = choice.get('assessment')
+                    if target not in assessments:
+                        raise ValueError(f'unresolved Rule Assessment choice {path} -> {target}')
+            if 'benchmark' in document:
+                platform = document['benchmark'].get('platform', {})
+                missing = set(platform.get('applicability', {}).get('conditions', [])) - condition_ids
+                if missing:
+                    raise ValueError(f'unresolved Benchmark applicability {path}: {sorted(missing)}')
+    return {'packages': len(packages), 'assessments': sum(
+        1 for document in emitted.values() if 'assessment' in document),
+        'cycles': 0}
+
+
 def build(args):
     ledger, rules_doc, candidate = read_candidate(args.ledger, args.rules)
     if git_head(args.source_root) != EXPECTED_SOURCE: raise ValueError('source checkout HEAD differs from pinned source commit')
     snapshot = FrozenSchemaSnapshot(args.schema_root)
     if snapshot.manifest()['aggregate_sha256'] != EXPECTED_SCHEMA_DIGEST: raise ValueError('schema digest differs from pinned candidate')
-    tools_commit = args.tools_commit or git_head(Path(__file__).resolve().parents[1])
-    if len(tools_commit) != 40: raise ValueError('tools commit must be a full commit SHA')
+    actual_schema_commit = git_head(args.schema_root)
+    if actual_schema_commit != EXPECTED_SCHEMA: raise ValueError(f'schema checkout HEAD differs from pinned schema commit: {actual_schema_commit}')
+    actual_tools_commit = git_head(Path(__file__).resolve().parents[1])
+    if args.tools_commit and args.tools_commit != actual_tools_commit:
+        raise ValueError(f'tools_commit does not match checked-out generator: {args.tools_commit} != {actual_tools_commit}')
+    tools_commit = actual_tools_commit
     paths = source_paths(args.source_root, ledger['benchmarks'])
     rows = {(r['benchmark'], r['source_rule']): r for r in rules_doc['rules']}
     with tempfile.TemporaryDirectory(prefix='scapng-issue28-build-') as temp:
@@ -129,12 +224,17 @@ def build(args):
                     continue
                 included_status[row['status']] += 1
                 expected_paths = assessment_artifacts(row)
-                if set(expected_paths) != {x for x in actual.get('artifacts', []) if '/assessments/' in x and x.endswith('.json')}:
-                    mismatches.append({'benchmark': benchmark['filename'], 'source_rule': rid, 'expected_artifacts': expected_paths, 'actual_artifacts': actual.get('artifacts', [])})
+                expected_artifacts = sorted(row.get('artifacts', []))
+                actual_artifacts = sorted(actual.get('artifacts', []))
+                if expected_artifacts != actual_artifacts:
+                    mismatches.append({'benchmark': benchmark['filename'], 'source_rule': rid, 'expected_artifacts': expected_artifacts, 'actual_artifacts': actual_artifacts})
                     continue
+                missing = [artifact for artifact in actual_artifacts if artifact not in docs]
+                if missing:
+                    raise ValueError(f'missing required converter artifacts for {benchmark["filename"]}/{rid}: {missing}')
                 bench_root = staging / 'documents' / f'{number:02d}-{safe_name(benchmark["filename"].removesuffix(".zip"))}'
                 for artifact in actual.get('artifacts', []):
-                    if artifact not in docs: continue
+                    if artifact not in docs: raise ValueError(f'missing required converter artifact: {artifact}')
                     dest = bench_root / PurePosixPath(artifact)
                     write_json(dest, docs[artifact]); dest.with_suffix('.yaml').write_text(authoring_yaml(docs[artifact]), encoding='utf-8')
                     doc_count[dest.suffix] += 1
@@ -168,8 +268,10 @@ def build(args):
         # the actual emitted YAML objects once against the exact pinned schema;
         # JSON and YAML are required to round-trip to the same object below.
         yaml_docs={str(path.relative_to(staging)): yaml.safe_load(path.read_text(encoding='utf-8')) for path in sorted((staging/'documents').rglob('*.yaml'))}
+        validate_native_documents(snapshot, emitted)
         validate_native_documents(snapshot, yaml_docs)
-        metadata={'format':'scap-ng-assessment-corpus/1','version':args.root_name,'candidate':candidate,'tools_commit':tools_commit,'source_repository':'niwc-atlantic/scap-content-library','source_checkout_commit':EXPECTED_SOURCE,'schema_checkout_commit':EXPECTED_SCHEMA,'schema_family_sha256':EXPECTED_SCHEMA_DIGEST,'counts':{'source_rules':8199,'generated_assessment_rules':7882,'automated_converted':6479,'manual_only':1403,'blocked':108,'intentionally_excluded':209,'generated_json_documents':len(emitted),'generated_yaml_documents':len(yaml_docs),'assessment_yaml_files':len(assessment_index)},'generated_documents':sorted(emitted),'trace_files':sorted(trace_files),'assessment_index':sorted(assessment_index,key=lambda x:(x['benchmark'],x['source_rule'],x['assessment'])),'validation':{'json_schema':'Draft 2020-12 exact pinned SCAP-NG 0.4 snapshot','json_documents':len(emitted),'yaml_documents':len(yaml_docs),'errors':[],'independent_proof':False,'compiler_execution':False,'scanner_execution':False,'runtime_equivalence_claim':False},'discrepancies':{'raw_converter_statuses':dict(raw_status),'expected_excluded_raw_status_delta':dict(Counter(raw_status)-Counter({'converted':6479,'manual_only':1403,'blocked':108})),'notes':['The converter evaluates all 8,199 source Rules; 209 SQLEXT Rules are intentionally excluded from publication per the candidate ledger.','Schema validation is authoring validation only and is not a runtime-equivalence claim.']},'applicability':{'source_inventory':{'effective_platform_refs':11184,'cpe_uri_refs':10289,'custom_platform_refs':895,'platform_fact_refs':185,'supported_fact_closures':183,'sqlext_fact_closures':2,'source_rules_with_inherited_platform':8199},'reports':applicability_reports,'reference_resolution':'validated per benchmark by converter; independent archive scan required','runtime_equivalence':False}}
+        graph_report = verify_published_inventory(emitted)
+        metadata={'format':'scap-ng-assessment-corpus/1','version':args.root_name,'candidate':candidate,'tools_commit':tools_commit,'source_repository':'niwc-atlantic/scap-content-library','source_checkout_commit':EXPECTED_SOURCE,'schema_checkout_commit':EXPECTED_SCHEMA,'schema_family_sha256':EXPECTED_SCHEMA_DIGEST,'counts':{'source_rules':8199,'generated_assessment_rules':7882,'automated_converted':6479,'manual_only':1403,'blocked':108,'intentionally_excluded':209,'generated_json_documents':len(emitted),'generated_yaml_documents':len(yaml_docs),'assessment_yaml_files':len(assessment_index)},'generated_documents':sorted(emitted),'trace_files':sorted(trace_files),'assessment_index':sorted(assessment_index,key=lambda x:(x['benchmark'],x['source_rule'],x['assessment'])),'validation':{'json_schema':'Draft 2020-12 exact pinned SCAP-NG 0.4 snapshot','json_documents':len(emitted),'yaml_documents':len(yaml_docs),'document_graph':graph_report,'errors':[],'independent_proof':False,'compiler_execution':False,'scanner_execution':False,'runtime_equivalence_claim':False},'discrepancies':{'raw_converter_statuses':dict(raw_status),'expected_excluded_raw_status_delta':dict(Counter(raw_status)-Counter({'converted':6479,'manual_only':1403,'blocked':108})),'notes':['The converter evaluates all 8,199 source Rules; 209 SQLEXT Rules are intentionally excluded from publication per the candidate ledger.','Schema validation is authoring validation only and is not a runtime-equivalence claim.']},'applicability':{'source_inventory':{'effective_platform_refs':11184,'cpe_uri_refs':10289,'custom_platform_refs':895,'platform_fact_refs':185,'supported_fact_closures':183,'sqlext_fact_closures':2,'source_rules_with_inherited_platform':8199},'reports':applicability_reports,'reference_resolution':'validated per benchmark by converter; independent archive scan required','runtime_equivalence':False}}
         write_json(staging/'manifest.json',metadata)
         sums=[]
         for path in sorted(p for p in staging.rglob('*') if p.is_file() and p.name!='SHA256SUMS'):
