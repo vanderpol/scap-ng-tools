@@ -111,12 +111,11 @@ class RecoveryFunctionBoundary(unittest.TestCase):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = ET.fromstring(
             f'<split xmlns="{OVAL}" delimiter=","><literal_component datatype="string">a,b</literal_component></split>')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'split')
-        self.assertEqual(expression['function']['options'], {'delimiter': ','})
+        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: split'):
+            visitor.function(source)
         bad = ET.fromstring(
             f'<substring xmlns="{OVAL}" substring_start="1.0" substring_length="1"><literal_component datatype="string">x</literal_component></substring>')
-        with self.assertRaisesRegex(ValueError, 'xsd:int'):
+        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: substring'):
             visitor.function(bad)
 
 class NativeFunctionContractSemantics(unittest.TestCase):
@@ -381,7 +380,7 @@ class CountRecovery(unittest.TestCase):
         from v04_direct_scap_source import OVAL
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = ET.fromstring(f'<count xmlns="{OVAL}"/>')
-        with self.assertRaisesRegex(ValueError, 'function arity mismatch'):
+        with self.assertRaisesRegex(ValueError, 'exactly one nested expression'):
             visitor.function(source)
 
     def test_count_rejects_multiple_source_components_under_active_grammar(self):
@@ -398,8 +397,8 @@ class CountRecovery(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'exactly one nested expression'):
             visitor.function(source)
 
-class MultiComponentAggregationRecovery(unittest.TestCase):
-    def test_unique_preserves_ordered_components_in_recovery_envelope(self):
+class MultiComponentAggregationFailClosed(unittest.TestCase):
+    def test_unique_rejects_ordered_components_outside_active_grammar(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -410,13 +409,10 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">a</literal_component>
           <literal_component datatype="string">b</literal_component>
         </unique>''')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'unique')
-        self.assertEqual(len(expression['function']['arguments']), 2)
-        self.assertEqual(expression['function']['options'], {})
-        self.assertEqual(visitor.conversion_warnings[-1]['source_component_count'], 2)
+        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
+            visitor.function(source)
 
-    def test_merge_preserves_options_and_components_in_recovery_envelope(self):
+    def test_merge_rejects_components_outside_active_grammar(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -427,13 +423,10 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">10</literal_component>
           <literal_component datatype="string">2</literal_component>
         </merge>''')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'merge')
-        self.assertEqual(len(expression['function']['arguments']), 2)
-        self.assertEqual(expression['function']['options'], {
-            'delimiter': ',', 'sort': 'numeric', 'order': 'descending'})
+        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
+            visitor.function(source)
 
-    def test_default_path_still_rejects_multi_component_aggregation(self):
+    def test_default_path_rejects_multi_component_aggregation(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -444,7 +437,7 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">a</literal_component>
           <literal_component datatype="string">b</literal_component>
         </unique>''')
-        with self.assertRaisesRegex(ValueError, 'multiple aggregation components'):
+        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
             visitor.function(source)
 
 class NestedCountRecovery(unittest.TestCase):
@@ -513,10 +506,8 @@ class RemainingFunctionRecovery(unittest.TestCase):
         source = ET.fromstring(f'''<end xmlns="{OVAL}" character="\\">
           <unique><literal_component datatype="string">a</literal_component></unique>
         </end>''')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'end')
-        self.assertEqual(expression['function']['options'], {'character': '\\'})
-        self.assertEqual(expression['function']['arguments'][0], {'unique': {'literal': {'datatype': 'string', 'value': 'a'}}})
+        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: end'):
+            visitor.function(source)
 
     def test_existing_canonical_nested_expression_is_rejected_by_default_migration(self):
         import sys

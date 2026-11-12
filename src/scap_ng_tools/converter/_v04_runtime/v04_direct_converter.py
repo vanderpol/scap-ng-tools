@@ -672,90 +672,44 @@ class AssessmentConverter:
             ensure(element.get('item_field') in mapping['native']['state_field_map'], 'unknown object_component field')
             return {'values': {'object': self.reference(identifier, 'object'),
                                'field': mapping['native']['state_field_map'][element.get('item_field')]}}
-        # The approved migration envelope is opt-in.  It is never emitted by
-        # the historical/default path, which remains byte-compatible.  Options
-        # are copied from OVAL only after exact lexical/range/arity checks; no
-        # value evaluation or implicit cast is performed here.
-        if self.native_recovery and operation in ('arithmetic', 'split', 'substring', 'count', 'begin', 'end'):
-            required = ({'arithmetic_operation'} if operation == 'arithmetic' else
-                        {'delimiter'} if operation == 'split' else
-                        {'substring_start', 'substring_length'} if operation == 'substring' else
-                        {'character'} if operation in ('begin', 'end') else set())
-            attributes(element, required)
-            ensure(set(element.attrib) == required, 'function options must be explicit')
-            # OVAL count aggregates every component (not just one), while the
-            # remaining recovered unary functions accept exactly one and
-            # arithmetic accepts two or more. Preserve that distinction in
-            # the canonical call envelope; never drop extra components.
-            minimum = 2 if operation == 'arithmetic' else 1
-            maximum = 1 if operation in ('split', 'substring', 'begin', 'end') else None
-            ensure(len(element) >= minimum and (maximum is None or len(element) <= maximum),
-                   'function arity mismatch')
-            options = dict(element.attrib)
-            if operation == 'arithmetic':
-                ensure(options['arithmetic_operation'] in ('add', 'multiply'),
-                       'unsupported arithmetic operation')
-            elif operation == 'substring':
-                for key, value in options.items():
-                    ensure(re.fullmatch(r'[+-]?[0-9]+', value.strip()) is not None,
-                           'substring option must be xsd:int')
-                    number = int(value)
-                    ensure(-2147483648 <= number <= 2147483647,
-                           'substring option outside xsd:int')
-                    options[key] = number
+        # The active 0.4 schema has a deliberately closed function grammar.
+        # Count is the only recovered OVAL operation admitted here because its
+        # native form is the recursive ``{count: expression}`` expression.
+        # Never emit the historical generic ``function`` envelope: it is not
+        # an active 0.4 schema form and would turn a converter defect into a
+        # schema-invalid candidate document. Unsupported operations fail closed
+        # and remain visible in the Rule blocker ledger.
+        if self.native_recovery and operation in (
+                'arithmetic', 'split', 'substring', 'count', 'begin', 'end'):
+            ensure(operation == 'count',
+                   f'unsupported active 0.4 Variable function: {operation}')
+            attributes(element, set())
+            ensure(len(element) == 1,
+                   'active native count grammar accepts exactly one nested expression')
             from v04_variable_function_migration import canonical_expression
-            # The migration envelope is recursive: nested OVAL functions must
-            # not leave a legacy operator beside the canonical outer call.
-            arguments = [canonical_expression(self.function(child), allow_existing=True) for child in element]
-            if operation == 'count':
-                ensure(len(arguments) == 1,
-                       'active native count grammar accepts exactly one nested expression')
-                return {'count': arguments[0]}
-            expression = {'function': {'name': operation, 'arguments': arguments,
-                                       'options': options}}
-            self.conversion_warnings.append({'code': 'native_function_contract_v1',
-                'source_function': operation, 'source_options': dict(element.attrib),
-                'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
-            return expression
+            argument = canonical_expression(self.function(element[0]), allow_existing=True)
+            return {'count': argument}
         ensure(operation in ('concat', 'regex_capture', 'merge', 'unique'), f'unsupported function: {operation}')
         attributes(element, {'pattern'} if operation == 'regex_capture' else
                    {'delimiter', 'sort', 'order'} if operation == 'merge' else set())
         ensure(len(element) and (operation != 'regex_capture' or (len(element) == 1 and 'pattern' in element.attrib)), 'function arity/pattern')
         values = [self.function(child) for child in element]
         if operation in ('merge', 'unique'):
-            # OVAL unique/merge flatten all component collections in source
-            # order. The active 0.4 expression schema currently exposes only
-            # one collection operand, so the exact multi-component form is
-            # emitted only as the opt-in canonical-call candidate. It remains
-            # schema/compiler-gated; the default path fails closed rather than
-            # changing the operation to concat or set union.
-            if len(values) > 1:
-                ensure(self.native_recovery,
-                       'multiple aggregation components need an approved collection expression')
-                if operation == 'unique':
-                    options = {}
-                else:
-                    ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
-                           and element.get('order', 'ascending') in ('ascending', 'descending'),
-                           'unsupported merge sort/order')
-                    options = {'delimiter': element.get('delimiter', ''),
-                               'sort': element.get('sort', 'document'),
-                               'order': element.get('order', 'ascending')}
-                from v04_variable_function_migration import canonical_expression
-                arguments = [canonical_expression(value, allow_existing=True) for value in values]
-                expression = {'function': {'name': operation, 'arguments': arguments,
-                                           'options': options}}
-                self.conversion_warnings.append({'code': 'native_function_contract_v1',
-                    'source_function': operation, 'source_options': dict(element.attrib),
-                    'source_component_count': len(values),
-                    'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
-                return expression
+            # OVAL unique/merge flatten multiple source components. 0.4 has
+            # no active variadic collection expression, so preserve semantics
+            # by rejecting this shape rather than emitting an inactive
+            # generic function envelope.
+            ensure(len(values) == 1,
+                   f'{operation} with multiple components is unsupported by active 0.4 grammar')
             if operation == 'unique':
                 return {'unique': values[0]}
             ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
-                   and element.get('order', 'ascending') in ('ascending', 'descending'), 'unsupported merge sort/order')
-            return {'merge': {'delimiter': element.get('delimiter', ''), 'sort': element.get('sort', 'document'),
-                              'order': element.get('order', 'ascending'), 'values': values[0]}}
+                   and element.get('order', 'ascending') in ('ascending', 'descending'),
+                   'unsupported merge sort/order')
+            return {'merge': {'delimiter': element.get('delimiter', ''),
+                              'sort': element.get('sort', 'document'),
+                              'order': element.get('order', 'ascending'),
+                              'values': values[0]}}
         ensure(operation != 'concat' or len(values) >= 2, 'concat requires at least two components')
         return {'concat': values} if operation == 'concat' else {'regex_capture': {'pattern': element.get('pattern'), 'value': values[0]}}
 
@@ -1380,9 +1334,9 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 if set(native) & set(documents):
                     blockers.append(issue('native-identity',
                         'native Rule/Assessment name collision in selected source Rules', row['source_rule']))
-                # Multi-component unique/merge is admitted by the canonical
-                # function-expression schema. Keep warning provenance without
-                # reclassifying a schema-valid candidate as blocked.
+                # All emitted documents must already use the active native
+                # grammar; unsupported function shapes fail closed in the
+                # converter before this validation pass.
                 for path, document in native.items():
                     kind, = document
                     for error in validate_document(kind, document):
