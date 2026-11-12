@@ -66,3 +66,11 @@ jobs:
           SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/signed-source/Archive/2026_Q3/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
           SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/signed-source/Archive/2026_Q3
         run: python -m unittest discover -s tests -v
+      - name: Run complete read-only Issue #5 admission receipt
+        env:
+          PYTHONPATH: src
+        run: |
+          python scripts/qualify_v04_portable_admission.py \
+            --schema-root "${{ github.workspace }}/spec-snapshot" \
+            --fixture-root "${{ github.workspace }}/signed-source/Archive/2026_Q3" \
+            --report "${{ runner.temp }}/issue5-qualification.json"
