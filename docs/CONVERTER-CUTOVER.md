@@ -12,10 +12,10 @@ monorepo tool.
 `v04_direct_converter.py` loads mapping records and JSON Schema definitions
 from its own checkout's `schema/v0.4.0/`. The canonical public specification
 repository `vanderpol/scap-ng` (formerly staging) stores the identical frozen
-0.4 files in flat `schema/` at historical pin
-`ed4a9dce01af6849bf4be146c7678ef7804051e4`; the current amended candidate
-is [canonical PR #4](https://github.com/vanderpol/scap-ng/pull/4) at
-`354c9c962c77488a3d939cab56f6ceecfd495d27`.
+0.4 files in flat `schema/` at the active pinned snapshot
+`f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b`. Historical pre-amendment pins
+remain documented in Git history and are not accepted by the current snapshot
+reader.
 
 ## Contract established here
 
@@ -25,10 +25,9 @@ is [canonical PR #4](https://github.com/vanderpol/scap-ng/pull/4) at
 - The `FrozenSchemaSnapshot` reader fails on legacy nested layouts, altered
   bytes, incorrect logical IDs, unexpected reference counts, missing mappings,
   bad capability names and duplicated source JSON keys.
-- The amended 143-file aggregate SHA256 is
-  `ab1933f2d9171ee0af70c0fab855b00f5faf78bf59ad4924fbf24b402ac4072a`;
-  the previous frozen digest was
-  `476f5767276f5c2114f91b211cf4e159a75bee0806ea736fc631d9c40f4c4b80`.
+- The active 145-file aggregate SHA256 is
+  `63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5`.
+  The snapshot reader rejects prior schema-family bytes.
   The logical `$id` URIs still contain `v0.4.0`, independently of physical paths.
 - The external probe imports an **explicitly pinned legacy source checkout**,
   produces the original direct converter's output and trace, substitutes only
@@ -66,13 +65,13 @@ programs, source proofs, scanner evidence or new corpus publications result.
 
 The command below is retained as the **pre-amendment oracle** for exact
 research output. It is not a current 0.4 schema test after Item regrouping;
-use CI or `tests/test_focused_converter.py` against canonical PR #4 for current
+use CI or `tests/test_focused_converter.py` against the active pinned snapshot for current
 output. The reviewed new six-document digest is
 `8beb7b1c31c6321aa24ef4a0cfbbdd900dcd6dc349c8963887a9db28ee04d493`.
 
 Prerequisites are an *already locally available* clone of the original
 SCAP-NG research checkout at `d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9`, a
-clean flat canonical checkout at `ed4a9dce01af6849bf4be146c7678ef7804051e4`,
+clean flat canonical checkout at `f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b`,
 and the signed ZIP fixture from the research checkout. Install pinned test
 dependencies for the original converter in the test environment. The source
 ZIP SHA256 below is separately verified by the probe; the tool never fetches it.
@@ -104,7 +103,7 @@ scanner collection, compile/proof equivalence or the entire converter stack.
    preserving the now-pinned benchmark conversion output and without silently
    downgrading `--verify`/`--compile` semantics.
 3. **Editor-pack exporter qualification is complete for the owner amendment:**
-   all 235 resources match the reviewed amended 100-capability pack, and a
+   all 236 resources match the active reviewed 100-capability pack, and a
    new manifest/sourceCommit is pinned and tested. Now repoint the editor
    profile and its CI to the canonical repo in a separate reviewed change.
 4. Keep the signed-source fixture checkout pinned directly to public NIWC Q3

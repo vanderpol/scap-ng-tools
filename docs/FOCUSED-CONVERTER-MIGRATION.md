@@ -15,12 +15,12 @@ SHA-256 of these 18 source files to
 (sorted file name + NUL + exact bytes). The inventory pass introduced two
 **audited source-path injection edits** to `v04_direct_converter.py` and
 `v04_direct_inventory.py`, so descriptive capability names are resolved from
-the same flat catalog as conversion. At that earlier inventory-only checkpoint,
-the other 16 source files were byte-exact,
-with aggregate SHA-256
-`9b8cd16d4407706ad22d3f604d0cef6c9173fd31a67e4ecb968fdb1a4f71f282`.
-The adapted 18-file runtime's aggregate SHA-256 is
-`fcfa3ef00a083dc6510a8e1bd421b338d4c892fde59ab61d693ed60d957bc099`.
+the same flat catalog as conversion. The current allowlisted runtime has aggregate SHA-256
+`d0c8fbfa73c4239c2ab40d623a389f3907c693ae43fa9b6ca8f5df6459381d68`; its
+unchanged source-file aggregate is
+`c305756046c66989c07910dd9c0ffd0ce1510f1ddb827ac09209b0e92c718ae4`.
+Earlier inventory-only hashes remain historical evidence in Git and are not
+used as the current admission pin.
 Tests pin both changed files individually and the unchanged set independently.
 
 The new wrapper is deliberately separate from the frozen source engine:
@@ -28,8 +28,8 @@ The new wrapper is deliberately separate from the frozen source engine:
 - `scap_ng_tools.converter.direct04` imports only package-local source modules,
   validates the exact original SCAP ZIP hash and selected Rule IDs, and injects
   supported capability mappings from the explicit, immutable flat snapshot.
-- `FrozenSchemaSnapshot` verifies 143 schema/metadata JSON files, the frozen
-  aggregate hash, 34 root schemas, 242 references and 100 supported mappings.
+- `FrozenSchemaSnapshot` verifies 145 schema/metadata JSON files, the frozen
+  aggregate hash, 35 root schemas, 673 references and 100 supported mappings.
   Logical schema identifiers continue to use `v0.4.0` while physical paths
   are flat `schema/`.
 - The focused result undergoes Draft 2020-12 validation with a local registry
@@ -100,13 +100,10 @@ Pack SHA-256:
 `b78c4db59da4cb2bad4f783e9562a5df9060de1a0e60f29ff4afceef8443ca70`.
 Neither historical generators nor source XSD files are needed by the wheel.
 
-Three of the original 18 runtime files now have audited changes: converter
-callback, inventory mapping injection, and source behavior defaults. The
-unchanged 15 have aggregate SHA-256
-`6360a01e45b460c8fa9669b996fa1406e647c76f539bff990fa3e7ba30a7acdb`;
-the adapted 18-file runtime has SHA-256
-`b8be370e6616ce3b9f31bd4d08577872e9fbc235ccb19f74ac6bcf8159b41cd4`.
-The earlier hashes above describe the preceding inventory-only checkpoint.
+The current runtime and unchanged-file aggregates are enforced by
+`tests/test_converter_provenance.py`; only its explicit allowlisted adaptations
+may differ from the copied source. The earlier hashes above describe the
+preceding inventory-only checkpoint.
 
 | Original pinned source | Rules | Admitted | Blocked | Native docs |
 | --- | ---: | ---: | ---: | ---: |
@@ -128,17 +125,18 @@ options; earlier proofs were not touched or rebaselined.
 not complete Benchmark/manual/OCIL conversion, compilation, independent source
 proof, scanner evaluation or a current vendor publication.
 
-## Remaining work before repository rename
+## Remaining qualification gates
 
 1. Qualify draft admission, compile and independent source proof separately;
    their runtime graphs must not be copied wholesale.
 2. Keep the signed source fixture checkout pinned to the public NIWC library;
-   replace the CI's **remaining research generator/oracle** dependency before
-   privatizing that research repository.
-3. Expand pinned integration cases across the accepted regression and boundary
-   suite before asserting a complete converter release.
-4. Migrate/editor-repin the external metadata pack exporter, which currently
-   embeds the old source commit and monorepo paths in its manifest.
+   the CI generator/oracle dependency has already been replaced by pinned public
+   inputs. Record the remaining fixture/XSD license decision before vendoring or
+   redistributing any external input.
+3. The portable four-fixture integration qualification is recorded in
+   [Issue #5 qualification](ISSUE5-QUALIFICATION.md); expand it only with a
+   separately pinned source baseline.
+4. Repin the external editor profile and its CI in a separate coordinated review.
 
 These gates are separate from scanner implementation documentation, which is
 deferred until after the base tools/editor pipeline works.
