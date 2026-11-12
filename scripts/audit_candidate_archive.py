@@ -578,7 +578,7 @@ def main():
         report = {"format": "scap-ng-tools/issue28-candidate-archive-audit/1", "archive": {"url": args.url, "local_path": str(archive), "sha256": actual_sha, "expected_sha256": args.expected_sha256}, "pins": {"source_commit": args.source_commit, "schema_commit": args.schema_commit, "schema_family_sha256": args.schema_digest, "tools_commit": args.tools_commit, "schema_checkout_observed": schema_commit, "schema_digest_observed": schema_digest}, "schema": {"counts": dict(counts), "schema_files": len(schema_files), "validation_errors": len(schema_validation_findings)}, "sha256sums": sums, "hierarchy": hierarchy, "graph": graph, "provenance": provenance, "samples": samples, "editor": editor, "categories": categories, "defects": defects, "runtime_equivalence": False}
         (args.output_dir / "CANDIDATE-ARCHIVE-AUDIT.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
         (args.output_dir / "CANDIDATE-ARCHIVE-AUDIT.md").write_text(markdown(report))
-        print(json.dumps({"status": "PASS" if not defects else "FAIL", "sha256": actual_sha, "json_report": str(args.output_dir / 'APPLICABILITY8-ARCHIVE-AUDIT.json'), "markdown_report": str(args.output_dir / 'APPLICABILITY8-ARCHIVE-AUDIT.md'), "defects": len(defects)}, sort_keys=True))
+        print(json.dumps({"status": "PASS" if not defects else "FAIL", "sha256": actual_sha, "json_report": str(args.output_dir / 'CANDIDATE-ARCHIVE-AUDIT.json'), "markdown_report": str(args.output_dir / 'CANDIDATE-ARCHIVE-AUDIT.md'), "defects": len(defects)}, sort_keys=True))
         return 1 if defects else 0
     finally:
         shutil.rmtree(work, ignore_errors=True)
