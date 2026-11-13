@@ -148,7 +148,7 @@ class StandaloneSourceCompatibilityTests(unittest.TestCase):
             original.object_uses('cycle.xml', 'test-a', 'test')
 
     def test_filter_hidden_missing_variable_is_fatal(self):
-        payload = self.source().replace(b'var-state"/><', b'unknown-variable"/><')
+        payload = self.source().replace(b'var_ref="var-state"', b'var_ref="unknown-variable"')
         original = oval_platform.StandalonePlatformSource(payload, 'filter.xml')
         with self.assertRaisesRegex(direct04.QualifiedConversionError,
                                     'unresolved variable'):
