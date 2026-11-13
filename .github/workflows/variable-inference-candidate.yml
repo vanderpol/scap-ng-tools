@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: 928288f110d3335d6d2da51d0285e2d531a639ea
+          ref: 1b69456303fe2ef0f1502a6b3a6e2ad038475b4d
           path: candidate-schema
           persist-credentials: false
       - uses: actions/setup-python@v5
@@ -35,6 +35,6 @@ jobs:
           SCAP_NG_CANDIDATE_SCHEMA_ROOT: candidate-schema/schema/v0.4.1
         run: |
           set -euo pipefail
-          test "$(git -C candidate-schema rev-parse HEAD)" = 928288f110d3335d6d2da51d0285e2d531a639ea
+          test "$(git -C candidate-schema rev-parse HEAD)" = 1b69456303fe2ef0f1502a6b3a6e2ad038475b4d
           python3 -m unittest discover -s tests -p 'test_variable_inference_candidate.py' -v
           python3 -m unittest discover -s tests -p 'test_converter_provenance.py' -v
