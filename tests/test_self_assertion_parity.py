@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from audit_self_assertion_parity import (PREFIX, PIN, audit, digest, slug, sources,
     parse_oval, reachable_source_tests, normalize_source_evaluate, normalize_native_evaluate,
     audit_source_set_filter_retention)
+from convert_self_assertion_corpus import definitions_and_tests
 
 SOURCE_ID = "oval:example:def:1"
 TEST_ID = "oval:example:tst:1"
@@ -76,8 +77,31 @@ class FullOriginalSourceParityTests(unittest.TestCase):
             raw = (json.dumps(value, sort_keys=True) + "\n").encode()
             (directory / filename).write_bytes(raw)
             self.row["artifacts"][filename] = {"sha256": digest(raw), "bytes": len(raw)}
+        status = self.row.get("conversion_status", "blocked")
+        self.row.setdefault("schema_validated", status == "CONVERTED_UNVERIFIED")
         (self.pack / "definitions.json").write_text(json.dumps(
             [self.row] if rows is None else rows))
+        native_id = "test-1" if status == "CONVERTED_UNVERIFIED" else None
+        test_row = {
+                "source_path": SOURCE_PATH, "source_sha256": digest(XML),
+                "definition_ids": [SOURCE_ID],
+                "definition_results": [{
+                    "definition_id": SOURCE_ID,
+                    "conversion_status": status,
+                    "schema_validated": self.row.get("schema_validated", status == "CONVERTED_UNVERIFIED"),
+                    "native_test_id": native_id,
+                    "failure_class": self.row.get("failure_class"),
+                    "diagnostic": self.row.get("diagnostic"),
+                }],
+                "test_id": TEST_ID,
+                "conversion_status": status,
+                "scope_classification": self.row.get("scope_classification", "in_scope"),
+                "owner_decision": self.row.get("owner_decision"),
+                "schema_validated": self.row.get("schema_validated", status == "CONVERTED_UNVERIFIED"),
+                "native_test_ids": [native_id] if native_id else [],
+                "diagnostic": self.row.get("diagnostic"),
+            }
+        (self.pack / "tests.jsonl").write_text(json.dumps(test_row) + "\n")
 
     def inspect(self):
         return audit(self.src, self.pack, expected_xml=0,
@@ -111,9 +135,10 @@ class FullOriginalSourceParityTests(unittest.TestCase):
                         owner_decision="issue-approval-reference")
         self.publish()
         result = self.inspect()
-        self.assertTrue(result["scope_complete"], result["problems"])
-        self.assertFalse(result["complete"])
-        self.assertTrue(result["source_accounted"])
+        self.assertFalse(result["scope_complete"])
+        self.assertFalse(result["source_accounted"])
+        self.assertIn("exclusion_without_authorized_aix_policy",
+                      {p["type"] for p in result["problems"]})
 
     def test_unapproved_exclusion_fails_closed(self):
         self.row.update(conversion_status="excluded",
@@ -227,9 +252,38 @@ class DefinitionGraphTests(unittest.TestCase):
             <definition id="def-a"><criteria><extend_definition definition_ref="def-b"/></criteria></definition>
             <definition id="def-b"><criteria><extend_definition definition_ref="def-a"/></criteria></definition>
           </definitions></oval_definitions>'''
-        source = parse_oval(xml, SOURCE_PATH)
         with self.assertRaisesRegex(ValueError, 'cyclic'):
-            reachable_source_tests(source, 'def-a')
+            parse_oval(xml, SOURCE_PATH)
+
+
+class TransitiveOwnershipTests(unittest.TestCase):
+    def test_extend_definition_owners_are_transitive_and_deduplicated(self):
+        xml = b"""<oval_definitions>
+          <definitions>
+            <definition id="def-a"><criteria>
+              <criterion test_ref="test-a"/>
+              <extend_definition definition_ref="def-b"/>
+              <extend_definition definition_ref="def-b"/>
+            </criteria></definition>
+            <definition id="def-b"><criteria>
+              <criterion test_ref="test-b"/>
+              <extend_definition definition_ref="def-c"/>
+            </criteria></definition>
+            <definition id="def-c"><criteria><criterion test_ref="test-c"/></criteria></definition>
+          </definitions>
+          <tests><variable_test id="test-a"/><variable_test id="test-b"/><variable_test id="test-c"/></tests>
+        </oval_definitions>"""
+        definitions, tests, owners, _, _ = definitions_and_tests(xml)
+        self.assertEqual(definitions["def-a"], ["test-a", "test-b", "test-c"])
+        self.assertEqual(owners["test-c"], ["def-a", "def-b", "def-c"])
+
+    def test_extend_definition_cycle_fails_closed(self):
+        xml = b"""<oval_definitions><definitions>
+          <definition id="def-a"><criteria><extend_definition definition_ref="def-b"/></criteria></definition>
+          <definition id="def-b"><criteria><extend_definition definition_ref="def-a"/></criteria></definition>
+        </definitions></oval_definitions>"""
+        with self.assertRaisesRegex(ValueError, "cyclic"):
+            definitions_and_tests(xml)
 
 
 class OriginalSetFilterRetentionTests(unittest.TestCase):

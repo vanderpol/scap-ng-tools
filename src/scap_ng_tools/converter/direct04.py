@@ -71,6 +71,10 @@ def validate_native_documents(snapshot, documents):
             findings.extend(f'{filename}: {error.message}' for error in
                             validators[kind + '.schema.json'].iter_errors(document))
     if findings:
+        # Schema validator traversal can expose independent anyOf failures in
+        # hash/set-derived order. Keep published blocker diagnostics stable
+        # across converter subprocesses and deterministic ledger rebuilds.
+        findings = sorted(findings)
         raise QualifiedConversionError('generated authoring failed flat JSON Schema: ' + '; '.join(findings[:8]))
 
 

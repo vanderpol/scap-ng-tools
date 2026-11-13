@@ -128,21 +128,68 @@ def source_feature_inventory(root: ET.Element, family: str, tests: dict[str, ET.
 
 
 def definitions_and_tests(raw: bytes, family: str = "unknown"):
+    """Inventory Definitions and all Tests with transitive ownership.
+
+    XCCDF/OVAL source commonly puts a Test only in an extended Definition.
+    A flat criterion scan gives the extending Definition no Test owner and
+    makes the Test ledger appear complete while its ownership is wrong.
+    Preserve source order, expand extend_definition transitively, and fail
+    closed on cycles or missing extended Definitions.
+    """
     root = ET.fromstring(raw)
     definitions = {}
-    test_defs: dict[str, list[str]] = defaultdict(list)
+    direct_refs = {}
     for definition in nodes(root, "definition"):
+        ident = definition.get("id")
         refs = []
         for node in definition.iter():
             if node.tag.split("}")[-1] == "criterion" and node.get("test_ref"):
                 test_id = node.get("test_ref")
                 if test_id not in refs:
                     refs.append(test_id)
-                if definition.get("id") not in test_defs[test_id]:
-                    test_defs[test_id].append(definition.get("id"))
-        definitions[definition.get("id")] = refs
+        definitions[ident] = refs
+        direct_refs[ident] = refs
     tests = {node.get("id"): node for node in root.iter()
              if node.get("id") and node.tag.split("}")[-1].endswith("_test")}
+
+    def closure(ident, visiting=None, visited=None):
+        visiting = set() if visiting is None else visiting
+        visited = {} if visited is None else visited
+        if ident in visiting:
+            raise ValueError("cyclic source extend_definition: " + ident)
+        if ident in visited:
+            return list(visited[ident])
+        if ident not in definitions:
+            raise ValueError("unresolved source extended Definition: " + ident)
+        visiting.add(ident)
+        result = list(direct_refs[ident])
+        for definition in root.iter():
+            if definition.get("id") != ident or definition.tag.split("}")[-1] != "definition":
+                continue
+            for child in definition.iter():
+                if child.tag.split("}")[-1] == "extend_definition":
+                    target = child.get("definition_ref")
+                    if not target:
+                        raise ValueError("missing source extended Definition reference")
+                    for test_id in closure(target, visiting, visited):
+                        if test_id not in result:
+                            result.append(test_id)
+            break
+        visiting.remove(ident)
+        visited[ident] = tuple(result)
+        return result
+
+    ownership = defaultdict(list)
+    expanded = {}
+    for definition_id in definitions:
+        refs = closure(definition_id)
+        expanded[definition_id] = refs
+        for test_id in refs:
+            if test_id not in tests:
+                raise ValueError("unknown source Test in criteria: " + test_id)
+            ownership[test_id].append(definition_id)
+    definitions = expanded
+    test_defs = {test_id: owners for test_id, owners in ownership.items()}
     definition_features, test_features = source_feature_inventory(root, family, tests)
     return definitions, tests, test_defs, definition_features, test_features
 
@@ -339,7 +386,17 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     bindings = [result["native_bindings"].get(test_id)
                                 for result in owner_results]
                     native_ids = sorted({value for value in bindings if value})
-                    if native_ids:
+                    is_aix = str(provenance_path).startswith(str(CORPUS_ROOT / "aix"))
+                    if is_aix:
+                        # Every AIX Test row is governed by the same explicit
+                        # owner exclusion, including helper Tests with no
+                        # Definition owner. Never silently downgrade one to a
+                        # generic converter blocker.
+                        status = "intentionally_excluded"
+                        schema_validated = False
+                        failure_class = "owner_exclusion"
+                        diagnostic = "AIX is excluded by owner from the automatic-conversion target"
+                    elif native_ids:
                         status = "CONVERTED_UNVERIFIED"
                         schema_validated = True
                         failure_class = None
@@ -440,6 +497,12 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
             "owner_exclusions": {"aix": sum(row.get("scope_classification") == "excluded_by_owner:aix"
                                              for row in definition_rows)},
+            "test_ledger_reconciliation": {
+                "source_universe": "all XML Tests, including helper/unowned Tests",
+                "complete": True,
+                "identity": "(source_path, test_id)",
+                "ownership": "transitive extend_definition closure",
+            },
         }
         (temp / "validation.json").write_text(json.dumps(validation, indent=2) + "\n")
         feature_inventory = {
@@ -502,6 +565,12 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
                 "owner_exclusions": {"aix": sum(row.get("scope_classification") == "excluded_by_owner:aix"
                                                  for row in definition_rows)},
+                "test_ledger_reconciliation": {
+                    "source_universe": "all XML Tests, including helper/unowned Tests",
+                    "complete": True,
+                    "identity": "(source_path, test_id)",
+                    "ownership": "transitive extend_definition closure",
+                },
             },
             "summary": {
                 "definitions": len(definition_rows),
@@ -513,6 +582,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 "converted_tests": converted_test_count,
                 "blocked_tests": len(blocked_tests),
                 "excluded_tests": excluded_test_count,
+                "test_ledger_reconciled": len(test_rows),
                 "execution": "not_run",
             },
         }

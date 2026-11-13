@@ -21,6 +21,9 @@ from zipfile import ZipFile
 
 PREFIX = "SCAP_1.4/OVAL_Test_Content/"
 PIN = "e3538595c5083b9c34d937a81d319234df9bbfaa"
+AIX_PREFIX = PREFIX + "aix/"
+AIX_OWNER_DECISION = "issue-56:aix-excluded"
+AIX_SCOPE_CLASSIFICATION = "excluded_by_owner:aix"
 MAX_XML = 8 * 1024 * 1024
 MAX_ARCHIVE = 64 * 1024 * 1024
 CHECK = {"all": "every", "at least one": "one_or_more",
@@ -72,11 +75,35 @@ def parse_oval(raw, path):
                         "variable_component", "literal_component"}:
                 features[name] += 1
     lookup = {node.get("id"): node for node in root.iter() if node.get("id")}
-    refs = {}
+    direct_refs = {}
     for ident, definition in defs.items():
-        refs[ident] = list(dict.fromkeys(
+        direct_refs[ident] = list(dict.fromkeys(
             node.get("test_ref") for node in definition.iter()
             if tag(node) == "criterion" and node.get("test_ref")))
+    refs, visiting, visited = {}, set(), {}
+    def definition_tests(ident):
+        if ident in visiting:
+            raise ValueError(f"{path}: cyclic source extend_definition: {ident}")
+        if ident in visited:
+            return list(visited[ident])
+        if ident not in defs:
+            raise ValueError(f"{path}: unresolved source extended Definition: {ident}")
+        visiting.add(ident)
+        result = list(direct_refs[ident])
+        for child in defs[ident].iter():
+            if tag(child) != "extend_definition":
+                continue
+            target = child.get("definition_ref")
+            if not target:
+                raise ValueError(f"{path}: missing source extended Definition reference")
+            for test_id in definition_tests(target):
+                if test_id not in result:
+                    result.append(test_id)
+        visiting.remove(ident)
+        visited[ident] = tuple(result)
+        return result
+    for ident in defs:
+        refs[ident] = definition_tests(ident)
     return {"path": path, "sha256": digest(raw),
             "source_oval_schema_version": schema_version,
             "definitions": defs, "tests": tests, "variables": variables,
@@ -216,6 +243,58 @@ def read_pack(pack):
     if manifest.get("source_commit") != PIN:
         raise ValueError("converter package uses a different original source commit")
     return rows, manifest
+
+def read_test_ledger(pack):
+    ledger_path = pack / "tests.jsonl"
+    if not ledger_path.is_file():
+        raise ValueError("converter package missing tests.jsonl")
+    rows = []
+    seen = set()
+    for line_number, line in enumerate(ledger_path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError as error:
+            raise ValueError(f"tests.jsonl line {line_number} is invalid JSON") from error
+        if not isinstance(row, dict):
+            raise ValueError(f"tests.jsonl line {line_number} is not an object")
+        key = (row.get("source_path"), row.get("test_id"))
+        if (not isinstance(key[0], str) or not isinstance(key[1], str) or
+                not key[0] or not key[1] or key in seen):
+            raise ValueError(f"tests.jsonl duplicate/invalid source Test at line {line_number}")
+        seen.add(key)
+        rows.append(row)
+    return rows
+
+def aix_exclusion_authorized(path, row):
+    return (path.startswith(AIX_PREFIX) and
+            row.get("conversion_status") == "intentionally_excluded" and
+            row.get("owner_decision") == AIX_OWNER_DECISION and
+            row.get("scope_classification") == AIX_SCOPE_CLASSIFICATION)
+
+def exclusion_problem(path, ident, row, kind):
+    return {"type": "exclusion_without_authorized_aix_policy",
+            "kind": kind, "source": path,
+            ("definition" if kind == "definition" else "test"): ident,
+            "reason": "only pinned AIX owner exclusion issue-56:aix-excluded is authorized"}
+
+def validate_exclusion_authorization(path, ident, row, kind, problems):
+    """Enforce the only Phase 1 owner exclusion policy, fail closed."""
+    status = row.get("conversion_status")
+    owner = row.get("owner_decision")
+    scope = row.get("scope_classification")
+    if path.startswith(AIX_PREFIX):
+        if not aix_exclusion_authorized(path, row):
+            problems.append(exclusion_problem(path, ident, row, kind))
+        return
+    # A non-AIX row may not smuggle in an owner decision or exclusion label.
+    if (status in ("excluded", "intentionally_excluded") or owner is not None or
+            (scope is not None and scope != "in_scope")):
+        problems.append(exclusion_problem(path, ident, row, kind))
+        if status in ("excluded", "intentionally_excluded") and not owner:
+            problems.append({"type": "exclusion_without_owner_approval",
+                             "source": path, kind: ident})
 
 def slug(value):
     return value.replace(":", "_").replace("/", "_")
@@ -529,6 +608,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                          "expected": expected_tests,
                          "observed": original["tests"]})
     rows, manifest = read_pack(pack)
+    test_rows = read_test_ledger(pack)
     seen = set()
     statuses = Counter()
     tested = 0
@@ -553,6 +633,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         if set(row.get("source_test_ids", [])) != references:
             problems.append({"type": "source_test_references_mismatch",
                              "source": path, "definition": ident})
+        validate_exclusion_authorization(path, ident, row, "definition", problems)
         status = row.get("conversion_status", "missing")
         statuses[status] += 1
         if status == "blocked":
@@ -561,7 +642,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                                  "definition": ident})
             continue
         if status in ("excluded", "intentionally_excluded"):
-            if not row.get("diagnostic") or not row.get("owner_decision"):
+            if not row.get("diagnostic"):
                 problems.append({"type": "exclusion_without_owner_approval",
                                  "source": path, "definition": ident})
             continue
@@ -643,6 +724,97 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
             continue
         # Structural parity, NOT independently executed semantic equivalence.
         unqualified += 1
+    # Reconcile the complete source Test universe independently of Definition
+    # conversion.  Helper/unowned Tests are still ledger rows and must carry a
+    # disposition; invented or missing rows are accounting failures.
+    source_test_keys = {(path, test_id)
+                        for path, source in records.items()
+                        for test_id in source["tests"]}
+    test_seen = {(row.get("source_path"), row.get("test_id")) for row in test_rows}
+    for path, test_id in sorted(source_test_keys - test_seen):
+        problems.append({"type": "source_test_without_converter_disposition",
+                         "source": path, "test": test_id})
+    for path, test_id in sorted(test_seen - source_test_keys):
+        problems.append({"type": "invented_or_unpinned_source_test",
+                         "source": path, "test": test_id})
+    definition_by_key = {(row.get("source_path"), row.get("definition_id")): row
+                         for row in rows}
+    test_statuses = Counter()
+    reconciled_tests = 0
+    for row in test_rows:
+        path, test_id = row.get("source_path"), row.get("test_id")
+        if (path, test_id) not in source_test_keys:
+            continue
+        source = records[path]
+        source_test = source["tests"][test_id]
+        if row.get("source_sha256") != source["sha256"]:
+            problems.append({"type": "source_test_sha256_mismatch",
+                             "source": path, "test": test_id})
+        owners = [owner for definition_id in source["definitions"]
+                  if test_id in source["test_refs"][definition_id]
+                  for owner in [definition_id]]
+        if row.get("definition_ids") != owners:
+            problems.append({"type": "source_test_ownership_mismatch",
+                             "source": path, "test": test_id,
+                             "expected": owners, "observed": row.get("definition_ids")})
+        validate_exclusion_authorization(path, test_id, row, "test", problems)
+        results = row.get("definition_results", [])
+        if not isinstance(results, list) or any(not isinstance(item, dict) for item in results):
+            problems.append({"type": "test_definition_results_malformed",
+                             "source": path, "test": test_id})
+            results = [item for item in results if isinstance(item, dict)] if isinstance(results, list) else []
+        if [item.get("definition_id") for item in results] != owners:
+            problems.append({"type": "test_definition_results_mismatch",
+                             "source": path, "test": test_id})
+        expected_native = []
+        owner_statuses = []
+        for owner in owners:
+            definition_row = definition_by_key.get((path, owner))
+            item = next((item for item in results
+                         if item.get("definition_id") == owner), None)
+            if definition_row is None or item is None:
+                continue
+            owner_statuses.append(definition_row.get("conversion_status"))
+            for field in ("conversion_status", "schema_validated", "failure_class", "diagnostic"):
+                if item.get(field) != definition_row.get(field):
+                    problems.append({"type": "test_owner_result_mismatch",
+                                     "source": path, "test": test_id,
+                                     "definition": owner, "field": field})
+            native_id = item.get("native_test_id")
+            if native_id:
+                expected_native.append(native_id)
+        observed_native = row.get("native_test_ids", [])
+        if not isinstance(observed_native, list):
+            problems.append({"type": "test_native_bindings_mismatch",
+                             "source": path, "test": test_id})
+            observed_native = []
+        if observed_native != sorted(set(expected_native)):
+            problems.append({"type": "test_native_bindings_mismatch",
+                             "source": path, "test": test_id})
+        if path.startswith(AIX_PREFIX):
+            expected_status = "intentionally_excluded"
+        elif expected_native:
+            expected_status = "CONVERTED_UNVERIFIED"
+        elif owners and owner_statuses and all(status == "intentionally_excluded"
+                                               for status in owner_statuses):
+            expected_status = "intentionally_excluded"
+        else:
+            expected_status = "blocked"
+        if row.get("conversion_status") != expected_status:
+            problems.append({"type": "test_conversion_status_mismatch",
+                             "source": path, "test": test_id,
+                             "expected": expected_status,
+                             "observed": row.get("conversion_status")})
+        status = row.get("conversion_status", "missing")
+        test_statuses[status] += 1
+        if status == "blocked" and not row.get("diagnostic"):
+            problems.append({"type": "blocker_without_diagnostic",
+                             "source": path, "test": test_id})
+        if status == "intentionally_excluded" and not row.get("diagnostic"):
+            problems.append({"type": "exclusion_without_owner_approval",
+                             "source": path, "test": test_id})
+        reconciled_tests += 1
+
     absent = sorted(key for key in definition_paths if key not in seen)
     for path, ident in absent:
         problems.append({"type": "source_definition_without_converter_disposition",
@@ -650,6 +822,8 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
     coverage = {"original": original, "source_git_pin_verified": pin_verified,
                 "pack": {
         "source_commit": manifest.get("source_commit"),
+        "manifest_sha256": digest((pack / "manifest.json").read_bytes()),
+        "tests_ledger_sha256": digest((pack / "tests.jsonl").read_bytes()),
         "schema_family_sha256": manifest.get("schema", {}).get("aggregate_sha256"),
         "definitions_in_pack": len(rows),
         "status_counts": dict(sorted(statuses.items())),
@@ -657,6 +831,10 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         "source_mapped_tests_checked": tested,
         "converted_definitions": converted,
         "source_definitions_without_disposition": len(absent),
+        "tests_in_ledger": len(test_rows),
+        "test_status_counts": dict(sorted(test_statuses.items())),
+        "reconciled_tests": reconciled_tests,
+        "source_tests_without_disposition": len(source_test_keys - test_seen),
     }}
     accounting_errors = {"duplicate_source_definition", "duplicate_test_id",
                          "duplicate_converter_row", "source_sha256_mismatch",
@@ -666,6 +844,16 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                          "exclusion_without_owner_approval",
                          "unreviewed_converter_status",
                          "source_definition_without_converter_disposition",
+                         "source_test_without_converter_disposition",
+                         "invented_or_unpinned_source_test",
+                         "source_test_sha256_mismatch",
+                         "source_test_ownership_mismatch",
+                         "test_definition_results_malformed",
+                         "test_definition_results_mismatch",
+                         "test_owner_result_mismatch",
+                         "test_native_bindings_mismatch",
+                         "test_conversion_status_mismatch",
+                         "exclusion_without_authorized_aix_policy",
                          "original_xml_file_count_mismatch",
                          "original_definition_count_mismatch",
                          "original_test_count_mismatch",
@@ -674,7 +862,9 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
     complete = not problems and converted == original["definitions"]
     scope_complete = (not problems and
                       converted + statuses["excluded"] +
-                      statuses["intentionally_excluded"] == original["definitions"])
+                      statuses["intentionally_excluded"] == original["definitions"] and
+                      reconciled_tests == original["tests"] and
+                      sum(test_statuses.values()) == original["tests"])
     return {"format": "scap-ng-oval-source-parity/1", "complete": complete,
             "scope_complete": scope_complete,
             "source_accounted": accounted, "runtime_equivalence_proved": False,
@@ -716,6 +906,8 @@ def main():
                       "original": summary["original"]["definitions"],
                       "converted": summary["pack"]["converted_definitions"],
                       "undispositioned": summary["pack"]["source_definitions_without_disposition"],
+                      "tests": summary["pack"]["tests_in_ledger"],
+                      "test_status_counts": summary["pack"]["test_status_counts"],
                       "problems": len(report["problems"])}, sort_keys=True))
     if ((args.require_full and not report["complete"]) or
             (args.require_scope and not report["scope_complete"])):
