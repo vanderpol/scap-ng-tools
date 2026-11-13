@@ -67,6 +67,14 @@ SHA-256 and exact original Git commit.
    compare results/statuses. Even complete structural parity is
    **not** equivalent to runtime qualification.
 
+The report distinguishes `complete` (every source Definition converted),
+`scope_complete` (every source Definition converted or excluded with
+an explicit source-backed owner approval), and `source_accounted`
+(every source Definition has a valid converter disposition). A blocker
+never counts as a successful conversion. For approved target-platform
+releases use `--require-scope`; `--require-full` deliberately rejects
+even authorized exclusions and is the stricter all-source experiment.
+
 The report's `runtime_equivalence_proved` is unconditionally **false**.
 A structurally complete report must not be described as full semantic
 equivalence.
