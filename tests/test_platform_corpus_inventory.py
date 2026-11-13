@@ -26,20 +26,25 @@ class PlatformSelfAssertionCorpus(unittest.TestCase):
         ])
         self.assertEqual(self.manifest["summary"], {
             "definitions": 76, "tests": 462,
-            "converted_definitions": 7, "blocked_definitions": 69,
-            "schema_valid_yaml_documents": 7, "converted_tests": 58,
-            "blocked_tests": 404, "execution": "not_run",
+            "converted_definitions": 9, "blocked_definitions": 67,
+            "schema_valid_yaml_documents": 9, "converted_tests": 76,
+            "blocked_tests": 386, "execution": "not_run",
         })
         self.assertEqual(Counter(Path(row["source_path"]).parts[2] for row in self.definitions),
                          Counter({"agnostic": 47, "unix": 13, "linux": 16}))
         self.assertEqual(Counter(Path(row["source_path"]).parts[2] for row in self.tests),
                          Counter({"agnostic": 328, "unix": 72, "linux": 62}))
+        converted = [row for row in self.tests if row["conversion_status"] == "CONVERTED_UNVERIFIED"]
+        self.assertEqual(len(converted), 76)
+        self.assertEqual(Counter(Path(row["source_path"]).parts[2] for row in converted),
+                         Counter({"agnostic": 58, "unix": 18}))
+        self.assertEqual(sum(row["source_path"].endswith("unix-def_file_test.xml") for row in converted), 11)
 
     def test_platform_ledger_retains_features_diagnostics_and_integrity(self):
         self.assertEqual(len(self.manifest["feature_inventory"]["blocked_test_feature_counts"]),
                          len(set(feature for row in self.tests if row["conversion_status"] == "blocked"
                                    for feature in row["feature_categories"])))
-        self.assertEqual(self.manifest["feature_inventory"]["blocked_test_feature_counts"]["source_family:unix"], 72)
+        self.assertEqual(self.manifest["feature_inventory"]["blocked_test_feature_counts"]["source_family:unix"], 54)
         self.assertEqual(self.manifest["feature_inventory"]["blocked_test_feature_counts"]["source_family:linux"], 62)
         self.assertTrue(all(row.get("diagnostic") for row in self.tests
                             if row["conversion_status"] == "blocked"))
