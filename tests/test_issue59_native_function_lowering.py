@@ -110,6 +110,7 @@ class Active041FunctionLowering(unittest.TestCase):
                 },
             },
         }
+        }
         before = repr(source)
         with self.assertRaisesRegex(ValueError, 'multi-component OVAL count'):
             lower_assessment_inplace(source)
@@ -122,7 +123,7 @@ class Active041FunctionLowering(unittest.TestCase):
             'variables': {'count-variable': {
                 'kind': 'local', 'expression': {'function': {'name': 'count',
                     'arguments': [{'literal': ['a', 'a']}], 'options': {}}}}
-        }}
+        }}}
         self.assertTrue(lower_assessment_inplace(source))
         self.assertEqual(source['assessment']['variables']['count-variable']['expression'],
                          {'count': {'literal': ['a', 'a']}})
