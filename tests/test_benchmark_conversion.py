@@ -17,7 +17,7 @@ import tempfile
 import unittest
 import yaml
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 from scap_ng_tools.converter import convert_benchmark, convert_focused
 
 from test_benchmark_inventory import PINS, stable_digest
@@ -134,7 +134,7 @@ class BenchmarkConversionParity(unittest.TestCase):
                      in {t['capability'] for t in d['assessment']['tests'].values()})
         registry = next(d for d in assessments if 'windows.registry'
                         in {t['capability'] for t in d['assessment']['tests'].values()})
-        snapshot = FrozenSchemaSnapshot(self.schema)
+        snapshot = Pinned041SchemaSnapshot(self.schema)
         self.assertFalse(list(document_errors(snapshot, 'assessment', registry)))
         self.assertFalse(list(document_errors(snapshot, 'assessment', shell)))
 

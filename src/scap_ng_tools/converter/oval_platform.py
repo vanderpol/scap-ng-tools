@@ -214,11 +214,6 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     documents = {"assessment.json": {"assessment": assessment}}
     validate_native_documents(snapshot, documents)
     from ._v04_semantic.validation import document_errors
-    # Standalone semantic parity is still an outstanding 0.4.1 gate.
-    # Schema-valid drafts are not a scanner-equivalence release.
-    raise QualifiedConversionError(
-        '0.4.1 standalone semantic parity pack remains unqualified; '
-        'complete Tools Issue #59 before admitting source conversion')
     errors = list(document_errors(snapshot, "assessment", documents["assessment.json"]))
     ensure(not errors, "standalone platform semantic validation failed: " +
            "; ".join(error.message for error in errors[:4]))

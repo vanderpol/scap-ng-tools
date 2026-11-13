@@ -42,7 +42,7 @@ def canonical_binary32(value):
         return False
 
 
-def predicate_type(predicate, allowed, assessment, path):
+def predicate_type(predicate, allowed, assessment, path, variable_types=None):
     if set(predicate) == {'values_found'} and predicate['values_found'] == 'none':
         return None
     controls = {'datatype', 'values_found', 'values_matching', 'value_match', 'redact_result', 'selection_match'}
@@ -70,9 +70,14 @@ def predicate_type(predicate, allowed, assessment, path):
             kind, identity = next(iter(item.items()))
             section = 'variables' if kind == 'variable' else 'inputs'
             declaration = assessment.get(section, {}).get(identity)
-            if not isinstance(declaration, dict) or not isinstance(declaration.get('datatype'), str):
-                raise ValueError(path + ': unresolved or untyped ' + kind + ' ' + str(identity))
-            domain = declaration['datatype']
+            if kind == 'variable' and variable_types is not None:
+                domain = variable_types.get(identity)
+                if not isinstance(domain, str):
+                    raise ValueError(path + ': unresolved or ambiguously typed variable ' + str(identity))
+            else:
+                if not isinstance(declaration, dict) or not isinstance(declaration.get('datatype'), str):
+                    raise ValueError(path + ': unresolved or untyped ' + kind + ' ' + str(identity))
+                domain = declaration['datatype']
         else:
             domain = scalar_type(item)
             # String-backed semantic domains retain lexical text. This is not
@@ -92,12 +97,12 @@ def predicate_type(predicate, allowed, assessment, path):
     return domain
 
 
-def condition_types(node, fields, records, assessment, path, *, member=False, flat=False):
+def condition_types(node, fields, records, assessment, path, *, member=False, flat=False, variable_types=None):
     """Only condition/record grammar is traversed; literal data is opaque."""
     rows=[]
     for operator in ('and', 'or', 'one', 'xor'):
         for i, child in enumerate(node.get(operator, [])):
-            rows.extend(condition_types(child,fields,records,assessment,path+'/'+operator+'/'+str(i),member=member,flat=flat))
+            rows.extend(condition_types(child,fields,records,assessment,path+'/'+operator+'/'+str(i),member=member,flat=flat,variable_types=variable_types))
     predicates=node.get('fields', {})
     if flat and not (set(node) & {'fields','and','or','one','xor'}):
         predicates={k:v for k,v in node.items() if k!='field_requirement'}
@@ -108,20 +113,22 @@ def condition_types(node, fields, records, assessment, path, *, member=False, fl
         if 'record' in predicate:
             if not member and field not in records:
                 raise ValueError(route+': record conflicts with scalar capability field')
-            rows.extend(condition_types(predicate['record'],fields,records,assessment,route+'/record',member=True))
+            rows.extend(condition_types(predicate['record'],fields,records,assessment,route+'/record',member=True,variable_types=variable_types))
             continue
         allowed=set(fields[field]) if not member else TEXT_TYPES | {'integer','float','boolean'}
-        rows.append({'path':route,'datatype':predicate_type(predicate,allowed,assessment,route)})
+        rows.append({'path':route,'datatype':predicate_type(predicate,allowed,assessment,route,variable_types)})
     return rows
 
 
 def assessment_comparison_types(assessment):
     from .v04_input_presence import presence_contract
     presence_contract(assessment)  # Includes transitive optional-use dominance.
+    from .v04_variable_expressions import assessment_variable_expressions
+    variable_types = assessment_variable_expressions(assessment)
     rows=[]
     for test_id,test in assessment.get('tests',{}).items():
         fields,records,_,_=contract(test.get('capability'))
-        rows.extend(condition_types(test.get('require',{}),fields,records,assessment,'/tests/'+test_id+'/require'))
+        rows.extend(condition_types(test.get('require',{}),fields,records,assessment,'/tests/'+test_id+'/require',variable_types=variable_types))
     # Acquisition and collection-value comparisons have distinct contracts.
     # Visit grammar-owned sites, including shared/Set/Variable Objects; never
     # traverse literal payloads or infer a universal selector datatype.
@@ -137,14 +144,14 @@ def assessment_comparison_types(assessment):
         for name,spec in parameters.items():
             value=site.node.get(name)
             if spec.get('schema_ref')=='object_record' and isinstance(value,dict):
-                condition_types(value,fields,records,assessment,'/'+ '/'.join(map(str,site.path))+'/'+name,member=True)
+                condition_types(value,fields,records,assessment,'/'+ '/'.join(map(str,site.path))+'/'+name,member=True,variable_types=variable_types)
         def filters(node,path):
             for i,operand in enumerate(node.get('operands',[])):
                 route=path+'/operands/'+str(i)
                 for j,flt in enumerate(operand.get('filters',[])):
                     for action,payload in flt.items():
                         if action in ('include','exclude'):
-                            condition_types(payload,fields,records,assessment,route+'/filters/'+str(j)+'/'+action,flat=True)
+                            condition_types(payload,fields,records,assessment,route+'/filters/'+str(j)+'/'+action,flat=True,variable_types=variable_types)
                 if isinstance(operand.get('set'),dict):filters(operand['set'],route+'/set')
         if isinstance(site.node.get('set'),dict):filters(site.node['set'],'/'+ '/'.join(map(str,site.path))+'/set')
         for name, value in site.node.items():
@@ -157,7 +164,7 @@ def assessment_comparison_types(assessment):
                 predicate = {'equals': value}
             else:
                 predicate = value
-            predicate_type(predicate, set(domains[name]), assessment, route)
+            predicate_type(predicate, set(domains[name]), assessment, route, variable_types)
     return rows
 
 
@@ -165,7 +172,7 @@ def comparison_errors(document):
     from jsonschema import ValidationError
     assessment = document.get('assessment')
     if not isinstance(assessment, dict) or assessment.get('mode') != 'automated': return
-    if (assessment.get('specification') or {}).get('version') != '0.4.0': return
+    if (assessment.get('specification') or {}).get('version') != '0.4.1': return
     try:
         assessment_comparison_types(assessment)
     except (ValueError, KeyError, TypeError) as error:

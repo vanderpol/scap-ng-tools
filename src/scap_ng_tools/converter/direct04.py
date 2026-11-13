@@ -156,16 +156,8 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
     engine = load_runtime()
     from v04_direct_scap_source import SourceModel
     from ._v04_semantic.validation import document_errors
-    # The historical frozen semantic pack has 0.4.0 source-version pins.
-    # Do not claim automatic 0.4.1 benchmark admission before compiling and
-    # independently qualifying the versioned semantic contract pack.
-    # The shared semantic pack still needs independent 0.4.1 qualification.
-    # Never admit bulk native drafts through stale 0.4.0-only source contracts.
     if snapshot.manifest()['schema_version'] != '0.4.1':
         raise QualifiedConversionError('unsupported schema version')
-    raise QualifiedConversionError(
-        '0.4.1 benchmark semantic pack is not independently qualified yet; '
-        'see Tools Issue #59 and do not promote unproved OVAL conversions')
     mappings = snapshot.supported_mappings(engine.CAPABILITIES)
     original = SourceModel(Path(source), sha256_pin, inventory_broken_references=True)
     original.native_recovery = native_recovery
@@ -338,7 +330,7 @@ def main():
                 sha256_pin=arguments.sha256, rule_ids=arguments.rule,
                 human_compact=arguments.human_compact, native_recovery=arguments.recover_native,
                 include_applicability=arguments.include_applicability)
-        snapshot = FrozenSchemaSnapshot(arguments.schema_root)
+        snapshot = load_pinned_snapshot(arguments.schema_root)
         rendered = render_native_documents(snapshot, documents)
         targets = {name: safe_relative_filename(arguments.output, name)
                    for name in documents}
@@ -357,7 +349,7 @@ def main():
             (arguments.output / 'coverage.md').write_text(
                 coverage_markdown(coverage), encoding='utf-8')
         (arguments.output / 'conversion-scope.json').write_text(json.dumps({
-            'schema_version': '0.4.0',
+            'schema_version': '0.4.1',
             'conversion_status': 'CONVERTED_UNVERIFIED',
             'structural_validation': 'Draft 2020-12 local pinned schema',
             'independent_semantic_proof': False,
@@ -367,7 +359,7 @@ def main():
             'rule_ids': arguments.rule,
             'oval_definition': arguments.oval_definition,
             'automatic_benchmark_subset': bool(arguments.all_rules),
-            'semantic_validation': ('frozen 0.4 capability contract and semantic gates'
+            'semantic_validation': ('pinned 0.4.1 semantic pack and native semantic gates'
                                     if arguments.all_rules or arguments.oval_definition else 'not independently qualified'),
         }, indent=2) + '\n', encoding='utf-8')
     except (OSError, ValueError) as error:

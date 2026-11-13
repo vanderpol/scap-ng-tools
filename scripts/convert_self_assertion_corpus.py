@@ -23,7 +23,7 @@ from zipfile import ZipFile
 
 import yaml
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 from scap_ng_tools.converter.direct04 import validate_native_documents
 
 CORPUS_ROOT = Path("SCAP_1.4/OVAL_Test_Content")
@@ -239,7 +239,7 @@ def run_one(*, python: str, schema_root: Path, source: Path, source_sha: str,
     return command, process, files, success
 
 
-def independent_artifacts(snapshot: FrozenSchemaSnapshot, files: dict[str, Path]):
+def independent_artifacts(snapshot: Pinned041SchemaSnapshot, files: dict[str, Path]):
     document = json.loads(files["assessment.json"].read_text())
     yaml_document = yaml.safe_load(files["assessment.yaml"].read_text())
     if document != yaml_document:
@@ -254,7 +254,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             output: Path, python: str, families: tuple[str, ...] = ("agnostic",)):
     if output.exists():
         raise ValueError(f"refusing to overwrite existing output: {output}")
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = Pinned041SchemaSnapshot(schema_root)
     output.parent.mkdir(parents=True, exist_ok=True)
     temp = Path(tempfile.mkdtemp(prefix="self-assertion-conversion-", dir=output.parent))
     try:

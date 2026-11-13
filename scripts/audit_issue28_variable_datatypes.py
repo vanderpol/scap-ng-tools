@@ -464,7 +464,7 @@ def main():
     schema_dir = args.schema_root / 'schema'
     schema_json = json.loads((schema_dir / 'variable-expression.schema.json').read_text())
     native_functions = sorted(schema_json['$defs']['function_expression']['properties']['function']['properties']['name']['enum'])
-    pack_path = Path(__file__).parents[1] / 'src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.0.json'
+    pack_path = Path(__file__).parents[1] / 'src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.1.json'
     pack = json.loads(pack_path.read_text())
     pack_field_types = Counter()
     for capability in pack.get('capabilities', {}).values():

@@ -13,7 +13,7 @@ from copy import deepcopy
 from pathlib import Path, PurePosixPath
 import yaml
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 from scap_ng_tools.converter.direct04 import convert_benchmark, validate_native_documents
 from scap_ng_tools.converter._v04_runtime.v04_direct_yaml import authoring_yaml
 
@@ -183,7 +183,7 @@ def verify_published_inventory(emitted):
 def build(args):
     ledger, rules_doc, candidate = read_candidate(args.ledger, args.rules)
     if git_head(args.source_root) != EXPECTED_SOURCE: raise ValueError('source checkout HEAD differs from pinned source commit')
-    snapshot = FrozenSchemaSnapshot(args.schema_root)
+    snapshot = Pinned041SchemaSnapshot(args.schema_root)
     if snapshot.manifest()['aggregate_sha256'] != EXPECTED_SCHEMA_DIGEST: raise ValueError('schema digest differs from pinned candidate')
     actual_schema_commit = git_head(args.schema_root)
     if actual_schema_commit != EXPECTED_SCHEMA: raise ValueError(f'schema checkout HEAD differs from pinned schema commit: {actual_schema_commit}')

@@ -120,7 +120,7 @@ def _assessment_document(source, component, definition_id, assessment_id, title,
     assessment = {
         'id': assessment_id, 'version': 1, 'assessment_title': title,
         'mode': 'automated', 'class': definition.get('class') or 'compliance',
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'},
+        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'},
     }
     for section in ('shared_objects', 'variables'):
         if getattr(converter, section):
@@ -145,7 +145,7 @@ def _not_evaluated(assessment_id, title, reason):
     return {'assessment': {
         'id': assessment_id, 'version': 1, 'assessment_title': title,
         'mode': 'automated', 'class': 'compliance',
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'},
+        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'},
         'tests': {},
         'evaluate': {'not_evaluated': {'reason': reason}},
     }}
@@ -183,7 +183,7 @@ def _make_composite(title, source_key, child_ids, operator, negate, shared, trac
         'id': assessment_id, 'version': 1,
         'assessment_title': f'Applicability: {title}',
         'mode': 'automated', 'class': 'compliance',
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'},
+        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'},
         'tests': {}, 'dependencies': dependencies, 'evaluate': expression,
     }}
     existing = shared.get(assessment_id)

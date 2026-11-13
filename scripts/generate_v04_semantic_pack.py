@@ -10,11 +10,12 @@ No old research repository, XSD bundle, or network access is needed at runtime.
 import argparse
 import json
 from pathlib import Path
+from hashlib import sha256
 import subprocess
 import sys
 import tempfile
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 from scap_ng_tools.converter.direct04 import load_runtime
 
 
@@ -29,7 +30,7 @@ def git_head(path):
 
 
 def build(schema_root, oval_root):
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = Pinned041SchemaSnapshot(schema_root)
     oval_root = Path(oval_root).resolve(strict=True)
     if git_head(oval_root) != OVAL_COMMIT:
         raise ValueError('official OVAL source is not the audited v5.12.3 commit')
@@ -54,7 +55,7 @@ def build(schema_root, oval_root):
         source_dir.mkdir(parents=True)
         (source_dir / 'oval_5.12.3').symlink_to(xsd_root, target_is_directory=True)
         (root / 'schema').mkdir()
-        (root / 'schema' / 'v0.4.0').symlink_to(
+        (root / 'schema' / 'v0.4.1').symlink_to(
             snapshot.schema_root, target_is_directory=True)
 
         # This is a fresh build-only process. Restore and invalidate the
@@ -84,10 +85,16 @@ def build(schema_root, oval_root):
             behavior_source.original_attributes.cache_clear()
 
     body = {
-        'format': 'scap-ng-portable-0.4-semantic-pack/1',
-        'frozen_schema_digest': snapshot.manifest()['aggregate_sha256'],
+        'format': 'scap-ng-portable-0.4.1-semantic-pack/1',
+        'frozen_schema_digest': snapshot.manifest()['flat_json_aggregate_sha256'],
         # Historical derivation provenance, not a runtime or CI checkout.
+        'schema_version': '0.4.1',
+        'oval_commit': OVAL_COMMIT,
         'research_generator_commit': RESEARCH_GENERATOR_COMMIT,
+        'generator_helper_sha256': {
+            path.name: sha256(path.read_bytes()).hexdigest()
+            for path in sorted(GENERATOR.glob('*.py'))
+        },
         'capabilities': capabilities,
         'behavior_attributes': behaviors,
     }
@@ -104,7 +111,7 @@ def main():
     raw = build(args.schema_root, args.oval_root)
     args.output.write_text(raw, encoding='utf-8')
     print(json.dumps({'capabilities': 52, 'bytes': len(raw.encode('utf-8')),
-                      'source': 'official OVAL v5.12.3 + frozen flat 0.4'}))
+                      'source': 'official OVAL v5.12.3 + canonical flat 0.4.1'}))
 
 
 if __name__ == '__main__':

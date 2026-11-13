@@ -32,7 +32,7 @@ class EditorPackParity(unittest.TestCase):
             output = Path(temp) / 'metadata'
             profile = build(self.schema, self.oval, SCHEMA_COMMIT, output)
             self.assertEqual(profile, {
-                'schemaVersion': '0.4.0',
+                'schemaVersion': '0.4.1',
                 'sourceCommit': SCHEMA_COMMIT,
                 'manifestSha256': EXPECTED_MANIFEST,
             })

@@ -1,4 +1,4 @@
-name: Candidate Variable inference converter/schema handshake
+name: Pinned 0.4.1 semantic pack handshake
 on:
   pull_request:
     paths:
@@ -9,32 +9,39 @@ on:
 permissions:
   contents: read
 jobs:
-  candidate-schema-converter:
+  canonical-schema-converter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout candidate converter
         uses: actions/checkout@v4
-      - name: Checkout exact canonical candidate
+      - name: Checkout exact canonical PR #65 schema
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: 1b69456303fe2ef0f1502a6b3a6e2ad038475b4d
-          path: candidate-schema
+          ref: 0732b56567e7120ed6cb00908dff40716f76fac9
+          path: canonical-schema
           persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Install scoped dependencies
         run: python3 -m pip install .
-      - name: Generate and verify 0.4.1 schema family from immutable 0.4.0 source
+      - name: Verify exact 0.4.1 schema family and semantic pack
+        env:
+          PYTHONPATH: src
         run: |
-          python3 candidate-schema/tools/build_schema_v041.py
-          python3 candidate-schema/tools/build_schema_v041.py --check
+          python3 - <<'PY'
+          from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+          from scap_ng_tools.converter._v04_semantic import contracts
+          Pinned041SchemaSnapshot('canonical-schema')
+          assert contracts()['schema_version'] == '0.4.1'
+          print('single pinned 0.4.1 schema/semantic pack: PASS')
+          PY
       - name: Check exact canonical candidate and historical regression tests
         env:
-          SCAP_NG_CANDIDATE_SCHEMA_ROOT: candidate-schema/schema/v0.4.1
+          SCAP_NG_SCHEMA_ROOT: canonical-schema/schema
         run: |
           set -euo pipefail
-          test "$(git -C candidate-schema rev-parse HEAD)" = 1b69456303fe2ef0f1502a6b3a6e2ad038475b4d
+          test "$(git -C canonical-schema rev-parse HEAD)" = 0732b56567e7120ed6cb00908dff40716f76fac9
           python3 -m unittest discover -s tests -p 'test_variable_inference_candidate.py' -v
           python3 -m unittest discover -s tests -p 'test_converter_provenance.py' -v

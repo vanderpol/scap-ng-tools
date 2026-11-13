@@ -11,7 +11,27 @@ from hashlib import sha256
 from pathlib import Path
 import re
 
-from .schema_snapshot import SnapshotError, load_json
+import json
+
+
+class SnapshotError(ValueError):
+    """An externally supplied schema tree does not meet the approved pin."""
+
+
+def load_json(path):
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise SnapshotError(f"{path}: duplicate JSON member {key}")
+            result[key] = value
+        return result
+
+    def nonfinite(value):
+        raise SnapshotError(f"{path}: invalid numeric value {value}")
+
+    return json.loads(path.read_bytes(), object_pairs_hook=unique,
+                      parse_constant=nonfinite)
 
 VERSION = "0.4.1"
 PREFIX = "https://scap-ng.dev/schema/v0.4.1/"
@@ -20,6 +40,15 @@ RESOURCE_COUNT = 145
 ROOT_SCHEMA_COUNT = 35
 SUPPORTED_COUNT = 100
 NAME = re.compile(r"^[a-z][a-z0-9]*(?:[._][a-z0-9]+)*$")
+
+
+def fingerprint(paths, root):
+    """Hash sorted relative paths and exact bytes, including path identity."""
+    checksum = sha256()
+    for path in sorted(paths):
+        checksum.update(path.relative_to(root).as_posix().encode("utf-8") + b"\0")
+        checksum.update(path.read_bytes())
+    return checksum.hexdigest()
 
 
 class Pinned041SchemaSnapshot:
@@ -98,6 +127,7 @@ class Pinned041SchemaSnapshot:
             "schema_version": VERSION,
             "logical_id_prefix": PREFIX,
             "flat_json_aggregate_sha256": FLAT_SCHEMA_SHA256,
+            "aggregate_sha256": FLAT_SCHEMA_SHA256,
             "schema_root": self.schema_root.as_posix(),
             "root_schema_count": ROOT_SCHEMA_COUNT,
             "supported_capability_count": SUPPORTED_COUNT,

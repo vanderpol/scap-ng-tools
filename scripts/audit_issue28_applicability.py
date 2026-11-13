@@ -9,7 +9,7 @@ import argparse, collections, gzip, hashlib, json, subprocess, zipfile
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 from scap_ng_tools.converter.direct04 import load_runtime
 
 SOURCE_COMMIT = '8c8e5dff860af6b1290ee9273a282db24278f8d5'
@@ -37,7 +37,7 @@ def audit(args):
     if pins != {'candidate_digest': pins['candidate_digest'], 'schema_commit': SCHEMA_COMMIT, 'schema_family_sha256': SCHEMA_DIGEST, 'source_commit': SOURCE_COMMIT}:
         raise ValueError('candidate pins differ from the accepted corpus')
     if git_head(args.source_root) != SOURCE_COMMIT: raise ValueError('source checkout is not pinned')
-    snapshot = FrozenSchemaSnapshot(args.schema_root)
+    snapshot = Pinned041SchemaSnapshot(args.schema_root)
     if snapshot.manifest()['aggregate_sha256'] != SCHEMA_DIGEST: raise ValueError('schema digest mismatch')
     load_runtime()
     from v04_direct_scap_source import SourceModel

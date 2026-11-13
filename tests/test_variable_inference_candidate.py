@@ -80,7 +80,7 @@ class VariableInference(unittest.TestCase):
         self.assertNotIn('datatype',visitor.variables['count-variable'])
 
     def test_versioned_snapshot_and_declared_grammar_are_explicit(self):
-        root = os.environ.get('SCAP_NG_CANDIDATE_SCHEMA_ROOT')
+        root = os.environ.get('SCAP_NG_SCHEMA_ROOT')
         if not root:
             self.skipTest('Generate and pass the pinned 0.4.1 schema pack')
         from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
@@ -96,9 +96,9 @@ class VariableInference(unittest.TestCase):
     def test_exact_canonical_candidate_schema_accepts_converter_output(self):
         # Separate cross-repo CI pins the exact owner-approved candidate. The
         # historical 0.4 snapshot remains fully qualified by the old gate.
-        root = os.environ.get('SCAP_NG_CANDIDATE_SCHEMA_ROOT')
+        root = os.environ.get('SCAP_NG_SCHEMA_ROOT')
         if not root:
-            self.skipTest('Set SCAP_NG_CANDIDATE_SCHEMA_ROOT for cross-repo candidate validation')
+            self.skipTest('Set SCAP_NG_SCHEMA_ROOT for cross-repo candidate validation')
         from jsonschema import Draft202012Validator
         from referencing import Registry, Resource
         schema_root = Path(root)
@@ -107,7 +107,7 @@ class VariableInference(unittest.TestCase):
             document = json.loads(path.read_text())
             resource = Resource.from_contents(document)
             resources[document['$id']] = resource
-            resources['https://scap-ng.dev/schema/v0.4.0/' + path.name] = resource
+            resources['https://scap-ng.dev/schema/v0.4.1/' + path.name] = resource
         declaration_schema = json.loads((schema_root / 'variable-expression.schema.json').read_text())
         validator = Draft202012Validator(declaration_schema,
                                          registry=Registry().with_resources(resources.items()))
@@ -128,7 +128,7 @@ class VariableInference(unittest.TestCase):
             validator.validate({'kind':'local','datatype':'integer',
                                 'expression':{'count':{'literal':['a','a']}}})
 
-    def test_historical_schema_keeps_original_declaration_shape(self):
+    def test_native_declaration_keeps_inferred_shape(self):
         engine = direct04.load_runtime()
         element = ET.fromstring(
             '<local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int">'

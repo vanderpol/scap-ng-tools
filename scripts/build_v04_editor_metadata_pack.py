@@ -17,7 +17,7 @@ import subprocess
 import sys
 import tempfile
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 
 from generate_v04_semantic_pack import GENERATOR, OVAL_COMMIT, git_head
 
@@ -49,7 +49,7 @@ def generate_editor_capabilities(mappings, root):
 
 
 def build(schema_root, oval_root, source_commit, output):
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = Pinned041SchemaSnapshot(schema_root)
     source_commit = str(source_commit)
     schema_repo = snapshot.schema_root.parent
     if not COMMIT.fullmatch(source_commit) or git_head(schema_repo) != source_commit:
@@ -77,7 +77,7 @@ def build(schema_root, oval_root, source_commit, output):
         # OVAL XSD is shipped in the resulting editor metadata pack.
         root = Path(original)
         (root / 'schema').mkdir()
-        (root / 'schema' / 'v0.4.0').symlink_to(
+        (root / 'schema' / 'v0.4.1').symlink_to(
             snapshot.schema_root, target_is_directory=True)
         source = root / 'third_party' / 'scap-1.4-schemas'
         source.mkdir(parents=True)
@@ -113,12 +113,12 @@ def build(schema_root, oval_root, source_commit, output):
                                 'capability-mappings/supported').glob('*.json')):
                 mapping = json.loads(file.read_bytes())
                 capability = mapping['capability']
-                mapping_uri = 'scap-ng:mapping:0.4.0:' + capability
+                mapping_uri = 'scap-ng:mapping:0.4.1:' + capability
                 add(generated[capability], 'capabilities/' + capability + '.json', 'schema')
                 add(mapping, 'mappings/' + capability + '.json', 'mapping', mapping_uri)
                 capabilities[capability] = {
                     'schema_uri': generated[capability]['$id'], 'mapping_uri': mapping_uri}
-            vocabulary_uri = 'scap-ng:vocabulary:0.4.0:en'
+            vocabulary_uri = 'scap-ng:vocabulary:0.4.1:en'
             add(json.loads((snapshot.schema_root /
                             'authoring-vocabulary.en.json').read_bytes()),
                 'vocabulary/en.json', 'vocabulary', vocabulary_uri)
@@ -133,7 +133,7 @@ def build(schema_root, oval_root, source_commit, output):
                                  sha256(resource_identity).hexdigest())
             manifest = {
                 'format': 'scap-ng/offline-editor-pack/1',
-                'schema_version': '0.4.0',
+                'schema_version': '0.4.1',
                 'authoring_metadata_version': 1,
                 'source_commit': source_commit,
                 'resources': resources,
@@ -143,7 +143,7 @@ def build(schema_root, oval_root, source_commit, output):
             manifest_raw = (json.dumps(manifest, indent=2, sort_keys=True) + '\n').encode()
             (stage / 'manifest.json').write_bytes(manifest_raw)
             profile = {
-                'schemaVersion': '0.4.0',
+                'schemaVersion': '0.4.1',
                 'sourceCommit': source_commit,
                 'manifestSha256': sha256(manifest_raw).hexdigest(),
             }
