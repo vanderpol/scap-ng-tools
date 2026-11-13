@@ -1185,7 +1185,7 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     assessment_id = native_identifier(rule, 'assessment', local_title)
     assessment = {'id': assessment_id, 'version': 1, 'assessment_title': title,
         'mode': 'automated', 'class': source.node(component, definition, 'definition').get('class'),
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'}}
+        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': getattr(source, 'native_specification_version', '0.4.0')}}
     for section in ('shared_objects', 'variables'):
         if getattr(converter, section):
             assessment[section] = getattr(converter, section)
@@ -1323,9 +1323,9 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
                          'disabled_rules': [rule_links[rule] for rule, enabled in selection.items() if not enabled]})
         profile_trace.append({'source_id': profile.get('id'), 'source_sha256': digest(xml_identity(profile)),
                               'native_id': identifier, 'selected': selection})
-    wrapper = {'id': 'direct-slice', 'ng_schema_version': '0.4.0', 'use_case': 'compliance',
+    wrapper = {'id': 'direct-slice', 'ng_schema_version': getattr(source, 'native_specification_version', '0.4.0'), 'use_case': 'compliance',
         'version': {'value': benchmark.findtext(f'{{{XCCDF}}}version', '')},
-        'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'}],
+        'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': getattr(source, 'native_specification_version', '0.4.0')}],
         'title': [{'text': '[AUTOMATED PROTOTYPE SUBSET] ' + benchmark.findtext(f'{{{XCCDF}}}title', ''), 'language': 'en'}],
         'description': [{'text': benchmark.findtext(f'{{{XCCDF}}}description', ''), 'language': 'en'}],
         'language': benchmark.get('{http://www.w3.org/XML/1998/namespace}lang'),
