@@ -45,6 +45,10 @@ def parse_oval(raw, path):
     if tag(root) != "oval_definitions":
         raise ValueError(f"{path}: not an OVAL Definitions document")
     groups = {tag(child): child for child in root}
+    generator = groups.get("generator")
+    schema_version = (generator.findtext(
+        "{http://oval.mitre.org/XMLSchema/oval-common-5}schema_version")
+        if generator is not None else None)
     defs = {}
     tests = {}
     variables = {}
@@ -73,8 +77,10 @@ def parse_oval(raw, path):
         refs[ident] = list(dict.fromkeys(
             node.get("test_ref") for node in definition.iter()
             if tag(node) == "criterion" and node.get("test_ref")))
-    return {"path": path, "sha256": digest(raw), "definitions": defs,
-            "tests": tests, "variables": variables, "nodes": lookup,
+    return {"path": path, "sha256": digest(raw),
+            "source_oval_schema_version": schema_version,
+            "definitions": defs, "tests": tests, "variables": variables,
+            "nodes": lookup,
             "test_refs": refs,
             "features": dict(sorted(features.items()))}
 
@@ -506,6 +512,8 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                 raise ValueError("source path/commit mismatch in trace")
             if trace.get("source_sha256") != source["sha256"] or trace.get("definition_id") != ident:
                 raise ValueError("source digest/Definition mismatch in trace")
+            if trace.get("source_oval_schema_version") != source["source_oval_schema_version"]:
+                raise ValueError("original OVAL schema version missing or altered in trace")
             mapping = trace.get("test_bindings", [])
             source_to_native = {}
             for bound in mapping:
