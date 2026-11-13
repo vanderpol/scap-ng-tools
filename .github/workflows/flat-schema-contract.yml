@@ -58,11 +58,12 @@ jobs:
             --output "${{ runner.temp }}/semantic-contract-pack.json"
           cmp "${{ runner.temp }}/semantic-contract-pack.json" \
             src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.1.json
-      - name: Verify copied converter, pinned conversion and flat-schema adapter
+      - name: Verify exact schema handshake and full offline test suite
         env:
           PYTHONPATH: src
-          SCAP_NG_SCHEMA_ROOT: ${{ github.workspace }}/spec-snapshot
-          SCAP_NG_OVAL_ROOT: ${{ github.workspace }}/official-oval
-          SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/signed-source/Archive/2026_Q3/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
-          SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/signed-source/Archive/2026_Q3
-        run: python -m unittest discover -s tests -v
+        run: |
+          SCAP_NG_SCHEMA_ROOT="${{ github.workspace }}/spec-snapshot/schema" \
+            python -m unittest discover -s tests -p 'test_schema_snapshot.py' -v
+          SCAP_NG_SCHEMA_ROOT="${{ github.workspace }}/spec-snapshot/schema" \
+            python -m unittest discover -s tests -p 'test_variable_inference_candidate.py' -v
+          python -m unittest discover -s tests -v
