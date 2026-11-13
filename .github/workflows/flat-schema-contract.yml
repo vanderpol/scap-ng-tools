@@ -66,4 +66,5 @@ jobs:
             python -m unittest discover -s tests -p 'test_schema_snapshot.py' -v
           SCAP_NG_SCHEMA_ROOT="${{ github.workspace }}/spec-snapshot/schema" \
             python -m unittest discover -s tests -p 'test_variable_inference_candidate.py' -v
+          python -m unittest discover -s tests -p 'test_issue59_qualification.py' -v
           python -m unittest discover -s tests -v
