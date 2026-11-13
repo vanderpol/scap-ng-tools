@@ -213,6 +213,73 @@ def normalize_native_evaluate(node, native_to_source):
         return children[0] if len(children) == 1 and op in ("and", "or") else (op, children)
     raise ValueError("unknown native Evaluate operator " + str(op))
 
+def source_literal(value, datatype):
+    if datatype == "string":
+        return value
+    if datatype in ("int", "integer"):
+        return int(value.strip(), 10)
+    if datatype == "boolean":
+        if value.strip().lower() not in ("true", "false", "1", "0"):
+            raise ValueError("unrecognized original boolean value")
+        return value.strip().lower() in ("true", "1")
+    raise ValueError("unqualified original Variable datatype: " + str(datatype))
+
+def compare_mapped_variables(source, native, trace):
+    source_to_native = {}
+    for row in trace.get("native_identities", []):
+        if row.get("kind") != "variable":
+            continue
+        srcid, nativeid = row.get("source_id"), row.get("native_id")
+        if not srcid or not nativeid or srcid in source_to_native:
+            raise ValueError("duplicate/invalid source Variable mapping")
+        source_to_native[srcid] = nativeid
+    native_vars = native.get("variables", {})
+    if set(native_vars) != set(source_to_native.values()):
+        raise ValueError("native Variable declarations do not match source trace")
+    checked = 0
+    for srcid, nativeid in source_to_native.items():
+        src = source["variables"].get(srcid)
+        dst = native_vars.get(nativeid)
+        if src is None or not isinstance(dst, dict):
+            raise ValueError("missing original/native Variable declaration: " + srcid)
+        kind = tag(src)
+        expected_kind = {"constant_variable": "constant", "local_variable": "local"}.get(kind)
+        if expected_kind is None or dst.get("kind") != expected_kind:
+            raise ValueError("source/native Variable kind mismatch: " + srcid)
+        dtype = src.get("datatype")
+        expected_type = {"int": "integer"}.get(dtype, dtype)
+        if dst.get("datatype") != expected_type:
+            raise ValueError("source/native Variable datatype mismatch: " + srcid)
+        expression = dst.get("expression")
+        if not isinstance(expression, dict) or len(expression) != 1:
+            raise ValueError("invalid native Variable expression: " + srcid)
+        if kind == "constant_variable":
+            values = [source_literal(child.text or "", dtype)
+                      for child in src if tag(child) == "value"]
+            native_values = expression.get("literal")
+            if not isinstance(native_values, list) or values != native_values:
+                raise ValueError("source/native constant values, order or duplicates differ: " + srcid)
+        else:
+            parts = [child for child in src if isinstance(child.tag, str)]
+            if len(parts) != 1:
+                raise ValueError("local Variable graph has unqualified component count: " + srcid)
+            child = parts[0]
+            if tag(child) == "variable_component":
+                reference = source_to_native.get(child.get("var_ref"))
+                if not reference or expression.get("variable") != reference:
+                    raise ValueError("original Variable alias is not preserved: " + srcid)
+            elif tag(child) == "literal_component":
+                native_values = expression.get("literal")
+                expected = source_literal(child.text or "", child.get("datatype"))
+                if native_values != expected and native_values != [expected]:
+                    raise ValueError("original local literal differs: " + srcid)
+            else:
+                # Full recursive function comparison is a separate gate; do
+                # not mark complex conversion as semantically proved here.
+                raise ValueError("unqualified original Variable expression: " + tag(child))
+        checked += 1
+    return checked
+
 def audit(source_root, pack, *, require_full=False, expected_xml=144,
           verify_pin=False):
     pin_verified = verify_source_checkout(source_root) if verify_pin else False
@@ -314,6 +381,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                                .get("items_found") != expected_existence
                 ):
                     raise ValueError("OVAL existence cardinality differs at " + source_id)
+            compare_mapped_variables(source, native, trace)
             native_to_source = {v: k for k, v in source_to_native.items()}
             oval_tree = normalize_source_evaluate(source["definitions"][ident])
             native_tree = normalize_native_evaluate(native.get("evaluate"), native_to_source)
