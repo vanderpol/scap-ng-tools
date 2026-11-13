@@ -51,6 +51,7 @@ class FullOriginalSourceParityTests(unittest.TestCase):
             "variables": {"var-1": {"kind": "constant", "datatype": "string",
                                       "expression": {"literal": ["sample"]}}},
             "tests": {"test-1": {"capability": "variable.value",
+                "variable": "var-1",
                 "require": {"item_requirement": {
                     "items_found": "one_or_more", "items_satisfying": "every"}}}},
             "evaluate": {"test": "test-1"}
@@ -134,6 +135,13 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         result = self.inspect()
         self.assertFalse(result["complete"])
         self.assertIn("cardinality differs", str(result["problems"]))
+
+    def test_variable_object_to_native_test_binding_mismatch(self):
+        self.native["assessment"]["tests"]["test-1"]["variable"] = "wrong-var"
+        self.publish()
+        result = self.inspect()
+        self.assertFalse(result["complete"])
+        self.assertIn("variable_object Test binding differs", str(result["problems"]))
 
     def test_original_variable_value_mismatch_fails(self):
         self.native["assessment"]["variables"]["var-1"]["expression"]["literal"] = ["not-sample"]
