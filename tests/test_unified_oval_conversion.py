@@ -93,6 +93,17 @@ class StandaloneSourceCompatibilityTests(unittest.TestCase):
         self.assertEqual(uses['obj-leaf'], 1)
         self.assertEqual(set(uses), {'obj-root', 'obj-leaf'})
 
+    def test_provenance_retains_text_backed_set_filter_variable_references(self):
+        src = oval_platform.StandalonePlatformSource(self.source(), 'x.xml')
+        root = src.node('x.xml', 'obj-root', 'object')
+        leaf = src.node('x.xml', 'obj-leaf', 'object')
+        self.assertIn({'attribute': 'object_reference_text', 'id': 'obj-leaf'},
+                      oval_platform.references(root))
+        self.assertIn({'attribute': 'filter_text', 'id': 'state-match'},
+                      oval_platform.references(leaf))
+        self.assertIn({'attribute': 'var_ref_text', 'id': 'var-source'},
+                      oval_platform.references(leaf))
+
     def test_missing_filter_state_is_not_silently_skipped(self):
         data = self.source().replace(b'state-match</oval:filter>',
                                      b'unknown-state</oval:filter>')
