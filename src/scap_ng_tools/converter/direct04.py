@@ -117,6 +117,13 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
                  'artifacts': sorted(documents)} for binding in trace.get('rules', [])
             ]}, mappings, human_compact=human_compact, native_recovery=native_recovery)
         trace['applicability'] = applicability_trace
+    from .native041_function_lowering import lower_assessment_inplace
+    try:
+        for document in documents.values():
+            lower_assessment_inplace(document)
+    except ValueError as error:
+        raise QualifiedConversionError('0.4.1 native function lowering failed: ' +
+                                       str(error)) from error
     validate_native_documents(snapshot, documents)
     return documents, trace
 
@@ -162,9 +169,23 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
     original = SourceModel(Path(source), sha256_pin, inventory_broken_references=True)
     original.native_recovery = native_recovery
     original.native_specification_version = snapshot.manifest()['schema_version']
+    from .native041_function_lowering import lower_assessment_inplace
+    from jsonschema import ValidationError
+
+    def validate_candidate(kind, document):
+        # Translate only candidate native authoring, not the source visitor or
+        # original Rule evidence. Each unrepresentable expression blocks its
+        # own Rule rather than aborting the entire 65-benchmark run.
+        if kind == 'assessment':
+            try:
+                lower_assessment_inplace(document)
+            except ValueError as error:
+                return [ValidationError('0.4.1 native function lowering: ' + str(error))]
+        return document_errors(snapshot, kind, document)
+
     documents, trace, coverage = engine.convert_benchmark(
         original, mappings=mappings, human_compact=human_compact,
-        validate_document=lambda kind, doc: document_errors(snapshot, kind, doc),
+        validate_document=validate_candidate,
         native_recovery=native_recovery)
     if (coverage.get('mode') != 'automatic' or
             any(row['proof_level'] not in ('none', 'authoring_validated')
