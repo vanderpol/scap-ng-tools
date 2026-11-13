@@ -67,6 +67,7 @@ class VariableInference(unittest.TestCase):
             '<local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int">'
             '<count><literal_component datatype="string">a</literal_component></count></local_variable>')
         visitor = engine.AssessmentConverter(None,'test-component',[])
+        visitor.native_variable_datatype_required = False
         visitor.native_name = lambda node,kind: 'count-variable'
         visitor.function = lambda node: {'count':{'literal':['a','a']}}
         result = visitor.convert_variable(element)
@@ -74,6 +75,19 @@ class VariableInference(unittest.TestCase):
         self.assertEqual(visitor.variables['count-variable'],{
             'kind':'local','expression':{'count':{'literal':['a','a']}}})
         self.assertNotIn('datatype',visitor.variables['count-variable'])
+
+    def test_historical_schema_keeps_original_declaration_shape(self):
+        engine = direct04.load_runtime()
+        element = ET.fromstring(
+            '<local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int">'
+            '<count><literal_component datatype="string">a</literal_component></count></local_variable>')
+        visitor = engine.AssessmentConverter(None,'test-component',[])
+        visitor.native_name = lambda node,kind: 'count-variable'
+        visitor.function = lambda node: {'count':{'literal':['a']}}
+        visitor.convert_variable(element)
+        self.assertEqual(visitor.variables['count-variable'],{
+            'kind':'local','datatype':'integer',
+            'expression':{'count':{'literal':['a']}}})
 
     def test_source_typed_constants_remain_typed_literal_payloads(self):
         engine = direct04.load_runtime()
@@ -83,6 +97,7 @@ class VariableInference(unittest.TestCase):
             def node(self,*args):
                 return element
         visitor = engine.AssessmentConverter(Source(),'test-component',[])
+        visitor.native_variable_datatype_required = False
         visitor.renamed_enum_projection=lambda _:False
         visitor.reference=lambda *args: ['001','002']
         visitor.native_name=lambda node,kind:'constant-variable'
