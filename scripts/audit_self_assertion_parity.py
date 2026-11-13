@@ -271,6 +271,8 @@ def compare_mapped_variables(source, native, trace):
             raise ValueError("duplicate/invalid source Variable mapping")
         source_to_native[srcid] = nativeid
     native_vars = native.get("variables", {})
+    if set(source_to_native) != set(source["variables"]):
+        raise ValueError("original Variable declarations omitted or fabricated")
     if set(native_vars) != set(source_to_native.values()):
         raise ValueError("native Variable declarations do not match source trace")
     checked = 0
