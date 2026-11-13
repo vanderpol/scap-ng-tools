@@ -6,6 +6,7 @@ propagation are runtime contracts covered by the independent OVAL oracle.
 """
 from functools import lru_cache
 import json
+import re
 from pathlib import Path
 
 from .v04_comparison_types import TEXT_TYPES, scalar_type, contract
@@ -29,6 +30,11 @@ def assessment_variable_expressions(assessment):
     if not isinstance(variables, dict):
         raise ValueError('variables must be a mapping')
     validator = declaration_validator()
+    # The historical 0.4 snapshots and the approved inference candidate are
+    # distinct pinned authoring contracts. Do not silently reinterpret a
+    # historical Variable's declared result cast against new semantics.
+    declaration_schema = getattr(validator, 'schema', {}).get('$defs', {}).get('declaration', {})
+    declared_type_required = 'datatype' in declaration_schema.get('required', [])
     for name, declaration in variables.items():
         error = next(validator.iter_errors(declaration), None)
         if error:
@@ -217,13 +223,32 @@ def assessment_variable_expressions(assessment):
         if name not in variables:
             raise ValueError('unresolved Variable reference: ' + name)
         active.add(name)
-        # The native expression, not an authored declaration datatype,
-        # determines its result type. Inference never performs a cast.
-        derived = expression(variables[name]['expression'])
-        if len(derived) != 1:
-            raise ValueError('Variable ' + name +
-                             ': ambiguous/empty result datatype; use an explicitly typed literal or uniquely typed collected field')
-        datatype = next(iter(derived))
+        declaration = variables[name]
+        if declared_type_required:
+            datatype = declaration['datatype']
+            derived = expression(declaration['expression'], datatype)
+            # Preserve the old snapshot's precisely bounded lexical-literal
+            # adaptation; it is not admitted in the inference candidate.
+            expr = declaration['expression']
+            if (declaration['kind'] == 'local' and set(expr) == {'literal'}
+                    and derived == {'string'} and datatype in {'integer', 'float'}):
+                payload = expr['literal']
+                if isinstance(payload, dict):
+                    payload = payload['value']
+                values = payload if isinstance(payload, list) else [payload]
+                pattern = (r'[+-]?[0-9]+' if datatype == 'integer' else
+                           r'[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?')
+                if values and all(isinstance(v, str) and re.fullmatch(pattern, v) for v in values):
+                    derived = {datatype}
+            compatible(derived, datatype, 'Variable ' + name)
+        else:
+            # Native inference NEVER converts a source lexical string into
+            # numeric output merely because a consumer expects a number.
+            derived = expression(declaration['expression'])
+            if len(derived) != 1:
+                raise ValueError('Variable ' + name +
+                                 ': ambiguous/empty result datatype; use an explicitly typed literal or uniquely typed collected field')
+            datatype = next(iter(derived))
         active.remove(name)
         completed[name] = datatype
         return datatype
