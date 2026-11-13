@@ -41,5 +41,79 @@ class UnifiedOvalConverterTests(unittest.TestCase):
         self.assertNotIn('unsupported = sorted(', source)
 
 
+
+class StandaloneSourceCompatibilityTests(unittest.TestCase):
+    @staticmethod
+    def source(version='5.11'):
+        xml = """<oval:oval_definitions
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+            xmlns:oval-common="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+          <oval:generator><oval-common:schema_version>VERSION</oval-common:schema_version></oval:generator>
+          <oval:definitions><oval:definition id="def-a"/></oval:definitions>
+          <oval:tests>
+            <ind:variable_test id="test-a"><ind:object object_ref="obj-root"/></ind:variable_test>
+          </oval:tests>
+          <oval:objects>
+            <ind:variable_object id="obj-root">
+              <oval:set><oval:object_reference>obj-leaf</oval:object_reference></oval:set>
+            </ind:variable_object>
+            <ind:variable_object id="obj-leaf">
+              <ind:var_ref>var-source</ind:var_ref>
+              <oval:filter action="include">state-match</oval:filter>
+            </ind:variable_object>
+          </oval:objects>
+          <oval:states><ind:variable_state id="state-match">
+            <ind:value var_ref="var-state"/>
+          </ind:variable_state></oval:states>
+          <oval:variables>
+            <oval:constant_variable id="var-source"><oval:value>ok</oval:value></oval:constant_variable>
+            <oval:constant_variable id="var-state"><oval:value>ok</oval:value></oval:constant_variable>
+          </oval:variables>
+        </oval:oval_definitions>"""
+        return xml.replace('VERSION', version).encode('utf-8')
+
+    def test_older_publisher_oval_versions_admitted_without_rewriting(self):
+        for version in ('5.11', '5.11.1', '5.11.2', '5.12.2', '5.12.3'):
+            with self.subTest(version=version):
+                src = oval_platform.StandalonePlatformSource(self.source(version), 'pinned-original.xml')
+                self.assertEqual(src.oval_schema_version, version)
+
+    def test_unknown_oval_source_version_rejected(self):
+        for version in ('', '5.10', '5.13', 'not-an-oval-version'):
+            with self.subTest(version=version):
+                with self.assertRaisesRegex(direct04.QualifiedConversionError,
+                                            'unsupported standalone source OVAL version'):
+                    oval_platform.StandalonePlatformSource(self.source(version), 'x.xml')
+
+    def test_recursive_set_filter_and_variable_references_are_counted(self):
+        src = oval_platform.StandalonePlatformSource(self.source(), 'x.xml')
+        uses = src.object_uses('x.xml', 'test-a', 'test')
+        self.assertEqual(uses['obj-root'], 1)
+        self.assertEqual(uses['obj-leaf'], 1)
+        self.assertEqual(set(uses), {'obj-root', 'obj-leaf'})
+
+    def test_missing_filter_state_is_not_silently_skipped(self):
+        data = self.source().replace(b'state-match</oval:filter>',
+                                     b'unknown-state</oval:filter>')
+        src = oval_platform.StandalonePlatformSource(data, 'x.xml')
+        with self.assertRaisesRegex(direct04.QualifiedConversionError, 'unresolved state'):
+            src.object_uses('x.xml', 'test-a', 'test')
+
+    def test_missing_set_object_is_not_silently_skipped(self):
+        data = self.source().replace(b'obj-leaf</oval:object_reference>',
+                                     b'unknown-object</oval:object_reference>')
+        src = oval_platform.StandalonePlatformSource(data, 'x.xml')
+        with self.assertRaisesRegex(direct04.QualifiedConversionError, 'unresolved object'):
+            src.object_uses('x.xml', 'test-a', 'test')
+
+    def test_object_set_cycle_fails_closed(self):
+        data = self.source().replace(b'var-source</ind:var_ref>',
+                                     b'var-source</ind:var_ref><oval:set><oval:object_reference>obj-root</oval:object_reference></oval:set>')
+        src = oval_platform.StandalonePlatformSource(data, 'x.xml')
+        with self.assertRaisesRegex(direct04.QualifiedConversionError, 'cyclic standalone OVAL dependency'):
+            src.object_uses('x.xml', 'test-a', 'test')
+
+
 if __name__ == '__main__':
     unittest.main()
