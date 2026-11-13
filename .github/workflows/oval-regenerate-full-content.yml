@@ -30,6 +30,8 @@ jobs:
           python-version: '3.12'
       - run: python3 -m pip install .
       - name: Run complete pinned original-to-native production conversion
+        env:
+          SCAP_NG_INCLUDE_EMBEDDED_ARCHIVES: '1'
         run: |
           set -euo pipefail
           test "$(git -C external/source rev-parse HEAD)" = e3538595c5083b9c34d937a81d319234df9bbfaa
@@ -48,7 +50,10 @@ jobs:
           c=Counter((x.get("failure_class"),(x.get("diagnostic") or "")[:300]) for x in d if x.get("conversion_status")!="CONVERTED_UNVERIFIED")
           print("CONVERTER DIAGNOSTIC TOP 12:")
           for (kind,reason),n in c.most_common(12):
-            print(n,kind,reason.replace("\\n"," ")[:300])
+            print(n,kind,reason.replace("\\n"," ")[:600])
+          failures=[x for x in d if x.get("failure_class")=="converter_failure"]
+          if failures:
+            print("FIRST CONVERTER FAILURE FULL:",failures[0]["diagnostic"][-2200:])
           print("FIRST CONVERTED:",[x["definition_id"] for x in d if x.get("conversion_status")=="CONVERTED_UNVERIFIED"][:8])
           PY
       - name: Independently compare full original to generated candidate
@@ -58,18 +63,18 @@ jobs:
             --source-root external/source/SCAP_1.4/OVAL_Test_Content \
             --pack generated/self-assertion-current-candidate \
             --expected-xml 144 \
-            --expected-definitions 167 \
-            --expected-tests 785 \
+            --expected-definitions 168 \
+            --expected-tests 803 \
             --output generated/full-source-parity.json
           python3 - <<'PY'
           import json
           from pathlib import Path
           m=json.loads(Path("generated/self-assertion-current-candidate/manifest.json").read_text())
           a=json.loads(Path("generated/full-source-parity.json").read_text())
-          assert m["summary"]["definitions"] == 167,m["summary"]
-          assert m["summary"]["tests"] == 785,m["summary"]
-          assert a["coverage"]["original"]["definitions"] == 167,a["coverage"]["original"]
-          assert a["coverage"]["original"]["tests"] == 785,a["coverage"]["original"]
+          assert m["summary"]["definitions"] == 168,m["summary"]
+          assert m["summary"]["tests"] == 803,m["summary"]
+          assert a["coverage"]["original"]["definitions"] == 168,a["coverage"]["original"]
+          assert a["coverage"]["original"]["tests"] == 803,a["coverage"]["original"]
           assert a["source_accounted"], a["problems"][:10]
           print("Source completeness and disposition ledger: PASS")
           print("Generated:",json.dumps(m["summary"],sort_keys=True))
