@@ -104,6 +104,8 @@ class AssessmentConverter:
         # retain their current syntax until coordinated compiler migration.
         self.canonical_variable_functions = canonical_variable_functions
         self.preserve_source_variables = False
+        # Never emit candidate syntax against a historical frozen schema.
+        self.native_variable_datatype_required = getattr(source, 'native_variable_datatype_required', True)
         # Recovery candidates are opt-in until their changed golden deltas are
         # owner-accepted; the historical default remains byte-compatible.
         self.native_recovery = native_recovery
@@ -633,10 +635,14 @@ class AssessmentConverter:
         if self.canonical_variable_functions:
             from v04_variable_function_migration import canonical_expression
             expression = canonical_expression(expression)
-        # Declaration datatype is source provenance, not a native Variable field.
-        # The canonical 0.4 expression/collected-field contract determines its
-        # output type. Never claim an OVAL result cast has been proved here.
-        self.variables[identifier] = {'kind': 'local', 'expression': expression}
+        # Source declaration datatype is immutable provenance. Only the
+        # candidate grammar derives it from the expression; the old pinned
+        # schema still requires the old authoring representation.
+        if self.native_variable_datatype_required:
+            self.variables[identifier] = {'kind': 'local', 'datatype': native_datatype(datatype),
+                                          'expression': expression}
+        else:
+            self.variables[identifier] = {'kind': 'local', 'expression': expression}
         return {'variable': identifier}
 
     def named_variable(self, source_id):
@@ -653,12 +659,16 @@ class AssessmentConverter:
             element = self.source.node(self.component_id, source_id, 'variable')
             identifier = self.native_name(element, 'variable')
             datatype = element.get('datatype')
-            # Preserve the source constant's semantic type in the explicitly
-            # typed literal payload, not on the enclosing Variable. The
-            # original OVAL declaration remains in source provenance.
-            self.variables[identifier] = {'kind': 'constant',
-                'expression': {'literal': {'datatype': native_datatype(datatype),
-                                           'value': value}}}
+            if self.native_variable_datatype_required:
+                self.variables[identifier] = {'kind': 'constant',
+                    'datatype': native_datatype(datatype),
+                    'expression': {'literal': value}}
+            else:
+                # Candidate grammar retains type at the literal payload, never
+                # on the declaration. Original OVAL tokens stay in provenance.
+                self.variables[identifier] = {'kind': 'constant',
+                    'expression': {'literal': {'datatype': native_datatype(datatype),
+                                               'value': value}}}
             return identifier
         ensure('variable' in value, 'Assessment Input cannot replace a named runtime Variable source')
         return value['variable']
