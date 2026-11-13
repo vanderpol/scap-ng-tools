@@ -1,10 +1,8 @@
-"""Bounded standalone OVAL platform lane for canonical unix.file.
+"""Canonical standalone OVAL source adapter for the shared 0.4 visitor.
 
-This adapter reuses the production AssessmentConverter and frozen capability
-mapping. It does not rewrite OVAL semantics or claim scanner equivalence. The
-initial lane intentionally admits only unix.file; other platform Test kinds
-remain exact blocked diagnostics until their native contracts and collectors
-are independently qualified.
+Standalone XML is indexed here. All Test/Object/State/Variable/function
+translation is performed by the SAME production AssessmentConverter used by
+benchmark Rules; no secondary per-capability interpreter or result invention.
 """
 from __future__ import annotations
 
@@ -22,7 +20,6 @@ from .direct04 import QualifiedConversionError, conversion_identity, load_runtim
 OVAL = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 NS_INDEPENDENT = OVAL + "#independent"
 SOURCE_FAMILIES = (OVAL, NS_INDEPENDENT, OVAL + "#unix", OVAL + "#linux")
-SUPPORTED_TESTS = {"file_test"}
 
 
 def local_name(element):
@@ -133,12 +130,14 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     engine = load_runtime()
     original = StandalonePlatformSource(raw, source_path)
     definition = original.node(source_path, definition_id, "definition")
-    tests = [node for node in original.node_index.values() if local_name(node).endswith("_test")]
-    unsupported = sorted({local_name(node) for node in tests} - SUPPORTED_TESTS)
-    ensure(not unsupported, "standalone platform Test kind held: " + ", ".join(unsupported))
     mappings = snapshot.supported_mappings(engine.CAPABILITIES)
+    # This is the same 0.4 recovery setting used by the benchmark converter,
+    # scoped to this standalone Assessment. All unqualified operations still
+    # fail closed at the production visitor/schema/semantic boundaries.
+    original.native_recovery = True
     visitor = engine.AssessmentConverter(original, source_path, mappings,
                                          human_compact=False,
+                                         native_recovery=True,
                                          preserve_variable_references=True)
     expression = visitor.reference(definition_id, "definition")
     assessment = {
