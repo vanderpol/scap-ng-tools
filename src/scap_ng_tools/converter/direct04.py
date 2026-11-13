@@ -12,7 +12,12 @@ import json
 from pathlib import Path, PurePosixPath
 import sys
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+
+
+def load_pinned_snapshot(schema_root):
+    """Load the sole supported canonical 0.4.1 schema family."""
+    return Pinned041SchemaSnapshot(schema_root)
 
 
 class QualifiedConversionError(ValueError):
@@ -56,7 +61,7 @@ def validate_native_documents(snapshot, documents):
         if '$schema' not in document:
             continue
         resource = Resource.from_contents(document)
-        resources['https://scap-ng.dev/schema/v0.4.0/' +
+        resources[snapshot.manifest()['logical_id_prefix'] +
                   path.relative_to(root).as_posix()] = resource
         if '$id' in document:
             resources[document['$id']] = resource
@@ -85,7 +90,7 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
     Output provenance may truthfully say schema-validated and source-traced, but
     never independently verified, compiled, or runtime-scanner qualified.
     """
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = load_pinned_snapshot(schema_root)
     if not rule_ids or len(rule_ids) != len(set(rule_ids)):
         raise QualifiedConversionError('one or more distinct source Rule IDs required')
     if sha256(Path(source).read_bytes()).hexdigest() != sha256_pin:
@@ -98,6 +103,7 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
         engine.load_mappings = lambda: mappings
         source_model = SourceModel(Path(source), sha256_pin)
         source_model.native_recovery = native_recovery
+        source_model.native_specification_version = snapshot.manifest()['schema_version']
         documents, trace = engine.convert(source_model, list(rule_ids),
                                           human_compact=human_compact,
                                           native_recovery=native_recovery)
@@ -117,7 +123,7 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
 
 def inventory_benchmark(*, schema_root, source, sha256_pin):
     """Read every source Rule without admitting conversion or proving results."""
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = load_pinned_snapshot(schema_root)
     if sha256(Path(source).read_bytes()).hexdigest() != sha256_pin:
         raise QualifiedConversionError('original source archive does not match supplied SHA-256')
     engine = load_runtime()
@@ -144,15 +150,26 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
     Blocked Rules retain original inventory diagnostics. Admitted Rules are
     authoring validated only, never source-proved or scanner-qualified.
     """
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = load_pinned_snapshot(schema_root)
     if sha256(Path(source).read_bytes()).hexdigest() != sha256_pin:
         raise QualifiedConversionError('original source archive does not match supplied SHA-256')
     engine = load_runtime()
     from v04_direct_scap_source import SourceModel
     from ._v04_semantic.validation import document_errors
+    # The historical frozen semantic pack has 0.4.0 source-version pins.
+    # Do not claim automatic 0.4.1 benchmark admission before compiling and
+    # independently qualifying the versioned semantic contract pack.
+    # The shared semantic pack still needs independent 0.4.1 qualification.
+    # Never admit bulk native drafts through stale 0.4.0-only source contracts.
+    if snapshot.manifest()['schema_version'] != '0.4.1':
+        raise QualifiedConversionError('unsupported schema version')
+    raise QualifiedConversionError(
+        '0.4.1 benchmark semantic pack is not independently qualified yet; '
+        'see Tools Issue #59 and do not promote unproved OVAL conversions')
     mappings = snapshot.supported_mappings(engine.CAPABILITIES)
     original = SourceModel(Path(source), sha256_pin, inventory_broken_references=True)
     original.native_recovery = native_recovery
+    original.native_specification_version = snapshot.manifest()['schema_version']
     documents, trace, coverage = engine.convert_benchmark(
         original, mappings=mappings, human_compact=human_compact,
         validate_document=lambda kind, doc: document_errors(snapshot, kind, doc),

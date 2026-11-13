@@ -6,7 +6,6 @@ propagation are runtime contracts covered by the independent OVAL oracle.
 """
 from functools import lru_cache
 import json
-import re
 from pathlib import Path
 
 from .v04_comparison_types import TEXT_TYPES, scalar_type, contract
@@ -98,93 +97,46 @@ def assessment_variable_expressions(assessment):
             if field not in fields:
                 raise ValueError('unknown collected-field projection: ' + field)
             return {'record'} if field in records else set(fields[field])
-        if op == 'function':
-            if (not isinstance(value, dict) or set(value) != {'name', 'arguments', 'options'}):
-                raise ValueError('function expression requires name, arguments, and options')
-            name, arguments, options = value['name'], value['arguments'], value['options']
-            if not isinstance(arguments, list) or not isinstance(options, dict):
-                raise ValueError('function expression has invalid arguments/options')
-            if name == 'arithmetic':
-                if len(arguments) < 2 or set(options) != {'arithmetic_operation'}:
-                    raise ValueError('arithmetic requires two arguments and explicit operation')
-                if options['arithmetic_operation'] not in ('add', 'multiply'):
-                    raise ValueError('unsupported arithmetic operation')
-                domains = [expression(argument) for argument in arguments]
-                if any(not domain or not domain <= {'integer', 'float'} for domain in domains):
-                    raise ValueError('arithmetic requires numeric operands')
-                return {'float'} if any('float' in domain for domain in domains) else {'integer'}
-            if name in ('split', 'substring'):
-                if len(arguments) != 1:
-                    raise ValueError(name + ' requires one argument')
-                if name == 'split':
-                    if set(options) != {'delimiter'} or not isinstance(options['delimiter'], str):
-                        raise ValueError('split requires a literal string delimiter')
-                else:
-                    required = {'substring_start', 'substring_length'}
-                    if set(options) != required:
-                        raise ValueError('substring requires explicit signed integer options')
-                    if any(isinstance(options[key], bool) or not isinstance(options[key], int)
-                           or not -2147483648 <= options[key] <= 2147483647 for key in required):
-                        raise ValueError('substring options must be signed 32-bit integers')
-                domain = text_operand(expression(arguments[0]), name)
-                return {'string'}
-            if name == 'count':
-                if len(arguments) < 1 or options:
-                    raise ValueError('count requires one or more arguments and no options')
-                # Count is the one function in this group whose input domain
-                # is intentionally unconstrained: OVAL counts flattened
-                # values, including records and empty populations.
-                for argument in arguments:
-                    expression(argument)
-                return {'integer'}
-            if name == 'concat':
-                if len(arguments) < 2 or options:
-                    raise ValueError('concat requires at least two arguments and no options')
-                for argument in arguments:
-                    text_operand(expression(argument), 'concat')
-                return {'string'}
-            if name == 'regex_capture':
-                if len(arguments) != 1 or set(options) != {'pattern'} or not isinstance(options['pattern'], str):
-                    raise ValueError('regex_capture requires one string argument and a pattern')
-                text_operand(expression(arguments[0]), 'regex_capture')
-                return {'string'}
-            if name == 'unique':
-                if len(arguments) < 1 or options:
-                    raise ValueError('unique requires one or more arguments and no options')
-                for argument in arguments:
-                    text_operand(expression(argument), 'unique')
-                return {'string'}
-            if name == 'merge':
-                required = {'delimiter', 'sort', 'order'}
-                if len(arguments) < 1 or set(options) != required:
-                    raise ValueError('merge requires one or more arguments and explicit options')
-                if (not isinstance(options['delimiter'], str) or
-                        options['sort'] not in ('document', 'lexical', 'numeric', 'natural') or
-                        options['order'] not in ('ascending', 'descending')):
-                    raise ValueError('merge has invalid explicit options')
-                for argument in arguments:
-                    domain = expression(argument)
-                    # OVAL merge stringifies simple values, but a record is
-                    # not a simple value and cannot be silently flattened.
-                    if not domain or 'record' in domain:
-                        raise ValueError('merge requires scalar values')
-                return {'string'}
-            raise ValueError('unsupported native Variable function: ' + str(name))
-        if op == 'unique':
-            text_operand(expression(value), 'unique')
+        if op == 'count':
+            expression(value)  # Any resolved typed collection, including empty.
+            return {'integer'}
+        if op in ('split', 'substring', 'begin', 'end'):
+            payload = value
+            if not isinstance(payload, dict) or 'value' not in payload:
+                raise ValueError(op + ' requires a value expression')
+            domain = expression(payload['value'])
+            if domain != {'string'}:
+                raise ValueError(op + ' requires string input; no implicit cast')
             return {'string'}
+        if op == 'arithmetic':
+            domains = [expression(arg) for arg in value['values']]
+            if any(not domain or not domain <= {'integer', 'float'} for domain in domains):
+                raise ValueError('arithmetic requires typed numeric operands')
+            return {'float'} if any('float' in domain for domain in domains) else {'integer'}
+        if op == 'unique':
+            # Unique preserves the type of its input (and first occurrence
+            # order) under the new expression-derived type contract.
+            components = value if isinstance(value, list) else [value]
+            domains = [expression(component) for component in components]
+            result = set().union(*domains) if domains else set()
+            if len(result) > 1 or 'record' in result:
+                raise ValueError('unique requires one scalar datatype')
+            return result
         if op == 'concat':
             for arg in value:
                 text_operand(expression(arg), 'concat')
             return {'string'}
-        if op in ('regex_capture', 'merge'):
-            arg = value['value' if op == 'regex_capture' else 'values']
-            argument_types = expression(arg)
-            if op == 'merge':
-                if not argument_types or 'record' in argument_types:
-                    raise ValueError('merge requires scalar values')
-                return {'string'}
-            text_operand(argument_types, 'regex_capture')
+        if op == 'merge':
+            components = value['values'] if isinstance(value['values'], list) else [value['values']]
+            if not components:
+                raise ValueError('merge requires one or more ordered populations')
+            for component in components:
+                domain = expression(component)
+                if not domain or 'record' in domain:
+                    raise ValueError('merge requires typed scalar values')
+            return {'string'}
+        if op == 'regex_capture':
+            text_operand(expression(value['value']), 'regex_capture')
             return {'string'}
         raise ValueError('unsupported native Variable expression: ' + op)
 
@@ -196,24 +148,13 @@ def assessment_variable_expressions(assessment):
         if name not in variables:
             raise ValueError('unresolved Variable reference: ' + name)
         active.add(name)
-        declaration = variables[name]
-        datatype = declaration['datatype']
-        derived = expression(declaration['expression'], datatype)
-        # Pinned original local_variable tst827 explicitly declares integer but
-        # contains literal_component datatype=string '9'. Preserve this existing
-        # declaration cast, validate its lexical input, and never rewrite ASTs.
-        # Constant arrays and typed literal payloads still obey their own types.
-        expr = declaration['expression']
-        if (declaration['kind'] == 'local' and set(expr) == {'literal'}
-                and derived == {'string'} and datatype in {'integer', 'float'}):
-            payload = expr['literal']
-            if isinstance(payload, dict): payload = payload['value']
-            values = payload if isinstance(payload, list) else [payload]
-            pattern = (r'[+-]?[0-9]+' if datatype == 'integer' else
-                       r'[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?')
-            if values and all(isinstance(v, str) and re.fullmatch(pattern, v) for v in values):
-                derived = {datatype}
-        compatible(derived, datatype, 'Variable ' + name)
+        # The sole active grammar derives types from the native expression.
+        # A source OVAL declaration is preserved in provenance, not cast here.
+        derived = expression(variables[name]['expression'])
+        if len(derived) != 1:
+            raise ValueError('Variable ' + name +
+                             ': ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field')
+        datatype = next(iter(derived))
         active.remove(name)
         completed[name] = datatype
         return datatype
