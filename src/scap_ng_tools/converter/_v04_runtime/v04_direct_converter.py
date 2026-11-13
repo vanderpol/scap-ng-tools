@@ -728,12 +728,26 @@ class AssessmentConverter:
                     ensure(-2147483648 <= number <= 2147483647,
                            'substring option outside xsd:int')
                     options[key] = number
-            from v04_variable_function_migration import canonical_expression
-            # The migration envelope is recursive: nested OVAL functions must
-            # not leave a legacy operator beside the canonical outer call.
-            arguments = [canonical_expression(self.function(child), allow_existing=True) for child in element]
-            expression = {'function': {'name': operation, 'arguments': arguments,
-                                       'options': options}}
+            # Active 0.4.1 authoring uses named native expressions, never the
+            # inactive generic {"function": ...} migration envelope. Recursively
+            # preserve operand order, types, and nested source graph structure.
+            arguments = [self.function(child) for child in element]
+            if operation == 'count':
+                # OVAL permits counting multiple independent components, but
+                # native count has exactly one expression. Joining sources with
+                # unique/merge would alter duplicates or result type: fail
+                # closed until that multi-component contract is approved.
+                ensure(len(arguments) == 1,
+                       'multi-component OVAL count has no lossless native 0.4.1 mapping')
+                expression = {'count': arguments[0]}
+            elif operation == 'arithmetic':
+                expression = {'arithmetic': {
+                    'arithmetic_operation': options['arithmetic_operation'],
+                    'values': arguments}}
+            else:
+                # Each remaining operation is unary with explicit source
+                # options and one nested expression in the 0.4.1 schema.
+                expression = {operation: {**options, 'value': arguments[0]}}
             self.conversion_warnings.append({'code': 'native_function_contract_v1',
                 'source_function': operation, 'source_options': dict(element.attrib),
                 'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
