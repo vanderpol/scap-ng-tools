@@ -26,7 +26,8 @@ MAX_ARCHIVE = 64 * 1024 * 1024
 CHECK = {"all": "every", "at least one": "one_or_more",
          "only one": "exactly_one", "none satisfy": "none"}
 EXISTENCE = {"at_least_one_exists": "one_or_more",
-             "only_one_exists": "exactly_one", "none_exist": "none"}
+             "only_one_exists": "exactly_one", "none_exist": "none",
+             "all_exist": "one_or_more"}
 
 def tag(element):
     return element.tag.rsplit("}", 1)[-1]
@@ -238,25 +239,77 @@ def compare_variable_test_binding(source, source_test, native_test, trace):
     if native_test.get("variable") != expected:
         raise ValueError("original variable_object Test binding differs")
 
-def normalize_source_evaluate(definition):
-    # Some OVAL files only contain one criterion under AND; the native
-    # equivalent can legitimately collapse that wrapper.
+def reachable_source_tests(source, definition_id):
+    """Reachability across recursive extend_definition, scoped to one XML.
+
+    Definition/test IDs are only unique inside their source file; never combine
+    graphs from different XML files sharing an OVAL ID.
+    """
+    tests = set()
+    visiting = set()
+    visited = set()
+    def walk(ident):
+        if ident in visiting:
+            raise ValueError("cyclic source extend_definition: " + ident)
+        if ident in visited:
+            return
+        definition = source["definitions"].get(ident)
+        if definition is None:
+            raise ValueError("unresolved original extended Definition: " + ident)
+        visiting.add(ident)
+        for item in definition.iter():
+            if tag(item) == "criterion":
+                test_id = item.get("test_ref")
+                if not test_id or test_id not in source["tests"]:
+                    raise ValueError("unknown source Test in criteria")
+                tests.add(test_id)
+            elif tag(item) == "extend_definition":
+                target = item.get("definition_ref")
+                if not target:
+                    raise ValueError("missing source extended Definition reference")
+                walk(target)
+        visiting.remove(ident)
+        visited.add(ident)
+    walk(definition_id)
+    return tests
+
+def normalize_source_evaluate(source, definition_id):
+    # Evaluate the original criteria AST recursively, including referenced
+    # Definitions; a native Assessment inlines their Test branches.
+    active = set()
+    def definition_tree(ident):
+        if ident in active:
+            raise ValueError("cyclic source extend_definition")
+        definition = source["definitions"].get(ident)
+        if definition is None:
+            raise ValueError("source extended Definition not found: " + str(ident))
+        active.add(ident)
+        nodes = [c for c in definition if tag(c) == "criteria"]
+        if len(nodes) != 1:
+            raise ValueError("source Definition does not have one criteria node")
+        tree = parse(nodes[0])
+        active.remove(ident)
+        return tree
     def parse(node):
         name = tag(node)
         if name == "criterion":
-            result = ("test", node.get("test_ref"))
+            ident = node.get("test_ref")
+            if ident not in source["tests"]:
+                raise ValueError("unresolved source criterion Test")
+            result = ("test", ident)
         elif name == "extend_definition":
-            result = ("extend", node.get("definition_ref"))
+            result = definition_tree(node.get("definition_ref"))
         elif name == "criteria":
             children = tuple(parse(child) for child in node
                              if tag(child) in ("criteria", "criterion", "extend_definition"))
             op = (node.get("operator") or "AND").lower()
+            if op not in ("and", "or", "xor", "one") or not children:
+                raise ValueError("unsupported source criteria Boolean operator/arity")
             result = children[0] if len(children) == 1 and op in ("and", "or") else (op, children)
         else:
             raise ValueError("unrecognized criteria node " + name)
         return ("not", result) if node.get("negate", "false").lower() == "true" else result
-    start = next((c for c in definition if tag(c) == "criteria"), None)
-    return parse(start) if start is not None else None
+    return definition_tree(definition_id)
 
 def normalize_native_evaluate(node, native_to_source):
     if not isinstance(node, dict) or len(node) != 1:
@@ -460,7 +513,8 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                 if a in source_to_native or b in source_to_native.values():
                     raise ValueError("duplicate Test mapping in trace")
                 source_to_native[a] = b
-            if set(source_to_native) != references:
+            selected_tests = reachable_source_tests(source, ident)
+            if set(source_to_native) != selected_tests:
                 raise ValueError("missing or extra source Test mapping")
             if set(native.get("tests", {})) != set(source_to_native.values()):
                 raise ValueError("native Test map differs from source trace")
@@ -470,31 +524,37 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                     raise ValueError("source Test reference undefined in source XML")
                 native_test = native["tests"][native_id]
                 compare_variable_test_binding(source, source_test, native_test, trace)
-                original_check = source_test.get("check", "all")
-                expected_check = CHECK.get(original_check)
-                if expected_check is None:
-                    raise ValueError("unqualified original check: " + str(original_check))
-                if (
-                    native_test.get("require", {}).get("item_requirement", {})
-                               .get("items_satisfying") != expected_check
-                ):
-                    raise ValueError("OVAL check cardinality differs at " + source_id)
+                if tag(source_test) == "unknown_test":
+                    # OVAL unknown_test has a fixed unknown result. Its legacy
+                    # cardinality attributes are ignored by specification.
+                    if native_test.get("capability") != "independent.unknown":
+                        raise ValueError("fixed unknown Test has wrong native capability")
+                    continue
                 original_existence = source_test.get("check_existence", "at_least_one_exists")
                 expected_existence = EXISTENCE.get(original_existence)
                 if expected_existence is None:
                     raise ValueError("unqualified original existence: " + str(original_existence))
-                if (
-                    native_test.get("require", {}).get("item_requirement", {})
-                               .get("items_found") != expected_existence
-                ):
+                if (native_test.get("require", {}).get("item_requirement", {})
+                              .get("items_found") != expected_existence):
                     raise ValueError("OVAL existence cardinality differs at " + source_id)
-            compare_mapped_variables(source, native, trace, references)
+                has_states = any(tag(child) == "state" for child in source_test)
+                # OVAL has no State match to evaluate for a presence-only Test
+                # or when the existence boundary itself is none_exist.
+                if has_states and original_existence != "none_exist":
+                    original_check = source_test.get("check", "all")
+                    expected_check = CHECK.get(original_check)
+                    if expected_check is None:
+                        raise ValueError("unqualified original check: " + str(original_check))
+                    if (native_test.get("require", {}).get("item_requirement", {})
+                                  .get("items_satisfying") != expected_check):
+                        raise ValueError("OVAL check cardinality differs at " + source_id)
+            compare_mapped_variables(source, native, trace, selected_tests)
             native_to_source = {v: k for k, v in source_to_native.items()}
-            oval_tree = normalize_source_evaluate(source["definitions"][ident])
+            oval_tree = normalize_source_evaluate(source, ident)
             native_tree = normalize_native_evaluate(native.get("evaluate"), native_to_source)
             if oval_tree != native_tree:
                 raise ValueError("source/native Evaluate logic mismatch")
-            tested += len(references)
+            tested += len(selected_tests)
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
             problems.append({"type": "converted_parity_failure", "source": path,
                              "definition": ident, "reason": str(exc)[:300]})
