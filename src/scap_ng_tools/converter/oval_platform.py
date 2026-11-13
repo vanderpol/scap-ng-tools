@@ -16,6 +16,7 @@ import xml.etree.ElementTree as ET
 
 from scap_ng_tools.contracts import FrozenSchemaSnapshot
 from .direct04 import QualifiedConversionError, conversion_identity, load_runtime, validate_native_documents
+from .conversion_budget import ConversionBudget, ConversionBudgetTracker
 
 OVAL = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 NS_INDEPENDENT = OVAL + "#independent"
@@ -47,6 +48,12 @@ def native_identifier(element, suffix, title=None):
 
 class StandalonePlatformSource:
     """Minimal SourceModel protocol consumed by the production visitor."""
+
+    # Reused from 0.3's explicit conversion resource-budget contract. These
+    # limits guard implementation resources, not the OVAL language itself.
+    # Exceeded budgets reject the entire conversion, never partial authoring.
+    DEFAULT_DEPENDENCY_BUDGET = ConversionBudget(
+        dependency_nodes=100_000, dependency_edges=500_000)
     def __init__(self, raw: bytes, component: str):
         ensure(b"<!DOCTYPE" not in raw and b"<!ENTITY" not in raw,
                "OVAL XML declarations forbidden")
@@ -106,6 +113,7 @@ class StandalonePlatformSource:
                       "object_ref": "object", "state_ref": "state",
                       "var_ref": "variable"}
         counts, complete, active = Counter(), set(), set()
+        budget = ConversionBudgetTracker(self.DEFAULT_DEPENDENCY_BUDGET)
         # (kind, source_id, exiting) — postorder exit releases the active
         # mark while retaining completed shared dependencies.
         pending = [(kind, identifier, False)]
@@ -123,6 +131,7 @@ class StandalonePlatformSource:
                    "cyclic standalone OVAL dependency: " + str(ident))
             if key in complete:
                 continue
+            budget.note_node()
             active.add(key)
             node = self.node(component, ident, node_kind)
             edges = []
@@ -139,6 +148,7 @@ class StandalonePlatformSource:
                         "filter": "state",
                         "var_ref": "variable",
                     }[element]))
+            budget.note_edge(len(edges))
             pending.append((node_kind, ident, True))
             # Count actual incoming Object edges even when the same target
             # was completed through a different path.
