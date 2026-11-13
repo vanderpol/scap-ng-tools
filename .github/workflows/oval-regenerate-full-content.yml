@@ -83,6 +83,11 @@ jobs:
             "converted":a["coverage"]["pack"]["converted_definitions"],
             "problems":len(a["problems"]),
           }))
+          if a["problems"]:
+            from collections import Counter
+            print("PARITY ISSUE TYPES:",dict(Counter(x["type"] for x in a["problems"])))
+            for problem in a["problems"][:12]:
+              print("PARITY WITNESS:",json.dumps(problem,sort_keys=True)[:650])
           if not a["complete"]:
             raise SystemExit("FAIL: 0.4 full-source native conversion incomplete; candidate artifacts retained for diagnosis.")
           PY
