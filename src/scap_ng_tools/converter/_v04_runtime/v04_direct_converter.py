@@ -5,6 +5,7 @@ Conversion uses current capability metadata, not old NG renderers or IRs.
 Public validation, compilation and independent proof are separate commands.
 """
 import argparse
+from contextlib import contextmanager, nullcontext
 from copy import deepcopy
 import json
 from pathlib import Path
@@ -102,6 +103,7 @@ class AssessmentConverter:
         # Opt-in migration probe only. Production output and source-proof paths
         # retain their current syntax until coordinated compiler migration.
         self.canonical_variable_functions = canonical_variable_functions
+        self.preserve_source_variables = False
         # Recovery candidates are opt-in until their changed golden deltas are
         # owner-accepted; the historical default remains byte-compatible.
         self.native_recovery = native_recovery
@@ -255,6 +257,8 @@ class AssessmentConverter:
         self._wmi_mapping = mapping
         object_id = objects[0].get('object_ref')
         object_source = self.source.node(self.component_id, object_id, 'object')
+        preserve_object_graph_variables = any(
+            local_name(node) in ('set', 'filter') for node in object_source.iter())
         if local_name(object_source) == 'wmi_object':
             wql = next((child.text for child in object_source
                         if local_name(child) == 'wql'), None)
@@ -275,18 +279,19 @@ class AssessmentConverter:
                 'independent_static_proof': 'UNPROVED',
                 'scanner_evaluated': False,
             })
-        for child in element:
-            kind = local_name(child)
-            ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
-            attributes(child, {kind + '_ref'})
-            ensure(not len(child), 'Test reference has children')
-            if kind == 'state':
-                state_refs.append(child.get('state_ref'))
-                # No Item can satisfy a none_exist Test. Do not execute or
-                # require its State graph merely to lower the absence result.
-                if found != 'none_exist' or not self.native_recovery:
-                    self.same_family(child.get('state_ref'), 'state', mapping)
-                    conditions.append(self.reference(child.get('state_ref'), 'state'))
+        with (self.source_variable_scope() if preserve_object_graph_variables else nullcontext()):
+            for child in element:
+                kind = local_name(child)
+                ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
+                attributes(child, {kind + '_ref'})
+                ensure(not len(child), 'Test reference has children')
+                if kind == 'state':
+                    state_refs.append(child.get('state_ref'))
+                    # No Item can satisfy a none_exist Test. Do not execute or
+                    # require its State graph merely to lower the absence result.
+                    if found != 'none_exist' or not self.native_recovery:
+                        self.same_family(child.get('state_ref'), 'state', mapping)
+                        conditions.append(self.reference(child.get('state_ref'), 'state'))
         # Native 0.4's item_requirement explicitly defines all_exist as
         # one_or_more: collected Items have no synthetic does-not-exist
         # entries. Keep the source spelling in the trace, but do not gate this
@@ -538,7 +543,20 @@ class AssessmentConverter:
         ensure(details, 'shared acquisition has no source-grounded title')
         return local_name(element).removesuffix('_object').replace('_', ' ').capitalize() + ': ' + '; '.join(details)
 
+    @contextmanager
+    def source_variable_scope(self):
+        previous = self.preserve_source_variables
+        self.preserve_source_variables = True
+        try:
+            yield
+        finally:
+            self.preserve_source_variables = previous
+
     def set_expression(self, element, mapping):
+        with self.source_variable_scope():
+            return self._set_expression(element, mapping)
+
+    def _set_expression(self, element, mapping):
         attributes(element, {'set_operator'})
         operator = element.get('set_operator', 'UNION')
         ensure(operator in SET_OPERATORS, f'unsupported Set operator: {operator}')
@@ -567,6 +585,10 @@ class AssessmentConverter:
         return {'operator': SET_OPERATORS[operator], 'operands': operands}
 
     def filter(self, element, mapping):
+        with self.source_variable_scope():
+            return self._filter(element, mapping)
+
+    def _filter(self, element, mapping):
         attributes(element, {'action'})
         ensure(not len(element), 'Filter must reference a State')
         action = element.get('action', 'exclude')
@@ -770,7 +792,16 @@ class AssessmentConverter:
             if self.renamed_enum_projection(element.get('var_ref')):
                 ensure(enum_aliases is not None, 'renamed enum projection requires a matching enum consumer')
                 self.enum_variable(element.get('var_ref'), enum_aliases)
-            return self.reference(element.get('var_ref'), 'variable')
+            value = self.reference(element.get('var_ref'), 'variable')
+            if (isinstance(value, list) and
+                    getattr(self.source, 'standalone_oval', False) and
+                    self.preserve_source_variables and
+                    not self.renamed_enum_projection(element.get('var_ref'))):
+                # Preserve the original Variable identity in standalone source
+                # parity. Inline arrays would retain values but silently drop
+                # the Variable graph (notably Set operands and Filter States).
+                return {'variable': self.named_variable(element.get('var_ref'))}
+            return value
         return self.literal(element.get('datatype', 'string'), element.text or '')
 
     def parameter(self, element, *, operations=('equals',), datatype='string'):
