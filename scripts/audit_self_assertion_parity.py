@@ -373,7 +373,7 @@ def compare_mapped_variables(source, native, trace, selected_tests):
     return checked
 
 def audit(source_root, pack, *, require_full=False, expected_xml=144,
-          expected_definitions=167, expected_tests=785,
+          expected_definitions=168, expected_tests=803,
           verify_pin=False):
     pin_verified = verify_source_checkout(source_root) if verify_pin else False
     records, archive_inventory = sources(source_root)
@@ -547,8 +547,8 @@ def main():
                         help="converter output package with manifest.json/definitions.json")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--expected-xml", type=int, default=144)
-    parser.add_argument("--expected-definitions", type=int, default=167)
-    parser.add_argument("--expected-tests", type=int, default=785)
+    parser.add_argument("--expected-definitions", type=int, default=168)
+    parser.add_argument("--expected-tests", type=int, default=803)
     parser.add_argument("--allow-unverified-fixture-source", action="store_true",
                         help="TEST FIXTURES ONLY: skip exact Git commit verification")
     parser.add_argument("--require-full", action="store_true",
