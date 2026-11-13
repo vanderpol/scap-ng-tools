@@ -155,7 +155,7 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         self.publish()
         result = self.inspect()
         self.assertFalse(result["complete"])
-        self.assertIn("declarations omitted", str(result["problems"]))
+        self.assertIn("Variable Object-to-native capability mapping", str(result["problems"]))
 
     def test_changed_original_file_fails_closed(self):
         self.publish()
