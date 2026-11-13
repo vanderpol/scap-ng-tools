@@ -343,6 +343,79 @@ def source_literal(value, datatype):
         return value.strip().lower() in ("true", "1")
     raise ValueError("unqualified original Variable datatype: " + str(datatype))
 
+def audit_source_set_filter_retention(source, selected_tests, native):
+    """Fail closed when the converter silently drops source Set/Filter logic.
+
+    Restores 0.3 source-graph coverage for OVAL Object Sets and Filter States.
+    This is a necessary structural retention gate, not an equivalence proof:
+    nested Set order and filters' Item/status behavior require independent
+    source-vs-native execution or a proven semantic lowering.
+    """
+    original = {"union": 0, "intersection": 0, "difference": 0,
+                "include": 0, "exclude": 0}
+    pending = list(selected_tests)
+    visited = set()
+    while pending:
+        ident = pending.pop()
+        if ident in visited:
+            continue
+        visited.add(ident)
+        node = source["nodes"].get(ident)
+        if node is None:
+            raise ValueError("unresolved original source graph reference: " + ident)
+        for child in node.iter():
+            local = tag(child)
+            if local == "set":
+                operation = {"UNION": "union", "INTERSECTION": "intersection",
+                             "COMPLEMENT": "difference"}.get(
+                                 child.get("set_operator", "UNION"))
+                if operation is None:
+                    raise ValueError("unsupported original Set operator")
+                original[operation] += 1
+            elif local == "filter":
+                action = child.get("action", "exclude")
+                if action not in ("include", "exclude"):
+                    raise ValueError("unsupported original Filter action")
+                original[action] += 1
+            for attr, target in child.attrib.items():
+                if attr.endswith("_ref") and target in source["nodes"]:
+                    pending.append(target)
+            if local in ("object_reference", "filter", "var_ref"):
+                target = (child.text or "").strip()
+                if target:
+                    if target not in source["nodes"]:
+                        raise ValueError("unresolved original source text reference: " + target)
+                    pending.append(target)
+
+    if not any(original.values()):
+        return
+    observed = {key: 0 for key in original}
+    stack = [native]
+    while stack:
+        item = stack.pop()
+        if isinstance(item, list):
+            stack.extend(item)
+        elif isinstance(item, dict):
+            set_value = item.get("set")
+            if isinstance(set_value, dict):
+                op = set_value.get("operator")
+                if op in ("union", "intersection", "difference"):
+                    observed[op] += 1
+            filters = item.get("filters")
+            if isinstance(filters, list):
+                for filt in filters:
+                    if isinstance(filt, dict):
+                        for action in ("include", "exclude"):
+                            if action in filt:
+                                observed[action] += 1
+            stack.extend(item.values())
+    missing = sorted(key for key, count in original.items()
+                     if count and not observed[key])
+    if missing:
+        raise ValueError(
+            "original OVAL Set/Filter source semantics missing from native "
+            "Assessment: " + ", ".join(missing))
+
 def required_variable_declarations(source, tests):
     # Only declarations reachable from this Definition's Tests are required.
     # One XML file may contain multiple independent Definitions; unrelated
@@ -557,6 +630,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                                   .get("items_satisfying") != expected_check):
                         raise ValueError("OVAL check cardinality differs at " + source_id)
             compare_mapped_variables(source, native, trace, selected_tests)
+            audit_source_set_filter_retention(source, selected_tests, native)
             native_to_source = {v: k for k, v in source_to_native.items()}
             oval_tree = normalize_source_evaluate(source, ident)
             native_tree = normalize_native_evaluate(native.get("evaluate"), native_to_source)
