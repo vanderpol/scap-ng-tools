@@ -190,6 +190,8 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     # scoped to this standalone Assessment. All unqualified operations still
     # fail closed at the production visitor/schema/semantic boundaries.
     original.native_recovery = True
+    from .direct04 import native_variable_datatype_required
+    original.native_variable_datatype_required = native_variable_datatype_required(snapshot)
     visitor = engine.AssessmentConverter(original, source_path, mappings,
                                          human_compact=False,
                                          native_recovery=True)
