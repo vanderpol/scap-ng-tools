@@ -137,8 +137,7 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     original.native_recovery = True
     visitor = engine.AssessmentConverter(original, source_path, mappings,
                                          human_compact=False,
-                                         native_recovery=True,
-                                         preserve_variable_references=True)
+                                         native_recovery=True)
     expression = visitor.reference(definition_id, "definition")
     assessment = {
         "id": native_identifier(definition, "assessment", definition_id),
