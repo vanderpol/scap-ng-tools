@@ -139,8 +139,12 @@ class StandalonePlatformSource:
 def references(node):
     result = [{"attribute": key, "id": value} for child in node.iter()
               for key, value in child.attrib.items() if key.endswith("_ref")]
-    result.extend({"attribute": "var_ref_text", "id": child.text.strip()}
-                  for child in node.iter() if local_name(child) == "var_ref" and child.text)
+    # Set/Filter edges are text nodes in OVAL, not *_ref attributes.
+    # Preserve them in provenance alongside var_ref and object/state refs.
+    for child in node.iter():
+        kind = local_name(child)
+        if kind in {"var_ref", "object_reference", "filter"} and child.text:
+            result.append({"attribute": kind + "_text", "id": child.text.strip()})
     return result
 
 
