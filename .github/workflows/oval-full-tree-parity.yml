@@ -5,6 +5,10 @@ on:
       - scripts/audit_self_assertion_parity.py
       - tests/test_self_assertion_parity.py
       - tests/test_unified_oval_conversion.py
+      - tests/test_v003_oval_source_truth.py
+      - tests/reference_v003/oval_result_truth_tables.py
+      - src/scap_ng_tools/converter/conversion_budget.py
+      - scripts/export_v003_oval_source_truth.py
       - docs/qualification/full-oval-test-content-parity.md
       - .github/workflows/oval-full-tree-parity.yml
   push:
@@ -29,6 +33,21 @@ jobs:
           python3 -m unittest discover -s tests -p test_unified_oval_conversion.py -v
       - name: Run synthetic negative/positive parity tests
         run: python3 -m unittest discover -s tests -p test_self_assertion_parity.py -v
+      - name: Enforce original 0.3 Set/Filter and status truth tables
+        run: |
+          python3 -m unittest discover -s tests -p test_v003_oval_source_truth.py -v
+          python3 scripts/export_v003_oval_source_truth.py --output /tmp/source-oval-v003-truth.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path("/tmp/source-oval-v003-truth.json").read_text())
+          assert len(data["set_flag_cases"]) == 108
+          assert len(data["filter_cases"]) == 12
+          assert len(data["existence_cases"]) == 40
+          assert len(data["boolean_operator_cases"]) == 144
+          print("Preserved 0.3 source-semantic vectors:", data["schema"],
+                data["qualification"])
+          PY
       - name: Read original source at immutable commit
         uses: actions/checkout@v4
         with:
