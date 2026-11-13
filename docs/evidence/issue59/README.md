@@ -14,7 +14,7 @@ Run date: 2026-11-13. Branch: `codex/issue59-single-v041-semantic-pack`.
 
 ## Test suite and full 65-benchmark conversion
 
-`PYTHONPATH=src:. ./.venv/bin/pytest -q`: **163 passed, 22 skipped, 48 subtests passed**.
+`PYTHONPATH=src:. ./.venv/bin/pytest -q`: **165 passed, 22 skipped, 48 subtests passed**.
 
 
 Pinned source set: `niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5`; source ZIP hashes are retained in `full65-conversion-v041.json`.
