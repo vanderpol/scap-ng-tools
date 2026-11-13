@@ -10,7 +10,8 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from audit_self_assertion_parity import (PREFIX, PIN, audit, digest, slug, sources,
-    parse_oval, reachable_source_tests, normalize_source_evaluate, normalize_native_evaluate)
+    parse_oval, reachable_source_tests, normalize_source_evaluate, normalize_native_evaluate,
+    audit_source_set_filter_retention)
 
 SOURCE_ID = "oval:example:def:1"
 TEST_ID = "oval:example:tst:1"
@@ -229,6 +230,50 @@ class DefinitionGraphTests(unittest.TestCase):
         source = parse_oval(xml, SOURCE_PATH)
         with self.assertRaisesRegex(ValueError, 'cyclic'):
             reachable_source_tests(source, 'def-a')
+
+
+class OriginalSetFilterRetentionTests(unittest.TestCase):
+    @staticmethod
+    def source():
+        data = b'''<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <tests><variable_test id="test-x"><object object_ref="object-root"/></variable_test></tests>
+          <objects>
+            <variable_object id="object-root"><set set_operator="COMPLEMENT">
+              <object_reference>object-a</object_reference>
+              <object_reference>object-b</object_reference>
+              <filter action="include">filter-state</filter>
+            </set></variable_object>
+            <variable_object id="object-a"/>
+            <variable_object id="object-b"/>
+          </objects>
+          <states><variable_state id="filter-state"/></states>
+        </oval_definitions>'''
+        return parse_oval(data, SOURCE_PATH)
+
+    def test_set_cannot_vanish_from_native_authored_object(self):
+        with self.assertRaisesRegex(ValueError, "difference"):
+            audit_source_set_filter_retention(self.source(), {"test-x"},
+                                             {"tests": {"test-x": {"object": {}}}})
+
+    def test_filter_cannot_vanish_from_native_set_operand(self):
+        native = {"tests": {"native": {"object": {
+            "set": {"operator": "difference", "operands": [
+                {"object": "a"}, {"object": "b"}]}}}}}
+        with self.assertRaisesRegex(ValueError, "include"):
+            audit_source_set_filter_retention(self.source(), {"test-x"}, native)
+
+    def test_necessary_native_set_and_filter_syntax_is_recognized(self):
+        native = {"shared_objects": {"selected": {
+            "set": {"operator": "difference", "operands": [
+                {"object": "a", "filters": [{"include": {"path": {"equals": "x"}}}]},
+                {"object": "b"}]}}}}
+        audit_source_set_filter_retention(self.source(), {"test-x"}, native)
+
+    def test_unresolved_nested_original_set_reference_is_fatal(self):
+        source = self.source()
+        del source["nodes"]["object-b"]
+        with self.assertRaisesRegex(ValueError, "unresolved original"):
+            audit_source_set_filter_retention(source, {"test-x"}, {})
 
 
 if __name__ == "__main__":
