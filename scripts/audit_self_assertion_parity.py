@@ -66,13 +66,15 @@ def parse_oval(raw, path):
                         "time_difference", "object_component",
                         "variable_component", "literal_component"}:
                 features[name] += 1
+    lookup = {node.get("id"): node for node in root.iter() if node.get("id")}
     refs = {}
     for ident, definition in defs.items():
         refs[ident] = list(dict.fromkeys(
             node.get("test_ref") for node in definition.iter()
             if tag(node) == "criterion" and node.get("test_ref")))
     return {"path": path, "sha256": digest(raw), "definitions": defs,
-            "tests": tests, "variables": variables, "test_refs": refs,
+            "tests": tests, "variables": variables, "nodes": lookup,
+            "test_refs": refs,
             "features": dict(sorted(features.items()))}
 
 def verify_source_checkout(source_root):
@@ -261,7 +263,34 @@ def source_literal(value, datatype):
         return value.strip().lower() in ("true", "1")
     raise ValueError("unqualified original Variable datatype: " + str(datatype))
 
-def compare_mapped_variables(source, native, trace):
+def required_variable_declarations(source, tests):
+    # Only declarations reachable from this Definition's Tests are required.
+    # One XML file may contain multiple independent Definitions; unrelated
+    # Variables must not be falsely treated as omitted from each conversion.
+    pending = list(tests)
+    seen = set()
+    required = set()
+    while pending:
+        ident = pending.pop()
+        if ident in seen:
+            continue
+        seen.add(ident)
+        if ident in source["variables"]:
+            required.add(ident)
+        node = source["nodes"].get(ident)
+        if node is None:
+            continue
+        for child in node.iter():
+            for key, value in child.attrib.items():
+                if key.endswith("_ref") and value in source["nodes"]:
+                    pending.append(value)
+            if tag(child) in ("var_ref", "var_ref_text"):
+                ref = (child.text or "").strip()
+                if ref in source["nodes"]:
+                    pending.append(ref)
+    return required
+
+def compare_mapped_variables(source, native, trace, selected_tests):
     source_to_native = {}
     for row in trace.get("native_identities", []):
         if row.get("kind") != "variable":
@@ -271,8 +300,11 @@ def compare_mapped_variables(source, native, trace):
             raise ValueError("duplicate/invalid source Variable mapping")
         source_to_native[srcid] = nativeid
     native_vars = native.get("variables", {})
-    if set(source_to_native) != set(source["variables"]):
-        raise ValueError("original Variable declarations omitted or fabricated")
+    missing = required_variable_declarations(source, selected_tests) - set(source_to_native)
+    if missing:
+        raise ValueError("required original Variable declarations omitted: " + str(sorted(missing)))
+    if not set(source_to_native).issubset(source["variables"]):
+        raise ValueError("fabricated original Variable declaration mapping")
     if set(native_vars) != set(source_to_native.values()):
         raise ValueError("native Variable declarations do not match source trace")
     checked = 0
@@ -420,7 +452,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                                .get("items_found") != expected_existence
                 ):
                     raise ValueError("OVAL existence cardinality differs at " + source_id)
-            compare_mapped_variables(source, native, trace)
+            compare_mapped_variables(source, native, trace, references)
             native_to_source = {v: k for k, v in source_to_native.items()}
             oval_tree = normalize_source_evaluate(source["definitions"][ident])
             native_tree = normalize_native_evaluate(native.get("evaluate"), native_to_source)
