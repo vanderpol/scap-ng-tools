@@ -82,19 +82,38 @@ def sources(source_root):
             raise ValueError(f"source XML is symlink: {path}")
         relative = PREFIX + path.relative_to(source_root).as_posix()
         records[relative] = parse_oval(path.read_bytes(), relative)
-    # The original agnostic archive contains one independently sourced
-    # Definition. Other archives are recorded as unclassified, never ignored.
-    archive = source_root / "agnostic" / "oval-def-ext.zip"
-    if archive.is_file():
+    # Treat every archive as part of the inventory, not just the agnostic
+    # ZIP. Only OVAL Definition documents become native conversion inputs;
+    # unrelated fixture XML remains an explicit classification item.
+    archive_inventory = []
+    for archive in sorted(source_root.rglob("*.zip")):
+        inspected = {"path": PREFIX + archive.relative_to(source_root).as_posix(),
+                     "xml_members": 0, "oval_members": 0, "other_members": 0}
         with ZipFile(archive) as package:
             for member in package.infolist():
-                if member.is_dir() or not member.filename.endswith(".xml"):
+                if member.is_dir():
                     continue
+                inspected["other_members"] += 1
+                if not member.filename.lower().endswith(".xml"):
+                    continue
+                inspected["xml_members"] += 1
                 if member.file_size > MAX_XML or member.compress_size > MAX_ARCHIVE:
                     raise ValueError(f"archive member exceeds limit: {member.filename}")
-                relative = PREFIX + "agnostic/oval-def-ext.zip!" + member.filename
-                records[relative] = parse_oval(package.read(member), relative)
-    return records
+                raw = package.read(member)
+                if b"<oval_definitions" not in raw[:4096]:
+                    continue
+                relative = inspected["path"] + "!" + member.filename
+                if relative in records:
+                    raise ValueError("duplicate embedded XML path: " + relative)
+                records[relative] = parse_oval(raw, relative)
+                inspected["oval_members"] += 1
+        archive_inventory.append(inspected)
+    for archive in sorted(source_root.rglob("*.tarz")):
+        archive_inventory.append({
+            "path": PREFIX + archive.relative_to(source_root).as_posix(),
+            "status": "unclassified_nonzip_archive",
+            "reason": "requires inspection for embedded OVAL definitions"})
+    return records, archive_inventory
 
 def source_tree_summary(records):
     dirs = defaultdict(lambda: {"xml": 0, "definitions": 0, "tests": 0})
@@ -177,8 +196,14 @@ def normalize_native_evaluate(node, native_to_source):
     raise ValueError("unknown native Evaluate operator " + str(op))
 
 def audit(source_root, pack, *, require_full=False, expected_xml=144):
-    records = sources(source_root)
+    records, archive_inventory = sources(source_root)
     original, definition_paths, problems = source_tree_summary(records)
+    original["archives"] = archive_inventory
+    for duplicate in original["duplicate_definitions"]:
+        problems.append({"type": "duplicate_source_definition", **duplicate})
+    for item in archive_inventory:
+        if item.get("status") == "unclassified_nonzip_archive":
+            problems.append({"type": "unclassified_embedded_content", **item})
     if expected_xml and sum(1 for path in records if ".zip!" not in path) != expected_xml:
         problems.append({"type": "original_xml_file_count_mismatch",
                          "expected": expected_xml,
@@ -251,15 +276,20 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144):
                 if source_test is None:
                     raise ValueError("source Test reference undefined in source XML")
                 native_test = native["tests"][native_id]
-                expected_check = CHECK.get(source_test.get("check", "all"))
-                if expected_check is not None and (
+                original_check = source_test.get("check", "all")
+                expected_check = CHECK.get(original_check)
+                if expected_check is None:
+                    raise ValueError("unqualified original check: " + str(original_check))
+                if (
                     native_test.get("require", {}).get("item_requirement", {})
                                .get("items_satisfying") != expected_check
                 ):
                     raise ValueError("OVAL check cardinality differs at " + source_id)
-                expected_existence = EXISTENCE.get(
-                    source_test.get("check_existence", "at_least_one_exists"))
-                if expected_existence is not None and (
+                original_existence = source_test.get("check_existence", "at_least_one_exists")
+                expected_existence = EXISTENCE.get(original_existence)
+                if expected_existence is None:
+                    raise ValueError("unqualified original existence: " + str(original_existence))
+                if (
                     native_test.get("require", {}).get("item_requirement", {})
                                .get("items_found") != expected_existence
                 ):
