@@ -1,0 +1,179 @@
+{
+  "format": "scap-ng-tools-self-assertion-agnostic-conversion/1",
+  "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_root": "SCAP_1.4/OVAL_Test_Content/agnostic",
+  "schema": {
+    "schema_version": "0.4.0",
+    "physical_layout": "schema/",
+    "logical_id_prefix": "https://scap-ng.dev/schema/v0.4.0/",
+    "schema_json_count": 145,
+    "root_schema_count": 35,
+    "root_ref_count": 673,
+    "supported_capability_count": 100,
+    "aggregate_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+    "external_snapshot_required": true
+  },
+  "converter": "scap_ng_tools.converter.direct04",
+  "conversion_policy": "production CLI only; no manual native rewrites or expected outcomes",
+  "summary": {
+    "definitions": 47,
+    "tests": 328,
+    "converted_definitions": 7,
+    "blocked_definitions": 40,
+    "schema_valid_yaml_documents": 7,
+    "converted_tests": 58,
+    "blocked_tests": 270,
+    "execution": "not_run"
+  },
+  "artifacts": {
+    "NOTICES.txt": {
+      "sha256": "ca4e6ded1d254708d13ce6da9030b7b17bd4e96fa49eedb573f8f9ba3f853f6e",
+      "bytes": 3208
+    },
+    "README.md": {
+      "sha256": "101ebde846abd58392d14a0b276465316abf8732e999fffe9f0b6f900e2b5f55",
+      "bytes": 590
+    },
+    "blocked-definitions.json": {
+      "sha256": "4b766dfd6b65feee8868ca6a8c5dca225cb65d4ee25551421605aed5fb451bf2",
+      "bytes": 59760
+    },
+    "blocked-tests.jsonl": {
+      "sha256": "9f6df4284b17fbeabfebcf0f2da59be5534fc33d91e10916d1a48d416fd2b189",
+      "bytes": 205312
+    },
+    "blocked.json": {
+      "sha256": "e97d02138d36b76deadf4e3e1c0889f76432edb7fafa27797d59b7b6bcf696ab",
+      "bytes": 318008
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/assessment.json": {
+      "sha256": "cb2566084914b15948df83bde1ea36d844b015854fc06f5ac5fee60631fd8510",
+      "bytes": 4390
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/assessment.yaml": {
+      "sha256": "7eb4adf077604021425770adde9a127f0fdd8e112838412d6eccbc335ea8808c",
+      "bytes": 3136
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/conversion-scope.json": {
+      "sha256": "f25d67a46fdc706455460c810376eaa813cf352fa953f6279363ae5f1e494a41",
+      "bytes": 1043
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/source-trace.json": {
+      "sha256": "c056edab897fb0a6b344b73d264d877c813bc3ea20dbef368a323ae8fdd2efc8",
+      "bytes": 7131
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/assessment.json": {
+      "sha256": "2a2a81f93240d62960342752bc5bf7ed2235dc9c9a0e591cd55c6bca187e89a4",
+      "bytes": 2508
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/assessment.yaml": {
+      "sha256": "9cc8319868c2f22031e49837a0fb10a24c6dee02d34f2f065b1641e799415aa8",
+      "bytes": 1803
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/conversion-scope.json": {
+      "sha256": "7a005eff613cb1a020322103d3dd149fcb944535afddc75efa557a35277870c5",
+      "bytes": 1047
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/source-trace.json": {
+      "sha256": "51a9ba29e9ee3ba89897b1668b7f2cffaf9a8502661c1aa061ac6dd03c6ba1ac",
+      "bytes": 5812
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/assessment.json": {
+      "sha256": "bc18a0386fa851f7a56ce08a8901209e150d65b62f56d1a6a65850600d3de9b2",
+      "bytes": 3112
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/assessment.yaml": {
+      "sha256": "849483f01f659c5289fad7ece668682628ebc66e2c280b53b975e0e5e42b5f09",
+      "bytes": 2300
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/conversion-scope.json": {
+      "sha256": "58b79e083e1a97e01f68b5a9cadcb8c7df1a7ee6ed60f0ce9ce5bf3115850944",
+      "bytes": 1049
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/source-trace.json": {
+      "sha256": "5c56078747f656ace76322790930797536e133133d8af2588005e16b07ac67bb",
+      "bytes": 6673
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/assessment.json": {
+      "sha256": "187252ae07afef529c59b8bbebf9b5472573e2e160960407d25b8892dcaae470",
+      "bytes": 8948
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/assessment.yaml": {
+      "sha256": "7fe14369977dabeee4f42889725280d29d7f56e62df5050fa05cbdf09d80297c",
+      "bytes": 6545
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/conversion-scope.json": {
+      "sha256": "f33feba92e7999fc19a4978407cdc72884ce6d4c480cb6afa77f87bc64cb6ff3",
+      "bytes": 1051
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/source-trace.json": {
+      "sha256": "5b3f66c0175478cb7fa3b9a22c4a9e08f9b78871037d9e3a0f9d529217f0a34c",
+      "bytes": 16267
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/assessment.json": {
+      "sha256": "2475c2a558fcf6149a1d8b42cfe42a7c6ae44c839503c174ee1acb98fda6d61e",
+      "bytes": 10467
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/assessment.yaml": {
+      "sha256": "0808443619446c3d78ac0a77de034c4c8093cbdad2e61262a02e73b784cc7704",
+      "bytes": 7683
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/conversion-scope.json": {
+      "sha256": "e28eb59459d3d470e22d4a32fafc0475ba1260e5bf02d43d571c25317fa36bd8",
+      "bytes": 1060
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/source-trace.json": {
+      "sha256": "6021551a1e9f457411bf21e3244e29d2d06dc33389943d5af598273582a429a0",
+      "bytes": 18056
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/assessment.json": {
+      "sha256": "c9d4e4371af5097dc389c700f2feb4e5bdb6495d614b7066da4c59049e7dd42e",
+      "bytes": 18361
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/assessment.yaml": {
+      "sha256": "6f5d7d617d8047731dfe8fa184401ea6dfa6022f4ba91808eea1fb29921fd33e",
+      "bytes": 12894
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/conversion-scope.json": {
+      "sha256": "c4288f5f07be5947383ca2f62c6268bc718f39f368fdda046bc3cefcdcabca48",
+      "bytes": 1039
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/source-trace.json": {
+      "sha256": "4dc97db28668f9bd695e5a7cde78f227edf7fe140d562d83f59855470dc0dffb",
+      "bytes": 34266
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/assessment.json": {
+      "sha256": "83ffe5919ca8ac230c70ee0aa81fd7865ac6d0c95902e66636be08335fd2fbf7",
+      "bytes": 10402
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/assessment.yaml": {
+      "sha256": "79afb40057abd05d95d91a6e716a8174cfae42538b9e35766ce4483d90fde0b8",
+      "bytes": 7282
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/conversion-scope.json": {
+      "sha256": "ae3a81ff2df7902e7dd0dd8426f8fee29bb97e96d62295327b779e631f2024dd",
+      "bytes": 1042
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/source-trace.json": {
+      "sha256": "5aa99b6d004b4ec26edd39bb828abfd53bddccd25c4d2105e49c3f720b4ee86a",
+      "bytes": 17716
+    },
+    "definitions.json": {
+      "sha256": "cc3960c8aad068179d83271c3097b6e8607b70a3964e9fee4c9fcadeb82557e7",
+      "bytes": 74445
+    },
+    "source-mappings.json": {
+      "sha256": "40028eda812d5efec95799fc41552be8ae65254213d283362c557712fe4d7233",
+      "bytes": 8335
+    },
+    "tests.jsonl": {
+      "sha256": "1c58d93f074f35a2b1228909ae07e0d404fcdcda444050fd0e3f1dbe71803837",
+      "bytes": 247269
+    },
+    "validation.json": {
+      "sha256": "6bfe893c594adc103fbeafc853bb03e06a792a651454655a22b189228cc31572",
+      "bytes": 432
+    }
+  }
+}

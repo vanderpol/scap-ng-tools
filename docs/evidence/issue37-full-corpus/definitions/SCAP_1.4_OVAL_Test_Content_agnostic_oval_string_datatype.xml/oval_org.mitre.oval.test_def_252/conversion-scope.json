@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.4.0",
+  "converter_commit": "f97ff187460f52da78bd16f5009f7d182664812b",
+  "converter_source_sha256": "38332f030fa97dee216db9ddff4e7c540acc8a921fdf2a4b24759c3f312f84de",
+  "converter_worktree_dirty": false,
+  "schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
+  "schema_family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+  "conversion_status": "CONVERTED_UNVERIFIED",
+  "structural_validation": "Draft 2020-12 local pinned schema",
+  "independent_semantic_proof": false,
+  "scanner_execution": false,
+  "compile_and_verify_modes": "not_migrated",
+  "source_sha256": "58ca3747e110831969600ecdd72f591c37adf099658e4cc3babf03779a2a9a2e",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_string_datatype.xml",
+  "source_definition": "oval:org.mitre.oval.test:def:252",
+  "rule_ids": null,
+  "automatic_benchmark_subset": false,
+  "semantic_validation": "frozen 0.4 capability contract and semantic gates"
+}

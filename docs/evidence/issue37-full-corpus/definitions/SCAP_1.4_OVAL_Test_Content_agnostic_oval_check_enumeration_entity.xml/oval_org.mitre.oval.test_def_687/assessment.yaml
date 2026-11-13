@@ -1,0 +1,166 @@
+assessment:
+  id: oval-org-mitre-oval-test-def-687-assessment
+  version: 1
+  assessment_title: Evaluate to true if the oval:CheckEnumeration simple type is properly supported for the relationship between the instances of an entity
+  mode: automated
+  class: miscellaneous
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  variables:
+    oval-org-mitre-oval-test-var-10-variable:
+      kind: constant
+      datatype: integer
+      expression:
+        literal:
+        - 1
+        - 2
+        - 3
+  tests:
+    oval-org-mitre-oval-test-tst-855-test:
+      test_title: Test that the CheckEnumeration value 'all' is supported where all of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            greater_than: 0
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-663-test:
+      test_title: Test that the CheckEnumeration value 'all' is supported where none of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            less_than: 0
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-679-test:
+      test_title: Test that the CheckEnumeration value 'at least one' is supported where more than one of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            greater_than: 0
+        field_requirement: {values_found: one_or_more, values_matching: one_or_more}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-515-test:
+      test_title: Test that the CheckEnumeration value 'at least one' is supported where one of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            greater_than: 2
+        field_requirement: {values_found: one_or_more, values_matching: one_or_more}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-591-test:
+      test_title: Test that the CheckEnumeration value 'at least one' is supported where none of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            greater_than: 3
+        field_requirement: {values_found: one_or_more, values_matching: one_or_more}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-647-test:
+      test_title: Test that the CheckEnumeration value 'none satisfy' is supported where all of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            greater_than: 0
+        field_requirement: {values_found: one_or_more, values_matching: none}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-854-test:
+      test_title: Test that the CheckEnumeration value 'none satisfy' is supported where none of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            less_than: 0
+        field_requirement: {values_found: one_or_more, values_matching: none}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-29-test:
+      test_title: Test that the CheckEnumeration value 'only one' is supported where more than one of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            greater_than: 0
+        field_requirement: {values_found: one_or_more, values_matching: exactly_one}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-287-test:
+      test_title: Test that the CheckEnumeration value 'only one' is supported where one of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            greater_than: 2
+        field_requirement: {values_found: one_or_more, values_matching: exactly_one}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+    oval-org-mitre-oval-test-tst-818-test:
+      test_title: Test that the CheckEnumeration value 'only one' is supported where none of the individual results are true.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        fields:
+          value:
+            greater_than: 3
+        field_requirement: {values_found: one_or_more, values_matching: exactly_one}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-10-variable
+  evaluate:
+    and:
+    - test: oval-org-mitre-oval-test-tst-855-test
+    - not:
+        test: oval-org-mitre-oval-test-tst-663-test
+    - test: oval-org-mitre-oval-test-tst-679-test
+    - test: oval-org-mitre-oval-test-tst-515-test
+    - not:
+        test: oval-org-mitre-oval-test-tst-591-test
+    - not:
+        test: oval-org-mitre-oval-test-tst-647-test
+    - test: oval-org-mitre-oval-test-tst-854-test
+    - not:
+        test: oval-org-mitre-oval-test-tst-29-test
+    - test: oval-org-mitre-oval-test-tst-287-test
+    - not:
+        test: oval-org-mitre-oval-test-tst-818-test
