@@ -212,6 +212,14 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     if visitor.inputs:
         assessment["inputs"] = visitor.inputs
     documents = {"assessment.json": {"assessment": assessment}}
+    # Same active 0.4.1 admission adapter as benchmark Rules; the original
+    # standalone OVAL visitor remains immutable and source-traced.
+    from .native041_function_lowering import lower_assessment_inplace
+    try:
+        lower_assessment_inplace(documents["assessment.json"])
+    except ValueError as error:
+        raise QualifiedConversionError('standalone OVAL native function lowering: ' +
+                                       str(error)) from error
     validate_native_documents(snapshot, documents)
     from ._v04_semantic.validation import document_errors
     errors = list(document_errors(snapshot, "assessment", documents["assessment.json"]))
