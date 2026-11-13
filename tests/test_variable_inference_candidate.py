@@ -79,6 +79,20 @@ class VariableInference(unittest.TestCase):
             'kind':'local','expression':{'count':{'literal':['a','a']}}})
         self.assertNotIn('datatype',visitor.variables['count-variable'])
 
+    def test_versioned_snapshot_and_declared_grammar_are_explicit(self):
+        root = os.environ.get('SCAP_NG_CANDIDATE_SCHEMA_ROOT')
+        if not root:
+            self.skipTest('Generate and pass the pinned 0.4.1 schema pack')
+        from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+        snapshot = Pinned041SchemaSnapshot(root)
+        self.assertEqual(snapshot.manifest()['schema_version'], '0.4.1')
+        self.assertEqual(snapshot.manifest()['supported_capability_count'], 100)
+        self.assertFalse(direct04.native_variable_datatype_required(snapshot))
+        self.assertEqual(direct04.load_pinned_snapshot(root).manifest()['schema_version'], '0.4.1')
+        schema=json.loads((Path(root)/'variable-expression.schema.json').read_text())
+        self.assertEqual(schema['$id'], 'https://scap-ng.dev/schema/v0.4.1/variable-expression.schema.json')
+        self.assertEqual(schema['$defs']['declaration']['required'], ['kind','expression'])
+
     def test_exact_canonical_candidate_schema_accepts_converter_output(self):
         # Separate cross-repo CI pins the exact owner-approved candidate. The
         # historical 0.4 snapshot remains fully qualified by the old gate.
