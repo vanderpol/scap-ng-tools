@@ -23,7 +23,7 @@ from v04_direct_datatypes import SOURCE_TYPES, SPECIAL_TYPES, native_datatype, l
 ROOT = Path(__file__).resolve().parents[1]
 SUPPORT = json.loads(Path(__file__).with_name('v04_direct_capabilities.json').read_text())
 CAPABILITIES = tuple(SUPPORT['enabled'])
-ensure(SUPPORT['specification_version'] == '0.4.0' and len(CAPABILITIES) == len(set(CAPABILITIES)),
+ensure(SUPPORT['specification_version'] == '0.4.1' and len(CAPABILITIES) == len(set(CAPABILITIES)),
        'invalid direct capability activation registry')
 EXISTENCE = {'at_least_one_exists': 'one_or_more', 'none_exist': 'none',
              'only_one_exists': 'exactly_one', 'any_exist': 'zero_or_more'}
@@ -75,9 +75,9 @@ def native_items_found(source_value):
 
 
 def load_mappings():
-    mappings = [json.loads((ROOT / f'schema/v0.4.0/capability-mappings/supported/{name}.json').read_text())
+    mappings = [json.loads((ROOT / f'schema/capability-mappings/supported/{name}.json').read_text())
                 for name in CAPABILITIES]
-    ensure(all(mapping['specification_version'] == '0.4.0' for mapping in mappings), 'mapping version mismatch')
+    ensure(all(mapping['specification_version'] == '0.4.1' for mapping in mappings), 'mapping version mismatch')
     ensure(all((mapping['source']['namespace'].rsplit('#', 1)[-1] in ('independent', 'linux', 'unix', 'windows') or
                 mapping['capability'] in {'solaris.smf', 'iosxe.line', 'iosxe.global'})
                for mapping in mappings), 'capability outside approved direct-converter scope')
@@ -105,7 +105,7 @@ class AssessmentConverter:
         self.canonical_variable_functions = canonical_variable_functions
         self.preserve_source_variables = False
         # Never emit candidate syntax against a historical frozen schema.
-        self.native_variable_datatype_required = getattr(source, 'native_variable_datatype_required', True)
+        self.native_specification_version = '0.4.1'  # sole supported native authoring contract
         # Recovery candidates are opt-in until their changed golden deltas are
         # owner-accepted; the historical default remains byte-compatible.
         self.native_recovery = native_recovery
@@ -635,14 +635,9 @@ class AssessmentConverter:
         if self.canonical_variable_functions:
             from v04_variable_function_migration import canonical_expression
             expression = canonical_expression(expression)
-        # Source declaration datatype is immutable provenance. Only the
-        # candidate grammar derives it from the expression; the old pinned
-        # schema still requires the old authoring representation.
-        if self.native_variable_datatype_required:
-            self.variables[identifier] = {'kind': 'local', 'datatype': native_datatype(datatype),
-                                          'expression': expression}
-        else:
-            self.variables[identifier] = {'kind': 'local', 'expression': expression}
+        # Source OVAL datatype remains in provenance. Only the canonical
+        # native expression determines the result type under SCAP-NG 0.4.1.
+        self.variables[identifier] = {'kind': 'local', 'expression': expression}
         return {'variable': identifier}
 
     def named_variable(self, source_id):
@@ -659,16 +654,9 @@ class AssessmentConverter:
             element = self.source.node(self.component_id, source_id, 'variable')
             identifier = self.native_name(element, 'variable')
             datatype = element.get('datatype')
-            if self.native_variable_datatype_required:
-                self.variables[identifier] = {'kind': 'constant',
-                    'datatype': native_datatype(datatype),
-                    'expression': {'literal': value}}
-            else:
-                # Candidate grammar retains type at the literal payload, never
-                # on the declaration. Original OVAL tokens stay in provenance.
-                self.variables[identifier] = {'kind': 'constant',
-                    'expression': {'literal': {'datatype': native_datatype(datatype),
-                                               'value': value}}}
+            self.variables[identifier] = {'kind': 'constant',
+                'expression': {'literal': {'datatype': native_datatype(datatype),
+                                           'value': value}}}
             return identifier
         ensure('variable' in value, 'Assessment Input cannot replace a named runtime Variable source')
         return value['variable']
@@ -993,7 +981,7 @@ class AssessmentConverter:
                 'source_element': local_name(element),
                 'source_attributes': dict(element.attrib),
                 'source_sha256': digest(xml_identity(element)),
-                'contract': 'scap-ng-0.4.0-binary32-comparisons/1',
+                'contract': 'scap-ng-0.4.1-binary32-comparisons/1',
                 'contract_sha256': '676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd',
                 'source_lexical': element.text,
                 'rounding': 'direct_decimal_to_ieee754_binary32_nearest_even',
@@ -1185,7 +1173,7 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     assessment_id = native_identifier(rule, 'assessment', local_title)
     assessment = {'id': assessment_id, 'version': 1, 'assessment_title': title,
         'mode': 'automated', 'class': source.node(component, definition, 'definition').get('class'),
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': getattr(source, 'native_specification_version', '0.4.0')}}
+        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}}
     for section in ('shared_objects', 'variables'):
         if getattr(converter, section):
             assessment[section] = getattr(converter, section)
@@ -1323,9 +1311,9 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
                          'disabled_rules': [rule_links[rule] for rule, enabled in selection.items() if not enabled]})
         profile_trace.append({'source_id': profile.get('id'), 'source_sha256': digest(xml_identity(profile)),
                               'native_id': identifier, 'selected': selection})
-    wrapper = {'id': 'direct-slice', 'ng_schema_version': getattr(source, 'native_specification_version', '0.4.0'), 'use_case': 'compliance',
+    wrapper = {'id': 'direct-slice', 'ng_schema_version': '0.4.1', 'use_case': 'compliance',
         'version': {'value': benchmark.findtext(f'{{{XCCDF}}}version', '')},
-        'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': getattr(source, 'native_specification_version', '0.4.0')}],
+        'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}],
         'title': [{'text': '[AUTOMATED PROTOTYPE SUBSET] ' + benchmark.findtext(f'{{{XCCDF}}}title', ''), 'language': 'en'}],
         'description': [{'text': benchmark.findtext(f'{{{XCCDF}}}description', ''), 'language': 'en'}],
         'language': benchmark.get('{http://www.w3.org/XML/1998/namespace}lang'),
@@ -1393,7 +1381,7 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
     if not inventory_only:
         if validate_document is None:
             from validate_native_json_schemas import build_validators, document_errors
-            validators = build_validators(ROOT / 'schema/v0.4.0')
+            validators = build_validators(ROOT / 'schema')
             validate_document = lambda kind, doc: document_errors(validators[kind + '.schema.json'], doc)
         for row in rows:
             blockers = list(row['inventory_problems'])
