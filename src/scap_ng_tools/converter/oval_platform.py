@@ -189,8 +189,6 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     # scoped to this standalone Assessment. All unqualified operations still
     # fail closed at the production visitor/schema/semantic boundaries.
     original.native_recovery = True
-    from .direct04 import native_variable_datatype_required
-    original.native_variable_datatype_required = native_variable_datatype_required(snapshot)
     original.native_specification_version = snapshot.manifest()['schema_version']
     visitor = engine.AssessmentConverter(original, source_path, mappings,
                                          human_compact=False,
@@ -216,12 +214,11 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     documents = {"assessment.json": {"assessment": assessment}}
     validate_native_documents(snapshot, documents)
     from ._v04_semantic.validation import document_errors
-    if snapshot.manifest()['schema_version'] != '0.4.0':
-        # This is a structural candidate only. Do not claim the frozen 0.4.0
-        # semantic contract pack proves 0.4.1 Set/Filter/Variable equivalence.
-        raise QualifiedConversionError(
-            '0.4.1 standalone semantic parity pack is not yet qualified; '
-            'structural source conversion alone is not release admission')
+    # Standalone semantic parity is still an outstanding 0.4.1 gate.
+    # Schema-valid drafts are not a scanner-equivalence release.
+    raise QualifiedConversionError(
+        '0.4.1 standalone semantic parity pack remains unqualified; '
+        'complete Tools Issue #59 before admitting source conversion')
     errors = list(document_errors(snapshot, "assessment", documents["assessment.json"]))
     ensure(not errors, "standalone platform semantic validation failed: " +
            "; ".join(error.message for error in errors[:4]))
