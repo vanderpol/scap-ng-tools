@@ -40,7 +40,7 @@ class OriginalV003TruthContractTests(unittest.TestCase):
 
     def test_legacy_existence_and_boolean_decisive_cases(self):
         populations = {(x["source_mode"], tuple(sorted(x["population"].items()))):
-                       x["expected"] for x in self.data["existence_cases"]}]
+                       x["expected"] for x in self.data["existence_cases"]}
         zero = tuple(sorted({"exists": 0, "does_not_exist": 0,
                              "error": 0, "not_collected": 0}.items()))
         self.assertEqual(populations["none_exist", zero], "true")
