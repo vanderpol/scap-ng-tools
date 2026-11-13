@@ -15,7 +15,9 @@ from audit_self_assertion_parity import (PREFIX, PIN, audit, digest, slug, sourc
 SOURCE_ID = "oval:example:def:1"
 TEST_ID = "oval:example:tst:1"
 SOURCE_PATH = PREFIX + "agnostic/sample.xml"
-XML = (b'<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">'
+XML = (b'<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"'
+       b' xmlns:oval-common="http://oval.mitre.org/XMLSchema/oval-common-5">'
+       b'<generator><oval-common:schema_version>5.12.3</oval-common:schema_version></generator>'
        b'<definitions><definition id="oval:example:def:1">'
        b'<criteria operator="AND"><criterion test_ref="oval:example:tst:1"/>'
        b'</criteria></definition></definitions>'
@@ -59,6 +61,7 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         }}
         self.trace = {"source_commit": PIN, "source_path": SOURCE_PATH,
                       "source_sha256": digest(XML), "definition_id": SOURCE_ID,
+                      "source_oval_schema_version": "5.12.3",
                       "test_bindings": [{"source_test": TEST_ID, "native_test": "test-1"}],
                       "native_identities": [{"kind": "variable",
                                              "source_id": "oval:example:var:1",
@@ -160,6 +163,13 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         result = self.inspect()
         self.assertFalse(result["complete"])
         self.assertIn("Variable Object-to-native capability mapping", str(result["problems"]))
+
+    def test_trace_must_preserve_original_schema_version(self):
+        self.trace["source_oval_schema_version"] = "5.11.2"
+        self.publish()
+        result = self.inspect()
+        self.assertFalse(result["complete"])
+        self.assertIn("original OVAL schema version", str(result["problems"]))
 
     def test_changed_original_file_fails_closed(self):
         self.publish()
