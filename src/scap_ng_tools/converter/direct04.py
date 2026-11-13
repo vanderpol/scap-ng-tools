@@ -78,6 +78,23 @@ def validate_native_documents(snapshot, documents):
         raise QualifiedConversionError('generated authoring failed flat JSON Schema: ' + '; '.join(findings[:8]))
 
 
+def native_variable_datatype_required(snapshot):
+    """Read the exact pinned 0.4 declaration grammar, never a hidden default.
+
+    Historical schema snapshots require Variable datatype. The coordinated
+    inferred-type candidate removes both the required entry and the property.
+    A transitional half-migrated pack is rejected rather than guessed.
+    """
+    variable_schema = json.loads(
+        (snapshot.schema_root / 'variable-expression.schema.json').read_text(encoding='utf-8'))
+    declaration = variable_schema['$defs']['declaration']
+    required = 'datatype' in declaration.get('required', [])
+    allowed = 'datatype' in declaration.get('properties', {})
+    if required != allowed:
+        raise QualifiedConversionError('inconsistent pinned native Variable datatype grammar')
+    return required
+
+
 def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
                     human_compact=True, native_recovery=False, include_applicability=False):
     """Return a verified-structure native document set and original source trace.
@@ -98,6 +115,7 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
         engine.load_mappings = lambda: mappings
         source_model = SourceModel(Path(source), sha256_pin)
         source_model.native_recovery = native_recovery
+        source_model.native_variable_datatype_required = native_variable_datatype_required(snapshot)
         documents, trace = engine.convert(source_model, list(rule_ids),
                                           human_compact=human_compact,
                                           native_recovery=native_recovery)
@@ -153,6 +171,7 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
     mappings = snapshot.supported_mappings(engine.CAPABILITIES)
     original = SourceModel(Path(source), sha256_pin, inventory_broken_references=True)
     original.native_recovery = native_recovery
+    original.native_variable_datatype_required = native_variable_datatype_required(snapshot)
     documents, trace, coverage = engine.convert_benchmark(
         original, mappings=mappings, human_compact=human_compact,
         validate_document=lambda kind, doc: document_errors(snapshot, kind, doc),
