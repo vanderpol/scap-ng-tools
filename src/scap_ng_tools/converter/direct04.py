@@ -11,6 +11,7 @@ import importlib
 import json
 from pathlib import Path, PurePosixPath
 import sys
+import xml.etree.ElementTree as ET
 
 from scap_ng_tools.contracts import FrozenSchemaSnapshot
 
@@ -167,6 +168,83 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
     return documents, trace, coverage
 
 
+def render_native_documents(snapshot, documents):
+    """Validate the actual JSON/YAML payloads before any native file is written."""
+    import yaml
+    load_runtime()
+    from v04_direct_yaml import authoring_yaml
+    class UniqueKeys(yaml.SafeLoader):
+        def construct_mapping(self, node, deep=False):
+            self.flatten_mapping(node)
+            result = {}
+            for key_node, value_node in node.value:
+                key = self.construct_object(key_node, deep=deep)
+                if key in result:
+                    raise QualifiedConversionError('duplicate key in serialized native YAML')
+                result[key] = self.construct_object(value_node, deep=deep)
+            return result
+
+    validate_native_documents(snapshot, documents)
+    rendered = {}
+    for name, document in documents.items():
+        json_text = json.dumps(document, indent=2, allow_nan=False) + '\n'
+        yaml_text = authoring_yaml(document)
+        try:
+            decoded_json, decoded_yaml = json.loads(json_text), yaml.load(yaml_text, Loader=UniqueKeys)
+        except (ValueError, yaml.YAMLError) as error:
+            raise QualifiedConversionError('invalid serialized native output: ' + name) from error
+        if decoded_json != document or decoded_yaml != document:
+            raise QualifiedConversionError('serialized native output differs from validated document: ' + name)
+        validate_native_documents(snapshot, {name: decoded_json})
+        validate_native_documents(snapshot, {name: decoded_yaml})
+        rendered[name] = (json_text, yaml_text)
+    return rendered
+
+
+def conversion_identity(snapshot):
+    """Record actual source bytes/revisions without inferring release identity."""
+    import subprocess
+    
+    package = Path(__file__).resolve().parents[1]
+    root = package.parent.parent
+    source_checkout = package.parent.name == 'src' and (root / 'pyproject.toml').is_file()
+
+    def revision(path):
+        result = subprocess.run(['git', '-C', str(path), 'rev-parse', 'HEAD'],
+                                capture_output=True, text=True)
+        return result.stdout.strip() if result.returncode == 0 else None
+
+    checksum = sha256()
+    for path in sorted(package.rglob('*')):
+        if path.is_file() and path.suffix in ('.py', '.json'):
+            checksum.update(path.relative_to(package.parent).as_posix().encode() + b'\0' + path.read_bytes())
+    dirty = subprocess.run(['git', '-C', str(root), 'status', '--porcelain', '--', 'src', 'pyproject.toml'],
+                           capture_output=True, text=True) if source_checkout else None
+    return {'converter_commit': revision(root) if source_checkout else None,
+            'converter_source_sha256': checksum.hexdigest(),
+            'converter_worktree_dirty': bool(dirty.stdout) if dirty and dirty.returncode == 0 else None,
+            'schema_commit': revision(snapshot.schema_root),
+            'schema_family_sha256': snapshot.manifest()['aggregate_sha256']}
+
+
+def convert_oval_definition(**arguments):
+    """Source adapter to the same production visitor and validation gates."""
+    raw = Path(arguments['source']).read_bytes()
+    root = ET.fromstring(raw)
+    test_kinds = {node.tag.rsplit('}', 1)[-1] for node in root.iter()
+                  if node.get('id') and node.tag.rsplit('}', 1)[-1].endswith('_test')}
+    # The platform adapter is deliberately closed over a homogeneous
+    # standalone unix.file document.  A file object referenced by another
+    # platform Test (for example rpmverifyfile) must not promote that document
+    # into the unix.file lane or erase the owning Test's diagnostic.
+    if test_kinds and test_kinds <= {'file_test'}:
+        from .oval_platform import convert_definition
+        return convert_definition(**arguments)
+    from .oval_variables import convert_definition
+    return convert_definition(**arguments)
+
+
+
 def safe_relative_filename(root, relative):
     filename = PurePosixPath(relative)
     if not relative or filename.is_absolute() or '..' in filename.parts or '\\' in relative:
@@ -182,13 +260,16 @@ def main():
     parser.add_argument('--schema-root', type=Path, required=True,
                         help='exact offline SCAP-NG 0.4 checkout or flat schema/ directory')
     parser.add_argument('source', nargs='?', type=Path,
-                        help='original CLI positional source ZIP')
+                        help='original source ZIP or standalone OVAL XML')
     parser.add_argument('--source', dest='source_option', type=Path,
-                        help='equivalent explicit source ZIP path')
+                        help='equivalent explicit source path')
     parser.add_argument('--sha256', required=True, help='exact SHA-256 of original source ZIP')
     parser.add_argument('--rule', action='append', help='selected source Rule ID; repeatable')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument('--oval-definition', help='original OVAL Definition ID in standalone source XML')
+    parser.add_argument('--source-commit', help='pinned original source Git commit')
+    parser.add_argument('--source-path', help='original XML repository-relative source path')
     parser.add_argument('--recover-native', action='store_true', help='opt into owner-review native recovery candidates')
     parser.add_argument('--include-applicability', action='store_true', help='lower source platform applicability into shared native Assessments')
     for option in ('--verify', '--compile', '--all-rules', '--inventory-only', '--draft'):
@@ -202,8 +283,14 @@ def main():
                      'these modes require separate owner-qualified ports')
     if arguments.inventory_only and arguments.rule:
         parser.error('--inventory-only must not be combined with --rule')
-    if sum(bool(x) for x in (arguments.inventory_only, arguments.all_rules, arguments.rule)) != 1:
-        parser.error('select exactly one of --inventory-only, --all-rules or --rule')
+    if sum(bool(x) for x in (arguments.inventory_only, arguments.all_rules, arguments.rule, arguments.oval_definition)) != 1:
+        parser.error('select exactly one of --inventory-only, --all-rules, --rule or --oval-definition')
+    if arguments.oval_definition and not (arguments.source_commit and arguments.source_path):
+        parser.error('standalone OVAL requires --source-commit and --source-path')
+    if not arguments.oval_definition and (arguments.source_commit or arguments.source_path):
+        parser.error('--source-commit/--source-path require --oval-definition')
+    if arguments.oval_definition and (arguments.all_rules or arguments.include_applicability or arguments.recover_native):
+        parser.error('standalone OVAL is not benchmark or native-recovery mode')
     if arguments.output.exists():
         parser.error('output path already exists; refusing overwrite')
     try:
@@ -222,7 +309,12 @@ def main():
             print(json.dumps({'source_rules': coverage['summary']['source_rules'],
                               'status': 'INVENTORIED_UNVERIFIED', 'native_documents': 0}))
             return
-        if arguments.all_rules:
+        if arguments.oval_definition:
+            documents, trace = convert_oval_definition(
+                schema_root=arguments.schema_root, source=selected_source,
+                sha256_pin=arguments.sha256, definition_id=arguments.oval_definition,
+                source_commit=arguments.source_commit, source_path=arguments.source_path)
+        elif arguments.all_rules:
             documents, trace, coverage = convert_benchmark(
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, human_compact=arguments.human_compact,
@@ -233,15 +325,16 @@ def main():
                 sha256_pin=arguments.sha256, rule_ids=arguments.rule,
                 human_compact=arguments.human_compact, native_recovery=arguments.recover_native,
                 include_applicability=arguments.include_applicability)
-        from v04_direct_yaml import authoring_yaml
+        snapshot = FrozenSchemaSnapshot(arguments.schema_root)
+        rendered = render_native_documents(snapshot, documents)
         targets = {name: safe_relative_filename(arguments.output, name)
                    for name in documents}
         arguments.output.mkdir(parents=True, exist_ok=False)
-        for name, document in documents.items():
+        for name, (json_text, yaml_text) in rendered.items():
             target = targets[name]
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text(json.dumps(document, indent=2) + '\n', encoding='utf-8')
-            target.with_suffix('.yaml').write_text(authoring_yaml(document), encoding='utf-8')
+            target.write_text(json_text, encoding='utf-8')
+            target.with_suffix('.yaml').write_text(yaml_text, encoding='utf-8')
         (arguments.output / 'source-trace.json').write_text(
             json.dumps(trace, indent=2) + '\n', encoding='utf-8')
         if arguments.all_rules:
@@ -259,9 +352,10 @@ def main():
             'compile_and_verify_modes': 'not_migrated',
             'source_sha256': arguments.sha256,
             'rule_ids': arguments.rule,
+            'oval_definition': arguments.oval_definition,
             'automatic_benchmark_subset': bool(arguments.all_rules),
             'semantic_validation': ('frozen 0.4 capability contract and semantic gates'
-                                    if arguments.all_rules else 'not independently qualified'),
+                                    if arguments.all_rules or arguments.oval_definition else 'not independently qualified'),
         }, indent=2) + '\n', encoding='utf-8')
     except (OSError, ValueError) as error:
         raise SystemExit(str(error))
