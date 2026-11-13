@@ -131,8 +131,10 @@ class FullOriginalSourceParityTests(unittest.TestCase):
                       {p["type"] for p in result["problems"]})
 
     def test_cardinality_regression_fails(self):
+        # A State-free OVAL Test has no matching condition; existence still
+        # governs its outcome and must match the original exactly.
         self.native["assessment"]["tests"]["test-1"]["require"][
-            "item_requirement"]["items_satisfying"] = "none"
+            "item_requirement"]["items_found"] = "none"
         self.publish()
         result = self.inspect()
         self.assertFalse(result["complete"])
