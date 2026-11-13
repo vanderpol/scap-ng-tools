@@ -6,7 +6,6 @@ propagation are runtime contracts covered by the independent OVAL oracle.
 """
 from functools import lru_cache
 import json
-import re
 from pathlib import Path
 
 from .v04_comparison_types import TEXT_TYPES, scalar_type, contract
@@ -170,9 +169,31 @@ def assessment_variable_expressions(assessment):
                         raise ValueError('merge requires scalar values')
                 return {'string'}
             raise ValueError('unsupported native Variable function: ' + str(name))
-        if op == 'unique':
-            text_operand(expression(value), 'unique')
+        if op == 'count':
+            expression(value)  # Any resolved typed collection, including empty.
+            return {'integer'}
+        if op in ('split', 'substring', 'begin', 'end'):
+            payload = value
+            if not isinstance(payload, dict) or 'value' not in payload:
+                raise ValueError(op + ' requires a value expression')
+            domain = expression(payload['value'])
+            if domain != {'string'}:
+                raise ValueError(op + ' requires string input; no implicit cast')
             return {'string'}
+        if op == 'arithmetic':
+            domains = [expression(arg) for arg in value['values']]
+            if any(not domain or not domain <= {'integer', 'float'} for domain in domains):
+                raise ValueError('arithmetic requires typed numeric operands')
+            return {'float'} if any('float' in domain for domain in domains) else {'integer'}
+        if op == 'unique':
+            # Unique preserves the type of its input (and the first occurrence
+            # order), not an unconditional string domain.
+            components = value if isinstance(value, list) else [value]
+            domains = [expression(component) for component in components]
+            result = set().union(*domains) if domains else set()
+            if len(result) > 1 or 'record' in result:
+                raise ValueError('unique requires one scalar datatype')
+            return result
         if op == 'concat':
             for arg in value:
                 text_operand(expression(arg), 'concat')
@@ -196,24 +217,13 @@ def assessment_variable_expressions(assessment):
         if name not in variables:
             raise ValueError('unresolved Variable reference: ' + name)
         active.add(name)
-        declaration = variables[name]
-        datatype = declaration['datatype']
-        derived = expression(declaration['expression'], datatype)
-        # Pinned original local_variable tst827 explicitly declares integer but
-        # contains literal_component datatype=string '9'. Preserve this existing
-        # declaration cast, validate its lexical input, and never rewrite ASTs.
-        # Constant arrays and typed literal payloads still obey their own types.
-        expr = declaration['expression']
-        if (declaration['kind'] == 'local' and set(expr) == {'literal'}
-                and derived == {'string'} and datatype in {'integer', 'float'}):
-            payload = expr['literal']
-            if isinstance(payload, dict): payload = payload['value']
-            values = payload if isinstance(payload, list) else [payload]
-            pattern = (r'[+-]?[0-9]+' if datatype == 'integer' else
-                       r'[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?')
-            if values and all(isinstance(v, str) and re.fullmatch(pattern, v) for v in values):
-                derived = {datatype}
-        compatible(derived, datatype, 'Variable ' + name)
+        # The native expression, not an authored declaration datatype,
+        # determines its result type. Inference never performs a cast.
+        derived = expression(variables[name]['expression'])
+        if len(derived) != 1:
+            raise ValueError('Variable ' + name +
+                             ': ambiguous/empty result datatype; use an explicitly typed literal or uniquely typed collected field')
+        datatype = next(iter(derived))
         active.remove(name)
         completed[name] = datatype
         return datatype
