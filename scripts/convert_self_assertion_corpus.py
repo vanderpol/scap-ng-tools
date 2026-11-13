@@ -44,8 +44,12 @@ def source_documents(corpus: Path, families: tuple[str, ...]):
         base = corpus / family_rel
         for path in sorted(base.glob("*.xml")):
             yield family_rel / path.name, family_rel / path.name, path.read_bytes()
-        if family != "agnostic" or os.environ.get("SCAP_NG_INCLUDE_EMBEDDED_ARCHIVES") != "1":
+        if family != "agnostic":
             continue
+        # The embedded OVAL Definition is part of the pinned source
+        # denominator, not an opt-in environment-dependent extension.
+        # Missing archives/members fail closed instead of silently producing
+        # the older 167-Definition ledger.
         archive = base / ZIP_NAME
         with ZipFile(archive) as package:
             raw = package.read(ZIP_DEFINITION_MEMBER)
@@ -247,21 +251,30 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             definition_results = {}
             for graph in source_graph:
                 source_path = graph["source_path"]
+                family = str(source_path).split("/")[-2]
                 provenance_path = graph["provenance_path"]
                 source_sha = graph["source_sha256"]
                 source_text_path = graph["source_text_path"]
                 definitions = graph["definitions"]
                 definition_features = graph["definition_features"]
                 for definition_id, refs in definitions.items():
+                    # AIX is explicitly outside the owner's automatic target.
+                    # Keep every source row and its immutable path/hash in the
+                    # ledger; never turn an owner exclusion into a converter
+                    # blocker or silently omit its Test graph.
+                    owner_excluded = family == "aix"
                     artifact_dir = temp / "definitions" / slug(str(source_path)) / slug(definition_id)
-                    command, process, files, success = run_one(
-                        python=python, schema_root=schema_root, source=source_text_path,
-                        source_sha=source_sha, source_commit=source_commit,
-                        source_path=str(provenance_path), definition=definition_id,
-                        out=artifact_dir)
-                    recorded_command = public_command(
+                    command = process = files = None
+                    success = False
+                    if not owner_excluded:
+                        command, process, files, success = run_one(
+                            python=python, schema_root=schema_root, source=source_text_path,
+                            source_sha=source_sha, source_commit=source_commit,
+                            source_path=str(provenance_path), definition=definition_id,
+                            out=artifact_dir)
+                    recorded_command = (public_command(
                         command, schema_root=schema_root, source=source_text_path,
-                        output=artifact_dir)
+                        output=artifact_dir) if command else None)
                     row = {
                         "source_path": str(provenance_path),
                         "source_sha256": source_sha,
@@ -270,13 +283,17 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "source_test_count": len(refs),
                         "feature_categories": definition_features.get(definition_id, []),
                         "converter_command": recorded_command,
-                        "converter_returncode": process.returncode,
-                        "conversion_status": "CONVERTED_UNVERIFIED" if success else "blocked",
+                        "converter_returncode": None if owner_excluded else process.returncode,
+                        "conversion_status": ("intentionally_excluded" if owner_excluded else
+                                               "CONVERTED_UNVERIFIED" if success else "blocked"),
+                        "scope_classification": "excluded_by_owner:aix" if owner_excluded else "in_scope",
+                        "owner_decision": "issue-56:aix-excluded" if owner_excluded else None,
                         "schema_validated": False,
                         "independent_semantic_proof": False,
                         "scanner_execution": False,
-                        "failure_class": None if success else classify_failure(process.stderr, process.stdout),
-                        "diagnostic": None if success else (process.stderr.strip() or process.stdout.strip()),
+                        "failure_class": "owner_exclusion" if owner_excluded else (None if success else classify_failure(process.stderr, process.stdout)),
+                        "diagnostic": ("AIX is excluded by owner from the automatic-conversion target" if owner_excluded
+                                       else None if success else (process.stderr.strip() or process.stdout.strip())),
                         "artifacts": None,
                     }
                     trace = None
@@ -327,6 +344,12 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         schema_validated = True
                         failure_class = None
                         diagnostic = None
+                    elif owner_ids and all(result["status"] == "intentionally_excluded"
+                                           for result in owner_results):
+                        status = "intentionally_excluded"
+                        schema_validated = False
+                        failure_class = "owner_exclusion"
+                        diagnostic = "AIX is excluded by owner from the automatic-conversion target"
                     elif owner_ids:
                         status = "blocked"
                         schema_validated = False
@@ -360,6 +383,8 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "test_id": test_id,
                         "feature_categories": test_features.get(test_id, []),
                         "conversion_status": status,
+                        "scope_classification": "excluded_by_owner:aix" if status == "intentionally_excluded" else "in_scope",
+                        "owner_decision": "issue-56:aix-excluded" if status == "intentionally_excluded" else None,
                         "schema_validated": schema_validated,
                         "native_test_ids": native_ids,
                         "execution": "not_run",
@@ -412,6 +437,9 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "blocked_artifacts": len(blocked_definitions),
             "execution": "not_run",
             "expected_outcomes_derived": False,
+            "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
+            "owner_exclusions": {"aix": sum(row.get("scope_classification") == "excluded_by_owner:aix"
+                                             for row in definition_rows)},
         }
         (temp / "validation.json").write_text(json.dumps(validation, indent=2) + "\n")
         feature_inventory = {
@@ -432,15 +460,23 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             (temp / "NOTICES.txt").write_text(
                 "Derivative native conversion review artifacts from pinned SCAP 1.4 OVAL content; "
                 "original XML is unchanged.\n")
+        converted_test_count = sum(row["conversion_status"] == "CONVERTED_UNVERIFIED"
+                                  for row in test_rows)
+        blocked_definition_count = sum(row["conversion_status"] == "blocked"
+                                      for row in definition_rows)
+        excluded_definition_count = sum(row["conversion_status"] == "intentionally_excluded"
+                                       for row in definition_rows)
+        excluded_test_count = sum(row["conversion_status"] == "intentionally_excluded"
+                                  for row in test_rows)
         (temp / "README.md").write_text(
             "# Pinned Self-Assertion conversion\n\n"
             f"Production CLI conversion of the pinned `{', '.join(families)}` corpus at `{source_commit}`. "
             "The complete ledgers preserve every source Definition and Test; blocked "
             "entries retain the exact converter diagnostic.\n\n"
             f"- Definitions: {len(definition_rows)} ({len(converted_rows)} converted, "
-            f"{len(blocked_definitions)} blocked)\n"
-            f"- Tests: {len(test_rows)} ({len(test_rows) - len(blocked_tests)} converted, "
-            f"{len(blocked_tests)} blocked)\n"
+            f"{blocked_definition_count} blocked, {excluded_definition_count} owner-excluded)\n"
+            f"- Tests: {len(test_rows)} ({converted_test_count} converted, "
+            f"{len(blocked_tests)} blocked, {excluded_test_count} owner-excluded)\n"
             "- Generated native documents are schema-valid and remain `CONVERTED_UNVERIFIED`.\n"
             "- No expected outcomes, collected Items, or execution results are derived.\n"
             "- See `source-mappings.json`, `feature-inventory.json`, `definitions.json`, `tests.jsonl`, and the blocked ledgers.\n"
@@ -462,14 +498,21 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "converter": "scap_ng_tools.converter.direct04",
             "conversion_policy": "production CLI only; no manual native rewrites or expected outcomes",
             "feature_inventory": feature_inventory,
+            "source_inventory": {
+                "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
+                "owner_exclusions": {"aix": sum(row.get("scope_classification") == "excluded_by_owner:aix"
+                                                 for row in definition_rows)},
+            },
             "summary": {
                 "definitions": len(definition_rows),
                 "tests": len(test_rows),
                 "converted_definitions": len(converted_rows),
-                "blocked_definitions": len(definition_rows) - len(converted_rows),
+                "blocked_definitions": blocked_definition_count,
+                "excluded_definitions": excluded_definition_count,
                 "schema_valid_yaml_documents": len(converted_rows),
-                "converted_tests": sum(r["conversion_status"] == "CONVERTED_UNVERIFIED" for r in test_rows),
-                "blocked_tests": sum(r["conversion_status"] == "blocked" for r in test_rows),
+                "converted_tests": converted_test_count,
+                "blocked_tests": len(blocked_tests),
+                "excluded_tests": excluded_test_count,
                 "execution": "not_run",
             },
         }

@@ -77,6 +77,10 @@ class StandalonePlatformSource:
             repr(self.oval_schema_version))
         self.component_id = component
         self.draft_compatibility = True
+        # The standalone adapter is the source-parity lane. It may preserve
+        # named constant Variables at comparison sites; benchmark conversion
+        # keeps its historical inline-literal policy.
+        self.standalone_oval = True
         self.nodes = {component: {}}
         for section in self.root:
             if local_name(section) == "generator":
@@ -196,8 +200,17 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
         "assessment_title": definition.findtext("{" + OVAL + "}metadata/{" + OVAL + "}title"),
         "mode": "automated", "class": definition.get("class"),
         "specification": {"id": "scap-ng.pre-alpha.assessment", "version": "0.4.0"},
-        "variables": visitor.variables, "tests": visitor.tests, "evaluate": expression,
+        "tests": visitor.tests, "evaluate": expression,
     }
+    # Standalone OVAL must assemble the same native graph as benchmark Rules.
+    # In particular, Set operands are references into shared_objects; omitting
+    # that declaration makes a source-valid Set look like an unresolved native
+    # Object during independent semantic validation.
+    for section in ("shared_objects", "variables"):
+        if getattr(visitor, section):
+            assessment[section] = getattr(visitor, section)
+    if visitor.inputs:
+        assessment["inputs"] = visitor.inputs
     documents = {"assessment.json": {"assessment": assessment}}
     validate_native_documents(snapshot, documents)
     from ._v04_semantic.validation import document_errors

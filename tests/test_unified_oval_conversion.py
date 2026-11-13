@@ -1,10 +1,44 @@
 """Contract: standalone OVAL and XCCDF Rules share one production visitor."""
 import inspect
+import os
+from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
+from zipfile import ZipFile
+
+from scripts.convert_self_assertion_corpus import source_documents
 
 from scap_ng_tools.converter import direct04, oval_platform, oval_variables
 from scap_ng_tools.converter.conversion_budget import ConversionBudget, ConversionBudgetExceeded
+
+
+
+
+class FullSourceCorpusInputTests(unittest.TestCase):
+    def test_embedded_oval_is_included_without_environment_opt_in(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "SCAP_1.4" / "OVAL_Test_Content"
+            agnostic = root / "agnostic"
+            agnostic.mkdir(parents=True)
+            (agnostic / "standalone.xml").write_bytes(b"standalone")
+            with ZipFile(agnostic / "oval-def-ext.zip", "w") as archive:
+                archive.writestr("oval-def-ext.xml", b"embedded")
+            with patch.dict(os.environ, {}, clear=True):
+                records = list(source_documents(Path(temp), ("agnostic",)))
+            self.assertEqual([str(row[0]) for row in records], [
+                "SCAP_1.4/OVAL_Test_Content/agnostic/standalone.xml",
+                "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+            ])
+            self.assertEqual([row[2] for row in records], [b"standalone", b"embedded"])
+
+    def test_missing_embedded_oval_is_not_silently_omitted(self):
+        with tempfile.TemporaryDirectory() as temp:
+            agnostic = Path(temp) / "SCAP_1.4" / "OVAL_Test_Content" / "agnostic"
+            agnostic.mkdir(parents=True)
+            (agnostic / "standalone.xml").write_bytes(b"standalone")
+            with self.assertRaises(FileNotFoundError):
+                list(source_documents(Path(temp), ("agnostic",)))
 
 
 class UnifiedOvalConverterTests(unittest.TestCase):
