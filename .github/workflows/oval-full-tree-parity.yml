@@ -58,4 +58,20 @@ jobs:
           print("Original Definitions:", data["coverage"]["original"]["definitions"])
           print("Unconverted/missing source Definitions:",
                 data["coverage"]["pack"]["source_definitions_without_disposition"])
+          from collections import Counter
+          print("Per-family original source:", json.dumps(
+                data["coverage"]["original"]["by_family"],sort_keys=True))
+          print("Original duplicate Definition IDs:", json.dumps(
+                data["coverage"]["original"]["duplicate_definitions"][:12]))
+          print("Old pack status counts:", data["coverage"]["pack"]["status_counts"])
+          print("Structural parity checked:", data["coverage"]["pack"]["parity_checked_definitions"])
+          print("Audit problem classes:",dict(sorted(Counter(
+                p["type"] for p in data["problems"]).items())))
+          for problem in data["problems"]:
+            if problem["type"] not in ("source_definition_without_converter_disposition",):
+              print("Nonmissing issue:",json.dumps(problem,sort_keys=True)[:500])
+          print("Missing sample:", json.dumps([
+            p for p in data["problems"]
+            if p["type"] == "source_definition_without_converter_disposition"
+          ][:15],sort_keys=True))
           PY
