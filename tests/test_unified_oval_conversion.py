@@ -30,9 +30,8 @@ class UnifiedOvalConverterTests(unittest.TestCase):
         engine = direct04.load_runtime()
         signature = inspect.signature(engine.AssessmentConverter)
         self.assertIn('native_recovery', signature.parameters)
-        self.assertIn('preserve_variable_references', signature.parameters)
         self.assertFalse(signature.parameters['native_recovery'].default)
-        self.assertFalse(signature.parameters['preserve_variable_references'].default)
+        self.assertNotIn('preserve_variable_references', signature.parameters)
 
     def test_standalone_adapter_has_no_capability_allowlist(self):
         source = inspect.getsource(oval_platform.convert_definition)
