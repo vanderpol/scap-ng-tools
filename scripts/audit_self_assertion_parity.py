@@ -12,6 +12,7 @@ import argparse
 from collections import Counter, defaultdict
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
@@ -72,6 +73,23 @@ def parse_oval(raw, path):
     return {"path": path, "sha256": digest(raw), "definitions": defs,
             "tests": tests, "variables": variables, "test_refs": refs,
             "features": dict(sorted(features.items()))}
+
+def verify_source_checkout(source_root):
+    # Verify the exact upstream commit AND a clean Test Content subtree.
+    # The converter's declaration of source_commit is not independent proof.
+    checkout = source_root.resolve().parents[1]
+    for args in (("rev-parse", "HEAD"),
+                 ("status", "--porcelain", "--", "SCAP_1.4/OVAL_Test_Content")):
+        command = ["git", "-C", str(checkout), *args]
+        result = subprocess.run(command, capture_output=True, text=True,
+                                check=False, timeout=15)
+        if result.returncode:
+            raise ValueError("cannot verify upstream source Git checkout")
+        if args[0] == "rev-parse" and result.stdout.strip() != PIN:
+            raise ValueError("upstream source checkout is not the approved commit")
+        if args[0] == "status" and result.stdout.strip():
+            raise ValueError("upstream source Test Content has local modifications")
+    return True
 
 def sources(source_root):
     if not source_root.is_dir():
@@ -195,7 +213,9 @@ def normalize_native_evaluate(node, native_to_source):
         return children[0] if len(children) == 1 and op in ("and", "or") else (op, children)
     raise ValueError("unknown native Evaluate operator " + str(op))
 
-def audit(source_root, pack, *, require_full=False, expected_xml=144):
+def audit(source_root, pack, *, require_full=False, expected_xml=144,
+          verify_pin=False):
+    pin_verified = verify_source_checkout(source_root) if verify_pin else False
     records, archive_inventory = sources(source_root)
     original, definition_paths, problems = source_tree_summary(records)
     original["archives"] = archive_inventory
@@ -311,7 +331,8 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144):
     for path, ident in absent:
         problems.append({"type": "source_definition_without_converter_disposition",
                          "source": path, "definition": ident})
-    coverage = {"original": original, "pack": {
+    coverage = {"original": original, "source_git_pin_verified": pin_verified,
+                "pack": {
         "source_commit": manifest.get("source_commit"),
         "schema_family_sha256": manifest.get("schema", {}).get("aggregate_sha256"),
         "definitions_in_pack": len(rows),
@@ -335,12 +356,15 @@ def main():
                         help="converter output package with manifest.json/definitions.json")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--expected-xml", type=int, default=144)
+    parser.add_argument("--allow-unverified-fixture-source", action="store_true",
+                        help="TEST FIXTURES ONLY: skip exact Git commit verification")
     parser.add_argument("--require-full", action="store_true",
                         help="exit nonzero for ANY missing/blocked Definition or mismatch")
     args = parser.parse_args()
     try:
         report = audit(args.source_root, args.pack,
-                       require_full=args.require_full, expected_xml=args.expected_xml)
+                       require_full=args.require_full, expected_xml=args.expected_xml,
+                       verify_pin=not args.allow_unverified_fixture_source)
     except (OSError, ValueError, KeyError, ET.ParseError) as exc:
         parser.exit(2, f"source parity audit error: {exc}\n")
     args.output.parent.mkdir(parents=True, exist_ok=True)
