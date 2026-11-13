@@ -19,7 +19,10 @@ XML = (b'<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitio
        b'<criteria operator="AND"><criterion test_ref="oval:example:tst:1"/>'
        b'</criteria></definition></definitions>'
        b'<tests><variable_test id="oval:example:tst:1" check="all" '
-       b'check_existence="at_least_one_exists"/></tests>'
+       b'check_existence="at_least_one_exists"><object object_ref="oval:example:obj:1"/>'
+       b'</variable_test></tests>'
+       b'<objects><variable_object id="oval:example:obj:1">'
+       b'<var_ref>oval:example:var:1</var_ref></variable_object></objects>'
        b'<variables><constant_variable id="oval:example:var:1" datatype="string">'
        b'<value>sample</value></constant_variable></variables></oval_definitions>')
 
