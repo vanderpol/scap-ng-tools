@@ -633,8 +633,10 @@ class AssessmentConverter:
         if self.canonical_variable_functions:
             from v04_variable_function_migration import canonical_expression
             expression = canonical_expression(expression)
-        self.variables[identifier] = {'kind': 'local', 'datatype': native_datatype(datatype),
-                                      'expression': expression}
+        # Declaration datatype is source provenance, not a native Variable field.
+        # The canonical 0.4 expression/collected-field contract determines its
+        # output type. Never claim an OVAL result cast has been proved here.
+        self.variables[identifier] = {'kind': 'local', 'expression': expression}
         return {'variable': identifier}
 
     def named_variable(self, source_id):
@@ -651,9 +653,12 @@ class AssessmentConverter:
             element = self.source.node(self.component_id, source_id, 'variable')
             identifier = self.native_name(element, 'variable')
             datatype = element.get('datatype')
+            # Preserve the source constant's semantic type in the explicitly
+            # typed literal payload, not on the enclosing Variable. The
+            # original OVAL declaration remains in source provenance.
             self.variables[identifier] = {'kind': 'constant',
-                'datatype': native_datatype(datatype),
-                'expression': {'literal': value}}
+                'expression': {'literal': {'datatype': native_datatype(datatype),
+                                           'value': value}}}
             return identifier
         ensure('variable' in value, 'Assessment Input cannot replace a named runtime Variable source')
         return value['variable']
