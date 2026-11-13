@@ -217,6 +217,31 @@ def read_pack(pack):
 def slug(value):
     return value.replace(":", "_").replace("/", "_")
 
+def compare_variable_test_binding(source, source_test, native_test, trace):
+    # An OVAL independent variable_test selects its Variable indirectly
+    # through a variable_object. Native variable.value selects it directly.
+    if tag(source_test) != "variable_test":
+        return
+    objects = [node.get("object_ref") for node in source_test.iter()
+               if tag(node) == "object" and node.get("object_ref")]
+    if len(objects) != 1:
+        raise ValueError("original variable_test has unqualified Object references")
+    source_object = source["nodes"].get(objects[0])
+    if source_object is None or tag(source_object) != "variable_object":
+        raise ValueError("original variable_test Object is not a variable_object")
+    refs = [(node.text or "").strip() for node in source_object.iter()
+            if tag(node) == "var_ref" and (node.text or "").strip()]
+    if len(refs) != 1:
+        raise ValueError("original variable_object Variable reference not qualified")
+    mapping = {entry["source_id"]: entry["native_id"]
+               for entry in trace.get("native_identities", [])
+               if entry.get("kind") == "variable"}
+    expected = mapping.get(refs[0])
+    if not expected or native_test.get("capability") != "variable.value":
+        raise ValueError("missing Variable Object-to-native capability mapping")
+    if native_test.get("variable") != expected:
+        raise ValueError("original variable_object Test binding differs")
+
 def normalize_source_evaluate(definition):
     # Some OVAL files only contain one criterion under AND; the native
     # equivalent can legitimately collapse that wrapper.
@@ -439,6 +464,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                 if source_test is None:
                     raise ValueError("source Test reference undefined in source XML")
                 native_test = native["tests"][native_id]
+                compare_variable_test_binding(source, source_test, native_test, trace)
                 original_check = source_test.get("check", "all")
                 expected_check = CHECK.get(original_check)
                 if expected_check is None:
