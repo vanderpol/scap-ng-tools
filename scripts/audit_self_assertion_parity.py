@@ -185,17 +185,13 @@ def source_tree_summary(records):
         dirs[family]["definitions"] += len(record["definitions"])
         dirs[family]["tests"] += len(record["tests"])
         features.update(record["features"])
+        # Independent OVAL XML files reuse Definition/Test ID strings.
+        # The canonical source identity is (relative source file, XML ID).
+        # Deduplicating across files silently erased 47 source Definitions.
         for ident in record["definitions"]:
-            if ident in definition_paths:
-                duplicate_definitions.append({"id": ident, "files": [definition_paths[ident], path]})
-            else:
-                definition_paths[ident] = path
+            definition_paths[(path, ident)] = path
         for ident in record["tests"]:
-            if ident in test_paths:
-                conflicts.append({"type": "duplicate_test_id", "id": ident,
-                                  "files": [test_paths[ident], path]})
-            else:
-                test_paths[ident] = path
+            test_paths[(path, ident)] = path
     return ({"xml_documents": len(records), "definitions": len(definition_paths),
              "tests": len(test_paths), "by_family": dict(sorted(dirs.items())),
              "source_features": dict(sorted(features.items())),
@@ -377,6 +373,7 @@ def compare_mapped_variables(source, native, trace, selected_tests):
     return checked
 
 def audit(source_root, pack, *, require_full=False, expected_xml=144,
+          expected_definitions=167, expected_tests=785,
           verify_pin=False):
     pin_verified = verify_source_checkout(source_root) if verify_pin else False
     records, archive_inventory = sources(source_root)
@@ -391,6 +388,14 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         problems.append({"type": "original_xml_file_count_mismatch",
                          "expected": expected_xml,
                          "observed": sum("!" not in p for p in records)})
+    if expected_definitions and original["definitions"] != expected_definitions:
+        problems.append({"type": "original_definition_count_mismatch",
+                         "expected": expected_definitions,
+                         "observed": original["definitions"]})
+    if expected_tests and original["tests"] != expected_tests:
+        problems.append({"type": "original_test_count_mismatch",
+                         "expected": expected_tests,
+                         "observed": original["tests"]})
     rows, manifest = read_pack(pack)
     seen = set()
     statuses = Counter()
@@ -496,8 +501,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
             continue
         # Structural parity, NOT independently executed semantic equivalence.
         unqualified += 1
-    absent = sorted((path, ident) for ident, path in definition_paths.items()
-                    if (path, ident) not in seen)
+    absent = sorted(key for key in definition_paths if key not in seen)
     for path, ident in absent:
         problems.append({"type": "source_definition_without_converter_disposition",
                          "source": path, "definition": ident})
@@ -521,6 +525,8 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                          "unreviewed_converter_status",
                          "source_definition_without_converter_disposition",
                          "original_xml_file_count_mismatch",
+                         "original_definition_count_mismatch",
+                         "original_test_count_mismatch",
                          "unclassified_embedded_content"}
     accounted = not any(problem["type"] in accounting_errors for problem in problems)
     complete = not problems and converted == original["definitions"]
@@ -541,6 +547,8 @@ def main():
                         help="converter output package with manifest.json/definitions.json")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--expected-xml", type=int, default=144)
+    parser.add_argument("--expected-definitions", type=int, default=167)
+    parser.add_argument("--expected-tests", type=int, default=785)
     parser.add_argument("--allow-unverified-fixture-source", action="store_true",
                         help="TEST FIXTURES ONLY: skip exact Git commit verification")
     parser.add_argument("--require-full", action="store_true",
@@ -551,6 +559,8 @@ def main():
     try:
         report = audit(args.source_root, args.pack,
                        require_full=args.require_full, expected_xml=args.expected_xml,
+                       expected_definitions=args.expected_definitions,
+                       expected_tests=args.expected_tests,
                        verify_pin=not args.allow_unverified_fixture_source)
     except (OSError, ValueError, KeyError, ET.ParseError) as exc:
         parser.exit(2, f"source parity audit error: {exc}\n")
