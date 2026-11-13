@@ -1,0 +1,36 @@
+name: Candidate Variable inference converter/schema handshake
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/variable-inference-candidate.yml'
+      - 'src/scap_ng_tools/converter/**'
+      - 'tests/test_variable_inference_candidate.py'
+      - 'tests/test_converter_provenance.py'
+permissions:
+  contents: read
+jobs:
+  candidate-schema-converter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout candidate converter
+        uses: actions/checkout@v4
+      - name: Checkout exact canonical candidate
+        uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng
+          ref: 70a0a6fbbea3605317f7aca471c7f1c73f913d45
+          path: candidate-schema
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install scoped dependencies
+        run: python3 -m pip install .
+      - name: Check exact canonical candidate and historical regression tests
+        env:
+          SCAP_NG_CANDIDATE_SCHEMA_ROOT: candidate-schema/schema
+        run: |
+          set -euo pipefail
+          test "$(git -C candidate-schema rev-parse HEAD)" = 70a0a6fbbea3605317f7aca471c7f1c73f913d45
+          python3 -m unittest discover -s tests -p 'test_variable_inference_candidate.py' -v
+          python3 -m unittest discover -s tests -p 'test_converter_provenance.py' -v
