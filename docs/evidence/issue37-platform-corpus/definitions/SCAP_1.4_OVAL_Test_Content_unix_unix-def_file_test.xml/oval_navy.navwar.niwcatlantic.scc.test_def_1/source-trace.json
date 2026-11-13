@@ -1,0 +1,519 @@
+{
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_path": "SCAP_1.4/OVAL_Test_Content/unix/unix-def_file_test.xml",
+  "source_sha256": "8d0b0a33aa53815498f0adb501fb7177ec7e887dff243f07afc7866659dced7f",
+  "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+  "source_nodes": {
+    "oval:navy.navwar.niwcatlantic.scc.test:def:1": {
+      "kind": "definition",
+      "sha256": "6b2becf780e3d383109796d572eb176051713a200a69fa22181089106d21bb1d",
+      "references": [
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:5"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:7"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:9"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:10"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:12"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:tst:13"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:1": {
+      "kind": "object",
+      "sha256": "51525d84ffe6181dcc443189afcc5188bf2ee0dd29f3aa8f7ada39cc9e3961a8",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:10": {
+      "kind": "object",
+      "sha256": "855b31f968d67b239bf01f9adc49826a6887a5582c9d861a094b5df3db47b107",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:12": {
+      "kind": "object",
+      "sha256": "3ed20b23bd146cb5915b5ce9461178f048d2cc5e25517ad46629bfc883cdd6a8",
+      "references": [
+        {
+          "attribute": "var_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:var:1"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:13": {
+      "kind": "object",
+      "sha256": "ba1d923d49c8f803fdb8f825466374ef782f8979c353bca16fdfba9d27cbe4bb",
+      "references": [
+        {
+          "attribute": "var_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:var:1"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:2": {
+      "kind": "object",
+      "sha256": "c3453e2a9fcf7662f9051dd11f5985412e1c2062bfe343c52a822f8df42b66d3",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:3": {
+      "kind": "object",
+      "sha256": "25882affb1a593067eb9ec6808b00a98482cb71168f63b0a1a0b6ffba6b0cfcf",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:4": {
+      "kind": "object",
+      "sha256": "1504c2a595705cc150e0ce78195258ef2b4dc6c5d52c4190d444ff6604d1472b",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:5": {
+      "kind": "object",
+      "sha256": "9601a1619c289b74b481c64185efdd8b33514e6590d5b0e92f111cd1fbccb65f",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:6": {
+      "kind": "object",
+      "sha256": "a03186f21c69ab5d60fbad3d3265e24f4faa85e72259f319baaf21e0a1c8aa19",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:7": {
+      "kind": "object",
+      "sha256": "af93a509d4934e71d7d7376518a0e7b428b67bd5f61539743c897487f0a8bad0",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:obj:9": {
+      "kind": "object",
+      "sha256": "38849ec8d02bafbd84492a393943be8e2ae707ea59733ce212cbeecf1bac7a10",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:ste:10": {
+      "kind": "state",
+      "sha256": "5a9b37e9e65df4435a01aa76aa269c3b4117e9c52a25134c8b8ff6c79bb77248",
+      "original_datatype_tokens": [
+        {
+          "path": [
+            1
+          ],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}size",
+          "token": "int",
+          "entity_sha256": "518c47579a2518aef3b79766609c81b53f9e1d8bb45e8689a319235f8f4637be"
+        }
+      ],
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:ste:12": {
+      "kind": "state",
+      "sha256": "d10880cadc460385ac60b97929977ad1d6bb977d5ded572c8f7ee6f9826b8d60",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:ste:4": {
+      "kind": "state",
+      "sha256": "af71cc2e016db260bd5ae55bab59709e72c0378527828714287d76f32d4416a2",
+      "original_datatype_tokens": [
+        {
+          "path": [
+            2
+          ],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}size",
+          "token": "int",
+          "entity_sha256": "518c47579a2518aef3b79766609c81b53f9e1d8bb45e8689a319235f8f4637be"
+        }
+      ],
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:ste:5": {
+      "kind": "state",
+      "sha256": "1b59547aa57c5cfe6c59ca99ae35f448a0cac778fc56865ae887a87296376852",
+      "original_datatype_tokens": [
+        {
+          "path": [
+            2
+          ],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}size",
+          "token": "int",
+          "entity_sha256": "518c47579a2518aef3b79766609c81b53f9e1d8bb45e8689a319235f8f4637be"
+        }
+      ],
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:ste:6": {
+      "kind": "state",
+      "sha256": "2f86702f75f8d547bfe5de077fac4117d1e7cf70342fc3c8708a7fd39c7d57a9",
+      "original_datatype_tokens": [
+        {
+          "path": [
+            2
+          ],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}size",
+          "token": "int",
+          "entity_sha256": "518c47579a2518aef3b79766609c81b53f9e1d8bb45e8689a319235f8f4637be"
+        }
+      ],
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:ste:7": {
+      "kind": "state",
+      "sha256": "31035b53446c62945882d0f2713964eb95eb7913b8f8102686ab3fa6f37d6b7a",
+      "original_datatype_tokens": [
+        {
+          "path": [
+            2
+          ],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}size",
+          "token": "int",
+          "entity_sha256": "518c47579a2518aef3b79766609c81b53f9e1d8bb45e8689a319235f8f4637be"
+        }
+      ],
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:ste:9": {
+      "kind": "state",
+      "sha256": "efca154cb4606e313ea09c658ae2480a68f2292c0b339f16b136e8a2e3030589",
+      "references": []
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:1": {
+      "kind": "test",
+      "sha256": "1cc58b2cfc56b7476dee3821a046b2d90a47c4f6dca58cca4ee1d4d00f27e54d",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:1"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:10": {
+      "kind": "test",
+      "sha256": "9962547d5ab15777ddf16e31664e5cf8a61b836c4e6cf8c7e3f45475dfdf7d30",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:10"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:ste:10"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:12": {
+      "kind": "test",
+      "sha256": "6a8f78ff5353183eca157c5ff9e64ab4daf99e78d2a6e7690353e85f2be56596",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:12"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:ste:12"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:13": {
+      "kind": "test",
+      "sha256": "db04fedfc398a91a2747ba22047a87e6780be3a1688227f8d238ab97c3ba4ddf",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:13"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:ste:12"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:2": {
+      "kind": "test",
+      "sha256": "2fe1f43a615fbfa218cee757018226d02fd67e099745d106a88d13b7cf947101",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:2"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:3": {
+      "kind": "test",
+      "sha256": "19e3d8c6d7fc249c6583be269f2489e331662d74f75ac8ae3021309fa346f8b9",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:3"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:4": {
+      "kind": "test",
+      "sha256": "0da979b8b3d83eac500f1d6820ae46dc2dcae36183edeb44e8686422b5dbdb5a",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:4"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:ste:4"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:5": {
+      "kind": "test",
+      "sha256": "b103d075d6c773c4fa27ac65b451b0b13ea800aebdd6f434a19393344e0036d0",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:5"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:ste:5"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:6": {
+      "kind": "test",
+      "sha256": "6556e18910aad1028a1f1fd6fabf87aaa267ad79c1299e12a405acfd458ac8e4",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:6"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:ste:6"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:7": {
+      "kind": "test",
+      "sha256": "35a03c31e1229fecc1846e72b7c5b7224ee65af832ff41cc25f9db7961010693",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:7"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:ste:7"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:tst:9": {
+      "kind": "test",
+      "sha256": "89c21603612e3518f043bd80b8c0721b11dd21d0fc7824ef04a6c2d385b0c956",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:obj:9"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:navy.navwar.niwcatlantic.scc.test:ste:9"
+        }
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.test:var:1": {
+      "kind": "variable",
+      "sha256": "54698e6e9e83bacee975fc07a37f9b133b904fed12383f7ed65543e16913491a",
+      "original_datatype_tokens": [
+        {
+          "path": [],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}constant_variable",
+          "token": "string",
+          "entity_sha256": "54698e6e9e83bacee975fc07a37f9b133b904fed12383f7ed65543e16913491a"
+        }
+      ],
+      "references": []
+    }
+  },
+  "native_identities": [
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-1-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-10-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:10"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-12-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:12"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-13-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:13"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-2-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-3-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-4-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-5-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:5"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-6-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-7-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:7"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-tst-9-test",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:9"
+    },
+    {
+      "kind": "variable",
+      "native_id": "oval-navy-navwar-niwcatlantic-scc-test-var-1-variable",
+      "source_id": "oval:navy.navwar.niwcatlantic.scc.test:var:1"
+    }
+  ],
+  "test_bindings": [
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-1-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:1",
+      "source_states": []
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:10",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-10-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:10",
+      "source_states": [
+        "oval:navy.navwar.niwcatlantic.scc.test:ste:10"
+      ]
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:12",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-12-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:12",
+      "source_states": [
+        "oval:navy.navwar.niwcatlantic.scc.test:ste:12"
+      ]
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:13",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-13-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:13",
+      "source_states": [
+        "oval:navy.navwar.niwcatlantic.scc.test:ste:12"
+      ]
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-2-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:2",
+      "source_states": []
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-3-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:3",
+      "source_states": []
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:4",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-4-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:4",
+      "source_states": [
+        "oval:navy.navwar.niwcatlantic.scc.test:ste:4"
+      ]
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:5",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-5-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:5",
+      "source_states": [
+        "oval:navy.navwar.niwcatlantic.scc.test:ste:5"
+      ]
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:6",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-6-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:6",
+      "source_states": [
+        "oval:navy.navwar.niwcatlantic.scc.test:ste:6"
+      ]
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:7",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-7-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:7",
+      "source_states": [
+        "oval:navy.navwar.niwcatlantic.scc.test:ste:7"
+      ]
+    },
+    {
+      "source_test": "oval:navy.navwar.niwcatlantic.scc.test:tst:9",
+      "native_test": "oval-navy-navwar-niwcatlantic-scc-test-tst-9-test",
+      "source_object": "oval:navy.navwar.niwcatlantic.scc.test:obj:9",
+      "source_states": [
+        "oval:navy.navwar.niwcatlantic.scc.test:ste:9"
+      ]
+    }
+  ],
+  "qualification": "CONVERTED_UNVERIFIED",
+  "schema_validated": true,
+  "semantic_validated": true,
+  "scanner_execution": false,
+  "converter_commit": "212d5f0d30fe3f6a20973ab56f2dc532592b72bf",
+  "converter_source_sha256": "f30faf22a54fbdde5f04dd006e7ce96b85067ccafc5f55d6637b9f53ef4a56ef",
+  "converter_worktree_dirty": false,
+  "schema_commit": "3b99b6c60cdbbc3ef9e3a775450bb755916cf4f3",
+  "schema_family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+  "source_commit_blob_verified": true
+}

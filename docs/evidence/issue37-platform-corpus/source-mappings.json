@@ -184,5 +184,61 @@
       "oval-org-mitre-oval-test-tst-945-test"
     ],
     "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/unix/oval-def_set-unix.xml",
+    "source_sha256": "ca472ba6709eb0290284287897bd7a976c8634f9107de7e29fd1eae21001e808",
+    "definition_id": "oval:org.mitre.oval.test:def:276",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:1091",
+      "oval:org.mitre.oval.test:tst:803",
+      "oval:org.mitre.oval.test:tst:813",
+      "oval:org.mitre.oval.test:tst:451",
+      "oval:org.mitre.oval.test:tst:99",
+      "oval:org.mitre.oval.test:tst:661",
+      "oval:org.mitre.oval.test:tst:116"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-1091-test",
+      "oval-org-mitre-oval-test-tst-116-test",
+      "oval-org-mitre-oval-test-tst-451-test",
+      "oval-org-mitre-oval-test-tst-661-test",
+      "oval-org-mitre-oval-test-tst-803-test",
+      "oval-org-mitre-oval-test-tst-813-test",
+      "oval-org-mitre-oval-test-tst-99-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_unix_oval-def_set-unix.xml/oval_org.mitre.oval.test_def_276/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/unix/unix-def_file_test.xml",
+    "source_sha256": "8d0b0a33aa53815498f0adb501fb7177ec7e887dff243f07afc7866659dced7f",
+    "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+    "source_test_ids": [
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:4",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:5",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:6",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:7",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:9",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:10",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:12",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:13"
+    ],
+    "native_test_ids": [
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-1-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-10-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-12-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-13-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-2-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-3-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-4-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-5-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-6-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-7-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-9-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_unix_unix-def_file_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/source-trace.json"
   }
 ]

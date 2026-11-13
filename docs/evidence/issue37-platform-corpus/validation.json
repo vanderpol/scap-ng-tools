@@ -4,8 +4,8 @@
   "schema_family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
   "independent_schema_validation": "PASS",
   "json_yaml_readback_equal": true,
-  "schema_valid_yaml_documents": 7,
-  "blocked_artifacts": 69,
+  "schema_valid_yaml_documents": 9,
+  "blocked_artifacts": 67,
   "execution": "not_run",
   "expected_outcomes_derived": false
 }

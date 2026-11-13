@@ -1,0 +1,439 @@
+{
+  "assessment": {
+    "id": "oval-navy-navwar-niwcatlantic-scc-test-def-1-assessment",
+    "version": 3,
+    "assessment_title": "Evaluate to true if the unix-def:file_test is properly supported",
+    "mode": "automated",
+    "class": "miscellaneous",
+    "specification": {
+      "id": "scap-ng.pre-alpha.assessment",
+      "version": "0.4.0"
+    },
+    "variables": {
+      "oval-navy-navwar-niwcatlantic-scc-test-var-1-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "/opt/support/txt/txtfile/New Text Document.txt",
+            "/opt/support/txt/txtfile/build.win32.txt",
+            "/opt/support/txt/txtfile/subtxtfile/placeholder.txt"
+          ]
+        }
+      }
+    },
+    "tests": {
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-1-test": {
+        "test_title": "Expect 'true' with 3 items. Test that the file_object is supported with the path entity equal to /opt/support and the filename entity is set to nil.",
+        "capability": "unix.file",
+        "object": {
+          "path": {
+            "equals": "/opt/support/txt"
+          },
+          "filename": null,
+          "filesystem": "all",
+          "traversal": {
+            "max_depth": "unlimited",
+            "recurse": "symlinks_and_directories"
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-2-test": {
+        "test_title": "Expect 'true' with 3 items. Test that the file_object is supported with the path entity matching some regular expression and the filename entity is set to nil.",
+        "capability": "unix.file",
+        "object": {
+          "path": {
+            "matches_regex": "^/opt/sup.ort/txt"
+          },
+          "filename": null,
+          "filesystem": "all"
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-3-test": {
+        "test_title": "Expect 'true' with 1 item. Test that the file_object is supported with the path entity equal to some value and the filename entity equal to some value.",
+        "capability": "unix.file",
+        "object": {
+          "path": {
+            "equals": "/opt/support/txt/txtfile"
+          },
+          "filename": {
+            "equals": "build.win32.txt"
+          },
+          "filesystem": "all"
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-4-test": {
+        "test_title": "Expect 'true' with 1 item. Test that the file_object is supported with the path entity equal to some value and the filename entity matching some regular expression.",
+        "capability": "unix.file",
+        "object": {
+          "path": {
+            "equals": "/opt/support/txt/txtfile"
+          },
+          "filename": {
+            "matches_regex": "^bu"
+          },
+          "filesystem": "all"
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "and": [
+            {
+              "fields": {
+                "directory": {
+                  "equals": "/opt/support/txt/txtfile"
+                }
+              }
+            },
+            {
+              "fields": {
+                "name": {
+                  "matches_regex": "^bui"
+                }
+              }
+            },
+            {
+              "fields": {
+                "size": {
+                  "greater_than": 0
+                }
+              }
+            }
+          ],
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-5-test": {
+        "test_title": "Expect 'true' with 1 item. Test that the file_object is supported with the path entity matching some regular expression and the filename entity matching some regular expression.",
+        "capability": "unix.file",
+        "object": {
+          "path": {
+            "matches_regex": "^/opt/support/txt/txt.+"
+          },
+          "filename": {
+            "matches_regex": "^bu.+"
+          },
+          "filesystem": "all"
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "and": [
+            {
+              "fields": {
+                "directory": {
+                  "matches_regex": "^/opt/support/tx.*"
+                }
+              }
+            },
+            {
+              "fields": {
+                "name": {
+                  "matches_regex": "^bui"
+                }
+              }
+            },
+            {
+              "fields": {
+                "size": {
+                  "greater_than": 0
+                }
+              }
+            }
+          ],
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-6-test": {
+        "test_title": "Expect 'true' with 1 item. Test that the file_object is supported with the max_depth behavior set to a limited depth of recursion.",
+        "capability": "unix.file",
+        "object": {
+          "path": {
+            "equals": "/opt/support/txt"
+          },
+          "filename": {
+            "equals": "build.win32.txt"
+          },
+          "filesystem": "all",
+          "traversal": {
+            "max_depth": 1,
+            "recurse": "symlinks_and_directories"
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "and": [
+            {
+              "fields": {
+                "directory": {
+                  "equals": "/opt/support/txt/txtfile"
+                }
+              }
+            },
+            {
+              "fields": {
+                "name": {
+                  "equals": "build.win32.txt"
+                }
+              }
+            },
+            {
+              "fields": {
+                "size": {
+                  "greater_than": 0
+                }
+              }
+            }
+          ],
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-7-test": {
+        "test_title": "Expect 'true' with 1 item. Test that the file_object is supported with the max_depth behavior set to an unlimited depth of recursion.",
+        "capability": "unix.file",
+        "object": {
+          "path": {
+            "equals": "/opt/support"
+          },
+          "filename": {
+            "equals": "build.win32.txt"
+          },
+          "filesystem": "all",
+          "traversal": {
+            "max_depth": "unlimited",
+            "recurse": "symlinks_and_directories"
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "and": [
+            {
+              "fields": {
+                "directory": {
+                  "equals": "/opt/support/txt/txtfile"
+                }
+              }
+            },
+            {
+              "fields": {
+                "name": {
+                  "equals": "build.win32.txt"
+                }
+              }
+            },
+            {
+              "fields": {
+                "size": {
+                  "greater_than": 0
+                }
+              }
+            }
+          ],
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-9-test": {
+        "test_title": "Expect 'true' with 1 item. Test that the file_object is supported with filepath entity equal to some value.",
+        "capability": "unix.file",
+        "object": {
+          "filepath": {
+            "equals": "/opt/support/txt/txtfile/build.win32.txt"
+          },
+          "filesystem": "all"
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "full_path": {
+              "equals": "/opt/support/txt/txtfile/build.win32.txt"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-10-test": {
+        "test_title": "Expect 'true' with 4 items. Test that the file_object is supported with the filepath entity matching some regular expression.",
+        "capability": "unix.file",
+        "object": {
+          "filepath": {
+            "matches_regex": "/opt/support/txt/txtfile/.+"
+          },
+          "filesystem": "all"
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "and": [
+            {
+              "fields": {
+                "full_path": {
+                  "matches_regex": "^/opt/support/txt/txtfile/buil.+"
+                }
+              }
+            },
+            {
+              "fields": {
+                "size": {
+                  "greater_than": 0
+                }
+              }
+            }
+          ],
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-12-test": {
+        "test_title": "Expect 'true' with 3 items matching var:1. Test filepath supplied by var:1 with operation 'pattern match'.",
+        "capability": "unix.file",
+        "object": {
+          "filepath": {
+            "matches_regex": {
+              "variable": "oval-navy-navwar-niwcatlantic-scc-test-var-1-variable"
+            },
+            "value_match": "one_or_more"
+          },
+          "filesystem": "all"
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "full_path": {
+              "matches_regex": "^/opt/support/txt/txtfile/"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-13-test": {
+        "test_title": "Expect 'true' with 3 items matching var:1. Test filepath supplied by var:1 with operation 'equals'.",
+        "capability": "unix.file",
+        "object": {
+          "filepath": {
+            "equals": {
+              "variable": "oval-navy-navwar-niwcatlantic-scc-test-var-1-variable"
+            },
+            "value_match": "one_or_more"
+          },
+          "filesystem": "all"
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "full_path": {
+              "matches_regex": "^/opt/support/txt/txtfile/"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      }
+    },
+    "evaluate": {
+      "and": [
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-1-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-2-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-3-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-4-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-5-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-6-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-7-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-9-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-10-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-12-test"
+        },
+        {
+          "test": "oval-navy-navwar-niwcatlantic-scc-test-tst-13-test"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,658 @@
+{
+  "assessment": {
+    "id": "oval-org-mitre-oval-test-def-276-assessment",
+    "version": 1,
+    "assessment_title": "Evaluate to true if the oval-def:set construct is properly supported",
+    "mode": "automated",
+    "class": "miscellaneous",
+    "specification": {
+      "id": "scap-ng.pre-alpha.assessment",
+      "version": "0.4.0"
+    },
+    "variables": {
+      "oval-navy-navwar-niwcatlantic-scc-test-var-135-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "/opt/support/txt",
+            "/opt/support/xml"
+          ]
+        }
+      },
+      "oval-org-mitre-oval-test-var-134-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "/opt/support/txt/txtfile",
+            "/opt/support/txt/txtfile/subtxtfile"
+          ]
+        }
+      },
+      "oval-org-mitre-oval-test-var-980-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "/opt/support/txt",
+            "/opt/support/txt/txtfile",
+            "/opt/support/txt/txtfile/subtxtfile"
+          ]
+        }
+      }
+    },
+    "tests": {
+      "oval-org-mitre-oval-test-tst-1091-test": {
+        "test_title": "Test that the set construct is supported with the COMPLEMENT operation.",
+        "capability": "unix.file",
+        "object": {
+          "set": {
+            "operator": "difference",
+            "operands": [
+              {
+                "object": {
+                  "path": {
+                    "equals": "/opt/support/txt"
+                  },
+                  "filename": null,
+                  "filesystem": "local"
+                },
+                "filters": []
+              },
+              {
+                "object": {
+                  "path": {
+                    "equals": "/opt/support/xml"
+                  },
+                  "filename": null,
+                  "filesystem": "local",
+                  "traversal": {
+                    "max_depth": "unlimited",
+                    "recurse": "symlinks_and_directories"
+                  }
+                },
+                "filters": []
+              }
+            ]
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "exactly_one",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "directory": {
+              "equals": "/opt/support/txt"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-org-mitre-oval-test-tst-803-test": {
+        "test_title": "Test that the set object is supported with the set_operator equal to 'INTERSECTION'.",
+        "capability": "unix.file",
+        "object": {
+          "set": {
+            "operator": "intersection",
+            "operands": [
+              {
+                "object": {
+                  "path": {
+                    "equals": "/opt/support/txt"
+                  },
+                  "filename": null,
+                  "filesystem": "local"
+                },
+                "filters": []
+              },
+              {
+                "object": {
+                  "path": {
+                    "equals": "/opt/support"
+                  },
+                  "filename": null,
+                  "filesystem": "local",
+                  "traversal": {
+                    "max_depth": "unlimited",
+                    "recurse": "symlinks_and_directories"
+                  }
+                },
+                "filters": []
+              }
+            ]
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "exactly_one",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "directory": {
+              "equals": "/opt/support/txt"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-org-mitre-oval-test-tst-813-test": {
+        "test_title": "Test that the set construct is supported with the UNION operation.",
+        "capability": "unix.file",
+        "object": {
+          "set": {
+            "operator": "union",
+            "operands": [
+              {
+                "object": {
+                  "path": {
+                    "equals": "/opt/support/txt"
+                  },
+                  "filename": null,
+                  "filesystem": "local"
+                },
+                "filters": []
+              },
+              {
+                "object": {
+                  "path": {
+                    "equals": "/opt/support/xml"
+                  },
+                  "filename": null,
+                  "filesystem": "local"
+                },
+                "filters": []
+              }
+            ]
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "directory": {
+              "equals": {
+                "variable": "oval-navy-navwar-niwcatlantic-scc-test-var-135-variable"
+              },
+              "value_match": "exactly_one"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-org-mitre-oval-test-tst-451-test": {
+        "test_title": "Test that the set object is supported with the filter element.",
+        "capability": "unix.file",
+        "object": {
+          "set": {
+            "operator": "union",
+            "operands": [
+              {
+                "object": {
+                  "path": {
+                    "equals": "/opt/support/txt"
+                  },
+                  "filename": null,
+                  "filesystem": "local"
+                },
+                "filters": [
+                  {
+                    "exclude": {
+                      "directory": {
+                        "equals": {
+                          "variable": "oval-org-mitre-oval-test-var-134-variable"
+                        },
+                        "value_match": "exactly_one",
+                        "values_found": "one_or_more",
+                        "values_matching": "every"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "exactly_one",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "directory": {
+              "equals": "/opt/support/txt"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-org-mitre-oval-test-tst-99-test": {
+        "test_title": "Test that the set object is supported with one level of set elements.",
+        "capability": "unix.file",
+        "object": {
+          "set": {
+            "operator": "intersection",
+            "operands": [
+              {
+                "set": {
+                  "operator": "difference",
+                  "operands": [
+                    {
+                      "object": {
+                        "path": {
+                          "equals": "/opt/support/txt"
+                        },
+                        "filename": null,
+                        "filesystem": "local"
+                      },
+                      "filters": []
+                    },
+                    {
+                      "object": {
+                        "path": {
+                          "equals": "/opt/support/xml"
+                        },
+                        "filename": null,
+                        "filesystem": "local",
+                        "traversal": {
+                          "max_depth": "unlimited",
+                          "recurse": "symlinks_and_directories"
+                        }
+                      },
+                      "filters": []
+                    }
+                  ]
+                }
+              },
+              {
+                "set": {
+                  "operator": "union",
+                  "operands": [
+                    {
+                      "object": {
+                        "path": {
+                          "equals": "/opt/support"
+                        },
+                        "filename": null,
+                        "filesystem": "local",
+                        "traversal": {
+                          "max_depth": "unlimited",
+                          "recurse": "symlinks_and_directories"
+                        }
+                      },
+                      "filters": []
+                    },
+                    {
+                      "object": {
+                        "path": {
+                          "equals": "/opt/support/xml"
+                        },
+                        "filename": null,
+                        "filesystem": "local",
+                        "traversal": {
+                          "max_depth": "unlimited",
+                          "recurse": "symlinks_and_directories"
+                        }
+                      },
+                      "filters": []
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "directory": {
+              "equals": {
+                "variable": "oval-org-mitre-oval-test-var-980-variable"
+              },
+              "value_match": "exactly_one"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-org-mitre-oval-test-tst-661-test": {
+        "test_title": "Test that the set object is supported with two levels of set elements.",
+        "capability": "unix.file",
+        "object": {
+          "set": {
+            "operator": "intersection",
+            "operands": [
+              {
+                "set": {
+                  "operator": "difference",
+                  "operands": [
+                    {
+                      "set": {
+                        "operator": "union",
+                        "operands": [
+                          {
+                            "object": {
+                              "path": {
+                                "equals": "/opt/support/txt"
+                              },
+                              "filename": null,
+                              "filesystem": "local"
+                            },
+                            "filters": []
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "set": {
+                        "operator": "intersection",
+                        "operands": [
+                          {
+                            "object": {
+                              "path": {
+                                "equals": "/opt/support/xml"
+                              },
+                              "filename": null,
+                              "filesystem": "local"
+                            },
+                            "filters": []
+                          },
+                          {
+                            "object": {
+                              "path": {
+                                "equals": "/opt/support/xml"
+                              },
+                              "filename": null,
+                              "filesystem": "local",
+                              "traversal": {
+                                "max_depth": "unlimited",
+                                "recurse": "symlinks_and_directories"
+                              }
+                            },
+                            "filters": []
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "set": {
+                  "operator": "union",
+                  "operands": [
+                    {
+                      "set": {
+                        "operator": "difference",
+                        "operands": [
+                          {
+                            "object": {
+                              "path": {
+                                "equals": "/opt/support/xml"
+                              },
+                              "filename": null,
+                              "filesystem": "local"
+                            },
+                            "filters": []
+                          },
+                          {
+                            "object": {
+                              "path": {
+                                "equals": "/opt/support/xml"
+                              },
+                              "filename": null,
+                              "filesystem": "local",
+                              "traversal": {
+                                "max_depth": "unlimited",
+                                "recurse": "symlinks_and_directories"
+                              }
+                            },
+                            "filters": []
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "set": {
+                        "operator": "union",
+                        "operands": [
+                          {
+                            "object": {
+                              "path": {
+                                "equals": "/opt/support/txt"
+                              },
+                              "filename": null,
+                              "filesystem": "local"
+                            },
+                            "filters": []
+                          },
+                          {
+                            "object": {
+                              "path": {
+                                "equals": "/opt/support/xml"
+                              },
+                              "filename": null,
+                              "filesystem": "local"
+                            },
+                            "filters": []
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "directory": {
+              "equals": "/opt/support/txt"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all"
+      },
+      "oval-org-mitre-oval-test-tst-116-test": {
+        "test_title": "Test that the set object is supported with three levels of set elements.",
+        "capability": "unix.file",
+        "object": {
+          "set": {
+            "operator": "intersection",
+            "operands": [
+              {
+                "set": {
+                  "operator": "difference",
+                  "operands": [
+                    {
+                      "set": {
+                        "operator": "union",
+                        "operands": [
+                          {
+                            "object": {
+                              "path": {
+                                "equals": "/opt/support"
+                              },
+                              "filename": null,
+                              "filesystem": "local",
+                              "traversal": {
+                                "max_depth": "unlimited",
+                                "recurse": "symlinks_and_directories"
+                              }
+                            },
+                            "filters": []
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "set": {
+                        "operator": "union",
+                        "operands": [
+                          {
+                            "set": {
+                              "operator": "difference",
+                              "operands": [
+                                {
+                                  "object": {
+                                    "path": {
+                                      "equals": "/opt/support/txt"
+                                    },
+                                    "filename": null,
+                                    "filesystem": "local"
+                                  },
+                                  "filters": []
+                                },
+                                {
+                                  "object": {
+                                    "path": {
+                                      "equals": "/opt/support/xml"
+                                    },
+                                    "filename": null,
+                                    "filesystem": "local",
+                                    "traversal": {
+                                      "max_depth": "unlimited",
+                                      "recurse": "symlinks_and_directories"
+                                    }
+                                  },
+                                  "filters": []
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "set": {
+                              "operator": "union",
+                              "operands": [
+                                {
+                                  "object": {
+                                    "path": {
+                                      "equals": "/opt/support"
+                                    },
+                                    "filename": null,
+                                    "filesystem": "local",
+                                    "traversal": {
+                                      "max_depth": "unlimited",
+                                      "recurse": "symlinks_and_directories"
+                                    }
+                                  },
+                                  "filters": [
+                                    {
+                                      "exclude": {
+                                        "directory": {
+                                          "equals": {
+                                            "variable": "oval-org-mitre-oval-test-var-134-variable"
+                                          },
+                                          "value_match": "exactly_one",
+                                          "values_found": "one_or_more",
+                                          "values_matching": "every"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "object": {
+                                    "path": {
+                                      "equals": "/opt/support/txt"
+                                    },
+                                    "filename": null,
+                                    "filesystem": "local"
+                                  },
+                                  "filters": [
+                                    {
+                                      "exclude": {
+                                        "directory": {
+                                          "equals": {
+                                            "variable": "oval-org-mitre-oval-test-var-134-variable"
+                                          },
+                                          "value_match": "exactly_one",
+                                          "values_found": "one_or_more",
+                                          "values_matching": "every"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "require": {
+          "item_requirement": {
+            "items_found": "none"
+          }
+        },
+        "reported_elements": "all"
+      }
+    },
+    "evaluate": {
+      "and": [
+        {
+          "test": "oval-org-mitre-oval-test-tst-1091-test"
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-803-test"
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-813-test"
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-451-test"
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-99-test"
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-661-test"
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-116-test"
+        }
+      ]
+    }
+  }
+}

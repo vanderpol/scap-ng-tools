@@ -1079,10 +1079,10 @@
   "schema_validated": true,
   "semantic_validated": true,
   "scanner_execution": false,
-  "converter_commit": "71a23116749b4608e62bf1dafe2e85a9d3b55da1",
-  "converter_source_sha256": "38332f030fa97dee216db9ddff4e7c540acc8a921fdf2a4b24759c3f312f84de",
+  "converter_commit": "212d5f0d30fe3f6a20973ab56f2dc532592b72bf",
+  "converter_source_sha256": "f30faf22a54fbdde5f04dd006e7ce96b85067ccafc5f55d6637b9f53ef4a56ef",
   "converter_worktree_dirty": false,
-  "schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
+  "schema_commit": "3b99b6c60cdbbc3ef9e3a775450bb755916cf4f3",
   "schema_family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
   "source_commit_blob_verified": true
 }
