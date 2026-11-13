@@ -362,10 +362,10 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
     for item in archive_inventory:
         if item.get("status") == "unclassified_nonzip_archive":
             problems.append({"type": "unclassified_embedded_content", **item})
-    if expected_xml and sum(1 for path in records if ".zip!" not in path) != expected_xml:
+    if expected_xml and sum(1 for path in records if "!" not in path) != expected_xml:
         problems.append({"type": "original_xml_file_count_mismatch",
                          "expected": expected_xml,
-                         "observed": sum(".zip!" not in p for p in records)})
+                         "observed": sum("!" not in p for p in records)})
     rows, manifest = read_pack(pack)
     seen = set()
     statuses = Counter()
