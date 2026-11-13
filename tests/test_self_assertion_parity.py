@@ -45,6 +45,8 @@ class FullOriginalSourceParityTests(unittest.TestCase):
                     "artifacts": {}}
         self.native = {"assessment": {
             "id": "example", "version": 1,
+            "variables": {"var-1": {"kind": "constant", "datatype": "string",
+                                      "expression": {"literal": ["sample"]}}},
             "tests": {"test-1": {"capability": "variable.value",
                 "require": {"item_requirement": {
                     "items_found": "one_or_more", "items_satisfying": "every"}}}},
@@ -52,7 +54,10 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         }}
         self.trace = {"source_commit": PIN, "source_path": SOURCE_PATH,
                       "source_sha256": digest(XML), "definition_id": SOURCE_ID,
-                      "test_bindings": [{"source_test": TEST_ID, "native_test": "test-1"}]}
+                      "test_bindings": [{"source_test": TEST_ID, "native_test": "test-1"}],
+                      "native_identities": [{"kind": "variable",
+                                             "source_id": "oval:example:var:1",
+                                             "native_id": "var-1"}]}
 
     def publish(self, rows=None):
         directory = self.pack / "definitions" / slug(SOURCE_PATH) / slug(SOURCE_ID)
@@ -106,6 +111,20 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         result = self.inspect()
         self.assertFalse(result["complete"])
         self.assertIn("cardinality differs", str(result["problems"]))
+
+    def test_original_variable_value_mismatch_fails(self):
+        self.native["assessment"]["variables"]["var-1"]["expression"]["literal"] = ["not-sample"]
+        self.publish()
+        result = self.inspect()
+        self.assertFalse(result["complete"])
+        self.assertIn("constant values", str(result["problems"]))
+
+    def test_missing_source_variable_mapping_fails(self):
+        self.trace["native_identities"] = []
+        self.publish()
+        result = self.inspect()
+        self.assertFalse(result["complete"])
+        self.assertIn("declarations omitted", str(result["problems"]))
 
     def test_changed_original_file_fails_closed(self):
         self.publish()
