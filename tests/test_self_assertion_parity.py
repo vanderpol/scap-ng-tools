@@ -75,7 +75,8 @@ class FullOriginalSourceParityTests(unittest.TestCase):
             [self.row] if rows is None else rows))
 
     def inspect(self):
-        return audit(self.src, self.pack, expected_xml=0)
+        return audit(self.src, self.pack, expected_xml=0,
+                     expected_definitions=0, expected_tests=0)
 
     def test_one_to_one_structural_coverage_is_not_runtime_equivalence(self):
         self.publish()
