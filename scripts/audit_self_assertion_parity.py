@@ -13,6 +13,7 @@ from collections import Counter, defaultdict
 import hashlib
 import json
 import subprocess
+import tarfile
 from pathlib import Path
 import sys
 import xml.etree.ElementTree as ET
@@ -118,7 +119,14 @@ def sources(source_root):
                 if member.file_size > MAX_XML or member.compress_size > MAX_ARCHIVE:
                     raise ValueError(f"archive member exceeds limit: {member.filename}")
                 raw = package.read(member)
-                if b"<oval_definitions" not in raw[:4096]:
+                # Parse every XML member; a prefixed root or XML declaration
+                # must not make an OVAL Definition disappear from accounting.
+                try:
+                    parsed = ET.fromstring(raw)
+                except ET.ParseError:
+                    inspected["invalid_fixture_xml"] = inspected.get("invalid_fixture_xml", 0) + 1
+                    continue
+                if tag(parsed) != "oval_definitions":
                     continue
                 relative = inspected["path"] + "!" + member.filename
                 if relative in records:
@@ -127,10 +135,39 @@ def sources(source_root):
                 inspected["oval_members"] += 1
         archive_inventory.append(inspected)
     for archive in sorted(source_root.rglob("*.tarz")):
-        archive_inventory.append({
-            "path": PREFIX + archive.relative_to(source_root).as_posix(),
-            "status": "unclassified_nonzip_archive",
-            "reason": "requires inspection for embedded OVAL definitions"})
+        inspected = {"path": PREFIX + archive.relative_to(source_root).as_posix(),
+                     "xml_members": 0, "oval_members": 0, "other_members": 0}
+        try:
+            with tarfile.open(archive, mode="r:*") as package:
+                for member in package.getmembers():
+                    if not member.isfile():
+                        continue
+                    inspected["other_members"] += 1
+                    if not member.name.lower().endswith(".xml"):
+                        continue
+                    inspected["xml_members"] += 1
+                    if member.size > MAX_XML:
+                        raise ValueError("tar member exceeds limit: " + member.name)
+                    extracted = package.extractfile(member)
+                    if extracted is None:
+                        raise ValueError("unreadable tar member: " + member.name)
+                    raw = extracted.read(MAX_XML + 1)
+                    if len(raw) > MAX_XML:
+                        raise ValueError("tar XML member exceeds limit: " + member.name)
+                    try:
+                        parsed = ET.fromstring(raw)
+                    except ET.ParseError:
+                        inspected["invalid_fixture_xml"] = inspected.get("invalid_fixture_xml", 0) + 1
+                        continue
+                    if tag(parsed) != "oval_definitions":
+                        continue
+                    relative = inspected["path"] + "!" + member.name
+                    records[relative] = parse_oval(raw, relative)
+                    inspected["oval_members"] += 1
+        except tarfile.TarError as exc:
+            inspected["status"] = "unclassified_nonzip_archive"
+            inspected["reason"] = str(exc)[:200]
+        archive_inventory.append(inspected)
     return records, archive_inventory
 
 def source_tree_summary(records):
