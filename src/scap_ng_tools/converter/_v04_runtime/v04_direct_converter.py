@@ -97,7 +97,8 @@ class AssessmentConverter:
     declarations. Cached values are copied so a consumer cannot mutate a peer.
     """
     def __init__(self, source, component_id, mappings, *, canonical_variable_functions=False,
-                 human_compact=True, native_recovery=False):
+                 human_compact=True, native_recovery=False,
+                 preserve_variable_references=False):
         self.source, self.component_id, self.mappings = source, component_id, mappings
         # Opt-in migration probe only. Production output and source-proof paths
         # retain their current syntax until coordinated compiler migration.
@@ -105,6 +106,8 @@ class AssessmentConverter:
         # Recovery candidates are opt-in until their changed golden deltas are
         # owner-accepted; the historical default remains byte-compatible.
         self.native_recovery = native_recovery
+        # Preserve explicitly authored original Variable identities in standalone OVAL lane.
+        self.preserve_variable_references = preserve_variable_references
         # Opt-in authoring projection; a new program digest needs fresh review.
         self.human_compact = human_compact
         self.human_compaction = []
@@ -132,12 +135,14 @@ class AssessmentConverter:
         return matches[0]
 
     def native_name(self, element, suffix, title=None):
+        if self.preserve_variable_references:
+            title = element.get('id')
         identifier = native_identifier(element, suffix, title)
         # Resolve ambiguous source comments from source semantics, before the
         # first reference is allocated. Cache only the immutable node index;
         # SourceModel.index replaces that index and invalidates this cache.
         nodes = getattr(self.source, 'nodes', {}).get(self.component_id, {})
-        if self.native_recovery and nodes and suffix in ('object', 'test', 'variable'):
+        if self.native_recovery and not self.preserve_variable_references and nodes and suffix in ('object', 'test', 'variable'):
             from collections import Counter
             cache = getattr(self.source, '_native_name_census', {})
             entry = cache.get((self.component_id, suffix))
@@ -647,6 +652,8 @@ class AssessmentConverter:
         if operation == 'variable_component':
             attributes(element, {'var_ref'})
             ensure(not len(element), 'variable_component has children')
+            if self.preserve_variable_references:
+                return {'variable': self.named_variable(element.get('var_ref'))}
             value = self.reference(element.get('var_ref'), 'variable')
             ensure(not isinstance(value,dict) or 'input' not in value,
                    'Assessment Input function composition requires a supported typed expression')
@@ -767,6 +774,9 @@ class AssessmentConverter:
             # Cross-datatype OVAL casts can produce error/unknown results; do
             # not silently infer a target type from a literal array's values.
             ensure(variable.get('datatype') == element.get('datatype', 'string'), 'Variable cast outside bounded proof')
+            if self.preserve_variable_references:
+                ensure(enum_aliases is None, 'standalone enum projection outside qualified scope')
+                return {'variable': self.named_variable(element.get('var_ref'))}
             if self.renamed_enum_projection(element.get('var_ref')):
                 ensure(enum_aliases is not None, 'renamed enum projection requires a matching enum consumer')
                 self.enum_variable(element.get('var_ref'), enum_aliases)
