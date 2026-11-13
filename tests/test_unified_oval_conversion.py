@@ -104,6 +104,64 @@ class StandaloneSourceCompatibilityTests(unittest.TestCase):
         self.assertIn({'attribute': 'var_ref_text', 'id': 'var-source'},
                       oval_platform.references(leaf))
 
+    def test_deep_acyclic_set_chain_is_stack_safe(self):
+        # Former 0.3 worklist test: do not turn a valid deep graph into a
+        # converter exception merely because Python recursion is bounded.
+        depth = 1500
+        objects = []
+        for index in range(depth):
+            following = ('obj-chain-' + str(index + 1)
+                         if index + 1 < depth else 'obj-leaf')
+            objects.append(
+                '<ind:variable_object id="obj-chain-' + str(index) + '">'
+                '<oval:set><oval:object_reference>' + following +
+                '</oval:object_reference></oval:set></ind:variable_object>')
+        payload = self.source().replace(
+            b'obj-leaf</oval:object_reference>',
+            b'obj-chain-0</oval:object_reference>', 1)
+        payload = payload.replace(
+            b'</oval:objects>', ''.join(objects).encode() + b'</oval:objects>')
+        original = oval_platform.StandalonePlatformSource(payload, 'deep.xml')
+        uses = original.object_uses('deep.xml', 'test-a', 'test')
+        self.assertEqual(uses['obj-root'], 1)
+        self.assertEqual(uses['obj-leaf'], 1)
+        self.assertEqual(sum(uses.values()), depth + 2)
+
+    def test_deep_graph_cycle_is_rejected_without_recursion_error(self):
+        depth = 1250
+        objects = []
+        for index in range(depth):
+            following = ('obj-chain-' + str(index + 1)
+                         if index + 1 < depth else 'obj-chain-0')
+            objects.append(
+                '<ind:variable_object id="obj-chain-' + str(index) + '">'
+                '<oval:set><oval:object_reference>' + following +
+                '</oval:object_reference></oval:set></ind:variable_object>')
+        payload = self.source().replace(
+            b'obj-leaf</oval:object_reference>',
+            b'obj-chain-0</oval:object_reference>', 1)
+        payload = payload.replace(
+            b'</oval:objects>', ''.join(objects).encode() + b'</oval:objects>')
+        original = oval_platform.StandalonePlatformSource(payload, 'cycle.xml')
+        with self.assertRaisesRegex(direct04.QualifiedConversionError,
+                                    'cyclic standalone OVAL dependency'):
+            original.object_uses('cycle.xml', 'test-a', 'test')
+
+    def test_filter_hidden_missing_variable_is_fatal(self):
+        payload = self.source().replace(b'var-state"/><', b'unknown-variable"/><')
+        original = oval_platform.StandalonePlatformSource(payload, 'filter.xml')
+        with self.assertRaisesRegex(direct04.QualifiedConversionError,
+                                    'unresolved variable'):
+            original.object_uses('filter.xml', 'test-a', 'test')
+
+    def test_shared_object_edges_preserve_ref_counts(self):
+        payload = self.source().replace(
+            b'</oval:set>', b'<oval:object_reference>obj-leaf</oval:object_reference></oval:set>', 1)
+        original = oval_platform.StandalonePlatformSource(payload, 'shared.xml')
+        uses = original.object_uses('shared.xml', 'test-a', 'test')
+        self.assertEqual(uses['obj-leaf'], 2)
+        self.assertEqual(uses['obj-root'], 1)
+
     def test_missing_filter_state_is_not_silently_skipped(self):
         data = self.source().replace(b'state-match</oval:filter>',
                                      b'unknown-state</oval:filter>')
