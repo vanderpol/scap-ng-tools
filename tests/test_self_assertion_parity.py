@@ -98,6 +98,26 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         self.assertFalse(result["complete"])
         self.assertEqual(result["coverage"]["pack"]["status_counts"]["blocked"], 1)
 
+    def test_owner_approved_exclusion_is_not_conversion(self):
+        self.row.update(conversion_status="intentionally_excluded",
+                        diagnostic="platform not in approved SCAP-NG 0.4 collector scope",
+                        owner_decision="issue-approval-reference")
+        self.publish()
+        result = self.inspect()
+        self.assertTrue(result["scope_complete"], result["problems"])
+        self.assertFalse(result["complete"])
+        self.assertTrue(result["source_accounted"])
+
+    def test_unapproved_exclusion_fails_closed(self):
+        self.row.update(conversion_status="excluded",
+                        diagnostic="unsupported platform")
+        self.publish()
+        result = self.inspect()
+        self.assertFalse(result["scope_complete"])
+        self.assertFalse(result["source_accounted"])
+        self.assertIn("exclusion_without_owner_approval",
+                      {p["type"] for p in result["problems"]})
+
     def test_corrupted_native_artifact_fails(self):
         self.publish()
         directory = self.pack / "definitions" / slug(SOURCE_PATH) / slug(SOURCE_ID)
