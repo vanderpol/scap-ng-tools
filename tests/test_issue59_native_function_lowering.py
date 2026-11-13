@@ -7,6 +7,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from scap_ng_tools.converter.direct04 import load_runtime
+from scap_ng_tools.converter.native041_function_lowering import lower_expression, lower_assessment_inplace
 
 load_runtime()
 from v04_direct_converter import AssessmentConverter  # noqa: E402
@@ -29,7 +30,9 @@ class Active041FunctionLowering(unittest.TestCase):
             '<literal_component datatype="string">alpha</literal_component>'
             '<literal_component datatype="string">beta</literal_component>'
             '</unique></count>')
-        value = visitor.function(source)
+        original = visitor.function(source)
+        self.assertIn('function', original)  # immutable source visitor
+        value = lower_expression(original)
         self.assertEqual(value, {'count': {'unique': [
             {'literal': {'datatype': 'string', 'value': 'alpha'}},
             {'literal': {'datatype': 'string', 'value': 'alpha'}},
@@ -46,7 +49,7 @@ class Active041FunctionLowering(unittest.TestCase):
             '<literal_component datatype="int">2</literal_component>'
             '<literal_component datatype="int">3</literal_component>'
             '</arithmetic>')
-        self.assertEqual(visitor.function(source), {
+        self.assertEqual(lower_expression(visitor.function(source)), {
             'arithmetic': {
                 'arithmetic_operation': 'multiply',
                 'values': [
@@ -71,7 +74,7 @@ class Active041FunctionLowering(unittest.TestCase):
             with self.subTest(operation=operation):
                 visitor = self.visitor()
                 source = oval(fragment.replace('>', ' xmlns="OVAL">', 1))
-                expression = visitor.function(source)
+                expression = lower_expression(visitor.function(source))
                 self.assertEqual(set(expression), {operation})
                 self.assertEqual(expression[operation], {
                     **options,
@@ -87,7 +90,44 @@ class Active041FunctionLowering(unittest.TestCase):
             '<literal_component datatype="string">a</literal_component>'
             '</count>')
         with self.assertRaisesRegex(ValueError, 'multi-component OVAL count'):
-            visitor.function(source)
+            lower_expression(visitor.function(source))
+
+    def test_document_lowering_is_atomic_on_unrepresentable_source(self):
+        source = {
+            'assessment': {
+                'variables': {
+                    'safe-variable': {
+                        'kind': 'local',
+                        'expression': {'function': {'name': 'count', 'arguments': [
+                            {'literal': ['a', 'b']}
+                        ], 'options': {}}},
+                    },
+                    'blocked-variable': {
+                        'kind': 'local',
+                        'expression': {'function': {'name': 'count', 'arguments': [
+                            {'literal': 'a'}, {'literal': 'b'}
+                        ], 'options': {}}},
+                },
+            },
+        }
+        before = repr(source)
+        with self.assertRaisesRegex(ValueError, 'multi-component OVAL count'):
+            lower_assessment_inplace(source)
+        self.assertEqual(repr(source), before)
+
+    def test_document_lowering_preserves_other_assessment_fields(self):
+        source = {'assessment': {
+            'id': 'test-assessment',
+            'tests': {'test-name': {'test_title': 'Test'}},
+            'variables': {'count-variable': {
+                'kind': 'local', 'expression': {'function': {'name': 'count',
+                    'arguments': [{'literal': ['a', 'a']}], 'options': {}}}}
+        }}
+        self.assertTrue(lower_assessment_inplace(source))
+        self.assertEqual(source['assessment']['variables']['count-variable']['expression'],
+                         {'count': {'literal': ['a', 'a']}})
+        self.assertEqual(source['assessment']['tests'], {'test-name': {'test_title': 'Test'}})
+        self.assertFalse(lower_assessment_inplace(source))
 
     def test_unsupported_arithmetic_and_default_recovery_are_not_promoted(self):
         source = oval(
