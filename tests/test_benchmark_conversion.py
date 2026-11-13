@@ -1,7 +1,8 @@
 """Pinned automatic benchmark admission with audited 0.4 authoring regeneration.
 
-Original 2026-Q3 source, trace, coverage and Rule acceptance are unchanged;
-only native document serialization changes with owner-approved Item grouping.
+Original 2026-Q3 source and Rule provenance remain pinned. Native document
+counts/digests include the owner-approved OVAL-preferred selection policy:
+OCIL-only Rules are manual and OCIL is an optional alternative.
 No compiler/scanner proof is asserted.
 """
 
@@ -22,19 +23,23 @@ from scap_ng_tools.converter import convert_benchmark, convert_focused
 from test_benchmark_inventory import PINS, stable_digest
 
 
+# Owner-approved OVAL-preferred selection now preserves OCIL-only Rules as
+# manual Assessments and retains manual OCIL alternatives beside automated OVAL
+# choices. These are exact regenerated native/trace/coverage digests, not proof
+# of source-result equivalence.
 EXPECTED = [
-    (496, 247, 44, '5687a4919b66e4e38e9d9dc2f59131393cf9683b0af768caf0ca4c3fa72deca8',
-     '28ccb0600d666f99b76b36164776a7b442276ef8282f614d87b28c470dcf95d4',
-     '233fa961e84f101107cb62c5b810aa4719309c8bb5c31bbe2e212a09676c5bf4'),
-    (32, 15, 21, '69d6606cf3b8c1e5ae943b5282ecf35a258556e5ce305b5ac1f4f9e1aa3bb10b',
-     '450aadbc110a26934a5688aefbed0c86e0e967ead6e1041cbc376e858f7dee64',
-     'f90aacf66975f5d3cadf4d1d941142ad2a40f8c6a4c682eab491e15b2e604a53'),
-    (238, 118, 69, '7a9a7b578bf6f7f3498e58369f64340c719f7b50e5a376058974aefa20f6db4d',
-     '09d77b842843d3cab5b3dd4e9e28af253799ac3878608cd65239dc47a8d880e2',
-     'da41d34d4c1b307097cb55c93e700e4bfa3f85950485c189d6f2f22a9f67a375'),
-    (0, 0, 21, '44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a',
-     'fde316371acb5b11e9f5b747b3138ec66e5ea07dc8609e6480543d2f0a7210bc',
-     '5e70d08b2503940e2f486529164f65108c9a3a101a358ba2d0e37f16287d8d0d'),
+    (785, 241, 20, '3175e046e7f3a4a37bb4b6dfdf545e06041030fc263dcbe2ddac80520c64ae8c',
+     'd3f458e9e3fb426d6cecd825518b181177dac0641d41bdafe48087744aa4716c',
+     'eee4b349ccacf39ccaaa29c8ee57d72e664c7a0df4761ca5047a69b9df369d8b'),
+    (85, 15, 2, 'a82001fbf1dac41044b87ee7041603bb597d77be3d7f919d94074a71cbf8a8a3',
+     'f35aa22ca294ce5e54b667473fac0518f02daf454322f3ae6efc2645179fccae',
+     '7b3527f3c8f04296681c33b3c50e38201ce9c4688c8a2f255bd5c52bf6a8a0f8'),
+    (390, 118, 52, 'ada363bc3f830b7d426dd7920f9df08e86bcf532995257d5fdc57af9ae3cace4',
+     'c97f181a0b9408a0f37627173f844c5b3305a424bb911e2917f1c9e958c7af92',
+     '7b91bed3573cda432540fd137025ed4557fb72d5485c88037289f036e6760b18'),
+    (4, 0, 20, '9b869db3c0581ae05a38f523ec393674ccc776653b643ecff3267ffc57607eef',
+     'e21a5aa82eb48909a4bdc7b0804924aee4354194a66322c3b422e14f287da746',
+     '9aa42704cc4595f86a7e0ecccc854f49c6e864a8142e9e046ae2b9f4d3c06d42'),
 ]
 
 
@@ -74,16 +79,16 @@ class BenchmarkConversionParity(unittest.TestCase):
                 self.assertFalse(coverage['scanner_evaluated'])
                 for row in coverage['rules']:
                     self.assertIn(row['proof_level'], ('none', 'authoring_validated'))
-        self.assertEqual(totals, {'source': 535, 'converted': 380,
-                                  'blocked': 155, 'native': 766})
+        self.assertEqual(totals, {'source': 535, 'converted': 374,
+                                  'blocked': 94, 'native': 1264})
 
     def test_cli_exact_common_bytes_match_owner_amended_v04_baseline(self):
         # Old original research CLI digest before Item grouping:
         # 7720a9efae45a7ba34ca107bcdeb0face751aae8126e2e14b5c16f07c6f8d6ff
         # Preserve historic provenance, but the original YAML bytes no longer
         # qualify as current 0.4 authoring after the approved amendment.
-        original_file_count = 67
-        original_file_digest = '5fc696189a0e134077d46e46143e21b4b5637b635e43c12106b1d9b83509b3e5'
+        original_file_count = 173
+        original_file_digest = 'd8b6659514e3e892b162d204fb21c0a8ba44a9e70ef0ee59b953396723e6a0e4'
         path = self.files[1]
         with tempfile.TemporaryDirectory(prefix='scapng-benchmark-portable-') as temp:
             output = Path(temp) / 'portable'
@@ -123,7 +128,8 @@ class BenchmarkConversionParity(unittest.TestCase):
             schema_root=self.schema, source=self.files[0], sha256_pin=PINS[0]['sha'],
             rule_ids=['xccdf_mil.disa.stig_rule_SV-278139r1182083_rule',
                       'xccdf_mil.disa.stig_rule_SV-278080r1180946_rule'])
-        assessments = [d for d in documents.values() if 'assessment' in d]
+        assessments = [d for d in documents.values()
+                       if 'assessment' in d and d['assessment'].get('mode') == 'automated']
         shell = next(d for d in assessments if 'independent.shellcommand'
                      in {t['capability'] for t in d['assessment']['tests'].values()})
         registry = next(d for d in assessments if 'windows.registry'
