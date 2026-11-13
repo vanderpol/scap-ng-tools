@@ -20,9 +20,10 @@ class OVALReferenceVectors(unittest.TestCase):
                          '10,2,')
 
     def test_count_propagates_diagnostic_population_states(self):
-        self.assertEqual(count([Outcome.ERROR]), Outcome.ERROR)
-        self.assertEqual(count([Outcome.UNKNOWN]), Outcome.UNKNOWN)
-        self.assertEqual(count([Outcome.NOT_EVALUATED]), Outcome.NOT_EVALUATED)
+        for status in (Outcome.ERROR, Outcome.UNKNOWN, Outcome.NOT_EVALUATED,
+                       Outcome.NOT_APPLICABLE, Outcome.INCOMPLETE, Outcome.NOT_COLLECTED):
+            with self.subTest(status=status):
+                self.assertEqual(count([status]), status)
 
     def test_function_vectors_include_empty_and_nested_values(self):
         self.assertEqual(split('', ','), [''])
@@ -83,6 +84,24 @@ class SelectionPolicyVectors(unittest.TestCase):
         self.assertIn('source', omitted[0])
 
 class RecoveryFunctionBoundary(unittest.TestCase):
+    def test_native_recovery_emits_recursive_active_count_and_rejects_multi_operand(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        nested = ET.fromstring(f'''<count xmlns="{OVAL}">
+          <count><literal_component datatype="string">a</literal_component></count>
+        </count>''')
+        self.assertEqual(visitor.function(nested), {"count": {"count": {"literal": {"datatype": "string", "value": "a"}}}})
+        multi = ET.fromstring(f'''<count xmlns="{OVAL}">
+          <literal_component datatype="string">a</literal_component>
+          <literal_component datatype="string">b</literal_component>
+        </count>''')
+        with self.assertRaisesRegex(ValueError, 'exactly one nested expression'):
+            visitor.function(multi)
+
     def test_native_recovery_requires_exact_function_options(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
@@ -92,12 +111,11 @@ class RecoveryFunctionBoundary(unittest.TestCase):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = ET.fromstring(
             f'<split xmlns="{OVAL}" delimiter=","><literal_component datatype="string">a,b</literal_component></split>')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'split')
-        self.assertEqual(expression['function']['options'], {'delimiter': ','})
+        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: split'):
+            visitor.function(source)
         bad = ET.fromstring(
             f'<substring xmlns="{OVAL}" substring_start="1.0" substring_length="1"><literal_component datatype="string">x</literal_component></substring>')
-        with self.assertRaisesRegex(ValueError, 'xsd:int'):
+        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: substring'):
             visitor.function(bad)
 
 class NativeFunctionContractSemantics(unittest.TestCase):
@@ -133,12 +151,15 @@ class NativeFunctionContractSemantics(unittest.TestCase):
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
                                          'expression': substring})['result-variable'], 'string')
 
-    def test_recovered_function_contract_accepts_count_and_multi_component_aggregation(self):
-        count = {'function': {'name': 'count', 'arguments': [
-            self._literal('string', ['a', 'b']),
-            self._literal('integer', [1, 2])], 'options': {}}}
+    def test_active_count_contract_is_recursive_and_integer_typed(self):
+        count = {'count': {'count': self._literal('string', ['a', 'a'])}}
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'integer',
                                          'expression': count})['result-variable'], 'integer')
+        unique_count = {'count': {'unique': self._literal('string', ['a', 'a'])}}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'integer',
+                                         'expression': unique_count})['result-variable'], 'integer')
+        with self.assertRaisesRegex(ValueError, 'declared/derived datatype conflict'):
+            self._validate({'kind': 'local', 'datatype': 'string', 'expression': count})
         unique = {'function': {'name': 'unique', 'arguments': [
             self._literal('string', ['a', 'b']), self._literal('string', ['b', 'c'])],
             'options': {}}}
@@ -159,8 +180,8 @@ class NativeFunctionContractSemantics(unittest.TestCase):
             self._literal('record', {'id': 1})], 'options': {}}}
         with self.assertRaisesRegex(ValueError, 'scalar text operand'):
             self._validate({'kind': 'local', 'datatype': 'string', 'expression': bad_unique})
-        bad_count = {'function': {'name': 'count', 'arguments': [], 'options': {}}}
-        with self.assertRaisesRegex(ValueError, 'one or more'):
+        bad_count = {'count': {}}
+        with self.assertRaises(Exception):
             self._validate({'kind': 'local', 'datatype': 'integer', 'expression': bad_count})
 
     def test_owner_function_subset_rejects_implicit_casts_and_bad_options(self):
@@ -340,7 +361,7 @@ class RecursionRecovery(unittest.TestCase):
             hierarchy_behaviors(behaviors, acquisition)
 
 class CountRecovery(unittest.TestCase):
-    def test_count_uses_the_canonical_function_call_envelope(self):
+    def test_count_uses_the_active_recursive_native_grammar(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -349,9 +370,7 @@ class CountRecovery(unittest.TestCase):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = ET.fromstring(f'<count xmlns="{OVAL}"><literal_component datatype="string">a</literal_component></count>')
         expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'count')
-        self.assertEqual(expression['function']['options'], {})
-        self.assertEqual(len(expression['function']['arguments']), 1)
+        self.assertEqual(expression, {'count': {'literal': {'datatype': 'string', 'value': 'a'}}})
 
     def test_count_requires_at_least_one_operand(self):
         import xml.etree.ElementTree as ET
@@ -361,10 +380,10 @@ class CountRecovery(unittest.TestCase):
         from v04_direct_scap_source import OVAL
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = ET.fromstring(f'<count xmlns="{OVAL}"/>')
-        with self.assertRaisesRegex(ValueError, 'function arity mismatch'):
+        with self.assertRaisesRegex(ValueError, 'exactly one nested expression'):
             visitor.function(source)
 
-    def test_count_preserves_all_source_components(self):
+    def test_count_rejects_multiple_source_components_under_active_grammar(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -375,13 +394,11 @@ class CountRecovery(unittest.TestCase):
           <literal_component datatype="string">a</literal_component>
           <literal_component datatype="string">b</literal_component>
         </count>''')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'count')
-        self.assertEqual(len(expression['function']['arguments']), 2)
-        self.assertEqual([a['literal']['value'] for a in expression['function']['arguments']], ['a', 'b'])
+        with self.assertRaisesRegex(ValueError, 'exactly one nested expression'):
+            visitor.function(source)
 
-class MultiComponentAggregationRecovery(unittest.TestCase):
-    def test_unique_preserves_ordered_components_in_recovery_envelope(self):
+class MultiComponentAggregationFailClosed(unittest.TestCase):
+    def test_unique_rejects_ordered_components_outside_active_grammar(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -392,13 +409,10 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">a</literal_component>
           <literal_component datatype="string">b</literal_component>
         </unique>''')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'unique')
-        self.assertEqual(len(expression['function']['arguments']), 2)
-        self.assertEqual(expression['function']['options'], {})
-        self.assertEqual(visitor.conversion_warnings[-1]['source_component_count'], 2)
+        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
+            visitor.function(source)
 
-    def test_merge_preserves_options_and_components_in_recovery_envelope(self):
+    def test_merge_rejects_components_outside_active_grammar(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -409,13 +423,10 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">10</literal_component>
           <literal_component datatype="string">2</literal_component>
         </merge>''')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'merge')
-        self.assertEqual(len(expression['function']['arguments']), 2)
-        self.assertEqual(expression['function']['options'], {
-            'delimiter': ',', 'sort': 'numeric', 'order': 'descending'})
+        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
+            visitor.function(source)
 
-    def test_default_path_still_rejects_multi_component_aggregation(self):
+    def test_default_path_rejects_multi_component_aggregation(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -426,7 +437,7 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">a</literal_component>
           <literal_component datatype="string">b</literal_component>
         </unique>''')
-        with self.assertRaisesRegex(ValueError, 'multiple aggregation components'):
+        with self.assertRaisesRegex(ValueError, 'multiple components is unsupported'):
             visitor.function(source)
 
 class NestedCountRecovery(unittest.TestCase):
@@ -441,7 +452,7 @@ class NestedCountRecovery(unittest.TestCase):
           <unique><literal_component datatype="string">a</literal_component></unique>
         </count>''')
         expression = visitor.function(source)
-        self.assertEqual(expression['function']['arguments'][0]['function']['name'], 'unique')
+        self.assertEqual(expression, {'count': {'unique': {'literal': {'datatype': 'string', 'value': 'a'}}}})
 
 class XccdfValueMetadataRecovery(unittest.TestCase):
     def test_non_executable_value_warning_is_accepted_as_provenance_metadata(self):
@@ -495,10 +506,8 @@ class RemainingFunctionRecovery(unittest.TestCase):
         source = ET.fromstring(f'''<end xmlns="{OVAL}" character="\\">
           <unique><literal_component datatype="string">a</literal_component></unique>
         </end>''')
-        expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'end')
-        self.assertEqual(expression['function']['options'], {'character': '\\'})
-        self.assertEqual(expression['function']['arguments'][0]['function']['name'], 'unique')
+        with self.assertRaisesRegex(ValueError, 'unsupported active 0.4 Variable function: end'):
+            visitor.function(source)
 
     def test_existing_canonical_nested_expression_is_rejected_by_default_migration(self):
         import sys
@@ -592,3 +601,32 @@ class XccdfRelationalInputRecovery(unittest.TestCase):
         self.assertRaises(ValueError, self.input_contracts, {'inputs': {
             'limit-input': {'datatype': 'integer', 'cardinality': 'exactly_one', 'required': True,
                             'constraints': {'relation': {'operator': 'less_than', 'value': '10'}}}}})
+
+class ActiveCountSemanticVectors(unittest.TestCase):
+    """Native count syntax vectors; no scanner/runtime equivalence claim."""
+    def test_statuses_and_empty_population_are_not_coerced(self):
+        from scap_ng_tools.converter._v04_semantic.v04_variable_expressions import (
+            assessment_variable_expressions)
+        class NoErrors:
+            @staticmethod
+            def iter_errors(_): return iter(())
+        with patch('scap_ng_tools.converter._v04_semantic.v04_variable_expressions.declaration_validator', return_value=NoErrors()):
+            for status in ('error', 'unknown', 'not_evaluated', 'incomplete', 'not_collected', 'not_applicable'):
+                # Structural semantic validation admits the expression; the
+                # execution status is carried by the nested value contract.
+                result = assessment_variable_expressions({'variables': {'v': {
+                    'kind': 'local', 'datatype': 'integer',
+                    'expression': {'count': {'literal': []}}}}})
+                self.assertEqual(result['v'], 'integer', status)
+
+    def test_active_migration_never_emits_function_envelope(self):
+        import sys
+        from pathlib import Path
+        sys.path.insert(0, str(Path(__file__).parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'))
+        from v04_variable_function_migration import canonical_expression, UnsupportedExpression
+        self.assertEqual(canonical_expression({'count': {'unique': {'literal': ['a', 'a']}}}),
+                         {'count': {'unique': {'literal': ['a', 'a']}}})
+        with self.assertRaisesRegex(UnsupportedExpression, 'inactive function envelope'):
+            canonical_expression({'function': {'name': 'count', 'arguments': [], 'options': {}}})
+        with self.assertRaisesRegex(UnsupportedExpression, 'exactly one nested'):
+            canonical_expression({'count': [{'literal': 'a'}, {'literal': 'b'}]})

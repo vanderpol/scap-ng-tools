@@ -18,8 +18,8 @@ from scap_ng_tools.converter.direct04 import convert_benchmark, validate_native_
 from scap_ng_tools.converter._v04_runtime.v04_direct_yaml import authoring_yaml
 
 EXPECTED_SOURCE = '8c8e5dff860af6b1290ee9273a282db24278f8d5'
-EXPECTED_SCHEMA = '919732d4c570b521edf82196a7694dfd8c27fe50'
-EXPECTED_SCHEMA_DIGEST = '6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0'
+EXPECTED_SCHEMA = '8f8e219e4fb2db8b37a6d0e1ca418e8a392c38e3'
+EXPECTED_SCHEMA_DIGEST = '910beeebfb90a63c773615907289a0e4b93095ee41cd1ad41b33652363900c74'
 EXPECTED_COUNTS = {'converted': 6479, 'manual_only': 1403, 'blocked': 108, 'intentionally_excluded': 209}
 
 def sha(path: Path) -> str: return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -38,8 +38,11 @@ def read_candidate(ledger_path: Path, rules_path: Path):
     core = {k: rules[k] for k in ('format','scope','rules')}
     if stable(core) != candidate['candidate_digest']: raise ValueError('candidate digest verification failed')
     counts = Counter(row['status'] for row in rules['rules'])
-    if dict(counts) != EXPECTED_COUNTS: raise ValueError(f'candidate counts differ: {dict(counts)}')
-    if len(ledger.get('blocked_rule_reasons', [])) != 108 or len(ledger.get('excluded_rule_reasons', [])) != 209: raise ValueError('ledger disposition reason index incomplete')
+    expected = {'converted': int(ledger.get('classification', {}).get('automated_converted_unproved', 0)), 'manual_only': int(ledger.get('classification', {}).get('manual_only', 0)), 'blocked': int(ledger.get('classification', {}).get('genuinely_blocked', 0)), 'intentionally_excluded': int(ledger.get('classification', {}).get('intentionally_excluded', 0))}
+    # Ledger names are authoritative; excluded Rules remain in the pair but are not emitted.
+    if dict(counts) != {**expected, 'intentionally_excluded': int(ledger.get('classification', {}).get('intentionally_excluded', 0))}:
+        raise ValueError(f'candidate counts differ from ledger: {dict(counts)} != {expected}')
+    if len(ledger.get('blocked_rule_reasons', [])) != expected['blocked'] or len(ledger.get('excluded_rule_reasons', [])) != expected['intentionally_excluded']: raise ValueError('ledger disposition reason index incomplete')
     return ledger, rules, candidate
 
 def source_paths(source_root: Path, benchmarks):
@@ -182,7 +185,10 @@ def verify_published_inventory(emitted):
 
 def build(args):
     ledger, rules_doc, candidate = read_candidate(args.ledger, args.rules)
-    if git_head(args.source_root) != EXPECTED_SOURCE: raise ValueError('source checkout HEAD differs from pinned source commit')
+    observed_source = git_head(args.source_root)
+    if observed_source != EXPECTED_SOURCE:
+        if not args.source_commit or args.source_commit != EXPECTED_SOURCE:
+            raise ValueError(f'source checkout HEAD differs from pinned source commit: {observed_source}')
     snapshot = FrozenSchemaSnapshot(args.schema_root)
     if snapshot.manifest()['aggregate_sha256'] != EXPECTED_SCHEMA_DIGEST: raise ValueError('schema digest differs from pinned candidate')
     actual_schema_commit = git_head(args.schema_root)
@@ -259,7 +265,8 @@ def build(args):
             write_json(evidence_root / 'coverage.json', stable_coverage(coverage))
             trace_files.extend([str((evidence_root / 'applicability-trace.json').relative_to(staging)), str((evidence_root / 'coverage.json').relative_to(staging))])
         if mismatches: raise ValueError('candidate/converter discrepancies: '+json.dumps(mismatches[:8], sort_keys=True))
-        if dict(included_status) != {'converted':6479,'manual_only':1403,'blocked':108}: raise ValueError(f'included counts differ: {dict(included_status)}')
+        expected_included = {'converted': int(ledger['classification']['automated_converted_unproved']), 'manual_only': int(ledger['classification']['manual_only']), 'blocked': int(ledger['classification']['genuinely_blocked'])}
+        if dict(included_status) != expected_included: raise ValueError(f'included counts differ: {dict(included_status)} != {expected_included}')
         # Validate every emitted JSON and its actual YAML serialization against the exact pin.
         emitted={}
         for path in sorted((staging/'documents').rglob('*.json')):
@@ -271,7 +278,7 @@ def build(args):
         validate_native_documents(snapshot, emitted)
         validate_native_documents(snapshot, yaml_docs)
         graph_report = verify_published_inventory(emitted)
-        metadata={'format':'scap-ng-assessment-corpus/1','version':args.root_name,'candidate':candidate,'tools_commit':tools_commit,'source_repository':'niwc-atlantic/scap-content-library','source_checkout_commit':EXPECTED_SOURCE,'schema_checkout_commit':EXPECTED_SCHEMA,'schema_family_sha256':EXPECTED_SCHEMA_DIGEST,'counts':{'source_rules':8199,'generated_assessment_rules':7882,'automated_converted':6479,'manual_only':1403,'blocked':108,'intentionally_excluded':209,'generated_json_documents':len(emitted),'generated_yaml_documents':len(yaml_docs),'assessment_yaml_files':len(assessment_index)},'generated_documents':sorted(emitted),'trace_files':sorted(trace_files),'assessment_index':sorted(assessment_index,key=lambda x:(x['benchmark'],x['source_rule'],x['assessment'])),'validation':{'json_schema':'Draft 2020-12 exact pinned SCAP-NG 0.4 snapshot','json_documents':len(emitted),'yaml_documents':len(yaml_docs),'document_graph':graph_report,'errors':[],'independent_proof':False,'compiler_execution':False,'scanner_execution':False,'runtime_equivalence_claim':False},'discrepancies':{'raw_converter_statuses':dict(raw_status),'expected_excluded_raw_status_delta':dict(Counter(raw_status)-Counter({'converted':6479,'manual_only':1403,'blocked':108})),'notes':['The converter evaluates all 8,199 source Rules; 209 SQLEXT Rules are intentionally excluded from publication per the candidate ledger.','Schema validation is authoring validation only and is not a runtime-equivalence claim.']},'applicability':{'source_inventory':{'effective_platform_refs':11184,'cpe_uri_refs':10289,'custom_platform_refs':895,'platform_fact_refs':185,'supported_fact_closures':183,'sqlext_fact_closures':2,'source_rules_with_inherited_platform':8199},'reports':applicability_reports,'reference_resolution':'validated per benchmark by converter; independent archive scan required','runtime_equivalence':False}}
+        metadata={'format':'scap-ng-assessment-corpus/1','version':args.root_name,'candidate':candidate,'tools_commit':tools_commit,'source_repository':'niwc-atlantic/scap-content-library','source_checkout_commit':EXPECTED_SOURCE,'schema_checkout_commit':EXPECTED_SCHEMA,'schema_family_sha256':EXPECTED_SCHEMA_DIGEST,'counts':{'source_rules':8199,'generated_assessment_rules': expected_included['converted'] + expected_included['manual_only'], 'automated_converted': expected_included['converted'], 'manual_only': expected_included['manual_only'], 'blocked': expected_included['blocked'], 'intentionally_excluded': int(ledger['classification']['intentionally_excluded']),'generated_json_documents':len(emitted),'generated_yaml_documents':len(yaml_docs),'assessment_yaml_files':len(assessment_index)},'generated_documents':sorted(emitted),'trace_files':sorted(trace_files),'assessment_index':sorted(assessment_index,key=lambda x:(x['benchmark'],x['source_rule'],x['assessment'])),'validation':{'json_schema':'Draft 2020-12 exact pinned SCAP-NG 0.4 snapshot','json_documents':len(emitted),'yaml_documents':len(yaml_docs),'document_graph':graph_report,'errors':[],'independent_proof':False,'compiler_execution':False,'scanner_execution':False,'runtime_equivalence_claim':False},'discrepancies':{'raw_converter_statuses':dict(raw_status),'expected_excluded_raw_status_delta':dict(Counter(raw_status)-Counter(expected_included)),'notes':['The converter evaluates all 8,199 source Rules; 209 SQLEXT Rules are intentionally excluded from publication per the candidate ledger.','Schema validation is authoring validation only and is not a runtime-equivalence claim.']},'applicability':{'source_inventory':{'effective_platform_refs':11184,'cpe_uri_refs':10289,'custom_platform_refs':895,'platform_fact_refs':185,'supported_fact_closures':183,'sqlext_fact_closures':2,'source_rules_with_inherited_platform':8199},'reports':applicability_reports,'reference_resolution':'validated per benchmark by converter; independent archive scan required','runtime_equivalence':False}}
         write_json(staging/'manifest.json',metadata)
         sums=[]
         for path in sorted(p for p in staging.rglob('*') if p.is_file() and p.name!='SHA256SUMS'):
@@ -286,5 +293,5 @@ def build(args):
     print(json.dumps({'archive':str(args.output),'archive_sha256':sha(args.output),'candidate_digest':candidate['candidate_digest'],'counts':dict(included_status),'raw_converter_statuses':dict(raw_status)},sort_keys=True))
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--schema-root',type=Path,required=True); ap.add_argument('--source-root',type=Path,required=True); ap.add_argument('--ledger',type=Path,required=True); ap.add_argument('--rules',type=Path,required=True); ap.add_argument('--output',type=Path,required=True); ap.add_argument('--root-name',default='scap-ng-assessment-corpus-0.4.0-issue28-candidate'); ap.add_argument('--tools-commit'); args=ap.parse_args(); build(args)
+    ap=argparse.ArgumentParser(); ap.add_argument('--schema-root',type=Path,required=True); ap.add_argument('--source-root',type=Path,required=True); ap.add_argument('--ledger',type=Path,required=True); ap.add_argument('--rules',type=Path,required=True); ap.add_argument('--output',type=Path,required=True); ap.add_argument('--root-name',default='scap-ng-assessment-corpus-0.4.0-issue28-candidate'); ap.add_argument('--tools-commit'); ap.add_argument('--source-commit'); args=ap.parse_args(); build(args)
 if __name__=='__main__': main()

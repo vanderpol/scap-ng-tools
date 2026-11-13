@@ -170,6 +170,11 @@ def assessment_variable_expressions(assessment):
                         raise ValueError('merge requires scalar values')
                 return {'string'}
             raise ValueError('unsupported native Variable function: ' + str(name))
+        if op == 'count':
+            # Active 0.4 grammar is {count: expression}; count preserves the
+            # nested collection status and returns one integer only on success.
+            expression(value)
+            return {'integer'}
         if op == 'unique':
             text_operand(expression(value), 'unique')
             return {'string'}

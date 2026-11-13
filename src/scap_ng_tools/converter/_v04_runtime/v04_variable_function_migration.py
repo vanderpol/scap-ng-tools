@@ -12,44 +12,39 @@ class UnsupportedExpression(ValueError):
 
 
 def canonical_expression(node, *, allow_existing=False):
-    """Return a new canonical function expression; reject unknown grammar."""
+    """Return the active 0.4 expression grammar; reject inactive envelopes.
+
+    Native 0.4 uses one-key recursive expressions.  The historical
+    ``function`` envelope is intentionally never emitted by this migration.
+    """
     if not isinstance(node, dict) or len(node) != 1:
         raise UnsupportedExpression('expression must have exactly one operator')
     op, value = next(iter(node.items()))
     if op in ('literal', 'variable', 'values'):
         return deepcopy(node)
     if op == 'function':
-        if allow_existing:
-            return deepcopy(node)
-        raise UnsupportedExpression('existing canonical calls require independent validation')
+        raise UnsupportedExpression('inactive function envelope is not native 0.4 syntax')
     if op == 'count':
-        # The pre-envelope port represented the one-operand form directly;
-        # accept that historical shape while normalizing every call to the
-        # canonical argument list. New source conversion always emits a list.
-        if isinstance(value, dict):
-            value = [value]
-        if not isinstance(value, list) or not value:
-            raise UnsupportedExpression('count requires one or more expressions')
-        arguments, options = value, {}
-    elif op == 'concat':
+        if not isinstance(value, dict):
+            raise UnsupportedExpression('count requires exactly one nested expression')
+        return {'count': canonical_expression(value)}
+    if op == 'concat':
         if not isinstance(value, list) or len(value) < 2:
             raise UnsupportedExpression('concat requires at least two arguments')
-        arguments, options = value, {}
-    elif op == 'regex_capture':
+        return {'concat': [canonical_expression(arg) for arg in value]}
+    if op == 'regex_capture':
         if not isinstance(value, dict) or set(value) != {'pattern', 'value'} or not isinstance(value['pattern'], str):
             raise UnsupportedExpression('regex_capture requires pattern and value')
-        arguments, options = [value['value']], {'pattern': value['pattern']}
-    elif op == 'merge':
+        return {'regex_capture': {'pattern': value['pattern'], 'value': canonical_expression(value['value'])}}
+    if op == 'merge':
         if not isinstance(value, dict) or set(value) != {'delimiter', 'sort', 'order', 'values'}:
             raise UnsupportedExpression('merge requires exact existing operands and options')
-        arguments = [value['values']]
-        options = {name: value[name] for name in ('delimiter', 'sort', 'order')}
-    elif op == 'unique':
-        arguments, options = [value], {}
-    else:
-        raise UnsupportedExpression(f'unrecognized legacy function: {op}')
-    return {'function': {'name': op, 'arguments': [canonical_expression(arg, allow_existing=allow_existing) for arg in arguments],
-                         'options': options}}
+        return {'merge': {'delimiter': value['delimiter'], 'sort': value['sort'], 'order': value['order'], 'values': canonical_expression(value['values'])}}
+    if op == 'unique':
+        if not isinstance(value, dict):
+            raise UnsupportedExpression('unique requires exactly one nested expression')
+        return {'unique': canonical_expression(value)}
+    raise UnsupportedExpression(f'unrecognized native expression: {op}')
 
 
 def canonical_assessment(document):

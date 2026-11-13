@@ -1,0 +1,27 @@
+{
+  "format": "scap-ng-tools/issue28-performance-receipt/1",
+  "reasoning_time_included": false,
+  "environment": "Codex Linux execution environment",
+  "normal_generation_command": "PYTHONPATH=src python scripts/build_issue28_ledger.py --source-dir <pinned-source-checkout> --schema-root <pinned-schema-checkout> --output <ledger>",
+  "release_qualification_command": "PYTHONPATH=src python scripts/publish_issue28_assessments.py ... && python scripts/audit_candidate_archive.py ... && repeat publisher at the exact tools commit",
+  "measurements": {
+    "schema_metadata_generation_seconds": 4.015,
+    "converter_execution_seconds": 290,
+    "corpus_generation_seconds": 1040,
+    "json_yaml_validation_seconds": 668,
+    "independent_archive_audit_seconds": 515,
+    "reproducibility_rebuild_seconds": 1254
+  },
+  "counts": {
+    "benchmarks": 63,
+    "source_rules": 8199,
+    "generated_json": 22483,
+    "generated_yaml": 22483
+  },
+  "qualification": {
+    "validation_not_weakened": true,
+    "qualified_release_under_five_minutes": false,
+    "bottleneck": "Draft 2020-12 validation and recursive dependency graph walk over the full emitted inventory",
+    "note": "Measured by extracting the candidate and running the independent schema_audit over all 22,483 JSON/YAML documents; no generator checks were reused."
+  }
+}

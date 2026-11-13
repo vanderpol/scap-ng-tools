@@ -508,7 +508,7 @@ def main():
         },
         'native_contract_snapshot': {
             'schema_root': 'vanderpol/scap-ng@919732d4c570b521edf82196a7694dfd8c27fe50',
-            'schema_family_digest': '6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0',
+            'schema_family_digest': '910beeebfb90a63c773615907289a0e4b93095ee41cd1ad41b33652363900c74',
             'native_schema_functions': native_functions,
             'compiler': 'No separate SCAP-NG compiler executable is present in checked-out repositories.',
             'runtime': 'No SCAP-NG runtime executable is present; source/evaluator probes are separate evidence.',
