@@ -95,44 +95,57 @@ class StandalonePlatformSource:
         return node
 
     def object_uses(self, component, identifier, kind):
-        references = {"definition_ref": "definition", "test_ref": "test",
-                      "object_ref": "object", "state_ref": "state", "var_ref": "variable"}
-        counts, visited, active = Counter(), set(), set()
+        """Account for all reachable Objects with an iterative graph walk.
 
-        def visit(ident, node_kind):
+        Restores the 0.3 worklist/active-node model: no Python call-stack
+        dependency for deep valid Set/Filter/Variable graphs; direct/indirect
+        cycles and missing references fail closed. Multiple Object references
+        are counted at their actual source edges, including shared Objects.
+        """
+        references = {"definition_ref": "definition", "test_ref": "test",
+                      "object_ref": "object", "state_ref": "state",
+                      "var_ref": "variable"}
+        counts, complete, active = Counter(), set(), set()
+        # (kind, source_id, exiting) — postorder exit releases the active
+        # mark while retaining completed shared dependencies.
+        pending = [(kind, identifier, False)]
+        if kind == "object":
+            counts[identifier] += 1
+
+        while pending:
+            node_kind, ident, exiting = pending.pop()
             key = (node_kind, ident)
-            ensure(key not in active, "cyclic standalone OVAL dependency: " + str(ident))
-            if key in visited:
-                return
+            if exiting:
+                active.remove(key)
+                complete.add(key)
+                continue
+            ensure(key not in active,
+                   "cyclic standalone OVAL dependency: " + str(ident))
+            if key in complete:
+                continue
             active.add(key)
             node = self.node(component, ident, node_kind)
+            edges = []
             for child in node.iter():
-                edges = [(child.get(attr), target_kind)
-                         for attr, target_kind in references.items()
-                         if child.get(attr)]
-                # OVAL Set object_reference and Filter state references are
-                # element text, NOT *_ref attributes. Their nested Objects,
-                # States, and Variables must participate in the same closure
-                # as benchmark conversion.
-                tag = local_name(child)
-                if tag in ("object_reference", "filter", "var_ref"):
+                edges.extend((value, target_kind)
+                             for attr, target_kind in references.items()
+                             if (value := child.get(attr)))
+                element = local_name(child)
+                if element in ("object_reference", "filter", "var_ref"):
                     target = (child.text or "").strip()
-                    ensure(target, "missing standalone OVAL " + tag + " target")
+                    ensure(target, "missing standalone OVAL " + element + " target")
                     edges.append((target, {
                         "object_reference": "object",
                         "filter": "state",
                         "var_ref": "variable",
-                    }[tag]))
-                for target, target_kind in edges:
-                    if target_kind == "object":
-                        counts[target] += 1
-                    visit(target, target_kind)
-            active.remove(key)
-            visited.add(key)
-
-        if kind == "object":
-            counts[identifier] += 1
-        visit(identifier, kind)
+                    }[element]))
+            pending.append((node_kind, ident, True))
+            # Count actual incoming Object edges even when the same target
+            # was completed through a different path.
+            for target, target_kind in reversed(edges):
+                if target_kind == "object":
+                    counts[target] += 1
+                pending.append((target_kind, target, False))
         return counts
 
 
