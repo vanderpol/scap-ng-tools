@@ -231,16 +231,11 @@ def convert_oval_definition(**arguments):
     """Source adapter to the same production visitor and validation gates."""
     raw = Path(arguments['source']).read_bytes()
     root = ET.fromstring(raw)
-    test_kinds = {node.tag.rsplit('}', 1)[-1] for node in root.iter()
-                  if node.get('id') and node.tag.rsplit('}', 1)[-1].endswith('_test')}
-    # The platform adapter is deliberately closed over a homogeneous
-    # standalone unix.file document.  A file object referenced by another
-    # platform Test (for example rpmverifyfile) must not promote that document
-    # into the unix.file lane or erase the owning Test's diagnostic.
-    if test_kinds and test_kinds <= {'file_test'}:
-        from .oval_platform import convert_definition
-        return convert_definition(**arguments)
-    from .oval_variables import convert_definition
+    # Standalone OVAL Definitions and benchmark Rule checks must use the
+    # SAME production recursive visitor and capability mappings.
+    # The source adapter only indexes standalone XML; the visitor itself
+    # decides whether a Test, Object, State, Variable or function is valid.
+    from .oval_platform import convert_definition
     return convert_definition(**arguments)
 
 
