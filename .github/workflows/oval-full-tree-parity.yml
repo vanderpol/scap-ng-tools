@@ -50,6 +50,8 @@ jobs:
           import json
           data=json.load(open('/tmp/oval-parity-legacy-baseline.json'))
           assert data["coverage"]["original"]["xml_documents"] >= 144, data
+          assert data["coverage"]["original"]["definitions"] == 167, data["coverage"]["original"]
+          assert data["coverage"]["original"]["tests"] == 785, data["coverage"]["original"]
           assert data["coverage"]["source_git_pin_verified"] is True, data
           assert data["complete"] is False, "Old scoped pack falsely labeled full conversion"
           assert data["runtime_equivalence_proved"] is False, data
