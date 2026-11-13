@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 
 from scap_ng_tools.converter import direct04, oval_platform, oval_variables
+from scap_ng_tools.converter.conversion_budget import ConversionBudget, ConversionBudgetExceeded
 
 
 class UnifiedOvalConverterTests(unittest.TestCase):
@@ -146,6 +147,26 @@ class StandaloneSourceCompatibilityTests(unittest.TestCase):
         with self.assertRaisesRegex(direct04.QualifiedConversionError,
                                     'cyclic standalone OVAL dependency'):
             original.object_uses('cycle.xml', 'test-a', 'test')
+
+    def test_original_0_3_dependency_node_budget_is_fail_closed(self):
+        source = oval_platform.StandalonePlatformSource(self.source(), 'budget.xml')
+        with patch.object(oval_platform.StandalonePlatformSource,
+                          'DEFAULT_DEPENDENCY_BUDGET',
+                          ConversionBudget(dependency_nodes=2)):
+            with self.assertRaisesRegex(
+                    ConversionBudgetExceeded,
+                    'conversion_resource_limit:dependency_nodes'):
+                source.object_uses('budget.xml', 'test-a', 'test')
+
+    def test_original_0_3_dependency_edge_budget_is_fail_closed(self):
+        source = oval_platform.StandalonePlatformSource(self.source(), 'budget.xml')
+        with patch.object(oval_platform.StandalonePlatformSource,
+                          'DEFAULT_DEPENDENCY_BUDGET',
+                          ConversionBudget(dependency_edges=1)):
+            with self.assertRaisesRegex(
+                    ConversionBudgetExceeded,
+                    'conversion_resource_limit:dependency_edges'):
+                source.object_uses('budget.xml', 'test-a', 'test')
 
     def test_filter_hidden_missing_variable_is_fatal(self):
         payload = self.source().replace(b'var_ref="var-state"', b'var_ref="unknown-variable"')
