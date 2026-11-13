@@ -398,6 +398,11 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                 problems.append({"type": "blocker_without_diagnostic", "source": path,
                                  "definition": ident})
             continue
+        if status in ("excluded", "intentionally_excluded"):
+            if not row.get("diagnostic") or not row.get("owner_decision"):
+                problems.append({"type": "exclusion_without_owner_approval",
+                                 "source": path, "definition": ident})
+            continue
         if status not in ("CONVERTED_UNVERIFIED", "converted", "converted_unverified"):
             problems.append({"type": "unreviewed_converter_status", "status": status,
                              "source": path, "definition": ident})
@@ -481,9 +486,24 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         "converted_definitions": converted,
         "source_definitions_without_disposition": len(absent),
     }}
+    accounting_errors = {"duplicate_source_definition", "duplicate_test_id",
+                         "duplicate_converter_row", "source_sha256_mismatch",
+                         "invented_or_unpinned_source_definition",
+                         "source_test_references_mismatch",
+                         "blocker_without_diagnostic",
+                         "exclusion_without_owner_approval",
+                         "unreviewed_converter_status",
+                         "source_definition_without_converter_disposition",
+                         "original_xml_file_count_mismatch",
+                         "unclassified_embedded_content"}
+    accounted = not any(problem["type"] in accounting_errors for problem in problems)
     complete = not problems and converted == original["definitions"]
+    scope_complete = (not problems and
+                      converted + statuses["excluded"] +
+                      statuses["intentionally_excluded"] == original["definitions"])
     return {"format": "scap-ng-oval-source-parity/1", "complete": complete,
-            "source_accounted": not absent, "runtime_equivalence_proved": False,
+            "scope_complete": scope_complete,
+            "source_accounted": accounted, "runtime_equivalence_proved": False,
             "qualification": "STRUCTURAL_ONLY_NOT_RUNTIME_EQUIVALENCE",
             "coverage": coverage, "problems": problems}
 
@@ -498,7 +518,9 @@ def main():
     parser.add_argument("--allow-unverified-fixture-source", action="store_true",
                         help="TEST FIXTURES ONLY: skip exact Git commit verification")
     parser.add_argument("--require-full", action="store_true",
-                        help="exit nonzero for ANY missing/blocked Definition or mismatch")
+                        help="exit nonzero unless every original Definition is converted")
+    parser.add_argument("--require-scope", action="store_true",
+                        help="allow excluded Definitions ONLY with explicit owner decision")
     args = parser.parse_args()
     try:
         report = audit(args.source_root, args.pack,
@@ -511,12 +533,14 @@ def main():
                            encoding="utf-8")
     summary = report["coverage"]
     print(json.dumps({"complete": report["complete"],
+                      "scope_complete": report["scope_complete"],
                       "source_accounted": report["source_accounted"],
                       "original": summary["original"]["definitions"],
                       "converted": summary["pack"]["converted_definitions"],
                       "undispositioned": summary["pack"]["source_definitions_without_disposition"],
                       "problems": len(report["problems"])}, sort_keys=True))
-    if args.require_full and not report["complete"]:
+    if ((args.require_full and not report["complete"]) or
+            (args.require_scope and not report["scope_complete"])):
         raise SystemExit(1)
 
 if __name__ == "__main__":
