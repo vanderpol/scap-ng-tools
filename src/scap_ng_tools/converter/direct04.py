@@ -11,7 +11,6 @@ import importlib
 import json
 from pathlib import Path, PurePosixPath
 import sys
-import xml.etree.ElementTree as ET
 
 from scap_ng_tools.contracts import FrozenSchemaSnapshot
 
@@ -228,16 +227,14 @@ def conversion_identity(snapshot):
 
 
 def convert_oval_definition(**arguments):
-    """Source adapter to the same production visitor and validation gates."""
-    raw = Path(arguments['source']).read_bytes()
-    root = ET.fromstring(raw)
-    # Standalone OVAL Definitions and benchmark Rule checks must use the
-    # SAME production recursive visitor and capability mappings.
-    # The source adapter only indexes standalone XML; the visitor itself
-    # decides whether a Test, Object, State, Variable or function is valid.
+    """Convert a standalone OVAL Definition through the production visitor.
+
+    No parser, Test whitelist, secondary evaluator or datatype/function
+    converter is permitted here. The standalone source adapter validates the
+    original XML, then uses the same AssessmentConverter as benchmark Rules.
+    """
     from .oval_platform import convert_definition
     return convert_definition(**arguments)
-
 
 
 def safe_relative_filename(root, relative):
