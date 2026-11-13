@@ -57,9 +57,17 @@ class StandalonePlatformSource:
             "{http://www.w3.org/2001/XMLSchema-instance}schemaLocation"},
                "unsupported OVAL root attributes")
         generator = self.root.find("{" + OVAL + "}generator")
-        ensure(generator is not None and generator.findtext(
-            "{http://oval.mitre.org/XMLSchema/oval-common-5}schema_version") == "5.12.3",
-            "standalone source must declare OVAL 5.12.3")
+        ensure(generator is not None, "standalone OVAL generator missing")
+        self.oval_schema_version = generator.findtext(
+            "{http://oval.mitre.org/XMLSchema/oval-common-5}schema_version")
+        # Pinned publisher CPE/application content legitimately declares
+        # older OVAL 5.x versions. Source-version compatibility is an input
+        # contract, not a request to reinterpret all earlier syntax as 5.12.3.
+        # Unknown versions fail closed and require a separate source proof.
+        ensure(self.oval_schema_version in {
+            "5.11", "5.11.1", "5.11.2", "5.12.2", "5.12.3"},
+            "unsupported standalone source OVAL version: " +
+            repr(self.oval_schema_version))
         self.component_id = component
         self.draft_compatibility = True
         self.nodes = {component: {}}
@@ -89,22 +97,38 @@ class StandalonePlatformSource:
     def object_uses(self, component, identifier, kind):
         references = {"definition_ref": "definition", "test_ref": "test",
                       "object_ref": "object", "state_ref": "state", "var_ref": "variable"}
-        counts, visited = Counter(), set()
+        counts, visited, active = Counter(), set(), set()
 
         def visit(ident, node_kind):
-            if (node_kind, ident) in visited:
+            key = (node_kind, ident)
+            ensure(key not in active, "cyclic standalone OVAL dependency: " + str(ident))
+            if key in visited:
                 return
-            visited.add((node_kind, ident))
+            active.add(key)
             node = self.node(component, ident, node_kind)
             for child in node.iter():
-                edges = [(child.get(attr), target_kind) for attr, target_kind in references.items()
+                edges = [(child.get(attr), target_kind)
+                         for attr, target_kind in references.items()
                          if child.get(attr)]
-                if local_name(child) == "var_ref" and child.text:
-                    edges.append((child.text.strip(), "variable"))
+                # OVAL Set object_reference and Filter state references are
+                # element text, NOT *_ref attributes. Their nested Objects,
+                # States, and Variables must participate in the same closure
+                # as benchmark conversion.
+                tag = local_name(child)
+                if tag in ("object_reference", "filter", "var_ref"):
+                    target = (child.text or "").strip()
+                    ensure(target, "missing standalone OVAL " + tag + " target")
+                    edges.append((target, {
+                        "object_reference": "object",
+                        "filter": "state",
+                        "var_ref": "variable",
+                    }[tag]))
                 for target, target_kind in edges:
                     if target_kind == "object":
                         counts[target] += 1
                     visit(target, target_kind)
+            active.remove(key)
+            visited.add(key)
 
         if kind == "object":
             counts[identifier] += 1
@@ -156,6 +180,7 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     trace = {
         "source_commit": source_commit, "source_path": source_path,
         "source_sha256": sha256_pin, "definition_id": definition_id,
+        "source_oval_schema_version": original.oval_schema_version,
         "source_nodes": {ident: {**row, "references": references(original.node_index[ident])}
                          for ident, row in sorted(visitor.used.items())},
         "native_identities": [{"kind": kind, "native_id": name, "source_id": source_id}
