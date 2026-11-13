@@ -9,7 +9,8 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from audit_self_assertion_parity import PREFIX, PIN, audit, digest, slug, sources
+from audit_self_assertion_parity import (PREFIX, PIN, audit, digest, slug, sources,
+    parse_oval, reachable_source_tests, normalize_source_evaluate, normalize_native_evaluate)
 
 SOURCE_ID = "oval:example:def:1"
 TEST_ID = "oval:example:tst:1"
@@ -181,6 +182,42 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         result = self.inspect()
         self.assertFalse(result["complete"])
         self.assertIn("Evaluate logic mismatch", str(result["problems"]))
+
+class DefinitionGraphTests(unittest.TestCase):
+    def test_extended_oval_definitions_expand_into_the_same_native_ast(self):
+        xml = b'''<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <definitions>
+            <definition id="def-a"><criteria operator="AND">
+              <criterion test_ref="test-one"/>
+              <extend_definition definition_ref="def-b"/>
+            </criteria></definition>
+            <definition id="def-b"><criteria operator="OR">
+              <criterion test_ref="test-two"/>
+            </criteria></definition>
+          </definitions>
+          <tests>
+            <variable_test id="test-one"/>
+            <variable_test id="test-two"/>
+          </tests>
+        </oval_definitions>'''
+        source = parse_oval(xml, SOURCE_PATH)
+        self.assertEqual(reachable_source_tests(source, 'def-a'), {'test-one', 'test-two'})
+        expected = ('and', (('test', 'test-one'), ('test', 'test-two')))
+        self.assertEqual(normalize_source_evaluate(source, 'def-a'), expected)
+        native = {"and": [{"test": "native-one"}, {"test": "native-two"}]}
+        self.assertEqual(normalize_native_evaluate(
+            native, {"native-one": "test-one", "native-two": "test-two"}), expected)
+
+    def test_extended_definition_cycle_rejected(self):
+        xml = b'''<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <definitions>
+            <definition id="def-a"><criteria><extend_definition definition_ref="def-b"/></criteria></definition>
+            <definition id="def-b"><criteria><extend_definition definition_ref="def-a"/></criteria></definition>
+          </definitions></oval_definitions>'''
+        source = parse_oval(xml, SOURCE_PATH)
+        with self.assertRaisesRegex(ValueError, 'cyclic'):
+            reachable_source_tests(source, 'def-a')
+
 
 if __name__ == "__main__":
     unittest.main()
