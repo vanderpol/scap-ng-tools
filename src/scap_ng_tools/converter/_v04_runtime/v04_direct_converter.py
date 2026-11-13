@@ -744,39 +744,19 @@ class AssessmentConverter:
         ensure(len(element) and (operation != 'regex_capture' or (len(element) == 1 and 'pattern' in element.attrib)), 'function arity/pattern')
         values = [self.function(child) for child in element]
         if operation in ('merge', 'unique'):
-            # OVAL unique/merge flatten all component collections in source
-            # order. The active 0.4 expression schema currently exposes only
-            # one collection operand, so the exact multi-component form is
-            # emitted only as the opt-in canonical-call candidate. It remains
-            # schema/compiler-gated; the default path fails closed rather than
-            # changing the operation to concat or set union.
-            if len(values) > 1:
-                ensure(self.native_recovery,
-                       'multiple aggregation components need an approved collection expression')
-                if operation == 'unique':
-                    options = {}
-                else:
-                    ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
-                           and element.get('order', 'ascending') in ('ascending', 'descending'),
-                           'unsupported merge sort/order')
-                    options = {'delimiter': element.get('delimiter', ''),
-                               'sort': element.get('sort', 'document'),
-                               'order': element.get('order', 'ascending')}
-                from v04_variable_function_migration import canonical_expression
-                arguments = [canonical_expression(value, allow_existing=True) for value in values]
-                expression = {'function': {'name': operation, 'arguments': arguments,
-                                           'options': options}}
-                self.conversion_warnings.append({'code': 'native_function_contract_v1',
-                    'source_function': operation, 'source_options': dict(element.attrib),
-                    'source_component_count': len(values),
-                    'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
-                return expression
+            # OVAL aggregation consumes every component in document order.
+            # The canonical 0.4 grammar represents that population directly
+            # as a non-empty expression list; never hide it in a generic
+            # function envelope, take the first component, or lower it to a
+            # Set UNION. Each child remains an independent expression so
+            # nested concat/Variable references retain their source graph.
             if operation == 'unique':
-                return {'unique': values[0]}
+                return {'unique': values if len(values) > 1 else values[0]}
             ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
                    and element.get('order', 'ascending') in ('ascending', 'descending'), 'unsupported merge sort/order')
             return {'merge': {'delimiter': element.get('delimiter', ''), 'sort': element.get('sort', 'document'),
-                              'order': element.get('order', 'ascending'), 'values': values[0]}}
+                              'order': element.get('order', 'ascending'),
+                              'values': values if len(values) > 1 else values[0]}}
         ensure(operation != 'concat' or len(values) >= 2, 'concat requires at least two components')
         return {'concat': values} if operation == 'concat' else {'regex_capture': {'pattern': element.get('pattern'), 'value': values[0]}}
 
@@ -1410,9 +1390,9 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 if set(native) & set(documents):
                     blockers.append(issue('native-identity',
                         'native Rule/Assessment name collision in selected source Rules', row['source_rule']))
-                # Multi-component unique/merge is admitted by the canonical
-                # function-expression schema. Keep warning provenance without
-                # reclassifying a schema-valid candidate as blocked.
+                # Multi-component unique/merge is represented by the native
+                # ordered population forms. Keep source warning provenance
+                # without reclassifying a schema-valid candidate as blocked.
                 for path, document in native.items():
                     kind, = document
                     for error in validate_document(kind, document):

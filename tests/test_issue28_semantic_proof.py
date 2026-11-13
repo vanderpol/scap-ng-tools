@@ -119,59 +119,56 @@ class NativeFunctionContractSemantics(unittest.TestCase):
             return assessment_variable_expressions(assessment)
 
     def test_owner_function_subset_preserves_numeric_widening_and_string_results(self):
-        arithmetic = {'function': {'name': 'arithmetic', 'arguments': [
-            self._literal('integer', 2), self._literal('float', 1.5)],
-            'options': {'arithmetic_operation': 'multiply'}}}
+        arithmetic = {'arithmetic': {'arithmetic_operation': 'multiply', 'values': [
+            self._literal('integer', 2), self._literal('float', 1.5)]}}
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'float',
                                          'expression': arithmetic})['result-variable'], 'float')
-        split = {'function': {'name': 'split', 'arguments': [self._literal('string', 'a,,b')],
-                              'options': {'delimiter': ','}}}
+        split = {'split': {'delimiter': ',', 'value': self._literal('string', 'a,,b')}}
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
                                          'expression': split})['result-variable'], 'string')
-        substring = {'function': {'name': 'substring', 'arguments': [self._literal('string', 'abc')],
-                                  'options': {'substring_start': 1, 'substring_length': 2}}}
+        substring = {'substring': {'value': self._literal('string', 'abc'),
+                                      'substring_start': 1, 'substring_length': 2}}
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
                                          'expression': substring})['result-variable'], 'string')
 
     def test_recovered_function_contract_accepts_count_and_multi_component_aggregation(self):
-        count = {'function': {'name': 'count', 'arguments': [
-            self._literal('string', ['a', 'b']),
-            self._literal('integer', [1, 2])], 'options': {}}}
+        count = {'count': self._literal('string', ['a', 'b'])}
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'integer',
                                          'expression': count})['result-variable'], 'integer')
-        unique = {'function': {'name': 'unique', 'arguments': [
-            self._literal('string', ['a', 'b']), self._literal('string', ['b', 'c'])],
-            'options': {}}}
+        unique = {'unique': [self._literal('string', ['a', 'b']),
+                              self._literal('string', ['b', 'c'])]}
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
                                          'expression': unique})['result-variable'], 'string')
-        merge = {'function': {'name': 'merge', 'arguments': [
-            self._literal('integer', [10, 2]), self._literal('string', [''])],
-            'options': {'delimiter': ',', 'sort': 'numeric', 'order': 'ascending'}}}
+        native_unique = {'unique': [self._literal('string', ['a']),
+                                    self._literal('string', ['b'])]}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
+                                         'expression': native_unique})['result-variable'], 'string')
+        merge = {'merge': {'delimiter': ',', 'sort': 'numeric', 'order': 'ascending',
+                            'values': [self._literal('integer', [10, 2]),
+                                       self._literal('string', [''])]}}
         self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
                                          'expression': merge})['result-variable'], 'string')
+        native_merge = {'merge': {'delimiter': ',', 'sort': 'document', 'order': 'ascending',
+                                  'values': [self._literal('string', ['a']),
+                                             self._literal('string', ['b'])]}}
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
+                                         'expression': native_merge})['result-variable'], 'string')
 
-    def test_recovered_function_contract_rejects_bad_domains_and_arity(self):
-        empty_concat = {'function': {'name': 'concat', 'arguments': [
-            self._literal('string', [])], 'options': {}}}
-        with self.assertRaisesRegex(ValueError, 'at least two'):
-            self._validate({'kind': 'local', 'datatype': 'string', 'expression': empty_concat})
-        bad_unique = {'function': {'name': 'unique', 'arguments': [
-            self._literal('record', {'id': 1})], 'options': {}}}
-        with self.assertRaisesRegex(ValueError, 'scalar text operand'):
+    def test_recovered_function_contract_rejects_bad_domains(self):
+        bad_unique = {'unique': self._literal('record', {'id': 1})}
+        with self.assertRaisesRegex(ValueError, 'one scalar datatype'):
             self._validate({'kind': 'local', 'datatype': 'string', 'expression': bad_unique})
-        bad_count = {'function': {'name': 'count', 'arguments': [], 'options': {}}}
-        with self.assertRaisesRegex(ValueError, 'one or more'):
-            self._validate({'kind': 'local', 'datatype': 'integer', 'expression': bad_count})
+        mixed_unique = {'unique': [self._literal('string', ['a']),
+                                   self._literal('integer', [1])]}
+        with self.assertRaisesRegex(ValueError, 'one scalar datatype'):
+            self._validate({'kind': 'local', 'datatype': 'string', 'expression': mixed_unique})
+
 
     def test_owner_function_subset_rejects_implicit_casts_and_bad_options(self):
-        numeric_split = {'function': {'name': 'split', 'arguments': [self._literal('integer', 2)],
-                                      'options': {'delimiter': ','}}}
-        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
-                                         'expression': numeric_split})['result-variable'], 'string')
-        bad_substring = {'function': {'name': 'substring', 'arguments': [self._literal('string', 'abc')],
-                                      'options': {'substring_start': 1.0, 'substring_length': 2}}}
-        with self.assertRaisesRegex(ValueError, 'signed 32-bit'):
-            self._validate({'kind': 'local', 'datatype': 'string', 'expression': bad_substring})
+        numeric_split = {'split': {'delimiter': ',', 'value': self._literal('integer', 2)}}
+        with self.assertRaisesRegex(ValueError, 'requires string input'):
+            self._validate({'kind': 'local', 'datatype': 'string',
+                            'expression': numeric_split})
 
 
 class AbsencePrecedence(unittest.TestCase):
@@ -381,7 +378,7 @@ class CountRecovery(unittest.TestCase):
         self.assertEqual([a['literal']['value'] for a in expression['function']['arguments']], ['a', 'b'])
 
 class MultiComponentAggregationRecovery(unittest.TestCase):
-    def test_unique_preserves_ordered_components_in_recovery_envelope(self):
+    def test_unique_preserves_ordered_components_as_native_population(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -393,12 +390,13 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">b</literal_component>
         </unique>''')
         expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'unique')
-        self.assertEqual(len(expression['function']['arguments']), 2)
-        self.assertEqual(expression['function']['options'], {})
-        self.assertEqual(visitor.conversion_warnings[-1]['source_component_count'], 2)
+        self.assertEqual(expression, {'unique': [
+            {'literal': {'datatype': 'string', 'value': 'a'}},
+            {'literal': {'datatype': 'string', 'value': 'b'}},
+        ]})
+        self.assertEqual(visitor.conversion_warnings, [])
 
-    def test_merge_preserves_options_and_components_in_recovery_envelope(self):
+    def test_merge_preserves_options_and_components_as_native_population(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -410,12 +408,14 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">2</literal_component>
         </merge>''')
         expression = visitor.function(source)
-        self.assertEqual(expression['function']['name'], 'merge')
-        self.assertEqual(len(expression['function']['arguments']), 2)
-        self.assertEqual(expression['function']['options'], {
-            'delimiter': ',', 'sort': 'numeric', 'order': 'descending'})
+        self.assertEqual(expression, {'merge': {
+            'delimiter': ',', 'sort': 'numeric', 'order': 'descending',
+            'values': [
+                {'literal': {'datatype': 'string', 'value': '10'}},
+                {'literal': {'datatype': 'string', 'value': '2'}},
+            ]}})
 
-    def test_default_path_still_rejects_multi_component_aggregation(self):
+    def test_default_path_accepts_multi_component_aggregation(self):
         import xml.etree.ElementTree as ET
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()
@@ -426,8 +426,34 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">a</literal_component>
           <literal_component datatype="string">b</literal_component>
         </unique>''')
-        with self.assertRaisesRegex(ValueError, 'multiple aggregation components'):
-            visitor.function(source)
+        self.assertEqual(visitor.function(source), {'unique': [
+            {'literal': {'datatype': 'string', 'value': 'a'}},
+            {'literal': {'datatype': 'string', 'value': 'b'}},
+        ]})
+
+class NestedAggregationPopulation(unittest.TestCase):
+    def test_unique_retains_nested_concat_order_and_cartesian_components(self):
+        import xml.etree.ElementTree as ET
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+        visitor = AssessmentConverter(None, None, [])
+        source = ET.fromstring(f"""<unique xmlns="{OVAL}">
+          <literal_component datatype="string">/etc/firefox/policies</literal_component>
+          <concat>
+            <literal_component datatype="string">/usr/firefox</literal_component>
+            <literal_component datatype="string">/distribution</literal_component>
+          </concat>
+        </unique>""")
+        self.assertEqual(visitor.function(source), {'unique': [
+            {'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}},
+            {'concat': [
+                {'literal': {'datatype': 'string', 'value': '/usr/firefox'}},
+                {'literal': {'datatype': 'string', 'value': '/distribution'}},
+            ]},
+        ]})
+
 
 class NestedCountRecovery(unittest.TestCase):
     def test_nested_legacy_function_is_migrated_inside_count(self):

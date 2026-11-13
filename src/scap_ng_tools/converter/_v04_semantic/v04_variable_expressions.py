@@ -117,6 +117,8 @@ def assessment_variable_expressions(assessment):
             # Unique preserves the type of its input (and first occurrence
             # order) under the new expression-derived type contract.
             components = value if isinstance(value, list) else [value]
+            if not components:
+                raise ValueError('unique requires one or more components')
             domains = [expression(component) for component in components]
             result = set().union(*domains) if domains else set()
             if len(result) > 1 or 'record' in result:
