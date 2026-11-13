@@ -1,0 +1,345 @@
+{
+  "assessment": {
+    "id": "oval-org-mitre-oval-test-def-252-assessment",
+    "version": 1,
+    "assessment_title": "Evaluate to true if the string datatype is properly supported",
+    "mode": "automated",
+    "class": "miscellaneous",
+    "specification": {
+      "id": "scap-ng.pre-alpha.assessment",
+      "version": "0.4.0"
+    },
+    "variables": {
+      "oval-org-mitre-oval-test-var-719-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "test_string"
+          ]
+        }
+      },
+      "oval-org-mitre-oval-test-var-651-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "string_test"
+          ]
+        }
+      },
+      "oval-org-mitre-oval-test-var-382-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "TeSt_StRiNg"
+          ]
+        }
+      },
+      "oval-org-mitre-oval-test-var-739-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "StRiNg_TeSt"
+          ]
+        }
+      },
+      "oval-org-mitre-oval-test-var-425-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "9test9"
+          ]
+        }
+      },
+      "oval-org-mitre-oval-test-var-190-variable": {
+        "kind": "constant",
+        "datatype": "string",
+        "expression": {
+          "literal": [
+            "test"
+          ]
+        }
+      }
+    },
+    "tests": {
+      "oval-org-mitre-oval-test-tst-3-test": {
+        "test_title": "Test that the equals operation is supported with two equal string values.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "equals": "test_string"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-719-variable"
+      },
+      "oval-org-mitre-oval-test-tst-246-test": {
+        "test_title": "Test that the equals operation is supported with two unequal string values.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "equals": "test_string"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-651-variable"
+      },
+      "oval-org-mitre-oval-test-tst-945-test": {
+        "test_title": "Test that the not equal operation is supported with two equal string values.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "not_equal": "test_string"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-719-variable"
+      },
+      "oval-org-mitre-oval-test-tst-336-test": {
+        "test_title": "Test that the not equal operation is supported with two unequal string values.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "not_equal": "test_string"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-651-variable"
+      },
+      "oval-org-mitre-oval-test-tst-468-test": {
+        "test_title": "Test that the case insensitive equals operation is supported with two mixed case equal string values.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "case_insensitive_equals": "test_string"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-382-variable"
+      },
+      "oval-org-mitre-oval-test-tst-684-test": {
+        "test_title": "Test that the case insensitive equals operation is supported with two mixed case unequal string values.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "case_insensitive_equals": "test_string"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-739-variable"
+      },
+      "oval-org-mitre-oval-test-tst-931-test": {
+        "test_title": "Test that the case insensitive not equal operation is supported with two mixed case equal string values.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "case_insensitive_not_equal": "test_string"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-382-variable"
+      },
+      "oval-org-mitre-oval-test-tst-914-test": {
+        "test_title": "Test that the case insensitive not equal operation is supported with two mixed case unequal string values.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "case_insensitive_not_equal": "test_string"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-739-variable"
+      },
+      "oval-org-mitre-oval-test-tst-42-test": {
+        "test_title": "Test that the pattern match operation is supported with a string value that matches the specified regular expression.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "matches_regex": "[0-9]([a-z])*[0-9]"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-425-variable"
+      },
+      "oval-org-mitre-oval-test-tst-262-test": {
+        "test_title": "Test that the pattern match operation is supported with a string value that doesn't match the specified regular expression.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "one_or_more"
+          },
+          "fields": {
+            "value": {
+              "matches_regex": "[0-9]([a-z])*[0-9]"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-190-variable"
+      }
+    },
+    "evaluate": {
+      "and": [
+        {
+          "and": [
+            {
+              "test": "oval-org-mitre-oval-test-tst-3-test"
+            },
+            {
+              "not": {
+                "test": "oval-org-mitre-oval-test-tst-246-test"
+              }
+            }
+          ]
+        },
+        {
+          "and": [
+            {
+              "not": {
+                "test": "oval-org-mitre-oval-test-tst-945-test"
+              }
+            },
+            {
+              "test": "oval-org-mitre-oval-test-tst-336-test"
+            }
+          ]
+        },
+        {
+          "and": [
+            {
+              "test": "oval-org-mitre-oval-test-tst-468-test"
+            },
+            {
+              "not": {
+                "test": "oval-org-mitre-oval-test-tst-684-test"
+              }
+            }
+          ]
+        },
+        {
+          "and": [
+            {
+              "not": {
+                "test": "oval-org-mitre-oval-test-tst-931-test"
+              }
+            },
+            {
+              "test": "oval-org-mitre-oval-test-tst-914-test"
+            }
+          ]
+        },
+        {
+          "and": [
+            {
+              "test": "oval-org-mitre-oval-test-tst-42-test"
+            },
+            {
+              "not": {
+                "test": "oval-org-mitre-oval-test-tst-262-test"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

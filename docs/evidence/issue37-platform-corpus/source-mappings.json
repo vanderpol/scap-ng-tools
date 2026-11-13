@@ -1,0 +1,244 @@
+[
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/ind-def_variable_test.xml",
+    "source_sha256": "878fa0adc9e27e518fbdac75756b04ef8ed0c9facf937caf98576dc185414b85",
+    "definition_id": "oval:org.mitre.oval.test:def:538",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:1",
+      "oval:org.mitre.oval.test:tst:2",
+      "oval:org.mitre.oval.test:tst:3",
+      "oval:org.mitre.oval.test:tst:4"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-1-test",
+      "oval-org-mitre-oval-test-tst-2-test",
+      "oval-org-mitre-oval-test-tst-3-test",
+      "oval-org-mitre-oval-test-tst-4-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_constant_variable.xml",
+    "source_sha256": "57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91",
+    "definition_id": "oval:org.mitre.oval.test:def:92",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:695",
+      "oval:org.mitre.oval.test:tst:324"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-324-test",
+      "oval-org-mitre-oval-test-tst-695-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_variable_component.xml",
+    "source_sha256": "5d32d88d7773bd89438f9afcb95f0afb9c3b9c6eca199899799b409b12abf2be",
+    "definition_id": "oval:org.mitre.oval.test:def:118",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:311",
+      "oval:org.mitre.oval.test:tst:180"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-180-test",
+      "oval-org-mitre-oval-test-tst-311-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_check_enumeration_entity.xml",
+    "source_sha256": "f9e0c3706ecbe282f2e0ece9a833cfa419510557356bc0dfc3edd0d2a29ca19a",
+    "definition_id": "oval:org.mitre.oval.test:def:687",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:855",
+      "oval:org.mitre.oval.test:tst:663",
+      "oval:org.mitre.oval.test:tst:679",
+      "oval:org.mitre.oval.test:tst:515",
+      "oval:org.mitre.oval.test:tst:591",
+      "oval:org.mitre.oval.test:tst:647",
+      "oval:org.mitre.oval.test:tst:854",
+      "oval:org.mitre.oval.test:tst:29",
+      "oval:org.mitre.oval.test:tst:287",
+      "oval:org.mitre.oval.test:tst:818"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-287-test",
+      "oval-org-mitre-oval-test-tst-29-test",
+      "oval-org-mitre-oval-test-tst-515-test",
+      "oval-org-mitre-oval-test-tst-591-test",
+      "oval-org-mitre-oval-test-tst-647-test",
+      "oval-org-mitre-oval-test-tst-663-test",
+      "oval-org-mitre-oval-test-tst-679-test",
+      "oval-org-mitre-oval-test-tst-818-test",
+      "oval-org-mitre-oval-test-tst-854-test",
+      "oval-org-mitre-oval-test-tst-855-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_check_enumeration_variable_values.xml",
+    "source_sha256": "cb317fa5d8073a9fe994175e4ba270857f4278c3f00bd895096147e962e6e8be",
+    "definition_id": "oval:org.mitre.oval.test:def:170",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:636",
+      "oval:org.mitre.oval.test:tst:879",
+      "oval:org.mitre.oval.test:tst:271",
+      "oval:org.mitre.oval.test:tst:719",
+      "oval:org.mitre.oval.test:tst:11",
+      "oval:org.mitre.oval.test:tst:714",
+      "oval:org.mitre.oval.test:tst:208",
+      "oval:org.mitre.oval.test:tst:892",
+      "oval:org.mitre.oval.test:tst:735",
+      "oval:org.mitre.oval.test:tst:633"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-11-test",
+      "oval-org-mitre-oval-test-tst-208-test",
+      "oval-org-mitre-oval-test-tst-271-test",
+      "oval-org-mitre-oval-test-tst-633-test",
+      "oval-org-mitre-oval-test-tst-636-test",
+      "oval-org-mitre-oval-test-tst-714-test",
+      "oval-org-mitre-oval-test-tst-719-test",
+      "oval-org-mitre-oval-test-tst-735-test",
+      "oval-org-mitre-oval-test-tst-879-test",
+      "oval-org-mitre-oval-test-tst-892-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_int_datatype.xml",
+    "source_sha256": "bf3ae1b0f7dbbe4dde8bae9e30b16202ffd6101bfc42f053110eefaa97fa5965",
+    "definition_id": "oval:org.mitre.oval.test:def:356",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:157",
+      "oval:org.mitre.oval.test:tst:639",
+      "oval:org.mitre.oval.test:tst:147",
+      "oval:org.mitre.oval.test:tst:502",
+      "oval:org.mitre.oval.test:tst:842",
+      "oval:org.mitre.oval.test:tst:117",
+      "oval:org.mitre.oval.test:tst:232",
+      "oval:org.mitre.oval.test:tst:753",
+      "oval:org.mitre.oval.test:tst:534",
+      "oval:org.mitre.oval.test:tst:530",
+      "oval:org.mitre.oval.test:tst:576",
+      "oval:org.mitre.oval.test:tst:856",
+      "oval:org.mitre.oval.test:tst:442",
+      "oval:org.mitre.oval.test:tst:361",
+      "oval:org.mitre.oval.test:tst:245",
+      "oval:org.mitre.oval.test:tst:478",
+      "oval:org.mitre.oval.test:tst:677",
+      "oval:org.mitre.oval.test:tst:393",
+      "oval:org.mitre.oval.test:tst:599",
+      "oval:org.mitre.oval.test:tst:103"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-103-test",
+      "oval-org-mitre-oval-test-tst-117-test",
+      "oval-org-mitre-oval-test-tst-147-test",
+      "oval-org-mitre-oval-test-tst-157-test",
+      "oval-org-mitre-oval-test-tst-232-test",
+      "oval-org-mitre-oval-test-tst-245-test",
+      "oval-org-mitre-oval-test-tst-361-test",
+      "oval-org-mitre-oval-test-tst-393-test",
+      "oval-org-mitre-oval-test-tst-442-test",
+      "oval-org-mitre-oval-test-tst-478-test",
+      "oval-org-mitre-oval-test-tst-502-test",
+      "oval-org-mitre-oval-test-tst-530-test",
+      "oval-org-mitre-oval-test-tst-534-test",
+      "oval-org-mitre-oval-test-tst-576-test",
+      "oval-org-mitre-oval-test-tst-599-test",
+      "oval-org-mitre-oval-test-tst-639-test",
+      "oval-org-mitre-oval-test-tst-677-test",
+      "oval-org-mitre-oval-test-tst-753-test",
+      "oval-org-mitre-oval-test-tst-842-test",
+      "oval-org-mitre-oval-test-tst-856-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_string_datatype.xml",
+    "source_sha256": "58ca3747e110831969600ecdd72f591c37adf099658e4cc3babf03779a2a9a2e",
+    "definition_id": "oval:org.mitre.oval.test:def:252",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:3",
+      "oval:org.mitre.oval.test:tst:246",
+      "oval:org.mitre.oval.test:tst:945",
+      "oval:org.mitre.oval.test:tst:336",
+      "oval:org.mitre.oval.test:tst:468",
+      "oval:org.mitre.oval.test:tst:684",
+      "oval:org.mitre.oval.test:tst:931",
+      "oval:org.mitre.oval.test:tst:914",
+      "oval:org.mitre.oval.test:tst:42",
+      "oval:org.mitre.oval.test:tst:262"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-246-test",
+      "oval-org-mitre-oval-test-tst-262-test",
+      "oval-org-mitre-oval-test-tst-3-test",
+      "oval-org-mitre-oval-test-tst-336-test",
+      "oval-org-mitre-oval-test-tst-42-test",
+      "oval-org-mitre-oval-test-tst-468-test",
+      "oval-org-mitre-oval-test-tst-684-test",
+      "oval-org-mitre-oval-test-tst-914-test",
+      "oval-org-mitre-oval-test-tst-931-test",
+      "oval-org-mitre-oval-test-tst-945-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/unix/oval-def_set-unix.xml",
+    "source_sha256": "ca472ba6709eb0290284287897bd7a976c8634f9107de7e29fd1eae21001e808",
+    "definition_id": "oval:org.mitre.oval.test:def:276",
+    "source_test_ids": [
+      "oval:org.mitre.oval.test:tst:1091",
+      "oval:org.mitre.oval.test:tst:803",
+      "oval:org.mitre.oval.test:tst:813",
+      "oval:org.mitre.oval.test:tst:451",
+      "oval:org.mitre.oval.test:tst:99",
+      "oval:org.mitre.oval.test:tst:661",
+      "oval:org.mitre.oval.test:tst:116"
+    ],
+    "native_test_ids": [
+      "oval-org-mitre-oval-test-tst-1091-test",
+      "oval-org-mitre-oval-test-tst-116-test",
+      "oval-org-mitre-oval-test-tst-451-test",
+      "oval-org-mitre-oval-test-tst-661-test",
+      "oval-org-mitre-oval-test-tst-803-test",
+      "oval-org-mitre-oval-test-tst-813-test",
+      "oval-org-mitre-oval-test-tst-99-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_unix_oval-def_set-unix.xml/oval_org.mitre.oval.test_def_276/source-trace.json"
+  },
+  {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/unix/unix-def_file_test.xml",
+    "source_sha256": "8d0b0a33aa53815498f0adb501fb7177ec7e887dff243f07afc7866659dced7f",
+    "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+    "source_test_ids": [
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:4",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:5",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:6",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:7",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:9",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:10",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:12",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:13"
+    ],
+    "native_test_ids": [
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-1-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-10-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-12-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-13-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-2-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-3-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-4-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-5-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-6-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-7-test",
+      "oval-navy-navwar-niwcatlantic-scc-test-tst-9-test"
+    ],
+    "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_unix_unix-def_file_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/source-trace.json"
+  }
+]

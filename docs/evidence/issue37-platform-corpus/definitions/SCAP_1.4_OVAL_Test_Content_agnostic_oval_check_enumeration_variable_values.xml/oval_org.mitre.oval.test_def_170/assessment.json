@@ -1,0 +1,323 @@
+{
+  "assessment": {
+    "id": "oval-org-mitre-oval-test-def-170-assessment",
+    "version": 1,
+    "assessment_title": "Evaluate to true if the oval:CheckEnumeration simple type is properly supported for the relationship between the instances of an entity and multiple variable values",
+    "mode": "automated",
+    "class": "miscellaneous",
+    "specification": {
+      "id": "scap-ng.pre-alpha.assessment",
+      "version": "0.4.0"
+    },
+    "variables": {
+      "oval-org-mitre-oval-test-var-607-variable": {
+        "kind": "constant",
+        "datatype": "integer",
+        "expression": {
+          "literal": [
+            -1,
+            -2,
+            -3
+          ]
+        }
+      },
+      "oval-org-mitre-oval-test-var-699-variable": {
+        "kind": "constant",
+        "datatype": "integer",
+        "expression": {
+          "literal": [
+            1,
+            2,
+            3
+          ]
+        }
+      }
+    },
+    "tests": {
+      "oval-org-mitre-oval-test-tst-636-test": {
+        "test_title": "Test that the CheckEnumeration value 'all' is supported where all of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "greater_than": {
+                "variable": "oval-org-mitre-oval-test-var-607-variable"
+              },
+              "value_match": "every"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-879-test": {
+        "test_title": "Test that the CheckEnumeration value 'all' is supported where none of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "less_than": {
+                "variable": "oval-org-mitre-oval-test-var-607-variable"
+              },
+              "value_match": "every"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-271-test": {
+        "test_title": "Test that the CheckEnumeration value 'at least one' is supported where more than one of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "greater_than": {
+                "variable": "oval-org-mitre-oval-test-var-607-variable"
+              },
+              "value_match": "one_or_more"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-719-test": {
+        "test_title": "Test that the CheckEnumeration value 'at least one' is supported where one of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "equals": {
+                "variable": "oval-org-mitre-oval-test-var-699-variable"
+              },
+              "value_match": "one_or_more"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-11-test": {
+        "test_title": "Test that the CheckEnumeration value 'at least one' is supported where none of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "less_than": {
+                "variable": "oval-org-mitre-oval-test-var-607-variable"
+              },
+              "value_match": "one_or_more"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-714-test": {
+        "test_title": "Test that the CheckEnumeration value 'none satisfy' is supported where all of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "greater_than": {
+                "variable": "oval-org-mitre-oval-test-var-607-variable"
+              },
+              "value_match": "none"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-208-test": {
+        "test_title": "Test that the CheckEnumeration value 'none satisfy' is supported where none of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "less_than": {
+                "variable": "oval-org-mitre-oval-test-var-607-variable"
+              },
+              "value_match": "none"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-892-test": {
+        "test_title": "Test that the CheckEnumeration value 'only one' is supported where more than one of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "greater_than": {
+                "variable": "oval-org-mitre-oval-test-var-607-variable"
+              },
+              "value_match": "exactly_one"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-735-test": {
+        "test_title": "Test that the CheckEnumeration value 'only one' is supported where one of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "equals": {
+                "variable": "oval-org-mitre-oval-test-var-699-variable"
+              },
+              "value_match": "exactly_one"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      },
+      "oval-org-mitre-oval-test-tst-633-test": {
+        "test_title": "Test that the CheckEnumeration value 'only one' is supported where none of the individual results are true.",
+        "capability": "variable.value",
+        "require": {
+          "item_requirement": {
+            "items_found": "one_or_more",
+            "items_satisfying": "every"
+          },
+          "fields": {
+            "value": {
+              "less_than": {
+                "variable": "oval-org-mitre-oval-test-var-607-variable"
+              },
+              "value_match": "exactly_one"
+            }
+          },
+          "field_requirement": {
+            "values_found": "one_or_more",
+            "values_matching": "every"
+          }
+        },
+        "reported_elements": "all",
+        "variable": "oval-org-mitre-oval-test-var-699-variable"
+      }
+    },
+    "evaluate": {
+      "and": [
+        {
+          "test": "oval-org-mitre-oval-test-tst-636-test"
+        },
+        {
+          "not": {
+            "test": "oval-org-mitre-oval-test-tst-879-test"
+          }
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-271-test"
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-719-test"
+        },
+        {
+          "not": {
+            "test": "oval-org-mitre-oval-test-tst-11-test"
+          }
+        },
+        {
+          "not": {
+            "test": "oval-org-mitre-oval-test-tst-714-test"
+          }
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-208-test"
+        },
+        {
+          "not": {
+            "test": "oval-org-mitre-oval-test-tst-892-test"
+          }
+        },
+        {
+          "test": "oval-org-mitre-oval-test-tst-735-test"
+        },
+        {
+          "not": {
+            "test": "oval-org-mitre-oval-test-tst-633-test"
+          }
+        }
+      ]
+    }
+  }
+}

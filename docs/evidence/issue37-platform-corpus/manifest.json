@@ -1,0 +1,320 @@
+{
+  "format": "scap-ng-tools-self-assertion-conversion/2",
+  "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_roots": [
+    "SCAP_1.4/OVAL_Test_Content/agnostic",
+    "SCAP_1.4/OVAL_Test_Content/unix",
+    "SCAP_1.4/OVAL_Test_Content/linux"
+  ],
+  "schema": {
+    "schema_version": "0.4.0",
+    "physical_layout": "schema/",
+    "logical_id_prefix": "https://scap-ng.dev/schema/v0.4.0/",
+    "schema_json_count": 145,
+    "root_schema_count": 35,
+    "root_ref_count": 673,
+    "supported_capability_count": 100,
+    "aggregate_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+    "external_snapshot_required": true
+  },
+  "converter": "scap_ng_tools.converter.direct04",
+  "conversion_policy": "production CLI only; no manual native rewrites or expected outcomes",
+  "feature_inventory": {
+    "policy": "source-graph labels only; converter diagnostics remain authoritative; no semantics inferred",
+    "blocked_definition_feature_counts": {
+      "external_variables": 1,
+      "functions": 10,
+      "object_components": 4,
+      "source_family:agnostic": 40,
+      "source_family:linux": 16,
+      "source_family:unix": 11,
+      "source_test_kind:apparmorstatus_test": 1,
+      "source_test_kind:dpkginfo_test": 1,
+      "source_test_kind:environmentvariable58_test": 1,
+      "source_test_kind:family_test": 1,
+      "source_test_kind:filehash58_test": 1,
+      "source_test_kind:inetlisteningservers_test": 1,
+      "source_test_kind:interface_test": 1,
+      "source_test_kind:kernelmodule_test": 1,
+      "source_test_kind:partition_test": 1,
+      "source_test_kind:password_test": 1,
+      "source_test_kind:process58_test": 1,
+      "source_test_kind:rpminfo_test": 1,
+      "source_test_kind:rpmverifyfile_test": 1,
+      "source_test_kind:rpmverifypackage_test": 1,
+      "source_test_kind:selinuxboolean_test": 1,
+      "source_test_kind:selinuxsecuritycontext_test": 1,
+      "source_test_kind:sestatus_test": 1,
+      "source_test_kind:shadow_test": 1,
+      "source_test_kind:shellcommand_test": 1,
+      "source_test_kind:sshd_test": 1,
+      "source_test_kind:symlink_test": 2,
+      "source_test_kind:sysctl_test": 1,
+      "source_test_kind:systemdunitdependency_test": 1,
+      "source_test_kind:systemdunitproperty_test": 1,
+      "source_test_kind:textfilecontent54_test": 1,
+      "source_test_kind:uname_test": 1,
+      "source_test_kind:unknown_test": 1,
+      "source_test_kind:variable_test": 35,
+      "source_test_kind:xmlfilecontent_test": 1,
+      "unsupported_declaration:family_test": 1,
+      "unsupported_declaration:unknown_test": 1,
+      "variable_datatype:binary": 6,
+      "variable_datatype:boolean": 12,
+      "variable_datatype:evr_string": 3,
+      "variable_datatype:float": 4,
+      "variable_datatype:int": 7,
+      "variable_datatype:ipv4_address": 1,
+      "variable_datatype:ipv6_address": 1,
+      "variable_datatype:string": 18,
+      "variable_datatype:version": 3,
+      "variable_object_sets_or_filters": 3
+    },
+    "blocked_test_feature_counts": {
+      "external_variables": 18,
+      "functions": 88,
+      "object_components": 11,
+      "source_family:agnostic": 270,
+      "source_family:linux": 62,
+      "source_family:unix": 54,
+      "source_test_kind:apparmorstatus_test": 1,
+      "source_test_kind:dpkginfo_test": 3,
+      "source_test_kind:environmentvariable58_test": 3,
+      "source_test_kind:family_test": 1,
+      "source_test_kind:filehash58_test": 3,
+      "source_test_kind:inetlisteningservers_test": 3,
+      "source_test_kind:interface_test": 5,
+      "source_test_kind:kernelmodule_test": 3,
+      "source_test_kind:partition_test": 3,
+      "source_test_kind:password_test": 6,
+      "source_test_kind:process58_test": 8,
+      "source_test_kind:rpminfo_test": 3,
+      "source_test_kind:rpmverifyfile_test": 3,
+      "source_test_kind:rpmverifypackage_test": 4,
+      "source_test_kind:selinuxboolean_test": 3,
+      "source_test_kind:selinuxsecuritycontext_test": 7,
+      "source_test_kind:sestatus_test": 3,
+      "source_test_kind:shadow_test": 3,
+      "source_test_kind:shellcommand_test": 5,
+      "source_test_kind:sshd_test": 4,
+      "source_test_kind:symlink_test": 6,
+      "source_test_kind:sysctl_test": 5,
+      "source_test_kind:systemdunitdependency_test": 3,
+      "source_test_kind:systemdunitproperty_test": 10,
+      "source_test_kind:textfilecontent54_test": 11,
+      "source_test_kind:uname_test": 1,
+      "source_test_kind:unknown_test": 1,
+      "source_test_kind:variable_test": 268,
+      "source_test_kind:xmlfilecontent_test": 7,
+      "unsupported_declaration:family_test": 1,
+      "unsupported_declaration:unknown_test": 1,
+      "variable_datatype:binary": 10,
+      "variable_datatype:boolean": 16,
+      "variable_datatype:evr_string": 19,
+      "variable_datatype:float": 27,
+      "variable_datatype:int": 18,
+      "variable_datatype:ipv4_address": 13,
+      "variable_datatype:ipv6_address": 13,
+      "variable_datatype:string": 97,
+      "variable_datatype:version": 51,
+      "variable_object_sets_or_filters": 22
+    }
+  },
+  "summary": {
+    "definitions": 76,
+    "tests": 462,
+    "converted_definitions": 9,
+    "blocked_definitions": 67,
+    "schema_valid_yaml_documents": 9,
+    "converted_tests": 76,
+    "blocked_tests": 386,
+    "execution": "not_run"
+  },
+  "artifacts": {
+    "NOTICES.txt": {
+      "sha256": "ca4e6ded1d254708d13ce6da9030b7b17bd4e96fa49eedb573f8f9ba3f853f6e",
+      "bytes": 3208
+    },
+    "README.md": {
+      "sha256": "e6e2695c12f26ce0cf9badb267141ba863718bee6c83272416865907ca15ac2a",
+      "bytes": 631
+    },
+    "blocked-definitions.json": {
+      "sha256": "1b78f77c3452c2182b427aab416dbb62f36a73b9c9d51f80535c62d6d20f256a",
+      "bytes": 107874
+    },
+    "blocked-tests.jsonl": {
+      "sha256": "9271723159a5c1748462c001a5fe65998e79e7cb597def765768425131ad4aae",
+      "bytes": 335233
+    },
+    "blocked.json": {
+      "sha256": "01cc57db949f92bd0c41c0b3b91432e0951be6a500d30caecf4ef7e92bd66e04",
+      "bytes": 534325
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/assessment.json": {
+      "sha256": "cb2566084914b15948df83bde1ea36d844b015854fc06f5ac5fee60631fd8510",
+      "bytes": 4390
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/assessment.yaml": {
+      "sha256": "7eb4adf077604021425770adde9a127f0fdd8e112838412d6eccbc335ea8808c",
+      "bytes": 3136
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/conversion-scope.json": {
+      "sha256": "af08005cd9b8c09eab225d280e16eedbfbcc9a67ba6e36905f8f502b99897cb6",
+      "bytes": 1043
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_ind-def_variable_test.xml/oval_org.mitre.oval.test_def_538/source-trace.json": {
+      "sha256": "de751f20faac7b0c4e8f1f19e0af8e288e9225adf4d2b353a560f95093ad789b",
+      "bytes": 7131
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/assessment.json": {
+      "sha256": "2a2a81f93240d62960342752bc5bf7ed2235dc9c9a0e591cd55c6bca187e89a4",
+      "bytes": 2508
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/assessment.yaml": {
+      "sha256": "9cc8319868c2f22031e49837a0fb10a24c6dee02d34f2f065b1641e799415aa8",
+      "bytes": 1803
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/conversion-scope.json": {
+      "sha256": "d03f9338aac58f2327acbc81464ac5d03a4c60bd940650585d888ae26207e0b0",
+      "bytes": 1047
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_constant_variable.xml/oval_org.mitre.oval.test_def_92/source-trace.json": {
+      "sha256": "5610f9c38a9614aec8cbd68aff4a1ecf199a87d461e8c6f1b4d958e7cfbc8c26",
+      "bytes": 5812
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/assessment.json": {
+      "sha256": "bc18a0386fa851f7a56ce08a8901209e150d65b62f56d1a6a65850600d3de9b2",
+      "bytes": 3112
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/assessment.yaml": {
+      "sha256": "849483f01f659c5289fad7ece668682628ebc66e2c280b53b975e0e5e42b5f09",
+      "bytes": 2300
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/conversion-scope.json": {
+      "sha256": "9eb265b23f11f5ac4cbd2ade618b36dbc7ee9e0d3f655f1cafa4d984950cf9b5",
+      "bytes": 1049
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval-def_variable_component.xml/oval_org.mitre.oval.test_def_118/source-trace.json": {
+      "sha256": "66dc60f79f9141b72a6ffc3f4b00758f88e693a0cb74c80b2354de10fbd7ecf4",
+      "bytes": 6673
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/assessment.json": {
+      "sha256": "187252ae07afef529c59b8bbebf9b5472573e2e160960407d25b8892dcaae470",
+      "bytes": 8948
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/assessment.yaml": {
+      "sha256": "7fe14369977dabeee4f42889725280d29d7f56e62df5050fa05cbdf09d80297c",
+      "bytes": 6545
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/conversion-scope.json": {
+      "sha256": "d4252586a261ed11d5fc0f261093eba024e537bcfee11a2e50cd055d24f1241e",
+      "bytes": 1051
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_entity.xml/oval_org.mitre.oval.test_def_687/source-trace.json": {
+      "sha256": "6c43348721a82debb9b8c7399b09bff1ce4d338f050014552a53d59684184d4b",
+      "bytes": 16267
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/assessment.json": {
+      "sha256": "2475c2a558fcf6149a1d8b42cfe42a7c6ae44c839503c174ee1acb98fda6d61e",
+      "bytes": 10467
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/assessment.yaml": {
+      "sha256": "0808443619446c3d78ac0a77de034c4c8093cbdad2e61262a02e73b784cc7704",
+      "bytes": 7683
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/conversion-scope.json": {
+      "sha256": "3e6375757e15439206bc16c2cece3006c3eac68af44f79e456ec454579290794",
+      "bytes": 1060
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_check_enumeration_variable_values.xml/oval_org.mitre.oval.test_def_170/source-trace.json": {
+      "sha256": "5b73b3c692dbd9dcee797ddc469ae158fa9e5e39708e36553b7ab61afcc5e392",
+      "bytes": 18056
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/assessment.json": {
+      "sha256": "c9d4e4371af5097dc389c700f2feb4e5bdb6495d614b7066da4c59049e7dd42e",
+      "bytes": 18361
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/assessment.yaml": {
+      "sha256": "6f5d7d617d8047731dfe8fa184401ea6dfa6022f4ba91808eea1fb29921fd33e",
+      "bytes": 12894
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/conversion-scope.json": {
+      "sha256": "38616b67fedb0f4796638f17cbab40c48d09b027f0057ee651aaa9b270a23d45",
+      "bytes": 1039
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_int_datatype.xml/oval_org.mitre.oval.test_def_356/source-trace.json": {
+      "sha256": "3bf5c768ae4dc8f50d23cfc0b8de36198df33f0305799e9f27905968aedd90ee",
+      "bytes": 34266
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/assessment.json": {
+      "sha256": "83ffe5919ca8ac230c70ee0aa81fd7865ac6d0c95902e66636be08335fd2fbf7",
+      "bytes": 10402
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/assessment.yaml": {
+      "sha256": "79afb40057abd05d95d91a6e716a8174cfae42538b9e35766ce4483d90fde0b8",
+      "bytes": 7282
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/conversion-scope.json": {
+      "sha256": "abcd0588c6fb2f5fca9e7200b9f5e40a66d70c4be7f7b17c02b8adea3c15bc08",
+      "bytes": 1042
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_agnostic_oval_string_datatype.xml/oval_org.mitre.oval.test_def_252/source-trace.json": {
+      "sha256": "224f0fe7a386db78947eebe0d545eb0a23bdc0b9d7671ee9dfca99a63cc2fc10",
+      "bytes": 17716
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_unix_oval-def_set-unix.xml/oval_org.mitre.oval.test_def_276/assessment.json": {
+      "sha256": "133d08de171e1f3a83b52245269692047f413a39a6b6820ae7484d977db05322",
+      "bytes": 22067
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_unix_oval-def_set-unix.xml/oval_org.mitre.oval.test_def_276/assessment.yaml": {
+      "sha256": "1874f16678122102a19cd609b5838b640f6b29ca990cbc58f334d545af1177e8",
+      "bytes": 12452
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_unix_oval-def_set-unix.xml/oval_org.mitre.oval.test_def_276/conversion-scope.json": {
+      "sha256": "f4189cff4f8b92961127e61d2480e6582bcc6f93a4d8b4aeca0fb64566b26a6f",
+      "bytes": 1035
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_unix_oval-def_set-unix.xml/oval_org.mitre.oval.test_def_276/source-trace.json": {
+      "sha256": "08545d296da229861b0ee2373b430adecb191e4ccc4e9c3fb94c654b5eaed6cf",
+      "bytes": 12451
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_unix_unix-def_file_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.json": {
+      "sha256": "7e6b0b7e7fb513dc69ada76a37db91dd4a9ccd919cf6d9269ed362063f23862e",
+      "bytes": 13310
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_unix_unix-def_file_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.yaml": {
+      "sha256": "e7dbfbfc49e9e71f356b2dd05240aabbfa937fc423ac3bcd5423c50d83eb754f",
+      "bytes": 9014
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_unix_unix-def_file_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/conversion-scope.json": {
+      "sha256": "4b477903bf3912b4eecae49c8ff8f7b546de736faacf74efb1e1be3e088121bc",
+      "bytes": 1048
+    },
+    "definitions/SCAP_1.4_OVAL_Test_Content_unix_unix-def_file_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/source-trace.json": {
+      "sha256": "5d7d67762f5ff98f35ad00b1d4e898709d55780877ee2959aee729edf58ef190",
+      "bytes": 18029
+    },
+    "definitions.json": {
+      "sha256": "3e3ee0399a064b00675bc69d010d847e3d089d108a0e16aa5df744bfe150264d",
+      "bytes": 128149
+    },
+    "feature-inventory.json": {
+      "sha256": "dfbbef2730e2a91361468f1885f932db721179d37f956e3ce3da6c8cbee5a130",
+      "bytes": 4066
+    },
+    "source-mappings.json": {
+      "sha256": "e160957606fd1fafa2e570bf6c2cf88e0b3ff7da2d6ac50bcfc2884201322f92",
+      "bytes": 11097
+    },
+    "tests.jsonl": {
+      "sha256": "517324a91b8ca5443ef6c9f1a0121d05eafd742d3aa867d7905cdfca121fbd3f",
+      "bytes": 398554
+    },
+    "validation.json": {
+      "sha256": "fbcf7cfbe52f715f1e6bfba2cfd31710784bdd7dee19cfe931546bc9c18fb6e5",
+      "bytes": 423
+    }
+  }
+}

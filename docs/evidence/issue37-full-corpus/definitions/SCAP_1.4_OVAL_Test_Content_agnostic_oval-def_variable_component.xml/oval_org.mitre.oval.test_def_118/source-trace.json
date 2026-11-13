@@ -1,0 +1,202 @@
+{
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_variable_component.xml",
+  "source_sha256": "5d32d88d7773bd89438f9afcb95f0afb9c3b9c6eca199899799b409b12abf2be",
+  "definition_id": "oval:org.mitre.oval.test:def:118",
+  "source_nodes": {
+    "oval:org.mitre.oval.test:def:118": {
+      "kind": "definition",
+      "sha256": "7663191988baadc158cecb5285da51b4fd89917be6b73e52a436c597c691f599",
+      "references": [
+        {
+          "attribute": "test_ref",
+          "id": "oval:org.mitre.oval.test:tst:311"
+        },
+        {
+          "attribute": "test_ref",
+          "id": "oval:org.mitre.oval.test:tst:180"
+        }
+      ]
+    },
+    "oval:org.mitre.oval.test:obj:293": {
+      "kind": "object",
+      "sha256": "354672164537f027bc54f8d188845dc36d091a62a2da50365f316b35a9c4732c",
+      "references": [
+        {
+          "attribute": "var_ref_text",
+          "id": "oval:org.mitre.oval.test:var:866"
+        }
+      ]
+    },
+    "oval:org.mitre.oval.test:obj:480": {
+      "kind": "object",
+      "sha256": "5db93d13645eb2867afc6d5588db76091787f120beaa86ce9b68a4d2a917a3a1",
+      "references": [
+        {
+          "attribute": "var_ref_text",
+          "id": "oval:org.mitre.oval.test:var:817"
+        }
+      ]
+    },
+    "oval:org.mitre.oval.test:ste:157": {
+      "kind": "state",
+      "sha256": "5814ba7e9c52f85d8e34dc04f43405e85c1471e633defc15936bbb4b9a0f665c",
+      "references": []
+    },
+    "oval:org.mitre.oval.test:ste:967": {
+      "kind": "state",
+      "sha256": "c34e60bb47b1d4b78dda840d3baa9bba1bc7abf30754b1886065cefd19723e83",
+      "references": []
+    },
+    "oval:org.mitre.oval.test:tst:180": {
+      "kind": "test",
+      "sha256": "1c07b14f50411787016283e9a30f557492cf0937dae65ca8d2e78351b10b7ab0",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:org.mitre.oval.test:obj:293"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:org.mitre.oval.test:ste:157"
+        }
+      ]
+    },
+    "oval:org.mitre.oval.test:tst:311": {
+      "kind": "test",
+      "sha256": "b24ecb8f56acd4d912c09eebe881b4be3cc9c523c6bcd450e0d910d02d0a441e",
+      "references": [
+        {
+          "attribute": "object_ref",
+          "id": "oval:org.mitre.oval.test:obj:480"
+        },
+        {
+          "attribute": "state_ref",
+          "id": "oval:org.mitre.oval.test:ste:967"
+        }
+      ]
+    },
+    "oval:org.mitre.oval.test:var:721": {
+      "kind": "variable",
+      "sha256": "b84f952b7212d55f9ecd6f8babfa915bc968ed4dfe07d8c39bd1cb82fcfccba1",
+      "original_datatype_tokens": [
+        {
+          "path": [],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}constant_variable",
+          "token": "string",
+          "entity_sha256": "b84f952b7212d55f9ecd6f8babfa915bc968ed4dfe07d8c39bd1cb82fcfccba1"
+        }
+      ],
+      "references": []
+    },
+    "oval:org.mitre.oval.test:var:817": {
+      "kind": "variable",
+      "sha256": "bb0d304b6e3a4b01aa0e8fab08d68770dce4cd0fc7c0aca305ede42bb49bf5e7",
+      "original_datatype_tokens": [
+        {
+          "path": [],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "token": "string",
+          "entity_sha256": "bb0d304b6e3a4b01aa0e8fab08d68770dce4cd0fc7c0aca305ede42bb49bf5e7"
+        }
+      ],
+      "references": [
+        {
+          "attribute": "var_ref",
+          "id": "oval:org.mitre.oval.test:var:721"
+        }
+      ]
+    },
+    "oval:org.mitre.oval.test:var:852": {
+      "kind": "variable",
+      "sha256": "1562e06389cf7874cd20e0ea080eb10b61ca7bc69af8f8d31781715455dac084",
+      "original_datatype_tokens": [
+        {
+          "path": [],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}constant_variable",
+          "token": "string",
+          "entity_sha256": "1562e06389cf7874cd20e0ea080eb10b61ca7bc69af8f8d31781715455dac084"
+        }
+      ],
+      "references": []
+    },
+    "oval:org.mitre.oval.test:var:866": {
+      "kind": "variable",
+      "sha256": "3f408ed5db98deb6b07ff1233254118e26f2e2bc426d667ff602277483b5f425",
+      "original_datatype_tokens": [
+        {
+          "path": [],
+          "qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+          "token": "string",
+          "entity_sha256": "3f408ed5db98deb6b07ff1233254118e26f2e2bc426d667ff602277483b5f425"
+        }
+      ],
+      "references": [
+        {
+          "attribute": "var_ref",
+          "id": "oval:org.mitre.oval.test:var:852"
+        }
+      ]
+    }
+  },
+  "native_identities": [
+    {
+      "kind": "test",
+      "native_id": "oval-org-mitre-oval-test-tst-180-test",
+      "source_id": "oval:org.mitre.oval.test:tst:180"
+    },
+    {
+      "kind": "test",
+      "native_id": "oval-org-mitre-oval-test-tst-311-test",
+      "source_id": "oval:org.mitre.oval.test:tst:311"
+    },
+    {
+      "kind": "variable",
+      "native_id": "oval-org-mitre-oval-test-var-721-variable",
+      "source_id": "oval:org.mitre.oval.test:var:721"
+    },
+    {
+      "kind": "variable",
+      "native_id": "oval-org-mitre-oval-test-var-817-variable",
+      "source_id": "oval:org.mitre.oval.test:var:817"
+    },
+    {
+      "kind": "variable",
+      "native_id": "oval-org-mitre-oval-test-var-852-variable",
+      "source_id": "oval:org.mitre.oval.test:var:852"
+    },
+    {
+      "kind": "variable",
+      "native_id": "oval-org-mitre-oval-test-var-866-variable",
+      "source_id": "oval:org.mitre.oval.test:var:866"
+    }
+  ],
+  "test_bindings": [
+    {
+      "source_test": "oval:org.mitre.oval.test:tst:180",
+      "native_test": "oval-org-mitre-oval-test-tst-180-test",
+      "source_object": "oval:org.mitre.oval.test:obj:293",
+      "source_states": [
+        "oval:org.mitre.oval.test:ste:157"
+      ]
+    },
+    {
+      "source_test": "oval:org.mitre.oval.test:tst:311",
+      "native_test": "oval-org-mitre-oval-test-tst-311-test",
+      "source_object": "oval:org.mitre.oval.test:obj:480",
+      "source_states": [
+        "oval:org.mitre.oval.test:ste:967"
+      ]
+    }
+  ],
+  "qualification": "CONVERTED_UNVERIFIED",
+  "schema_validated": true,
+  "semantic_validated": true,
+  "scanner_execution": false,
+  "converter_commit": "71a23116749b4608e62bf1dafe2e85a9d3b55da1",
+  "converter_source_sha256": "38332f030fa97dee216db9ddff4e7c540acc8a921fdf2a4b24759c3f312f84de",
+  "converter_worktree_dirty": false,
+  "schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
+  "schema_family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+  "source_commit_blob_verified": true
+}

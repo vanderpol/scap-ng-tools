@@ -11,6 +11,7 @@ import importlib
 import json
 from pathlib import Path, PurePosixPath
 import sys
+import xml.etree.ElementTree as ET
 
 from scap_ng_tools.contracts import FrozenSchemaSnapshot
 
@@ -209,6 +210,17 @@ def conversion_identity(snapshot):
 
 def convert_oval_definition(**arguments):
     """Source adapter to the same production visitor and validation gates."""
+    raw = Path(arguments['source']).read_bytes()
+    root = ET.fromstring(raw)
+    test_kinds = {node.tag.rsplit('}', 1)[-1] for node in root.iter()
+                  if node.get('id') and node.tag.rsplit('}', 1)[-1].endswith('_test')}
+    # The platform adapter is deliberately closed over a homogeneous
+    # standalone unix.file document.  A file object referenced by another
+    # platform Test (for example rpmverifyfile) must not promote that document
+    # into the unix.file lane or erase the owning Test's diagnostic.
+    if test_kinds and test_kinds <= {'file_test'}:
+        from .oval_platform import convert_definition
+        return convert_definition(**arguments)
     from .oval_variables import convert_definition
     return convert_definition(**arguments)
 

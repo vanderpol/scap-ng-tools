@@ -1,0 +1,339 @@
+assessment:
+  id: oval-org-mitre-oval-test-def-356-assessment
+  version: 1
+  assessment_title: Evaluate to true if the int datatype is properly supported
+  mode: automated
+  class: miscellaneous
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  variables:
+    oval-org-mitre-oval-test-var-745-variable:
+      kind: constant
+      datatype: integer
+      expression:
+        literal:
+        - 1234
+    oval-org-mitre-oval-test-var-808-variable:
+      kind: constant
+      datatype: integer
+      expression:
+        literal:
+        - 942
+    oval-org-mitre-oval-test-var-920-variable:
+      kind: constant
+      datatype: integer
+      expression:
+        literal:
+        - 5890
+    oval-org-mitre-oval-test-var-386-variable:
+      kind: constant
+      datatype: integer
+      expression:
+        literal:
+        - 6
+    oval-org-mitre-oval-test-var-784-variable:
+      kind: constant
+      datatype: integer
+      expression:
+        literal:
+        - 1
+  tests:
+    oval-org-mitre-oval-test-tst-157-test:
+      test_title: Test that the equals operation is supported with two equal integer values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value: {equals: 1234}
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-745-variable
+    oval-org-mitre-oval-test-tst-639-test:
+      test_title: Test that the equals operation is supported with two unequal integer values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value: {equals: 1234}
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-808-variable
+    oval-org-mitre-oval-test-tst-147-test:
+      test_title: Test that the not equal operation is supported with two equal integer values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            not_equal: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-745-variable
+    oval-org-mitre-oval-test-tst-502-test:
+      test_title: Test that the not equal operation is supported with two unequal integer values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            not_equal: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-808-variable
+    oval-org-mitre-oval-test-tst-842-test:
+      test_title: Test that the greater than operation is supported with a greater than integer value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            greater_than: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-920-variable
+    oval-org-mitre-oval-test-tst-117-test:
+      test_title: Test that the greater than operation is supported with two equal integer values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            greater_than: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-745-variable
+    oval-org-mitre-oval-test-tst-232-test:
+      test_title: Test that the greater than operation is supported with a less than integer value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            greater_than: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-808-variable
+    oval-org-mitre-oval-test-tst-753-test:
+      test_title: Test that the greater than or equal operation is supported with a greater than integer value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            greater_than_or_equal: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-920-variable
+    oval-org-mitre-oval-test-tst-534-test:
+      test_title: Test that the greater than or equal operation is supported with two equal integer values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            greater_than_or_equal: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-745-variable
+    oval-org-mitre-oval-test-tst-530-test:
+      test_title: Test that the greater than or equal operation is supported with a less than integer value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            greater_than_or_equal: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-808-variable
+    oval-org-mitre-oval-test-tst-576-test:
+      test_title: Test that the less than operation is supported with a less than integer value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            less_than: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-808-variable
+    oval-org-mitre-oval-test-tst-856-test:
+      test_title: Test that the less than operation is supported with two equal integer values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            less_than: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-745-variable
+    oval-org-mitre-oval-test-tst-442-test:
+      test_title: Test that the less than operation is supported with a greater than integer value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            less_than: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-920-variable
+    oval-org-mitre-oval-test-tst-361-test:
+      test_title: Test that the less than or equal operation is supported with a less than integer value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            less_than_or_equal: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-808-variable
+    oval-org-mitre-oval-test-tst-245-test:
+      test_title: Test that the less than or equal operation is supported with two equal integer values.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            less_than_or_equal: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-745-variable
+    oval-org-mitre-oval-test-tst-478-test:
+      test_title: Test that the less than or equal operation is supported with a greater than integer value.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            less_than_or_equal: 1234
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-920-variable
+    oval-org-mitre-oval-test-tst-677-test:
+      test_title: Test that the bitwise and operation is supported with a single integer where the result is the same as the state mask.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            bitwise_and: 4
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-386-variable
+    oval-org-mitre-oval-test-tst-393-test:
+      test_title: Test that the bitwise and operation is supported with a single integer where the result is not the same as the state mask.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            bitwise_and: 4
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-784-variable
+    oval-org-mitre-oval-test-tst-599-test:
+      test_title: Test that the bitwise or operation is supported with a single integer where the result is the same as the state mask.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            bitwise_or: 14
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-386-variable
+    oval-org-mitre-oval-test-tst-103-test:
+      test_title: Test that the bitwise or operation is supported with a single integer where the result is not the same as the state mask.
+      capability: variable.value
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: one_or_more
+        fields:
+          value:
+            bitwise_or: 14
+        field_requirement: {values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: oval-org-mitre-oval-test-var-784-variable
+  evaluate:
+    and:
+    - and:
+      - test: oval-org-mitre-oval-test-tst-157-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-639-test
+    - and:
+      - not:
+          test: oval-org-mitre-oval-test-tst-147-test
+      - test: oval-org-mitre-oval-test-tst-502-test
+    - and:
+      - test: oval-org-mitre-oval-test-tst-842-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-117-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-232-test
+    - and:
+      - test: oval-org-mitre-oval-test-tst-753-test
+      - test: oval-org-mitre-oval-test-tst-534-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-530-test
+    - and:
+      - test: oval-org-mitre-oval-test-tst-576-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-856-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-442-test
+    - and:
+      - test: oval-org-mitre-oval-test-tst-361-test
+      - test: oval-org-mitre-oval-test-tst-245-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-478-test
+    - and:
+      - test: oval-org-mitre-oval-test-tst-677-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-393-test
+    - and:
+      - test: oval-org-mitre-oval-test-tst-599-test
+      - not:
+          test: oval-org-mitre-oval-test-tst-103-test
