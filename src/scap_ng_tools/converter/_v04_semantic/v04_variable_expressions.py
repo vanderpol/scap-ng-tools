@@ -192,8 +192,13 @@ def assessment_variable_expressions(assessment):
                 raise ValueError('arithmetic requires typed numeric operands')
             return {'float'} if any('float' in domain for domain in domains) else {'integer'}
         if op == 'unique':
-            # Unique preserves the type of its input (and the first occurrence
-            # order), not an unconditional string domain.
+            if declared_type_required:
+                # Preserve the historical frozen schema's exact string-domain
+                # behavior; only the inference candidate inherits input type.
+                text_operand(expression(value), 'unique')
+                return {'string'}
+            # Unique preserves the type of its input (and first occurrence
+            # order) under the new expression-derived type contract.
             components = value if isinstance(value, list) else [value]
             domains = [expression(component) for component in components]
             result = set().union(*domains) if domains else set()
