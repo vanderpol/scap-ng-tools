@@ -3,6 +3,9 @@
 These tests exercise the semantic core without falsely claiming that the
 still-pinned old converter schema pack has already been regenerated.
 """
+import json
+import os
+from pathlib import Path
 import unittest
 from unittest.mock import patch
 from xml.etree import ElementTree as ET
@@ -75,6 +78,41 @@ class VariableInference(unittest.TestCase):
         self.assertEqual(visitor.variables['count-variable'],{
             'kind':'local','expression':{'count':{'literal':['a','a']}}})
         self.assertNotIn('datatype',visitor.variables['count-variable'])
+
+    def test_exact_canonical_candidate_schema_accepts_converter_output(self):
+        # Separate cross-repo CI pins the exact owner-approved candidate. The
+        # historical 0.4 snapshot remains fully qualified by the old gate.
+        root = os.environ.get('SCAP_NG_CANDIDATE_SCHEMA_ROOT')
+        if not root:
+            self.skipTest('Set SCAP_NG_CANDIDATE_SCHEMA_ROOT for cross-repo candidate validation')
+        from jsonschema import Draft202012Validator
+        from referencing import Registry, Resource
+        schema_root = Path(root)
+        resources = {}
+        for path in schema_root.glob('*.schema.json'):
+            document = json.loads(path.read_text())
+            resource = Resource.from_contents(document)
+            resources[document['$id']] = resource
+            resources['https://scap-ng.dev/schema/v0.4.0/' + path.name] = resource
+        declaration_schema = json.loads((schema_root / 'variable-expression.schema.json').read_text())
+        validator = Draft202012Validator(declaration_schema,
+                                         registry=Registry().with_resources(resources.items()))
+        engine = direct04.load_runtime()
+        element = ET.fromstring(
+            '<local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int">'
+            '<count><literal_component datatype="string">a</literal_component></count></local_variable>')
+        class Source:
+            native_variable_datatype_required = False
+        visitor = engine.AssessmentConverter(Source(),'test-component',[])
+        visitor.native_name = lambda node,kind: 'count-variable'
+        visitor.function = lambda node: {'count':{'literal':['a','a']}}
+        visitor.convert_variable(element)
+        validator.validate(visitor.variables['count-variable'])
+        self.assertEqual(visitor.variables['count-variable']['kind'], 'local')
+        self.assertNotIn('datatype', visitor.variables['count-variable'])
+        with self.assertRaises(Exception):
+            validator.validate({'kind':'local','datatype':'integer',
+                                'expression':{'count':{'literal':['a','a']}}})
 
     def test_historical_schema_keeps_original_declaration_shape(self):
         engine = direct04.load_runtime()
