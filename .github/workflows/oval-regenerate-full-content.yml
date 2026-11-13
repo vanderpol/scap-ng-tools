@@ -84,7 +84,7 @@ jobs:
             "problems":len(a["problems"]),
           }))
           if not a["complete"]:
-            print("NOT RELEASE-READY: all-source schema-valid native conversion incomplete.")
+            raise SystemExit("FAIL: 0.4 full-source native conversion incomplete; candidate artifacts retained for diagnosis.")
           PY
       - name: Upload unpromoted candidate and audit evidence
         if: always()
