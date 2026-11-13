@@ -8,6 +8,12 @@
         "oval:org.mitre.oval.test:tst:906"
       ],
       "source_test_count": 1,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:family_test",
+        "unsupported_declaration:family_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -44,6 +50,11 @@
         "oval:org.mitre.oval.test:tst:939"
       ],
       "source_test_count": 1,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:unknown_test",
+        "unsupported_declaration:unknown_test"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -89,6 +100,13 @@
         "oval:org.mitre.oval.test:tst:229"
       ],
       "source_test_count": 10,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float",
+        "variable_datatype:int"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -128,6 +146,12 @@
         "oval:org.mitre.oval.test:tst:101"
       ],
       "source_test_count": 4,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -167,6 +191,12 @@
         "oval:org.mitre.oval.test:tst:333"
       ],
       "source_test_count": 4,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -201,6 +231,9 @@
       "definition_id": "oval:org.mitre.oval.test:def:560",
       "source_test_ids": [],
       "source_test_count": 0,
+      "feature_categories": [
+        "source_family:agnostic"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -238,6 +271,11 @@
         "oval:org.mitre.oval.test:tst:966"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -275,6 +313,11 @@
         "oval:org.mitre.oval.test:tst:123"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -312,6 +355,11 @@
         "oval:org.mitre.oval.test:tst:123"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -349,6 +397,11 @@
         "oval:org.mitre.oval.test:tst:123"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -385,6 +438,11 @@
         "oval:org.mitre.oval.test:tst:966"
       ],
       "source_test_count": 1,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -422,6 +480,11 @@
         "oval:org.mitre.oval.test:tst:966"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -459,6 +522,11 @@
         "oval:org.mitre.oval.test:tst:966"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -496,6 +564,11 @@
         "oval:org.mitre.oval.test:tst:966"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -533,6 +606,11 @@
         "oval:org.mitre.oval.test:tst:84"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -572,6 +650,12 @@
         "oval:org.mitre.oval.test:tst:786"
       ],
       "source_test_count": 4,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -609,6 +693,12 @@
         "oval:org.mitre.oval.test:tst:905"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -645,6 +735,11 @@
         "oval:org.mitre.oval.test:tst:833"
       ],
       "source_test_count": 1,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -681,6 +776,11 @@
         "oval:org.mitre.oval.test:tst:833"
       ],
       "source_test_count": 1,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -715,6 +815,9 @@
       "definition_id": "oval:org.mitre.oval.test:def:117",
       "source_test_ids": [],
       "source_test_count": 0,
+      "feature_categories": [
+        "source_family:agnostic"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -749,6 +852,9 @@
       "definition_id": "oval:org.mitre.oval.test:def:97",
       "source_test_ids": [],
       "source_test_count": 0,
+      "feature_categories": [
+        "source_family:agnostic"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -804,6 +910,12 @@
         "oval:x:tst:20"
       ],
       "source_test_count": 20,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -846,6 +958,17 @@
         "oval:org.mitre.oval.test:tst:728"
       ],
       "source_test_count": 7,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary",
+        "variable_datatype:boolean",
+        "variable_datatype:evr_string",
+        "variable_datatype:float",
+        "variable_datatype:int",
+        "variable_datatype:string",
+        "variable_datatype:version"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -883,6 +1006,11 @@
         "oval:org.mitre.oval.test:tst:553"
       ],
       "source_test_count": 2,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -922,6 +1050,12 @@
         "oval:navy.navwar.niwcatlantic.scc:tst:4"
       ],
       "source_test_count": 4,
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -961,6 +1095,13 @@
         "oval:org.mitre.oval.test:tst:295"
       ],
       "source_test_count": 4,
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string",
+        "variable_object_sets_or_filters"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1000,6 +1141,12 @@
         "oval:org.mitre.oval.test:tst:242"
       ],
       "source_test_count": 4,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1040,6 +1187,12 @@
         "oval:org.mitre.oval.test:tst:25"
       ],
       "source_test_count": 5,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1080,6 +1233,12 @@
         "oval:org.mitre.oval.test:tst:982"
       ],
       "source_test_count": 5,
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1145,6 +1304,14 @@
         "oval:org.mitre.oval.test:tst:1040"
       ],
       "source_test_count": 30,
+      "feature_categories": [
+        "functions",
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int",
+        "variable_datatype:string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1184,6 +1351,11 @@
         "oval:org.mitre.oval.test:tst:791"
       ],
       "source_test_count": 4,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1227,6 +1399,11 @@
         "oval:org.mitre.oval.test:tst:207"
       ],
       "source_test_count": 8,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1272,6 +1449,11 @@
         "oval:org.mitre.oval.test:tst:662"
       ],
       "source_test_count": 10,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1323,6 +1505,11 @@
         "oval:org.mitre.oval.test:tst:744"
       ],
       "source_test_count": 16,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1370,6 +1557,12 @@
         "oval:org.mitre.oval.test:tst:109"
       ],
       "source_test_count": 12,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int",
+        "variable_object_sets_or_filters"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1421,6 +1614,11 @@
         "oval:org.mitre.oval.test:tst:811"
       ],
       "source_test_count": 16,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1469,6 +1667,11 @@
         "oval:org.mitre.oval.test:tst:1211"
       ],
       "source_test_count": 13,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1517,6 +1720,11 @@
         "oval:org.mitre.oval.test:tst:1264"
       ],
       "source_test_count": 13,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1600,6 +1808,11 @@
         "oval:org.mitre.oval.test:tst:428"
       ],
       "source_test_count": 48,
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1653,6 +1866,18 @@
         "oval:org.mitre.oval.test:tst:275"
       ],
       "source_test_count": 18,
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary",
+        "variable_datatype:boolean",
+        "variable_datatype:evr_string",
+        "variable_datatype:float",
+        "variable_datatype:int",
+        "variable_datatype:string",
+        "variable_datatype:version"
+      ],
       "converter_command": [
         "python",
         "-m",
@@ -1700,6 +1925,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:906",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:family_test",
+        "unsupported_declaration:family_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1724,6 +1955,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:939",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:unknown_test",
+        "unsupported_declaration:unknown_test"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1748,6 +1984,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:126",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1772,6 +2014,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:132",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1796,6 +2044,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:154",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1820,6 +2074,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:170",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1844,6 +2104,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:275",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1868,6 +2134,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:34",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1892,6 +2164,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:350",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1916,6 +2194,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:38",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1940,6 +2224,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:439",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1964,6 +2254,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:487",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -1988,6 +2284,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:509",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2012,6 +2314,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:608",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2036,6 +2344,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:64",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2060,6 +2374,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:71",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2084,6 +2404,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:851",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2108,6 +2434,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:936",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2132,6 +2464,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:943",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2156,6 +2494,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:983",
+      "feature_categories": [
+        "external_variables",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2180,6 +2524,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:17",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2204,6 +2554,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:178",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2228,6 +2584,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:211",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2252,6 +2614,13 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:229",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2276,6 +2645,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:51",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2300,6 +2675,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:644",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2324,6 +2705,13 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:674",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2348,6 +2736,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:74",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2372,6 +2766,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:774",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2396,6 +2796,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:970",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2420,6 +2826,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:101",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2444,6 +2856,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:209",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2468,6 +2886,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:35",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2492,6 +2916,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:446",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2516,6 +2946,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:291",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2540,6 +2976,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:333",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2564,6 +3006,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:614",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2588,6 +3036,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:722",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2666,6 +3120,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:123",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2753,6 +3212,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:966",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2777,6 +3241,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:78",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2801,6 +3270,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:84",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2825,6 +3299,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:138",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2849,6 +3329,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:625",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2873,6 +3359,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:786",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2897,6 +3389,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:814",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2921,6 +3419,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:546",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2945,6 +3449,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:905",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -2978,6 +3488,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:833",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3002,6 +3517,12 @@
         }
       ],
       "test_id": "oval:x:tst:1",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3026,6 +3547,12 @@
         }
       ],
       "test_id": "oval:x:tst:10",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3050,6 +3577,12 @@
         }
       ],
       "test_id": "oval:x:tst:11",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3074,6 +3607,12 @@
         }
       ],
       "test_id": "oval:x:tst:12",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3098,6 +3637,12 @@
         }
       ],
       "test_id": "oval:x:tst:13",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3122,6 +3667,12 @@
         }
       ],
       "test_id": "oval:x:tst:14",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3146,6 +3697,12 @@
         }
       ],
       "test_id": "oval:x:tst:15",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3170,6 +3727,12 @@
         }
       ],
       "test_id": "oval:x:tst:16",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3194,6 +3757,12 @@
         }
       ],
       "test_id": "oval:x:tst:17",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3218,6 +3787,12 @@
         }
       ],
       "test_id": "oval:x:tst:18",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3242,6 +3817,12 @@
         }
       ],
       "test_id": "oval:x:tst:19",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3266,6 +3847,12 @@
         }
       ],
       "test_id": "oval:x:tst:2",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3290,6 +3877,12 @@
         }
       ],
       "test_id": "oval:x:tst:20",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3314,6 +3907,12 @@
         }
       ],
       "test_id": "oval:x:tst:3",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3338,6 +3937,12 @@
         }
       ],
       "test_id": "oval:x:tst:4",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3362,6 +3967,12 @@
         }
       ],
       "test_id": "oval:x:tst:5",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3386,6 +3997,12 @@
         }
       ],
       "test_id": "oval:x:tst:6",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3410,6 +4027,12 @@
         }
       ],
       "test_id": "oval:x:tst:7",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3434,6 +4057,12 @@
         }
       ],
       "test_id": "oval:x:tst:8",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3458,6 +4087,12 @@
         }
       ],
       "test_id": "oval:x:tst:9",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3482,6 +4117,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:127",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3506,6 +4146,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:223",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3530,6 +4175,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:238",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3554,6 +4204,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:388",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3578,6 +4233,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:52",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3602,6 +4262,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:728",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3626,6 +4291,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:80",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3650,6 +4320,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:553",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3674,6 +4349,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:827",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3698,6 +4378,12 @@
         }
       ],
       "test_id": "oval:navy.navwar.niwcatlantic.scc:tst:1",
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3722,6 +4408,12 @@
         }
       ],
       "test_id": "oval:navy.navwar.niwcatlantic.scc:tst:2",
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3746,6 +4438,12 @@
         }
       ],
       "test_id": "oval:navy.navwar.niwcatlantic.scc:tst:3",
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3770,6 +4468,12 @@
         }
       ],
       "test_id": "oval:navy.navwar.niwcatlantic.scc:tst:4",
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3794,6 +4498,13 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:295",
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3818,6 +4529,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:373",
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3842,6 +4559,13 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:63",
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3866,6 +4590,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:65",
+      "feature_categories": [
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3890,6 +4620,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:108",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3914,6 +4650,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:242",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3938,6 +4680,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:265",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3962,6 +4710,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:511",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -3986,6 +4740,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:217",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4010,6 +4770,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:25",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4034,6 +4800,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:479",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4058,6 +4830,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:513",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4082,6 +4860,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:566",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4106,6 +4890,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:174",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4130,6 +4920,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:314",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4154,6 +4950,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:47",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4178,6 +4980,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:606",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4202,6 +5010,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:982",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4226,6 +5040,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1015",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4250,6 +5070,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1016",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4274,6 +5100,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1021",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4298,6 +5130,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1040",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4322,6 +5160,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1049",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4346,6 +5190,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1059",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4370,6 +5220,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1066",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4394,6 +5250,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1072",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4418,6 +5280,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1078",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4442,6 +5310,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1085",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4466,6 +5340,13 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1087",
+      "feature_categories": [
+        "functions",
+        "object_components",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4490,6 +5371,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1095",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4514,6 +5401,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1134",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4538,6 +5431,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1139",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4562,6 +5461,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1155",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4586,6 +5491,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1168",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4610,6 +5521,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1178",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4634,6 +5551,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1183",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4658,6 +5581,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:146",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4682,6 +5611,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:161",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4706,6 +5641,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:187",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4730,6 +5671,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:191",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4754,6 +5701,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:370",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4778,6 +5731,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:402",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4802,6 +5761,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:427",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4826,6 +5791,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:434",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4850,6 +5821,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:570",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4874,6 +5851,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:682",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4898,6 +5881,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:817",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4922,6 +5911,12 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:845",
+      "feature_categories": [
+        "functions",
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4946,6 +5941,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:306",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4970,6 +5970,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:531",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -4994,6 +5999,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:791",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5018,6 +6028,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:924",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:binary"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5042,6 +6057,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:207",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5066,6 +6086,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:28",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5090,6 +6115,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:59",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5114,6 +6144,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:687",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5138,6 +6173,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:801",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5162,6 +6202,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:853",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5186,6 +6231,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:951",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5210,6 +6260,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:964",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:boolean"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5234,6 +6289,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:13",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5258,6 +6318,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:214",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5282,6 +6347,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:272",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5306,6 +6376,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:422",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5330,6 +6405,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:569",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5354,6 +6434,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:588",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5378,6 +6463,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:662",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5402,6 +6492,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:689",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5426,6 +6521,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:872",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5450,6 +6550,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:902",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5474,6 +6579,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:114",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5498,6 +6608,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:140",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5522,6 +6637,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:168",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5546,6 +6666,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:244",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5570,6 +6695,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:26",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5594,6 +6724,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:293",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5618,6 +6753,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:298",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5642,6 +6782,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:39",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5666,6 +6811,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:470",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5690,6 +6840,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:500",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5714,6 +6869,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:58",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5738,6 +6898,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:715",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5762,6 +6927,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:744",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5786,6 +6956,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:923",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5810,6 +6985,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:960",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5834,6 +7014,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:975",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:evr_string"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5858,6 +7043,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:109",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5882,6 +7072,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:16",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5906,6 +7101,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:226",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5930,6 +7130,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:239",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5954,6 +7159,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:257",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -5978,6 +7188,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:409",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6002,6 +7217,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:665",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6026,6 +7246,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:778",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6050,6 +7275,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:861",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6074,6 +7304,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:958",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:int"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6098,6 +7333,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:959",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6122,6 +7362,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:990",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_object_sets_or_filters"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6146,6 +7391,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:128",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6170,6 +7420,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:145",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6194,6 +7449,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:264",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6218,6 +7478,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:289",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6242,6 +7507,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:319",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6266,6 +7536,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:322",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6290,6 +7565,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:352",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6314,6 +7594,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:408",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6338,6 +7623,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:50",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6362,6 +7652,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:615",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6386,6 +7681,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:62",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6410,6 +7710,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:668",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6434,6 +7739,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:707",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6458,6 +7768,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:730",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6482,6 +7797,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:811",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6506,6 +7826,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:841",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:float"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6530,6 +7855,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1090",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6554,6 +7884,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1185",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6578,6 +7913,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1211",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6602,6 +7942,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1283",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6626,6 +7971,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1388",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6650,6 +8000,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1506",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6674,6 +8029,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1542",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6698,6 +8058,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1646",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6722,6 +8087,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1665",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6746,6 +8116,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1711",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6770,6 +8145,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1810",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6794,6 +8174,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:2019",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6818,6 +8203,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:2048",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv4_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6842,6 +8232,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1082",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6866,6 +8261,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1151",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6890,6 +8290,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1174",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6914,6 +8319,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1264",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6938,6 +8348,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1356",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6962,6 +8377,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1384",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -6986,6 +8406,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1530",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7010,6 +8435,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1758",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7034,6 +8464,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1782",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7058,6 +8493,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1893",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7082,6 +8522,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:1921",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7106,6 +8551,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:2027",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7130,6 +8580,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:2046",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:ipv6_address"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7154,6 +8609,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:100",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7178,6 +8638,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:104",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7202,6 +8667,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:156",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7226,6 +8696,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:166",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7250,6 +8725,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:175",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7274,6 +8754,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:205",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7298,6 +8783,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:274",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7322,6 +8812,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:280",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7346,6 +8841,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:299",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7370,6 +8870,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:309",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7394,6 +8899,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:316",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7418,6 +8928,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:323",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7442,6 +8957,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:343",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7466,6 +8986,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:347",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7490,6 +9015,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:360",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7514,6 +9044,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:380",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7538,6 +9073,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:4",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7562,6 +9102,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:401",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7586,6 +9131,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:428",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7610,6 +9160,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:438",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7634,6 +9189,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:469",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7658,6 +9218,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:554",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7682,6 +9247,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:567",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7706,6 +9276,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:57",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7730,6 +9305,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:577",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7754,6 +9334,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:584",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7778,6 +9363,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:593",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7802,6 +9392,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:6",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7826,6 +9421,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:635",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7850,6 +9450,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:640",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7874,6 +9479,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:721",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7898,6 +9508,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:762",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7922,6 +9537,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:769",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7946,6 +9566,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:771",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7970,6 +9595,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:776",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -7994,6 +9624,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:777",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8018,6 +9653,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:81",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8042,6 +9682,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:838",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8066,6 +9711,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:843",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8090,6 +9740,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:849",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8114,6 +9769,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:858",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8138,6 +9798,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:875",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8162,6 +9827,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:901",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8186,6 +9856,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:913",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8210,6 +9885,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:934",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8234,6 +9914,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:950",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8258,6 +9943,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:953",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],
@@ -8282,6 +9972,11 @@
         }
       ],
       "test_id": "oval:org.mitre.oval.test:tst:971",
+      "feature_categories": [
+        "source_family:agnostic",
+        "source_test_kind:variable_test",
+        "variable_datatype:version"
+      ],
       "conversion_status": "blocked",
       "schema_validated": false,
       "native_test_ids": [],

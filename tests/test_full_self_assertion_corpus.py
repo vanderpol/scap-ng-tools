@@ -94,6 +94,18 @@ class FullSelfAssertionCorpus(unittest.TestCase):
         self.assertEqual(len(blocked_tests), 270)
         self.assertTrue(all(row["diagnostic"] for row in blocked_tests))
 
+    def test_combined_blocker_is_split_by_source_features(self):
+        self.assertIn("source-graph labels only", self.manifest["feature_inventory"]["policy"])
+        combined = [row for row in self.definitions
+                    if row["diagnostic"] ==
+                    "standalone functions, Object components and external Variables remain held"]
+        self.assertEqual(len(combined), 13)
+        self.assertTrue(any("functions" in row["feature_categories"] for row in combined))
+        self.assertTrue(any("object_components" in row["feature_categories"] for row in combined))
+        self.assertTrue(all("source_family:agnostic" in row["feature_categories"] for row in combined))
+        self.assertEqual(
+            self.manifest["feature_inventory"]["blocked_definition_feature_counts"]["functions"], 10)
+
     def test_tampered_published_output_is_rejected(self):
         snapshot_root = os.environ.get("SCAP_NG_SCHEMA_ROOT")
         if not snapshot_root:

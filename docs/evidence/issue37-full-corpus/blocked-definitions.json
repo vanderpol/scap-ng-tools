@@ -7,6 +7,12 @@
       "oval:org.mitre.oval.test:tst:906"
     ],
     "source_test_count": 1,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:family_test",
+      "unsupported_declaration:family_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -43,6 +49,11 @@
       "oval:org.mitre.oval.test:tst:939"
     ],
     "source_test_count": 1,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:unknown_test",
+      "unsupported_declaration:unknown_test"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -88,6 +99,13 @@
       "oval:org.mitre.oval.test:tst:229"
     ],
     "source_test_count": 10,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:float",
+      "variable_datatype:int"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -127,6 +145,12 @@
       "oval:org.mitre.oval.test:tst:101"
     ],
     "source_test_count": 4,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -166,6 +190,12 @@
       "oval:org.mitre.oval.test:tst:333"
     ],
     "source_test_count": 4,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -200,6 +230,9 @@
     "definition_id": "oval:org.mitre.oval.test:def:560",
     "source_test_ids": [],
     "source_test_count": 0,
+    "feature_categories": [
+      "source_family:agnostic"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -237,6 +270,11 @@
       "oval:org.mitre.oval.test:tst:966"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -274,6 +312,11 @@
       "oval:org.mitre.oval.test:tst:123"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -311,6 +354,11 @@
       "oval:org.mitre.oval.test:tst:123"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -348,6 +396,11 @@
       "oval:org.mitre.oval.test:tst:123"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -384,6 +437,11 @@
       "oval:org.mitre.oval.test:tst:966"
     ],
     "source_test_count": 1,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -421,6 +479,11 @@
       "oval:org.mitre.oval.test:tst:966"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -458,6 +521,11 @@
       "oval:org.mitre.oval.test:tst:966"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -495,6 +563,11 @@
       "oval:org.mitre.oval.test:tst:966"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -532,6 +605,11 @@
       "oval:org.mitre.oval.test:tst:84"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:binary"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -571,6 +649,12 @@
       "oval:org.mitre.oval.test:tst:786"
     ],
     "source_test_count": 4,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -608,6 +692,12 @@
       "oval:org.mitre.oval.test:tst:905"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -644,6 +734,11 @@
       "oval:org.mitre.oval.test:tst:833"
     ],
     "source_test_count": 1,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:binary"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -680,6 +775,11 @@
       "oval:org.mitre.oval.test:tst:833"
     ],
     "source_test_count": 1,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:binary"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -714,6 +814,9 @@
     "definition_id": "oval:org.mitre.oval.test:def:117",
     "source_test_ids": [],
     "source_test_count": 0,
+    "feature_categories": [
+      "source_family:agnostic"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -748,6 +851,9 @@
     "definition_id": "oval:org.mitre.oval.test:def:97",
     "source_test_ids": [],
     "source_test_count": 0,
+    "feature_categories": [
+      "source_family:agnostic"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -803,6 +909,12 @@
       "oval:x:tst:20"
     ],
     "source_test_count": 20,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -845,6 +957,17 @@
       "oval:org.mitre.oval.test:tst:728"
     ],
     "source_test_count": 7,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:binary",
+      "variable_datatype:boolean",
+      "variable_datatype:evr_string",
+      "variable_datatype:float",
+      "variable_datatype:int",
+      "variable_datatype:string",
+      "variable_datatype:version"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -882,6 +1005,11 @@
       "oval:org.mitre.oval.test:tst:553"
     ],
     "source_test_count": 2,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:int"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -921,6 +1049,12 @@
       "oval:navy.navwar.niwcatlantic.scc:tst:4"
     ],
     "source_test_count": 4,
+    "feature_categories": [
+      "object_components",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:int"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -960,6 +1094,13 @@
       "oval:org.mitre.oval.test:tst:295"
     ],
     "source_test_count": 4,
+    "feature_categories": [
+      "object_components",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string",
+      "variable_object_sets_or_filters"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -999,6 +1140,12 @@
       "oval:org.mitre.oval.test:tst:242"
     ],
     "source_test_count": 4,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1039,6 +1186,12 @@
       "oval:org.mitre.oval.test:tst:25"
     ],
     "source_test_count": 5,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1079,6 +1232,12 @@
       "oval:org.mitre.oval.test:tst:982"
     ],
     "source_test_count": 5,
+    "feature_categories": [
+      "functions",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1144,6 +1303,14 @@
       "oval:org.mitre.oval.test:tst:1040"
     ],
     "source_test_count": 30,
+    "feature_categories": [
+      "functions",
+      "object_components",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:int",
+      "variable_datatype:string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1183,6 +1350,11 @@
       "oval:org.mitre.oval.test:tst:791"
     ],
     "source_test_count": 4,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:binary"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1226,6 +1398,11 @@
       "oval:org.mitre.oval.test:tst:207"
     ],
     "source_test_count": 8,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:boolean"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1271,6 +1448,11 @@
       "oval:org.mitre.oval.test:tst:662"
     ],
     "source_test_count": 10,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_object_sets_or_filters"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1322,6 +1504,11 @@
       "oval:org.mitre.oval.test:tst:744"
     ],
     "source_test_count": 16,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:evr_string"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1369,6 +1556,12 @@
       "oval:org.mitre.oval.test:tst:109"
     ],
     "source_test_count": 12,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:int",
+      "variable_object_sets_or_filters"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1420,6 +1613,11 @@
       "oval:org.mitre.oval.test:tst:811"
     ],
     "source_test_count": 16,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:float"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1468,6 +1666,11 @@
       "oval:org.mitre.oval.test:tst:1211"
     ],
     "source_test_count": 13,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:ipv4_address"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1516,6 +1719,11 @@
       "oval:org.mitre.oval.test:tst:1264"
     ],
     "source_test_count": 13,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:ipv6_address"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1599,6 +1807,11 @@
       "oval:org.mitre.oval.test:tst:428"
     ],
     "source_test_count": 48,
+    "feature_categories": [
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:version"
+    ],
     "converter_command": [
       "python",
       "-m",
@@ -1652,6 +1865,18 @@
       "oval:org.mitre.oval.test:tst:275"
     ],
     "source_test_count": 18,
+    "feature_categories": [
+      "external_variables",
+      "source_family:agnostic",
+      "source_test_kind:variable_test",
+      "variable_datatype:binary",
+      "variable_datatype:boolean",
+      "variable_datatype:evr_string",
+      "variable_datatype:float",
+      "variable_datatype:int",
+      "variable_datatype:string",
+      "variable_datatype:version"
+    ],
     "converter_command": [
       "python",
       "-m",

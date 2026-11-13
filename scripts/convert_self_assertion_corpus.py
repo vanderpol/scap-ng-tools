@@ -1,4 +1,4 @@
-"""Convert every pinned agnostic OVAL Self-Assertion Definition.
+"""Convert pinned OVAL Self-Assertion Definitions through the production CLI.
 
 This is a production-CLI orchestrator, not a second converter. Each source
 Definition is sent unchanged to ``scap_ng_tools.converter.direct04``. A
@@ -9,7 +9,7 @@ converter diagnostic. No expected outcomes or source semantics are invented.
 from __future__ import annotations
 
 import argparse
-from collections import defaultdict
+from collections import Counter, defaultdict
 from hashlib import sha256
 import json
 import os
@@ -26,34 +26,104 @@ import yaml
 from scap_ng_tools.contracts import FrozenSchemaSnapshot
 from scap_ng_tools.converter.direct04 import validate_native_documents
 
-CORPUS_REL = Path("SCAP_1.4/OVAL_Test_Content/agnostic")
+CORPUS_ROOT = Path("SCAP_1.4/OVAL_Test_Content")
+FAMILIES = ("agnostic", "unix", "linux")
 ZIP_NAME = "oval-def-ext.zip"
 ZIP_DEFINITION_MEMBER = "oval-def-ext.xml"
-FORMAT = "scap-ng-tools-self-assertion-agnostic-conversion/1"
+FORMAT = "scap-ng-tools-self-assertion-conversion/2"
 
 
 def digest(raw: bytes) -> str:
     return sha256(raw).hexdigest()
 
 
-def source_documents(corpus: Path):
-    """Yield (repository path, member path, raw XML) in deterministic order."""
-    base = corpus / CORPUS_REL
-    for path in sorted(base.glob("*.xml")):
-        yield CORPUS_REL / path.name, CORPUS_REL / path.name, path.read_bytes()
-    archive = base / ZIP_NAME
-    with ZipFile(archive) as package:
-        for member in (ZIP_DEFINITION_MEMBER, "oval-def-ext_external-variables.xml"):
-            raw = package.read(member)
-            if member == ZIP_DEFINITION_MEMBER:
-                yield CORPUS_REL / f"{ZIP_NAME}!{member}", CORPUS_REL / f"{ZIP_NAME}!{member}", raw
+def source_documents(corpus: Path, families: tuple[str, ...]):
+    """Yield (repository path, member path, raw XML) deterministically."""
+    for family in families:
+        family_rel = CORPUS_ROOT / family
+        base = corpus / family_rel
+        for path in sorted(base.glob("*.xml")):
+            yield family_rel / path.name, family_rel / path.name, path.read_bytes()
+        if family != "agnostic":
+            continue
+        archive = base / ZIP_NAME
+        with ZipFile(archive) as package:
+            raw = package.read(ZIP_DEFINITION_MEMBER)
+            yield family_rel / f"{ZIP_NAME}!{ZIP_DEFINITION_MEMBER}", family_rel / f"{ZIP_NAME}!{ZIP_DEFINITION_MEMBER}", raw
 
 
 def nodes(root: ET.Element, suffix: str):
     return [node for node in root.iter() if node.tag.split("}")[-1] == suffix and node.get("id")]
 
 
-def definitions_and_tests(raw: bytes):
+def source_feature_inventory(root: ET.Element, family: str, tests: dict[str, ET.Element]):
+    """Inventory source constructs without assigning converter semantics.
+
+    These labels explain why a source graph is likely held (or which native
+    capability it exercises); the exact converter diagnostic remains the
+    authoritative blocker in the ledgers.
+    """
+    by_id = {node.get("id"): node for node in root.iter() if node.get("id")}
+    node_features: dict[str, set[str]] = defaultdict(set)
+    common = {f"source_family:{family}"}
+    for node in root.iter():
+        ident = node.get("id")
+        if not ident:
+            continue
+        local = node.tag.split("}")[-1]
+        if local.endswith("_test"):
+            node_features[ident].add("source_test_kind:" + local)
+        if local.endswith("_variable"):
+            datatype = node.get("datatype")
+            if datatype:
+                node_features[ident].add("variable_datatype:" + datatype)
+            if any(child.tag.split("}")[-1] == "object_component" for child in node.iter()):
+                node_features[ident].add("object_components")
+            if any(child.tag.split("}")[-1].endswith("_function") or
+                   child.tag.split("}")[-1] in {
+                       "arithmetic", "begin", "concat", "end", "escape_regex",
+                       "glob_to_regex", "regex_capture", "split", "substring",
+                       "time_difference"} for child in node.iter()):
+                node_features[ident].add("functions")
+        if local == "external_variable":
+            node_features[ident].add("external_variables")
+        if local == "variable_object" and any(
+                child.tag.split("}")[-1] in {"set", "filter"} for child in node.iter()):
+            node_features[ident].add("variable_object_sets_or_filters")
+        if local in {"family_test", "unknown_test"}:
+            node_features[ident].add("unsupported_declaration:" + local)
+
+    def closure(ident: str, seen: set[str] | None = None) -> set[str]:
+        seen = set() if seen is None else seen
+        if ident in seen:
+            return set()
+        seen.add(ident)
+        node = by_id.get(ident)
+        if node is None:
+            return set()
+        result = set(node_features.get(ident, ()))
+        for child in node.iter():
+            for key, value in child.attrib.items():
+                if key.endswith("_ref") and value:
+                    result.update(closure(value, seen))
+            if child.tag.split("}")[-1] == "var_ref" and child.text:
+                result.update(closure(child.text, seen))
+        return result
+
+    test_features = {test_id: sorted(common | closure(test_id))
+                     for test_id in tests}
+    definition_features = {}
+    for definition in nodes(root, "definition"):
+        refs = [node.get("test_ref") for node in definition.iter()
+                if node.tag.split("}")[-1] == "criterion" and node.get("test_ref")]
+        features = set(common)
+        for test_id in refs:
+            features.update(test_features.get(test_id, ()))
+        definition_features[definition.get("id")] = sorted(features)
+    return definition_features, test_features
+
+
+def definitions_and_tests(raw: bytes, family: str = "unknown"):
     root = ET.fromstring(raw)
     definitions = {}
     test_defs: dict[str, list[str]] = defaultdict(list)
@@ -69,7 +139,8 @@ def definitions_and_tests(raw: bytes):
         definitions[definition.get("id")] = refs
     tests = {node.get("id"): node for node in root.iter()
              if node.get("id") and node.tag.split("}")[-1].endswith("_test")}
-    return definitions, tests, test_defs
+    definition_features, test_features = source_feature_inventory(root, family, tests)
+    return definitions, tests, test_defs, definition_features, test_features
 
 
 def slug(value: str) -> str:
@@ -129,14 +200,13 @@ def independent_artifacts(snapshot: FrozenSchemaSnapshot, files: dict[str, Path]
 
 
 def convert(*, corpus: Path, schema_root: Path, source_commit: str,
-            output: Path, python: str):
+            output: Path, python: str, families: tuple[str, ...] = ("agnostic",)):
     if output.exists():
         raise ValueError(f"refusing to overwrite existing output: {output}")
     snapshot = FrozenSchemaSnapshot(schema_root)
     output.parent.mkdir(parents=True, exist_ok=True)
     temp = Path(tempfile.mkdtemp(prefix="self-assertion-conversion-", dir=output.parent))
     try:
-        source_root = corpus / CORPUS_REL
         definition_rows: list[dict[str, Any]] = []
         test_rows: list[dict[str, Any]] = []
         converted_rows: list[dict[str, Any]] = []
@@ -147,8 +217,9 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
         source_graph = []
         with tempfile.TemporaryDirectory(prefix="self-assertion-source-") as extracted:
             extracted_root = Path(extracted)
-            for source_path, provenance_path, raw in source_documents(corpus):
-                definitions, tests, test_defs = definitions_and_tests(raw)
+            for source_path, provenance_path, raw in source_documents(corpus, families):
+                family = str(source_path).split("/")[-2]
+                definitions, tests, test_defs, definition_features, test_features = definitions_and_tests(raw, family)
                 source_sha = digest(raw)
                 # Keep ordinary XML at its pinned checkout path.  The
                 # production standalone lane can then independently verify
@@ -170,6 +241,8 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     "definitions": definitions,
                     "tests": tests,
                     "test_defs": test_defs,
+                    "definition_features": definition_features,
+                    "test_features": test_features,
                 })
             definition_results = {}
             for graph in source_graph:
@@ -178,6 +251,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 source_sha = graph["source_sha256"]
                 source_text_path = graph["source_text_path"]
                 definitions = graph["definitions"]
+                definition_features = graph["definition_features"]
                 for definition_id, refs in definitions.items():
                     artifact_dir = temp / "definitions" / slug(str(source_path)) / slug(definition_id)
                     command, process, files, success = run_one(
@@ -194,6 +268,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "definition_id": definition_id,
                         "source_test_ids": refs,
                         "source_test_count": len(refs),
+                        "feature_categories": definition_features.get(definition_id, []),
                         "converter_command": recorded_command,
                         "converter_returncode": process.returncode,
                         "conversion_status": "CONVERTED_UNVERIFIED" if success else "blocked",
@@ -239,6 +314,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 definitions = graph["definitions"]
                 tests = graph["tests"]
                 test_defs = graph["test_defs"]
+                test_features = graph["test_features"]
                 for test_id in sorted(tests):
                     owner_ids = list(test_defs.get(test_id, []))
                     owner_results = [definition_results[(provenance_path, owner)]
@@ -282,6 +358,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                             for owner, result in zip(owner_ids, owner_results)
                         ],
                         "test_id": test_id,
+                        "feature_categories": test_features.get(test_id, []),
                         "conversion_status": status,
                         "schema_validated": schema_validated,
                         "native_test_ids": native_ids,
@@ -291,8 +368,8 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     })
         # The XML graph yields exactly the pinned corpus denominator.
         test_rows.sort(key=lambda row: (row["source_path"], row["test_id"]))
-        if len(definition_rows) != 47 or len(test_rows) != 328:
-            raise ValueError(f"pinned denominator mismatch: definitions={len(definition_rows)} tests={len(test_rows)}")
+        if not definition_rows or not test_rows:
+            raise ValueError(f"empty pinned corpus selection: definitions={len(definition_rows)} tests={len(test_rows)}")
         # Publish a machine-readable blocked view, while definitions.json and
         # tests.jsonl remain the authoritative complete ledgers.
         blocked_definitions = [row for row in definition_rows
@@ -337,6 +414,17 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "expected_outcomes_derived": False,
         }
         (temp / "validation.json").write_text(json.dumps(validation, indent=2) + "\n")
+        feature_inventory = {
+            "policy": "source-graph labels only; converter diagnostics remain authoritative; no semantics inferred",
+            "blocked_definition_feature_counts": dict(sorted(Counter(
+                feature for row in blocked_definitions for feature in row["feature_categories"]
+            ).items())),
+            "blocked_test_feature_counts": dict(sorted(Counter(
+                feature for row in blocked_tests for feature in row["feature_categories"]
+            ).items())),
+        }
+        (temp / "feature-inventory.json").write_text(
+            json.dumps(feature_inventory, indent=2) + "\n")
         notices = Path(__file__).resolve().parents[1] / "docs/evidence/issue37-variables/NOTICES.txt"
         if notices.is_file():
             shutil.copyfile(notices, temp / "NOTICES.txt")
@@ -345,8 +433,8 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 "Derivative native conversion review artifacts from pinned SCAP 1.4 OVAL content; "
                 "original XML is unchanged.\n")
         (temp / "README.md").write_text(
-            "# Pinned agnostic Self-Assertion conversion\n\n"
-            f"Production CLI conversion of the pinned corpus at `{source_commit}`. "
+            "# Pinned Self-Assertion conversion\n\n"
+            f"Production CLI conversion of the pinned `{', '.join(families)}` corpus at `{source_commit}`. "
             "The complete ledgers preserve every source Definition and Test; blocked "
             "entries retain the exact converter diagnostic.\n\n"
             f"- Definitions: {len(definition_rows)} ({len(converted_rows)} converted, "
@@ -355,20 +443,25 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             f"{len(blocked_tests)} blocked)\n"
             "- Generated native documents are schema-valid and remain `CONVERTED_UNVERIFIED`.\n"
             "- No expected outcomes, collected Items, or execution results are derived.\n"
-            "- See `source-mappings.json`, `definitions.json`, `tests.jsonl`, and the blocked ledgers.\n"
+            "- See `source-mappings.json`, `feature-inventory.json`, `definitions.json`, `tests.jsonl`, and the blocked ledgers.\n"
         )
         (temp / "definitions.json").write_text(json.dumps(definition_rows, indent=2) + "\n")
         with (temp / "tests.jsonl").open("w") as stream:
             for row in test_rows:
                 stream.write(json.dumps(row, sort_keys=True) + "\n")
+        legacy_agnostic = families == ("agnostic",)
         manifest = {
-            "format": FORMAT,
+            "format": ("scap-ng-tools-self-assertion-agnostic-conversion/1"
+                       if legacy_agnostic else FORMAT),
             "source_repository": "OVAL-Community/SCAP-Self-Assertion",
             "source_commit": source_commit,
-            "source_root": str(CORPUS_REL),
+            ("source_root" if legacy_agnostic else "source_roots"):
+                (str(CORPUS_ROOT / "agnostic") if legacy_agnostic else
+                 [str(CORPUS_ROOT / family) for family in families]),
             "schema": snapshot.manifest(),
             "converter": "scap_ng_tools.converter.direct04",
             "conversion_policy": "production CLI only; no manual native rewrites or expected outcomes",
+            "feature_inventory": feature_inventory,
             "summary": {
                 "definitions": len(definition_rows),
                 "tests": len(test_rows),
@@ -403,11 +496,14 @@ def main():
     parser.add_argument("--schema-root", type=Path, required=True)
     parser.add_argument("--source-commit", required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--family", action="append", choices=FAMILIES,
+                        help="OVAL content family; repeat for a combined corpus (default: agnostic)")
     parser.add_argument("--python", default=os.environ.get("PYTHON", os.sys.executable))
     args = parser.parse_args()
+    families = tuple(dict.fromkeys(args.family or ("agnostic",)))
     result = convert(corpus=args.corpus, schema_root=args.schema_root,
                      source_commit=args.source_commit, output=args.output,
-                     python=args.python)
+                     python=args.python, families=families)
     print(json.dumps(result["summary"], sort_keys=True))
 
 

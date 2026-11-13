@@ -547,7 +547,7 @@
   "schema_validated": true,
   "semantic_validated": true,
   "scanner_execution": false,
-  "converter_commit": "f97ff187460f52da78bd16f5009f7d182664812b",
+  "converter_commit": "71a23116749b4608e62bf1dafe2e85a9d3b55da1",
   "converter_source_sha256": "38332f030fa97dee216db9ddff4e7c540acc8a921fdf2a4b24759c3f312f84de",
   "converter_worktree_dirty": false,
   "schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
