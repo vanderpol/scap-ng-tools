@@ -4,6 +4,7 @@ on:
     paths:
       - scripts/audit_self_assertion_parity.py
       - tests/test_self_assertion_parity.py
+      - tests/test_unified_oval_conversion.py
       - docs/qualification/full-oval-test-content-parity.md
       - .github/workflows/oval-full-tree-parity.yml
   push:
@@ -22,6 +23,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install converter and run unified-architecture tests
+        run: |
+          python3 -m pip install .
+          python3 -m unittest discover -s tests -p test_unified_oval_conversion.py -v
       - name: Run synthetic negative/positive parity tests
         run: python3 -m unittest discover -s tests -p test_self_assertion_parity.py -v
       - name: Read original source at immutable commit
