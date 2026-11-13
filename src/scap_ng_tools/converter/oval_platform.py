@@ -14,8 +14,7 @@ from pathlib import Path
 import subprocess
 import xml.etree.ElementTree as ET
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
-from .direct04 import QualifiedConversionError, conversion_identity, load_runtime, validate_native_documents
+from .direct04 import QualifiedConversionError, conversion_identity, load_runtime, validate_native_documents, load_pinned_snapshot
 from .conversion_budget import ConversionBudget, ConversionBudgetTracker
 
 OVAL = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
@@ -177,7 +176,7 @@ def references(node):
 
 def convert_definition(*, schema_root, source, sha256_pin, definition_id,
                        source_commit, source_path):
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = load_pinned_snapshot(schema_root)
     raw = Path(source).read_bytes()
     ensure(sha256(raw).hexdigest() == sha256_pin, "original OVAL SHA-256 mismatch")
     ensure(len(source_commit) == 40 and all(c in "0123456789abcdef" for c in source_commit),
@@ -192,6 +191,7 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     original.native_recovery = True
     from .direct04 import native_variable_datatype_required
     original.native_variable_datatype_required = native_variable_datatype_required(snapshot)
+    original.native_specification_version = snapshot.manifest()['schema_version']
     visitor = engine.AssessmentConverter(original, source_path, mappings,
                                          human_compact=False,
                                          native_recovery=True)
@@ -201,7 +201,7 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
         "version": int(definition.get("version")),
         "assessment_title": definition.findtext("{" + OVAL + "}metadata/{" + OVAL + "}title"),
         "mode": "automated", "class": definition.get("class"),
-        "specification": {"id": "scap-ng.pre-alpha.assessment", "version": "0.4.0"},
+        "specification": {"id": "scap-ng.pre-alpha.assessment", "version": snapshot.manifest()['schema_version']},
         "tests": visitor.tests, "evaluate": expression,
     }
     # Standalone OVAL must assemble the same native graph as benchmark Rules.
@@ -216,6 +216,12 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     documents = {"assessment.json": {"assessment": assessment}}
     validate_native_documents(snapshot, documents)
     from ._v04_semantic.validation import document_errors
+    if snapshot.manifest()['schema_version'] != '0.4.0':
+        # This is a structural candidate only. Do not claim the frozen 0.4.0
+        # semantic contract pack proves 0.4.1 Set/Filter/Variable equivalence.
+        raise QualifiedConversionError(
+            '0.4.1 standalone semantic parity pack is not yet qualified; '
+            'structural source conversion alone is not release admission')
     errors = list(document_errors(snapshot, "assessment", documents["assessment.json"]))
     ensure(not errors, "standalone platform semantic validation failed: " +
            "; ".join(error.message for error in errors[:4]))
