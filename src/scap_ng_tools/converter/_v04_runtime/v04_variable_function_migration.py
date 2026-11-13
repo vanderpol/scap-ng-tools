@@ -42,10 +42,15 @@ def canonical_expression(node, *, allow_existing=False):
     elif op == 'merge':
         if not isinstance(value, dict) or set(value) != {'delimiter', 'sort', 'order', 'values'}:
             raise UnsupportedExpression('merge requires exact existing operands and options')
-        arguments = [value['values']]
+        arguments = value['values'] if isinstance(value['values'], list) else [value['values']]
+        if not arguments:
+            raise UnsupportedExpression('merge requires one or more values')
         options = {name: value[name] for name in ('delimiter', 'sort', 'order')}
     elif op == 'unique':
-        arguments, options = [value], {}
+        arguments = value if isinstance(value, list) else [value]
+        if not arguments:
+            raise UnsupportedExpression('unique requires one or more expressions')
+        options = {}
     else:
         raise UnsupportedExpression(f'unrecognized legacy function: {op}')
     return {'function': {'name': op, 'arguments': [canonical_expression(arg, allow_existing=allow_existing) for arg in arguments],
@@ -83,8 +88,10 @@ def legacy_expression(node):
         return {'concat': [legacy_expression(a) for a in args]}
     if name == 'regex_capture' and len(args) == 1 and set(options) == {'pattern'}:
         return {'regex_capture': {'pattern': options['pattern'], 'value': legacy_expression(args[0])}}
-    if name == 'unique' and len(args) == 1 and not options:
-        return {'unique': legacy_expression(args[0])}
-    if name == 'merge' and len(args) == 1 and set(options) == {'delimiter', 'sort', 'order'}:
-        return {'merge': {**deepcopy(options), 'values': legacy_expression(args[0])}}
+    if name == 'unique' and len(args) >= 1 and not options:
+        values = [legacy_expression(arg) for arg in args]
+        return {'unique': values if len(values) > 1 else values[0]}
+    if name == 'merge' and len(args) >= 1 and set(options) == {'delimiter', 'sort', 'order'}:
+        values = [legacy_expression(arg) for arg in args]
+        return {'merge': {**deepcopy(options), 'values': values if len(values) > 1 else values[0]}}
     raise UnsupportedExpression(f'canonical call outside legacy migration subset: {name}')

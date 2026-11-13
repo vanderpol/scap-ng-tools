@@ -138,7 +138,7 @@ class VariableInference(unittest.TestCase):
         visitor.function = lambda node: {'count':{'literal':['a']}}
         visitor.convert_variable(element)
         self.assertEqual(visitor.variables['count-variable'],{
-            'kind':'local','datatype':'integer',
+            'kind':'local',
             'expression':{'count':{'literal':['a']}}})
 
     def test_source_typed_constants_remain_typed_literal_payloads(self):

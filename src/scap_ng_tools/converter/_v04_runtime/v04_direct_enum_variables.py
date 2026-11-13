@@ -21,7 +21,10 @@ def validate_identity_enum_variable(visitor, name, domain):
         elif set(node) == {'variable'}:
             variable(node['variable'])
         elif set(node) == {'unique'}:
-            expression(node['unique'])
+            components = node['unique'] if isinstance(node['unique'], list) else [node['unique']]
+            ensure(components, 'enum selector Variable requires a non-empty unique graph')
+            for component in components:
+                expression(component)
         else:
             ensure(False, 'enum selector Variable requires a closed literal/reference/unique graph')
 
@@ -77,7 +80,10 @@ def closed_enum_variable(visitor, identifier, aliases):
         if set(node) == {'variable'}:
             return {'variable': variable(node['variable'])}
         if set(node) == {'unique'}:
-            return {'unique': expression(node['unique'])}
+            components = node['unique'] if isinstance(node['unique'], list) else [node['unique']]
+            ensure(components, 'runtime enum Variable requires a non-empty unique graph')
+            translated = [expression(component) for component in components]
+            return {'unique': translated if len(translated) > 1 else translated[0]}
         ensure(False, 'runtime enum Variable requires an approved alias-domain projection or closed literal graph')
 
     def variable(name):

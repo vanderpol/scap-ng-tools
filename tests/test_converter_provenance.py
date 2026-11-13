@@ -8,12 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '08b04d6967403246ffbbb460d7d4bcc9f87634199be321ffaf84c902db561109'
-UNCHANGED_SOURCE_SHA256 = 'de52a62d54bf73838457c9b91a2bdb3a5ad993dc000c0a6c4e1f1545d30c5ccf'
+CURRENT_RUNTIME_SHA256 = '2c089d4f33cfae7fbb93ef62f3fa8da92da2ba48bd28fb9eb3d76a77bd4ab640'
+UNCHANGED_SOURCE_SHA256 = '903f2d800a0ffb0e5a1c41bcefc9095c21ba8903c65c5b40cd796b1c1adc4aa6'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
-    'v04_direct_converter.py': 'b9e6a13e1efe4375ad06f089725cda712ea4ad06b8d8476e84a269f3c98cd30d',
+    'v04_direct_converter.py': '3ac82b2fecd08ead7e2759303c0fc68e1a5c37eefedbbbedc1471720001fa4d4',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
@@ -21,13 +21,14 @@ AUDITED_ADAPTATIONS = {
     'v04_draft_inputs.py': '6373bc9a7208f7ad2b2b3cbcd4674c2683d3ecf971c7380d1e3566b7d1367f07',
     'v04_direct_inventory.py': '99a324754b739a9b51d0ae62abed76f8a14d5a172b54ff65beec6fd7ff58d904',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
-    'v04_variable_function_migration.py': '7195ea643101cdf38667caf99c6492d56fca12bc579696dcf0af639ba2b19faa',
+    'v04_variable_function_migration.py': 'ab08c49569bde0458c4e7a567f131a7965cf35a78a050aa6a5a639eb6ecc3d44',
+    'v04_direct_enum_variables.py': 'b7e6e8a4b85892d19509de16822667d76c2c8e31719ce65f3722ffd6952083a9',
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'aa2782f9ed3b23d7282ac7b69450650b0827ac76704878e4c6df2539f75394ea',
     'v04_input_presence.py': '32fec8715cb69ba56453984b84becc7b43e53e5a2f896680e0752996e011d49e',
     'v04_object_contract.py': 'e86aab6bf1e0145c14c4f6313928894fd09d041cb0042498174420721aa78d29',
-    'v04_variable_expressions.py': 'f04aadd57781e08bf535ee5547c63343aeacd5dcfbcbfeef376f78045a7204a1',
+    'v04_variable_expressions.py': 'f4d1ea8b606fd411e638ed88af0ac47a087ea8139276dae9f3bbb0a96dd17d0f',
 }
 SOURCE_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 PINNED_GENERATOR_HELPERS = {
