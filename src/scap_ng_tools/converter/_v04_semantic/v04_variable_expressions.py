@@ -237,7 +237,7 @@ def assessment_variable_expressions(assessment):
                     payload = payload['value']
                 values = payload if isinstance(payload, list) else [payload]
                 pattern = (r'[+-]?[0-9]+' if datatype == 'integer' else
-                           r'[+-]?(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?')
+                           r'[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?')
                 if values and all(isinstance(v, str) and re.fullmatch(pattern, v) for v in values):
                     derived = {datatype}
             compatible(derived, datatype, 'Variable ' + name)
