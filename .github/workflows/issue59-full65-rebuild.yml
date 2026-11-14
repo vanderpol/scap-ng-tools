@@ -20,12 +20,15 @@ on:
       - codex/issue59-single-v041-semantic-pack
       - fix/issue59-native-text-projection-20261113
       - fix/issue59-source-unique-lexical-projection-20261113
+      - test/issue59-atomic-lowering-boundaries-20261114
     paths:
       - '.github/workflows/issue59-full65-rebuild.yml'
       - 'src/scap_ng_tools/converter/native041_function_lowering.py'
       - 'tests/test_issue59_native_text_projection.py'
       - 'tests/test_issue59_unique_lexical_projection.py'
       - 'scripts/triage_issue59_regressions.py'
+      - 'scripts/build_issue59_datatype_recovery.py'
+      - 'docs/evidence/issue59/full65-pre-recovery-source-rule-rebuild.json'
       - 'tests/test_issue59_regression_triage.py'
       - 'tests/test_issue59_atomic_lowering_boundaries.py'
 
@@ -50,7 +53,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: 0732b56567e7120ed6cb00908dff40716f76fac9
+          ref: aece827964c785be77b088c3c61255a2d07fd9a9
           path: canonical-schema
           persist-credentials: false
 
@@ -89,6 +92,16 @@ jobs:
           --csv generated/issue59-regression-triage.csv
           --summary generated/issue59-regression-triage-summary.json
 
+      - name: Generate source datatype recovery ledger
+        run: >-
+          python scripts/build_issue59_datatype_recovery.py
+          --receipt generated/issue59-full65-source-rule-rebuild.json
+          --original-receipt docs/evidence/issue59/full65-pre-recovery-source-rule-rebuild.json
+          --source-root source-library
+          --schema-root canonical-schema/schema
+          --crosswalk docs/evidence/issue59/full65-crosswalk.json
+          --output generated/issue59-datatype-recovery.json
+
       - name: Publish read-only diagnostic receipt (no source ZIPs or generated authoring)
         if: always()
         uses: actions/upload-artifact@v4
@@ -100,6 +113,7 @@ jobs:
             generated/issue59-full65-source-rule-rebuild.json
             generated/issue59-regression-triage.csv
             generated/issue59-regression-triage-summary.json
+            generated/issue59-datatype-recovery.json
 
       - name: Fail if any previously converted active source Rule regressed
         run: |

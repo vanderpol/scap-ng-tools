@@ -54,6 +54,45 @@ class VariableInference(unittest.TestCase):
             'kind':'constant','expression':{'literal':{'datatype':'string','value':[]}}
         }})['empty-variable'],'string')
 
+    def test_values_use_collected_item_domain_not_oval_state_domain(self):
+        # OVAL shellcommand State stdout_line accepts AnySimple comparison
+        # datatypes, but the collected Item stdout_line is always string.
+        # Variable inference must use the latter and must not use the source
+        # declaration as a cast.
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        fake_schema = SimpleNamespace(schema_root=Path('.'))
+        generated = {'fields': {'stdout_line': ['string', 'integer']},
+                     'records': [], 'selectors': {}, 'native': {}}
+        mapping = {'native': {'field_datatypes': {'stdout_line': ['string']}}}
+        values_object = {'capability': 'independent.shellcommand', 'command': 'printf x'}
+        variables = {'line': {'kind': 'local', 'expression': {'values': {
+            'object': values_object, 'field': 'stdout_line'}}}}
+        with patch.object(semantic, 'declaration_validator', return_value=_CandidateSchema()), \
+             patch.object(semantic, 'snapshot', return_value=fake_schema), \
+             patch.object(semantic, 'contract', return_value=(generated['fields'], set(), {}, generated['native'])), \
+             patch.object(semantic, 'capability_contract', return_value=(mapping, generated)), \
+             patch('scap_ng_tools.converter._v04_semantic.v04_object_contract.object_validator',
+                   return_value=SimpleNamespace(iter_errors=lambda _: iter(()))):
+            self.assertEqual(self.infer(variables)['line'], 'string')
+
+    def test_values_do_not_guess_unknown_item_domain(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        generated = {'fields': {'value': ['string', 'integer']}, 'records': [],
+                     'selectors': {}, 'native': {}}
+        mapping = {'native': {'field_datatypes': {}}}
+        variables = {'value': {'kind': 'local', 'expression': {'values': {
+            'object': {'capability': 'windows.registry'}, 'field': 'value'}}}}
+        with patch.object(semantic, 'declaration_validator', return_value=_CandidateSchema()), \
+             patch.object(semantic, 'snapshot', return_value=SimpleNamespace(schema_root=Path('.'))), \
+             patch.object(semantic, 'contract', return_value=(generated['fields'], set(), {}, generated['native'])), \
+             patch.object(semantic, 'capability_contract', return_value=(mapping, generated)), \
+             patch('scap_ng_tools.converter._v04_semantic.v04_object_contract.object_validator',
+                   return_value=SimpleNamespace(iter_errors=lambda _: iter(()))):
+            with self.assertRaisesRegex(ValueError, 'lacks an explicit Item datatype'):
+                self.infer(variables)
+
     def test_no_numeric_lexical_guess_or_implicit_cast(self):
         with self.assertRaisesRegex(ValueError,'numeric operands'):
             self.infer({'bad-variable':{'kind':'local','expression':{'arithmetic':{

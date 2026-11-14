@@ -1,0 +1,80 @@
+{
+  "blocker_diagnostics": {},
+  "canonical_schema_commit": "aece827964c785be77b088c3c61255a2d07fd9a9",
+  "format": "issue59-standalone-oval-accounting/2",
+  "ledger_receipts": {
+    "blocked-definitions.json": {
+      "bytes": 124644,
+      "sha256": "a8a466d67b5be85cc7fa45d677f6e7e23ca5cb0e5757149450219466591d1603"
+    },
+    "blocked-tests.jsonl": {
+      "bytes": 600048,
+      "sha256": "9c6b590c49244b1574ad5ffb90f56a9c8ad5531f11ccd644e4052a52e1e94f6c"
+    },
+    "definitions.json": {
+      "bytes": 340340,
+      "sha256": "bcc5878f4ee36d3052804840f00cac7862e7d0ae97f65ab14217e4d582a8b4f5"
+    },
+    "manifest.json": {
+      "bytes": 107506,
+      "sha256": "e5a6a4c46da244899270c465b43a9cfbb2f9746f23c9e66cdb5a0ba73b977368"
+    },
+    "tests.jsonl": {
+      "bytes": 1080841,
+      "sha256": "94a16756b0bd34852b0ed5e91624abc1dacade292f10c4bb8cb2aa81ad342b3d"
+    }
+  },
+  "parity_gate": {
+    "complete": false,
+    "problem_types": {
+      "converted_parity_failure": 55
+    },
+    "problems": 55,
+    "scope_complete": false,
+    "source_accounted": true
+  },
+  "qualification": {
+    "converted": "schema-valid, source-traced, CONVERTED_UNVERIFIED",
+    "execution": "not_run",
+    "expected_outcomes_derived": false,
+    "independent_source_equivalent": false,
+    "scanner_equivalent": false
+  },
+  "rebuild_receipt": "/tmp/standalone-new/candidate/manifest.json",
+  "results": {
+    "blocked_definitions": 69,
+    "blocked_tests": 295,
+    "converted_definitions": 97,
+    "converted_tests": 506,
+    "definitions": 168,
+    "excluded_definitions": 2,
+    "excluded_tests": 2,
+    "execution": "not_run",
+    "schema_valid_yaml_documents": 97,
+    "test_ledger_reconciled": 803,
+    "tests": 803
+  },
+  "schema_sha256": "578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829",
+  "schema_version": "0.4.1",
+  "semantic_pack_sha256": "b5f654229c40dfeb0d2f0b486c2b50c78bf569617c8ec309fa0637f4368195ba",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_definitions": 168,
+  "source_files": 144,
+  "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+  "source_scope": [
+    "SCAP_1.4/OVAL_Test_Content/agnostic",
+    "SCAP_1.4/OVAL_Test_Content/aix",
+    "SCAP_1.4/OVAL_Test_Content/asa",
+    "SCAP_1.4/OVAL_Test_Content/ios",
+    "SCAP_1.4/OVAL_Test_Content/iosxe",
+    "SCAP_1.4/OVAL_Test_Content/junos",
+    "SCAP_1.4/OVAL_Test_Content/linux",
+    "SCAP_1.4/OVAL_Test_Content/macos",
+    "SCAP_1.4/OVAL_Test_Content/panos",
+    "SCAP_1.4/OVAL_Test_Content/solaris",
+    "SCAP_1.4/OVAL_Test_Content/unix",
+    "SCAP_1.4/OVAL_Test_Content/windows"
+  ],
+  "source_tests": 803,
+  "transitive_extend_definition_ownership": true
+}
