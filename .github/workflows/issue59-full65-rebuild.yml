@@ -28,6 +28,9 @@ on:
       - 'tests/test_issue59_unique_lexical_projection.py'
       - 'scripts/triage_issue59_regressions.py'
       - 'scripts/build_issue59_datatype_recovery.py'
+      - 'scripts/build_issue59_textfilecontent_patterns.py'
+      - 'docs/evidence/issue59/textfilecontent-subexpression-patterns.json'
+      - 'tests/test_issue59_textfilecontent_patterns.py'
       - 'docs/evidence/issue59/full65-pre-recovery-source-rule-rebuild.json'
       - 'tests/test_issue59_regression_triage.py'
       - 'tests/test_issue59_atomic_lowering_boundaries.py'
@@ -102,6 +105,13 @@ jobs:
           --crosswalk docs/evidence/issue59/full65-crosswalk.json
           --output generated/issue59-datatype-recovery.json
 
+      - name: Generate textfilecontent pattern review
+        run: >-
+          python scripts/build_issue59_textfilecontent_patterns.py
+          --ledger generated/issue59-datatype-recovery.json
+          --source-root source-library
+          --output generated/issue59-textfilecontent-subexpression-patterns.json
+
       - name: Publish read-only diagnostic receipt (no source ZIPs or generated authoring)
         if: always()
         uses: actions/upload-artifact@v4
@@ -114,6 +124,7 @@ jobs:
             generated/issue59-regression-triage.csv
             generated/issue59-regression-triage-summary.json
             generated/issue59-datatype-recovery.json
+            generated/issue59-textfilecontent-subexpression-patterns.json
 
       - name: Fail if any previously converted active source Rule regressed
         run: |
