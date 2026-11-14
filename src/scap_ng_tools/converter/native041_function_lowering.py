@@ -69,7 +69,13 @@ def lower_expression(node):
             return {name: {**deepcopy(options), "value": operand}}
         if name == "unique":
             _required(len(children) >= 1 and not options, "unique source arity/options invalid")
-            return {"unique": children if len(children) > 1 else children[0]}
+            # The source OVAL unique function returns lexical strings, while
+            # native unique intentionally preserves the datatype of its input.
+            # Expose the source conversion for direct collected-field operands
+            # rather than silently guessing a type for a 12-domain Item field.
+            # Non-text literals and referenced Variables remain fail-closed.
+            source_children = [_source_text_projection(child) for child in children]
+            return {"unique": source_children if len(source_children) > 1 else source_children[0]}
         if name == "concat":
             _required(len(children) >= 2 and not options, "concat source arity/options invalid")
             return {"concat": children}
