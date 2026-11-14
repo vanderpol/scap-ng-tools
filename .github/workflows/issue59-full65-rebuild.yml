@@ -18,10 +18,12 @@ on:
   pull_request:
     branches:
       - codex/issue59-single-v041-semantic-pack
+      - fix/issue59-native-text-projection-20261113
     paths:
       - '.github/workflows/issue59-full65-rebuild.yml'
       - 'src/scap_ng_tools/converter/native041_function_lowering.py'
       - 'tests/test_issue59_native_text_projection.py'
+      - 'tests/test_issue59_unique_lexical_projection.py'
 
 permissions:
   contents: read
