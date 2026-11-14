@@ -17,6 +17,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_COMMIT = "8c8e5dff860af6b1290ee9273a282db24278f8d5"
+CANONICAL_SCHEMA_COMMIT = "aece827964c785be77b088c3c61255a2d07fd9a9"
 CROSSWALK = ROOT / "docs/evidence/issue59/full65-crosswalk.json"
 HISTORICAL_RULES = ROOT / "docs/evidence/issue28/ACTIVE-CANDIDATE-RULES.json.gz"
 SQL_POLICY = ROOT / "docs/evidence/issue28/SQL-EXCLUSIONS.json"
@@ -200,6 +201,7 @@ def main():
     output = compare_rule_ids(historical["rules"], new_rows, categories)
     output.update({"format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
                    "source_repository": "niwc-atlantic/scap-content-library",
+                   "canonical_schema_commit": CANONICAL_SCHEMA_COMMIT,
                    "source_commit": SOURCE_COMMIT,
                    "schema_version": "0.4.1", "schema_aggregate_sha256": schema_digest,
                    "source_benchmarks": 65,

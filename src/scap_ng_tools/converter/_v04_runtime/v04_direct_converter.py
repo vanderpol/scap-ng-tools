@@ -751,6 +751,16 @@ class AssessmentConverter:
             # Set UNION. Each child remains an independent expression so
             # nested concat/Variable references retain their source graph.
             if operation == 'unique':
+                # OVAL 5.12.3 unique consumes lexical strings.  Make that
+                # source-only conversion explicit for collected Item values;
+                # literals and Variable references retain their native type
+                # and therefore remain fail-closed when mixed.  The empty
+                # prefix is one-to-one and does not change population,
+                # multiplicity, ordering, or collection status.
+                if getattr(self.source, 'native_recovery', False):
+                    values = [({'concat': [{'literal': ''}, value]}
+                               if isinstance(value, dict) and 'values' in value else value)
+                              for value in values]
                 return {'unique': values if len(values) > 1 else values[0]}
             ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
                    and element.get('order', 'ascending') in ('ascending', 'descending'), 'unsupported merge sort/order')
@@ -1051,6 +1061,11 @@ class AssessmentConverter:
         if element.get('var_ref'):
             ensure(element.get('var_check', 'all') in MATCHING, 'unsupported var_check')
             result['value_match'] = MATCHING[element.get('var_check', 'all')]
+            # Keep the source consumer's requested datatype visible when the
+            # expected value is a Variable. This is not a declaration-level
+            # Variable type and does not cast collected evidence; it gives the
+            # operation-directed evaluator its source comparison request.
+            result['datatype'] = native_datatype(element.get('datatype', 'string'))
         if not selector:
             ensure(element.get('entity_check', 'all') in MATCHING, 'unsupported entity_check')
             result.update(values_found=FIELD_EXISTENCE[existence], values_matching=MATCHING[element.get('entity_check', 'all')])

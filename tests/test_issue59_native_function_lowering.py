@@ -42,6 +42,29 @@ class Active041FunctionLowering(unittest.TestCase):
         self.assertEqual(visitor.conversion_warnings[0]['independent_static_proof'], 'UNPROVED')
         self.assertFalse(visitor.conversion_warnings[0]['scanner_evaluated'])
 
+    def test_direct_source_unique_projects_only_collected_item_values(self):
+        class Source:
+            native_recovery = True
+            def __init__(self, object_node):
+                self.object_node = object_node
+            def node(self, _component, identifier, _kind):
+                return self.object_node
+
+        object_node = ET.fromstring('<shellcommand_object xmlns="' + OVAL + '#independent" id="obj-1"/>')
+        mapping = {'capability': 'independent.shellcommand',
+                   'source': {'namespace': OVAL + '#independent',
+                              'object': 'shellcommand_object'},
+                   'native': {'test_source': {'kind': 'object'},
+                              'state_field_map': {'subexpression': 'subexpression'}}}
+        visitor = AssessmentConverter(Source(object_node), 'component', [mapping], native_recovery=True)
+        visitor.reference = lambda _identifier, _kind: {
+            'capability': 'independent.shellcommand', 'command': 'printf x'}
+        source = oval('<unique xmlns="OVAL"><object_component object_ref="obj-1" item_field="subexpression"/></unique>')
+        self.assertEqual(visitor.function(source), {'unique': {'concat': [
+            {'literal': ''}, {'values': {
+                'object': {'capability': 'independent.shellcommand', 'command': 'printf x'},
+                'field': 'subexpression'}}]}})
+
     def test_native_arithmetic_preserves_order_and_numeric_literal_types(self):
         visitor = self.visitor()
         source = oval(

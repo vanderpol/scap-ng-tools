@@ -14,16 +14,50 @@ on:
       - 'tests/test_issue59_input_relation.py'
       - 'src/scap_ng_tools/converter/direct04.py'
       - 'src/scap_ng_tools/converter/oval_platform.py'
+      - 'src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py'
+      - 'src/scap_ng_tools/converter/_v04_semantic/v04_comparison_types.py'
+      - 'src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py'
+      - 'tests/test_issue59_remaining_collected_audit.py'
+      - 'tests/test_issue69_blocker_groups.py'
+      - 'docs/evidence/issue59/BLOCKER-GROUPS-98-V2.md'
+      - 'docs/evidence/issue59/blocker-groups-98-v2.json'
+      - 'docs/evidence/issue59/full65-operation-directed-v2-source-rule-rebuild.json'
+      - 'docs/evidence/issue59/OVAL-OPERATION-DIRECTED-REBUILD.md'
+      - 'docs/evidence/issue59/oval-accounting-operation-directed.json'
 
   pull_request:
     branches:
       - codex/issue59-single-v041-semantic-pack
       - fix/issue59-native-text-projection-20261113
+      - fix/issue59-source-unique-lexical-projection-20261113
+      - test/issue59-atomic-lowering-boundaries-20261114
     paths:
       - '.github/workflows/issue59-full65-rebuild.yml'
       - 'src/scap_ng_tools/converter/native041_function_lowering.py'
       - 'tests/test_issue59_native_text_projection.py'
       - 'tests/test_issue59_unique_lexical_projection.py'
+      - 'scripts/triage_issue59_regressions.py'
+      - 'scripts/build_issue59_datatype_recovery.py'
+      - 'scripts/build_issue59_textfilecontent_patterns.py'
+      - 'scripts/build_issue59_remaining_collected_audit.py'
+      - 'docs/evidence/issue59/full65-pre-recovery-source-rule-rebuild.json'
+      - 'docs/evidence/issue59/textfilecontent-subexpression-patterns.json'
+      - 'tests/test_issue59_textfilecontent_patterns.py'
+      - 'docs/evidence/issue59/full65-pre-recovery-source-rule-rebuild.json'
+      - 'tests/test_issue59_regression_triage.py'
+      - 'tests/test_issue59_atomic_lowering_boundaries.py'
+      - 'src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py'
+      - 'src/scap_ng_tools/converter/_v04_semantic/v04_comparison_types.py'
+      - 'src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py'
+      - 'tests/test_issue59_remaining_collected_audit.py'
+      - 'tests/test_issue69_blocker_groups.py'
+      - 'docs/evidence/issue59/BLOCKER-GROUPS-98-V2.md'
+      - 'docs/evidence/issue59/blocker-groups-98-v2.json'
+      - 'docs/evidence/issue59/full65-operation-directed-v2-source-rule-rebuild.json'
+      - 'docs/evidence/issue59/OVAL-OPERATION-DIRECTED-REBUILD.md'
+      - 'docs/evidence/issue59/oval-accounting-operation-directed.json'
+      - 'docs/evidence/issue59/OPERATION-DIRECTED-RECOVERY.md'
+      - 'docs/evidence/issue59/operation-directed-recovery.json'
 
 permissions:
   contents: read
@@ -46,7 +80,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: 0732b56567e7120ed6cb00908dff40716f76fac9
+          ref: aece827964c785be77b088c3c61255a2d07fd9a9
           path: canonical-schema
           persist-credentials: false
 
@@ -75,6 +109,47 @@ jobs:
           --source-root source-library
           --output generated/issue59-full65-source-rule-rebuild.json
 
+      - name: Qualify fail-closed Rule-ID triage helper
+        run: python -m unittest discover -s tests -p test_issue59_regression_triage.py -v
+
+      - name: Qualify operation-directed collected-field representation
+        run: python -m unittest discover -s tests -p test_issue59_remaining_collected_audit.py -v
+
+      - name: Qualify exact 98 blocker grouping
+        run: python -m unittest discover -s tests -p test_issue69_blocker_groups.py -v
+
+      - name: Generate source-ID regression triage from actual rebuild
+        run: >-
+          python scripts/triage_issue59_regressions.py
+          --input generated/issue59-full65-source-rule-rebuild.json
+          --csv generated/issue59-regression-triage.csv
+          --summary generated/issue59-regression-triage-summary.json
+
+      - name: Generate source datatype recovery ledger
+        run: >-
+          python scripts/build_issue59_datatype_recovery.py
+          --receipt generated/issue59-full65-source-rule-rebuild.json
+          --original-receipt docs/evidence/issue59/full65-pre-recovery-source-rule-rebuild.json
+          --source-root source-library
+          --schema-root canonical-schema/schema
+          --crosswalk docs/evidence/issue59/full65-crosswalk.json
+          --output generated/issue59-datatype-recovery.json
+
+      - name: Generate textfilecontent pattern review
+        run: >-
+          python scripts/build_issue59_textfilecontent_patterns.py
+          --ledger generated/issue59-datatype-recovery.json
+          --source-root source-library
+          --output generated/issue59-textfilecontent-subexpression-patterns.json
+
+      - name: Generate remaining collected-field audit
+        run: >-
+          python scripts/build_issue59_remaining_collected_audit.py
+          --ledger generated/issue59-datatype-recovery.json
+          --original-receipt docs/evidence/issue59/full65-pre-recovery-source-rule-rebuild.json
+          --source-root source-library
+          --output generated/issue59-remaining-23-collected-field-audit.json
+
       - name: Publish read-only diagnostic receipt (no source ZIPs or generated authoring)
         if: always()
         uses: actions/upload-artifact@v4
@@ -82,7 +157,13 @@ jobs:
           name: issue59-65zip-rule-id-admission-${{ github.run_id }}
           if-no-files-found: warn
           retention-days: 14
-          path: generated/issue59-full65-source-rule-rebuild.json
+          path: |
+            generated/issue59-full65-source-rule-rebuild.json
+            generated/issue59-regression-triage.csv
+            generated/issue59-regression-triage-summary.json
+            generated/issue59-datatype-recovery.json
+            generated/issue59-textfilecontent-subexpression-patterns.json
+            generated/issue59-remaining-23-collected-field-audit.json
 
       - name: Fail if any previously converted active source Rule regressed
         run: |

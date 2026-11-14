@@ -25,6 +25,22 @@ class Issue59QualificationReceipts(unittest.TestCase):
         self.assertEqual(totals, {
             'source': 8892, 'converted': 6732, 'blocked': 507, 'manual_only': 1653})
 
+    def test_datatype_recovery_receipt_is_source_bounded(self):
+        recovery = json.loads((EVIDENCE / 'full65-datatype-recovery-rebuild.json').read_text())
+        self.assertEqual(recovery['canonical_schema_commit'],
+                         'aece827964c785be77b088c3c61255a2d07fd9a9')
+        self.assertEqual(recovery['schema_aggregate_sha256'],
+                         '578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829')
+        self.assertEqual(recovery['candidate'],
+                         {'blocked': 208, 'converted': 6379, 'manual_only': 1403})
+        self.assertEqual(recovery['newly_blocked_from_converted'], 108)
+        self.assertEqual(recovery['newly_converted_from_blocked'], 8)
+        self.assertFalse(recovery['nonregression_pass'])
+        self.assertFalse(recovery['scanner_equivalent'])
+        ledger = json.loads((EVIDENCE / 'datatype-recovery.json').read_text())
+        self.assertEqual(ledger['counts'], {'blocked': 108, 'recovered': 10})
+        self.assertEqual(ledger['family_counts'], {'collected_field': 115, 'unique': 3})
+
     def test_crosswalk_is_same_source_scope_and_oval_ledger_is_complete(self):
         crosswalk = json.loads((EVIDENCE / 'full65-crosswalk.json').read_text())
         self.assertEqual(crosswalk['summary']['benchmarks'], 65)

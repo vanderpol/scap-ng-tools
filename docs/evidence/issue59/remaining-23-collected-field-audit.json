@@ -1,0 +1,1747 @@
+{
+  "canonical_schema_commit": "aece827964c785be77b088c3c61255a2d07fd9a9",
+  "distinct_source_shapes": 20,
+  "family_counts": {
+    "independent.environmentvariable": 4,
+    "independent.shellcommand": 13,
+    "windows.registry": 6
+  },
+  "format": "scap-ng-0.4.1-issue59-remaining-collected-field-audit/1",
+  "oval_community_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "records": [
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "capability": "independent.environmentvariable",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "stdout_line",
+          "operation": "case insensitive equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Environment Object selectors do not establish the runtime value datatype.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:190-194/221-225; independent-definitions-schema.xsd:562-566/668-672",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.windows:obj:22486111"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "int",
+              "{http://www.w3.org/2001/XMLSchema-instance}nil": "true"
+            },
+            "element": "pid",
+            "text": ""
+          },
+          {
+            "attributes": {},
+            "element": "name",
+            "text": "PROGRAMFILES"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/ftp-servers-prevent-access-system-drive-sv-224861-assessment.json: Native comparison datatype: Variable program-files-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/status vectors and operation-directed comparison semantics; the source Object only selects name/pid.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.windows:obj:22486111",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224861r991589_rule",
+      "source_rule_sha256": "bed6403938beacf8379061f97ee5585a95e813f0e044e113248ed60d018fa54c",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.windows:var:22486110"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "capability": "independent.environmentvariable",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "stdout_line",
+          "operation": "case insensitive equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Environment Object selectors do not establish the runtime value datatype.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:190-194/221-225; independent-definitions-schema.xsd:562-566/668-672",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.windows:obj:20585411"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "int",
+              "{http://www.w3.org/2001/XMLSchema-instance}nil": "true"
+            },
+            "element": "pid",
+            "text": ""
+          },
+          {
+            "attributes": {},
+            "element": "name",
+            "text": "PROGRAMFILES"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/windows-server-2019-ftp-system-drive-sv-205854-assessment.json: Native comparison datatype: Variable program-files-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/status vectors and operation-directed comparison semantics; the source Object only selects name/pid.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.windows:obj:20585411",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-205854r991589_rule",
+      "source_rule_sha256": "e93ff85d681e735464944034347b7a763f5d82bf63c55475d8681539f379ab5a",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.windows:var:20585410"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "capability": "independent.environmentvariable",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "stdout_line",
+          "operation": "case insensitive equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Environment Object selectors do not establish the runtime value datatype.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:190-194/221-225; independent-definitions-schema.xsd:562-566/668-672",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.windows:obj:25428011"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "int",
+              "{http://www.w3.org/2001/XMLSchema-instance}nil": "true"
+            },
+            "element": "pid",
+            "text": ""
+          },
+          {
+            "attributes": {},
+            "element": "name",
+            "text": "PROGRAMFILES"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/windows-server-2022-ftp-system-drive-sv-254280-assessment.json: Native comparison datatype: Variable program-files-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/status vectors and operation-directed comparison semantics; the source Object only selects name/pid.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.windows:obj:25428011",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-254280r991589_rule",
+      "source_rule_sha256": "f2b023b58112862ca76512fd5a0fbf91df509a459e67e57facb95eb42b787889",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.windows:var:25428010"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.environmentvariable",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "stdout_line",
+          "operation": "case insensitive equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Environment Object selectors do not establish the runtime value datatype.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:190-194/221-225; independent-definitions-schema.xsd:562-566/668-672",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.windows:obj:27802811"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "int",
+              "{http://www.w3.org/2001/XMLSchema-instance}nil": "true"
+            },
+            "element": "pid",
+            "text": ""
+          },
+          {
+            "attributes": {},
+            "element": "name",
+            "text": "PROGRAMFILES"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/windows-server-2025-ftp-system-drive-sv-278028-assessment.json: Native comparison datatype: Variable program-files-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/status vectors and operation-directed comparison semantics; the source Object only selects name/pid.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.windows:obj:27802811",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-278028r1182265_rule",
+      "source_rule_sha256": "601cab34520b8eab72417a72261d932112869c66e98c503eafb1fb1bedbc43d8",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.windows:var:27802810"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838203",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838204",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838205"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "nginx -qT"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "ps -ef | grep '[n]ginx: master process'"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-service-account-not-have-shell-access-sv-278382-assessment.json: Native comparison datatype: Variable retrieve-nginx-config-location-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838203",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278382r1171898_rule",
+      "source_rule_sha256": "e90d477068bb1188958fc9e5fdc60d31d70c4e50a6f8283b29abc50433de92c2",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27838202"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838303",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838304",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838305"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "nginx -qT"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "ps -ef | grep '[n]ginx: master process'"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-service-account-not-group-access-sv-278383-assessment.json: Native comparison datatype: Variable retrieve-nginx-config-location-s-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838303",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278383r1171901_rule",
+      "source_rule_sha256": "9a3737a0690be8108124f20c44e2118c38dfc960f84ae4ae6b16d766cdb21d77",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27838302"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838502",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838503",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838504"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "nginx -qT"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "ps -ef | grep '[n]ginx: master process'"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-provide-audit-auditable-events-sv-278385-assessment.json: Native comparison datatype: Variable retrieve-location-of-nginx-configuration-files-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838502",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278385r1171907_rule",
+      "source_rule_sha256": "c2c8a3a555c949fa826e55d59d66f0c2c91399ff7e790ed951d08c9880434d00",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27838501"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838602",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838603",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838604"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "nginx -qT"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "ps -ef | grep '[n]ginx: master process'"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-allow-only-events-are-audited-sv-278386-assessment.json: Native comparison datatype: Variable retrieve-nginx-config-location-s-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838602",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278386r1171910_rule",
+      "source_rule_sha256": "233a0bf2b2492989753680d103bf6c864f44a48b65dba4423daa35e3082e729f",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27838601"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838703",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838704",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838705"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "nginx -qT"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "ps -ef | grep '[n]ginx: master process'"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-prevent-execution-unapproved-modules-sv-278387-assessment.json: Native comparison datatype: Variable retrieve-nginx-config-location-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838703",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278387r1172701_rule",
+      "source_rule_sha256": "61a0f6823a7b86796b1403f39a769659db3255ddd6372f31e9c4d39f2f490ed2",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27838702"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838803"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^\\s*access_log\\s+(?!syslog:server)(\\S+?)\\s+\\S+;"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {
+              "var_ref": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27838804"
+            },
+            "element": "command",
+            "text": ""
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^\\s*access_log\\s+(?!syslog:server)(\\S+?)\\s+\\S+;"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-protect-audit-unauthorized-access-sv-278388-assessment.json: Native comparison datatype: Variable retrieve-location-of-nginx-access-log-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27838803",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278388r1171916_rule",
+      "source_rule_sha256": "9dc19f9b84067d36a3e1fbce0baf13d1662a81e1e1d374f3eec5e40a814d8abf",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27838801"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839202"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^\\s*ssl_certificate_key\\s+\"*(.+)\"*;"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {
+              "var_ref": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27839203"
+            },
+            "element": "command",
+            "text": ""
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^\\s*ssl_certificate_key\\s+\"*(.+)\"*;"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-when-using-pki-private-key-sv-278392-assessment.json: Native comparison datatype: Variable parse-location-s-of-nginx-ssl-certificate-key-file-s-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839202",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278392r1171928_rule",
+      "source_rule_sha256": "559f7f19cd49537bc4c5a3d36975ba35b9971f95454c4ccc8ca7098ac600791d",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27839201"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "path",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839702",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839703",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839704"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?)\\/nginx.conf:$"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)\\/\\S"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "nginx -qT"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?)\\/nginx.conf:$"
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "ps -ef | grep '[n]ginx: master process'"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)\\/\\S"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-restrict-access-configuration-files-sv-278397-assessment.json: Native comparison datatype: Variable retrieve-nginx-config-location-s-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839702",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278397r1171943_rule",
+      "source_rule_sha256": "152e0259f467a78e0ed6c50ffb5cc09bdb82016d413ef1447daf06a58aeddfd9",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27839701"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839902",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839903",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839904"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "nginx -qT"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "ps -ef | grep '[n]ginx: master process'"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-require-ssl-longer-than-15-minutes-sv-278399-assessment.json: Native comparison datatype: Variable retrieve-locations-of-nginx-configurations-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27839902",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278399r1172775_rule",
+      "source_rule_sha256": "a0e1ee7af2deebd4288c333916d38bff0afd8eb39cec2f0c2adcabb84511932e",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27839901"
+    },
+    {
+      "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27840803",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27840804",
+          "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27840805"
+        ],
+        "patterns": [
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "nginx -qT"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "^# configuration\\s+file\\s+([a-zA-Z0-9_\\-\\.\\/]*?\\/nginx.conf):$"
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "ps -ef | grep '[n]ginx: master process'"
+          },
+          {
+            "attributes": {
+              "operation": "pattern match"
+            },
+            "element": "pattern",
+            "text": "nginx: master process\\s.*-c\\s+(\\S+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/nginx-service-account-lock-changes-password-sv-278408-assessment.json: Native comparison datatype: Variable retrieve-nginx-config-location-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.nginx:obj:27840803",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278408r1171976_rule",
+      "source_rule_sha256": "5f042ff6d1642d9cc5d65fa6bacef3412081a86d20a28d9ec77bbbfbaf7f1ff3",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.nginx:var:27840802"
+    },
+    {
+      "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "variable_component",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.windows:obj:25959205"
+        ],
+        "patterns": [
+          {
+            "attributes": {},
+            "text": "QueueDatabasePath\" value=\"(\\w):"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {
+              "error_if_stderr_exists": "true"
+            },
+            "element": "behaviors",
+            "text": ""
+          },
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "powershell"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "Get-Content (Join-Path (Get-ItemProperty 'HKLM:SOFTWARE\\Microsoft\\ExchangeServer\\v15\\Setup').MsiInstallPath \"\\Bin\\EdgeTransport.exe.config\") |Select-String \"QueueDatabasePath\" -SimpleMatch"
+          },
+          {
+            "attributes": {},
+            "element": "pattern",
+            "text": "QueueDatabasePath\" value=\"(\\w):"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json: Native comparison datatype: Variable drive-letter-the-queue-db-resides-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.windows:obj:25959205",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule",
+      "source_rule_sha256": "2439499bbbd173fbfcadc996fc17b8e1262a76e1ce69ccf8e7e52cee735fb50c",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.windows:var:25959205"
+    },
+    {
+      "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": "string",
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": "all"
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:24852601"
+        ],
+        "patterns": [
+          {
+            "attributes": {},
+            "text": ".*:[Bb]anner\\s+(.+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "/usr/sbin/sshd -dd 2>&1 | awk '/filename/ {print $4}' | tr -d '\\r' | tr '\\n' ' ' | xargs grep -iH '^\\s*banner'"
+          },
+          {
+            "attributes": {},
+            "element": "pattern",
+            "text": ".*:[Bb]anner\\s+(.+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/ol-8-display-standard-system-via-ssh-logon-sv-248526-assessment.json: Native comparison datatype: Variable retreive-location-of-banner-file-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.linux:obj:24852601",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-248526r958390_rule",
+      "source_rule_sha256": "5341ee494e77c4cf9eb676e63aa8511d2203d36e73cea1cc2cc5e80f2b8fe4da",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.linux:var:24852601"
+    },
+    {
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "capability": "independent.shellcommand",
+      "consumer_operations": [
+        {
+          "datatype": "string",
+          "element": "filepath",
+          "operation": "equals",
+          "var_check": "all"
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Regex capture is lexical; no source operation types the captured subexpression.",
+        "item": "EntityItemAnySimpleType",
+        "source_pointer": "OVAL 5.12.3 independent-system-characteristics-schema.xsd:383-387; independent-definitions-schema.xsd:1140-1142",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.linux:obj:23022501"
+        ],
+        "patterns": [
+          {
+            "attributes": {},
+            "text": ".*:[Bb]anner\\s+(.+)"
+          }
+        ],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "shell",
+            "text": "bash"
+          },
+          {
+            "attributes": {},
+            "element": "command",
+            "text": "/usr/sbin/sshd -dd 2>&1 | awk '/filename/ {print $4}' | tr -d '\\r' | tr '\\n' ' ' | xargs grep -iH '^\\s*banner'"
+          },
+          {
+            "attributes": {},
+            "element": "pattern",
+            "text": ".*:[Bb]anner\\s+(.+)"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/rhel-8-display-standard-via-ssh-logon-sv-230225-assessment.json: Native comparison datatype: Variable retreive-location-of-banner-file-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Approve operation-directed interpretation of raw capture values with exact invalid lexical/status/multiplicity/var_check semantics, or provide OVAL/RI truth vectors.",
+      "source_expression": "object_component",
+      "source_field": "subexpression",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.linux:obj:23022501",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230225r1184236_rule",
+      "source_rule_sha256": "165d29d2b485e3e1423c94fab8dd8a75c03a7e4094b6357ff153896244f1bc8c",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.linux:var:23022501"
+    },
+    {
+      "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+      "capability": "windows.registry",
+      "consumer_operations": [
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "case insensitive equals",
+          "var_check": "at least one"
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Item datatype depends on registry value kind; source Object/Variable does not provide the runtime Item datatype.",
+        "item": "EntityItemAnySimpleType with runtime datatype attribute",
+        "source_pointer": "OVAL 5.12.3 windows-system-characteristics-schema.xsd:2410-2413; windows-definitions-schema.xsd:5589-5594",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.dotnet:obj:28495802"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "string"
+            },
+            "element": "hive",
+            "text": "HKEY_LOCAL_MACHINE"
+          },
+          {
+            "attributes": {
+              "datatype": "string"
+            },
+            "element": "key",
+            "text": "SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full"
+          },
+          {
+            "attributes": {
+              "datatype": "string"
+            },
+            "element": "name",
+            "text": "InstallPath"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/version-of-net-running-on-version-sv-284958-assessment.json: Native comparison datatype: Variable 64-bit-installpath-of-net-framework-4-0-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/type/status vectors for this registry value and define comparison interpretation; the source Object does not pin REG_* kind.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.dotnet:obj:28495802",
+      "source_rule": "xccdf_mil.disa.fso_rule_SV-284958r1208187_rule",
+      "source_rule_sha256": "190e1df45c6cc13d62911da471dd166c0a040adb5463b7d97b9dcf899a4101a6",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.dotnet:var:28495801"
+    },
+    {
+      "benchmark": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "capability": "windows.registry",
+      "consumer_operations": [
+        {
+          "datatype": null,
+          "element": "variable_component",
+          "operation": "equals",
+          "var_check": null
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Item datatype depends on registry value kind; source Object/Variable does not provide the runtime Item datatype.",
+        "item": "EntityItemAnySimpleType with runtime datatype attribute",
+        "source_pointer": "OVAL 5.12.3 windows-system-characteristics-schema.xsd:2410-2413; windows-definitions-schema.xsd:5589-5594",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:obj:317"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {},
+            "element": "hive",
+            "text": "HKEY_LOCAL_MACHINE"
+          },
+          {
+            "attributes": {},
+            "element": "key",
+            "text": "SOFTWARE\\Microsoft\\inetStp"
+          },
+          {
+            "attributes": {},
+            "element": "name",
+            "text": "PathWWWRoot"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/iis-8-5-web-server-system-requirements-sv-214429-assessment.json: Native comparison datatype: Variable iis-virtual-directory-physicalpaths-only-actual-paths-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/type/status vectors for this registry value and define comparison interpretation; the source Object does not pin REG_* kind.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:obj:317",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule",
+      "source_rule_sha256": "8a8e3cb73eb4090006b3387446876dcc177b559d1a70525d0b9236508a16cc18",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.server:var:314"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "capability": "windows.registry",
+      "consumer_operations": [
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        },
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        },
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Item datatype depends on registry value kind; source Object/Variable does not provide the runtime Item datatype.",
+        "item": "EntityItemAnySimpleType with runtime datatype attribute",
+        "source_pointer": "OVAL 5.12.3 windows-system-characteristics-schema.xsd:2410-2413; windows-definitions-schema.xsd:5589-5594",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:mil.disa.stig.win:obj:25439100"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "string"
+            },
+            "element": "hive",
+            "text": "HKEY_LOCAL_MACHINE"
+          },
+          {
+            "attributes": {
+              "datatype": "string",
+              "operation": "case insensitive equals"
+            },
+            "element": "key",
+            "text": "System\\CurrentControlSet\\Services\\NTDS\\Parameters"
+          },
+          {
+            "attributes": {
+              "datatype": "string",
+              "operation": "case insensitive equals"
+            },
+            "element": "name",
+            "text": "Database log files path"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/permissions-on-active-access-sv-224970-assessment.json: Native comparison datatype: Variable database-log-files-path-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/type/status vectors for this registry value and define comparison interpretation; the source Object does not pin REG_* kind.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:mil.disa.stig.win:obj:25439100",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224970r958726_rule",
+      "source_rule_sha256": "b85526fae2ef9434c6c9c54e31fffe318def1a944657d776e3ec369ae8ab9395",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:mil.disa.stig.win:var:25439100"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "capability": "windows.registry",
+      "consumer_operations": [
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        },
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        },
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Item datatype depends on registry value kind; source Object/Variable does not provide the runtime Item datatype.",
+        "item": "EntityItemAnySimpleType with runtime datatype attribute",
+        "source_pointer": "OVAL 5.12.3 windows-system-characteristics-schema.xsd:2410-2413; windows-definitions-schema.xsd:5589-5594",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:mil.disa.stig.win:obj:25439100"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "string"
+            },
+            "element": "hive",
+            "text": "HKEY_LOCAL_MACHINE"
+          },
+          {
+            "attributes": {
+              "datatype": "string",
+              "operation": "case insensitive equals"
+            },
+            "element": "key",
+            "text": "System\\CurrentControlSet\\Services\\NTDS\\Parameters"
+          },
+          {
+            "attributes": {
+              "datatype": "string",
+              "operation": "case insensitive equals"
+            },
+            "element": "name",
+            "text": "Database log files path"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/windows-server-2019-administrators-access-sv-205739-assessment.json: Native comparison datatype: Variable database-log-files-path-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/type/status vectors for this registry value and define comparison interpretation; the source Object does not pin REG_* kind.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:mil.disa.stig.win:obj:25439100",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-205739r958726_rule",
+      "source_rule_sha256": "0a5447a9c45ef8a9f4dff6b3b7b2880e90eab883fa168e7db00ebe1ba9e295c0",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:mil.disa.stig.win:var:25439100"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "capability": "windows.registry",
+      "consumer_operations": [
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        },
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        },
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Item datatype depends on registry value kind; source Object/Variable does not provide the runtime Item datatype.",
+        "item": "EntityItemAnySimpleType with runtime datatype attribute",
+        "source_pointer": "OVAL 5.12.3 windows-system-characteristics-schema.xsd:2410-2413; windows-definitions-schema.xsd:5589-5594",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:mil.disa.stig.win:obj:25439100"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "string"
+            },
+            "element": "hive",
+            "text": "HKEY_LOCAL_MACHINE"
+          },
+          {
+            "attributes": {
+              "datatype": "string",
+              "operation": "case insensitive equals"
+            },
+            "element": "key",
+            "text": "System\\CurrentControlSet\\Services\\NTDS\\Parameters"
+          },
+          {
+            "attributes": {
+              "datatype": "string",
+              "operation": "case insensitive equals"
+            },
+            "element": "name",
+            "text": "Database log files path"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/windows-server-2022-administrators-access-sv-254391-assessment.json: Native comparison datatype: Variable database-log-files-path-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/type/status vectors for this registry value and define comparison interpretation; the source Object does not pin REG_* kind.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:mil.disa.stig.win:obj:25439100",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-254391r958726_rule",
+      "source_rule_sha256": "130f8c19673fd4100ff0081db6324524e2b1cabb0cdafb3152b3a46e2a92e907",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:mil.disa.stig.win:var:25439100"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "capability": "windows.registry",
+      "consumer_operations": [
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        },
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        },
+        {
+          "datatype": "string",
+          "element": "path",
+          "operation": "equals",
+          "var_check": "all"
+        }
+      ],
+      "decision": "retain_blocker",
+      "explicit_source_conversion": false,
+      "item_state_evidence": {
+        "interpretation": "Item datatype depends on registry value kind; source Object/Variable does not provide the runtime Item datatype.",
+        "item": "EntityItemAnySimpleType with runtime datatype attribute",
+        "source_pointer": "OVAL 5.12.3 windows-system-characteristics-schema.xsd:2410-2413; windows-definitions-schema.xsd:5589-5594",
+        "state": "EntityStateAnySimpleType"
+      },
+      "object_graph": {
+        "objects": [
+          "oval:mil.disa.stig.win:obj:25439100"
+        ],
+        "patterns": [],
+        "selectors": [
+          {
+            "attributes": {
+              "datatype": "string"
+            },
+            "element": "hive",
+            "text": "HKEY_LOCAL_MACHINE"
+          },
+          {
+            "attributes": {
+              "datatype": "string",
+              "operation": "case insensitive equals"
+            },
+            "element": "key",
+            "text": "System\\CurrentControlSet\\Services\\NTDS\\Parameters"
+          },
+          {
+            "attributes": {
+              "datatype": "string",
+              "operation": "case insensitive equals"
+            },
+            "element": "name",
+            "text": "Database log files path"
+          }
+        ]
+      },
+      "original_blocker": "authoring/direct-slice/assessments/windows-server-2025-sas-access-sv-278138-assessment.json: Native comparison datatype: Variable database-log-files-path-variable: ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field",
+      "original_blocker_category": "schema-semantic",
+      "original_proof_level": "authoring_validated",
+      "original_status": {
+        "from": "converted",
+        "to": "blocked"
+      },
+      "owner_decision_required": "Provide runtime Item datatype/type/status vectors for this registry value and define comparison interpretation; the source Object does not pin REG_* kind.",
+      "source_expression": "object_component",
+      "source_field": "value",
+      "source_object_id": "oval:mil.disa.stig.win:obj:25439100",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-278138r1182081_rule",
+      "source_rule_sha256": "5f194b14219d8fec22dd8731ce34dba2fd7491b1ceb1d3f96a04c6e0e79222e9",
+      "source_variable_datatype": "string",
+      "source_variable_id": "oval:mil.disa.stig.win:var:25439100"
+    }
+  ],
+  "recovered": 0,
+  "retained_blocked": 23,
+  "scanner_equivalent": false,
+  "schema_aggregate_sha256": "578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829",
+  "source_regressions": 23,
+  "source_statuses_preserved": true
+}

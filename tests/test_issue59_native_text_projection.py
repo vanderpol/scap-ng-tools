@@ -22,10 +22,12 @@ FIELD = {
 
 
 class NativeTextProjection(unittest.TestCase):
-    def test_native_split_and_substring_field_projection(self):
+    def test_native_text_function_field_projection(self):
         cases = (
             ("split", {"delimiter": ","}),
             ("substring", {"substring_start": 1, "substring_length": -1}),
+            ("begin", {"character": "/"}),
+            ("end", {"character": "/"}),
         )
         for operation, options in cases:
             with self.subTest(operation=operation):
@@ -40,10 +42,12 @@ class NativeTextProjection(unittest.TestCase):
                 # Lowering must be deterministic and idempotent.
                 self.assertEqual(lower_expression(converted), converted)
 
-    def test_source_envelope_and_native_expression_match(self):
+    def test_source_envelope_and_native_text_expression_match(self):
         for name, options in (
             ("split", {"delimiter": ","}),
             ("substring", {"substring_start": 2, "substring_length": 4}),
+            ("begin", {"character": "/"}),
+            ("end", {"character": "/"}),
         ):
             with self.subTest(name=name):
                 legacy = {"function": {

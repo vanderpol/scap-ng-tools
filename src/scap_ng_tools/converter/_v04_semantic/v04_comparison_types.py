@@ -10,6 +10,10 @@ import struct
 from pathlib import Path
 
 from . import capability_contract
+
+# Internal validation marker for raw collected Item domains. It is not a
+# canonical YAML datatype or an implicit cast.
+DYNAMIC_COLLECTED = 'dynamic_collected'
 TEXT_TYPES = {'string', 'binary', 'version', 'ipv4', 'ipv6', 'rpm_evr', 'debian_evr',
               'fileset_revision', 'ios_version'}
 TYPED = sorted(TEXT_TYPES - {'string'} | {'float'}, key=len, reverse=True)
@@ -72,6 +76,15 @@ def predicate_type(predicate, allowed, assessment, path, variable_types=None):
             declaration = assessment.get(section, {}).get(identity)
             if kind == 'variable' and variable_types is not None:
                 domain = variable_types.get(identity)
+                if domain == DYNAMIC_COLLECTED:
+                    # A collected Item keeps its raw lexical/type evidence;
+                    # the typed comparison operator is the consumer-directed
+                    # request. No value is cast during authoring.
+                    if chosen is None:
+                        raise ValueError(path + ': dynamic collected Variable needs an explicit typed consumer operation')
+                    if chosen not in constraints:
+                        raise ValueError(path + ': consumer datatype conflicts with capability contract')
+                    return chosen
                 if not isinstance(domain, str):
                     raise ValueError(path + ': unresolved or ambiguously typed variable ' + str(identity))
             else:

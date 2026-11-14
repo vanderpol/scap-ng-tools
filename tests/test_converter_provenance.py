@@ -8,12 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '7cc30989ae1b65c2f2af41120777769fd94b6ca96be1c01196bbf42e85f13d59'
+CURRENT_RUNTIME_SHA256 = 'fb22de5686d4bb623ac48fc2ee7a283c162c30df5bd542f1bd1a33b04f072078'
 UNCHANGED_SOURCE_SHA256 = '903f2d800a0ffb0e5a1c41bcefc9095c21ba8903c65c5b40cd796b1c1adc4aa6'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d',
-    'v04_direct_converter.py': '3ac82b2fecd08ead7e2759303c0fc68e1a5c37eefedbbbedc1471720001fa4d4',
+    'v04_direct_converter.py': '0f2da94eed8db70f29df0f9d4791b0b050b22a319320a126ea213b359a210a1c',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
@@ -25,10 +25,10 @@ AUDITED_ADAPTATIONS = {
     'v04_direct_enum_variables.py': 'b7e6e8a4b85892d19509de16822667d76c2c8e31719ce65f3722ffd6952083a9',
 }
 SEMANTIC_PORT = {
-    'v04_comparison_types.py': 'f4974bc9b8f1acec280dd2c5d6a61daed9d702e89e6ce02fd01b9b9443379f56',
+    'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',
     'v04_input_presence.py': '32fec8715cb69ba56453984b84becc7b43e53e5a2f896680e0752996e011d49e',
     'v04_object_contract.py': 'a63dfc5a3af0d77964853c2b1041a90361ae37881e1c82c7b01daa510d23994f',
-    'v04_variable_expressions.py': 'f4d1ea8b606fd411e638ed88af0ac47a087ea8139276dae9f3bbb0a96dd17d0f',
+    'v04_variable_expressions.py': 'e793b6a85596529c56c2bb5b2a20d24708fe89b13fc8fb1e43c32c73f2ac7f63',
 }
 SOURCE_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 PINNED_GENERATOR_HELPERS = {

@@ -40,3 +40,13 @@ See `oval-accounting.json` for exact receipts. The pinned 144-file corpus has **
 ## Unproved semantics / blockers
 
 This phase does not add missing 0.4.1 semantics. Remaining blockers include unsupported OVAL capabilities (`accesstoken`, `user`, `sqlext`), external Variables and `possible_restriction`, check-import/result binding and complex checks, unsupported functions (`time_difference`, `glob_to_regex`), Variable Set/Filter standalone forms, and schema-semantic authoring mismatches. Scanner equivalence and runtime RI/SCC proof remain unproved.
+
+## 2026-11-14 datatype recovery qualification
+
+The follow-up exact-head rebuild against canonical `scap-ng@aece827964c785be77b088c3c61255a2d07fd9a9` is recorded in [`DATATYPE-RECOVERY.md`](DATATYPE-RECOVERY.md), [`datatype-recovery.json`](datatype-recovery.json), and [`full65-datatype-recovery-rebuild.json`](full65-datatype-recovery-rebuild.json). The historical pre-recovery receipt is retained as [`full65-pre-recovery-source-rule-rebuild.json`](full65-pre-recovery-source-rule-rebuild.json). The new candidate is **6,379 converted / 208 blocked / 1,403 manual-only** in the active 7,990-Rule scope; **10 of the original 118 datatype regressions recovered**, while **108 remain blocked**. The nonregression gate intentionally remains failed/HOLD. These are authoring qualifications only, not RI/SCC or scanner equivalence.
+
+The standalone OVAL corpus was also rebuilt at the same schema pin; [`OVAL-DATATYPE-RECOVERY.md`](OVAL-DATATYPE-RECOVERY.md) records **97 converted Definitions / 506 converted Tests**, **69 / 295 blocked**, and **2 / 2 owner-excluded**, with 55 preserved independent parity findings and no execution/equivalence claim.
+
+The 85 textfilecontent subexpression cases are reviewed by pattern in [`TEXTFILECONTENT-SUBEXPRESSION.md`](TEXTFILECONTENT-SUBEXPRESSION.md) with machine-readable source evidence in [`textfilecontent-subexpression-patterns.json`](textfilecontent-subexpression-patterns.json). All 20 distinct patterns retain the blocker pending an owner-approved typed Item boundary or explicit lexical conversion rule.
+
+The remaining 23 collected-field holds (13 shellcommand subexpressions, 6 registry values, 4 environment-variable values) are audited against pinned OVAL 5.12.3 in [`REMAINING-23-COLLECTED-FIELDS.md`](REMAINING-23-COLLECTED-FIELDS.md) and [`remaining-23-collected-field-audit.json`](remaining-23-collected-field-audit.json). No conversion is implemented; original converted→blocked statuses and blocker diagnostics are preserved.
