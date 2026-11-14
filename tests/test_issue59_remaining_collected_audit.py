@@ -6,9 +6,12 @@ from unittest.mock import patch
 import unittest
 
 from scap_ng_tools.converter._v04_semantic import v04_variable_expressions as semantic
+from scap_ng_tools.converter._v04_semantic.v04_comparison_types import predicate_type
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT = ROOT / 'docs/evidence/issue59/remaining-23-collected-field-audit.json'
+OPERATION_LEDGER = ROOT / 'docs/evidence/issue59/operation-directed-recovery.json'
+OPERATION_RECEIPT = ROOT / 'docs/evidence/issue59/full65-operation-directed-source-rule-rebuild.json'
 
 
 class _CandidateSchema:
@@ -36,7 +39,109 @@ class RemainingCollectedAudit(unittest.TestCase):
             self.assertEqual(row['decision'], 'retain_blocker')
             self.assertFalse(row['item_state_evidence']['item'] == 'string')
 
-    def test_broad_item_domains_remain_ambiguous_without_a_cast(self):
+    def test_operation_directed_receipt_preserves_holds_and_source_identity(self):
+        ledger = json.loads(OPERATION_LEDGER.read_text())
+        receipt = json.loads(OPERATION_RECEIPT.read_text())
+        self.assertEqual(receipt['candidate'],
+                         {'blocked': 98, 'converted': 6489, 'manual_only': 1403})
+        self.assertEqual(receipt['newly_blocked_from_converted'], 0)
+        self.assertTrue(receipt['nonregression_pass'])
+        self.assertFalse(receipt['scanner_equivalent'])
+        self.assertEqual(ledger['recovery_counts']['datatype_hold_records'], 108)
+        self.assertEqual(ledger['candidate_receipt']['candidate'], receipt['candidate'])
+        held = [row for row in ledger['records'] if row.get('decision') == 'blocked']
+        self.assertEqual(len(held), 108)
+        self.assertEqual(len({(row['benchmark'], row['source_rule']) for row in held}), 108)
+        for row in held:
+            self.assertEqual(row['operation_directed_candidate_status'], 'converted')
+            self.assertTrue(row['source_status_provenance_preserved'])
+            self.assertFalse(row['raw_collected_values_rewritten'])
+            self.assertFalse(row['implicit_cast_added'])
+
+    def test_typed_consumer_supplies_requested_interpretation_without_rewriting_values(self):
+        allowed = {'string', 'integer', 'float', 'boolean'}
+        assessment = {'variables': {'captured': {'kind': 'local', 'expression': {
+            'values': {'object': {'capability': 'windows.registry'}, 'field': 'value'}}}}}
+        self.assertEqual(predicate_type(
+            {'datatype': 'integer', 'greater_than': {'variable': 'captured'}},
+            allowed, assessment, '/test/value',
+            variable_types={'captured': semantic.DYNAMIC_COLLECTED}), 'integer')
+        self.assertEqual(predicate_type(
+            {'datatype': 'string', 'equals': {'variable': 'captured'}},
+            allowed, assessment, '/test/value',
+            variable_types={'captured': semantic.DYNAMIC_COLLECTED}), 'string')
+        with self.assertRaisesRegex(ValueError, 'explicit typed consumer'):
+            predicate_type({'equals': {'variable': 'captured'}}, allowed, assessment,
+                           '/test/value', variable_types={'captured': semantic.DYNAMIC_COLLECTED})
+
+    def test_converter_preserves_source_consumer_datatype_on_variable_predicate(self):
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import AssessmentConverter  # noqa: E402
+        from v04_direct_scap_source import OVAL  # noqa: E402
+        import xml.etree.ElementTree as ET
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        visitor.operand = lambda element, enum_aliases=None: {'variable': 'captured'}
+        mapping = {'capability': 'independent.environmentvariable', 'native': {
+            'state_field_map': {'value': 'value'},
+            'field_datatypes': {'value': ['string', 'integer']},
+        }}
+        element = ET.fromstring(
+            '<value xmlns="' + OVAL + '#independent" datatype="int" '
+            'operation="greater than" var_ref="source" var_check="all" entity_check="all"/>')
+        result = visitor.predicate(element, mapping)
+        self.assertEqual(result['datatype'], 'integer')
+        self.assertEqual(result['greater_than'], {'variable': 'captured'})
+        self.assertEqual(result['value_match'], 'every')
+
+    def test_operation_directed_consumer_does_not_rewrite_raw_values_or_status_contract(self):
+        # The authoring representation carries the collection projection and
+        # the requested consumer datatype separately. It must not turn lexical
+        # samples (including malformed/empty values) into literals or change
+        # the source collection's status/cardinality contract.
+        expression = {
+            'values': {
+                'object': {'capability': 'independent.shellcommand',
+                           'command': 'printf 123\nprintf 001\nprintf abc'},
+                'field': 'subexpression',
+            }
+        }
+        assessment = {'variables': {'captured': {'kind': 'local',
+            'expression': expression}}}
+        with patch.object(semantic, 'declaration_validator', return_value=_CandidateSchema()), \
+             patch.object(semantic, 'snapshot', return_value=SimpleNamespace(schema_root=Path('.'))), \
+             patch('scap_ng_tools.converter._v04_semantic.v04_object_contract.object_validator',
+                   return_value=SimpleNamespace(iter_errors=lambda _: iter(()))), \
+             patch.object(semantic, 'contract', return_value=(
+                 {'subexpression': ['string', 'integer']}, set(), {}, {})), \
+             patch.object(semantic, 'capability_contract', return_value=(
+                 {'native': {'field_datatypes': {'subexpression': ['string', 'integer']} }},
+                 {'fields': {'subexpression': ['string', 'integer']}, 'records': [],
+                  'selectors': {}, 'native': {}})):
+            derived = semantic.assessment_variable_expressions(assessment)
+        self.assertEqual(derived['captured'], semantic.DYNAMIC_COLLECTED)
+        self.assertEqual(expression['values']['field'], 'subexpression')
+        self.assertNotIn('literal', expression)
+        self.assertEqual(predicate_type(
+            {'datatype': 'integer', 'greater_than': {'variable': 'captured'},
+             'value_match': 'every'},
+            {'string', 'integer'}, assessment, '/test/value',
+            variable_types=derived), 'integer')
+        # No status, multiplicity, or ordering information is synthesized by
+        # the type gate; those remain runtime/source-evidence obligations.
+        self.assertNotIn('cast', expression)
+        self.assertNotIn('status', expression)
+
+    def test_operation_directed_consumer_conflicts_fail_closed(self):
+        assessment = {'variables': {'captured': {'kind': 'local', 'expression': {
+            'values': {'object': {'capability': 'windows.registry'}, 'field': 'value'}}}}}
+        with self.assertRaisesRegex(ValueError, 'conflicts with capability contract'):
+            predicate_type(
+                {'datatype': 'boolean', 'equals': {'variable': 'captured'}},
+                {'string', 'integer'}, assessment, '/test/value',
+                variable_types={'captured': semantic.DYNAMIC_COLLECTED})
+
+    def test_broad_item_domains_retain_raw_domain_until_consumer(self):
         domains = ['string', 'boolean', 'integer', 'float', 'binary', 'version',
                    'ipv4', 'ipv6', 'rpm_evr', 'debian_evr', 'fileset_revision',
                    'ios_version']
@@ -58,8 +163,8 @@ class RemainingCollectedAudit(unittest.TestCase):
                         'values': {'object': {'capability': capability}, 'field': field}}}}}
                     with patch.object(semantic, 'contract', return_value=(generated['fields'], set(), {}, generated['native'])), \
                          patch.object(semantic, 'capability_contract', return_value=(mapping, generated)):
-                        with self.assertRaisesRegex(ValueError, 'ambiguous/empty'):
-                            semantic.assessment_variable_expressions(assessment)
+                        result = semantic.assessment_variable_expressions(assessment)
+                        self.assertEqual(result['captured'], semantic.DYNAMIC_COLLECTED)
 
 
 if __name__ == '__main__':

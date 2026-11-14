@@ -1061,6 +1061,11 @@ class AssessmentConverter:
         if element.get('var_ref'):
             ensure(element.get('var_check', 'all') in MATCHING, 'unsupported var_check')
             result['value_match'] = MATCHING[element.get('var_check', 'all')]
+            # Keep the source consumer's requested datatype visible when the
+            # expected value is a Variable. This is not a declaration-level
+            # Variable type and does not cast collected evidence; it gives the
+            # operation-directed evaluator its source comparison request.
+            result['datatype'] = native_datatype(element.get('datatype', 'string'))
         if not selector:
             ensure(element.get('entity_check', 'all') in MATCHING, 'unsupported entity_check')
             result.update(values_found=FIELD_EXISTENCE[existence], values_matching=MATCHING[element.get('entity_check', 'all')])

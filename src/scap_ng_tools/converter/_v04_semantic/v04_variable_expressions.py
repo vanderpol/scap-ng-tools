@@ -8,10 +8,9 @@ from functools import lru_cache
 import json
 from pathlib import Path
 
-from .v04_comparison_types import TEXT_TYPES, scalar_type, contract
+from .v04_comparison_types import TEXT_TYPES, scalar_type, contract, DYNAMIC_COLLECTED
 from . import capability_contract
 from . import snapshot
-
 
 
 @lru_cache(maxsize=1)
@@ -49,6 +48,8 @@ def assessment_variable_expressions(assessment):
         # unknown/empty domains are not silently flattened, while scalar
         # integer/float/boolean values are stringified by the runtime contract.
         scalar_domains = TEXT_TYPES | {'integer', 'float', 'boolean'}
+        if actual == {DYNAMIC_COLLECTED}:
+            return actual
         if not actual or 'record' in actual or not actual <= scalar_domains:
             raise ValueError(f'{where} requires a scalar text operand')
         return actual
@@ -110,7 +111,10 @@ def assessment_variable_expressions(assessment):
             item_types = mapping.get('native', {}).get('field_datatypes', {}).get(field)
             if not isinstance(item_types, list) or not item_types:
                 raise ValueError('collected-field lacks an explicit Item datatype: ' + field)
-            return set(item_types)
+            # Preserve the raw Item domain. A multi-datatype collected field
+            # is not a cast or a guessed Variable type; its consumer supplies
+            # the requested comparison interpretation later.
+            return set(item_types) if len(item_types) == 1 else {DYNAMIC_COLLECTED}
         if op == 'count':
             expression(value)  # Any resolved typed collection, including empty.
             return {'integer'}

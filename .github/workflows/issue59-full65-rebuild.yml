@@ -14,6 +14,10 @@ on:
       - 'tests/test_issue59_input_relation.py'
       - 'src/scap_ng_tools/converter/direct04.py'
       - 'src/scap_ng_tools/converter/oval_platform.py'
+      - 'src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py'
+      - 'src/scap_ng_tools/converter/_v04_semantic/v04_comparison_types.py'
+      - 'src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py'
+      - 'tests/test_issue59_remaining_collected_audit.py'
 
   pull_request:
     branches:
@@ -36,6 +40,12 @@ on:
       - 'docs/evidence/issue59/full65-pre-recovery-source-rule-rebuild.json'
       - 'tests/test_issue59_regression_triage.py'
       - 'tests/test_issue59_atomic_lowering_boundaries.py'
+      - 'src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py'
+      - 'src/scap_ng_tools/converter/_v04_semantic/v04_comparison_types.py'
+      - 'src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py'
+      - 'tests/test_issue59_remaining_collected_audit.py'
+      - 'docs/evidence/issue59/OPERATION-DIRECTED-RECOVERY.md'
+      - 'docs/evidence/issue59/operation-directed-recovery.json'
 
 permissions:
   contents: read
@@ -89,6 +99,9 @@ jobs:
 
       - name: Qualify fail-closed Rule-ID triage helper
         run: python -m unittest discover -s tests -p test_issue59_regression_triage.py -v
+
+      - name: Qualify operation-directed collected-field representation
+        run: python -m unittest discover -s tests -p test_issue59_remaining_collected_audit.py -v
 
       - name: Generate source-ID regression triage from actual rebuild
         run: >-

@@ -49,8 +49,8 @@ class TextfilecontentPatternReview(unittest.TestCase):
              patch.object(semantic, 'capability_contract', return_value=(mapping, generated)), \
              patch('scap_ng_tools.converter._v04_semantic.v04_object_contract.object_validator',
                    return_value=SimpleNamespace(iter_errors=lambda _: iter(()))):
-            with self.assertRaisesRegex(ValueError, 'ambiguous/empty'):
-                semantic.assessment_variable_expressions(assessment)
+            result = semantic.assessment_variable_expressions(assessment)
+            self.assertEqual(result['gid'], semantic.DYNAMIC_COLLECTED)
 
 
 if __name__ == '__main__':
