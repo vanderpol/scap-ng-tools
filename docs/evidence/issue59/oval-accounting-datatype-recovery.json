@@ -40,7 +40,7 @@
     "independent_source_equivalent": false,
     "scanner_equivalent": false
   },
-  "rebuild_receipt": "/tmp/standalone-new/candidate/manifest.json",
+  "rebuild_receipt": "manifest.json plus definitions.json/tests.jsonl ledgers (receipt hashes below)",
   "results": {
     "blocked_definitions": 69,
     "blocked_tests": 295,
