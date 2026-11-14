@@ -48,7 +48,17 @@ def lower_expression(node):
                         {"character"})
             _required(len(children) == 1 and set(options) == required,
                       name + " requires exactly one operand and explicit options")
-            return {name: {**deepcopy(options), "value": children[0]}}
+            operand = children[0]
+            if name in {"split", "substring"} and "values" in operand:
+                # Port the bounded lexical-string projection from the 0.3
+                # static OVAL function evaluator.  The native concat operator
+                # explicitly specifies the inherited source text conversion.
+                # Its singleton empty prefix preserves order, multiplicity,
+                # and one-to-one population cardinality; unlike a hidden cast
+                # the conversion remains visible in native authoring.
+                # Non-scalar/unknown Item domains fail in semantic validation.
+                operand = {"concat": [{"literal": ""}, operand]}
+            return {name: {**deepcopy(options), "value": operand}}
         if name == "unique":
             _required(len(children) >= 1 and not options, "unique source arity/options invalid")
             return {"unique": children if len(children) > 1 else children[0]}
