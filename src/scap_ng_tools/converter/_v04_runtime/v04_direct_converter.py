@@ -5,6 +5,7 @@ Conversion uses current capability metadata, not old NG renderers or IRs.
 Public validation, compilation and independent proof are separate commands.
 """
 import argparse
+from contextlib import contextmanager, nullcontext
 from copy import deepcopy
 import json
 from pathlib import Path
@@ -22,7 +23,7 @@ from v04_direct_datatypes import SOURCE_TYPES, SPECIAL_TYPES, native_datatype, l
 ROOT = Path(__file__).resolve().parents[1]
 SUPPORT = json.loads(Path(__file__).with_name('v04_direct_capabilities.json').read_text())
 CAPABILITIES = tuple(SUPPORT['enabled'])
-ensure(SUPPORT['specification_version'] == '0.4.0' and len(CAPABILITIES) == len(set(CAPABILITIES)),
+ensure(SUPPORT['specification_version'] == '0.4.1' and len(CAPABILITIES) == len(set(CAPABILITIES)),
        'invalid direct capability activation registry')
 EXISTENCE = {'at_least_one_exists': 'one_or_more', 'none_exist': 'none',
              'only_one_exists': 'exactly_one', 'any_exist': 'zero_or_more'}
@@ -38,10 +39,45 @@ COMPARISONS = {'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'm
 SET_OPERATORS = {'UNION': 'union', 'INTERSECTION': 'intersection', 'COMPLEMENT': 'difference'}
 
 
+def legacy_wmi_selected_field(wql):
+    """Return the one projected field permitted by legacy OVAL WMI."""
+    match = re.fullmatch(r'\s*select\s+([A-Za-z_][A-Za-z0-9_]*)\s+from\s+\S+.*', wql or '', re.IGNORECASE | re.DOTALL)
+    ensure(match is not None, 'legacy WMI query is not a single named field projection')
+    return match.group(1)
+
+
+def legacy_wmi_record_predicate(element, field, visitor):
+    """Adapt one legacy scalar result State to the existing WMI record State."""
+    attributes(element, {'id', 'version', 'comment', 'operator'})
+    children = list(element)
+    ensure(len(children) == 1 and local_name(children[0]) == 'result' and not len(children[0]),
+           'legacy WMI State requires exactly one scalar result')
+    child = children[0]
+    value = visitor.predicate(child, visitor._wmi_mapping, record_field=True)
+    found = element.get('check_existence', 'at_least_one_exists')
+    matching = element.get('entity_check', 'all')
+    ensure(found in FIELD_EXISTENCE and found != 'none_exist' and matching in MATCHING,
+           'legacy WMI State record absence/quantifier outside bounded proof')
+    return {'fields': {'result': {'record': {
+        'records_found': FIELD_EXISTENCE[found],
+        'records_matching': MATCHING[matching],
+        'fields': {field: value}}}}}
+
+
+def native_items_found(source_value):
+    """Lower the OVAL Test population to the native 0.4 cardinality."""
+    ensure(source_value in EXISTENCE or source_value == 'all_exist',
+           f'unsupported Test existence: {source_value}')
+    # SCAP-NG 0.4 has no synthetic absent Items. Its approved contract maps
+    # OVAL all_exist and at_least_one_exists to one_or_more; source spelling
+    # remains available through the binding provenance emitted for recovery.
+    return 'one_or_more' if source_value == 'all_exist' else EXISTENCE[source_value]
+
+
 def load_mappings():
-    mappings = [json.loads((ROOT / f'schema/v0.4.0/capability-mappings/supported/{name}.json').read_text())
+    mappings = [json.loads((ROOT / f'schema/capability-mappings/supported/{name}.json').read_text())
                 for name in CAPABILITIES]
-    ensure(all(mapping['specification_version'] == '0.4.0' for mapping in mappings), 'mapping version mismatch')
+    ensure(all(mapping['specification_version'] == '0.4.1' for mapping in mappings), 'mapping version mismatch')
     ensure(all((mapping['source']['namespace'].rsplit('#', 1)[-1] in ('independent', 'linux', 'unix', 'windows') or
                 mapping['capability'] in {'solaris.smf', 'iosxe.line', 'iosxe.global'})
                for mapping in mappings), 'capability outside approved direct-converter scope')
@@ -62,11 +98,17 @@ class AssessmentConverter:
     declarations. Cached values are copied so a consumer cannot mutate a peer.
     """
     def __init__(self, source, component_id, mappings, *, canonical_variable_functions=False,
-                 human_compact=True):
+                 human_compact=True, native_recovery=False):
         self.source, self.component_id, self.mappings = source, component_id, mappings
         # Opt-in migration probe only. Production output and source-proof paths
         # retain their current syntax until coordinated compiler migration.
         self.canonical_variable_functions = canonical_variable_functions
+        self.preserve_source_variables = False
+        # Never emit candidate syntax against a historical frozen schema.
+        self.native_specification_version = '0.4.1'  # sole supported native authoring contract
+        # Recovery candidates are opt-in until their changed golden deltas are
+        # owner-accepted; the historical default remains byte-compatible.
+        self.native_recovery = native_recovery
         # Opt-in authoring projection; a new program digest needs fresh review.
         self.human_compact = human_compact
         self.human_compaction = []
@@ -84,6 +126,12 @@ class AssessmentConverter:
     def capability(self, element, kind):
         matches = [mapping for mapping in self.mappings if element.tag ==
                    f'{{{mapping["source"]["namespace"]}}}{mapping["source"].get(kind)}']
+        if not matches and self.native_recovery and element.tag == f'{{{OVAL}#windows}}wmi_{kind}':
+            # OVAL 5.12.3 legacy wmi_* has the same namespace/query selectors
+            # as wmi57_*, but its scalar result must be wrapped as a named
+            # record member.  Keep this alias opt-in and fail closed elsewhere.
+            matches = [mapping for mapping in self.mappings
+                       if mapping['capability'] == 'windows.wmi.query']
         ensure(len(matches) == 1, f'unsupported {kind} capability: {element.tag}')
         return matches[0]
 
@@ -93,7 +141,7 @@ class AssessmentConverter:
         # first reference is allocated. Cache only the immutable node index;
         # SourceModel.index replaces that index and invalidates this cache.
         nodes = getattr(self.source, 'nodes', {}).get(self.component_id, {})
-        if nodes and suffix in ('object', 'test', 'variable'):
+        if self.native_recovery and nodes and suffix in ('object', 'test', 'variable'):
             from collections import Counter
             cache = getattr(self.source, '_native_name_census', {})
             entry = cache.get((self.component_id, suffix))
@@ -113,9 +161,19 @@ class AssessmentConverter:
                     # targets. Name the source kind, controls and target instead.
                     identifier = native_identifier(element, suffix,
                         ' '.join([local_name(element), *controls, *values]))
-        key = suffix, identifier
         original = element.get('id')
         ensure(isinstance(original, str) and original, 'source node lacks identity for native naming')
+        key = suffix, identifier
+        if self.native_recovery and key in self.native_names and self.native_names[key] != original:
+            # Readable comments are not identities. If the source-derived
+            # descriptor is still ambiguous (including identical comments,
+            # controls, and values), append a deterministic source-ID token.
+            token = digest(original)[:10]
+            stem = identifier.removesuffix('-' + suffix)
+            budget = 64 - len(suffix) - len(token) - 2
+            ensure(budget >= 1, 'native identity discriminator exceeds identifier budget')
+            identifier = stem[:budget].rstrip('-') + '-' + token + '-' + suffix
+            key = suffix, identifier
         ensure(key not in self.native_names or self.native_names[key] == original,
                f'native {suffix} name collision {identifier}: {self.native_names.get(key)} vs {original}')
         self.native_names[key] = original
@@ -194,21 +252,72 @@ class AssessmentConverter:
             return {'test': identifier}
         objects = element.findall(f'{{{mapping["source"]["namespace"]}}}object')
         ensure(len(objects) == 1, 'one Test Object required')
-        conditions = []
-        for child in element:
-            kind = local_name(child)
-            ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
-            attributes(child, {kind + '_ref'})
-            ensure(not len(child), 'Test reference has children')
-            if kind == 'state':
-                self.same_family(child.get('state_ref'), 'state', mapping)
-                conditions.append(self.reference(child.get('state_ref'), 'state'))
         found = element.get('check_existence', 'at_least_one_exists')
-        draft_all_exist = found == 'all_exist' and getattr(self.source, 'draft_compatibility', False)
-        ensure(found in EXISTENCE or draft_all_exist, f'unsupported Test existence: {found}')
-        requirement = {'items_found': 'one_or_more' if draft_all_exist else EXISTENCE[found]}
+        conditions = []
+        state_refs = []
+        self._wmi_legacy_fields = {}
+        self._wmi_mapping = mapping
+        object_id = objects[0].get('object_ref')
+        object_source = self.source.node(self.component_id, object_id, 'object')
+        preserve_object_graph_variables = any(
+            local_name(node) in ('set', 'filter') for node in object_source.iter())
+        if local_name(object_source) == 'wmi_object':
+            wql = next((child.text for child in object_source
+                        if local_name(child) == 'wql'), None)
+            field = legacy_wmi_selected_field(wql)
+            # Establish the projection before State references are evaluated.
+            self._wmi_legacy_fields = {child.get('state_ref'): field
+                                       for child in element if local_name(child) == 'state'}
+            self.conversion_warnings.append({
+                'code': 'legacy_wmi_migrated_to_wmi_query',
+                'source_test': element.get('id'),
+                'source_object': object_id,
+                'source_states': sorted(self._wmi_legacy_fields),
+                'selected_field': field,
+                'source_test_sha256': digest(xml_identity(element)),
+                'source_object_sha256': digest(xml_identity(object_source)),
+                'mapping': 'windows.wmi.query',
+                'semantic_basis': 'OVAL legacy wmi selects exactly one named simple field; native wmi query returns a record with that named field',
+                'independent_static_proof': 'UNPROVED',
+                'scanner_evaluated': False,
+            })
+        with (self.source_variable_scope() if preserve_object_graph_variables else nullcontext()):
+            for child in element:
+                kind = local_name(child)
+                ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
+                attributes(child, {kind + '_ref'})
+                ensure(not len(child), 'Test reference has children')
+                if kind == 'state':
+                    state_refs.append(child.get('state_ref'))
+                    # No Item can satisfy a none_exist Test. Do not execute or
+                    # require its State graph merely to lower the absence result.
+                    if found != 'none_exist' or not self.native_recovery:
+                        self.same_family(child.get('state_ref'), 'state', mapping)
+                        conditions.append(self.reference(child.get('state_ref'), 'state'))
+        # Native 0.4's item_requirement explicitly defines all_exist as
+        # one_or_more: collected Items have no synthetic does-not-exist
+        # entries. Keep the source spelling in the trace, but do not gate this
+        # approved native lowering behind the retired draft mode.
+        if found == 'all_exist' and not self.native_recovery:
+            ensure(False, 'unsupported Test existence: all_exist')
+        requirement = {'items_found': native_items_found(found)}
+        if self.native_recovery and found == 'none_exist' and state_refs:
+            # OVAL Test existence is evaluated before State matching. An
+            # absent population has no Items on which a comparator or State
+            # expression can operate, so preserve only the absence
+            # requirement and retain the dropped source controls.
+            self.conversion_warnings.append({
+                'code': 'oval_test_absence_controls_ignored',
+                'source_test': element.get('id'),
+                'source_test_sha256': digest(xml_identity(element)),
+                'source_check': element.get('check'),
+                'source_state_operator': element.get('state_operator', 'AND'),
+                'source_state_refs': state_refs,
+                'semantic_basis': 'OVAL check_existence none_exist takes precedence',
+                'independent_static_proof': 'SOURCE_RULE_OWNER_DECISION',
+            })
         if conditions:
-            ensure(element.get('check') in MATCHING and found != 'none_exist', 'unsupported Test matching/absence combination')
+            ensure(element.get('check') in MATCHING, 'unsupported Test matching/absence combination')
             requirement.update(items_satisfying=MATCHING[element.get('check')])
             requirement.update(logical_condition(element.get('state_operator', 'AND'), conditions))
             if self.human_compact:
@@ -217,7 +326,6 @@ class AssessmentConverter:
                 if edit:
                     self.human_compaction.append({'source_test': element.get('id'), **edit})
                     requirement = compacted
-        object_id = objects[0].get('object_ref')
         from v04_direct_authoring_contract import test_requirement
         requirement = test_requirement(requirement)
         self.same_family(object_id, 'object', mapping)
@@ -227,10 +335,6 @@ class AssessmentConverter:
         identifier = self.native_name(element, 'test')
         self.tests[identifier] = {'test_title': element.get('comment', ''), 'capability': mapping['capability'],
                                   'object': acquisition, 'require': requirement, 'reported_elements': 'all'}
-        if draft_all_exist:
-            from v04_draft_compatibility import all_exist_warning
-            self.conversion_warnings.append(all_exist_warning(self.source, self.component_id, element,
-                self.source.node(self.component_id, object_id, 'object'), identifier))
         if mapping['native'].get('test_source', {}).get('kind') == 'none':
             # The version-local contract deliberately omits meaningless source
             # singleton Objects. The source dependency remains in provenance.
@@ -249,6 +353,11 @@ class AssessmentConverter:
     def convert_state(self, element):
         from v04_direct_system_policy import policy_entity
         mapping = self.capability(element, 'state')
+        if local_name(element) == 'wmi_state':
+            field = getattr(self, '_wmi_legacy_fields', {}).get(element.get('id'))
+            ensure(field and getattr(self, '_wmi_mapping', None) is mapping,
+                   'legacy WMI State requires a paired legacy WMI Test projection')
+            return legacy_wmi_record_predicate(element, field, self)
         conditions, seen = [], set()
         for child in element:
             field = local_name(child)
@@ -281,8 +390,27 @@ class AssessmentConverter:
         if mapping['native'].get('test_source', {}).get('kind') == 'variable':
             references = element.findall(f'{{{mapping["source"]["namespace"]}}}var_ref')
             ensure(len(element) == len(references) == 1, 'Variable source requires one var_ref; Sets/Filters unsupported')
-            attributes(references[0], set())
+            # OVAL variable_object permits the entity's datatype/operation
+            # controls on its var_ref. A direct native Variable source has no
+            # second selector comparator, so drop them only after proving the
+            # source is the default string equality boundary.
+            if self.native_recovery:
+                attributes(references[0], {'datatype', 'operation'})
+                ensure(references[0].get('datatype', 'string') == 'string' and
+                       references[0].get('operation', 'equals') == 'equals',
+                       'Variable source var_ref comparator/type outside bounded proof')
+            else:
+                attributes(references[0], set())
             ensure(not len(references[0]), 'Variable source var_ref has children')
+            if self.native_recovery and references[0].attrib:
+                self.conversion_warnings.append({
+                'code': 'oval_variable_source_ref_controls_ignored',
+                'source_object': element.get('id'),
+                'source_object_sha256': digest(xml_identity(element)),
+                'source_var_ref_attributes': dict(references[0].attrib),
+                'semantic_basis': 'native Variable source is already the selected equality domain',
+                'independent_static_proof': 'SOURCE_TYPED_EQUALITY_BOUNDARY',
+                })
             acquisition['variable'] = self.named_variable((references[0].text or '').strip())
             return acquisition
         if mapping['native'].get('test_source', {}).get('kind') == 'none':
@@ -316,19 +444,26 @@ class AssessmentConverter:
                 ensure(target not in acquisition, 'duplicate Object field')
                 if mapping['capability'] == 'windows.cmdlet':
                     from v04_direct_cmdlet_inputs import cmdlet_input
-                    acquisition[target] = cmdlet_input(child, mapping['native']['collection_parameters'][target],
-                        lambda entity: self.predicate(entity, mapping, selector=True), self.parameter)
+                    contract = mapping['native']['collection_parameters'][target]
+                    acquisition[target] = cmdlet_input(child, contract,
+                        lambda entity: self.predicate(entity, mapping, selector=True),
+                        (lambda entity: self.parameter(entity, datatype=contract.get('semantic_datatype', contract.get('type', 'string')))
+                         if self.native_recovery else self.parameter),
+                        native_recovery=self.native_recovery)
                 else:
                     if field in selectors:
                         acquisition[target] = self.predicate(child, mapping, selector=True)
                     else:
                         operations = ('equals',)
-                        if mapping['capability'] == 'independent.shellcommand' and field == 'pattern':
-                            # This field already denotes a regex acquisition input,
-                            # not a predicate over the command or returned Items.
+                        if mapping['capability'] == 'independent.shellcommand':
+                            # Shell and command acquisition inputs have
+                            # capability-specific case semantics. Pattern is
+                            # a regex input; command/shell may also use the
+                            # source's case-insensitive equality boundary.
+                            allowed = ('equals', 'case insensitive equals', 'pattern match')
                             operations = tuple(op for op in mapping['native'].get(
                                 'collection_parameter_source_operations', {}).get(field, ())
-                                if op in ('equals', 'pattern match'))
+                                if op in allowed)
                         acquisition[target] = self.parameter(child, operations=operations)
                 if (field in selectors and child.get('operation') == 'case insensitive equals'
                         and 'equals' in acquisition[target]):
@@ -359,7 +494,8 @@ class AssessmentConverter:
                 text_part, traversal_part = split_behaviors(behaviors,
                     {'ignore_case', 'multiline', 'singleline', 'item_creation'},
                     {'max_depth', 'recurse', 'recurse_direction', 'recurse_file_system'})
-                textfile_path_controls(traversal_part, acquisition)
+                textfile_path_controls(traversal_part, acquisition, native_recovery=self.native_recovery,
+                                     warnings=self.conversion_warnings)
                 acquisition.update(file_behaviors(text_part))
             if mapping['capability'] == 'independent.shellcommand':
                 from v04_direct_command_behaviors import command_behaviors
@@ -371,12 +507,14 @@ class AssessmentConverter:
                     from v04_direct_file_behaviors import traversal_behaviors
                     acquisition.update(traversal_behaviors(traversal_part, acquisition,
                         windows=mapping['native']['traversal_definition'] == 'windows_file_traversal',
-                        selector_map=mapping['native'].get('selector_map', {})))
+                        selector_map=mapping['native'].get('selector_map', {}),
+                        native_recovery=self.native_recovery, warnings=self.conversion_warnings))
                 if 'content' not in acquisition:
                     acquisition.setdefault('filesystem', 'all')
             if mapping['native'].get('traversal_definition') == 'hierarchy_traversal':
                 from v04_direct_file_behaviors import hierarchy_behaviors
-                acquisition.update(hierarchy_behaviors(traversal_part, acquisition))
+                acquisition.update(hierarchy_behaviors(traversal_part, acquisition,
+                                                       native_recovery=self.native_recovery))
             if filters:
                 acquisition['filters'] = filters
         # Source identity, not payload equality, determines shared acquisitions.
@@ -407,7 +545,20 @@ class AssessmentConverter:
         ensure(details, 'shared acquisition has no source-grounded title')
         return local_name(element).removesuffix('_object').replace('_', ' ').capitalize() + ': ' + '; '.join(details)
 
+    @contextmanager
+    def source_variable_scope(self):
+        previous = self.preserve_source_variables
+        self.preserve_source_variables = True
+        try:
+            yield
+        finally:
+            self.preserve_source_variables = previous
+
     def set_expression(self, element, mapping):
+        with self.source_variable_scope():
+            return self._set_expression(element, mapping)
+
+    def _set_expression(self, element, mapping):
         attributes(element, {'set_operator'})
         operator = element.get('set_operator', 'UNION')
         ensure(operator in SET_OPERATORS, f'unsupported Set operator: {operator}')
@@ -436,6 +587,10 @@ class AssessmentConverter:
         return {'operator': SET_OPERATORS[operator], 'operands': operands}
 
     def filter(self, element, mapping):
+        with self.source_variable_scope():
+            return self._filter(element, mapping)
+
+    def _filter(self, element, mapping):
         attributes(element, {'action'})
         ensure(not len(element), 'Filter must reference a State')
         action = element.get('action', 'exclude')
@@ -464,9 +619,11 @@ class AssessmentConverter:
     def convert_variable(self, element):
         datatype = element.get('datatype')
         ensure(datatype in SOURCE_TYPES, f'unsupported Variable datatype: {datatype}')
-        if local_name(element)=='external_variable' and getattr(self.source,'draft_compatibility',False):
+        if local_name(element) == 'external_variable' and (
+                getattr(self.source, 'draft_compatibility', False) or
+                getattr(self.source, 'native_recovery', False)):
             from v04_draft_inputs import external_input
-            return external_input(self,element)
+            return external_input(self, element)
         if local_name(element) == 'constant_variable':
             ensure(len(element) and all(child.tag == f'{{{OVAL}}}value' and not child.attrib and not len(child) for child in element), 'malformed constant Variable')
             # Immutable source constants become typed expected arrays. Keep the
@@ -478,8 +635,9 @@ class AssessmentConverter:
         if self.canonical_variable_functions:
             from v04_variable_function_migration import canonical_expression
             expression = canonical_expression(expression)
-        self.variables[identifier] = {'kind': 'local', 'datatype': native_datatype(datatype),
-                                      'expression': expression}
+        # Source OVAL datatype remains in provenance. Only the canonical
+        # native expression determines the result type under SCAP-NG 0.4.1.
+        self.variables[identifier] = {'kind': 'local', 'expression': expression}
         return {'variable': identifier}
 
     def named_variable(self, source_id):
@@ -497,8 +655,8 @@ class AssessmentConverter:
             identifier = self.native_name(element, 'variable')
             datatype = element.get('datatype')
             self.variables[identifier] = {'kind': 'constant',
-                'datatype': native_datatype(datatype),
-                'expression': {'literal': value}}
+                'expression': {'literal': {'datatype': native_datatype(datatype),
+                                           'value': value}}}
             return identifier
         ensure('variable' in value, 'Assessment Input cannot replace a named runtime Variable source')
         return value['variable']
@@ -539,26 +697,74 @@ class AssessmentConverter:
             ensure(element.get('item_field') in mapping['native']['state_field_map'], 'unknown object_component field')
             return {'values': {'object': self.reference(identifier, 'object'),
                                'field': mapping['native']['state_field_map'][element.get('item_field')]}}
+        # The approved migration envelope is opt-in.  It is never emitted by
+        # the historical/default path, which remains byte-compatible.  Options
+        # are copied from OVAL only after exact lexical/range/arity checks; no
+        # value evaluation or implicit cast is performed here.
+        if self.native_recovery and operation in ('arithmetic', 'split', 'substring', 'count', 'begin', 'end'):
+            required = ({'arithmetic_operation'} if operation == 'arithmetic' else
+                        {'delimiter'} if operation == 'split' else
+                        {'substring_start', 'substring_length'} if operation == 'substring' else
+                        {'character'} if operation in ('begin', 'end') else set())
+            attributes(element, required)
+            ensure(set(element.attrib) == required, 'function options must be explicit')
+            # OVAL count aggregates every component (not just one), while the
+            # remaining recovered unary functions accept exactly one and
+            # arithmetic accepts two or more. Preserve that distinction in
+            # the canonical call envelope; never drop extra components.
+            minimum = 2 if operation == 'arithmetic' else 1
+            maximum = 1 if operation in ('split', 'substring', 'begin', 'end') else None
+            ensure(len(element) >= minimum and (maximum is None or len(element) <= maximum),
+                   'function arity mismatch')
+            options = dict(element.attrib)
+            if operation == 'arithmetic':
+                ensure(options['arithmetic_operation'] in ('add', 'multiply'),
+                       'unsupported arithmetic operation')
+            elif operation == 'substring':
+                for key, value in options.items():
+                    ensure(re.fullmatch(r'[+-]?[0-9]+', value.strip()) is not None,
+                           'substring option must be xsd:int')
+                    number = int(value)
+                    ensure(-2147483648 <= number <= 2147483647,
+                           'substring option outside xsd:int')
+                    options[key] = number
+            from v04_variable_function_migration import canonical_expression
+            # The migration envelope is recursive: nested OVAL functions must
+            # not leave a legacy operator beside the canonical outer call.
+            arguments = [canonical_expression(self.function(child), allow_existing=True) for child in element]
+            expression = {'function': {'name': operation, 'arguments': arguments,
+                                       'options': options}}
+            self.conversion_warnings.append({'code': 'native_function_contract_v1',
+                'source_function': operation, 'source_options': dict(element.attrib),
+                'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
+            return expression
         ensure(operation in ('concat', 'regex_capture', 'merge', 'unique'), f'unsupported function: {operation}')
         attributes(element, {'pattern'} if operation == 'regex_capture' else
                    {'delimiter', 'sort', 'order'} if operation == 'merge' else set())
         ensure(len(element) and (operation != 'regex_capture' or (len(element) == 1 and 'pattern' in element.attrib)), 'function arity/pattern')
         values = [self.function(child) for child in element]
         if operation in ('merge', 'unique'):
-            # Existing native aggregation consumes one collection expression.
-            # Do not invent a union grammar for multiple source components.
-            ensure(len(values) == 1, 'multiple aggregation components need an approved collection expression')
+            # OVAL aggregation consumes every component in document order.
+            # The canonical 0.4 grammar represents that population directly
+            # as a non-empty expression list; never hide it in a generic
+            # function envelope, take the first component, or lower it to a
+            # Set UNION. Each child remains an independent expression so
+            # nested concat/Variable references retain their source graph.
             if operation == 'unique':
-                return {'unique': values[0]}
+                return {'unique': values if len(values) > 1 else values[0]}
             ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
                    and element.get('order', 'ascending') in ('ascending', 'descending'), 'unsupported merge sort/order')
             return {'merge': {'delimiter': element.get('delimiter', ''), 'sort': element.get('sort', 'document'),
-                              'order': element.get('order', 'ascending'), 'values': values[0]}}
+                              'order': element.get('order', 'ascending'),
+                              'values': values if len(values) > 1 else values[0]}}
         ensure(operation != 'concat' or len(values) >= 2, 'concat requires at least two components')
         return {'concat': values} if operation == 'concat' else {'regex_capture': {'pattern': element.get('pattern'), 'value': values[0]}}
 
-    # Retained visitor API; lexical conversion has one reusable implementation.
-    literal = staticmethod(literal)
+    def literal(self, source_type, text):
+        # Float conversion is opt-in because the canonical binary32 contract
+        # is not a generic host-number coercion and the historical path must
+        # remain byte-compatible.
+        return literal(source_type, text, binary32=self.native_recovery)
 
     def operand(self, element, *, enum_aliases=None):
         if element.get('var_ref'):
@@ -569,12 +775,21 @@ class AssessmentConverter:
             if self.renamed_enum_projection(element.get('var_ref')):
                 ensure(enum_aliases is not None, 'renamed enum projection requires a matching enum consumer')
                 self.enum_variable(element.get('var_ref'), enum_aliases)
-            return self.reference(element.get('var_ref'), 'variable')
+            value = self.reference(element.get('var_ref'), 'variable')
+            if (isinstance(value, list) and
+                    getattr(self.source, 'standalone_oval', False) and
+                    self.preserve_source_variables and
+                    not self.renamed_enum_projection(element.get('var_ref'))):
+                # Preserve the original Variable identity in standalone source
+                # parity. Inline arrays would retain values but silently drop
+                # the Variable graph (notably Set operands and Filter States).
+                return {'variable': self.named_variable(element.get('var_ref'))}
+            return value
         return self.literal(element.get('datatype', 'string'), element.text or '')
 
-    def parameter(self, element, *, operations=('equals',)):
+    def parameter(self, element, *, operations=('equals',), datatype='string'):
         attributes(element, {'datatype', 'operation', 'var_ref', 'var_check'})
-        ensure(not len(element) and element.get('datatype', 'string') == 'string' and
+        ensure(not len(element) and element.get('datatype', datatype) == datatype and
                element.get('operation', 'equals') in operations, 'unsupported acquisition parameter comparison/type')
         value = self.operand(element)
         if isinstance(value, list):
@@ -585,7 +800,7 @@ class AssessmentConverter:
             return value[0]
         ensure('var_check' not in element.attrib or (element.get('var_ref') and
                element.get('var_check') == 'all'), 'acquisition parameter var_check outside bounded proof')
-        ensure(isinstance(value, (str, dict)), 'array acquisition parameter unsupported')
+        ensure(isinstance(value, (str, int, float, dict)), 'array acquisition parameter unsupported')
         return value
 
     def renamed_enum_projection(self, identifier, active=None):
@@ -712,14 +927,49 @@ class AssessmentConverter:
         ensure(not len(element), 'record/nested entity unsupported')
         existence = element.get('check_existence', 'at_least_one_exists')
         if existence == 'none_exist':
-            ensure(not selector and set(element.attrib) == {'check_existence'} and not element.text, 'comparator-bearing absence blocked')
+            ensure(not selector and not len(element),
+                   'record/selector absence shape unsupported')
+            ignored = set(element.attrib) - {'check_existence'}
+            if ignored:
+                # OVAL Test/State existence is evaluated before any entity
+                # comparator. With no matching entity, the comparator cannot
+                # change the result. Preserve the source shape in provenance,
+                # but do not fabricate a native comparator on an absent field.
+                self.conversion_warnings.append({
+                    'code': 'oval_absence_comparator_ignored',
+                    'source_element': local_name(element),
+                    'source_attributes': dict(element.attrib),
+                    'source_sha256': digest(xml_identity(element)),
+                    'ignored_attributes': sorted(ignored),
+                    'semantic_basis': 'OVAL check_existence none_exist takes precedence',
+                    'independent_static_proof': 'SOURCE_RULE_OWNER_DECISION',
+                })
             return {'values_found': 'none'}
         operation = element.get('operation', 'equals')
         ensure(existence in FIELD_EXISTENCE and operation in COMPARISONS, 'unsupported entity existence/comparator')
         if operation == 'case insensitive not equal':
             ensure(element.get('datatype', 'string') == 'string', 'case-insensitive inequality requires string datatype')
-        if operation in ('greater than', 'greater than or equal', 'less than or equal') and element.get('datatype', 'string') not in SPECIAL_TYPES:
-            ensure(element.get('datatype') == 'int', 'ordered comparison expansion requires integer source datatype')
+        datatype = element.get('datatype', 'string')
+        if datatype == 'float':
+            ensure(self.native_recovery,
+                   'float comparison requires the native binary32 recovery contract')
+            # The source contract is explicit about expected-value rounding;
+            # retain the lexical entity and contract binding in provenance. The
+            # converter does not claim scanner/runtime equivalence here.
+            self.conversion_warnings.append({
+                'code': 'native_float_binary32_contract',
+                'source_element': local_name(element),
+                'source_attributes': dict(element.attrib),
+                'source_sha256': digest(xml_identity(element)),
+                'contract': 'scap-ng-0.4.1-binary32-comparisons/1',
+                'contract_sha256': '676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd',
+                'source_lexical': element.text,
+                'rounding': 'direct_decimal_to_ieee754_binary32_nearest_even',
+                'independent_static_proof': 'CONTRACT_AND_EXACT_LEXICAL_CONVERSION',
+                'scanner_evaluated': False,
+            })
+        if operation in ('greater than', 'greater than or equal', 'less than or equal') and datatype not in SPECIAL_TYPES:
+            ensure(datatype == 'int', 'ordered comparison expansion requires integer source datatype')
         crosswalk = mapping['native'].get('selector_value_crosswalk' if selector else 'state_value_crosswalk', {}).get(local_name(element))
         field = mapping['native']['state_field_map'].get(local_name(element))
         domain = mapping['native'].get('state_value_enums', {}).get(field, [])
@@ -807,7 +1057,7 @@ class AssessmentConverter:
         return result
 
 
-def dependency_blockers(source, node, mappings):
+def dependency_blockers(source, node, mappings, *, native_recovery=False):
     """Probe independent obligations even when an earlier sibling failed.
 
     Uses the same conversion primitives, never a second acceptance grammar.
@@ -826,14 +1076,13 @@ def dependency_blockers(source, node, mappings):
             problem['source_path'] = label
             problems.append(problem)
 
-    visitor = AssessmentConverter(source, component, mappings)
+    visitor = AssessmentConverter(source, component, mappings, native_recovery=native_recovery)
     probe('closure', visitor.reference, identifier, kind)
     # Quantifier support is independent of which capability failed first.
     if kind == 'test':
         found = element.get('check_existence', 'at_least_one_exists')
-        probe('@check_existence', ensure, found in EXISTENCE or
-              (found == 'all_exist' and getattr(source, 'draft_compatibility', False)),
-              f'unsupported Test existence: {found}')
+        probe('@check_existence', (native_items_found if native_recovery else
+              lambda value: ensure(value in EXISTENCE, f'unsupported Test existence: {value}')), found)
     if kind in ('state', 'object'):
         try:
             mapping = visitor.capability(element, kind)
@@ -862,14 +1111,36 @@ def dependency_blockers(source, node, mappings):
     return problems
 
 
-def convert_rule(source, source_id, mappings, *, human_compact=True):
+def convert_manual_only_rule(source, source_id):
+    """Convert an OCIL-only Rule to a manual Assessment without automation."""
+    from scap_ng_tools.converter.manual04 import manual_rule
+    ensure(source_id in source.rules, f'source Rule not found: {source_id}')
+    rule = source.rules[source_id]
+    title = rule.findtext(f'{{{XCCDF}}}title', '')
+    control = re.search(r'SV-\d+', source_id)
+    local_title = title + (' ' + control.group() if control else '')
+    rule_id = native_identifier(rule, 'rule', local_title)
+    assessment_id = native_identifier(rule, 'assessment', local_title + ' manual')
+    documents, binding = manual_rule(source, rule, title=title, rule_id=rule_id,
+                                      assessment_id=assessment_id)
+    binding['source_selection_policy'] = 'ocil_only_manual_assessment'
+    binding['source_checks'] = [{'system': check.get('system'), 'selector': check.get('selector', ''),
+                                 'sha256': digest(xml_identity(check)), 'source': xml_identity(check),
+                                 'default': check.get('selector', '') == ''}
+                                for check in rule.findall(f'{{{XCCDF}}}check')]
+    return documents, binding
+
+
+def convert_rule(source, source_id, mappings, *, human_compact=True, native_recovery=False):
     """Convert one entire automated closure; failures leave no emitted artifacts."""
     documents = {}
     ensure(source_id in source.rules, f'source Rule not found: {source_id}')
     rule = source.rules[source_id]
     component, definition, omitted_checks = source.automated_check(rule)
-    converter = AssessmentConverter(source, component, mappings, human_compact=human_compact)
-    if getattr(source,'draft_compatibility',False):
+    converter = AssessmentConverter(source, component, mappings,
+                                     canonical_variable_functions=False,
+                                     human_compact=human_compact, native_recovery=native_recovery)
+    if getattr(source,'draft_compatibility',False) or getattr(source, 'native_recovery', False):
         from v04_draft_inputs import check_exports
         converter.bound_exports=check_exports(source,rule)
     expression = converter.reference(definition, 'definition')
@@ -882,7 +1153,7 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     assessment_id = native_identifier(rule, 'assessment', local_title)
     assessment = {'id': assessment_id, 'version': 1, 'assessment_title': title,
         'mode': 'automated', 'class': source.node(component, definition, 'definition').get('class'),
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'}}
+        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}}
     for section in ('shared_objects', 'variables'):
         if getattr(converter, section):
             assessment[section] = getattr(converter, section)
@@ -902,6 +1173,19 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     for key in omitted_metadata:
         native_rule.pop(key)
     documents[f'authoring/direct-slice/rules/{rule_id}.json'] = {'rule': native_rule}
+    # OCIL is an optional manual alternative.  It is never selected as the
+    # default when an OVAL check exists, and its source graph is not executed.
+    manual_alternatives = []
+    for number, check in enumerate(source.manual_checks(rule)):
+        from scap_ng_tools.converter.manual04 import _choice_assessment
+        manual_id = native_identifier(rule, 'assessment', local_title + f' manual {number}')
+        manual_document, manual_provenance = _choice_assessment(
+            source, rule, check, assessment_id=manual_id, title=title)
+        manual_path = f'authoring/direct-slice/assessments/{manual_id}.json'
+        ensure(manual_path not in documents, 'duplicate OCIL manual Assessment identity')
+        documents[manual_path] = manual_document
+        native_rule['assessment_choices']['manual'] = {'assessment': manual_id}
+        manual_alternatives.append({'assessment': manual_id, **manual_provenance})
     from scap_ng_tools.converter._v04_semantic.v04_input_presence import presence_contract
     from scap_ng_tools.authoring.input_discovery import validate_choice_map
     if converter.input_bindings:
@@ -917,7 +1201,29 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     binding = {'source_rule': source_id, 'source_rule_sha256': digest(xml_identity(rule)),
         'component': component, 'definition': definition, 'native_rule': rule_id, 'assessment': assessment_id,
         'dependencies': converter.used, 'omitted_checks': omitted_checks,
+        'source_checks': [{'system': check.get('system'), 'selector': check.get('selector', ''),
+                           'sha256': digest(xml_identity(check)), 'source': xml_identity(check),
+                           'default': check.get('selector', '') == ''}
+                          for check in rule.findall(f'{{{XCCDF}}}check')],
+        'source_selection_policy': 'oval_preferred_manual_ocil_alternative',
         'source_platforms': [child.get('idref') for child in rule.findall(f'{{{XCCDF}}}platform')]}
+    if manual_alternatives:
+        binding['manual_alternatives'] = manual_alternatives
+    recovered_controls = []
+    for identifier, used in sorted(converter.used.items()):
+        if used.get('kind') != 'test':
+            continue
+        test_source = source.node(component, identifier, 'test')
+        if native_recovery and test_source.get('check_existence') == 'all_exist':
+            recovered_controls.append({
+                'source_test': identifier,
+                'source_test_sha256': digest(xml_identity(test_source)),
+                'source_test_attributes': dict(test_source.attrib),
+                'native_items_found': 'one_or_more',
+                'semantic_basis': 'SCAP-NG 0.4 item_requirement one_or_more; no synthetic nonexistent Items',
+            })
+    if recovered_controls:
+        binding['source_test_controls'] = recovered_controls
     binding['authoring_contract_migration'] = {'owner_decision_date': '2026-10-31',
         'decisions': [1, 3, 6, 10, 13, 14], 'requires_fresh_proof': True,
         'omitted_empty_optional_metadata': omitted_metadata,
@@ -951,20 +1257,27 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     return documents, binding
 
 
-def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True):
+def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True, native_recovery=False):
     """Strict focused API; any unsupported selection fails the entire request."""
     ensure(rule_ids and len(set(rule_ids)) == len(rule_ids), 'distinct source Rules required')
     mappings = load_mappings()
     documents, bindings = {}, []
     for source_id in rule_ids:
-        native, binding = convert_rule(source, source_id, mappings, human_compact=human_compact)
+        rule = source.rules[source_id]
+        if not any(check.get('system') == OVAL
+                   for check in rule.findall(f'{{{XCCDF}}}check')):
+            native, binding = convert_manual_only_rule(source, source_id)
+        else:
+            native, binding = convert_rule(source, source_id, mappings,
+                                            human_compact=human_compact,
+                                            native_recovery=native_recovery)
         ensure(not set(native) & set(documents), 'native Rule/Assessment name collision in selected source Rules')
         documents.update(native)
         bindings.append(binding)
-    return assemble_subset(source, documents, bindings, mappings)
+    return assemble_subset(source, documents, bindings, mappings, native_recovery=native_recovery)
 
 
-def assemble_subset(source, documents, rule_trace, mappings):
+def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=False):
     """Project selection only over emitted Rules; an empty subset has no package."""
     rule_ids = [row['source_rule'] for row in rule_trace]
     rule_links = {row['source_rule']: row['native_rule'] for row in rule_trace}
@@ -978,9 +1291,9 @@ def assemble_subset(source, documents, rule_trace, mappings):
                          'disabled_rules': [rule_links[rule] for rule, enabled in selection.items() if not enabled]})
         profile_trace.append({'source_id': profile.get('id'), 'source_sha256': digest(xml_identity(profile)),
                               'native_id': identifier, 'selected': selection})
-    wrapper = {'id': 'direct-slice', 'ng_schema_version': '0.4.0', 'use_case': 'compliance',
+    wrapper = {'id': 'direct-slice', 'ng_schema_version': '0.4.1', 'use_case': 'compliance',
         'version': {'value': benchmark.findtext(f'{{{XCCDF}}}version', '')},
-        'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'}],
+        'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}],
         'title': [{'text': '[AUTOMATED PROTOTYPE SUBSET] ' + benchmark.findtext(f'{{{XCCDF}}}title', ''), 'language': 'en'}],
         'description': [{'text': benchmark.findtext(f'{{{XCCDF}}}description', ''), 'language': 'en'}],
         'language': benchmark.get('{http://www.w3.org/XML/1998/namespace}lang'),
@@ -1000,6 +1313,12 @@ def assemble_subset(source, documents, rule_trace, mappings):
     if rule_ids:
         documents['authoring/direct-slice/benchmark.json'] = {'benchmark': wrapper}
         documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': {}}}
+    unsupported = ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
+                   'other Object behaviors/traversal',
+                   'record-level Variables, nested records, record absence and masking']
+    if not native_recovery:
+        unsupported.append('all_exist')
+    unsupported.append('other capabilities/functions')
     trace = {'format': 'direct-converter-spike/1', 'source_zip_sha256': source.zip_sha256, 'source_xml_sha256': source.xml_sha256,
         'source_member': source.member, 'source_benchmark_component': source.benchmark_component,
         'component_hashes': source.component_hashes, 'rules': rule_trace, 'profiles': profile_trace,
@@ -1007,10 +1326,7 @@ def assemble_subset(source, documents, rule_trace, mappings):
         'omitted_rules': sorted(set(source.rules) - set(rule_ids)), 'xml_parse_calls': source.parse_count,
         'component_index_passes': len(source.components), 'mapping_sha256': {m['capability']: digest(m) for m in mappings},
         'scope': 'Automated Assessment/selection subset, not full Rule-policy or Benchmark conversion',
-        'unsupported': ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
-                        'other Object behaviors/traversal',
-                        'record-level Variables, nested records, record absence and masking',
-                        'all_exist', 'other capabilities/functions'],
+        'unsupported': unsupported,
         'coverage_promoted': False, 'scanner_evaluated': False}
     return documents, trace
 
@@ -1026,7 +1342,7 @@ def blocker_category(message):
 
 
 def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=None,
-                      human_compact=True, validate_document=None):
+                      human_compact=True, validate_document=None, native_recovery=False):
     """Inventory all Rules; isolate expected per-Rule failures and validate admission.
 
     Native output is atomic per Rule. Diagnostic probes of blocked closures are
@@ -1045,7 +1361,7 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
     if not inventory_only:
         if validate_document is None:
             from validate_native_json_schemas import build_validators, document_errors
-            validators = build_validators(ROOT / 'schema/v0.4.0')
+            validators = build_validators(ROOT / 'schema')
             validate_document = lambda kind, doc: document_errors(validators[kind + '.schema.json'], doc)
         for row in rows:
             blockers = list(row['inventory_problems'])
@@ -1054,8 +1370,15 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
             try:
                 rule = source.rules[row['source_rule']]
                 ensure(source.rule_selected(rule), 'disabled source defaults unsupported')
-                native, binding = convert_rule(source, row['source_rule'], mappings,
-                                               human_compact=human_compact)
+                if not any(check.get('system') == OVAL
+                           for check in rule.findall(f'{{{XCCDF}}}check')):
+                    native, binding = convert_manual_only_rule(source, row['source_rule'])
+                    row.update(status='manual_only', proof_level='none', artifacts=sorted(native),
+                               conversion_status='MANUAL_ONLY_PRESERVED')
+                else:
+                    native, binding = convert_rule(source, row['source_rule'], mappings,
+                                                   human_compact=human_compact,
+                                                   native_recovery=native_recovery)
                 for key, parameter in binding.get('policy_parameters', {}).items():
                     ensure(key not in accepted_parameters or accepted_parameters[key] == parameter,
                            'conflicting Benchmark Parameter binding: '+key)
@@ -1067,6 +1390,9 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 if set(native) & set(documents):
                     blockers.append(issue('native-identity',
                         'native Rule/Assessment name collision in selected source Rules', row['source_rule']))
+                # Multi-component unique/merge is represented by the native
+                # ordered population forms. Keep source warning provenance
+                # without reclassifying a schema-valid candidate as blocked.
                 for path, document in native.items():
                     kind, = document
                     for error in validate_document(kind, document):
@@ -1079,7 +1405,8 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 for node in row['dependencies']:
                     key = node['component'], node['id']
                     if key not in probes:
-                        probes[key] = dependency_blockers(source, node, mappings)
+                        probes[key] = dependency_blockers(source, node, mappings,
+                                                           native_recovery=native_recovery)
                     blockers.extend(probes[key])
                 # Distinct source contexts are kept even when diagnostics repeat.
                 row['blockers'] = list({digest(b): b for b in blockers}.values())
@@ -1089,14 +1416,16 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 documents.update(native)
                 accepted_parameters.update(binding.get('policy_parameters', {}))
                 bindings.append(binding)
-                row.update(status='converted', proof_level='authoring_validated', artifacts=sorted(native),
-                           conversion_status='CONVERTED_UNVERIFIED')
+                if row.get('status') != 'manual_only':
+                    row.update(status='converted', proof_level='authoring_validated', artifacts=sorted(native),
+                               conversion_status='CONVERTED_UNVERIFIED')
                 if binding.get('conversion_warnings'):
                     row['conversion_warnings'] = binding['conversion_warnings']
                     row['independent_static_proof_eligible'] = False
             measured['diagnostics'] += time.perf_counter() - started
     started = time.perf_counter()
-    documents, trace = assemble_subset(source, documents, bindings, mappings)
+    documents, trace = assemble_subset(source, documents, bindings, mappings,
+                                      native_recovery=native_recovery)
     manifest = {'format': 'direct-benchmark-coverage/1', 'source_zip_sha256': source.zip_sha256,
         'source_xml_sha256': source.xml_sha256, 'source_member': source.member,
         'source_benchmark_component': source.benchmark_component,
@@ -1126,6 +1455,8 @@ def main():
                         help='allow warning-admitted catalog/all_exist drafts; never independent verification')
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True,
                         help='source-aware scalar State compaction with inverse ledger; --verify still requires independent proof')
+    parser.add_argument('--recover-native', action='store_true',
+                        help='opt into owner-review native 0.4 recovery candidates; changes baseline admission')
     parser.add_argument('--compile', action='store_true',
                         help='compile generated authoring and independently check package structure/operands; no semantic-proof claim')
     parser.add_argument('--output', type=Path, required=True)
@@ -1148,10 +1479,12 @@ def main():
     manifest = None
     stages = {}
     if arguments.rule:
-        documents, trace = convert(source, arguments.rule, human_compact=arguments.human_compact)
+        documents, trace = convert(source, arguments.rule, human_compact=arguments.human_compact,
+                                  native_recovery=arguments.recover_native)
     else:
         documents, trace, manifest = convert_benchmark(source, inventory_only=arguments.inventory_only,
-                                                       timings=stages, human_compact=arguments.human_compact)
+                                                       timings=stages, human_compact=arguments.human_compact,
+                                                       native_recovery=arguments.recover_native)
     converted = time.perf_counter()
     from v04_direct_yaml import authoring_yaml
     arguments.output.mkdir(parents=True)

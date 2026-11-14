@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b
+          ref: 0732b56567e7120ed6cb00908dff40716f76fac9
           path: spec-snapshot
           persist-credentials: false
       - name: Checkout immutable Q3 2026 NIWC signed benchmark archive
@@ -57,12 +57,14 @@ jobs:
             --schema-root "${{ github.workspace }}/spec-snapshot" \
             --output "${{ runner.temp }}/semantic-contract-pack.json"
           cmp "${{ runner.temp }}/semantic-contract-pack.json" \
-            src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.0.json
-      - name: Verify copied converter, pinned conversion and flat-schema adapter
+            src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.1.json
+      - name: Verify exact schema handshake and full offline test suite
         env:
           PYTHONPATH: src
-          SCAP_NG_SCHEMA_ROOT: ${{ github.workspace }}/spec-snapshot
-          SCAP_NG_OVAL_ROOT: ${{ github.workspace }}/official-oval
-          SCAP_NG_SOURCE_FIXTURE: ${{ github.workspace }}/signed-source/Archive/2026_Q3/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
-          SCAP_NG_ADDITIONAL_FIXTURES_ROOT: ${{ github.workspace }}/signed-source/Archive/2026_Q3
-        run: python -m unittest discover -s tests -v
+        run: |
+          SCAP_NG_SCHEMA_ROOT="${{ github.workspace }}/spec-snapshot/schema" \
+            python -m unittest discover -s tests -p 'test_schema_snapshot.py' -v
+          SCAP_NG_SCHEMA_ROOT="${{ github.workspace }}/spec-snapshot/schema" \
+            python -m unittest discover -s tests -p 'test_variable_inference_candidate.py' -v
+          python -m unittest discover -s tests -p 'test_issue59_qualification.py' -v
+          python -m unittest discover -s tests -v

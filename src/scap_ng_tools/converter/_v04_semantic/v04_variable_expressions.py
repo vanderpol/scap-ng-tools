@@ -1,11 +1,11 @@
-"""Decision 29: closed native expression/type validation, never value execution.
+"""Closed native expression/type validation, never value execution.
 
-The isolated canonical-call candidate is deliberately not imported. Collection
-flags, multiplicities and runtime lexical-cast failures are not evaluated here.
+Function calls are checked as typed collection transformations.  This module
+does not execute values: cardinality, Cartesian products, ordering and status
+propagation are runtime contracts covered by the independent OVAL oracle.
 """
 from functools import lru_cache
 import json
-import re
 from pathlib import Path
 
 from .v04_comparison_types import TEXT_TYPES, scalar_type, contract
@@ -42,6 +42,16 @@ def assessment_variable_expressions(assessment):
         if expected not in actual and not (expected == 'float' and 'integer' in actual):
             raise ValueError(f'{where}: declared/derived datatype conflict ({sorted(actual)} vs {expected})')
 
+    def text_operand(actual, where):
+        # OVAL FunctionGroup permits an attempted cast to string for textual
+        # functions.  Preserve that explicit lexical boundary: records and
+        # unknown/empty domains are not silently flattened, while scalar
+        # integer/float/boolean values are stringified by the runtime contract.
+        scalar_domains = TEXT_TYPES | {'integer', 'float', 'boolean'}
+        if not actual or 'record' in actual or not actual <= scalar_domains:
+            raise ValueError(f'{where} requires a scalar text operand')
+        return actual
+
     def literal(value, expected=None):
         if isinstance(value, dict):
             domain = value['datatype']
@@ -53,9 +63,10 @@ def assessment_variable_expressions(assessment):
             return {domain}
         values = value if isinstance(value, list) else [value]
         if not values:
-            if expected is None:
-                raise ValueError('empty literal array needs its declared datatype')
-            return {expected}
+            # Empty collections carry no scalar datatype.  Consumers such as
+            # count may still operate on them; typed string consumers pass an
+            # expected domain and therefore remain explicit.
+            return set() if expected is None else {expected}
         types = {scalar_type(v) for v in values}
         if expected in TEXT_TYPES and types == {'string'}:
             return {expected}
@@ -86,31 +97,48 @@ def assessment_variable_expressions(assessment):
             if field not in fields:
                 raise ValueError('unknown collected-field projection: ' + field)
             return {'record'} if field in records else set(fields[field])
+        if op == 'count':
+            expression(value)  # Any resolved typed collection, including empty.
+            return {'integer'}
+        if op in ('split', 'substring', 'begin', 'end'):
+            payload = value
+            if not isinstance(payload, dict) or 'value' not in payload:
+                raise ValueError(op + ' requires a value expression')
+            domain = expression(payload['value'])
+            if domain != {'string'}:
+                raise ValueError(op + ' requires string input; no implicit cast')
+            return {'string'}
+        if op == 'arithmetic':
+            domains = [expression(arg) for arg in value['values']]
+            if any(not domain or not domain <= {'integer', 'float'} for domain in domains):
+                raise ValueError('arithmetic requires typed numeric operands')
+            return {'float'} if any('float' in domain for domain in domains) else {'integer'}
         if op == 'unique':
-            domains = expression(value, declared)
-            if 'record' in domains:
-                raise ValueError('unique supports scalar values, not record transformations')
-            return domains
+            # Unique preserves the type of its input (and first occurrence
+            # order) under the new expression-derived type contract.
+            components = value if isinstance(value, list) else [value]
+            if not components:
+                raise ValueError('unique requires one or more components')
+            domains = [expression(component) for component in components]
+            result = set().union(*domains) if domains else set()
+            if len(result) > 1 or 'record' in result:
+                raise ValueError('unique requires one scalar datatype')
+            return result
         if op == 'concat':
             for arg in value:
-                compatible(expression(arg), 'string', 'concat argument')
+                text_operand(expression(arg), 'concat')
             return {'string'}
-        if op in ('regex_capture', 'merge'):
-            arg = value['value' if op == 'regex_capture' else 'values']
-            argument_types = expression(arg)
-            if op == 'merge':
-                if 'record' in argument_types:
-                    raise ValueError('merge requires scalar values')
-            else:
-                compatible(argument_types, 'string', op + ' argument')
-            if op == 'regex_capture':
-                # Existing explicit local-Variable result-type boundary. The
-                # captured lexical result may be integer 5; the text input is
-                # not parsed as an integer. Runtime invalid/empty lexical values
-                # remain errors/empty populations, never fabricated zeroes.
-                if declared == 'record':
-                    raise ValueError('regex_capture cannot derive a record')
-                return {declared or 'string'}
+        if op == 'merge':
+            components = value['values'] if isinstance(value['values'], list) else [value['values']]
+            if not components:
+                raise ValueError('merge requires one or more ordered populations')
+            for component in components:
+                domain = expression(component)
+                if not domain or 'record' in domain:
+                    raise ValueError('merge requires typed scalar values')
+            return {'string'}
+        if op == 'regex_capture':
+            text_operand(expression(value['value']), 'regex_capture')
             return {'string'}
         raise ValueError('unsupported native Variable expression: ' + op)
 
@@ -122,24 +150,13 @@ def assessment_variable_expressions(assessment):
         if name not in variables:
             raise ValueError('unresolved Variable reference: ' + name)
         active.add(name)
-        declaration = variables[name]
-        datatype = declaration['datatype']
-        derived = expression(declaration['expression'], datatype)
-        # Pinned original local_variable tst827 explicitly declares integer but
-        # contains literal_component datatype=string '9'. Preserve this existing
-        # declaration cast, validate its lexical input, and never rewrite ASTs.
-        # Constant arrays and typed literal payloads still obey their own types.
-        expr = declaration['expression']
-        if (declaration['kind'] == 'local' and set(expr) == {'literal'}
-                and derived == {'string'} and datatype in {'integer', 'float'}):
-            payload = expr['literal']
-            if isinstance(payload, dict): payload = payload['value']
-            values = payload if isinstance(payload, list) else [payload]
-            pattern = (r'[+-]?[0-9]+' if datatype == 'integer' else
-                       r'[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?')
-            if values and all(isinstance(v, str) and re.fullmatch(pattern, v) for v in values):
-                derived = {datatype}
-        compatible(derived, datatype, 'Variable ' + name)
+        # The sole active grammar derives types from the native expression.
+        # A source OVAL declaration is preserved in provenance, not cast here.
+        derived = expression(variables[name]['expression'])
+        if len(derived) != 1:
+            raise ValueError('Variable ' + name +
+                             ': ambiguous/empty result datatype; use a typed literal or a uniquely typed collected field')
+        datatype = next(iter(derived))
         active.remove(name)
         completed[name] = datatype
         return datatype

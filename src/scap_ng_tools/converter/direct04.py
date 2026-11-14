@@ -12,7 +12,12 @@ import json
 from pathlib import Path, PurePosixPath
 import sys
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+
+
+def load_pinned_snapshot(schema_root):
+    """Load the sole supported canonical 0.4.1 schema family."""
+    return Pinned041SchemaSnapshot(schema_root)
 
 
 class QualifiedConversionError(ValueError):
@@ -56,7 +61,7 @@ def validate_native_documents(snapshot, documents):
         if '$schema' not in document:
             continue
         resource = Resource.from_contents(document)
-        resources['https://scap-ng.dev/schema/v0.4.0/' +
+        resources[snapshot.manifest()['logical_id_prefix'] +
                   path.relative_to(root).as_posix()] = resource
         if '$id' in document:
             resources[document['$id']] = resource
@@ -71,17 +76,21 @@ def validate_native_documents(snapshot, documents):
             findings.extend(f'{filename}: {error.message}' for error in
                             validators[kind + '.schema.json'].iter_errors(document))
     if findings:
+        # Schema validator traversal can expose independent anyOf failures in
+        # hash/set-derived order. Keep published blocker diagnostics stable
+        # across converter subprocesses and deterministic ledger rebuilds.
+        findings = sorted(findings)
         raise QualifiedConversionError('generated authoring failed flat JSON Schema: ' + '; '.join(findings[:8]))
 
 
 def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
-                    human_compact=True):
+                    human_compact=True, native_recovery=False, include_applicability=False):
     """Return a verified-structure native document set and original source trace.
 
     Output provenance may truthfully say schema-validated and source-traced, but
     never independently verified, compiled, or runtime-scanner qualified.
     """
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = load_pinned_snapshot(schema_root)
     if not rule_ids or len(rule_ids) != len(set(rule_ids)):
         raise QualifiedConversionError('one or more distinct source Rule IDs required')
     if sha256(Path(source).read_bytes()).hexdigest() != sha256_pin:
@@ -93,17 +102,39 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
     try:
         engine.load_mappings = lambda: mappings
         source_model = SourceModel(Path(source), sha256_pin)
+        source_model.native_recovery = native_recovery
+        source_model.native_specification_version = snapshot.manifest()['schema_version']
         documents, trace = engine.convert(source_model, list(rule_ids),
-                                          human_compact=human_compact)
+                                          human_compact=human_compact,
+                                          native_recovery=native_recovery)
     finally:
         engine.load_mappings = previous
+    if include_applicability:
+        from .applicability import build_applicability
+        documents, applicability_trace = build_applicability(
+            source_model, documents, {'rules': [
+                {'source_rule': binding['source_rule'], 'status': 'manual_only' if binding.get('source_selection_policy') is None else 'converted',
+                 'artifacts': sorted(documents)} for binding in trace.get('rules', [])
+            ]}, mappings, human_compact=human_compact, native_recovery=native_recovery)
+        trace['applicability'] = applicability_trace
+    from .native041_function_lowering import lower_assessment_inplace
+    from .native041_input_relation import project_input_relation
+    try:
+        for filename, document in documents.items():
+            lower_assessment_inplace(document)
+            receipts = project_input_relation(document)
+            if receipts:
+                trace.setdefault('native_041_input_relation_intersections', {})[filename] = receipts
+    except ValueError as error:
+        raise QualifiedConversionError('0.4.1 native authoring lowering failed: ' +
+                                       str(error)) from error
     validate_native_documents(snapshot, documents)
     return documents, trace
 
 
 def inventory_benchmark(*, schema_root, source, sha256_pin):
     """Read every source Rule without admitting conversion or proving results."""
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = load_pinned_snapshot(schema_root)
     if sha256(Path(source).read_bytes()).hexdigest() != sha256_pin:
         raise QualifiedConversionError('original source archive does not match supplied SHA-256')
     engine = load_runtime()
@@ -123,28 +154,136 @@ def inventory_benchmark(*, schema_root, source, sha256_pin):
     return trace, coverage
 
 
-def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True):
+def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
+                      native_recovery=False, include_applicability=False, applicability_rule_ids=None):
     """Admit automated Rules through a pinned, strictly version-local semantic gate.
 
     Blocked Rules retain original inventory diagnostics. Admitted Rules are
     authoring validated only, never source-proved or scanner-qualified.
     """
-    snapshot = FrozenSchemaSnapshot(schema_root)
+    snapshot = load_pinned_snapshot(schema_root)
     if sha256(Path(source).read_bytes()).hexdigest() != sha256_pin:
         raise QualifiedConversionError('original source archive does not match supplied SHA-256')
     engine = load_runtime()
     from v04_direct_scap_source import SourceModel
     from ._v04_semantic.validation import document_errors
+    if snapshot.manifest()['schema_version'] != '0.4.1':
+        raise QualifiedConversionError('unsupported schema version')
     mappings = snapshot.supported_mappings(engine.CAPABILITIES)
     original = SourceModel(Path(source), sha256_pin, inventory_broken_references=True)
+    original.native_recovery = native_recovery
+    original.native_specification_version = snapshot.manifest()['schema_version']
+    from .native041_function_lowering import lower_assessment_inplace
+    from .native041_input_relation import project_input_relation
+    from jsonschema import ValidationError
+    relation_by_id = {}
+
+    def validate_candidate(kind, document):
+        # Translate only candidate native authoring, not the source visitor or
+        # original Rule evidence. Each unrepresentable expression blocks its
+        # own Rule rather than aborting the entire 65-benchmark run.
+        if kind == 'assessment':
+            try:
+                lower_assessment_inplace(document)
+                receipts = project_input_relation(document)
+                if receipts:
+                    relation_by_id[document['assessment']['id']] = receipts
+            except ValueError as error:
+                return [ValidationError('0.4.1 native authoring lowering: ' + str(error))]
+        return document_errors(snapshot, kind, document)
+
     documents, trace, coverage = engine.convert_benchmark(
         original, mappings=mappings, human_compact=human_compact,
-        validate_document=lambda kind, doc: document_errors(snapshot, kind, doc))
+        validate_document=validate_candidate,
+        native_recovery=native_recovery)
     if (coverage.get('mode') != 'automatic' or
             any(row['proof_level'] not in ('none', 'authoring_validated')
                 for row in coverage['rules'])):
         raise QualifiedConversionError('unexpected promotion beyond unverified authoring')
+    if relation_by_id:
+        admitted = {doc['assessment']['id'] for doc in documents.values() if 'assessment' in doc}
+        accepted = {name: receipts for name, receipts in sorted(relation_by_id.items())
+                    if name in admitted}
+        if accepted:
+            trace['native_041_input_relation_intersections'] = accepted
+    if include_applicability:
+        from .applicability import build_applicability
+        documents, applicability_trace = build_applicability(
+            original, documents, coverage, mappings, human_compact=human_compact,
+            native_recovery=native_recovery, rule_ids=applicability_rule_ids)
+        trace['applicability'] = applicability_trace
+        validate_native_documents(snapshot, documents)
     return documents, trace, coverage
+
+
+def render_native_documents(snapshot, documents):
+    """Validate the actual JSON/YAML payloads before any native file is written."""
+    import yaml
+    load_runtime()
+    from v04_direct_yaml import authoring_yaml
+    class UniqueKeys(yaml.SafeLoader):
+        def construct_mapping(self, node, deep=False):
+            self.flatten_mapping(node)
+            result = {}
+            for key_node, value_node in node.value:
+                key = self.construct_object(key_node, deep=deep)
+                if key in result:
+                    raise QualifiedConversionError('duplicate key in serialized native YAML')
+                result[key] = self.construct_object(value_node, deep=deep)
+            return result
+
+    validate_native_documents(snapshot, documents)
+    rendered = {}
+    for name, document in documents.items():
+        json_text = json.dumps(document, indent=2, allow_nan=False) + '\n'
+        yaml_text = authoring_yaml(document)
+        try:
+            decoded_json, decoded_yaml = json.loads(json_text), yaml.load(yaml_text, Loader=UniqueKeys)
+        except (ValueError, yaml.YAMLError) as error:
+            raise QualifiedConversionError('invalid serialized native output: ' + name) from error
+        if decoded_json != document or decoded_yaml != document:
+            raise QualifiedConversionError('serialized native output differs from validated document: ' + name)
+        validate_native_documents(snapshot, {name: decoded_json})
+        validate_native_documents(snapshot, {name: decoded_yaml})
+        rendered[name] = (json_text, yaml_text)
+    return rendered
+
+
+def conversion_identity(snapshot):
+    """Record actual source bytes/revisions without inferring release identity."""
+    import subprocess
+    
+    package = Path(__file__).resolve().parents[1]
+    root = package.parent.parent
+    source_checkout = package.parent.name == 'src' and (root / 'pyproject.toml').is_file()
+
+    def revision(path):
+        result = subprocess.run(['git', '-C', str(path), 'rev-parse', 'HEAD'],
+                                capture_output=True, text=True)
+        return result.stdout.strip() if result.returncode == 0 else None
+
+    checksum = sha256()
+    for path in sorted(package.rglob('*')):
+        if path.is_file() and path.suffix in ('.py', '.json'):
+            checksum.update(path.relative_to(package.parent).as_posix().encode() + b'\0' + path.read_bytes())
+    dirty = subprocess.run(['git', '-C', str(root), 'status', '--porcelain', '--', 'src', 'pyproject.toml'],
+                           capture_output=True, text=True) if source_checkout else None
+    return {'converter_commit': revision(root) if source_checkout else None,
+            'converter_source_sha256': checksum.hexdigest(),
+            'converter_worktree_dirty': bool(dirty.stdout) if dirty and dirty.returncode == 0 else None,
+            'schema_commit': revision(snapshot.schema_root),
+            'schema_family_sha256': snapshot.manifest()['aggregate_sha256']}
+
+
+def convert_oval_definition(**arguments):
+    """Convert a standalone OVAL Definition through the production visitor.
+
+    No parser, Test whitelist, secondary evaluator or datatype/function
+    converter is permitted here. The standalone source adapter validates the
+    original XML, then uses the same AssessmentConverter as benchmark Rules.
+    """
+    from .oval_platform import convert_definition
+    return convert_definition(**arguments)
 
 
 def safe_relative_filename(root, relative):
@@ -162,13 +301,18 @@ def main():
     parser.add_argument('--schema-root', type=Path, required=True,
                         help='exact offline SCAP-NG 0.4 checkout or flat schema/ directory')
     parser.add_argument('source', nargs='?', type=Path,
-                        help='original CLI positional source ZIP')
+                        help='original source ZIP or standalone OVAL XML')
     parser.add_argument('--source', dest='source_option', type=Path,
-                        help='equivalent explicit source ZIP path')
+                        help='equivalent explicit source path')
     parser.add_argument('--sha256', required=True, help='exact SHA-256 of original source ZIP')
     parser.add_argument('--rule', action='append', help='selected source Rule ID; repeatable')
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument('--oval-definition', help='original OVAL Definition ID in standalone source XML')
+    parser.add_argument('--source-commit', help='pinned original source Git commit')
+    parser.add_argument('--source-path', help='original XML repository-relative source path')
+    parser.add_argument('--recover-native', action='store_true', help='opt into owner-review native recovery candidates')
+    parser.add_argument('--include-applicability', action='store_true', help='lower source platform applicability into shared native Assessments')
     for option in ('--verify', '--compile', '--all-rules', '--inventory-only', '--draft'):
         parser.add_argument(option, action='store_true')
     arguments = parser.parse_args()
@@ -180,8 +324,14 @@ def main():
                      'these modes require separate owner-qualified ports')
     if arguments.inventory_only and arguments.rule:
         parser.error('--inventory-only must not be combined with --rule')
-    if sum(bool(x) for x in (arguments.inventory_only, arguments.all_rules, arguments.rule)) != 1:
-        parser.error('select exactly one of --inventory-only, --all-rules or --rule')
+    if sum(bool(x) for x in (arguments.inventory_only, arguments.all_rules, arguments.rule, arguments.oval_definition)) != 1:
+        parser.error('select exactly one of --inventory-only, --all-rules, --rule or --oval-definition')
+    if arguments.oval_definition and not (arguments.source_commit and arguments.source_path):
+        parser.error('standalone OVAL requires --source-commit and --source-path')
+    if not arguments.oval_definition and (arguments.source_commit or arguments.source_path):
+        parser.error('--source-commit/--source-path require --oval-definition')
+    if arguments.oval_definition and (arguments.all_rules or arguments.include_applicability or arguments.recover_native):
+        parser.error('standalone OVAL is not benchmark or native-recovery mode')
     if arguments.output.exists():
         parser.error('output path already exists; refusing overwrite')
     try:
@@ -200,24 +350,32 @@ def main():
             print(json.dumps({'source_rules': coverage['summary']['source_rules'],
                               'status': 'INVENTORIED_UNVERIFIED', 'native_documents': 0}))
             return
-        if arguments.all_rules:
+        if arguments.oval_definition:
+            documents, trace = convert_oval_definition(
+                schema_root=arguments.schema_root, source=selected_source,
+                sha256_pin=arguments.sha256, definition_id=arguments.oval_definition,
+                source_commit=arguments.source_commit, source_path=arguments.source_path)
+        elif arguments.all_rules:
             documents, trace, coverage = convert_benchmark(
                 schema_root=arguments.schema_root, source=selected_source,
-                sha256_pin=arguments.sha256, human_compact=arguments.human_compact)
+                sha256_pin=arguments.sha256, human_compact=arguments.human_compact,
+                native_recovery=arguments.recover_native, include_applicability=arguments.include_applicability)
         else:
             documents, trace = convert_focused(
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, rule_ids=arguments.rule,
-                human_compact=arguments.human_compact)
-        from v04_direct_yaml import authoring_yaml
+                human_compact=arguments.human_compact, native_recovery=arguments.recover_native,
+                include_applicability=arguments.include_applicability)
+        snapshot = load_pinned_snapshot(arguments.schema_root)
+        rendered = render_native_documents(snapshot, documents)
         targets = {name: safe_relative_filename(arguments.output, name)
                    for name in documents}
         arguments.output.mkdir(parents=True, exist_ok=False)
-        for name, document in documents.items():
+        for name, (json_text, yaml_text) in rendered.items():
             target = targets[name]
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text(json.dumps(document, indent=2) + '\n', encoding='utf-8')
-            target.with_suffix('.yaml').write_text(authoring_yaml(document), encoding='utf-8')
+            target.write_text(json_text, encoding='utf-8')
+            target.with_suffix('.yaml').write_text(yaml_text, encoding='utf-8')
         (arguments.output / 'source-trace.json').write_text(
             json.dumps(trace, indent=2) + '\n', encoding='utf-8')
         if arguments.all_rules:
@@ -227,7 +385,7 @@ def main():
             (arguments.output / 'coverage.md').write_text(
                 coverage_markdown(coverage), encoding='utf-8')
         (arguments.output / 'conversion-scope.json').write_text(json.dumps({
-            'schema_version': '0.4.0',
+            'schema_version': '0.4.1',
             'conversion_status': 'CONVERTED_UNVERIFIED',
             'structural_validation': 'Draft 2020-12 local pinned schema',
             'independent_semantic_proof': False,
@@ -235,9 +393,10 @@ def main():
             'compile_and_verify_modes': 'not_migrated',
             'source_sha256': arguments.sha256,
             'rule_ids': arguments.rule,
+            'oval_definition': arguments.oval_definition,
             'automatic_benchmark_subset': bool(arguments.all_rules),
-            'semantic_validation': ('frozen 0.4 capability contract and semantic gates'
-                                    if arguments.all_rules else 'not independently qualified'),
+            'semantic_validation': ('pinned 0.4.1 semantic pack and native semantic gates'
+                                    if arguments.all_rules or arguments.oval_definition else 'not independently qualified'),
         }, indent=2) + '\n', encoding='utf-8')
     except (OSError, ValueError) as error:
         raise SystemExit(str(error))

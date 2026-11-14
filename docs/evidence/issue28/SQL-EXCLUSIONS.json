@@ -1,0 +1,15 @@
+{
+  "format": "scap-ng-tools/issue28-sqlext-exclusions/1",
+  "reason": "SQLEXT-dependent capability is outside faithful SCAP-NG 0.4 scope",
+  "source_data_preserved": true,
+  "benchmarks": [
+    {"filename":"U_MS_SQL_Server_2016_Database_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip","rules":23},
+    {"filename":"U_MS_SQL_Server_2016_Instance_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip","rules":84},
+    {"filename":"U_MS_SQL_Server_2022_Database_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip","rules":23},
+    {"filename":"U_MS_SQL_Server_2022_Instance_V1R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip","rules":79}
+  ],
+  "excluded_rules":209,
+  "sqlext_dependency_occurrences":66,
+  "automated_equivalent_fabricated":false,
+  "qualification":"Intentional scope exclusion; not a conversion failure and not an equivalence claim."
+}

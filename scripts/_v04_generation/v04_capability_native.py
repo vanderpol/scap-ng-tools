@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 from v04_capability_source import (direct_global, immediate_payload_elements,
     source_datatypes, infer_item_name, infer_system_characteristics_schema)
 
-ROOT_ID = 'https://scap-ng.dev/schema/v0.4.0/'
+ROOT_ID = 'https://scap-ng.dev/schema/v0.4.1/'
 COMMON = ROOT_ID + 'capability-common.schema.json'
 LANG = ROOT_ID + 'assessment-language.schema.json'
 RESERVED = {'object', 'object_title', 'capability', 'collect', 'set', 'filters',

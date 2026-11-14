@@ -1,0 +1,369 @@
+{
+  "complete": false,
+  "coverage": {
+    "original": {
+      "archives": [
+        {
+          "other_members": 2,
+          "oval_members": 1,
+          "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip",
+          "xml_members": 2
+        },
+        {
+          "other_members": 16,
+          "oval_members": 0,
+          "path": "SCAP_1.4/OVAL_Test_Content/support.zip",
+          "xml_members": 13
+        },
+        {
+          "other_members": 1,
+          "oval_members": 0,
+          "path": "SCAP_1.4/OVAL_Test_Content/unix_symlink_support.tarz",
+          "xml_members": 0
+        }
+      ],
+      "by_family": {
+        "agnostic": {
+          "definitions": 47,
+          "tests": 328,
+          "xml": 36
+        },
+        "aix": {
+          "definitions": 2,
+          "tests": 2,
+          "xml": 2
+        },
+        "asa": {
+          "definitions": 2,
+          "tests": 2,
+          "xml": 2
+        },
+        "ios": {
+          "definitions": 11,
+          "tests": 16,
+          "xml": 11
+        },
+        "iosxe": {
+          "definitions": 11,
+          "tests": 17,
+          "xml": 11
+        },
+        "junos": {
+          "definitions": 2,
+          "tests": 2,
+          "xml": 2
+        },
+        "linux": {
+          "definitions": 16,
+          "tests": 62,
+          "xml": 16
+        },
+        "macos": {
+          "definitions": 20,
+          "tests": 43,
+          "xml": 20
+        },
+        "panos": {
+          "definitions": 2,
+          "tests": 2,
+          "xml": 2
+        },
+        "solaris": {
+          "definitions": 6,
+          "tests": 21,
+          "xml": 6
+        },
+        "unix": {
+          "definitions": 13,
+          "tests": 72,
+          "xml": 12
+        },
+        "windows": {
+          "definitions": 36,
+          "tests": 236,
+          "xml": 25
+        }
+      },
+      "definitions": 168,
+      "duplicate_definitions": [],
+      "source_features": {
+        "arithmetic": 10,
+        "begin": 4,
+        "concat": 5,
+        "end": 4,
+        "escape_regex": 2,
+        "glob_to_regex": 20,
+        "literal_component": 141,
+        "merge": 4,
+        "object_component": 18,
+        "regex_capture": 4,
+        "split": 5,
+        "substring": 5,
+        "time_difference": 29,
+        "variable_component": 18
+      },
+      "tests": 803,
+      "xml_documents": 145
+    },
+    "pack": {
+      "converted_definitions": 97,
+      "definitions_in_pack": 168,
+      "manifest_sha256": "25ab7c20dbf443786f247afa0202230d9492a32eb7e6831effafe70c84841dac",
+      "parity_checked_definitions": 59,
+      "reconciled_tests": 803,
+      "schema_family_sha256": "6bf2fa369fd7b9a0153899ac25109af3e3f9aa59c0f4aa6bb3be1aebd5b14fa0",
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_definitions_without_disposition": 0,
+      "source_mapped_tests_checked": 249,
+      "source_tests_without_disposition": 0,
+      "status_counts": {
+        "CONVERTED_UNVERIFIED": 97,
+        "blocked": 69,
+        "intentionally_excluded": 2
+      },
+      "test_status_counts": {
+        "CONVERTED_UNVERIFIED": 523,
+        "blocked": 278,
+        "intentionally_excluded": 2
+      },
+      "tests_in_ledger": 803,
+      "tests_ledger_sha256": "40ad04572195f615b6975689bd0940f4dfd4220d0ac52dbdd434b974d201f214"
+    },
+    "source_git_pin_verified": true
+  },
+  "format": "scap-ng-oval-source-parity/1",
+  "problems": [
+    {
+      "definition": "oval:org.mitre.oval.test:def:95",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:403']",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/ind-def_family_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:895",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:627', 'oval:org.mitre.oval.test:var:820']",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_arithmetic_function.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:65",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:322', 'oval:org.mitre.oval.test:var:875']",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_concat_function.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:67",
+      "reason": "unqualified original Variable datatype: binary",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_criterion.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:620",
+      "reason": "unqualified original Variable datatype: binary",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:997",
+      "reason": "unqualified original Variable datatype: binary",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:117",
+      "reason": "unqualified original Variable datatype: binary",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:97",
+      "reason": "unqualified original Variable datatype: binary",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:367",
+      "reason": "unqualified original Variable datatype: version",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_literal_component.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:270",
+      "reason": "unqualified original Variable datatype: None",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_local_variable.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:781",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:375']",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_regex_capture_function.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:29",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:948', 'oval:org.mitre.oval.test:var:983']",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_split_function.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:455",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:684']",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_substring_function.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:118",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:721']",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_variable_component.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:707",
+      "reason": "unqualified original Variable datatype: binary",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_binary_datatype.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:170",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:607']",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_check_enumeration_variable_values.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:392",
+      "reason": "source/native Variable datatype mismatch: oval:org.mitre.oval.test:var:406",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_evr_string_datatype.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:275",
+      "reason": "unqualified original Variable datatype: float",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_float_datatype.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:884",
+      "reason": "source/native Variable datatype mismatch: oval:org.mitre.oval.test:var:750",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_ipv4address_datatype.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:231",
+      "reason": "source/native Variable datatype mismatch: oval:org.mitre.oval.test:var:795",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_ipv6address_datatype.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:291",
+      "reason": "unqualified original Variable datatype: version",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval_version_datatype.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:967",
+      "reason": "required original Variable declarations omitted: ['oval:navy.navwar.niwcatlantic.scc.test:var:911']",
+      "source": "SCAP_1.4/OVAL_Test_Content/linux/linux-def_selinuxboolean_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:90",
+      "reason": "required original Variable declarations omitted: ['oval:navy.navwar.niwcatlantic.scc.test:var:1']",
+      "source": "SCAP_1.4/OVAL_Test_Content/linux/unix-def_interface_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:90",
+      "reason": "required original Variable declarations omitted: ['oval:navy.navwar.niwcatlantic.scc.test:var:1']",
+      "source": "SCAP_1.4/OVAL_Test_Content/macos/unix-def_interface_test_mac.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:354",
+      "reason": "unqualified original Variable expression: object_component",
+      "source": "SCAP_1.4/OVAL_Test_Content/solaris/ind-def_environmentvariable58_test_solaris.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:1",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:3']",
+      "source": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_smf_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:566",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:429', 'oval:org.mitre.oval.test:var:761']",
+      "source": "SCAP_1.4/OVAL_Test_Content/unix/ind-def_filehash58_test_unix.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "reason": "required original Variable declarations omitted: ['oval:navy.navwar.niwcatlantic.scc.test:var:1']",
+      "source": "SCAP_1.4/OVAL_Test_Content/unix/unix-def_file_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:904",
+      "reason": "required original Variable declarations omitted: ['oval:navy.navwar.niwcatlantic.scc.test:var:380']",
+      "source": "SCAP_1.4/OVAL_Test_Content/unix/unix-def_password_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:334",
+      "reason": "unqualified original existence: any_exist",
+      "source": "SCAP_1.4/OVAL_Test_Content/unix/unix-def_shadow_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:343",
+      "reason": "required original Variable declarations omitted: ['oval:org.mitre.oval.test:var:438', 'oval:org.mitre.oval.test:var:690']",
+      "source": "SCAP_1.4/OVAL_Test_Content/windows/ind-def_filehash58_test_windows.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.windows:def:1",
+      "reason": "unqualified original Variable datatype: None",
+      "source": "SCAP_1.4/OVAL_Test_Content/windows/ind-def_shellcommand_windows_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "reason": "unqualified original Variable datatype: None",
+      "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_appcmd_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "reason": "unqualified original Variable datatype: None",
+      "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_appcmdlistconfig_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1222",
+      "reason": "unqualified original Variable datatype: None",
+      "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1223",
+      "reason": "unqualified original Variable datatype: None",
+      "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1224",
+      "reason": "unqualified original Variable datatype: None",
+      "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "reason": "unqualified original existence: any_exist",
+      "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_userrights_test.xml",
+      "type": "converted_parity_failure"
+    }
+  ],
+  "qualification": "STRUCTURAL_ONLY_NOT_RUNTIME_EQUIVALENCE",
+  "runtime_equivalence_proved": false,
+  "scope_complete": false,
+  "source_accounted": true
+}

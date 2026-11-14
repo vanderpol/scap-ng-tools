@@ -1,7 +1,55 @@
 """Bounded, explicit XCCDF export -> Parameter -> Assessment Input drafting."""
-from v04_direct_scap_source import XCCDF, OVAL, attributes, ensure, native_identifier, digest, xml_identity
+from v04_direct_scap_source import XCCDF, OVAL, attributes, ensure, native_identifier, digest, xml_identity, local_name
 from v04_direct_datatypes import native_datatype
 from v04_draft_compatibility import DECISION
+
+
+XCCDF_RELATIONS = {
+    'less than': 'less_than',
+    'less than or equal': 'less_than_or_equal',
+    'greater than': 'greater_than',
+    'greater than or equal': 'greater_than_or_equal',
+}
+
+
+def _relation_satisfied(value, operator, bound):
+    if type(value) is bool or type(bound) is bool:
+        return False
+    return {'less_than': value < bound,
+            'less_than_or_equal': value <= bound,
+            'greater_than': value > bound,
+            'greater_than_or_equal': value >= bound}[operator]
+
+
+def source_disambiguated_identifier(visitor, element, suffix, peers):
+    """Keep readable names unless source descriptors actually collide.
+
+    XCCDF Values and OVAL external Variables are globally benchmark-scoped,
+    while their titles/comments are not identities.  Add a deterministic
+    source-ID token only for duplicate descriptors so shared uses of the same
+    source node retain the original native name.
+    """
+    identifier = native_identifier(element, suffix)
+    descriptors = [native_identifier(peer, suffix) for peer in peers]
+    if descriptors.count(identifier) <= 1:
+        return identifier
+    token = digest(element.get('id'))[:10]
+    stem = identifier.removesuffix('-' + suffix)
+    budget = 64 - len(suffix) - len(token) - 2
+    ensure(budget >= 1, 'native source discriminator exceeds identifier budget')
+    return stem[:budget].rstrip('-') + '-' + token + '-' + suffix
+
+
+def value_parameter_identifier(visitor, value):
+    nodes = visitor.source.nodes.get(visitor.source.benchmark_component, {})
+    peers = [node for node in nodes.values() if node.tag == '{' + XCCDF + '}Value']
+    return source_disambiguated_identifier(visitor, value, 'parameter', peers)
+
+
+def external_input_identifier(visitor, element):
+    nodes = visitor.source.nodes.get(visitor.component_id, {})
+    peers = [node for node in nodes.values() if local_name(node) == 'external_variable']
+    return source_disambiguated_identifier(visitor, element, 'input', peers)
 
 
 def check_exports(source, rule):
@@ -25,21 +73,37 @@ def check_exports(source, rule):
 
 
 def external_input(visitor, element):
+    recovery = getattr(visitor, 'native_recovery', False)
     ident=element.get('id');value=visitor.bound_exports.get(ident)
     ensure(value is not None and all(n.tag=='{'+OVAL+'}possible_value' for n in element),
            'unbound external Variable or unsupported possible_restriction')
     attributes(value, {'id','type','operator','interactive','interfaceHint','hidden'})
-    ensure(value.get('operator','equals')=='equals', 'XCCDF Value operator requires an explicit constraint adapter')
-    ensure(all(n.tag in {'{'+XCCDF+'}'+name for name in ['title','description','value','reference']} for n in value),
+    value_operator = value.get('operator', 'equals')
+    ensure(value_operator == 'equals' or value_operator in XCCDF_RELATIONS,
+           'XCCDF Value operator requires a supported typed constraint adapter')
+    allowed_names = ['title', 'description', 'value', 'reference']
+    if recovery:
+        allowed_names.append('warning')
+    allowed_children = {'{'+XCCDF+'}'+name for name in allowed_names}
+    ensure(all(n.tag in allowed_children for n in value),
            'XCCDF Value constraints require a supported Parameter adapter')
+    # XCCDF warning text is non-executable guidance. It is retained in the
+    # source Value XML provenance below; it must not be mistaken for an
+    # allowed-value or relational constraint in the native Parameter.
+    if recovery:
+        for warning in value.findall('{'+XCCDF+'}warning'):
+            attributes(warning, {'category', '{http://www.w3.org/XML/1998/namespace}lang'})
+            ensure(not len(warning), 'complex XCCDF warning is unsupported')
     datatype=element.get('datatype')
     source_type=value.get('type','string')
     ensure(source_type=={'string':'string','boolean':'boolean','int':'number','float':'number'}.get(datatype),
            'check-export source/Variable datatype mismatch')
     defaults=[n for n in value.findall('{'+XCCDF+'}value') if not n.get('selector')]
     ensure(len(defaults)<=1 and all(not len(n) for n in value.findall('{'+XCCDF+'}value')), 'ambiguous/complex XCCDF default')
-    input_id=native_identifier(element,'input')
-    parameter_id=native_identifier(value,'parameter')
+    input_id=(external_input_identifier(visitor, element) if recovery else
+              native_identifier(element, 'input'))
+    parameter_id=(value_parameter_identifier(visitor, value) if recovery else
+                  native_identifier(value, 'parameter'))
     contract={'datatype':native_datatype(datatype),'cardinality':'exactly_one','required':True,
               'description':value.findtext('{'+XCCDF+'}description','')}
     parameter={'id':parameter_id,'datatype':native_datatype(datatype),'cardinality':'one','required':True,
@@ -56,13 +120,40 @@ def external_input(visitor, element):
         contract['constraints']={'allowed':allowed}
         parameter['constraints']={'allowed':allowed}
         ensure(not defaults or parameter['value'] in allowed,'publisher default violates external Variable allowed values')
+    if value_operator != 'equals':
+        bound_text = defaults[0].text if defaults else value.findtext('{'+XCCDF+'}value', '')
+        relation = {'operator': XCCDF_RELATIONS[value_operator],
+                    'value': visitor.literal(datatype, bound_text or '')}
+        ensure(type(relation['value']) is not bool and isinstance(relation['value'], (int, float)),
+               'XCCDF relational Value requires a numeric typed bound')
+        contract.setdefault('constraints', {})['relation'] = relation
+        parameter.setdefault('constraints', {})['relation'] = relation
+        if defaults:
+            ensure(_relation_satisfied(parameter['value'], relation['operator'], relation['value']),
+                   'publisher default violates XCCDF relational Value constraint')
     visitor.inputs[input_id]=contract
     visitor.policy_parameters[parameter_id]=parameter
     visitor.input_bindings[input_id]={'parameter':parameter_id}
-    visitor.conversion_warnings.append({'code':'check_export_binding_unproved','owner_decision':DECISION,
-        'source_external_variable':ident,'source_variable_sha256':digest(xml_identity(element)),
-        'source_value':value.get('id'),'source_value_sha256':digest(xml_identity(value)),
-        'source_value_xml':xml_identity(value),'input':input_id,'parameter':parameter_id,
-        'resolution':parameter['resolution'],'independent_static_proof':'UNPROVED','scanner_runtime':'NOT_RUN',
-        'message':'Explicit typed expected-value binding retained; policy/runtime binding equivalence independently unproved.'})
+    native = getattr(visitor, 'native_recovery', False)
+    visitor.conversion_warnings.append({
+        'code': 'native_input_binding_unproved' if native else 'check_export_binding_unproved',
+        'owner_decision': ('https://github.com/vanderpol/scap-ng/issues/8#issuecomment-6587857027'
+                           if native else DECISION),
+        'source_external_variable': ident,
+        'source_variable_sha256': digest(xml_identity(element)),
+        'source_value': value.get('id'),
+        'source_value_sha256': digest(xml_identity(value)),
+        'source_value_operator': value_operator,
+        'source_value_xml': xml_identity(value),
+        'input': input_id,
+        'parameter': parameter_id,
+        'resolution': parameter['resolution'],
+        'independent_static_proof': 'UNPROVED',
+        'scanner_runtime': 'NOT_RUN',
+        'message': ('Explicit typed native 0.4 Input/Parameter binding retained; '
+                    'policy/runtime binding equivalence independently unproved.'
+                    if native else
+                    'Explicit typed expected-value binding retained; policy/runtime '
+                    'binding equivalence independently unproved.'),
+    })
     return {'input':input_id}

@@ -1,0 +1,558 @@
+{
+  "format": "scap-ng-issue28-active-scope-exclusion/1",
+  "decision": "Windows Server 2012 and 2012 R2 are excluded from active SCAP-NG modernization targets; historical artifacts and original source remain retained.",
+  "source_revision": "niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "schema_commit": "7354a24cdbfe18321153ccaef5d772801a10cd71",
+  "historical": {
+    "benchmarks": 65,
+    "rules": 8892,
+    "classification": {
+      "automated_converted_proved": 0,
+      "automated_converted_unproved": 6792,
+      "genuinely_blocked": 310,
+      "intentionally_excluded": 209,
+      "manual_only": 1581,
+      "proof_note": "No Rules are independently proved by this authoring ledger."
+    },
+    "accesstoken_primary_blockers": 125,
+    "accesstoken_source_rules": 127
+  },
+  "excluded_active_scope": {
+    "platform": "Windows Server 2012 and 2012 R2",
+    "benchmarks": [
+      {
+        "filename": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+        "source_sha256": "ecba937d43efc0a72037eefb501b46a2e417158088b2f2699f2c86b68bd1de9c",
+        "source_rules": 364,
+        "historical_ledger": {
+          "automated_converted": 210,
+          "blocked": 58,
+          "blocker_categories": {
+            "unsupported-capability": 42,
+            "unsupported-construct": 16
+          },
+          "converted": 210,
+          "filename": "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "intentionally_excluded": 0,
+          "manual_only": 96,
+          "primary_blockers": {
+            "XCCDF Value operator requires an explicit constraint adapter": 15,
+            "check-export source/Variable datatype mismatch": 1,
+            "unbound external Variable or unsupported possible_restriction": 16,
+            "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 31,
+            "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 12,
+            "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state": 31,
+            "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_state": 12,
+            "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test": 31,
+            "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_test": 12
+          },
+          "scope": "in_scope",
+          "source_rules": 364,
+          "source_sha256": "ecba937d43efc0a72037eefb501b46a2e417158088b2f2699f2c86b68bd1de9c"
+        },
+        "accesstoken_test_count": 32,
+        "accesstoken_definition_count": 33,
+        "accesstoken_rules": [
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226370r877392_rule",
+            "title": "The Access Credential Manager as a trusted caller user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4987"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226371r794624_rule",
+            "title": "Unauthorized accounts must not have the Access this computer from the network user right on domain controllers.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4704"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226372r877392_rule",
+            "title": "The Act as part of the operating system user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4617"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226373r794625_rule",
+            "title": "The Allow log on locally user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4636"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226374r877392_rule",
+            "title": "The Back up files and directories user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4638"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226375r877392_rule",
+            "title": "The Create a pagefile user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4642"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226376r877392_rule",
+            "title": "The Create a token object user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4643"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226377r877392_rule",
+            "title": "The Create global objects user right must only be assigned to Administrators, Service, Local Service, and Network Service.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4644"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226378r877392_rule",
+            "title": "The Create permanent shared objects user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4645"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226379r877392_rule",
+            "title": "The Create symbolic links user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4646"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226380r877392_rule",
+            "title": "The Debug programs user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4633"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226381r794626_rule",
+            "title": "The Deny access to this computer from the network user right on domain controllers must be configured to prevent unauthenticated access.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4695"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226382r794627_rule",
+            "title": "The Deny log on as a batch job user right on domain controllers must be configured to prevent unauthenticated access.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4713"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226383r794628_rule",
+            "title": "The Deny log on as a service user right must be configured to include no accounts or groups (blank) on domain controllers.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4705"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226384r794629_rule",
+            "title": "The Deny log on locally user right on domain controllers must be configured to prevent unauthenticated access.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4706"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226385r794630_rule",
+            "title": "The Deny log on through Remote Desktop Services user right on domain controllers must be configured to prevent unauthenticated access.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4714"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226386r877392_rule",
+            "title": "Unauthorized accounts must not have the Enable computer and user accounts to be trusted for delegation user right on domain controllers.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4707"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226387r877392_rule",
+            "title": "The Force shutdown from a remote system user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4647"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226388r877392_rule",
+            "title": "The Generate security audits user right must only be assigned to Local Service and Network Service.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4648"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226389r877392_rule",
+            "title": "The Impersonate a client after authentication user right must only be assigned to Administrators, Service, Local Service, and Network Service.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4649"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226390r877392_rule",
+            "title": "The Increase scheduling priority user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4651"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226391r877392_rule",
+            "title": "The Load and unload device drivers user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4652"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226392r877392_rule",
+            "title": "The Lock pages in memory user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4653"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226393r852172_rule",
+            "title": "The Manage auditing and security log user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4990"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226394r877392_rule",
+            "title": "The Modify firmware environment values user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4656"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226395r877392_rule",
+            "title": "The Perform volume maintenance tasks user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4657"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226396r877392_rule",
+            "title": "The Profile single process user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4658"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226397r877392_rule",
+            "title": "The Restore files and directories user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4661"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226398r877392_rule",
+            "title": "The Take ownership of files or other objects user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4663"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226399r877392_rule",
+            "title": "Unauthorized accounts must not have the Add workstations to domain user right.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4708"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-226400r794631_rule",
+            "title": "The Allow log on through Remote Desktop Services user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4637"
+            ]
+          }
+        ]
+      },
+      {
+        "filename": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+        "source_sha256": "3ad256b29d6f85fe69ba9a14b18502a6f50e923faea2880d9ce10246f780a50a",
+        "source_rules": 329,
+        "historical_ledger": {
+          "automated_converted": 191,
+          "blocked": 56,
+          "blocker_categories": {
+            "unsupported-capability": 39,
+            "unsupported-construct": 18
+          },
+          "converted": 191,
+          "filename": "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "intentionally_excluded": 0,
+          "manual_only": 82,
+          "primary_blockers": {
+            "XCCDF Value operator requires an explicit constraint adapter": 16,
+            "check-export source/Variable datatype mismatch": 1,
+            "unbound external Variable or unsupported possible_restriction": 18,
+            "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_object": 30,
+            "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_object": 3,
+            "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object": 9,
+            "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_state": 30,
+            "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_state": 3,
+            "unsupported state capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_state": 9,
+            "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test": 30,
+            "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test": 3,
+            "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_test": 9
+          },
+          "scope": "in_scope",
+          "source_rules": 329,
+          "source_sha256": "3ad256b29d6f85fe69ba9a14b18502a6f50e923faea2880d9ce10246f780a50a"
+        },
+        "accesstoken_test_count": 45,
+        "accesstoken_definition_count": 42,
+        "accesstoken_rules": [
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225545r877392_rule",
+            "title": "The Access Credential Manager as a trusted caller user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4987"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225546r569185_rule",
+            "title": "The Access this computer from the network user right must only be assigned to the Administrators and Authenticated Users groups on member servers.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4716"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225547r877392_rule",
+            "title": "The Act as part of the operating system user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4617"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225548r569185_rule",
+            "title": "The Allow log on locally user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4636"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225549r569185_rule",
+            "title": "The Allow log on through Remote Desktop Services user right must only be assigned to the Administrators group and other approved groups.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:5145"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225550r877392_rule",
+            "title": "The Back up files and directories user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4638"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225551r877392_rule",
+            "title": "The Create a pagefile user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4642"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225552r877392_rule",
+            "title": "The Create a token object user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4643"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225553r877392_rule",
+            "title": "The Create global objects user right must only be assigned to Administrators, Service, Local Service, and Network Service.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4644"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225554r877392_rule",
+            "title": "The Create permanent shared objects user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4645"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225555r877392_rule",
+            "title": "The Create symbolic links user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4646"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225556r877392_rule",
+            "title": "The Debug programs user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4633"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225557r569185_rule",
+            "title": "The Deny access to this computer from the network user right on member servers must be configured to prevent access from highly privileged domain accounts and local accounts on domain systems, and from unauthenticated access on all systems.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4840"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225558r569185_rule",
+            "title": "The Deny log on as a batch job user right on member servers must be configured to prevent access from highly privileged domain accounts on domain systems, and from unauthenticated access on all systems.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4717"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225559r569185_rule",
+            "title": "The Deny log on as a service user right on member servers must be configured to prevent access from highly privileged domain accounts on domain systems.  No other groups or accounts must be assigned this right.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4718"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225560r569185_rule",
+            "title": "The Deny log on locally user right on member servers must be configured to prevent access from highly privileged domain accounts on domain systems, and from unauthenticated access on all systems.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4719"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225561r569185_rule",
+            "title": "The Deny log on through Remote Desktop Services user right on member servers must be configured to prevent access from highly privileged domain accounts and all local accounts on domain systems, and from unauthenticated access on all systems.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4882"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225562r877392_rule",
+            "title": "Unauthorized accounts must not have the Enable computer and user accounts to be trusted for delegation user right on member servers.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4739"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225563r877392_rule",
+            "title": "The Force shutdown from a remote system user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4647"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225564r877392_rule",
+            "title": "The Generate security audits user right must only be assigned to Local Service and Network Service.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4648"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225565r877392_rule",
+            "title": "The Impersonate a client after authentication user right must only be assigned to Administrators, Service, Local Service, and Network Service.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4649"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225566r877392_rule",
+            "title": "The Increase scheduling priority user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4651"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225567r877392_rule",
+            "title": "The Load and unload device drivers user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4652"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225568r877392_rule",
+            "title": "The Lock pages in memory user right must not be assigned to any groups or accounts.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4653"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225569r852282_rule",
+            "title": "The Manage auditing and security log user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4990"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225570r877392_rule",
+            "title": "The Modify firmware environment values user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4656"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225571r877392_rule",
+            "title": "The Perform volume maintenance tasks user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4657"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225572r877392_rule",
+            "title": "The Profile single process user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4658"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225573r877392_rule",
+            "title": "The Restore files and directories user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4661"
+            ]
+          },
+          {
+            "id": "xccdf_mil.disa.fso_rule_SV-225574r877392_rule",
+            "title": "The Take ownership of files or other objects user right must only be assigned to the Administrators group.",
+            "oval_definitions": [
+              "oval:mil.disa.fso.windows:def:4663"
+            ]
+          }
+        ]
+      }
+    ],
+    "rules": 693,
+    "classification": {
+      "automated_converted_unproved": 401,
+      "manual_only": 178,
+      "genuinely_blocked": 114,
+      "intentionally_excluded": 0
+    },
+    "accesstoken_source_rules": 61,
+    "accesstoken_primary_blockers": 61,
+    "benchmark_count": 2
+  },
+  "active_scope": {
+    "benchmarks": 63,
+    "rules": 8199,
+    "classification": {
+      "automated_converted_proved": 0,
+      "automated_converted_unproved": 6391,
+      "manual_only": 1403,
+      "genuinely_blocked": 196,
+      "intentionally_excluded": 209
+    },
+    "accesstoken": {
+      "historical_primary_blockers": 125,
+      "excluded_primary_blockers": 61,
+      "remaining_primary_blockers": 64,
+      "historical_source_rules": 127,
+      "excluded_source_rules": 61,
+      "remaining_source_rules": 66,
+      "remaining_supported_platforms": [
+        "Windows 10",
+        "Windows Server 2016"
+      ]
+    }
+  }
+}

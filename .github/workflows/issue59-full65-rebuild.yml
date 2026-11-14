@@ -1,0 +1,89 @@
+name: Issue 59 full-65 source Rule admission (read-only)
+
+on:
+  push:
+    branches:
+      - main
+      - codex/issue59-single-v041-semantic-pack
+    paths:
+      - '.github/workflows/issue59-full65-rebuild.yml'
+      - 'scripts/rebuild_issue59_full65.py'
+      - 'tests/test_issue59_rebuild_full65.py'
+      - 'src/scap_ng_tools/converter/native041_function_lowering.py'
+      - 'src/scap_ng_tools/converter/native041_input_relation.py'
+      - 'tests/test_issue59_input_relation.py'
+      - 'src/scap_ng_tools/converter/direct04.py'
+      - 'src/scap_ng_tools/converter/oval_platform.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: issue59-full65-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  pinned-source-admission:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout exact PR converter
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Checkout exact canonical 0.4.1 schema snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng
+          ref: 0732b56567e7120ed6cb00908dff40716f76fac9
+          path: canonical-schema
+          persist-credentials: false
+
+      - name: Checkout original 65 source ZIP corpus
+        uses: actions/checkout@v4
+        with:
+          repository: niwc-atlantic/scap-content-library
+          ref: 8c8e5dff860af6b1290ee9273a282db24278f8d5
+          path: source-library
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install offline converter
+        run: python -m pip install -e .
+
+      - name: Test source Rule identity, exclusions and negative checks
+        run: python -m unittest discover -s tests -p test_issue59_rebuild_full65.py -v
+
+      - name: Rebuild all original ZIPs against one pinned 0.4.1 schema
+        run: >-
+          python scripts/rebuild_issue59_full65.py
+          --schema-root canonical-schema/schema
+          --source-root source-library
+          --output generated/issue59-full65-source-rule-rebuild.json
+
+      - name: Publish read-only diagnostic receipt (no source ZIPs or generated authoring)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue59-65zip-rule-id-admission-${{ github.run_id }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: generated/issue59-full65-source-rule-rebuild.json
+
+      - name: Fail if any previously converted active source Rule regressed
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result=json.loads(Path("generated/issue59-full65-source-rule-rebuild.json").read_text())
+          print("Active 59 benchmark disposition:", json.dumps(result["candidate"], sort_keys=True))
+          print("Formerly converted source Rule IDs newly blocked/manual:",
+                result["newly_blocked_from_converted"])
+          if not result["nonregression_pass"]:
+              raise SystemExit("HOLD: 0.4.1 source Rule-ID admission still regresses")
+          print("PASS: no formerly converted active source Rule ID lost")
+          PY

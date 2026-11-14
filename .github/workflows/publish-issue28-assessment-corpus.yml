@@ -1,0 +1,56 @@
+name: Publish Issue 28 Assessment corpus
+
+on:
+  workflow_dispatch:
+    inputs:
+      tools_commit:
+        description: Full tools commit SHA to record in the manifest
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tools
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Checkout pinned schema repository
+        uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng
+          ref: 0732b56567e7120ed6cb00908dff40716f76fac9
+          path: schema-source
+          fetch-depth: 1
+      - name: Checkout pinned source corpus
+        uses: actions/checkout@v4
+        with:
+          repository: niwc-atlantic/scap-content-library
+          ref: 8c8e5dff860af6b1290ee9273a282db24278f8d5
+          path: source-library
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install .
+      - name: Build and validate deterministic archive
+        run: >-
+          python scripts/publish_issue28_assessments.py
+          --schema-root schema-source
+          --source-root source-library
+          --ledger docs/evidence/issue28/ACTIVE-CANDIDATE-LEDGER.json
+          --rules docs/evidence/issue28/ACTIVE-CANDIDATE-RULES.json.gz
+          --tools-commit '${{ inputs.tools_commit }}'
+          --output scap-ng-assessment-corpus.tar.gz
+      - name: Hash archive
+        run: sha256sum scap-ng-assessment-corpus.tar.gz | tee scap-ng-assessment-corpus.tar.gz.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scap-ng-assessment-corpus-0.4.0-issue28
+          path: |
+            scap-ng-assessment-corpus.tar.gz
+            scap-ng-assessment-corpus.tar.gz.sha256

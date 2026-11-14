@@ -1,4 +1,4 @@
-"""Pure, opt-in migration of the four currently emitted OVAL function forms.
+"""Pure, opt-in migration of the recovered OVAL variable-function forms.
 
 This module does not modify source files or change production converter output.
 The caller is responsible for validating the result and preserving provenance.
@@ -11,7 +11,7 @@ class UnsupportedExpression(ValueError):
     pass
 
 
-def canonical_expression(node):
+def canonical_expression(node, *, allow_existing=False):
     """Return a new canonical function expression; reject unknown grammar."""
     if not isinstance(node, dict) or len(node) != 1:
         raise UnsupportedExpression('expression must have exactly one operator')
@@ -19,8 +19,19 @@ def canonical_expression(node):
     if op in ('literal', 'variable', 'values'):
         return deepcopy(node)
     if op == 'function':
+        if allow_existing:
+            return deepcopy(node)
         raise UnsupportedExpression('existing canonical calls require independent validation')
-    if op == 'concat':
+    if op == 'count':
+        # The pre-envelope port represented the one-operand form directly;
+        # accept that historical shape while normalizing every call to the
+        # canonical argument list. New source conversion always emits a list.
+        if isinstance(value, dict):
+            value = [value]
+        if not isinstance(value, list) or not value:
+            raise UnsupportedExpression('count requires one or more expressions')
+        arguments, options = value, {}
+    elif op == 'concat':
         if not isinstance(value, list) or len(value) < 2:
             raise UnsupportedExpression('concat requires at least two arguments')
         arguments, options = value, {}
@@ -31,13 +42,18 @@ def canonical_expression(node):
     elif op == 'merge':
         if not isinstance(value, dict) or set(value) != {'delimiter', 'sort', 'order', 'values'}:
             raise UnsupportedExpression('merge requires exact existing operands and options')
-        arguments = [value['values']]
+        arguments = value['values'] if isinstance(value['values'], list) else [value['values']]
+        if not arguments:
+            raise UnsupportedExpression('merge requires one or more values')
         options = {name: value[name] for name in ('delimiter', 'sort', 'order')}
     elif op == 'unique':
-        arguments, options = [value], {}
+        arguments = value if isinstance(value, list) else [value]
+        if not arguments:
+            raise UnsupportedExpression('unique requires one or more expressions')
+        options = {}
     else:
         raise UnsupportedExpression(f'unrecognized legacy function: {op}')
-    return {'function': {'name': op, 'arguments': [canonical_expression(arg) for arg in arguments],
+    return {'function': {'name': op, 'arguments': [canonical_expression(arg, allow_existing=allow_existing) for arg in arguments],
                          'options': options}}
 
 
@@ -65,12 +81,17 @@ def legacy_expression(node):
     name, args, options = value['name'], value['arguments'], value['options']
     if not isinstance(args, list) or not isinstance(options, dict):
         raise UnsupportedExpression('invalid arguments/options')
+    if name == 'count' and len(args) >= 1 and not options:
+        values = [legacy_expression(arg) for arg in args]
+        return {'count': values if len(values) > 1 else values[0]}
     if name == 'concat' and len(args) >= 2 and not options:
         return {'concat': [legacy_expression(a) for a in args]}
     if name == 'regex_capture' and len(args) == 1 and set(options) == {'pattern'}:
         return {'regex_capture': {'pattern': options['pattern'], 'value': legacy_expression(args[0])}}
-    if name == 'unique' and len(args) == 1 and not options:
-        return {'unique': legacy_expression(args[0])}
-    if name == 'merge' and len(args) == 1 and set(options) == {'delimiter', 'sort', 'order'}:
-        return {'merge': {**deepcopy(options), 'values': legacy_expression(args[0])}}
+    if name == 'unique' and len(args) >= 1 and not options:
+        values = [legacy_expression(arg) for arg in args]
+        return {'unique': values if len(values) > 1 else values[0]}
+    if name == 'merge' and len(args) >= 1 and set(options) == {'delimiter', 'sort', 'order'}:
+        values = [legacy_expression(arg) for arg in args]
+        return {'merge': {**deepcopy(options), 'values': values if len(values) > 1 else values[0]}}
     raise UnsupportedExpression(f'canonical call outside legacy migration subset: {name}')

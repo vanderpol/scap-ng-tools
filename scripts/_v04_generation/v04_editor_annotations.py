@@ -33,10 +33,10 @@ def pointer(document, path):
 
 
 def apply_authoring_metadata(schema, root):
-    path = Path(root) / 'schema/v0.4.0/editor-default-policy.json'
+    path = Path(root) / 'schema/v0.4.1/editor-default-policy.json'
     if not path.is_file(): return schema  # Isolated source-schema refresh fixtures.
     policy = json.loads(path.read_text())
-    if policy['schema_version'] != '0.4.0' or policy['format'] != 'scap-ng/editor-default-policy/1':
+    if policy['schema_version'] != '0.4.1' or policy['format'] != 'scap-ng/editor-default-policy/1':
         raise ValueError('incompatible authoring metadata policy')
     for patch in policy['patches']:
         if patch['schema_uri'] != schema['$id']: continue
