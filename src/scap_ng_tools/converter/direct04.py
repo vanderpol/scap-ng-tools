@@ -118,11 +118,15 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
             ]}, mappings, human_compact=human_compact, native_recovery=native_recovery)
         trace['applicability'] = applicability_trace
     from .native041_function_lowering import lower_assessment_inplace
+    from .native041_input_relation import project_input_relation
     try:
-        for document in documents.values():
+        for filename, document in documents.items():
             lower_assessment_inplace(document)
+            receipts = project_input_relation(document)
+            if receipts:
+                trace.setdefault('native_041_input_relation_intersections', {})[filename] = receipts
     except ValueError as error:
-        raise QualifiedConversionError('0.4.1 native function lowering failed: ' +
+        raise QualifiedConversionError('0.4.1 native authoring lowering failed: ' +
                                        str(error)) from error
     validate_native_documents(snapshot, documents)
     return documents, trace
@@ -170,7 +174,9 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
     original.native_recovery = native_recovery
     original.native_specification_version = snapshot.manifest()['schema_version']
     from .native041_function_lowering import lower_assessment_inplace
+    from .native041_input_relation import project_input_relation
     from jsonschema import ValidationError
+    relation_by_id = {}
 
     def validate_candidate(kind, document):
         # Translate only candidate native authoring, not the source visitor or
@@ -179,8 +185,11 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
         if kind == 'assessment':
             try:
                 lower_assessment_inplace(document)
+                receipts = project_input_relation(document)
+                if receipts:
+                    relation_by_id[document['assessment']['id']] = receipts
             except ValueError as error:
-                return [ValidationError('0.4.1 native function lowering: ' + str(error))]
+                return [ValidationError('0.4.1 native authoring lowering: ' + str(error))]
         return document_errors(snapshot, kind, document)
 
     documents, trace, coverage = engine.convert_benchmark(
@@ -191,6 +200,12 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True,
             any(row['proof_level'] not in ('none', 'authoring_validated')
                 for row in coverage['rules'])):
         raise QualifiedConversionError('unexpected promotion beyond unverified authoring')
+    if relation_by_id:
+        admitted = {doc['assessment']['id'] for doc in documents.values() if 'assessment' in doc}
+        accepted = {name: receipts for name, receipts in sorted(relation_by_id.items())
+                    if name in admitted}
+        if accepted:
+            trace['native_041_input_relation_intersections'] = accepted
     if include_applicability:
         from .applicability import build_applicability
         documents, applicability_trace = build_applicability(

@@ -1,12 +1,17 @@
 name: Issue 59 full-65 source Rule admission (read-only)
 
 on:
-  pull_request:
+  push:
+    branches:
+      - main
+      - codex/issue59-single-v041-semantic-pack
     paths:
       - '.github/workflows/issue59-full65-rebuild.yml'
       - 'scripts/rebuild_issue59_full65.py'
       - 'tests/test_issue59_rebuild_full65.py'
       - 'src/scap_ng_tools/converter/native041_function_lowering.py'
+      - 'src/scap_ng_tools/converter/native041_input_relation.py'
+      - 'tests/test_issue59_input_relation.py'
       - 'src/scap_ng_tools/converter/direct04.py'
       - 'src/scap_ng_tools/converter/oval_platform.py'
 
@@ -14,7 +19,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: issue59-full65-${{ github.event.pull_request.number }}
+  group: issue59-full65-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:

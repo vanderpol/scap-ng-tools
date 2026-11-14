@@ -215,10 +215,12 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     # Same active 0.4.1 admission adapter as benchmark Rules; the original
     # standalone OVAL visitor remains immutable and source-traced.
     from .native041_function_lowering import lower_assessment_inplace
+    from .native041_input_relation import project_input_relation
     try:
         lower_assessment_inplace(documents["assessment.json"])
+        relation_witnesses = project_input_relation(documents["assessment.json"])
     except ValueError as error:
-        raise QualifiedConversionError('standalone OVAL native function lowering: ' +
+        raise QualifiedConversionError('standalone OVAL native authoring lowering: ' +
                                        str(error)) from error
     validate_native_documents(snapshot, documents)
     from ._v04_semantic.validation import document_errors
@@ -244,6 +246,8 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
         "semantic_validated": True, "scanner_execution": False,
         **conversion_identity(snapshot),
     }
+    if relation_witnesses:
+        trace["native_041_input_relation_intersections"] = relation_witnesses
     root = subprocess.run(["git", "-C", str(Path(source).resolve().parent), "rev-parse", "--show-toplevel"],
                           capture_output=True, text=True)
     trace["source_commit_blob_verified"] = False
