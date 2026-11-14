@@ -15,6 +15,14 @@ on:
       - 'src/scap_ng_tools/converter/direct04.py'
       - 'src/scap_ng_tools/converter/oval_platform.py'
 
+  pull_request:
+    branches:
+      - codex/issue59-single-v041-semantic-pack
+    paths:
+      - '.github/workflows/issue59-full65-rebuild.yml'
+      - 'src/scap_ng_tools/converter/native041_function_lowering.py'
+      - 'tests/test_issue59_native_text_projection.py'
+
 permissions:
   contents: read
 
