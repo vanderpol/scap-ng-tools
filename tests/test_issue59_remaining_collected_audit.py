@@ -6,6 +6,7 @@ from unittest.mock import patch
 import unittest
 
 from scap_ng_tools.converter._v04_semantic import v04_variable_expressions as semantic
+from scap_ng_tools.converter.native041_function_lowering import lower_expression
 from scap_ng_tools.converter._v04_semantic.v04_comparison_types import predicate_type
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -131,6 +132,39 @@ class RemainingCollectedAudit(unittest.TestCase):
         # the type gate; those remain runtime/source-evidence obligations.
         self.assertNotIn('cast', expression)
         self.assertNotIn('status', expression)
+
+    def test_textual_function_consumers_establish_only_a_lexical_output(self):
+        # The function operation, not the collected Item declaration, is the
+        # source-justified text boundary. Raw collection expressions remain
+        # unchanged and no cast node is authored.
+        with patch.object(semantic, 'declaration_validator', return_value=_CandidateSchema()), \
+             patch.object(semantic, 'snapshot', return_value=SimpleNamespace(schema_root=Path('.'))), \
+             patch('scap_ng_tools.converter._v04_semantic.v04_object_contract.object_validator',
+                   return_value=SimpleNamespace(iter_errors=lambda _: iter(()))), \
+             patch.object(semantic, 'contract', return_value=(
+                 {'subexpression': ['string', 'integer']}, set(), {}, {})), \
+             patch.object(semantic, 'capability_contract', return_value=(
+                 {'native': {'field_datatypes': {'subexpression': ['string', 'integer']} }},
+                 {'fields': {'subexpression': ['string', 'integer']}, 'records': [],
+                  'selectors': {}, 'native': {}})):
+            values = {'values': {'object': {'capability': 'independent.shellcommand'},
+                                  'field': 'subexpression'}}
+            for op, payload in (
+                ('split', {'value': values, 'delimiter': ' '}),
+                ('substring', {'value': values, 'substring_start': 1,
+                               'substring_length': 1}),
+                ('begin', {'value': values, 'character': '/'}),
+                ('end', {'value': values, 'character': '/'}),
+            ):
+                with self.subTest(operation=op):
+                    source = {op: payload}
+                    lowered = lower_expression(source)
+                    assessment = {'variables': {'captured': {'kind': 'local',
+                        'expression': lowered}}}
+                    result = semantic.assessment_variable_expressions(assessment)
+                    self.assertEqual(result['captured'], 'string')
+                    self.assertEqual(lowered[op]['value']['concat'][1], values)
+                    self.assertNotIn('cast', lowered)
 
     def test_operation_directed_consumer_conflicts_fail_closed(self):
         assessment = {'variables': {'captured': {'kind': 'local', 'expression': {

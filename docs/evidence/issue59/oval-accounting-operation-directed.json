@@ -1,0 +1,79 @@
+{
+  "candidate": {
+    "artifacts": {
+      "blocked-definitions.json": {
+        "bytes": 124644,
+        "sha256": "a8a466d67b5be85cc7fa45d677f6e7e23ca5cb0e5757149450219466591d1603"
+      },
+      "blocked.json": {
+        "bytes": 797881,
+        "sha256": "f9293246a4d1cfd6c1fbe60843d91d5c2c2069619954a49e1f151708e19b916a"
+      },
+      "definitions.json": {
+        "bytes": 340340,
+        "sha256": "cf58367cd951b76e00a4ae67dfd3341aa9ecd1ff64b12b41b0fcd85f88347e80"
+      },
+      "feature-inventory.json": {
+        "bytes": 5965,
+        "sha256": "2872025f81aaa860e6f2888cdfb3c71f189f11b6fe8aa2a6c362509e8fee43dd"
+      },
+      "manifest.json": {
+        "bytes": 107506,
+        "sha256": "1d1725351dffbb057b82c7825979253ca58f336bf887e5c7d5e0687d25e87618"
+      },
+      "source-mappings.json": {
+        "bytes": 103848,
+        "sha256": "1a57c5dc800e7638ae185873543e960b85360c6346ca8864c985d78d397b2be4"
+      },
+      "tests.jsonl": {
+        "bytes": 1080841,
+        "sha256": "94a16756b0bd34852b0ed5e91624abc1dacade292f10c4bb8cb2aa81ad342b3d"
+      },
+      "validation.json": {
+        "bytes": 735,
+        "sha256": "5f9f8eb3f85965cc9f48b69fa739183c1d37ad70c7f794887ee41235659fefc8"
+      }
+    },
+    "manifest_sha256": "1d1725351dffbb057b82c7825979253ca58f336bf887e5c7d5e0687d25e87618",
+    "parity_sha256": "30e85e46457a65ceb5c4ed3758c846a0a1e8cd510c03cc348bf2ea67e7dfc608",
+    "summary": {
+      "blocked_definitions": 69,
+      "blocked_tests": 295,
+      "converted_definitions": 97,
+      "converted_tests": 506,
+      "definitions": 168,
+      "excluded_definitions": 2,
+      "excluded_tests": 2,
+      "execution": "not_run",
+      "schema_valid_yaml_documents": 97,
+      "test_ledger_reconciled": 803,
+      "tests": 803
+    }
+  },
+  "canonical_schema_commit": "aece827964c785be77b088c3c61255a2d07fd9a9",
+  "format": "scap-ng-tools-issue69-standalone-oval-rebuild/1",
+  "parity": {
+    "complete": false,
+    "independent_source_equivalent": false,
+    "problem_types": {
+      "converted_parity_failure": 55
+    },
+    "problems": 55,
+    "scanner_equivalent": false,
+    "source_accounted": true
+  },
+  "qualification": {
+    "execution": "not_run",
+    "historical_receipt_preserved": "docs/evidence/issue59/oval-accounting-datatype-recovery.json",
+    "runtime_ri_equivalence": "HOLD",
+    "schema_valid_yaml_documents": 97,
+    "standalone_oval_parity": "FAIL/HOLD: 55 converted_parity_failure findings"
+  },
+  "schema_aggregate_sha256": "578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_definitions": 168,
+  "source_files": 144,
+  "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+  "source_tests": 803,
+  "transitive_extend_definition_ownership": true
+}

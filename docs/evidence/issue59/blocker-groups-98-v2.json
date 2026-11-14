@@ -1,0 +1,769 @@
+{
+  "candidate": {
+    "blocked": 98,
+    "converted": 6489,
+    "manual_only": 1403
+  },
+  "canonical_schema_commit": "aece827964c785be77b088c3c61255a2d07fd9a9",
+  "format": "scap-ng-0.4.1-issue69-blocker-groups/2",
+  "group_counts": {
+    "canonical-capability-absent": 71,
+    "canonical-registry-traversal-gap": 1,
+    "source-consumer-datatype-conflict": 1,
+    "source-test-state-family-conflict": 7,
+    "text-function-non_scalar_or_record_input": 12,
+    "unsupported-input-function-composition": 1,
+    "unsupported-state-field-namespace": 2,
+    "unsupported-variable-cast": 1,
+    "variable-source-set-filter-shape": 2
+  },
+  "groups": {
+    "canonical-capability-absent": {
+      "count": 71,
+      "rules": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220952r1051038_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220956r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220957r1137691_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220958r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220959r1137691_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220960r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220961r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220962r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220963r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220964r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220965r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220966r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220967r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220968r1137691_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220969r1137691_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220970r1137691_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220971r1137691_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220972r1137691_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220973r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220974r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220975r1138519_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220976r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220977r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220978r958434_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220979r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220980r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220981r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220982r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-220983r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-253476r1210304_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-224997r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-224998r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-224999r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225000r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225001r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225002r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225003r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225004r958672_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225005r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225014r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225015r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225016r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225017r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225018r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225019r958672_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225020r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225070r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225071r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225072r958472_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225073r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225074r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225076r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225077r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225078r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225079r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225080r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225081r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225082r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225083r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225084r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225085r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225086r958434_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225087r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225088r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225089r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225091r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225092r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-225093r958726_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-205657r1153431_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "category": "unsupported-capability",
+          "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule"
+        }
+      ]
+    },
+    "canonical-registry-traversal-gap": {
+      "count": 1,
+      "rules": [
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/digital-signatures-assemblies-verified-sv-225223-assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\StrongName\\\\Verification'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.fso_rule_SV-225223r961038_rule"
+        }
+      ]
+    },
+    "source-consumer-datatype-conflict": {
+      "count": 1,
+      "rules": [
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: Native comparison datatype: /tests/the-iis-10-0-website-must-have-a-unique-application-pool-test/require/fields/value: operand/explicit datatype conflicts with capability contract",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule"
+        }
+      ]
+    },
+    "source-test-state-family-conflict": {
+      "count": 7,
+      "rules": [
+        {
+          "benchmark": "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "category": "unsupported-capability",
+          "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.nginx:ste:27840004",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278400r1172752_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874102",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874205",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218742r1022679_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-capability",
+          "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "category": "unsupported-capability",
+          "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:80",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214451r879567_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "category": "unsupported-capability",
+          "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:93",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214452r879568_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "category": "unsupported-capability",
+          "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule"
+        }
+      ]
+    },
+    "text-function-non_scalar_or_record_input": {
+      "count": 12,
+      "rules": [
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule"
+        },
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/net-applications-that-of-net-stig-guidance-sv-225232-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule"
+        },
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/net-default-proxy-reviewed-and-approved-sv-225234-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.fso_rule_SV-225234r1188289_rule"
+        },
+        {
+          "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.fso_rule_SV-225235r960891_rule"
+        },
+        {
+          "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/exchange-software-partition-from-os-sv-259637-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule"
+        },
+        {
+          "benchmark": "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/exchange-email-with-another-application-sv-259704-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/all-iis-10-0-web-server-iis-10-0-server-sv-218795-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/java-software-installed-virtual-machine-sv-214416-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/data-files-owned-by-users-data-files-sv-224975-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-224975r958524_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/windows-server-2019-data-server-data-files-sv-205723-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-205723r1137695_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/windows-server-2022-data-server-data-files-sv-254396-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-254396r1137695_rule"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "category": "schema-semantic",
+          "message": "authoring/direct-slice/assessments/windows-server-2025-data-server-data-files-sv-278143-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-278143r1182092_rule"
+        }
+      ]
+    },
+    "unsupported-input-function-composition": {
+      "count": 1,
+      "rules": [
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "category": "unsupported-construct",
+          "message": "Assessment Input function composition requires a supported typed expression",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
+        }
+      ]
+    },
+    "unsupported-state-field-namespace": {
+      "count": 2,
+      "rules": [
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "category": "unsupported-construct",
+          "message": "unsupported State field/namespace",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule"
+        },
+        {
+          "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-construct",
+          "message": "unsupported State field/namespace",
+          "original_status": "blocked",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
+        }
+      ]
+    },
+    "unsupported-variable-cast": {
+      "count": 1,
+      "rules": [
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "category": "unsupported-construct",
+          "message": "Variable cast outside bounded proof",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218814r1067589_rule"
+        }
+      ]
+    },
+    "variable-source-set-filter-shape": {
+      "count": 2,
+      "rules": [
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "category": "unsupported-construct",
+          "message": "Variable source requires one var_ref; Sets/Filters unsupported",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+        },
+        {
+          "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "category": "unsupported-construct",
+          "message": "Variable source requires one var_ref; Sets/Filters unsupported",
+          "original_status": "blocked",
+          "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule"
+        }
+      ]
+    }
+  },
+  "historical_nonregression": {
+    "newly_blocked_from_converted": 0,
+    "newly_converted_from_blocked": 10,
+    "pass": true
+  },
+  "qualification": {
+    "authoring_only": true,
+    "runtime_ri_equivalent": false,
+    "scanner_equivalent": false,
+    "standalone_oval_parity_hold": 55
+  },
+  "receipt": "full65-operation-directed-v2-source-rule-rebuild.json",
+  "receipt_sha256": "c6322a572f994d9ae0b65936c4e04e7940a49f4db8347a0bb72e426f3eab9e2b",
+  "schema_aggregate_sha256": "578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829",
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "total_blocked": 98
+}

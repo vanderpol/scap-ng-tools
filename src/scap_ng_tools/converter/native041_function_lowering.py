@@ -64,7 +64,7 @@ def lower_expression(node):
             _required(len(children) == 1 and set(options) == required,
                       name + " requires exactly one operand and explicit options")
             operand = children[0]
-            if name in {"split", "substring"}:
+            if name in UNARY:
                 operand = _source_text_projection(operand)
             return {name: {**deepcopy(options), "value": operand}}
         if name == "unique":
@@ -101,7 +101,7 @@ def lower_expression(node):
     if operation in UNARY | {"regex_capture"}:
         _required(isinstance(value, dict) and "value" in value, operation + " needs value")
         operand = lower_expression(value["value"])
-        if operation in {"split", "substring"}:
+        if operation in UNARY:
             operand = _source_text_projection(operand)
         return {operation: {**deepcopy(value), "value": operand}}
     if operation in {"merge", "arithmetic"}:

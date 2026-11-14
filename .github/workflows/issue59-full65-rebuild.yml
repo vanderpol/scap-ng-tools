@@ -18,6 +18,12 @@ on:
       - 'src/scap_ng_tools/converter/_v04_semantic/v04_comparison_types.py'
       - 'src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py'
       - 'tests/test_issue59_remaining_collected_audit.py'
+      - 'tests/test_issue69_blocker_groups.py'
+      - 'docs/evidence/issue59/BLOCKER-GROUPS-98-V2.md'
+      - 'docs/evidence/issue59/blocker-groups-98-v2.json'
+      - 'docs/evidence/issue59/full65-operation-directed-v2-source-rule-rebuild.json'
+      - 'docs/evidence/issue59/OVAL-OPERATION-DIRECTED-REBUILD.md'
+      - 'docs/evidence/issue59/oval-accounting-operation-directed.json'
 
   pull_request:
     branches:
@@ -44,6 +50,12 @@ on:
       - 'src/scap_ng_tools/converter/_v04_semantic/v04_comparison_types.py'
       - 'src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py'
       - 'tests/test_issue59_remaining_collected_audit.py'
+      - 'tests/test_issue69_blocker_groups.py'
+      - 'docs/evidence/issue59/BLOCKER-GROUPS-98-V2.md'
+      - 'docs/evidence/issue59/blocker-groups-98-v2.json'
+      - 'docs/evidence/issue59/full65-operation-directed-v2-source-rule-rebuild.json'
+      - 'docs/evidence/issue59/OVAL-OPERATION-DIRECTED-REBUILD.md'
+      - 'docs/evidence/issue59/oval-accounting-operation-directed.json'
       - 'docs/evidence/issue59/OPERATION-DIRECTED-RECOVERY.md'
       - 'docs/evidence/issue59/operation-directed-recovery.json'
 
@@ -102,6 +114,9 @@ jobs:
 
       - name: Qualify operation-directed collected-field representation
         run: python -m unittest discover -s tests -p test_issue59_remaining_collected_audit.py -v
+
+      - name: Qualify exact 98 blocker grouping
+        run: python -m unittest discover -s tests -p test_issue69_blocker_groups.py -v
 
       - name: Generate source-ID regression triage from actual rebuild
         run: >-
