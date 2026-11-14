@@ -17,6 +17,21 @@ def _required(condition, diagnostic):
         raise ValueError(diagnostic)
 
 
+def _source_text_projection(operand):
+    """Make an inherited source lexical conversion visible in native authoring.
+
+    The one-element empty prefix maps each collected scalar to a string without
+    dropping duplicates, reordering values, or changing population cardinality.
+    Only collected-field projections receive this adapter; a typed literal,
+    Variable reference, or already explicit expression is never rewritten.
+    Native evaluation must still reject non-scalar evidence and propagate
+    missing/error/incomplete collection statuses.
+    """
+    if isinstance(operand, dict) and "values" in operand:
+        return {"concat": [{"literal": ""}, operand]}
+    return operand
+
+
 def lower_expression(node):
     """Return a new 0.4.1 expression, or reject an unrepresentable source."""
     _required(isinstance(node, dict) and len(node) == 1,
@@ -49,15 +64,8 @@ def lower_expression(node):
             _required(len(children) == 1 and set(options) == required,
                       name + " requires exactly one operand and explicit options")
             operand = children[0]
-            if name in {"split", "substring"} and "values" in operand:
-                # Port the bounded lexical-string projection from the 0.3
-                # static OVAL function evaluator.  The native concat operator
-                # explicitly specifies the inherited source text conversion.
-                # Its singleton empty prefix preserves order, multiplicity,
-                # and one-to-one population cardinality; unlike a hidden cast
-                # the conversion remains visible in native authoring.
-                # Non-scalar/unknown Item domains fail in semantic validation.
-                operand = {"concat": [{"literal": ""}, operand]}
+            if name in {"split", "substring"}:
+                operand = _source_text_projection(operand)
             return {name: {**deepcopy(options), "value": operand}}
         if name == "unique":
             _required(len(children) >= 1 and not options, "unique source arity/options invalid")
@@ -86,7 +94,10 @@ def lower_expression(node):
         return {"concat": [lower_expression(v) for v in value]}
     if operation in UNARY | {"regex_capture"}:
         _required(isinstance(value, dict) and "value" in value, operation + " needs value")
-        return {operation: {**deepcopy(value), "value": lower_expression(value["value"])}}
+        operand = lower_expression(value["value"])
+        if operation in {"split", "substring"}:
+            operand = _source_text_projection(operand)
+        return {operation: {**deepcopy(value), "value": operand}}
     if operation in {"merge", "arithmetic"}:
         _required(isinstance(value, dict) and "values" in value, operation + " needs values")
         operands = value["values"]
