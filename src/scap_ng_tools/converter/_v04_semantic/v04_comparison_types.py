@@ -5,6 +5,8 @@ literal and declared Variable/Input constrain one domain. No values execute.
 """
 from functools import lru_cache
 import json
+import math
+import struct
 from pathlib import Path
 
 from . import capability_contract
@@ -25,6 +27,19 @@ def scalar_type(value):
     if isinstance(value, float): return 'float'
     if isinstance(value, str): return 'string'
     raise ValueError('comparison operand is not a typed scalar or declared reference')
+
+
+def canonical_binary32(value):
+    """Whether a finite JSON number is already an exact binary32 value."""
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return False
+    value = float(value)
+    if not math.isfinite(value):
+        return False
+    try:
+        return struct.unpack('>f', struct.pack('>f', value))[0] == value
+    except OverflowError:
+        return False
 
 
 def predicate_type(predicate, allowed, assessment, path):
@@ -63,7 +78,10 @@ def predicate_type(predicate, allowed, assessment, path):
             # String-backed semantic domains retain lexical text. This is not
             # conversion of text to numbers/Boolean, nor generic string order.
             if chosen in TEXT_TYPES and domain == 'string': domain = chosen
-            if chosen == 'float' and domain == 'integer': domain = 'float'
+            if chosen == 'float' and domain in ('integer', 'float'):
+                if not canonical_binary32(item):
+                    raise ValueError(path + ': float operand is not canonical binary32')
+                domain = 'float'
         inferred.add(domain)
     if len(inferred) != 1:
         raise ValueError(path + ': mixed/ambiguous comparison operand types')

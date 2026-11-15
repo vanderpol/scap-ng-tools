@@ -1,0 +1,2412 @@
+{
+  "baseline": {
+    "archive": "applicability.8",
+    "sha256": "e164ba54ac99ed1ebc6d205205deedea311ad92abd3d83739073eb0751ae4125",
+    "status_counts": {
+      "blocked": 108,
+      "converted": 6479,
+      "intentionally_excluded": 209,
+      "manual_only": 1403
+    }
+  },
+  "candidate": {
+    "archive": "count.1",
+    "sha256": "5e34519ee38189d8a104770fc9f1e944b7f3681edf8a76636d931026a8b02571",
+    "status_counts": {
+      "blocked": 163,
+      "converted": 6424,
+      "intentionally_excluded": 209,
+      "manual_only": 1403
+    }
+  },
+  "candidate_status_by_function": {
+    "arithmetic": {
+      "blocked": 4
+    },
+    "concat": {
+      "blocked": 60,
+      "converted": 251,
+      "intentionally_excluded": 16,
+      "manual_only": 1
+    },
+    "count": {
+      "blocked": 5,
+      "converted": 32
+    },
+    "end": {
+      "blocked": 2
+    },
+    "merge": {
+      "blocked": 14,
+      "converted": 53
+    },
+    "regex_capture": {
+      "blocked": 16,
+      "converted": 105,
+      "intentionally_excluded": 6
+    },
+    "split": {
+      "blocked": 23
+    },
+    "substring": {
+      "blocked": 8
+    },
+    "unique": {
+      "blocked": 31,
+      "converted": 86
+    }
+  },
+  "format": "scap-ng-tools/issue47-variable-function-regression/1",
+  "pins": {
+    "candidate_generator_commit": "0822dd7e4a3b8a7e5656f98322805d28447f1d7c",
+    "schema_commit": "8f8e219e4fb2db8b37a6d0e1ca418e8a392c38e3",
+    "schema_sha256": "910beeebfb90a63c773615907289a0e4b93095ee41cd1ad41b33652363900c74",
+    "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
+  },
+  "regression_summary": {
+    "classifications": {
+      "inactive_function_envelope": 50,
+      "unrelated_datatype_or_schema_blocker": 5
+    },
+    "count": 55,
+    "count_bearing_regressions": 0,
+    "status_delta": {
+      "converted->blocked": 55
+    }
+  },
+  "regressions": [
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-219147r958472_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json: Native Variable expression: Variable grub-superusers-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/grub/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-219147r958472_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json",
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-modes-sv-219147-manual-0-assessment.json",
+        "authoring/direct-slice/rules/ubuntu-operating-systems-and-maintenance-modes-sv-219147-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-219147r958472_rule",
+      "title": "Ubuntu operating systems booted with a BIOS must require authentication upon booting into single-user and maintenance modes."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-219148r958472_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json: Native Variable expression: Variable grub-superusers-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': {'capability': 'independent.textfilecontent', 'full_path': {'equals': '/boot/efi/EFI/ubuntu/grub.cfg'}, 'pattern': {'matches_regex': '^\\\\s*set\\\\s+superusers=\"(root)\"\\\\s*$'}, 'instance': {'greater_than_or_equal': 1}, 'ignore_case': False, 'multiline': True, 'singleline': False, 'item_creation': 'all_object_elements_fullfilled', 'filesystem': 'all'}, 'field': 'subexpression'}}], 'options': {'delimiter': ' '}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-219148r958472_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json",
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-sv-219148-manual-0-assessment.json",
+        "authoring/direct-slice/rules/ubuntu-operating-systems-mode-and-maintenance-sv-219148-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-219148r958472_rule",
+      "title": "Ubuntu operating systems booted with United Extensible Firmware Interface (UEFI) implemented must require authentication upon booting into single-user mode and maintenance."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json",
+        "authoring/direct-slice/assessments/firefox-allow-only-tls-1-or-above-sv-251546-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-allow-only-tls-1-2-or-above-sv-251546-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
+      "title": "Firefox must be configured to allow only TLS 1.2 or above."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "merge",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json",
+        "authoring/direct-slice/assessments/firefox-ask-which-is-required-sv-251547-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-ask-which-when-certificate-is-required-sv-251547-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+      "title": "Firefox must be configured to ask which certificate to present to a website when a certificate is required."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "merge",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-not-automatically-plugins-sv-251548-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json",
+        "authoring/direct-slice/rules/firefox-not-automatically-search-plugins-sv-251548-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
+      "title": "Firefox must be configured to not automatically check for updated versions of installed search plugins."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251549r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251549r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-automatically-plugins-sv-251549-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-not-automatically-add-ons-and-plugins-sv-251549-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251549r960963_rule",
+      "title": "Firefox must be configured to not automatically update installed add-ons and plugins."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251551r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251551r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json",
+        "authoring/direct-slice/assessments/firefox-disable-form-fill-sv-251551-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-disable-form-fill-assistance-sv-251551-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251551r960963_rule",
+      "title": "Firefox must be configured to disable form fill assistance."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251552r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251552r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-use-password-password-sv-251552-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-not-use-password-without-master-password-sv-251552-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251552r960963_rule",
+      "title": "Firefox must be configured to not use a password store with or without a master password."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251553r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251553r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json",
+        "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-block-pop-up-windows-sv-251553-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251553r960963_rule",
+      "title": "Firefox must be configured to block pop-up windows."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251554r1067554_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251554r1067554_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "merge",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json",
+        "authoring/direct-slice/assessments/firefox-prevent-resizing-windows-sv-251554-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-prevent-javascript-or-resizing-windows-sv-251554-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251554r1067554_rule",
+      "title": "Firefox must be configured to prevent JavaScript from moving or resizing windows."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251555r1067556_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251555r1067556_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "merge",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-prevent-lowering-windows-sv-251555-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json",
+        "authoring/direct-slice/rules/firefox-prevent-javascript-or-lowering-windows-sv-251555-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251555r1067556_rule",
+      "title": "Firefox must be configured to prevent JavaScript from raising or lowering windows."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251557r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251557r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json",
+        "authoring/direct-slice/assessments/firefox-disable-of-extensions-sv-251557-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-disable-installation-of-extensions-sv-251557-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251557r960963_rule",
+      "title": "Firefox must be configured to disable the installation of extensions."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251558r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251558r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/background-submission-of-disabled-sv-251558-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json",
+        "authoring/direct-slice/rules/background-submission-of-mozilla-disabled-sv-251558-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251558r960963_rule",
+      "title": "Background submission of information to Mozilla must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251559r961167_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251559r961167_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-development-tools-disabled-sv-251559-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json",
+        "authoring/direct-slice/rules/firefox-development-tools-must-be-disabled-sv-251559-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251559r961167_rule",
+      "title": "Firefox development tools must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251562r1156569_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251562r1156569_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-prevent-user-from-data-sv-251562-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json",
+        "authoring/direct-slice/rules/firefox-prevent-user-from-quickly-deleting-data-sv-251562-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251562r1156569_rule",
+      "title": "Firefox must prevent the user from quickly deleting data."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251563r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251563r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-private-browsing-disabled-sv-251563-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json",
+        "authoring/direct-slice/rules/firefox-private-browsing-must-be-disabled-sv-251563-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251563r960963_rule",
+      "title": "Firefox private browsing must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251564r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251564r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-search-disabled-sv-251564-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json",
+        "authoring/direct-slice/rules/firefox-search-suggestions-must-be-disabled-sv-251564-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251564r960963_rule",
+      "title": "Firefox search suggestions must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251565r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251565r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json",
+        "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-autoplay-must-be-disabled-sv-251565-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251565r960963_rule",
+      "title": "Firefox autoplay must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251566r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251566r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-network-disabled-sv-251566-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json",
+        "authoring/direct-slice/rules/firefox-network-prediction-must-be-disabled-sv-251566-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251566r960963_rule",
+      "title": "Firefox network prediction must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251567r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251567r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-fingerprinting-enabled-sv-251567-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json",
+        "authoring/direct-slice/rules/firefox-fingerprinting-protection-must-be-enabled-sv-251567-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251567r960963_rule",
+      "title": "Firefox fingerprinting protection must be enabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251568r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251568r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-cryptomining-enabled-sv-251568-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json",
+        "authoring/direct-slice/rules/firefox-cryptomining-protection-must-be-enabled-sv-251568-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251568r960963_rule",
+      "title": "Firefox cryptomining protection must be enabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251569r1067561_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251569r1067561_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "merge",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json",
+        "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-enhanced-tracking-protection-enabled-sv-251569-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251569r1067561_rule",
+      "title": "Firefox Enhanced Tracking Protection must be enabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251570r1067563_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251570r1067563_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "merge",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-extension-disabled-sv-251570-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json",
+        "authoring/direct-slice/rules/firefox-extension-recommendations-disabled-sv-251570-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251570r1067563_rule",
+      "title": "Firefox extension recommendations must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251571r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251571r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json",
+        "authoring/direct-slice/assessments/firefox-deprecated-disabled-sv-251571-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-deprecated-ciphers-must-be-disabled-sv-251571-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251571r960963_rule",
+      "title": "Firefox deprecated ciphers must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251572r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251572r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-not-recommend-browser-sv-251572-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json",
+        "authoring/direct-slice/rules/firefox-not-recommend-as-user-is-using-browser-sv-251572-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251572r960963_rule",
+      "title": "Firefox must not recommend extensions as the user is using the browser."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251573r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251573r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json",
+        "authoring/direct-slice/assessments/firefox-new-tab-page-not-snippets-sv-251573-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-new-tab-page-not-highlights-or-snippets-sv-251573-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251573r960963_rule",
+      "title": "The Firefox New Tab page must not show Top Sites, Sponsored Top Sites, Pocket Recommendations, Sponsored Pocket Stories, Searches, Highlights, or Snippets."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251577r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251577r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-so-that-dns-over-disabled-sv-251577-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json",
+        "authoring/direct-slice/rules/firefox-so-that-dns-over-https-is-disabled-sv-251577-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251577r960963_rule",
+      "title": "Firefox must be configured so that DNS over HTTPS is disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251578r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251578r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json",
+        "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-accounts-must-be-disabled-sv-251578-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251578r960963_rule",
+      "title": "Firefox accounts must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251580r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251580r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-feedback-disabled-sv-251580-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json",
+        "authoring/direct-slice/rules/firefox-feedback-reporting-must-be-disabled-sv-251580-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251580r960963_rule",
+      "title": "Firefox feedback reporting must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251581r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-251581r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-encrypted-media-disabled-sv-251581-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json",
+        "authoring/direct-slice/rules/firefox-encrypted-media-extensions-disabled-sv-251581-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251581r960963_rule",
+      "title": "Firefox encrypted media extensions must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-252881r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-252881r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-not-delete-data-shutdown-sv-252881-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json",
+        "authoring/direct-slice/rules/firefox-not-delete-data-upon-shutdown-sv-252881-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-252881r960963_rule",
+      "title": "Firefox must be configured to not delete data upon shutdown."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-252909r960963_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json: Native Variable expression: Variable policies-json-path-for-firefox-variable/expression: {'function': {'name': 'unique', 'arguments': [{'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}, {'concat': [{'values': {'object': {'capability': 'unix.file', 'path': {'equals': '/usr'}, 'filename': {'matches_regex': '^firefox.sh$|^firefox-bin$|^firefox$'}, 'filesystem': 'all', 'traversal': {'max_depth': 'unlimited', 'recurse': 'symlinks_and_directories'}}, 'field': 'directory'}}, {'literal': {'datatype': 'string', 'value': '/distribution'}}]}], 'options': {}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-252909r960963_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "unique"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "unique"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json",
+        "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-manual-0-assessment.json",
+        "authoring/direct-slice/rules/firefox-studies-must-be-disabled-sv-252909-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-252909r960963_rule",
+      "title": "Firefox Studies must be disabled."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json: {'function': {'name': 'substring', 'arguments': [{'values': {'object': 'shellcommand-object-true-msiinstallpath-msiinstallpath-w-object', 'field': 'stdout_line'}}], 'options': {'substring_start': 1, 'substring_length': 1}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json: Native Variable expression: Variable exchange-installation-drive-letter-variable/expression: {'function': {'name': 'substring', 'arguments': [{'values': {'object': 'shellcommand-object-true-msiinstallpath-msiinstallpath-w-object', 'field': 'stdout_line'}}], 'options': {'substring_start': 1, 'substring_length': 1}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "substring"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "substring"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json",
+        "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-manual-0-assessment.json",
+        "authoring/direct-slice/rules/exchange-queue-database-on-dedicated-partition-sv-259592-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule",
+      "title": "Exchange queue database must reside on a dedicated partition."
+    },
+    {
+      "attributable_to_function_contract": false,
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/windows-server-2016-have-three-or-less-sv-224867-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/windows-server-2016-have-three-or-less-sv-224867-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-224867r958388_rule"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:def:1012",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101200",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101200",
+          "source_path": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}lockout_threshold[0]"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:tst:101200",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:var:101200",
+          "source_path": "closure"
+        }
+      ],
+      "classification": "unrelated_datatype_or_schema_blocker",
+      "emitted_function_names": [],
+      "functions_in_source_closure": [],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/windows-server-2016-have-or-less-sv-224867-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/windows-server-2016-have-three-or-less-sv-224867-assessment.json",
+        "authoring/direct-slice/rules/windows-server-2016-have-attempts-three-or-less-sv-224867-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224867r958388_rule",
+      "title": "Windows Server 2016 must have the number of allowed bad logon attempts configured to three or less."
+    },
+    {
+      "attributable_to_function_contract": false,
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/windows-server-2016-have-or-greater-sv-224868-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/windows-server-2016-have-or-greater-sv-224868-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-224868r958388_rule"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:def:1013",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101300",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101300",
+          "source_path": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}lockout_observation_window[0]"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:tst:101300",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:var:101300",
+          "source_path": "closure"
+        }
+      ],
+      "classification": "unrelated_datatype_or_schema_blocker",
+      "emitted_function_names": [],
+      "functions_in_source_closure": [],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/windows-server-2016-have-greater-sv-224868-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/windows-server-2016-have-or-greater-sv-224868-assessment.json",
+        "authoring/direct-slice/rules/windows-server-2016-have-15-minutes-or-greater-sv-224868-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224868r958388_rule",
+      "title": "Windows Server 2016 must have the period of time before the bad logon counter is reset configured to 15 minutes or greater."
+    },
+    {
+      "attributable_to_function_contract": false,
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/windows-server-2016-passwords-remembered-sv-224869-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/windows-server-2016-passwords-remembered-sv-224869-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-224869r982201_rule"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:def:1014",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101400",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101400",
+          "source_path": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}password_hist_len[0]"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:tst:101400",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:var:101400",
+          "source_path": "closure"
+        }
+      ],
+      "classification": "unrelated_datatype_or_schema_blocker",
+      "emitted_function_names": [],
+      "functions_in_source_closure": [],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/windows-server-2016-passwords-remembered-sv-224869-assessment.json",
+        "authoring/direct-slice/assessments/windows-server-2016-remembered-sv-224869-manual-0-assessment.json",
+        "authoring/direct-slice/rules/windows-server-2016-password-remembered-sv-224869-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224869r982201_rule",
+      "title": "Windows Server 2016 password history must be configured to 24 passwords remembered."
+    },
+    {
+      "attributable_to_function_contract": false,
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/windows-server-2016-age-60-days-or-less-sv-224870-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/windows-server-2016-age-60-days-or-less-sv-224870-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-224870r982200_rule"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:def:1015",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101500",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101500",
+          "source_path": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}max_passwd_age[0]"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:tst:101500",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:var:101500",
+          "source_path": "closure"
+        }
+      ],
+      "classification": "unrelated_datatype_or_schema_blocker",
+      "emitted_function_names": [],
+      "functions_in_source_closure": [],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/windows-server-2016-age-60-days-or-less-sv-224870-assessment.json",
+        "authoring/direct-slice/assessments/windows-server-2016-days-or-less-sv-224870-manual-0-assessment.json",
+        "authoring/direct-slice/rules/windows-server-2016-maximum-age-60-days-or-less-sv-224870-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224870r982200_rule",
+      "title": "Windows Server 2016 maximum password age must be configured to 60 days or less."
+    },
+    {
+      "attributable_to_function_contract": false,
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/windows-server-2016-age-at-least-one-day-sv-224871-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/windows-server-2016-age-at-least-one-day-sv-224871-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-224871r982188_rule"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:def:1016",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101600",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:ste:101600",
+          "source_path": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}min_passwd_age[0]"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:tst:101600",
+          "source_path": "closure"
+        },
+        {
+          "category": "unsupported-construct",
+          "component": "scap_mil.disa.stig_comp_U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+          "message": "unbound external Variable or unsupported possible_restriction",
+          "source_id": "oval:mil.disa.stig.windows:var:101600",
+          "source_path": "closure"
+        }
+      ],
+      "classification": "unrelated_datatype_or_schema_blocker",
+      "emitted_function_names": [],
+      "functions_in_source_closure": [],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/windows-server-2016-age-at-least-one-day-sv-224871-assessment.json",
+        "authoring/direct-slice/assessments/windows-server-2016-least-one-day-sv-224871-manual-0-assessment.json",
+        "authoring/direct-slice/rules/windows-server-2016-minimum-age-at-least-one-day-sv-224871-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224871r982188_rule",
+      "title": "Windows Server 2016 minimum password age must be configured to at least one day."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271653r1091671_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271653r1091671_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/ol-9-mount-tmp-with-nodev-option-sv-271653-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json",
+        "authoring/direct-slice/rules/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271653r1091671_rule",
+      "title": "OL 9 must mount /tmp with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271657r1091683_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271657r1091683_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-option-sv-271657-manual-0-assessment.json",
+        "authoring/direct-slice/rules/ol-9-must-mount-var-log-with-the-nodev-option-sv-271657-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271657r1091683_rule",
+      "title": "OL 9 must mount /var/log with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-noexec-option-sv-271658-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-noexec-option-sv-271658-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271658r1091686_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-noexec-option-sv-271658-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271658r1091686_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-noexec-option-sv-271658-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-option-sv-271658-manual-0-assessment.json",
+        "authoring/direct-slice/rules/ol-9-must-mount-var-log-with-the-noexec-option-sv-271658-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271658r1091686_rule",
+      "title": "OL 9 must mount /var/log with the noexec option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271659r1091689_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271659r1091689_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-option-sv-271659-manual-0-assessment.json",
+        "authoring/direct-slice/rules/ol-9-must-mount-var-log-with-the-nosuid-option-sv-271659-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271659r1091689_rule",
+      "title": "OL 9 must mount /var/log with the nosuid option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271660r1091692_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-271660r1091692_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-option-sv-271660-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json",
+        "authoring/direct-slice/rules/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271660r1091692_rule",
+      "title": "OL 9 must mount /var/log/audit with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230511r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230511r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-8-mount-tmp-with-nodev-option-sv-230511-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json",
+        "authoring/direct-slice/rules/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230511r958804_rule",
+      "title": "RHEL 8 must mount /tmp with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230514r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230514r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-option-sv-230514-manual-0-assessment.json",
+        "authoring/direct-slice/rules/rhel-8-must-mount-var-log-with-the-nodev-option-sv-230514-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230514r958804_rule",
+      "title": "RHEL 8 must mount /var/log with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230515r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230515r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-option-sv-230515-manual-0-assessment.json",
+        "authoring/direct-slice/rules/rhel-8-must-mount-var-log-with-the-nosuid-option-sv-230515-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230515r958804_rule",
+      "title": "RHEL 8 must mount /var/log with the nosuid option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-noexec-option-sv-230516-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-noexec-option-sv-230516-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230516r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-noexec-option-sv-230516-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230516r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-noexec-option-sv-230516-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-option-sv-230516-manual-0-assessment.json",
+        "authoring/direct-slice/rules/rhel-8-must-mount-var-log-with-the-noexec-option-sv-230516-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230516r958804_rule",
+      "title": "RHEL 8 must mount /var/log with the noexec option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230517r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-230517r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-nodev-option-sv-230517-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json",
+        "authoring/direct-slice/rules/rhel-8-mount-var-log-audit-with-nodev-option-sv-230517-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230517r958804_rule",
+      "title": "RHEL 8 must mount /var/log/audit with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257866r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json: Native Variable expression: Variable mount-options-for-tmp-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257866r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-9-mount-tmp-with-nodev-option-sv-257866-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json",
+        "authoring/direct-slice/rules/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257866r958804_rule",
+      "title": "RHEL 9 must mount /tmp with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257870r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257870r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-option-sv-257870-manual-0-assessment.json",
+        "authoring/direct-slice/rules/rhel-9-must-mount-var-log-with-the-nodev-option-sv-257870-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257870r958804_rule",
+      "title": "RHEL 9 must mount /var/log with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-noexec-option-sv-257871-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-noexec-option-sv-257871-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257871r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-noexec-option-sv-257871-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257871r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-noexec-option-sv-257871-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-option-sv-257871-manual-0-assessment.json",
+        "authoring/direct-slice/rules/rhel-9-must-mount-var-log-with-the-noexec-option-sv-257871-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257871r958804_rule",
+      "title": "RHEL 9 must mount /var/log with the noexec option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257872r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json: Native Variable expression: Variable mount-options-for-var-log-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257872r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-option-sv-257872-manual-0-assessment.json",
+        "authoring/direct-slice/rules/rhel-9-must-mount-var-log-with-the-nosuid-option-sv-257872-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257872r958804_rule",
+      "title": "RHEL 9 must mount /var/log with the nosuid option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257873r958804_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json: Native Variable expression: Variable mount-options-for-var-log-audit-in-etc-fstab-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-filepath-s-s-s-s-s-s-instance-equals-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ','}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-257873r958804_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-nodev-option-sv-257873-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json",
+        "authoring/direct-slice/rules/rhel-9-mount-var-log-audit-with-nodev-option-sv-257873-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257873r958804_rule",
+      "title": "RHEL 9 must mount /var/log/audit with the nodev option."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-etc-init-d-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json: Native Variable expression: Variable split-paths-for-etc-rc-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json",
+        "authoring/direct-slice/assessments/run-control-scripts-paths-sv-216301-manual-0-assessment.json",
+        "authoring/direct-slice/rules/run-control-scripts-only-authorized-paths-sv-216301-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
+      "title": "Run control scripts executable search paths must contain only authorized paths."
+    },
+    {
+      "attributable_to_function_contract": true,
+      "benchmark": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "blocker_paths": [
+        "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json"
+      ],
+      "blockers": [
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-etc-init-d-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'path-variables-in-lib-svc-method-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-or-equal-rc-012356s-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule"
+        },
+        {
+          "category": "schema-semantic",
+          "component": null,
+          "message": "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json: Native Variable expression: Variable split-paths-for-etc-rc-variable/expression: {'function': {'name': 'split', 'arguments': [{'values': {'object': 'textfilecontent54-object-than-or-equal-s-path-s-1-object', 'field': 'subexpression'}}], 'options': {'delimiter': ':'}}} is not valid under any of the given schemas",
+          "source_id": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule"
+        }
+      ],
+      "classification": "inactive_function_envelope",
+      "emitted_function_names": [
+        "split"
+      ],
+      "functions_in_source_closure": [
+        "concat",
+        "split"
+      ],
+      "new_artifacts": [],
+      "new_status": "blocked",
+      "old_artifacts": [
+        "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json",
+        "authoring/direct-slice/assessments/run-control-scripts-paths-sv-216066-manual-0-assessment.json",
+        "authoring/direct-slice/rules/run-control-scripts-only-authorized-paths-sv-216066-rule.json"
+      ],
+      "old_status": "converted",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
+      "title": "Run control scripts executable search paths must contain only authorized paths."
+    }
+  ],
+  "scope": {
+    "candidate_rules_compared": 8199,
+    "regression_definition": "old status converted and new status blocked",
+    "source_benchmarks": 65,
+    "source_rules": 8892
+  },
+  "source_function_inventory": {
+    "occurrences": {
+      "arithmetic": 9,
+      "concat": 750,
+      "count": 47,
+      "end": 3,
+      "merge": 106,
+      "regex_capture": 320,
+      "split": 29,
+      "substring": 21,
+      "unique": 63
+    },
+    "rules": {
+      "arithmetic": 4,
+      "concat": 299,
+      "count": 37,
+      "end": 2,
+      "merge": 61,
+      "regex_capture": 128,
+      "split": 23,
+      "substring": 8,
+      "unique": 87
+    },
+    "variables": {
+      "arithmetic": 3,
+      "concat": 647,
+      "count": 29,
+      "end": 3,
+      "merge": 106,
+      "regex_capture": 281,
+      "split": 15,
+      "substring": 21,
+      "unique": 52
+    }
+  }
+}

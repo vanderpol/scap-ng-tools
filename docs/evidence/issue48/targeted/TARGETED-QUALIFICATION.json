@@ -1,0 +1,1701 @@
+{
+  "format": "scap-ng-tools/issue48-targeted-qualification/1",
+  "pins": {
+    "schema_commit": "63110e7762f4963d3e4d407e90b9fcfd9cfe86ad",
+    "schema_family_sha256": "5d3b7f9507318c5ca2e85009fd8bc284d906d357b58cd278219c84f9481536a1",
+    "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
+  },
+  "results": [
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/amazon-linux-2023-ensure-ids-uids-sv-274160-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/amazon-linux-2023-ensure-user-ids-uids-sv-274160-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/amazon-linux-2023-ensure-all-user-ids-uids-sv-274160-rule.json"
+      ],
+      "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-274160r1120663_rule",
+      "source_sha256": "88cc35f98c9ff96c567110c284c06e6adfc556fd59967019bdec6fd1cc5a204f",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-maintenance-modes-sv-219147-assessment.json",
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-modes-sv-219147-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ubuntu-operating-systems-and-maintenance-modes-sv-219147-rule.json"
+      ],
+      "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-219147r958472_rule",
+      "source_sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-and-maintenance-sv-219148-assessment.json",
+        "authoring/direct-slice/assessments/ubuntu-operating-systems-sv-219148-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ubuntu-operating-systems-mode-and-maintenance-sv-219148-rule.json"
+      ],
+      "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-219148r958472_rule",
+      "source_sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-assessment.json",
+        "authoring/direct-slice/assessments/ubuntu-22-04-lts-uniquely-users-sv-260543-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ubuntu-22-04-lts-uniquely-interactive-users-sv-260543-rule.json"
+      ],
+      "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-260543r958482_rule",
+      "source_sha256": "dbbc87ffe6d0c84688993d96cd7007e76bf83b9206508109b586ccc5bf88b6b2",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-assessment.json",
+        "authoring/direct-slice/assessments/ubuntu-24-04-lts-uniquely-users-sv-270720-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ubuntu-24-04-lts-uniquely-interactive-users-sv-270720-rule.json"
+      ],
+      "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-270720r1066649_rule",
+      "source_sha256": "40229cd7a41e6ff4a8cfb675523f767292d1460edbc68fe9ba5258c530c8b4a7",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215807-assessment.json",
+        "authoring/direct-slice/assessments/cisco-router-limit-number-number-sv-215807-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-router-limit-number-of-defined-number-sv-215807-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215807r1186318_rule",
+      "source_sha256": "82e2d4bf65abc53bb6da01874944c555efae51dbc98d80e6e42423d1025e7efa",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215812-assessment.json",
+        "authoring/direct-slice/assessments/cisco-router-enforce-policies-sv-215812-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-router-enforce-based-on-control-policies-sv-215812-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215812r1137875_rule",
+      "source_sha256": "82e2d4bf65abc53bb6da01874944c555efae51dbc98d80e6e42423d1025e7efa",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215833-assessment.json: 'integer' is not one of ['string']",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
+      "source_sha256": "82e2d4bf65abc53bb6da01874944c555efae51dbc98d80e6e42423d1025e7efa",
+      "status": "blocked",
+      "target_kind": "count"
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-router-synchronize-sources-sv-215838-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215838-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-router-synchronize-its-time-sources-sv-215838-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215838r1015295_rule",
+      "source_sha256": "82e2d4bf65abc53bb6da01874944c555efae51dbc98d80e6e42423d1025e7efa",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-assessment.json",
+        "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215854-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-router-use-at-least-administrative-access-sv-215854-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215854r1156415_rule",
+      "source_sha256": "82e2d4bf65abc53bb6da01874944c555efae51dbc98d80e6e42423d1025e7efa",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220518-assessment.json",
+        "authoring/direct-slice/assessments/cisco-switch-limit-number-number-sv-220518-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-switch-limit-number-of-defined-number-sv-220518-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220518r960735_rule",
+      "source_sha256": "0bd07f9acdf6cae7e6b2f0549c7bf42ce368114953b18f37f460fa66563aa600",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220523-assessment.json",
+        "authoring/direct-slice/assessments/cisco-switch-enforce-policies-sv-220523-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-switch-enforce-based-on-control-policies-sv-220523-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220523r1137875_rule",
+      "source_sha256": "0bd07f9acdf6cae7e6b2f0549c7bf42ce368114953b18f37f460fa66563aa600",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220544-assessment.json: 'integer' is not one of ['string']",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
+      "source_sha256": "0bd07f9acdf6cae7e6b2f0549c7bf42ce368114953b18f37f460fa66563aa600",
+      "status": "blocked",
+      "target_kind": "count"
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-switch-synchronize-sources-sv-220549-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220549-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-switch-synchronize-its-time-sources-sv-220549-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220549r991924_rule",
+      "source_sha256": "0bd07f9acdf6cae7e6b2f0549c7bf42ce368114953b18f37f460fa66563aa600",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-assessment.json",
+        "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220565-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-switch-use-at-least-administrative-access-sv-220565-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220565r1195273_rule",
+      "source_sha256": "0bd07f9acdf6cae7e6b2f0549c7bf42ce368114953b18f37f460fa66563aa600",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-router-limit-number-defined-number-sv-215662-assessment.json",
+        "authoring/direct-slice/assessments/cisco-router-limit-number-number-sv-215662-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-router-limit-number-of-defined-number-sv-215662-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215662r1192908_rule",
+      "source_sha256": "cc90109437f9e26ab5ec6cbd43b6e83b1c60717b4da02ce0d5580a07bcdb147d",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-router-enforce-on-control-policies-sv-215667-assessment.json",
+        "authoring/direct-slice/assessments/cisco-router-enforce-policies-sv-215667-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-router-enforce-based-on-control-policies-sv-215667-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215667r1137875_rule",
+      "source_sha256": "cc90109437f9e26ab5ec6cbd43b6e83b1c60717b4da02ce0d5580a07bcdb147d",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-router-terminate-of-inactivity-sv-215688-assessment.json: 'integer' is not one of ['string']",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
+      "source_sha256": "cc90109437f9e26ab5ec6cbd43b6e83b1c60717b4da02ce0d5580a07bcdb147d",
+      "status": "blocked",
+      "target_kind": "count"
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-router-synchronize-sources-sv-215693-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/cisco-router-synchronize-time-sources-sv-215693-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-router-synchronize-its-time-sources-sv-215693-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215693r991832_rule",
+      "source_sha256": "cc90109437f9e26ab5ec6cbd43b6e83b1c60717b4da02ce0d5580a07bcdb147d",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-assessment.json",
+        "authoring/direct-slice/assessments/cisco-router-use-at-least-access-sv-215709-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-router-use-at-least-administrative-access-sv-215709-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215709r1205827_rule",
+      "source_sha256": "cc90109437f9e26ab5ec6cbd43b6e83b1c60717b4da02ce0d5580a07bcdb147d",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-switch-limit-number-defined-number-sv-220570-assessment.json",
+        "authoring/direct-slice/assessments/cisco-switch-limit-number-number-sv-220570-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-switch-limit-number-of-defined-number-sv-220570-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220570r960735_rule",
+      "source_sha256": "1d33596c80208a4b3d77004397b209b5038badfefe97e5e5d27ec536b1211b70",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-switch-enforce-on-control-policies-sv-220575-assessment.json",
+        "authoring/direct-slice/assessments/cisco-switch-enforce-policies-sv-220575-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-switch-enforce-based-on-control-policies-sv-220575-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220575r1137875_rule",
+      "source_sha256": "1d33596c80208a4b3d77004397b209b5038badfefe97e5e5d27ec536b1211b70",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: 'integer' is not one of ['string']; authoring/direct-slice/assessments/cisco-switch-terminate-of-inactivity-sv-220596-assessment.json: 'integer' is not one of ['string']",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
+      "source_sha256": "1d33596c80208a4b3d77004397b209b5038badfefe97e5e5d27ec536b1211b70",
+      "status": "blocked",
+      "target_kind": "count"
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-switch-synchronize-sources-sv-220601-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/cisco-switch-synchronize-time-sources-sv-220601-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-switch-synchronize-its-time-sources-sv-220601-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220601r1015287_rule",
+      "source_sha256": "1d33596c80208a4b3d77004397b209b5038badfefe97e5e5d27ec536b1211b70",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-assessment.json",
+        "authoring/direct-slice/assessments/cisco-switch-use-at-least-access-sv-220617-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/cisco-switch-use-at-least-administrative-access-sv-220617-rule.json"
+      ],
+      "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220617r1205840_rule",
+      "source_sha256": "1d33596c80208a4b3d77004397b209b5038badfefe97e5e5d27ec536b1211b70",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-allow-only-tls-1-2-or-above-sv-251546-assessment.json",
+        "authoring/direct-slice/assessments/firefox-allow-only-tls-1-or-above-sv-251546-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-allow-only-tls-1-2-or-above-sv-251546-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-ask-which-certificate-is-required-sv-251547-assessment.json",
+        "authoring/direct-slice/assessments/firefox-ask-which-is-required-sv-251547-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-ask-which-when-certificate-is-required-sv-251547-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-not-automatically-plugins-sv-251548-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-automatically-search-plugins-sv-251548-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-not-automatically-search-plugins-sv-251548-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-not-automatically-ons-and-plugins-sv-251549-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-automatically-plugins-sv-251549-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-not-automatically-add-ons-and-plugins-sv-251549-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251549r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-disable-form-fill-assistance-sv-251551-assessment.json",
+        "authoring/direct-slice/assessments/firefox-disable-form-fill-sv-251551-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-disable-form-fill-assistance-sv-251551-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251551r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-not-use-password-master-password-sv-251552-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-use-password-password-sv-251552-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-not-use-password-without-master-password-sv-251552-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251552r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-assessment.json",
+        "authoring/direct-slice/assessments/firefox-block-pop-up-windows-sv-251553-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-block-pop-up-windows-sv-251553-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251553r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-prevent-moving-or-resizing-windows-sv-251554-assessment.json",
+        "authoring/direct-slice/assessments/firefox-prevent-resizing-windows-sv-251554-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-prevent-javascript-or-resizing-windows-sv-251554-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251554r1067554_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-prevent-lowering-windows-sv-251555-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-prevent-or-lowering-windows-sv-251555-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-prevent-javascript-or-lowering-windows-sv-251555-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251555r1067556_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-disable-installation-of-extensions-sv-251557-assessment.json",
+        "authoring/direct-slice/assessments/firefox-disable-of-extensions-sv-251557-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-disable-installation-of-extensions-sv-251557-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251557r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/background-submission-of-disabled-sv-251558-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/background-submission-of-mozilla-disabled-sv-251558-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/background-submission-of-mozilla-disabled-sv-251558-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251558r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-development-tools-disabled-sv-251559-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-development-tools-must-be-disabled-sv-251559-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-development-tools-must-be-disabled-sv-251559-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251559r961167_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-prevent-user-from-data-sv-251562-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-prevent-user-from-deleting-data-sv-251562-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-prevent-user-from-quickly-deleting-data-sv-251562-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251562r1156569_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-private-browsing-disabled-sv-251563-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-private-browsing-must-be-disabled-sv-251563-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-private-browsing-must-be-disabled-sv-251563-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251563r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-search-disabled-sv-251564-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-search-suggestions-must-be-disabled-sv-251564-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-search-suggestions-must-be-disabled-sv-251564-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251564r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-assessment.json",
+        "authoring/direct-slice/assessments/firefox-autoplay-must-be-disabled-sv-251565-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-autoplay-must-be-disabled-sv-251565-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251565r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-network-disabled-sv-251566-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-network-prediction-must-be-disabled-sv-251566-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-network-prediction-must-be-disabled-sv-251566-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251566r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-fingerprinting-enabled-sv-251567-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-fingerprinting-protection-enabled-sv-251567-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-fingerprinting-protection-must-be-enabled-sv-251567-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251567r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-cryptomining-enabled-sv-251568-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-cryptomining-protection-enabled-sv-251568-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-cryptomining-protection-must-be-enabled-sv-251568-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251568r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-assessment.json",
+        "authoring/direct-slice/assessments/firefox-enhanced-tracking-enabled-sv-251569-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-enhanced-tracking-protection-enabled-sv-251569-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251569r1067561_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-extension-disabled-sv-251570-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-extension-recommendations-disabled-sv-251570-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-extension-recommendations-disabled-sv-251570-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251570r1067563_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment.json",
+        "authoring/direct-slice/assessments/firefox-deprecated-disabled-sv-251571-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-deprecated-ciphers-must-be-disabled-sv-251571-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251571r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-not-recommend-browser-sv-251572-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-recommend-is-using-browser-sv-251572-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-not-recommend-as-user-is-using-browser-sv-251572-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251572r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-new-tab-page-not-or-snippets-sv-251573-assessment.json",
+        "authoring/direct-slice/assessments/firefox-new-tab-page-not-snippets-sv-251573-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-new-tab-page-not-highlights-or-snippets-sv-251573-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251573r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-so-that-dns-over-disabled-sv-251577-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-so-that-dns-over-https-is-disabled-sv-251577-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251577r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-assessment.json",
+        "authoring/direct-slice/assessments/firefox-accounts-must-be-disabled-sv-251578-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-accounts-must-be-disabled-sv-251578-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251578r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-feedback-disabled-sv-251580-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-feedback-reporting-must-be-disabled-sv-251580-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-feedback-reporting-must-be-disabled-sv-251580-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251580r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-encrypted-media-disabled-sv-251581-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-encrypted-media-extensions-disabled-sv-251581-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-encrypted-media-extensions-disabled-sv-251581-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251581r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-not-delete-data-shutdown-sv-252881-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/firefox-not-delete-data-upon-shutdown-sv-252881-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-not-delete-data-upon-shutdown-sv-252881-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-252881r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-assessment.json",
+        "authoring/direct-slice/assessments/firefox-studies-must-be-disabled-sv-252909-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/firefox-studies-must-be-disabled-sv-252909-rule.json"
+      ],
+      "benchmark": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-252909r960963_rule",
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-assessment.json",
+        "authoring/direct-slice/assessments/exchange-queue-database-partition-sv-259592-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/exchange-queue-database-on-dedicated-partition-sv-259592-rule.json"
+      ],
+      "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule",
+      "source_sha256": "b6bd7ad2a458f464eca99deb9eac50aaeafa74d435cf0bb2ca76d0424d916692",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: 'string' is not one of ['integer']; authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: 'string' is not one of ['integer']",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
+      "source_sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae",
+      "status": "blocked",
+      "target_kind": "count"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/windows-server-2016-have-three-or-less-sv-224867-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224867r958388_rule",
+      "source_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+      "status": "blocked",
+      "target_kind": "regression"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/windows-server-2016-have-or-greater-sv-224868-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224868r958388_rule",
+      "source_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+      "status": "blocked",
+      "target_kind": "regression"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/windows-server-2016-passwords-remembered-sv-224869-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224869r982201_rule",
+      "source_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+      "status": "blocked",
+      "target_kind": "regression"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/windows-server-2016-age-60-days-or-less-sv-224870-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224870r982200_rule",
+      "source_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+      "status": "blocked",
+      "target_kind": "regression"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "error": "generated authoring failed flat JSON Schema: authoring/direct-slice/assessments/windows-server-2016-age-at-least-one-day-sv-224871-assessment.json: Additional properties are not allowed ('relation' was unexpected)",
+      "error_type": "QualifiedConversionError",
+      "runtime_equivalence": false,
+      "schema_validation": "failed_or_not_admitted",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224871r982188_rule",
+      "source_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+      "status": "blocked",
+      "target_kind": "regression"
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/windows-dns-server-for-external-queries-sv-259341-assessment.json",
+        "authoring/direct-slice/assessments/windows-dns-server-queries-sv-259341-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/windows-dns-server-prohibit-for-external-queries-sv-259341-rule.json"
+      ],
+      "benchmark": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259341r1156949_rule",
+      "source_sha256": "f674b67e74acbd3037093d50e33dc20765bd9d45a6c9ed2be5d463d009a6c6b8",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/windows-dns-server-s-ip-locally-on-server-sv-259374-assessment.json",
+        "authoring/direct-slice/assessments/windows-dns-server-s-ip-on-server-sv-259374-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/windows-dns-server-s-ip-and-locally-on-server-sv-259374-rule.json"
+      ],
+      "benchmark": "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259374r1156950_rule",
+      "source_sha256": "f674b67e74acbd3037093d50e33dc20765bd9d45a6c9ed2be5d463d009a6c6b8",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/for-ol-8-systems-using-servers-sv-248634-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/for-ol-8-systems-using-two-name-servers-sv-248634-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/for-ol-8-systems-using-at-least-two-name-servers-sv-248634-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-248634r991589_rule",
+      "source_sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-interactive-users-sv-248701-assessment.json",
+        "authoring/direct-slice/assessments/ol-8-duplicate-user-ids-users-sv-248701-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-8-duplicate-user-ids-uids-interactive-users-sv-248701-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-248701r958422_rule",
+      "source_sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-9-mount-tmp-with-nodev-option-sv-271653-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-9-must-mount-tmp-with-the-nodev-option-sv-271653-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271653r1091671_rule",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nodev-option-sv-271657-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-option-sv-271657-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-9-must-mount-var-log-with-the-nodev-option-sv-271657-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271657r1091683_rule",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-noexec-option-sv-271658-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-option-sv-271658-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-9-must-mount-var-log-with-the-noexec-option-sv-271658-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271658r1091686_rule",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-nosuid-option-sv-271659-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-with-option-sv-271659-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-9-must-mount-var-log-with-the-nosuid-option-sv-271659-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271659r1091689_rule",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-option-sv-271660-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-9-mount-var-log-audit-with-nodev-option-sv-271660-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271660r1091692_rule",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-interactive-users-sv-271832-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-duplicate-user-ids-users-sv-271832-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-9-duplicate-user-ids-uids-interactive-users-sv-271832-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271832r1092208_rule",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-9-groups-have-unique-id-gid-sv-271835-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-groups-must-have-unique-group-id-gid-sv-271835-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-9-groups-must-have-unique-group-id-gid-sv-271835-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271835r1092217_rule",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/ol-9-systems-using-domain-servers-sv-271861-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/ol-9-systems-using-domain-two-name-servers-sv-271861-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/ol-9-systems-using-domain-least-two-name-servers-sv-271861-rule.json"
+      ],
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271861r1092295_rule",
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/for-rhel-8-systems-using-servers-sv-230316-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/for-rhel-8-systems-using-two-name-servers-sv-230316-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/for-rhel-8-systems-using-least-two-name-servers-sv-230316-rule.json"
+      ],
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230316r1044801_rule",
+      "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-duplicate-user-ids-users-sv-230371-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-8-duplicate-user-ids-for-interactive-users-sv-230371-rule.json"
+      ],
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230371r1017183_rule",
+      "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-tmp-with-nodev-option-sv-230511-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-8-must-mount-tmp-with-the-nodev-option-sv-230511-rule.json"
+      ],
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230511r958804_rule",
+      "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230514-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-option-sv-230514-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-8-must-mount-var-log-with-the-nodev-option-sv-230514-rule.json"
+      ],
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230514r958804_rule",
+      "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nosuid-option-sv-230515-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-option-sv-230515-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-8-must-mount-var-log-with-the-nosuid-option-sv-230515-rule.json"
+      ],
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230515r958804_rule",
+      "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-noexec-option-sv-230516-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-option-sv-230516-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-8-must-mount-var-log-with-the-noexec-option-sv-230516-rule.json"
+      ],
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230516r958804_rule",
+      "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-nodev-option-sv-230517-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-8-mount-var-log-with-nodev-option-sv-230517-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-8-mount-var-log-audit-with-nodev-option-sv-230517-rule.json"
+      ],
+      "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-230517r958804_rule",
+      "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-tmp-with-nodev-option-sv-257866-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-9-must-mount-tmp-with-the-nodev-option-sv-257866-rule.json"
+      ],
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257866r958804_rule",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257870-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-option-sv-257870-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-9-must-mount-var-log-with-the-nodev-option-sv-257870-rule.json"
+      ],
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257870r958804_rule",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-noexec-option-sv-257871-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-option-sv-257871-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-9-must-mount-var-log-with-the-noexec-option-sv-257871-rule.json"
+      ],
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257871r958804_rule",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nosuid-option-sv-257872-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-option-sv-257872-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-9-must-mount-var-log-with-the-nosuid-option-sv-257872-rule.json"
+      ],
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257872r958804_rule",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-nodev-option-sv-257873-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-mount-var-log-with-nodev-option-sv-257873-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-9-mount-var-log-audit-with-nodev-option-sv-257873-rule.json"
+      ],
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257873r958804_rule",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-9-systems-using-name-servers-sv-257948-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-systems-using-two-name-servers-sv-257948-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-9-systems-using-domain-two-name-servers-sv-257948-rule.json"
+      ],
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257948r1045004_rule",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-duplicate-user-ids-users-sv-258045-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-9-duplicate-user-ids-for-interactive-users-sv-258045-rule.json"
+      ],
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258045r958482_rule",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/rhel-9-groups-have-unique-id-gid-sv-258061-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/rhel-9-groups-must-have-unique-group-id-gid-sv-258061-rule.json"
+      ],
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258061r958482_rule",
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216301-assessment.json",
+        "authoring/direct-slice/assessments/run-control-scripts-paths-sv-216301-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/run-control-scripts-only-authorized-paths-sv-216301-rule.json"
+      ],
+      "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-216301r959010_rule",
+      "source_sha256": "b8ae7486d503b46e25ca885cfd53b9b47c40f313b9b4117683f88102c7222b1d",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/run-control-scripts-only-authorized-paths-sv-216066-assessment.json",
+        "authoring/direct-slice/assessments/run-control-scripts-paths-sv-216066-manual-0-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/run-control-scripts-only-authorized-paths-sv-216066-rule.json"
+      ],
+      "benchmark": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-216066r959010_rule",
+      "source_sha256": "f988154cba7cf0ab39fa3063e510398c716e5d7d5865ae5cc187dc10d2071f2a",
+      "status": "converted",
+      "target_kind": "regression",
+      "trace_rule_count": 1
+    },
+    {
+      "artifacts": [
+        "authoring/direct-slice/applicability.json",
+        "authoring/direct-slice/assessments/for-toss-systems-using-servers-sv-252935-manual-0-assessment.json",
+        "authoring/direct-slice/assessments/for-toss-systems-using-two-name-servers-sv-252935-assessment.json",
+        "authoring/direct-slice/benchmark.json",
+        "authoring/direct-slice/rules/for-toss-systems-using-at-least-two-name-servers-sv-252935-rule.json"
+      ],
+      "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+      "document_count": 5,
+      "runtime_equivalence": false,
+      "schema_validation": "passed",
+      "source_exists": true,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-252935r991589_rule",
+      "source_sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d",
+      "status": "converted",
+      "target_kind": "count",
+      "trace_rule_count": 1
+    }
+  ],
+  "runtime_equivalence": false,
+  "scope": "exact 55 regressions plus all source count-bearing Rule instances; no full-corpus generation",
+  "summary": {
+    "blocked": 10,
+    "converted": 82,
+    "count_blocked": 5,
+    "count_converted": 32,
+    "count_instances": 37,
+    "regression_blocked": 5,
+    "regression_converted": 50,
+    "regression_instances": 55,
+    "target_instances": 92
+  }
+}

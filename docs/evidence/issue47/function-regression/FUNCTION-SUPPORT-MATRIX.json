@@ -1,0 +1,149 @@
+{
+  "format": "scap-ng-tools/issue47-variable-function-support-matrix/1",
+  "notes": [
+    "Source Rules are counted by unique source Rule ID; candidate status counts are benchmark+source Rule instances and can therefore exceed that ID count.",
+    "Rule status counts overlap when a Rule closure uses multiple functions.",
+    "A structural conversion or schema validation does not establish scanner/runtime equivalence.",
+    "The five count-bearing Rules blocked in count.1 are not count regressions."
+  ],
+  "rows": [
+    {
+      "active_0_4": false,
+      "candidate_rule_status": {
+        "blocked": 4
+      },
+      "converter_form": "no active 0.4 native expression form",
+      "function": "arithmetic",
+      "qualification": "fail_closed; inactive function envelope is forbidden",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 9,
+      "source_rules": 4,
+      "source_variables": 3
+    },
+    {
+      "active_0_4": true,
+      "candidate_rule_status": {
+        "blocked": 60,
+        "converted": 251,
+        "intentionally_excluded": 16,
+        "manual_only": 1
+      },
+      "converter_form": "{concat: [expression, ...]}",
+      "function": "concat",
+      "qualification": "active_native_shape",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 750,
+      "source_rules": 299,
+      "source_variables": 647
+    },
+    {
+      "active_0_4": true,
+      "candidate_rule_status": {
+        "blocked": 5,
+        "converted": 32
+      },
+      "converter_form": "{count: expression}; exactly one recursive nested expression",
+      "function": "count",
+      "qualification": "active_native_structural; 32 count-bearing Rules converted",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 47,
+      "source_rules": 37,
+      "source_variables": 29
+    },
+    {
+      "active_0_4": false,
+      "candidate_rule_status": {
+        "blocked": 2
+      },
+      "converter_form": "no active 0.4 native expression form",
+      "function": "end",
+      "qualification": "fail_closed; inactive function envelope is forbidden",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 3,
+      "source_rules": 2,
+      "source_variables": 3
+    },
+    {
+      "active_0_4": true,
+      "candidate_rule_status": {
+        "blocked": 14,
+        "converted": 53
+      },
+      "converter_form": "{merge: {delimiter, sort, order, values}} (one source component)",
+      "function": "merge",
+      "qualification": "active_native_shape; multi-component source form is unsupported",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 106,
+      "source_rules": 61,
+      "source_variables": 106
+    },
+    {
+      "active_0_4": true,
+      "candidate_rule_status": {
+        "blocked": 16,
+        "converted": 105,
+        "intentionally_excluded": 6
+      },
+      "converter_form": "{regex_capture: {pattern, value}}",
+      "function": "regex_capture",
+      "qualification": "active_native_shape",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 320,
+      "source_rules": 128,
+      "source_variables": 281
+    },
+    {
+      "active_0_4": false,
+      "candidate_rule_status": {
+        "blocked": 23
+      },
+      "converter_form": "no active 0.4 native expression form",
+      "function": "split",
+      "qualification": "fail_closed; inactive function envelope is forbidden",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 29,
+      "source_rules": 23,
+      "source_variables": 15
+    },
+    {
+      "active_0_4": false,
+      "candidate_rule_status": {
+        "blocked": 8
+      },
+      "converter_form": "no active 0.4 native expression form",
+      "function": "substring",
+      "qualification": "fail_closed; inactive function envelope is forbidden",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 21,
+      "source_rules": 8,
+      "source_variables": 21
+    },
+    {
+      "active_0_4": true,
+      "candidate_rule_status": {
+        "blocked": 31,
+        "converted": 86
+      },
+      "converter_form": "{unique: expression} (one source component)",
+      "function": "unique",
+      "qualification": "active_native_shape; multi-component source form is unsupported",
+      "runtime_equivalence": "not qualified",
+      "source_occurrences": 63,
+      "source_rules": 87,
+      "source_variables": 52
+    }
+  ],
+  "schema_contract": {
+    "active_functions": [
+      "concat",
+      "regex_capture",
+      "unique",
+      "count",
+      "merge"
+    ],
+    "legacy_function_envelope": "forbidden",
+    "schema_commit": "8f8e219e4fb2db8b37a6d0e1ca418e8a392c38e3",
+    "schema_sha256": "910beeebfb90a63c773615907289a0e4b93095ee41cd1ad41b33652363900c74",
+    "version": "0.4.0"
+  }
+}
