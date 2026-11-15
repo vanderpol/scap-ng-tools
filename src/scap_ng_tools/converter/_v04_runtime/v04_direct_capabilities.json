@@ -28,6 +28,7 @@
     "linux.systemdunitdependency",
     "unix.interface",
     "unix.shadow",
+    "unix.sshd",
     "unix.symlink",
     "unix.uname",
     "windows.group_sid",
