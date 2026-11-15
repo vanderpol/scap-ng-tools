@@ -261,7 +261,10 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
         "source_nodes": {ident: {**row, "references": references(original.node_index[ident])}
                          for ident, row in sorted(visitor.used.items())},
         "native_identities": [{"kind": kind, "native_id": name, "source_id": source_id}
-                              for (kind, name), source_id in sorted(visitor.native_names.items())],
+                              for (kind, name), source_id in sorted(visitor.native_names.items())
+                              if name not in {item["native_id"] for item in visitor.synthetic_variables}],
+        "native_synthetic_variables": visitor.synthetic_variables,
+        "native_inlined_variables": sorted(visitor.inlined_variables),
         "test_bindings": [{
             "source_test": source_id, "native_test": native_id,
             "source_object": next((child.get("object_ref") for child in original.node_index[source_id]

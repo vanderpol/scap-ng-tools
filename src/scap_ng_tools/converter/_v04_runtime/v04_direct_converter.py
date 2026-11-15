@@ -37,6 +37,83 @@ COMPARISONS = {'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'm
                'subset of': 'subset_of', 'superset of': 'superset_of',
                'bitwise and': 'bitwise_and', 'bitwise or': 'bitwise_or'}
 SET_OPERATORS = {'UNION': 'union', 'INTERSECTION': 'intersection', 'COMPLEMENT': 'difference'}
+_REGEX_META = set('.^$*+?{}[]\\|()')
+
+
+def escape_regex_literal(value):
+    """Escape exactly the Perl/OVAL regular-expression metacharacters."""
+    return ''.join('\\' + character if character in _REGEX_META else character
+                   for character in value)
+
+
+def glob_to_regex_literal(pattern, *, glob_noescape=False):
+    """Lower one literal OVAL 5.12.3 glob to its anchored Perl-style regex.
+
+    This is intentionally a literal-only adapter.  Dynamic components remain
+    unsupported because SCAP-NG 0.4.1 has no glob function expression.  The
+    conversion preserves slash boundaries, hidden-name guards, bracket
+    classes, and OVAL's ``glob_noescape`` backslash rule.
+    """
+    result = ['^']
+    segment_start = True
+    index = 0
+    while index < len(pattern):
+        character = pattern[index]
+        if character == '/':
+            result.append('/')
+            segment_start = True
+            index += 1
+            continue
+        if segment_start:
+            escaped_dot = (character == '\\' and index + 1 < len(pattern)
+                           and pattern[index + 1] == '.')
+            if character != '.' and not escaped_dot:
+                result.append('(?=[^\\.])')
+            segment_start = False
+        if character == '\\' and not glob_noescape:
+            index += 1
+            if index == len(pattern):
+                result.append('\\\\')
+                break
+            result.append(escape_regex_literal(pattern[index]))
+            index += 1
+            continue
+        if character == '\\' and glob_noescape:
+            result.append('\\\\')
+            index += 1
+            continue
+        if character == '*':
+            result.append('[^/]*')
+            index += 1
+            continue
+        if character == '?':
+            result.append('[^/]')
+            index += 1
+            continue
+        if character == '[':
+            # Preserve POSIX classes such as [[:digit:]] while rejecting an
+            # unterminated class as the OVAL function does.
+            nested = 0
+            cursor = index + 1
+            closed = False
+            while cursor < len(pattern):
+                if pattern[cursor] == '[':
+                    nested += 1
+                elif pattern[cursor] == ']':
+                    if nested:
+                        nested -= 1
+                    else:
+                        closed = True
+                        break
+                cursor += 1
+            ensure(closed, 'invalid glob_to_regex bracket expression')
+            result.append(pattern[index:cursor + 1])
+            index = cursor + 1
+            continue
+        result.append(('\\' + character) if character in _REGEX_META else character)
+        index += 1
+    result.append('$')
+    return ''.join(result)
 
 
 def legacy_wmi_selected_field(wql):
@@ -115,6 +192,11 @@ class AssessmentConverter:
         self.active, self.cache, self.used = set(), {}, {}
         self.native_names = {}
         self.tests, self.variables, self.shared_objects = {}, {}, {}
+        # Native constants materialized from a finite OVAL Variable Object Set
+        # are not source Variable declarations. Keep their source Object and
+        # constant-Variable lineage explicit for independent parity tooling.
+        self.synthetic_variables = []
+        self.inlined_variables = []
         self.enum_projection_cache = {}
         self.object_uses = None
         self.selector_equivalences = []
@@ -204,6 +286,14 @@ class AssessmentConverter:
         if tokens:self.used[identifier]['original_datatype_tokens']=tokens
         try:
             result = getattr(self, 'convert_' + kind)(element)
+            if (kind == 'variable' and local_name(element) == 'constant_variable' and
+                    isinstance(result, list)):
+                # Standalone source parity needs to distinguish a constant
+                # Variable intentionally inlined into a predicate/function
+                # from a dropped declaration. This records lineage only; it
+                # does not alter the native expression or claim equivalence.
+                if identifier not in self.inlined_variables:
+                    self.inlined_variables.append(identifier)
             self.cache[key] = result
             return deepcopy(result)
         finally:
@@ -546,60 +636,97 @@ class AssessmentConverter:
         cycles, and oversized populations fail closed rather than becoming a
         guessed host result.
         """
+        source_variable_ids = set()
+
+        def unique(values):
+            output, seen = [], set()
+            for value in values:
+                marker = json.dumps(value, sort_keys=True, separators=(',', ':'))
+                if marker not in seen:
+                    seen.add(marker)
+                    output.append(value)
+            return output
+
+        def combine(set_node, active):
+            children = list(set_node)
+            filters = [child for child in children if local_name(child) == 'filter']
+            refs = [child for child in children
+                    if local_name(child) == 'object_reference' and
+                    child.tag == f'{{{OVAL}}}object_reference']
+            nested = [child for child in children
+                      if local_name(child) == 'set' and child.tag == f'{{{OVAL}}}set']
+            ensure(not filters and len(refs) + len(nested) in (1, 2),
+                   'dynamic or filtered Variable Object Set is held')
+            operands = [values_for_object((ref.text or '').strip(), active)
+                        for ref in refs]
+            operands.extend(combine(child, active) for child in nested)
+            datatypes = {datatype for _, datatype in operands}
+            ensure(len(datatypes) == 1, 'mixed static Variable Object datatypes')
+            left = operands[0][0]
+            right = operands[1][0] if len(operands) == 2 else []
+            operator = set_node.get('set_operator', 'UNION')
+            if operator == 'UNION':
+                output = unique(left + right)
+            elif operator == 'INTERSECTION':
+                right_keys = {json.dumps(value, sort_keys=True, separators=(',', ':'))
+                              for value in right}
+                output = unique([value for value in left
+                                 if json.dumps(value, sort_keys=True, separators=(',', ':'))
+                                 in right_keys])
+            elif operator == 'COMPLEMENT':
+                excluded = {json.dumps(value, sort_keys=True, separators=(',', ':'))
+                            for value in right}
+                output = [value for value in left
+                          if json.dumps(value, sort_keys=True, separators=(',', ':'))
+                          not in excluded]
+            else:
+                ensure(False, 'unsupported static Variable Object Set operator: ' + operator)
+            ensure(len(output) <= 4096, 'static Variable Object Set population exceeds bound')
+            return output, next(iter(datatypes))
+
         def values_for_object(identifier, active):
-            ensure(identifier not in active, 'cyclic static Variable Object Set: ' + identifier)
+            ensure(identifier and identifier not in active,
+                   'cyclic static Variable Object Set: ' + str(identifier))
             active = set(active)
             active.add(identifier)
             node = self.source.node(self.component_id, identifier, 'object')
-            var_refs = node.findall(f'{{{OVAL}#independent}}var_ref')
+            # Variable Object references are OVAL-definition elements, not
+            # capability elements; in the pinned 5.12.3 corpus their
+            # ``var_ref`` child is in the base OVAL namespace.  Match by local
+            # name plus the permitted source namespace so a prefix spelling
+            # cannot turn a static source into a false blocker.
+            var_refs = [child for child in node
+                        if local_name(child) == 'var_ref' and
+                        child.tag in (f'{{{OVAL}}}var_ref',
+                                      f'{{{OVAL}#independent}}var_ref')]
             if len(var_refs) == 1 and len(node) == 1:
-                variable = self.source.node(self.component_id, (var_refs[0].text or '').strip(), 'variable')
+                variable_id = (var_refs[0].text or '').strip()
+                source_variable_ids.add(variable_id)
+                variable = self.source.node(self.component_id, variable_id, 'variable')
                 ensure(local_name(variable) == 'constant_variable',
                        'dynamic Variable Object Set is not a static population')
                 value = self.reference(variable.get('id'), 'variable')
                 ensure(isinstance(value, list) and len(value) <= 4096,
                        'static Variable Object population exceeds bound')
                 return list(value), variable.get('datatype', 'string')
-            sets = node.findall(f'{{{OVAL}}}set')
-            ensure(len(sets) == 1 and len(node) == 1, 'unsupported Variable Object shape')
-            set_node = sets[0]
-            refs = set_node.findall(f'{{{OVAL}}}object_reference')
-            filters = set_node.findall(f'{{{OVAL}}}filter')
-            ensure(not filters and 1 <= len(refs) <= 2,
-                   'dynamic or filtered Variable Object Set is held')
-            operands = [values_for_object((ref.text or '').strip(), active) for ref in refs]
-            datatypes = {datatype for _, datatype in operands}
-            ensure(len(datatypes) == 1, 'mixed static Variable Object datatypes')
-            left = operands[0][0]
-            right = operands[1][0] if len(operands) == 2 else []
-            operator = set_node.get('set_operator', 'UNION')
-            def key(value):
-                return json.dumps(value, sort_keys=True, separators=(',', ':'))
-            if operator == 'UNION':
-                output, seen = [], set()
-                for value in left + right:
-                    marker = key(value)
-                    if marker not in seen:
-                        seen.add(marker); output.append(value)
-            elif operator == 'INTERSECTION':
-                right_keys = {key(value) for value in right}
-                output, seen = [], set()
-                for value in left:
-                    marker = key(value)
-                    if marker in right_keys and marker not in seen:
-                        seen.add(marker); output.append(value)
-            elif operator == 'COMPLEMENT':
-                excluded = {key(value) for value in right}
-                output = [value for value in left if key(value) not in excluded]
-            else:
-                ensure(False, 'unsupported static Variable Object Set operator: ' + operator)
-            ensure(len(output) <= 4096, 'static Variable Object Set population exceeds bound')
-            return output, next(iter(datatypes))
+            sets = [child for child in node
+                    if local_name(child) == 'set' and child.tag == f'{{{OVAL}}}set']
+            ensure(len(sets) == 1 and len(node) == 1,
+                   'unsupported Variable Object shape')
+            return combine(sets[0], active)
 
         values, datatype = values_for_object(element.get('id'), set())
         identifier = self.native_name(element, 'variable', title=element.get('comment'))
         self.variables[identifier] = {'kind': 'constant', 'expression': {
             'literal': {'datatype': native_datatype(datatype), 'value': values}}}
+        self.synthetic_variables.append({
+            'native_id': identifier,
+            'source_object': element.get('id'),
+            'source_object_sha256': digest(xml_identity(element)),
+            'source_variable_ids': sorted(source_variable_ids),
+            'set_operator': element.find(f'{{{OVAL}}}set').get('set_operator', 'UNION'),
+            'population_size': len(values),
+        })
         self.conversion_warnings.append({
             'code': 'oval_static_variable_object_set_materialized',
             'source_object': element.get('id'),
@@ -747,9 +874,55 @@ class AssessmentConverter:
         ensure('variable' in value, 'Assessment Input cannot replace a named runtime Variable source')
         return value['variable']
 
+    def static_string_component_values(self, element):
+        """Return a finite string component for literal-only functions."""
+        operation = local_name(element)
+        if operation == 'literal_component':
+            attributes(element, {'datatype'})
+            ensure(element.get('datatype', 'string') == 'string' and not len(element),
+                   'literal-only string function requires a string literal')
+            return [element.text or '']
+        if operation == 'variable_component':
+            attributes(element, {'var_ref'})
+            ensure(not len(element), 'literal-only string function component has children')
+            variable = self.source.node(self.component_id, element.get('var_ref'), 'variable')
+            ensure(local_name(variable) == 'constant_variable' and
+                   variable.get('datatype') == 'string',
+                   'literal-only string function requires a constant string Variable')
+            values = self.reference(element.get('var_ref'), 'variable')
+            ensure(isinstance(values, list) and all(isinstance(value, str) for value in values),
+                   'literal-only string function requires finite string values')
+            return list(values)
+        ensure(False, 'literal-only string function requires a literal or constant Variable')
+
+    def literal_function_result(self, element, operation):
+        values = self.static_string_component_values(next(iter(element)))
+        if operation == 'escape_regex':
+            result = [escape_regex_literal(value) for value in values]
+        else:
+            ensure(operation == 'glob_to_regex', 'unsupported literal function')
+            raw = element.get('glob_noescape', 'false').lower()
+            ensure(raw in ('true', 'false'), 'glob_noescape must be boolean')
+            result = [glob_to_regex_literal(value, glob_noescape=raw == 'true')
+                      for value in values]
+        self.conversion_warnings.append({
+            'code': 'oval_literal_function_materialized',
+            'source_function': operation,
+            'source_options': dict(element.attrib),
+            'value_count': len(result),
+            'independent_static_proof': 'SOURCE_LITERAL_FUNCTION_LOWERING',
+            'scanner_evaluated': False,
+        })
+        return {'literal': {'datatype': 'string',
+                            'value': result[0] if len(result) == 1 else result}}
+
     def function(self, element):
         ensure(element.tag.startswith(f'{{{OVAL}}}'), 'function namespace mismatch')
         operation = local_name(element)
+        if self.native_recovery and operation in ('escape_regex', 'glob_to_regex'):
+            attributes(element, {'glob_noescape'} if operation == 'glob_to_regex' else set())
+            ensure(len(element) == 1, operation + ' requires one component')
+            return self.literal_function_result(element, operation)
         if operation == 'literal_component':
             attributes(element, {'datatype'})
             ensure(not len(element), 'literal_component has children')
@@ -1329,7 +1502,10 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
         'decisions': [1, 3, 6, 10, 13, 14], 'requires_fresh_proof': True,
         'omitted_empty_optional_metadata': omitted_metadata,
         'native_identity_sources': [{'kind': kind, 'native_id': ident, 'source_id': original}
-                                    for (kind, ident), original in sorted(converter.native_names.items())]}
+                                    for (kind, ident), original in sorted(converter.native_names.items())
+                                    if ident not in {item['native_id'] for item in converter.synthetic_variables}],
+        'native_synthetic_variables': converter.synthetic_variables,
+        'native_inlined_variables': sorted(converter.inlined_variables)}
     if converter.selector_equivalences:
         binding['selector_equivalences'] = converter.selector_equivalences
     if converter.enum_variable_equivalences:

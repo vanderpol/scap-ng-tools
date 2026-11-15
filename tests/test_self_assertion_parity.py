@@ -11,7 +11,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from audit_self_assertion_parity import (PREFIX, PIN, audit, digest, slug, sources,
     parse_oval, reachable_source_tests, normalize_source_evaluate, normalize_native_evaluate,
-    audit_source_set_filter_retention)
+    audit_source_set_filter_retention, _native_variable_types)
 from convert_self_assertion_corpus import definitions_and_tests
 
 SOURCE_ID = "oval:example:def:1"
@@ -106,6 +106,26 @@ class FullOriginalSourceParityTests(unittest.TestCase):
     def inspect(self):
         return audit(self.src, self.pack, expected_xml=0,
                      expected_definitions=0, expected_tests=0)
+
+    def test_collected_field_type_comes_from_canonical_mapping(self):
+        native = {
+            "shared_objects": {},
+            "variables": {
+                "pid": {"expression": {"values": {
+                    "object": {"capability": "unix.process"}, "field": "pid"}}}
+            },
+        }
+        field_types = {("unix.process", "pid"): ("integer",)}
+        self.assertEqual(
+            _native_variable_types(native["variables"], field_types, native),
+            {"pid": "integer"})
+        with self.assertRaisesRegex(ValueError, "collected-field datatype"):
+            _native_variable_types(
+                {"value": {"expression": {"values": {
+                    "object": {"capability": "independent.environmentvariable"},
+                    "field": "value"}}}},
+                {("independent.environmentvariable", "value"): ("string", "integer")},
+                native)
 
     def test_one_to_one_structural_coverage_is_not_runtime_equivalence(self):
         self.publish()

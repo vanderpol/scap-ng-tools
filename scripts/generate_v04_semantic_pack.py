@@ -110,7 +110,7 @@ def main():
     args = parser.parse_args()
     raw = build(args.schema_root, args.oval_root)
     args.output.write_text(raw, encoding='utf-8')
-    print(json.dumps({'capabilities': 52, 'bytes': len(raw.encode('utf-8')),
+    print(json.dumps({'capabilities': 53, 'bytes': len(raw.encode('utf-8')),
                       'source': 'official OVAL v5.12.3 + canonical flat 0.4.1'}))
 
 

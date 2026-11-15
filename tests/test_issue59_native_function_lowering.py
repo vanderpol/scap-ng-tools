@@ -169,3 +169,131 @@ class Active041FunctionLowering(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class StaticVariableObjectSetRecovery(unittest.TestCase):
+    def visitor(self, nodes, values):
+        class Source:
+            native_recovery = True
+            def node(self, _component, identifier, _kind):
+                return nodes[identifier]
+        visitor = AssessmentConverter(Source(), 'component', [], native_recovery=True)
+        visitor.reference = lambda identifier, _kind: values[identifier]
+        visitor.native_name = lambda _element, _kind, title=None: 'static-set-variable'
+        return visitor
+
+    def test_base_namespace_var_ref_and_nested_sets_materialize_in_source_order(self):
+        objects = {
+            'left': oval('<variable_object xmlns="OVAL" id="left"><var_ref>one</var_ref></variable_object>'),
+            'right': oval('<variable_object xmlns="OVAL" id="right"><var_ref>two</var_ref></variable_object>'),
+            'nested': oval('<variable_object xmlns="OVAL" id="nested"><set set_operator="INTERSECTION">'
+                           '<object_reference>left</object_reference><object_reference>right</object_reference>'
+                           '</set></variable_object>'),
+            'one': oval('<constant_variable xmlns="OVAL" id="one"/>'),
+            'two': oval('<constant_variable xmlns="OVAL" id="two"/>'),
+            'root': oval('<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
+                         '<object_reference>nested</object_reference><object_reference>left</object_reference>'
+                         '</set></variable_object>'),
+        }
+        visitor = self.visitor(objects, {'one': ['a', 'b'], 'two': ['b', 'c']})
+        result = visitor.static_variable_object(objects['root'])
+        self.assertEqual(result, {'variable': 'static-set-variable'})
+        self.assertEqual(visitor.variables['static-set-variable'], {
+            'kind': 'constant',
+            'expression': {'literal': {'datatype': 'string', 'value': ['b', 'a']}}})
+        self.assertEqual(visitor.conversion_warnings[0]['population_size'], 2)
+        self.assertEqual(visitor.synthetic_variables[0]['source_variable_ids'], ['one', 'two'])
+        self.assertEqual(visitor.synthetic_variables[0]['set_operator'], 'UNION')
+
+    def test_filters_and_dynamic_variables_remain_held(self):
+        objects = {
+            'root': oval('<variable_object xmlns="OVAL" id="root"><set><object_reference>left</object_reference>'
+                         '<filter action="include">state</filter></set></variable_object>'),
+            'left': oval('<variable_object xmlns="OVAL" id="left"><var_ref>dynamic</var_ref></variable_object>'),
+            'dynamic': oval('<local_variable xmlns="OVAL" id="dynamic"/>'),
+        }
+        visitor = self.visitor(objects, {'dynamic': {'variable': 'runtime-variable'}})
+        with self.assertRaisesRegex(ValueError, 'filtered Variable Object Set'):
+            visitor.static_variable_object(objects['root'])
+
+        objects['root'] = oval('<variable_object xmlns="OVAL" id="root"><set><object_reference>left</object_reference>'
+                               '<object_reference>right</object_reference></set></variable_object>')
+        objects['right'] = oval('<variable_object xmlns="OVAL" id="right"><var_ref>dynamic</var_ref></variable_object>')
+        with self.assertRaisesRegex(ValueError, 'not a static population'):
+            visitor.static_variable_object(objects['root'])
+
+    def test_literal_escape_regex_is_materialized_without_cast(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        source = oval('<escape_regex xmlns="OVAL"><literal_component datatype="string">\\^.$|()[]{}*+?</literal_component></escape_regex>')
+        self.assertEqual(visitor.function(source), {
+            'literal': {'datatype': 'string',
+                        'value': r'\\\^\.\$\|\(\)\[\]\{\}\*\+\?'}})
+        self.assertEqual(visitor.conversion_warnings[-1]['independent_static_proof'],
+                         'SOURCE_LITERAL_FUNCTION_LOWERING')
+
+    def test_literal_glob_to_regex_matches_pinned_oval_vectors(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        cases = [
+            ('*.txt', '^(?=[^\\.])[^/]*\\.txt$'),
+            ('x[[:digit:]]\\*', '^(?=[^\\.])x[[:digit:]]\\*$'),
+            ('~/files/*.txt', '^(?=[^\\.])~/(?=[^\\.])files/(?=[^\\.])[^/]*\\.txt$'),
+            ('\\*', '^(?=[^\\.])\\*$'),
+        ]
+        for pattern, expected in cases:
+            with self.subTest(pattern=pattern):
+                source = oval('<glob_to_regex glob_noescape="false" xmlns="OVAL">'
+                              '<literal_component datatype="string">' + pattern +
+                              '</literal_component></glob_to_regex>')
+                self.assertEqual(visitor.function(source),
+                                 {'literal': {'datatype': 'string', 'value': expected}})
+
+    def test_literal_function_lowering_rejects_dynamic_and_invalid_inputs(self):
+        class Source:
+            native_recovery = True
+            def node(self, _component, _identifier, _kind):
+                return oval('<local_variable xmlns="OVAL" id="dynamic" datatype="string">'
+                            '<object_component object_ref="obj" item_field="value"/>'
+                            '</local_variable>')
+        visitor = AssessmentConverter(Source(), 'component', [], native_recovery=True)
+        source = oval('<glob_to_regex xmlns="OVAL"><variable_component var_ref="dynamic"/></glob_to_regex>')
+        with self.assertRaisesRegex(ValueError, 'constant string Variable'):
+            visitor.function(source)
+        with self.assertRaisesRegex(ValueError, 'invalid glob_to_regex bracket'):
+            from v04_direct_converter import glob_to_regex_literal
+            glob_to_regex_literal('[unterminated')
+
+class ClosedEnumDatatypeRecoveryTests(unittest.TestCase):
+    def test_typed_literal_array_is_derived_and_projected_without_cast(self):
+        from v04_direct_enum_variables import closed_enum_variable, variable_datatype
+
+        class Visitor:
+            component_id = 'component'
+            used = {'source-variable': {'kind': 'variable'}}
+            enum_variable_copies = {}
+            enum_variable_equivalences = []
+            variables = {
+                'source-variable': {
+                    'kind': 'constant',
+                    'expression': {'literal': {
+                        'datatype': 'string', 'value': ['alpha', 'beta']}}
+                }
+            }
+
+            def named_variable(self, identifier):
+                return identifier
+
+            class source:
+                @staticmethod
+                def node(_component, identifier, _kind):
+                    return ET.Element('variable', {'id': identifier, 'comment': 'source'})
+
+        visitor = Visitor()
+        self.assertEqual(variable_datatype(visitor, 'source-variable'), 'string')
+        projected = closed_enum_variable(visitor, 'source-variable',
+                                         {'alpha': 'a', 'beta': 'b'})
+        name = projected['variable']
+        self.assertEqual(visitor.variables[name]['expression'], {
+            'literal': {'datatype': 'string', 'value': ['a', 'b']}})
+        self.assertFalse('datatype' in visitor.variables[name])
+
+if __name__ == '__main__':
+    unittest.main()

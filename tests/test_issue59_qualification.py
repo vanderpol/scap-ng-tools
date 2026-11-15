@@ -14,7 +14,7 @@ class Issue59QualificationReceipts(unittest.TestCase):
         pack = contracts()
         self.assertEqual(pack['schema_version'], '0.4.1')
         self.assertEqual(pack['frozen_schema_digest'], SCHEMA_HASH)
-        self.assertEqual(len(pack['capabilities']), 52)
+        self.assertEqual(len(pack['capabilities']), 53)
         full = json.loads((EVIDENCE / 'full65-conversion-v041.json').read_text())
         self.assertEqual(len(full['benchmarks']), 65)
         totals = {'source': 0, 'converted': 0, 'blocked': 0, 'manual_only': 0}
@@ -40,6 +40,25 @@ class Issue59QualificationReceipts(unittest.TestCase):
         ledger = json.loads((EVIDENCE / 'datatype-recovery.json').read_text())
         self.assertEqual(ledger['counts'], {'blocked': 108, 'recovered': 10})
         self.assertEqual(ledger['family_counts'], {'collected_field': 115, 'unique': 3})
+
+    def test_current_enum_datatype_cycle_is_source_bounded_and_nonregressing(self):
+        cycle = json.loads((EVIDENCE / 'enum-datatype-cycle.json').read_text())
+        self.assertEqual(cycle['schema_version'], '0.4.1')
+        self.assertEqual(cycle['schema_family_sha256'],
+                         '578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829')
+        self.assertEqual(cycle['semantic_pack_sha256'],
+                         '2903f815f04b0913b886a685f91a8d34f4125e117bc747dbf824ddd073a64629')
+        self.assertEqual(cycle['semantic_pack_capabilities'], 53)
+        self.assertEqual(cycle['standalone']['converted_definitions'], 104)
+        self.assertEqual(cycle['standalone']['converted_tests'], 579)
+        self.assertEqual(cycle['standalone']['converted_parity_failures'], 0)
+        self.assertEqual(cycle['standalone']['source_invalid_holds'], 2)
+        self.assertEqual(cycle['full65']['candidate'],
+                         {'blocked': 98, 'converted': 6489, 'manual_only': 1403})
+        self.assertEqual(cycle['full65']['newly_blocked_from_converted'], 0)
+        self.assertTrue(cycle['full65']['nonregression_pass'])
+        self.assertTrue(cycle['full65']['source_git_pin_verified'])
+        self.assertFalse(cycle['qualification'].endswith('RI_SCANNER_VERIFIED'))
 
     def test_crosswalk_is_same_source_scope_and_oval_ledger_is_complete(self):
         crosswalk = json.loads((EVIDENCE / 'full65-crosswalk.json').read_text())

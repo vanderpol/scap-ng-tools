@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict
 import hashlib
+import struct
 import json
 import subprocess
 import tarfile
@@ -30,7 +31,7 @@ CHECK = {"all": "every", "at least one": "one_or_more",
          "only one": "exactly_one", "none satisfy": "none"}
 EXISTENCE = {"at_least_one_exists": "one_or_more",
              "only_one_exists": "exactly_one", "none_exist": "none",
-             "all_exist": "one_or_more"}
+             "any_exist": "zero_or_more", "all_exist": "one_or_more"}
 
 def tag(element):
     return element.tag.rsplit("}", 1)[-1]
@@ -313,12 +314,15 @@ def compare_variable_test_binding(source, source_test, native_test, trace):
         raise ValueError("original variable_test Object is not a variable_object")
     refs = [(node.text or "").strip() for node in source_object.iter()
             if tag(node) == "var_ref" and (node.text or "").strip()]
-    if len(refs) != 1:
-        raise ValueError("original variable_object Variable reference not qualified")
     mapping = {entry["source_id"]: entry["native_id"]
                for entry in trace.get("native_identities", [])
                if entry.get("kind") == "variable"}
-    expected = mapping.get(refs[0])
+    if len(refs) == 1:
+        expected = mapping.get(refs[0])
+    else:
+        expected = next((item.get("native_id") for item in
+                         trace.get("native_synthetic_variables", [])
+                         if item.get("source_object") == objects[0]), None)
     if not expected or native_test.get("capability") != "variable.value":
         raise ValueError("missing Variable Object-to-native capability mapping")
     if native_test.get("variable") != expected:
@@ -412,7 +416,12 @@ def normalize_native_evaluate(node, native_to_source):
     raise ValueError("unknown native Evaluate operator " + str(op))
 
 def source_literal(value, datatype):
-    if datatype == "string":
+    if datatype in {
+        "string", "binary", "version", "evr_string", "debian_evr_string",
+        "fileset_revision", "ios_version", "ipv4_address", "ipv6_address",
+    }:
+        # These OVAL domains retain their source lexical value in the native
+        # typed literal; no lexical cast is performed here.
         return value
     if datatype in ("int", "integer"):
         return int(value.strip(), 10)
@@ -420,9 +429,17 @@ def source_literal(value, datatype):
         if value.strip().lower() not in ("true", "false", "1", "0"):
             raise ValueError("unrecognized original boolean value")
         return value.strip().lower() in ("true", "1")
+    if datatype == "float":
+        # The source converter's float contract is binary32.  This independent
+        # receipt parser performs the final IEEE-754 rounding only for value
+        # comparison; it never treats a string as numeric elsewhere.
+        try:
+            return struct.unpack(">f", struct.pack(">f", float(value.strip())))[0]
+        except (OverflowError, ValueError) as error:
+            raise ValueError("invalid original float value") from error
     raise ValueError("unqualified original Variable datatype: " + str(datatype))
 
-def audit_source_set_filter_retention(source, selected_tests, native):
+def audit_source_set_filter_retention(source, selected_tests, native, synthetic=()):
     """Fail closed when the converter silently drops source Set/Filter logic.
 
     Restores 0.3 source-graph coverage for OVAL Object Sets and Filter States.
@@ -469,6 +486,11 @@ def audit_source_set_filter_retention(source, selected_tests, native):
     if not any(original.values()):
         return
     observed = {key: 0 for key in original}
+    for item in synthetic:
+        operation = {"UNION": "union", "INTERSECTION": "intersection",
+                     "COMPLEMENT": "difference"}.get(item.get("set_operator", "UNION"))
+        if operation:
+            observed[operation] += 1
     stack = [native]
     while stack:
         item = stack.pop()
@@ -522,7 +544,369 @@ def required_variable_declarations(source, tests):
                     pending.append(ref)
     return required
 
-def compare_mapped_variables(source, native, trace, selected_tests):
+SOURCE_TO_NATIVE_TYPES = {
+    "int": "integer", "integer": "integer", "evr_string": "rpm_evr",
+    "debian_evr_string": "debian_evr", "ipv4_address": "ipv4",
+    "ipv6_address": "ipv6", "string": "string", "boolean": "boolean",
+    "float": "float", "binary": "binary", "version": "version",
+    "fileset_revision": "fileset_revision", "ios_version": "ios_version",
+}
+
+NATIVE_LITERAL_TYPES = {
+    "string", "boolean", "integer", "float", "binary", "version", "ipv4",
+    "ipv6", "rpm_evr", "debian_evr", "fileset_revision", "ios_version",
+}
+
+
+def load_field_datatypes(schema_root):
+    """Load the pinned schema capability field domains for type inference.
+
+    A native ``values`` expression deliberately carries no declaration-level
+    datatype.  Its type is the canonical mapping type of the selected Item
+    field.  This loader is only an independent parity aid: it never creates a
+    cast and it refuses fields whose reviewed mapping admits multiple types.
+    """
+    if schema_root is None:
+        return {}
+    directory = Path(schema_root) / "capability-mappings" / "supported"
+    result = {}
+    for path in sorted(directory.glob("*.json")):
+        document = json.loads(path.read_text(encoding="utf-8"))
+        capability = document.get("capability")
+        fields = document.get("native", {}).get("field_datatypes", {})
+        if not isinstance(capability, str) or not isinstance(fields, dict):
+            continue
+        for field, datatypes in fields.items():
+            if isinstance(field, str) and isinstance(datatypes, list):
+                result[(capability, field)] = tuple(datatypes)
+    return result
+
+
+def _native_scalar_type(value):
+    if isinstance(value, bool):
+        return "boolean"
+    if isinstance(value, int):
+        return "integer"
+    if isinstance(value, float):
+        return "float"
+    if isinstance(value, str):
+        return "string"
+    raise ValueError("native Variable literal is not scalar")
+
+
+def _native_expression_type(expression, known, field_datatypes=None, native=None):
+    """Derive a native Variable type without trusting a declaration tag.
+
+    SCAP-NG 0.4.1 intentionally removed declaration-level ``datatype``.  This
+    independent parity check therefore derives the type from the expression,
+    mirroring the closed operation result domains while refusing unresolved
+    collected-field domains rather than guessing a cast.
+    """
+    if not isinstance(expression, dict) or len(expression) != 1:
+        raise ValueError("native Variable expression is malformed")
+    operation, value = next(iter(expression.items()))
+    if operation == "literal":
+        if isinstance(value, dict):
+            datatype = value.get("datatype")
+            if datatype not in NATIVE_LITERAL_TYPES:
+                raise ValueError("native typed literal datatype is unresolved")
+            return datatype
+        values = value if isinstance(value, list) else [value]
+        if not values:
+            raise ValueError("native empty literal datatype is unresolved")
+        types = {_native_scalar_type(item) for item in values}
+        if len(types) != 1:
+            raise ValueError("native literal has mixed datatypes")
+        return next(iter(types))
+    if operation == "variable":
+        name = value
+        if name not in known:
+            raise ValueError("native Variable reference is unresolved: " + str(name))
+        return known[name]
+    if operation == "values":
+        payload = value if isinstance(value, dict) else {}
+        field = payload.get("field")
+        selected = payload.get("object")
+        if isinstance(selected, str) and isinstance(native, dict):
+            selected = native.get("shared_objects", {}).get(selected)
+        capability = selected.get("capability") if isinstance(selected, dict) else None
+        datatypes = ((field_datatypes or {}).get((capability, field), ())
+                     if isinstance(field, str) else ())
+        if len(datatypes) != 1 or datatypes[0] not in NATIVE_LITERAL_TYPES:
+            raise ValueError("native collected-field datatype is unresolved")
+        return datatypes[0]
+    if operation == "count":
+        _native_expression_type(value, known, field_datatypes, native)
+        return "integer"
+    if operation in {"split", "substring", "begin", "end", "concat", "merge", "regex_capture"}:
+        payloads = []
+        if operation in {"split", "substring", "begin", "end", "regex_capture"}:
+            payloads = [value.get("value")] if isinstance(value, dict) else []
+        elif operation == "concat":
+            payloads = value if isinstance(value, list) else []
+        else:
+            payloads = value.get("values", []) if isinstance(value, dict) else []
+            payloads = payloads if isinstance(payloads, list) else [payloads]
+        if not payloads:
+            raise ValueError("native text operation has no input")
+        for payload in payloads:
+            _native_expression_type(payload, known, field_datatypes, native)
+        return "string"
+    if operation == "arithmetic":
+        operands = value.get("values", []) if isinstance(value, dict) else []
+        if not isinstance(operands, list) or len(operands) < 2:
+            raise ValueError("native arithmetic operands are malformed")
+        types = {_native_expression_type(item, known, field_datatypes, native) for item in operands}
+        if not types <= {"integer", "float"}:
+            raise ValueError("native arithmetic datatype is not numeric")
+        return "float" if "float" in types else "integer"
+    if operation == "unique":
+        operands = value if isinstance(value, list) else [value]
+        if not operands:
+            raise ValueError("native unique has no input")
+        types = {_native_expression_type(item, known, field_datatypes, native) for item in operands}
+        if len(types) != 1:
+            raise ValueError("native unique datatype is ambiguous")
+        return next(iter(types))
+    raise ValueError("native Variable operation is unresolved: " + operation)
+
+
+def _native_variable_types(native_vars, field_datatypes=None, native=None):
+    known = {}
+    pending = dict(native_vars)
+    while pending:
+        progressed = False
+        for name, declaration in list(pending.items()):
+            try:
+                known[name] = _native_expression_type(
+                    declaration.get("expression"), known, field_datatypes, native)
+            except ValueError as error:
+                if "reference is unresolved" in str(error):
+                    continue
+                raise
+            del pending[name]
+            progressed = True
+        if not progressed:
+            name = next(iter(pending))
+            _native_expression_type(pending[name].get("expression"), known, field_datatypes, native)
+    return known
+
+
+def _source_expression_type(node, source):
+    """Derive OVAL function output type for source-invalid diagnostics."""
+    operation = tag(node)
+    if operation == "literal_component":
+        return SOURCE_TO_NATIVE_TYPES.get(node.get("datatype", "string"),
+                                         node.get("datatype", "string"))
+    if operation == "variable_component":
+        variable = source["variables"].get(node.get("var_ref"))
+        return (SOURCE_TO_NATIVE_TYPES.get(variable.get("datatype"), variable.get("datatype"))
+                if variable is not None else None)
+    if operation == "object_component":
+        return None
+    children = [child for child in node if isinstance(child.tag, str)]
+    if operation == "arithmetic":
+        types = {_source_expression_type(child, source) for child in children}
+        if types <= {"integer", "float"} and types:
+            return "float" if "float" in types else "integer"
+        return None
+    if operation in {"concat", "split", "substring", "begin", "end", "regex_capture",
+                     "merge", "unique", "glob_to_regex", "escape_regex"}:
+        return "string"
+    if operation == "count":
+        return "integer"
+    return None
+
+
+_REGEX_META = set('.^$*+?{}[]\\|()')
+
+
+def _escape_regex_literal(value):
+    return ''.join('\\' + character if character in _REGEX_META else character
+                   for character in value)
+
+
+def _glob_to_regex_literal(pattern, *, glob_noescape=False):
+    result = ['^']
+    segment_start = True
+    index = 0
+    while index < len(pattern):
+        character = pattern[index]
+        if character == '/':
+            result.append('/')
+            segment_start = True
+            index += 1
+            continue
+        if segment_start:
+            escaped_dot = (character == '\\' and index + 1 < len(pattern)
+                           and pattern[index + 1] == '.')
+            if character != '.' and not escaped_dot:
+                result.append('(?=[^\\.])')
+            segment_start = False
+        if character == '\\' and not glob_noescape:
+            index += 1
+            if index == len(pattern):
+                result.append('\\\\')
+                break
+            result.append(_escape_regex_literal(pattern[index]))
+            index += 1
+            continue
+        if character == '\\' and glob_noescape:
+            result.append('\\\\')
+            index += 1
+            continue
+        if character == '*':
+            result.append('[^/]*')
+            index += 1
+            continue
+        if character == '?':
+            result.append('[^/]')
+            index += 1
+            continue
+        if character == '[':
+            nested = 0
+            cursor = index + 1
+            while cursor < len(pattern):
+                if pattern[cursor] == '[':
+                    nested += 1
+                elif pattern[cursor] == ']':
+                    if nested:
+                        nested -= 1
+                    else:
+                        break
+                cursor += 1
+            if cursor >= len(pattern):
+                raise ValueError('invalid source glob_to_regex bracket expression')
+            result.append(pattern[index:cursor + 1])
+            index = cursor + 1
+            continue
+        result.append(('\\' + character) if character in _REGEX_META else character)
+        index += 1
+    result.append('$')
+    return ''.join(result)
+
+
+def _source_literal_function_values(source_node, source):
+    children = [child for child in source_node if isinstance(child.tag, str)]
+    if len(children) != 1:
+        raise ValueError('source literal function arity differs')
+    child = children[0]
+    if tag(child) == 'literal_component':
+        if child.get('datatype', 'string') != 'string':
+            raise ValueError('source literal function datatype differs')
+        return [child.text or '']
+    if tag(child) == 'variable_component':
+        variable = source['variables'].get(child.get('var_ref'))
+        if (variable is None or tag(variable) != 'constant_variable' or
+                variable.get('datatype') != 'string'):
+            raise ValueError('source literal function operand is dynamic')
+        return [node.text or '' for node in variable if tag(node) == 'value']
+    raise ValueError('source literal function operand is dynamic')
+
+
+def _native_literal_payload(expression):
+    if not isinstance(expression, dict) or set(expression) != {"literal"}:
+        return None, None
+    value = expression["literal"]
+    if isinstance(value, dict):
+        return value.get("datatype"), value.get("value")
+    return None, value
+
+
+def _source_expression_matches(source_node, native_expression, source_to_native,
+                               source=None, inlined=None):
+    """Check source function options, order and operands exactly."""
+    inlined = set() if inlined is None else inlined
+    operation = tag(source_node)
+    if operation in {"begin", "end"}:
+        if not isinstance(native_expression, dict) or set(native_expression) != {operation}:
+            return False
+        payload = native_expression[operation]
+        if payload.get("character") != source_node.get("character"):
+            return False
+        children = [child for child in source_node if isinstance(child.tag, str)]
+        return (len(children) == 1 and
+                _source_expression_matches(children[0], payload.get("value"),
+                                           source_to_native, source, inlined))
+    if operation in {"arithmetic", "concat", "split", "substring", "regex_capture"}:
+        if not isinstance(native_expression, dict) or set(native_expression) != {operation}:
+            return False
+        payload = native_expression[operation]
+        children = [child for child in source_node if isinstance(child.tag, str)]
+        if operation == "arithmetic":
+            if payload.get("arithmetic_operation") != source_node.get("arithmetic_operation"):
+                return False
+            operands = payload.get("values")
+            return (isinstance(operands, list) and len(operands) == len(children) and
+                    all(_source_expression_matches(child, value, source_to_native,
+                                                    source, inlined)
+                        for child, value in zip(children, operands)))
+        if operation == "concat":
+            return (isinstance(payload, list) and len(payload) == len(children) and
+                    all(_source_expression_matches(child, value, source_to_native,
+                                                   source, inlined)
+                        for child, value in zip(children, payload)))
+        if operation == "regex_capture":
+            if payload.get("pattern") != source_node.get("pattern") or len(children) != 1:
+                return False
+            return _source_expression_matches(children[0], payload.get("value"),
+                                              source_to_native, source, inlined)
+        if operation == "split":
+            if payload.get("delimiter") != source_node.get("delimiter") or len(children) != 1:
+                return False
+            return _source_expression_matches(children[0], payload.get("value"),
+                                              source_to_native, source, inlined)
+        # substring option values are serialized as integers in native JSON.
+        if (payload.get("substring_start") != int(source_node.get("substring_start")) or
+                payload.get("substring_length") != int(source_node.get("substring_length")) or
+                len(children) != 1):
+            return False
+        return _source_expression_matches(children[0], payload.get("value"),
+                                          source_to_native, source, inlined)
+    if operation == "literal_component":
+        datatype = source_node.get("datatype", "string")
+        expected = source_literal(source_node.text or "", datatype)
+        native_type, native_value = _native_literal_payload(native_expression)
+        expected_type = SOURCE_TO_NATIVE_TYPES.get(datatype, datatype)
+        return native_type == expected_type and native_value in (expected, [expected])
+    if operation == "variable_component":
+        reference = source_to_native.get(source_node.get("var_ref"))
+        if reference:
+            return (isinstance(native_expression, dict) and
+                    set(native_expression) == {"variable"} and
+                    native_expression["variable"] == reference)
+        if source is not None and source_node.get("var_ref") in inlined:
+            variable = source["variables"].get(source_node.get("var_ref"))
+            values = [source_literal(child.text or "", variable.get("datatype"))
+                      for child in (variable if variable is not None else ()) if tag(child) == "value"]
+            native_type, native_value = _native_literal_payload(native_expression)
+            expected_type = SOURCE_TO_NATIVE_TYPES.get(variable.get("datatype"),
+                                                       variable.get("datatype"))
+            return (native_type == expected_type and
+                    native_value in (values[0], values) if len(values) == 1 else
+                    native_type == expected_type and native_value == values)
+        return False
+    if operation in {"escape_regex", "glob_to_regex"}:
+        native_type, native_value = _native_literal_payload(native_expression)
+        if native_type != "string":
+            return False
+        values = _source_literal_function_values(source_node, source)
+        if operation == "escape_regex":
+            expected = [_escape_regex_literal(value) for value in values]
+        else:
+            raw = source_node.get("glob_noescape", "false").lower()
+            if raw not in ("true", "false"):
+                raise ValueError("unqualified source glob_noescape")
+            expected = [_glob_to_regex_literal(value, glob_noescape=raw == "true")
+                        for value in values]
+        return (native_value in (expected[0], expected)
+                if len(expected) == 1 else native_value == expected)
+    if operation == "object_component":
+        return False
+    return False
+
+
+def compare_mapped_variables(source, native, trace, selected_tests, field_datatypes=None):
     source_to_native = {}
     for row in trace.get("native_identities", []):
         if row.get("kind") != "variable":
@@ -531,14 +915,37 @@ def compare_mapped_variables(source, native, trace, selected_tests):
         if not srcid or not nativeid or srcid in source_to_native:
             raise ValueError("duplicate/invalid source Variable mapping")
         source_to_native[srcid] = nativeid
-    native_vars = native.get("variables", {})
-    missing = required_variable_declarations(source, selected_tests) - set(source_to_native)
+    synthetic = trace.get("native_synthetic_variables", [])
+    object_to_native = {
+        row.get("source_id"): row.get("native_id")
+        for row in trace.get("native_identities", [])
+        if row.get("kind") == "object" and row.get("source_id") and row.get("native_id")
+    }
+    if not isinstance(synthetic, list):
+        raise ValueError("native synthetic Variable metadata is malformed")
+    synthetic_ids = set()
+    materialized_source_variables = set(trace.get("native_inlined_variables", []))
+    if not all(isinstance(item, str) for item in materialized_source_variables):
+        raise ValueError("native inlined Variable metadata is malformed")
+    for item in synthetic:
+        if not isinstance(item, dict) or not isinstance(item.get("native_id"), str):
+            raise ValueError("native synthetic Variable metadata is malformed")
+        synthetic_ids.add(item["native_id"])
+        materialized_source_variables.update(item.get("source_variable_ids", []))
+    native_vars = {key: value for key, value in native.get("variables", {}).items()
+                   if key not in synthetic_ids}
+    if synthetic_ids - set(native.get("variables", {})):
+        raise ValueError("synthetic Variable metadata has no native declaration")
+    missing = (required_variable_declarations(source, selected_tests) -
+               set(source_to_native) - materialized_source_variables)
     if missing:
         raise ValueError("required original Variable declarations omitted: " + str(sorted(missing)))
     if not set(source_to_native).issubset(source["variables"]):
         raise ValueError("fabricated original Variable declaration mapping")
     if set(native_vars) != set(source_to_native.values()):
         raise ValueError("native Variable declarations do not match source trace")
+    derived_types = _native_variable_types(
+        native.get("variables", {}), field_datatypes, native)
     checked = 0
     for srcid, nativeid in source_to_native.items():
         src = source["variables"].get(srcid)
@@ -550,8 +957,13 @@ def compare_mapped_variables(source, native, trace, selected_tests):
         if expected_kind is None or dst.get("kind") != expected_kind:
             raise ValueError("source/native Variable kind mismatch: " + srcid)
         dtype = src.get("datatype")
-        expected_type = {"int": "integer"}.get(dtype, dtype)
-        if dst.get("datatype") != expected_type:
+        expected_type = SOURCE_TO_NATIVE_TYPES.get(dtype, dtype)
+        if derived_types.get(nativeid) != expected_type:
+            parts = [child for child in src if isinstance(child.tag, str)]
+            source_type = (_source_expression_type(parts[0], source)
+                           if tag(src) == "local_variable" and len(parts) == 1 else None)
+            if source_type is not None and source_type != expected_type:
+                raise ValueError("source-invalid Variable datatype declaration: " + srcid)
             raise ValueError("source/native Variable datatype mismatch: " + srcid)
         expression = dst.get("expression")
         if not isinstance(expression, dict) or len(expression) != 1:
@@ -560,7 +972,12 @@ def compare_mapped_variables(source, native, trace, selected_tests):
             values = [source_literal(child.text or "", dtype)
                       for child in src if tag(child) == "value"]
             native_values = expression.get("literal")
-            if not isinstance(native_values, list) or values != native_values:
+            native_type = expected_type
+            if isinstance(native_values, dict):
+                native_type = native_values.get("datatype")
+                native_values = native_values.get("value")
+            if (native_type != expected_type or
+                    not isinstance(native_values, list) or values != native_values):
                 raise ValueError("source/native constant values, order or duplicates differ: " + srcid)
         else:
             parts = [child for child in src if isinstance(child.tag, str)]
@@ -569,13 +986,51 @@ def compare_mapped_variables(source, native, trace, selected_tests):
             child = parts[0]
             if tag(child) == "variable_component":
                 reference = source_to_native.get(child.get("var_ref"))
-                if not reference or expression.get("variable") != reference:
+                if reference:
+                    if expression.get("variable") != reference:
+                        raise ValueError("original Variable alias is not preserved: " + srcid)
+                elif not _source_expression_matches(child, expression, source_to_native,
+                                                     source, trace.get("native_inlined_variables", [])):
                     raise ValueError("original Variable alias is not preserved: " + srcid)
             elif tag(child) == "literal_component":
-                native_values = expression.get("literal")
-                expected = source_literal(child.text or "", child.get("datatype"))
-                if native_values != expected and native_values != [expected]:
+                native_type, native_value = _native_literal_payload(expression)
+                datatype = child.get("datatype", "string")
+                expected = source_literal(child.text or "", datatype)
+                expected_type = SOURCE_TO_NATIVE_TYPES.get(datatype, datatype)
+                if native_type != expected_type or native_value not in (expected, [expected]):
                     raise ValueError("original local literal differs: " + srcid)
+            elif tag(child) == "object_component":
+                object_id = child.get("object_ref")
+                source_object = source["nodes"].get(object_id)
+                object_refs = [(node.text or "").strip() for node in (source_object.iter() if source_object is not None else ())
+                               if tag(node) == "var_ref" and (node.text or "").strip()]
+                if len(object_refs) == 1 and object_refs[0] in source_to_native:
+                    expected = source_to_native[object_refs[0]]
+                    if expression.get("variable") != expected:
+                        raise ValueError("original object_component source is not preserved: " + srcid)
+                else:
+                    expected = next((item.get("native_id") for item in synthetic
+                                     if item.get("source_object") == object_id), None)
+                    if expected and expression.get("variable") == expected:
+                        continue
+                    # A normal capability Object may be inlined into a native
+                    # ``values`` expression rather than emitted as a shared
+                    # Object.  Preserve the exact source field and require a
+                    # concrete native object payload; its selector parity is
+                    # checked by the Test binding gate.
+                    payload = expression.get("values") if isinstance(expression, dict) else None
+                    if not isinstance(payload, dict) or payload.get("field") != child.get("item_field"):
+                        raise ValueError("original object_component source is not preserved: " + srcid)
+                    native_object = payload.get("object")
+                    if isinstance(native_object, str):
+                        if object_to_native.get(object_id) != native_object:
+                            raise ValueError("original object_component source is not preserved: " + srcid)
+                    elif not isinstance(native_object, dict):
+                        raise ValueError("original object_component source is not preserved: " + srcid)
+            elif tag(child) in {"begin", "end", "arithmetic", "concat", "split", "substring", "regex_capture", "escape_regex", "glob_to_regex"}:
+                if not _source_expression_matches(child, expression, source_to_native,
+                                                   source, trace.get("native_inlined_variables", [])):
+                    raise ValueError("original local function differs: " + srcid)
             else:
                 # Full recursive function comparison is a separate gate; do
                 # not mark complex conversion as semantically proved here.
@@ -585,8 +1040,9 @@ def compare_mapped_variables(source, native, trace, selected_tests):
 
 def audit(source_root, pack, *, require_full=False, expected_xml=144,
           expected_definitions=168, expected_tests=803,
-          verify_pin=False):
+          verify_pin=False, schema_root=None):
     pin_verified = verify_source_checkout(source_root) if verify_pin else False
+    field_datatypes = load_field_datatypes(schema_root)
     records, archive_inventory = sources(source_root)
     original, definition_paths, problems = source_tree_summary(records)
     original["archives"] = archive_inventory
@@ -710,8 +1166,9 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                     if (native_test.get("require", {}).get("item_requirement", {})
                                   .get("items_satisfying") != expected_check):
                         raise ValueError("OVAL check cardinality differs at " + source_id)
-            compare_mapped_variables(source, native, trace, selected_tests)
-            audit_source_set_filter_retention(source, selected_tests, native)
+            compare_mapped_variables(
+                source, native, trace, selected_tests, field_datatypes)
+            audit_source_set_filter_retention(source, selected_tests, native, trace.get("native_synthetic_variables", []))
             native_to_source = {v: k for k, v in source_to_native.items()}
             oval_tree = normalize_source_evaluate(source, ident)
             native_tree = normalize_native_evaluate(native.get("evaluate"), native_to_source)
@@ -719,8 +1176,10 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                 raise ValueError("source/native Evaluate logic mismatch")
             tested += len(selected_tests)
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
-            problems.append({"type": "converted_parity_failure", "source": path,
-                             "definition": ident, "reason": str(exc)[:300]})
+            reason = str(exc)[:300]
+            problem_type = "source_invalid" if reason.startswith("source-invalid") else "converted_parity_failure"
+            problems.append({"type": problem_type, "source": path,
+                             "definition": ident, "reason": reason})
             continue
         # Structural parity, NOT independently executed semantic equivalence.
         unqualified += 1
@@ -825,6 +1284,9 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         "manifest_sha256": digest((pack / "manifest.json").read_bytes()),
         "tests_ledger_sha256": digest((pack / "tests.jsonl").read_bytes()),
         "schema_family_sha256": manifest.get("schema", {}).get("aggregate_sha256"),
+        "schema_field_datatypes_loaded": len(field_datatypes),
+        "schema_field_datatypes_source": ("canonical capability-mappings/supported"
+                                           if schema_root is not None else "not-loaded"),
         "definitions_in_pack": len(rows),
         "status_counts": dict(sorted(statuses.items())),
         "parity_checked_definitions": unqualified,
@@ -877,6 +1339,8 @@ def main():
                         help="original pinned SCAP_1.4/OVAL_Test_Content directory")
     parser.add_argument("--pack", type=Path, required=True,
                         help="converter output package with manifest.json/definitions.json")
+    parser.add_argument("--schema-root", type=Path,
+                        help="canonical flat 0.4.1 schema root for Item field types")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--expected-xml", type=int, default=144)
     parser.add_argument("--expected-definitions", type=int, default=168)
@@ -893,7 +1357,8 @@ def main():
                        require_full=args.require_full, expected_xml=args.expected_xml,
                        expected_definitions=args.expected_definitions,
                        expected_tests=args.expected_tests,
-                       verify_pin=not args.allow_unverified_fixture_source)
+                       verify_pin=not args.allow_unverified_fixture_source,
+                       schema_root=args.schema_root)
     except (OSError, ValueError, KeyError, ET.ParseError) as exc:
         parser.exit(2, f"source parity audit error: {exc}\n")
     args.output.parent.mkdir(parents=True, exist_ok=True)
