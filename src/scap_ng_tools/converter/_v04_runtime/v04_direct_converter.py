@@ -389,6 +389,15 @@ class AssessmentConverter:
         acquisition = {'capability': mapping['capability']}
         if mapping['native'].get('test_source', {}).get('kind') == 'variable':
             references = element.findall(f'{{{mapping["source"]["namespace"]}}}var_ref')
+            # Standalone OVAL self-assertion includes static Variable Objects
+            # whose Set operands are constant Variables.  Materialize that
+            # finite, source-authored population as one typed native constant
+            # Variable.  This does not evaluate host data or silently lower a
+            # dynamic Set/Filter; non-static graphs remain held below.
+            if self.native_recovery and (element.find(f'{{{OVAL}}}set') is not None):
+                static = self.static_variable_object(element)
+                static['capability'] = mapping['capability']
+                return static
             ensure(len(element) == len(references) == 1, 'Variable source requires one var_ref; Sets/Filters unsupported')
             # OVAL variable_object permits the entity's datatype/operation
             # controls on its var_ref. A direct native Variable source has no
@@ -525,6 +534,83 @@ class AssessmentConverter:
             self.shared_objects[identifier] = acquisition
             return identifier
         return acquisition
+
+    def static_variable_object(self, element):
+        """Materialize a finite constant Variable Object Set safely.
+
+        OVAL Variable Objects in the self-assertion corpus use UNION,
+        INTERSECTION, or COMPLEMENT over constant Variable Objects.  The
+        canonical 0.4.1 Variable grammar has no source Variable-Object Set
+        wrapper, so a finite static population is represented as a typed
+        constant declaration.  Dynamic Variables, Filters, mixed datatypes,
+        cycles, and oversized populations fail closed rather than becoming a
+        guessed host result.
+        """
+        def values_for_object(identifier, active):
+            ensure(identifier not in active, 'cyclic static Variable Object Set: ' + identifier)
+            active = set(active)
+            active.add(identifier)
+            node = self.source.node(self.component_id, identifier, 'object')
+            var_refs = node.findall(f'{{{OVAL}#independent}}var_ref')
+            if len(var_refs) == 1 and len(node) == 1:
+                variable = self.source.node(self.component_id, (var_refs[0].text or '').strip(), 'variable')
+                ensure(local_name(variable) == 'constant_variable',
+                       'dynamic Variable Object Set is not a static population')
+                value = self.reference(variable.get('id'), 'variable')
+                ensure(isinstance(value, list) and len(value) <= 4096,
+                       'static Variable Object population exceeds bound')
+                return list(value), variable.get('datatype', 'string')
+            sets = node.findall(f'{{{OVAL}}}set')
+            ensure(len(sets) == 1 and len(node) == 1, 'unsupported Variable Object shape')
+            set_node = sets[0]
+            refs = set_node.findall(f'{{{OVAL}}}object_reference')
+            filters = set_node.findall(f'{{{OVAL}}}filter')
+            ensure(not filters and 1 <= len(refs) <= 2,
+                   'dynamic or filtered Variable Object Set is held')
+            operands = [values_for_object((ref.text or '').strip(), active) for ref in refs]
+            datatypes = {datatype for _, datatype in operands}
+            ensure(len(datatypes) == 1, 'mixed static Variable Object datatypes')
+            left = operands[0][0]
+            right = operands[1][0] if len(operands) == 2 else []
+            operator = set_node.get('set_operator', 'UNION')
+            def key(value):
+                return json.dumps(value, sort_keys=True, separators=(',', ':'))
+            if operator == 'UNION':
+                output, seen = [], set()
+                for value in left + right:
+                    marker = key(value)
+                    if marker not in seen:
+                        seen.add(marker); output.append(value)
+            elif operator == 'INTERSECTION':
+                right_keys = {key(value) for value in right}
+                output, seen = [], set()
+                for value in left:
+                    marker = key(value)
+                    if marker in right_keys and marker not in seen:
+                        seen.add(marker); output.append(value)
+            elif operator == 'COMPLEMENT':
+                excluded = {key(value) for value in right}
+                output = [value for value in left if key(value) not in excluded]
+            else:
+                ensure(False, 'unsupported static Variable Object Set operator: ' + operator)
+            ensure(len(output) <= 4096, 'static Variable Object Set population exceeds bound')
+            return output, next(iter(datatypes))
+
+        values, datatype = values_for_object(element.get('id'), set())
+        identifier = self.native_name(element, 'variable', title=element.get('comment'))
+        self.variables[identifier] = {'kind': 'constant', 'expression': {
+            'literal': {'datatype': native_datatype(datatype), 'value': values}}}
+        self.conversion_warnings.append({
+            'code': 'oval_static_variable_object_set_materialized',
+            'source_object': element.get('id'),
+            'source_object_sha256': digest(xml_identity(element)),
+            'population_size': len(values),
+            'source_set_operator': element.find(f'{{{OVAL}}}set').get('set_operator', 'UNION'),
+            'semantic_basis': 'finite constant Variable Object Set materialized as native typed constant Variable',
+            'independent_static_proof': 'SOURCE_STATIC_POPULATION_ONLY',
+            'scanner_evaluated': False,
+        })
+        return {'variable': identifier}
 
     def object_title(self, element, mapping):
         """Describe source acquisition facts, never infer an unstated purpose."""
