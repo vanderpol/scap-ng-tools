@@ -103,6 +103,41 @@ class BenchmarkConversionParity(unittest.TestCase):
             self.assertEqual(json.loads((output / 'conversion-scope.json').read_text())
                              ['independent_semantic_proof'], False)
 
+    def test_all_rules_requires_exact_source_hash_and_writes_complete_unverified_scope(self):
+        # The admission mode must fail before creating output when the source
+        # identity is wrong, and must retain all required provenance artifacts
+        # when the exact pinned source is accepted.
+        with tempfile.TemporaryDirectory(prefix='scapng-all-rules-contract-') as temp:
+            temp = Path(temp)
+            rejected = temp / 'rejected'
+            bad = subprocess.run([
+                sys.executable, '-m', 'scap_ng_tools.converter.direct04',
+                '--schema-root', str(self.schema), str(self.files[1]),
+                '--sha256', '0' * 64, '--all-rules', '--output', str(rejected)],
+                capture_output=True, text=True)
+            self.assertNotEqual(bad.returncode, 0)
+            self.assertIn('does not match supplied SHA-256', bad.stderr)
+            self.assertFalse(rejected.exists())
+
+            accepted = temp / 'accepted'
+            result = subprocess.run([
+                sys.executable, '-m', 'scap_ng_tools.converter.direct04',
+                '--schema-root', str(self.schema), str(self.files[1]),
+                '--sha256', PINS[1]['sha'], '--all-rules', '--output', str(accepted)],
+                capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            required = {'coverage.json', 'coverage.md', 'source-trace.json',
+                        'conversion-scope.json'}
+            self.assertTrue(required.issubset({p.name for p in accepted.iterdir()}))
+            scope = json.loads((accepted / 'conversion-scope.json').read_text())
+            self.assertEqual(scope['conversion_status'], 'CONVERTED_UNVERIFIED')
+            self.assertFalse(scope['independent_semantic_proof'])
+            self.assertFalse(scope['scanner_execution'])
+            native_json = {p.relative_to(accepted).as_posix() for p in accepted.rglob('*.json')}
+            native_yaml = {p.relative_to(accepted).with_suffix('.json').as_posix()
+                           for p in accepted.rglob('*.yaml')}
+            self.assertEqual(native_json - required - {'conversion-scope.json'}, native_yaml)
+
     def test_unqualified_modes_never_create_benchmark_output(self):
         with tempfile.TemporaryDirectory(prefix='scapng-unqualified-modes-') as temp:
             for flag in ('--verify', '--compile', '--draft'):

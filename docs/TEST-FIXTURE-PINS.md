@@ -47,10 +47,10 @@ manifest and source-trace output. No result rebaseline is permitted implicitly.
 
 | Source | Inventory manifest SHA-256 | Source trace SHA-256 |
 | --- | --- | --- |
-| Windows Server 2025 | `b8e006eceeaca1d1e669e88d2f9336ea3ad165323409a2ff49f80e0641e9b238` | `2350f42616db168fd7984af6f28fea19e3538bb91e0c2dd6fa477e6f2f5d1126` |
-| Active Directory Domain | `9335f772f3cc5a1952c46d66b1087f17dbd2105ce975b4f9156f29fc96d8d719` | `19f8df8e2e7d714bee02bb03334323ef4e19087e0d28d9e8cb0621e9f96bebfb` |
-| Amazon Linux 2023 | `6b3cdccfda5097f549f7372ae95c661f88b03d2097e9ebce366c4d99e31d0823` | `3f82c57c8a34a5055a342993dfa496d62e653d1d83f159dc721799b50f576786` |
-| Windows Defender Firewall | `f0ba480d3e3d2c61600e68cc1e34daecfc8fe90804912bde5b4484f4440921b4` | `5a9c179c112065435380c84fcd79fe83830d215e2f3f72550094777feb72fe9c` |
+| Windows Server 2025 | `b8e006eceeaca1d1e669e88d2f9336ea3ad165323409a2ff49f80e0641e9b238` | `0558217d6c90a39bf7f0e9b9bf8f8235f391df4152be639968ac1d3e132f41ff` |
+| Active Directory Domain | `9335f772f3cc5a1952c46d66b1087f17dbd2105ce975b4f9156f29fc96d8d719` | `a904fa7e88ff40bdea90825aac5d8b102a28fbd89d24b7c43b78aebe3b790824` |
+| Amazon Linux 2023 | `6b3cdccfda5097f549f7372ae95c661f88b03d2097e9ebce366c4d99e31d0823` | `af1acfc9a2a7454153f629e2e1a88823f794bfa99e5cc4b4aef2cba980c7f4e1` |
+| Windows Defender Firewall | `f0ba480d3e3d2c61600e68cc1e34daecfc8fe90804912bde5b4484f4440921b4` | `fde316371acb5b11e9f5b747b3138ec66e5ea07dc8609e6480543d2f0a7210bc` |
 
 The separate focused conversion baseline remains six native documents from
 the two selected Windows Server 2025 Rules, with canonical native SHA-256
@@ -59,6 +59,10 @@ Inventory is read-only and does not establish authoring admission or proof.
 
 ## Pinned automatic authoring-conversion admission
 
+The hashes in the table below are the current owner-amended 0.4 output hashes
+used by the portable Tools qualification and tests. Earlier pre-amendment
+native/trace hashes remain historical evidence and are not silently rebaselined.
+
 These are the original public `--all-rules` CLI outputs, independently computed
 from the same four signed source ZIPs with the original 0.4 semantic validators.
 Both the installed converter and the source oracle must match all three hashes.
@@ -66,10 +70,10 @@ Hash construction is the same canonical sorted JSON serialization as above.
 
 | Source | Admitted / blocked | Native docs SHA-256 | Automatic coverage SHA-256 | Automatic source trace SHA-256 |
 | --- | --- | --- | --- | --- |
-| Windows Server 2025 | 247 / 44 | `c817e8b1842cecc20fa6174551502cd2199d8ddb9019214e432f9108c193a496` | `233fa961e84f101107cb62c5b810aa4719309c8bb5c31bbe2e212a09676c5bf4` | `2b06986ff6c21ea65a0a6ee45acacf53bdd58e96925ad84be47ae39765fa1e1c` |
-| Active Directory Domain | 15 / 21 | `7b4035676c5b5aed43a2f3c0e6dfe92b40661c6e66de9e8d12eff322e68e8cd3` | `f90aacf66975f5d3cadf4d1d941142ad2a40f8c6a4c682eab491e15b2e604a53` | `db1dbdcbf11065eb14cad93afcd90004e12f82b4012e2423ce5b3068ab5766b5` |
-| Amazon Linux 2023 | 118 / 69 | `5d3d4e176efed970984a60ce693a740aa0e23d767dd16041c276654cbac2ca58` | `da41d34d4c1b307097cb55c93e700e4bfa3f85950485c189d6f2f22a9f67a375` | `2d21ab8b6690f74023cf3b4f14f68164a9528b52e71196b8f7b9043c84b6467a` |
-| Windows Defender Firewall | 0 / 21 | `44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a` | `5e70d08b2503940e2f486529164f65108c9a3a101a358ba2d0e37f16287d8d0d` | `5a9c179c112065435380c84fcd79fe83830d215e2f3f72550094777feb72fe9c` |
+| Windows Server 2025 | 247 / 44 | `5687a4919b66e4e38e9d9dc2f59131393cf9683b0af768caf0ca4c3fa72deca8` | `233fa961e84f101107cb62c5b810aa4719309c8bb5c31bbe2e212a09676c5bf4` | `28ccb0600d666f99b76b36164776a7b442276ef8282f614d87b28c470dcf95d4` |
+| Active Directory Domain | 15 / 21 | `69d6606cf3b8c1e5ae943b5282ecf35a258556e5ce305b5ac1f4f9e1aa3bb10b` | `f90aacf66975f5d3cadf4d1d941142ad2a40f8c6a4c682eab491e15b2e604a53` | `450aadbc110a26934a5688aefbed0c86e0e967ead6e1041cbc376e858f7dee64` |
+| Amazon Linux 2023 | 118 / 69 | `7a9a7b578bf6f7f3498e58369f64340c719f7b50e5a376058974aefa20f6db4d` | `da41d34d4c1b307097cb55c93e700e4bfa3f85950485c189d6f2f22a9f67a375` | `09d77b842843d3cab5b3dd4e9e28af253799ac3878608cd65239dc47a8d880e2` |
+| Windows Defender Firewall | 0 / 21 | `44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a` | `5e70d08b2503940e2f486529164f65108c9a3a101a358ba2d0e37f16287d8d0d` | `fde316371acb5b11e9f5b747b3138ec66e5ea07dc8609e6480543d2f0a7210bc` |
 
 **Totals: 535 source Rules, 380 authoring-admitted, 155 blocked, 766 native
 documents.** This output remains unverified. The public original CLI's 247
