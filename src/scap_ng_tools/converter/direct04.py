@@ -309,6 +309,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument('--oval-definition', help='original OVAL Definition ID in standalone source XML')
+    parser.add_argument('--oval-test', help='convert exactly one original OVAL Test and its reachable graph')
     parser.add_argument('--source-commit', help='pinned original source Git commit')
     parser.add_argument('--source-path', help='original XML repository-relative source path')
     parser.add_argument('--recover-native', action='store_true', help='opt into owner-review native recovery candidates')
@@ -324,13 +325,13 @@ def main():
                      'these modes require separate owner-qualified ports')
     if arguments.inventory_only and arguments.rule:
         parser.error('--inventory-only must not be combined with --rule')
-    if sum(bool(x) for x in (arguments.inventory_only, arguments.all_rules, arguments.rule, arguments.oval_definition)) != 1:
+    if sum(bool(x) for x in (arguments.inventory_only, arguments.all_rules, arguments.rule, arguments.oval_definition, arguments.oval_test)) != 1:
         parser.error('select exactly one of --inventory-only, --all-rules, --rule or --oval-definition')
-    if arguments.oval_definition and not (arguments.source_commit and arguments.source_path):
+    if (arguments.oval_definition or arguments.oval_test) and not (arguments.source_commit and arguments.source_path):
         parser.error('standalone OVAL requires --source-commit and --source-path')
-    if not arguments.oval_definition and (arguments.source_commit or arguments.source_path):
+    if not (arguments.oval_definition or arguments.oval_test) and (arguments.source_commit or arguments.source_path):
         parser.error('--source-commit/--source-path require --oval-definition')
-    if arguments.oval_definition and (arguments.all_rules or arguments.include_applicability or arguments.recover_native):
+    if (arguments.oval_definition or arguments.oval_test) and (arguments.all_rules or arguments.include_applicability or arguments.recover_native):
         parser.error('standalone OVAL is not benchmark or native-recovery mode')
     if arguments.output.exists():
         parser.error('output path already exists; refusing overwrite')
@@ -350,11 +351,18 @@ def main():
             print(json.dumps({'source_rules': coverage['summary']['source_rules'],
                               'status': 'INVENTORIED_UNVERIFIED', 'native_documents': 0}))
             return
-        if arguments.oval_definition:
-            documents, trace = convert_oval_definition(
-                schema_root=arguments.schema_root, source=selected_source,
-                sha256_pin=arguments.sha256, definition_id=arguments.oval_definition,
-                source_commit=arguments.source_commit, source_path=arguments.source_path)
+        if arguments.oval_definition or arguments.oval_test:
+            from .oval_platform import convert_test
+            if arguments.oval_test:
+                documents, trace = convert_test(
+                    schema_root=arguments.schema_root, source=selected_source,
+                    sha256_pin=arguments.sha256, test_id=arguments.oval_test,
+                    source_commit=arguments.source_commit, source_path=arguments.source_path)
+            else:
+                documents, trace = convert_oval_definition(
+                    schema_root=arguments.schema_root, source=selected_source,
+                    sha256_pin=arguments.sha256, definition_id=arguments.oval_definition,
+                    source_commit=arguments.source_commit, source_path=arguments.source_path)
         elif arguments.all_rules:
             documents, trace, coverage = convert_benchmark(
                 schema_root=arguments.schema_root, source=selected_source,
@@ -394,6 +402,7 @@ def main():
             'source_sha256': arguments.sha256,
             'rule_ids': arguments.rule,
             'oval_definition': arguments.oval_definition,
+            'oval_test': arguments.oval_test,
             'automatic_benchmark_subset': bool(arguments.all_rules),
             'semantic_validation': ('pinned 0.4.1 semantic pack and native semantic gates'
                                     if arguments.all_rules or arguments.oval_definition else 'not independently qualified'),

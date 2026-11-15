@@ -174,8 +174,20 @@ def references(node):
     return result
 
 
+def convert_test(*, schema_root, source, sha256_pin, test_id, source_commit, source_path):
+    """Convert exactly one source Test and its reachable acquisition graph.
+
+    This is intentionally separate from Definition roll-up conversion: a
+    malformed or unsupported sibling Test must not prevent a source-linked
+    Test from being qualified. The source XML/hash/provenance remain exact.
+    """
+    return convert_definition(schema_root=schema_root, source=source, sha256_pin=sha256_pin,
+                              definition_id=None, test_id=test_id,
+                              source_commit=source_commit, source_path=source_path)
+
+
 def convert_definition(*, schema_root, source, sha256_pin, definition_id,
-                       source_commit, source_path):
+                       source_commit, source_path, test_id=None):
     snapshot = load_pinned_snapshot(schema_root)
     raw = Path(source).read_bytes()
     ensure(sha256(raw).hexdigest() == sha256_pin, "original OVAL SHA-256 mismatch")
@@ -183,7 +195,9 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
            "exact source commit required")
     engine = load_runtime()
     original = StandalonePlatformSource(raw, source_path)
-    definition = original.node(source_path, definition_id, "definition")
+    definition = original.node(source_path, definition_id, "definition") if definition_id else None
+    if test_id:
+        original.node(source_path, test_id, "test")
     mappings = snapshot.supported_mappings(engine.CAPABILITIES)
     # This is the same 0.4 recovery setting used by the benchmark converter,
     # scoped to this standalone Assessment. All unqualified operations still
@@ -193,12 +207,25 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     visitor = engine.AssessmentConverter(original, source_path, mappings,
                                          human_compact=False,
                                          native_recovery=True)
-    expression = visitor.reference(definition_id, "definition")
+    if test_id:
+        expression = visitor.reference(test_id, "test")
+        assessment_id_source = original.node(source_path, test_id, "test")
+        assessment_title = assessment_id_source.get("comment", test_id)
+        assessment_class = "miscellaneous"
+        assessment_version = int(assessment_id_source.get("version", "1"))
+        assessment_source_id = None
+    else:
+        expression = visitor.reference(definition_id, "definition")
+        assessment_id_source = definition
+        assessment_title = definition.findtext("{" + OVAL + "}metadata/{" + OVAL + "}title")
+        assessment_class = definition.get("class")
+        assessment_version = int(definition.get("version"))
+        assessment_source_id = definition_id
     assessment = {
-        "id": native_identifier(definition, "assessment", definition_id),
-        "version": int(definition.get("version")),
-        "assessment_title": definition.findtext("{" + OVAL + "}metadata/{" + OVAL + "}title"),
-        "mode": "automated", "class": definition.get("class"),
+        "id": native_identifier(assessment_id_source, "assessment", test_id or definition_id),
+        "version": assessment_version,
+        "assessment_title": assessment_title,
+        "mode": "automated", "class": assessment_class,
         "specification": {"id": "scap-ng.pre-alpha.assessment", "version": snapshot.manifest()['schema_version']},
         "tests": visitor.tests, "evaluate": expression,
     }
@@ -229,7 +256,7 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
            "; ".join(error.message for error in errors[:4]))
     trace = {
         "source_commit": source_commit, "source_path": source_path,
-        "source_sha256": sha256_pin, "definition_id": definition_id,
+        "source_sha256": sha256_pin, "definition_id": assessment_source_id, "test_id": test_id,
         "source_oval_schema_version": original.oval_schema_version,
         "source_nodes": {ident: {**row, "references": references(original.node_index[ident])}
                          for ident, row in sorted(visitor.used.items())},
