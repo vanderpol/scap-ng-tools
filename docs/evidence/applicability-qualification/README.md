@@ -35,3 +35,13 @@ blocked. The converter still ran with the pinned 0.4.1 schema and produced a
 deterministic native-document digest; the missing source levels are not filled
 by the converter. The separate OpenSCAP overlay harness is retained only as a
 converter regression probe and is explicitly not a real-source qualification.
+
+## Standalone hierarchy fixture
+
+`tests/fixtures/applicability/qualification-levels.xccdf.xml` is a standalone
+XCCDF 1.2 fixture validated against the OpenSCAP XCCDF 1.2 XSD. Its SHA-256 is
+`c4835cb9f10c34b4897199af74eb51049c9aa33b89b9f59ed4419692100c7f01`. It has
+Benchmark, Group, nested Group, and Rule-local platforms plus a disabled
+Profile. Run it with `--source-path ... --no-overlay`; then run the pinned RI
+probe command shown above. This fixture is synthetic regression evidence and is
+not source provenance.

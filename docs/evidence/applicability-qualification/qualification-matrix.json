@@ -1,0 +1,61 @@
+{
+  "evidence": [
+    {
+      "benchmark_platforms": 1,
+      "group_local_platforms": 0,
+      "id": "windows11-r700",
+      "kind": "real_source",
+      "nested_groups": 0,
+      "receipt": "real-source-audit.json",
+      "rule_local_platforms": 17,
+      "source_sha256": "e4b8d55b58aa80124bd0974977af4c7f7bde35c748e2940e02857419292d8c3d",
+      "status": "blocked_missing_real_source_levels"
+    },
+    {
+      "group_platform_declarations": 0,
+      "id": "pinned-65-corpus",
+      "kind": "real_corpus_audit",
+      "receipt": "corpus-group-platform-audit.json",
+      "source_zip_count": 65,
+      "status": "no_group_local_platform_declarations_found"
+    },
+    {
+      "id": "standalone-level-fixture",
+      "kind": "synthetic_standards_conformant",
+      "levels": [
+        "benchmark",
+        "group",
+        "nested_group",
+        "rule"
+      ],
+      "receipt": "standalone-fixture/receipt.json",
+      "ri_results": {
+        "error": "error",
+        "false": "not_applicable",
+        "profile_disabled": "not_evaluated",
+        "true": "applicable",
+        "unknown": "unknown"
+      },
+      "source_sha256": "c4835cb9f10c34b4897199af74eb51049c9aa33b89b9f59ed4419692100c7f01",
+      "status": "converted_and_ri_probed"
+    }
+  ],
+  "format": "scap-ng/applicability-qualification-matrix/1",
+  "non_blocking_differences": [
+    "Standalone fixture is deliberately synthetic and cannot be used as source provenance or scanner equivalence.",
+    "Windows R700 conversion has 213 authoring-validated and 44 blocked Rules; this is not full corpus regeneration."
+  ],
+  "pins": {
+    "canonical_schema": "fcb2c220c05a933665477a6504586b9f47f83177",
+    "converter_implementation": "fec71c60ba8c0f0bb0eed099d731e448962980d0",
+    "converter_original_pr_head": "654d6481d6d86f47e9b648bc31b992990ad67213",
+    "ri_probe_command": "cd9d04739242552d024e794639f56dbd09b584c2",
+    "ri_runtime": "32e59aa24769056aa00e8938487bbc9a380b591b",
+    "schema_aggregate_sha256": "65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54"
+  },
+  "release_blocking_defects": [
+    "No pinned real SCAP 1.4 source in the 65 corpus contains Group-local platform declarations or nested Group platform inheritance.",
+    "Direct CPE URI executable mappings are not qualified; those conditions remain explicit RI ERROR holds.",
+    "GitHub RI Actions runner billing/startup failure prevents hosted qualification, although local Go and race tests pass."
+  ]
+}

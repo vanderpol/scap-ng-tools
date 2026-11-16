@@ -77,15 +77,17 @@ def adapter(benchmark):
         setattr(source, name, getattr(SourceModel, name).__get__(source))
     return source
 
-def qualify(source_url: str, source_sha: str | None, output: Path, ri_results: Path | None = None) -> dict:
-    base_raw = fetch(source_url)
+def qualify(source_url: str, source_sha: str | None, output: Path, ri_results: Path | None = None, source_path: Path | None = None, overlay: bool = True) -> dict:
+    base_raw = source_path.read_bytes() if source_path is not None else fetch(source_url)
+    if source_path is not None:
+        source_url = str(source_path)
     actual = sha256(base_raw)
     if source_sha and actual != source_sha:
         raise ValueError(f"source SHA mismatch: {actual} != {source_sha}")
     base = ET.fromstring(base_raw)
     if base.tag != f"{X}Benchmark":
         raise ValueError("selected source must be a direct XCCDF 1.2 Benchmark")
-    derived = derive_source(base)
+    derived = derive_source(base) if overlay else base
     derived_raw = ET.tostring(derived, encoding="utf-8", xml_declaration=True)
     source = adapter(derived)
     runtime = __import__("scap_ng_tools.converter.direct04", fromlist=["load_runtime"]).load_runtime()
@@ -99,8 +101,11 @@ def qualify(source_url: str, source_sha: str | None, output: Path, ri_results: P
             "platform": {"id": "source-platform", "title": "source Benchmark platform"},
             "groups": groups,
             "rules": list(rule_links.values()),
-            "profiles": [{"id": "qualification-profile-disabled",
-                          "disabled_rules": [rule_links[next(iter(source.rules))]]}],
+            "profiles": [{"id": profile.get("id"),
+                          "disabled_rules": [rule_links.get(select.get("idref"), select.get("idref"))
+                                             for select in profile.findall(f"{X}select")
+                                             if select.get("selected") == "false"]}
+                         for profile in source.benchmark.findall(f"{X}Profile")],
         }},
     }
     coverage = {"rules": []}
@@ -116,10 +121,12 @@ def qualify(source_url: str, source_sha: str | None, output: Path, ri_results: P
     catalog = documents["authoring/direct-slice/applicability.json"]["applicability"]
     receipt = {
         "format": "scap-ng/applicability-qualification/1",
-        "qualification_status": "SOURCE_HIERARCHY_CONVERTED_RI_PENDING",
-        "source": {"url": source_url, "sha256": actual,
+        "qualification_status": ("STANDALONE_FIXTURE_CONVERTED_RI_PENDING" if not overlay
+                                  else "SOURCE_HIERARCHY_CONVERTED_RI_PENDING"),
+        "source": {"kind": "standalone_fixture" if not overlay else "derived_public_source", "url": source_url, "sha256": actual,
                    "derived_overlay_sha256": sha256(derived_raw),
-                   "derived_overlay_reason": "adds Benchmark/Profile and nested Group containment; base is immutable public OpenSCAP test content"},
+                   "derived_overlay_reason": ("adds Benchmark/Profile and nested Group containment; base is immutable public OpenSCAP test content"
+                                              if overlay else "none; standalone standards-conformant fixture")},
         "pins": {
             "schema_commit": "fcb2c220c05a933665477a6504586b9f47f83177",
             "schema_aggregate_sha256": "65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54",
@@ -135,11 +142,15 @@ def qualify(source_url: str, source_sha: str | None, output: Path, ri_results: P
         "unqualified_holds": trace["unsupported"],
         "ri_results": {"true": "pending", "false": "pending", "unknown": "pending", "error": "pending",
                        "profile_disabled": "not_evaluated", "not_applicable": "pending"},
-        "semantic_differences": [
+        "semantic_differences": ([
+            "The standalone fixture is authored only as a standards-conformant hierarchy regression fixture; it is not corpus content.",
+            "Direct CPE URI references have no qualified native mapping in this converter and remain explicit RI ERROR holds, never FALSE.",
+            "RI execution and TRUE/FALSE/UNKNOWN results are independent probes; this receipt does not claim scanner equivalence.",
+        ] if not overlay else [
             "The upstream public regression source has no nested Group; the deterministic overlay is separately hashed and is not source provenance.",
             "Direct CPE URI references have no qualified native mapping in this converter and remain explicit RI ERROR holds, never FALSE.",
             "RI execution and TRUE/FALSE/UNKNOWN results require the coordinated RI harness; this receipt does not claim scanner equivalence.",
-        ],
+        ]),
         "converter_trace": trace,
     }
     # These are qualified RI truth-table probes, deliberately separate from
@@ -166,7 +177,7 @@ def qualify(source_url: str, source_sha: str | None, output: Path, ri_results: P
         result = json.loads(Path(ri_results).read_text())
         receipt["ri_results"] = {item["id"]: item["outcome"] for item in result["results"]}
         receipt["ri_result_details"] = result
-        receipt["qualification_status"] = "SOURCE_HIERARCHY_CONVERTED_RI_PROBES_EXECUTED_WITH_SOURCE_HOLDS"
+        receipt["qualification_status"] = ("STANDALONE_FIXTURE_CONVERTED_RI_PROBES_EXECUTED_WITH_SOURCE_HOLDS" if not overlay else "SOURCE_HIERARCHY_CONVERTED_RI_PROBES_EXECUTED_WITH_SOURCE_HOLDS")
     (output / "receipt.json").write_text(json.dumps(receipt, sort_keys=True, indent=2) + "\n")
     return receipt
 
@@ -174,10 +185,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-url", default="https://raw.githubusercontent.com/OpenSCAP/openscap/38e6d9fd84d337f0f558a7d3b95b54bf4c6c6cef/tests/API/XCCDF/applicability/test_platform_inheritance.xccdf.xml")
     parser.add_argument("--source-sha256", default=None)
+    parser.add_argument("--source-path", type=Path, default=None)
+    parser.add_argument("--no-overlay", action="store_true")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--ri-results", type=Path, default=None)
     args = parser.parse_args()
-    receipt = qualify(args.source_url, args.source_sha256, args.output, args.ri_results)
+    receipt = qualify(args.source_url, args.source_sha256, args.output, args.ri_results, args.source_path, not args.no_overlay)
     print(json.dumps({"receipt": str(args.output / "receipt.json"), "source_sha256": receipt["source"]["sha256"], "derived_sha256": receipt["source"]["derived_overlay_sha256"]}, sort_keys=True))
 
 if __name__ == "__main__":

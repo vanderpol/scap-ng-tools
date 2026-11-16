@@ -1,0 +1,207 @@
+{
+  "authoring/direct-slice/applicability.json": {
+    "applicability": {
+      "conditions": {
+        "platform-cpe-a-fixture-error-condition": {
+          "source": {
+            "id": "cpe:/a:fixture:error",
+            "idref": "cpe:/a:fixture:error",
+            "kind": "cpe_platform",
+            "sha256": "ecb620473412eed6de90d255eec4d53c466e2e6c8510f7d2007dad3c28c83d43"
+          }
+        },
+        "platform-cpe-a-fixture-false-condition": {
+          "source": {
+            "id": "cpe:/a:fixture:false",
+            "idref": "cpe:/a:fixture:false",
+            "kind": "cpe_platform",
+            "sha256": "ae87a096976d41b9d8a669483215e290b7370f4ecaddb746f035bd8244ee9276"
+          }
+        },
+        "platform-cpe-a-fixture-inner-condition": {
+          "source": {
+            "id": "cpe:/a:fixture:inner",
+            "idref": "cpe:/a:fixture:inner",
+            "kind": "cpe_platform",
+            "sha256": "8ab27472e28a6365b6f4ecfeb30aba3d21f47c7c5b86836c8a267435948695dc"
+          }
+        },
+        "platform-cpe-a-fixture-outer-condition": {
+          "source": {
+            "id": "cpe:/a:fixture:outer",
+            "idref": "cpe:/a:fixture:outer",
+            "kind": "cpe_platform",
+            "sha256": "ea035ea6f54c528ec73ee32cde928b8d7587d3afa9e5c75cbf18c9597e4d296c"
+          }
+        },
+        "platform-cpe-a-fixture-true-condition": {
+          "source": {
+            "id": "cpe:/a:fixture:true",
+            "idref": "cpe:/a:fixture:true",
+            "kind": "cpe_platform",
+            "sha256": "22e63cc08ffabe02f12c3870928831951b6d95c82017c52d20bc19eb9169a566"
+          }
+        },
+        "platform-cpe-a-fixture-unknown-condition": {
+          "source": {
+            "id": "cpe:/a:fixture:unknown",
+            "idref": "cpe:/a:fixture:unknown",
+            "kind": "cpe_platform",
+            "sha256": "628e61e6ea1a37a29439c966cb020c1257138dc1c97486b6c13e674ad81dc5d2"
+          }
+        },
+        "platform-fixture-benchmark-platform-condition": {
+          "source": {
+            "cpe_expression": {
+              "children": [
+                {
+                  "children": [],
+                  "facts": [
+                    {
+                      "href": "fixture-oval.xml",
+                      "id_ref": "oval:fixture:known",
+                      "source_xml_sha256": "fc52cfcd53dbf7d1c2dd3488103856d967119947461aaf4513b5064f9b579195",
+                      "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+                    },
+                    {
+                      "href": "fixture-oval.xml",
+                      "id_ref": "oval:fixture:unknown",
+                      "source_xml_sha256": "50fc3682956d3bd4f86aa0094729fa7cfdace45d72d6f8ef164f3bed9899a8c6",
+                      "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+                    }
+                  ],
+                  "negate": "false",
+                  "operator": "OR",
+                  "source_xml_sha256": "3d311179dcbe2a9e06a613e7843d96d8b25964e275bc7f67d4eacac2cdf2b873"
+                }
+              ],
+              "facts": [],
+              "negate": "false",
+              "operator": "AND",
+              "source_xml_sha256": "dbe75e2a31f991b763949b1d882125502f00d7094032b6dd2b830046bb260fdc"
+            },
+            "expression_sha256": "dcd00e90fae13862e1f30fd065cdc427f6a8a8046f393842f89e10fbaf3981bb",
+            "id": "fixture-benchmark-platform",
+            "idref": "#fixture-benchmark-platform",
+            "kind": "cpe_platform",
+            "sha256": "85bca5fed36eb0f2fc530c960a2e01531ba81eb22defbba8c55b0ce2cef2e937"
+          }
+        }
+      },
+      "id": "direct-slice-applicability"
+    }
+  },
+  "authoring/direct-slice/benchmark.json": {
+    "benchmark": {
+      "applicability_catalog": "direct-slice-applicability",
+      "groups": [
+        {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-fixture-outer-condition"
+              }
+            ]
+          },
+          "groups": [
+            {
+              "applicability": {
+                "any_of": [
+                  {
+                    "condition": "platform-cpe-a-fixture-inner-condition"
+                  }
+                ]
+              },
+              "groups": [],
+              "id": "nested-platform-group-group",
+              "rules": [
+                "native-a345525f23be41e7",
+                "native-43eb3ce6a737115e",
+                "native-a94fbaf34378bc5c",
+                "native-8c7e1e162d0d4881"
+              ],
+              "title": "Nested platform group"
+            }
+          ],
+          "id": "outer-platform-group-group",
+          "rules": [],
+          "title": "Outer platform group"
+        }
+      ],
+      "id": "applicability-qualification",
+      "platform": {
+        "applicability": {
+          "any_of": [
+            {
+              "condition": "platform-fixture-benchmark-platform-condition"
+            }
+          ]
+        },
+        "id": "source-platform",
+        "title": "Source platform applicability; unresolved identities remain an explicit hold"
+      },
+      "profiles": [
+        {
+          "disabled_rules": [
+            "native-43eb3ce6a737115e"
+          ],
+          "id": "xccdf_example_profile_fixture_disabled"
+        }
+      ],
+      "rules": [
+        "native-a345525f23be41e7",
+        "native-43eb3ce6a737115e",
+        "native-a94fbaf34378bc5c",
+        "native-8c7e1e162d0d4881"
+      ]
+    }
+  },
+  "authoring/direct-slice/rules/native-43eb3ce6a737115e.json": {
+    "rule": {
+      "applicability": {
+        "any_of": [
+          {
+            "condition": "platform-cpe-a-fixture-false-condition"
+          }
+        ]
+      },
+      "id": "native-43eb3ce6a737115e"
+    }
+  },
+  "authoring/direct-slice/rules/native-8c7e1e162d0d4881.json": {
+    "rule": {
+      "applicability": {
+        "any_of": [
+          {
+            "condition": "platform-cpe-a-fixture-error-condition"
+          }
+        ]
+      },
+      "id": "native-8c7e1e162d0d4881"
+    }
+  },
+  "authoring/direct-slice/rules/native-a345525f23be41e7.json": {
+    "rule": {
+      "applicability": {
+        "any_of": [
+          {
+            "condition": "platform-cpe-a-fixture-true-condition"
+          }
+        ]
+      },
+      "id": "native-a345525f23be41e7"
+    }
+  },
+  "authoring/direct-slice/rules/native-a94fbaf34378bc5c.json": {
+    "rule": {
+      "applicability": {
+        "any_of": [
+          {
+            "condition": "platform-cpe-a-fixture-unknown-condition"
+          }
+        ]
+      },
+      "id": "native-a94fbaf34378bc5c"
+    }
+  }
+}
