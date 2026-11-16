@@ -30,7 +30,11 @@ def result_type(variable):
     if operation in STRING_FUNCTIONS:
         return "string"
     if operation == "literal_component":
-        return children[0].get("datatype", "string")
+        # OVAL leaves literal_component/@datatype optional. In that form the
+        # enclosing local_variable declaration supplies the source datatype;
+        # defaulting to string would turn an authored integer into an invalid
+        # native comparison during Test conversion.
+        return children[0].get("datatype") or declared
     # Variable/Object components retain their declaration type until an
     # approved source-bound projection proves otherwise.
     return declared
