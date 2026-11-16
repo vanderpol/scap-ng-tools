@@ -300,6 +300,21 @@ class StaticVariableObjectSetRecovery(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'not a static population'):
             visitor.static_variable_object(objects['root'])
 
+    def test_variable_test_state_uses_expression_result_type_over_stale_declaration(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=True)
+        merge = oval(
+            '<local_variable xmlns="OVAL" datatype="int" id="var-merge">'
+            '<merge delimiter=":" sort="natural">'
+            '<literal_component datatype="int">1</literal_component>'
+            '</merge></local_variable>')
+        self.assertEqual(visitor.variable_expression_result_type(merge), 'string')
+        time_difference = oval(
+            '<local_variable xmlns="OVAL" datatype="string" id="var-time">'
+            '<time_difference format_2="seconds_since_epoch">'
+            '<literal_component datatype="int">0</literal_component>'
+            '</time_difference></local_variable>')
+        self.assertEqual(visitor.variable_expression_result_type(time_difference), 'int')
+
     def test_literal_escape_regex_is_materialized_without_cast(self):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = oval('<escape_regex xmlns="OVAL"><literal_component datatype="string">\\^.$|()[]{}*+?</literal_component></escape_regex>')
