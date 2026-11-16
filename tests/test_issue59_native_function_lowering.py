@@ -65,6 +65,50 @@ class Active041FunctionLowering(unittest.TestCase):
                 'object': {'capability': 'independent.shellcommand', 'command': 'printf x'},
                 'field': 'subexpression'}}]}})
 
+    def test_time_difference_uses_active_typed_expression_for_all_formats_and_arities(self):
+        visitor = self.visitor()
+        cases = [
+            ('year_month_day', 'year_month_day',
+             '<literal_component datatype="string">2009-02-04</literal_component>',
+             '<literal_component datatype="string">2004-02-04</literal_component>'),
+            ('month_day_year', 'month_day_year',
+             '<literal_component datatype="string">02/04/2009</literal_component>',
+             '<literal_component datatype="string">02/04/2004</literal_component>'),
+            ('day_month_year', 'month_day_year',
+             '<literal_component datatype="string">04/02/2009</literal_component>',
+             '<literal_component datatype="string">02/04/2004</literal_component>'),
+            ('seconds_since_epoch', 'seconds_since_epoch',
+             '<literal_component datatype="int">1238506200</literal_component>',
+             '<literal_component datatype="int">1238420000</literal_component>'),
+            ('day_month_year', 'win_filetime',
+             '<literal_component datatype="string">1/1/1970</literal_component>',
+             '<literal_component datatype="string">19db1ded53e8000</literal_component>'),
+        ]
+        for format_1, format_2, left, right in cases:
+            with self.subTest(format_1=format_1, format_2=format_2):
+                source = oval(f'<time_difference xmlns="OVAL" format_1="{format_1}" format_2="{format_2}">{left}{right}</time_difference>')
+                native = visitor.function(source)
+                self.assertEqual(native['time_difference']['format_1'], format_1)
+                self.assertEqual(native['time_difference']['format_2'], format_2)
+                self.assertEqual(lower_expression(native), native)
+        one = oval('<time_difference xmlns="OVAL" format_2="seconds_since_epoch"><literal_component datatype="int">1238506200</literal_component></time_difference>')
+        self.assertEqual(visitor.function(one), {'time_difference': {'format_2': 'seconds_since_epoch', 'values': [{'literal': {'datatype': 'integer', 'value': 1238506200}}]}})
+        default = oval('<time_difference xmlns="OVAL"><literal_component datatype="string">2009-02-04</literal_component></time_difference>')
+        self.assertEqual(visitor.function(default), {'time_difference': {'values': [{'literal': {'datatype': 'string', 'value': '2009-02-04'}}]}})
+
+    def test_time_difference_keeps_nested_graphs_and_rejects_invalid_shape(self):
+        nested = {'time_difference': {'values': [
+            {'variable': 'left-variable'},
+            {'values': {'object': {'object_ref': 'source-object'}, 'field': 'value'}},
+        ], 'format_1': 'year_month_day', 'format_2': 'seconds_since_epoch'}}
+        self.assertEqual(lower_expression(nested), nested)
+        with self.assertRaisesRegex(ValueError, 'one-operand time_difference'):
+            lower_expression({'time_difference': {'values': [{'literal': '2009-02-04'}], 'format_1': 'year_month_day'}})
+        with self.assertRaisesRegex(ValueError, 'time_difference has unsupported format'):
+            lower_expression({'time_difference': {'values': [{'literal': '2009-02-04'}, {'literal': '2004-02-04'}], 'format_1': 'cim_datetime', 'format_2': 'year_month_day'}})
+        with self.assertRaisesRegex(ValueError, 'one or two operands'):
+            lower_expression({'time_difference': {'values': []}})
+
     def test_native_arithmetic_preserves_order_and_numeric_literal_types(self):
         visitor = self.visitor()
         source = oval(

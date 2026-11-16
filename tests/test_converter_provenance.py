@@ -8,12 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '2eba28e641ba5ec77fd151dd3cc73c7aa5694f2b39355b39d9278781daae145e'
+CURRENT_RUNTIME_SHA256 = '1ce51fab4af3c505206fbb1a91bd09851b77dca48e9e7efece272dc579cf90dc'
 UNCHANGED_SOURCE_SHA256 = '60fad2420a1208fe5e14bcd92b5fe75996796f3885faf768bfbdb3b9bfeaf350'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '5fa26ee62c5a636144ee182596e6faf972bfba364160de8c1a03208058aba98e',
-    'v04_direct_converter.py': '59ca963100a45e6a32a1bc3adfdf95e90fe5ef828675ebd0f9ad18f81e992f5f',
+    'v04_direct_converter.py': '9c9e16fc0c27e2086c287dac0c5ee3e8eca9681a32e9dc164be090e1b142a6e9',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
@@ -76,7 +76,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
         self.assertEqual(len(pack['behavior_attributes']), 8)
         self.assertEqual(pack['format'], 'scap-ng-portable-0.4.1-semantic-pack/1')
         self.assertEqual(pack['schema_version'], '0.4.1')
-        self.assertEqual(pack['frozen_schema_digest'], '578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829')
+        self.assertEqual(pack['frozen_schema_digest'], '326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329')
         self.assertEqual(pack['oval_commit'], '2f140ee5c5dd1ed9606fcd5afc301f6baeb48706')
         self.assertEqual(pack['generator_helper_sha256']['v04_capability_source.py'], 'b2e4a1cb053acc574b7677ef7d94a38905ce9acdd8a418be613840b330ca44e5')
         self.assertFalse((directory / 'contracts-0.4.0.json').exists())
