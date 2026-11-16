@@ -84,6 +84,20 @@ def assessment_variable_expressions(assessment):
             return literal(value, declared)
         if op == 'variable':
             return {variable(value)}
+        if op == 'time_difference':
+            if not isinstance(value, dict) or set(value) - {'values', 'format_1', 'format_2'} or 'values' not in value:
+                raise ValueError('time_difference requires values and known options')
+            operands = value['values']
+            if not isinstance(operands, list) or not 1 <= len(operands) <= 2:
+                raise ValueError('time_difference requires one or two operands')
+            if len(operands) == 1 and 'format_1' in value:
+                raise ValueError('one-operand time_difference cannot specify format_1')
+            formats = {'year_month_day', 'month_day_year', 'day_month_year', 'seconds_since_epoch', 'win_filetime'}
+            if any(value.get(key) not in formats for key in ('format_1', 'format_2') if key in value):
+                raise ValueError('time_difference has unsupported format')
+            for operand in operands:
+                expression(operand)
+            return {'integer'}
         if op == 'values':
             obj = value['object']
             if isinstance(obj, str):

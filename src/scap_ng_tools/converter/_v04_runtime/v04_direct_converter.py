@@ -349,6 +349,15 @@ class AssessmentConverter:
         self._wmi_mapping = mapping
         object_id = objects[0].get('object_ref')
         object_source = self.source.node(self.component_id, object_id, 'object')
+        self._variable_result_datatype = ""
+        if mapping['capability'] == 'variable.value' and local_name(object_source) == 'variable_object':
+            variable_refs = [child.text.strip() for child in object_source
+                             if local_name(child) == 'var_ref' and (child.text or '').strip()]
+            if len(variable_refs) == 1:
+                variable_source = self.source.node(self.component_id, variable_refs[0], 'variable')
+                if variable_source.get('datatype') == 'int' or any(local_name(child) == 'time_difference'
+                                                                    for child in variable_source):
+                    self._variable_result_datatype = 'int'
         preserve_object_graph_variables = any(
             local_name(node) in ('set', 'filter') for node in object_source.iter())
         if local_name(object_source) == 'wmi_object':
@@ -993,6 +1002,21 @@ class AssessmentConverter:
             ensure(element.get('item_field') in mapping['native']['state_field_map'], 'unknown object_component field')
             return {'values': {'object': self.reference(identifier, 'object'),
                                'field': mapping['native']['state_field_map'][element.get('item_field')]}}
+        if operation == 'time_difference':
+            # OVAL 5.12.3 time_difference is a first-class active native
+            # expression.  It is deliberately not lowered through the
+            # inactive generic function envelope: the active schema and RI
+            # evaluator own its typed UTC/format semantics.
+            ensure(self.native_recovery, 'time_difference requires native recovery')
+            attributes(element, {'format_1', 'format_2'})
+            ensure(1 <= len(element) <= 2, 'time_difference requires one or two components')
+            formats = {key: element.get(key) for key in ('format_1', 'format_2') if key in element.attrib}
+            allowed = {'year_month_day', 'month_day_year', 'day_month_year',
+                       'seconds_since_epoch', 'win_filetime'}
+            ensure(all(value in allowed for value in formats.values()),
+                   'unsupported time_difference format')
+            values = [self.function(child) for child in element]
+            return {'time_difference': {'values': values, **formats}}
         # The approved migration envelope is opt-in.  It is never emitted by
         # the historical/default path, which remains byte-compatible.  Options
         # are copied from OVAL only after exact lexical/range/arity checks; no
@@ -1207,6 +1231,14 @@ class AssessmentConverter:
 
     def predicate(self, element, mapping, selector=False, *, record_field=False):
         nil = '{http://www.w3.org/2001/XMLSchema-instance}nil'
+        if (not selector and mapping.get('capability') == 'variable.value' and
+                local_name(element) == 'value' and getattr(self, '_variable_result_datatype', '')):
+            # time_difference has an integer native result even when the
+            # original OVAL local_variable declared datatype=string. Copy the
+            # State entity for conversion; source XML remains untouched and
+            # source identity/provenance continue to use its original bytes.
+            element = deepcopy(element)
+            element.set('datatype', self._variable_result_datatype)
         if selector and nil in element.attrib:
             allowed = {nil, 'datatype'}
             # OVAL nil filename selects directory Items. Explicit default

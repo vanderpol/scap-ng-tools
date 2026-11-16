@@ -90,6 +90,20 @@ def lower_expression(node):
             return {"regex_capture": {"pattern": options["pattern"], "value": children[0]}}
         raise ValueError("unhandled source function: " + name)
 
+    if operation == "time_difference":
+        _required(isinstance(value, dict) and set(value).issubset({"values", "format_1", "format_2"}) and "values" in value,
+                  "time_difference requires values and known options")
+        operands = value["values"]
+        _required(isinstance(operands, list) and 1 <= len(operands) <= 2,
+                  "time_difference requires one or two operands")
+        if len(operands) == 1:
+            _required("format_1" not in value, "one-operand time_difference cannot specify format_1")
+        allowed = {"year_month_day", "month_day_year", "day_month_year",
+                   "seconds_since_epoch", "win_filetime"}
+        _required(all(value.get(key) in allowed for key in ("format_1", "format_2") if key in value),
+                  "time_difference has unsupported format")
+        options = {key: deepcopy(value[key]) for key in ("format_1", "format_2") if key in value}
+        return {"time_difference": {**options, "values": [lower_expression(v) for v in operands]}}
     if operation == "count":
         return {"count": lower_expression(value)}
     if operation == "unique":
