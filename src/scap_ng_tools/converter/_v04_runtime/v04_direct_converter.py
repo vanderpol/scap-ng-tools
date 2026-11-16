@@ -457,7 +457,7 @@ class AssessmentConverter:
             # value-level quantifier after this projection, not a second
             # wrapper-Item existence quantifier. Keep the wrapper present and
             # let field_requirement.values_matching carry the source result.
-            requirement['items_satisfying'] = 'every'
+            requirement['item_requirement']['items_satisfying'] = 'every'
             self.conversion_warnings.append({
                 'code': 'variable_test_quantifier_projected_to_value_field',
                 'source_test': element.get('id'),
