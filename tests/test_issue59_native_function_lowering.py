@@ -94,11 +94,12 @@ class Active041FunctionLowering(unittest.TestCase):
                 self.assertEqual(native['time_difference']['format_2'], format_2)
                 self.assertEqual(lower_expression(native), native)
 
-        one = oval('<time_difference xmlns="OVAL" format_2="seconds_since_epoch">'
+        one = oval('<time_difference xmlns="OVAL" format_1="month_day_year" format_2="seconds_since_epoch">'
                    '<literal_component datatype="int">1238506200</literal_component>'
                    '</time_difference>')
         self.assertEqual(visitor.function(one), {
             'time_difference': {
+                'format_1': 'month_day_year',
                 'format_2': 'seconds_since_epoch',
                 'values': [{'literal': {'datatype': 'integer', 'value': 1238506200}}],
             },
@@ -123,11 +124,15 @@ class Active041FunctionLowering(unittest.TestCase):
             },
         }
         self.assertEqual(lower_expression(nested), nested)
-        with self.assertRaisesRegex(ValueError, 'one-operand time_difference'):
-            lower_expression({'time_difference': {
-                'values': [{'literal': '2009-02-04'}],
-                'format_1': 'year_month_day',
-            }})
+        self.assertEqual(lower_expression({'time_difference': {
+            'values': [{'literal': '2009-02-04'}],
+            'format_1': 'seconds_since_epoch',
+            'format_2': 'year_month_day',
+        }}), {'time_difference': {
+            'values': [{'literal': '2009-02-04'}],
+            'format_1': 'seconds_since_epoch',
+            'format_2': 'year_month_day',
+        }})
         with self.assertRaisesRegex(ValueError, 'time_difference has unsupported format'):
             lower_expression({'time_difference': {
                 'values': [{'literal': '2009-02-04'}, {'literal': '2004-02-04'}],

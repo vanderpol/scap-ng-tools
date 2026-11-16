@@ -96,8 +96,10 @@ def lower_expression(node):
         operands = value["values"]
         _required(isinstance(operands, list) and 1 <= len(operands) <= 2,
                   "time_difference requires one or two operands")
-        if len(operands) == 1:
-            _required("format_1" not in value, "one-operand time_difference cannot specify format_1")
+        # OVAL permits both format attributes on the one-operand form.
+        # format_2 parses the explicit operand and format_1 parses the
+        # implicit current-UTC operand; when omitted, each defaults to the
+        # canonical year_month_day format at evaluation time.
         allowed = {"year_month_day", "month_day_year", "day_month_year",
                    "seconds_since_epoch", "win_filetime"}
         _required(all(value.get(key) in allowed for key in ("format_1", "format_2") if key in value),
