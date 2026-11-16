@@ -364,6 +364,36 @@ class StaticVariableObjectSetRecovery(unittest.TestCase):
             '</time_difference></local_variable>')
         self.assertEqual(result_type(time_difference), 'int')
 
+    def test_arithmetic_result_type_promotes_mixed_integer_and_float(self):
+        mixed_add = oval(
+            '<local_variable xmlns="OVAL" datatype="float" id="var-add">'
+            '<arithmetic arithmetic_operation="add">'
+            '<literal_component datatype="int">1</literal_component>'
+            '<literal_component datatype="float">1.1</literal_component>'
+            '</arithmetic></local_variable>')
+        mixed_multiply = oval(
+            '<local_variable xmlns="OVAL" datatype="float" id="var-multiply">'
+            '<arithmetic arithmetic_operation="multiply">'
+            '<literal_component datatype="float">1.1</literal_component>'
+            '<literal_component datatype="int">2</literal_component>'
+            '</arithmetic></local_variable>')
+        self.assertEqual(result_type(mixed_add), 'float')
+        self.assertEqual(result_type(mixed_multiply), 'float')
+
+    def test_arithmetic_result_type_follows_referenced_variable(self):
+        mixed = oval(
+            '<local_variable xmlns="OVAL" datatype="float" id="var-mixed">'
+            '<arithmetic arithmetic_operation="add">'
+            '<variable_component var_ref="float-source"/>'
+            '<literal_component datatype="int">1</literal_component>'
+            '</arithmetic></local_variable>')
+        float_source = oval(
+            '<local_variable xmlns="OVAL" datatype="float" id="float-source">'
+            '<literal_component datatype="float">1.1</literal_component>'
+            '</local_variable>')
+        self.assertEqual(result_type(mixed, lambda identifier: {
+            'float-source': float_source}[identifier]), 'float')
+
     def test_literal_escape_regex_is_materialized_without_cast(self):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = oval('<escape_regex xmlns="OVAL"><literal_component datatype="string">\\^.$|()[]{}*+?</literal_component></escape_regex>')

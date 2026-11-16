@@ -18,14 +18,69 @@ STRING_FUNCTIONS = frozenset({
 INTEGER_FUNCTIONS = frozenset({"time_difference", "count", "arithmetic"})
 
 
-def result_type(variable):
-    """Return the native result type of a one-expression OVAL Variable."""
+def result_type(variable, resolve_variable=None, active=None):
+    """Return the native result type of a one-expression OVAL Variable.
+
+    OVAL arithmetic is polymorphic: an operation returns ``float`` when any
+    component is float, and ``int`` only when every component is integer. The
+    previous adapter treated every arithmetic expression as integer, causing
+    valid mixed arithmetic (for example ``1 + 1.1``) to be sent through the
+    integer lexical parser and blocked as ``invalid int literal``.  Resolve
+    referenced Variables only when the caller supplies the source lookup; the
+    small resolver is cycle-safe and leaves genuinely unknown graphs at the
+    declaration type rather than inventing a cast.
+    """
     declared = variable.get("datatype", "")
     children = list(variable)
     if len(children) != 1:
         return declared
-    operation = children[0].tag.rsplit("}", 1)[-1]
-    if operation in INTEGER_FUNCTIONS:
+
+    if active is None:
+        active = set()
+    identifier = variable.get("id")
+    if identifier and identifier in active:
+        return declared
+    next_active = set(active)
+    if identifier:
+        next_active.add(identifier)
+
+    node = children[0]
+    operation = node.tag.rsplit("}", 1)[-1]
+    if operation == "arithmetic":
+        component_types = []
+        for component in node:
+            component_name = component.tag.rsplit("}", 1)[-1]
+            if component_name == "literal_component":
+                component_types.append(component.get("datatype") or declared)
+                continue
+            if component_name == "variable_component" and resolve_variable is not None:
+                reference = (component.get("var_ref") or "").strip()
+                if reference and reference not in next_active:
+                    try:
+                        referenced = resolve_variable(reference)
+                    except (KeyError, TypeError, ValueError):
+                        referenced = None
+                    if referenced is not None:
+                        component_types.append(result_type(referenced, resolve_variable, next_active))
+                        continue
+            # An object component can point at a Variable Object. Resolve only
+            # that explicit source graph; host-backed objects remain unknown.
+            if component_name == "object_component" and resolve_variable is not None:
+                try:
+                    referenced = resolve_variable((component.get("object_ref") or "").strip())
+                except (KeyError, TypeError, ValueError):
+                    referenced = None
+                if referenced is not None:
+                    component_types.append(result_type(referenced, resolve_variable, next_active))
+                    continue
+            component_types.append(declared)
+        if "float" in component_types:
+            return "float"
+        if component_types and all(value == "int" for value in component_types):
+            return "int"
+        return declared
+
+    if operation in {"time_difference", "count"}:
         return "int"
     if operation in STRING_FUNCTIONS:
         return "string"
@@ -34,7 +89,7 @@ def result_type(variable):
         # enclosing local_variable declaration supplies the source datatype;
         # defaulting to string would turn an authored integer into an invalid
         # native comparison during Test conversion.
-        return children[0].get("datatype") or declared
+        return node.get("datatype") or declared
     # Variable/Object components retain their declaration type until an
     # approved source-bound projection proves otherwise.
     return declared
@@ -75,7 +130,15 @@ def install(engine):
         source = visitor.source
         original_node = source.node
         variable = original_node(visitor.component_id, variable_ref, "variable")
-        native_type = result_type(variable)
+        def resolve_variable(identifier):
+            # result_type only follows explicit Variable/Object component
+            # references; it never acquires host data or evaluates a source.
+            candidate = source.node(visitor.component_id, identifier, "variable")
+            if candidate is not None:
+                return candidate
+            return None
+
+        native_type = result_type(variable, resolve_variable)
         if native_type == variable.get("datatype", ""):
             return original(visitor, element)
         # The copied visitor consults only this declaration's datatype while
