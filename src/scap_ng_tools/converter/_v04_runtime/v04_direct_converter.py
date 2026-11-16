@@ -1850,7 +1850,9 @@ def render_profiles(source, rule_ids, rule_links):
     profiles, profile_trace, native_ids = [], [], set()
     for profile in source.benchmark.findall(f'{{{XCCDF}}}Profile'):
         lineage = source.profile_lineage(profile)
-        selection = {identifier: source.rule_selected(source.rules[identifier], profile)
+        overrides = source.profile_overrides(profile)
+        selection = {identifier: source.rule_selected(source.rules[identifier], profile,
+                                                     resolved_overrides=overrides)
                      for identifier in rule_ids}
         identifier = native_identifier(profile, 'profile')
         ensure(identifier not in native_ids, f'generated native Profile ID collision: {identifier}')
