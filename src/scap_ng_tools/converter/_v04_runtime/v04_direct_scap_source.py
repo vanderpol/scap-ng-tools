@@ -309,20 +309,62 @@ class SourceModel:
                 catalog.setdefault(condition, {'source': source})
         return catalog
 
-    def rule_selected(self, rule, profile=None):
+    def profile_lineage(self, profile):
+        """Resolve XCCDF Profile extends from oldest ancestor to child.
+
+        Inheritance is only admitted in the *source* model; every native
+        Profile is a fully flattened disabled Rule-ID list. Fail closed on
+        missing parents, duplicate source identities, and cycles.
+        """
+        profiles = {}
+        for candidate in self.benchmark.findall(f'{{{XCCDF}}}Profile'):
+            identifier = candidate.get('id')
+            ensure(identifier and identifier not in profiles,
+                   f'duplicate/missing source Profile ID: {identifier}')
+            profiles[identifier] = candidate
+        chain, visited = [], set()
+        cursor = profile
+        while cursor is not None:
+            attributes(cursor, {'id', 'extends'})
+            identifier = cursor.get('id')
+            ensure(identifier and identifier in profiles and profiles[identifier] is cursor,
+                   f'unknown source Profile: {identifier}')
+            ensure(identifier not in visited, f'Profile inheritance cycle at {identifier}')
+            visited.add(identifier)
+            chain.append(cursor)
+            parent_id = cursor.get('extends')
+            if not parent_id:
+                break
+            ensure(parent_id in profiles, f'Profile {identifier} extends missing Profile {parent_id}')
+            cursor = profiles[parent_id]
+        return list(reversed(chain))
+
+    def profile_overrides(self, profile):
+        """Merge original XCCDF selectors with child-over-parent precedence."""
         overrides = {}
-        if profile is not None:
-            attributes(profile, {'id'})
-            for child in profile:
-                ensure(child.tag in {f'{{{XCCDF}}}{name}' for name in ('title', 'description', 'select')}, 'Profile refinement/inheritance unsupported')
+        for layer in self.profile_lineage(profile):
+            local = {}
+            for child in layer:
+                ensure(child.tag in {f'{{{XCCDF}}}{name}'
+                                     for name in ('title', 'description', 'select')},
+                       'Profile refinement/unsupported source element')
                 if child.tag != f'{{{XCCDF}}}select':
                     continue
                 attributes(child, {'idref', 'selected'})
                 target = child.get('idref')
-                ensure(target in self.nodes[self.benchmark_component], f'unresolved Profile idref: {target}')
-                ensure(local_name(self.nodes[self.benchmark_component][target]) in ('Group', 'Rule'), 'Profile target is not an item')
-                ensure(target not in overrides and child.get('selected') in ('true', 'false'), 'repeated/noncanonical Profile selection')
-                overrides[target] = child.get('selected') == 'true'
+                ensure(target in self.nodes[self.benchmark_component],
+                       f'unresolved Profile idref: {target}')
+                ensure(local_name(self.nodes[self.benchmark_component][target]) in ('Group', 'Rule'),
+                       'Profile target is not an item')
+                ensure(target not in local and child.get('selected') in ('true', 'false'),
+                       'repeated/noncanonical Profile selection')
+                local[target] = child.get('selected') == 'true'
+            # A source child may deliberately reverse any parent selector.
+            overrides.update(local)
+        return overrides
+
+    def rule_selected(self, rule, profile=None):
+        overrides = self.profile_overrides(profile) if profile is not None else {}
         selected, item = True, rule
         while item is not self.benchmark:
             ensure(item.get('selected', 'true') in ('true', 'false'), 'noncanonical selected lexical unsupported')
