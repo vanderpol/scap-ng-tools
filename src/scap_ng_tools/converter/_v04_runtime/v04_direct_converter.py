@@ -452,6 +452,12 @@ class AssessmentConverter:
                 state_has_entity_check |= any('entity_check' in child.attrib for child in state_source)
             if not state_has_entity_check:
                 field_requirement['values_matching'] = MATCHING[source_check]
+            # The native representation has one wrapper Item containing the
+            # complete Variable value population. The source Test check is a
+            # value-level quantifier after this projection, not a second
+            # wrapper-Item existence quantifier. Keep the wrapper present and
+            # let field_requirement.values_matching carry the source result.
+            requirement['items_satisfying'] = 'every'
             self.conversion_warnings.append({
                 'code': 'variable_test_quantifier_projected_to_value_field',
                 'source_test': element.get('id'),
