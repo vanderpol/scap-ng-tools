@@ -1845,20 +1845,39 @@ def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True, nat
     return assemble_subset(source, documents, bindings, mappings, native_recovery=native_recovery)
 
 
+def render_profiles(source, rule_ids, rule_links):
+    """Flatten source XCCDF Profile inheritance into independent native Profiles."""
+    profiles, profile_trace, native_ids = [], [], set()
+    for profile in source.benchmark.findall(f'{{{XCCDF}}}Profile'):
+        lineage = source.profile_lineage(profile)
+        selection = {identifier: source.rule_selected(source.rules[identifier], profile)
+                     for identifier in rule_ids}
+        identifier = native_identifier(profile, 'profile')
+        ensure(identifier not in native_ids, f'generated native Profile ID collision: {identifier}')
+        native_ids.add(identifier)
+        profiles.append({'id': identifier, 'title': profile.findtext(f'{{{XCCDF}}}title'),
+                         'disabled_rules': [rule_links[rule] for rule, enabled in selection.items()
+                                            if not enabled]})
+        profile_trace.append({
+            'source_id': profile.get('id'),
+            'source_sha256': digest(xml_identity(profile)),
+            'native_id': identifier,
+            'source_profile_chain': [
+                {'source_id': layer.get('id'), 'source_sha256': digest(xml_identity(layer))}
+                for layer in lineage],
+            'selected': selection,
+            'disabled_original_rule_ids': [rule for rule, enabled in selection.items() if not enabled],
+        })
+    return profiles, profile_trace
+
+
 def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=False):
     """Project selection only over emitted Rules; an empty subset has no package."""
     rule_ids = [row['source_rule'] for row in rule_trace]
     rule_links = {row['source_rule']: row['native_rule'] for row in rule_trace}
     benchmark = source.benchmark
     ensure(all(source.rule_selected(source.rules[identifier]) for identifier in rule_ids), 'disabled source defaults unsupported')
-    profiles, profile_trace = [], []
-    for profile in benchmark.findall(f'{{{XCCDF}}}Profile'):
-        selection = {identifier: source.rule_selected(source.rules[identifier], profile) for identifier in rule_ids}
-        identifier = native_identifier(profile, 'profile')
-        profiles.append({'id': identifier, 'title': profile.findtext(f'{{{XCCDF}}}title'),
-                         'disabled_rules': [rule_links[rule] for rule, enabled in selection.items() if not enabled]})
-        profile_trace.append({'source_id': profile.get('id'), 'source_sha256': digest(xml_identity(profile)),
-                              'native_id': identifier, 'selected': selection})
+    profiles, profile_trace = render_profiles(source, rule_ids, rule_links)
     wrapper = {'id': 'direct-slice', 'ng_schema_version': '0.4.1', 'use_case': 'compliance',
         'version': {'value': benchmark.findtext(f'{{{XCCDF}}}version', '')},
         'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}],
