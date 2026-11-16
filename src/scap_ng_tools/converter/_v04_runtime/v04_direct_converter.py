@@ -323,32 +323,6 @@ class AssessmentConverter:
         value = logical_condition(element.get('operator', 'AND'), children)
         return {'not': value} if element.get('negate') == 'true' else value
 
-    def variable_expression_result_type(self, variable):
-        """Infer the result type needed by a Variable Test State.
-
-        OVAL declarations can contain stale or contradictory ``datatype``
-        metadata (the pinned merge witness declares ``int`` even though
-        merge returns a string). The native expression contract is the
-        authoritative type; this helper only chooses the expected-value
-        lexical boundary and records any declaration mismatch for provenance.
-        It does not cast collected evidence or alter the source XML.
-        """
-        declared = variable.get('datatype', '')
-        children = list(variable)
-        if len(children) != 1:
-            return declared
-        operation = local_name(children[0])
-        if operation in ('time_difference', 'count', 'arithmetic'):
-            return 'int'
-        if operation in ('concat', 'merge', 'split', 'substring', 'begin', 'end',
-                         'regex_capture', 'escape_regex', 'glob_to_regex', 'unique'):
-            return 'string'
-        if operation == 'literal_component':
-            return children[0].get('datatype', 'string')
-        if operation in ('variable_component', 'object_component'):
-            return declared
-        return declared
-
     def convert_test(self, element):
         mapping = self.capability(element, 'test')
         if mapping['native'].get('fixed_result') is not None:
@@ -381,23 +355,9 @@ class AssessmentConverter:
                              if local_name(child) == 'var_ref' and (child.text or '').strip()]
             if len(variable_refs) == 1:
                 variable_source = self.source.node(self.component_id, variable_refs[0], 'variable')
-                # The OVAL local_variable/@datatype is source metadata, not a
-                # reliable result type for function expressions. In particular
-                # the Self-Assertion merge vectors declare ``int`` while merge
-                # always returns a string. Use the expression's result type when
-                # converting the Variable Test State so valid string results do
-                # not fail in the converter's integer literal parser.
-                self._variable_result_datatype = self.variable_expression_result_type(variable_source)
-                declared = variable_source.get('datatype')
-                if self._variable_result_datatype and declared != self._variable_result_datatype:
-                    self.conversion_warnings.append({
-                        'code': 'oval_variable_declared_datatype_differs_from_expression_result',
-                        'source_variable': variable_refs[0],
-                        'declared_datatype': declared,
-                        'expression_result_datatype': self._variable_result_datatype,
-                        'semantic_basis': 'native expression result type governs SCAP-NG 0.4.1; OVAL declaration retained as provenance',
-                        'independent_static_proof': 'SOURCE_EXPRESSION_RESULT_TYPE',
-                    })
+                if variable_source.get('datatype') == 'int' or any(local_name(child) == 'time_difference'
+                                                                    for child in variable_source):
+                    self._variable_result_datatype = 'int'
         preserve_object_graph_variables = any(
             local_name(node) in ('set', 'filter') for node in object_source.iter())
         if local_name(object_source) == 'wmi_object':

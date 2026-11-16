@@ -42,6 +42,10 @@ def load_runtime():
     engine = importlib.import_module('v04_direct_converter')
     if Path(engine.__file__).resolve().parent != directory:
         raise QualifiedConversionError('loaded converter from an unexpected source path')
+    # Keep the provenance-pinned visitor byte-identical. Native 0.4.1-only
+    # result-type adaptation is installed in memory at this boundary.
+    from .native041_variable_result_type import install
+    install(engine)
     return engine
 
 

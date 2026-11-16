@@ -8,6 +8,7 @@ import xml.etree.ElementTree as ET
 
 from scap_ng_tools.converter.direct04 import load_runtime
 from scap_ng_tools.converter.native041_function_lowering import lower_expression, lower_assessment_inplace
+from scap_ng_tools.converter.native041_variable_result_type import result_type
 
 load_runtime()
 from v04_direct_converter import AssessmentConverter  # noqa: E402
@@ -307,13 +308,13 @@ class StaticVariableObjectSetRecovery(unittest.TestCase):
             '<merge delimiter=":" sort="natural">'
             '<literal_component datatype="int">1</literal_component>'
             '</merge></local_variable>')
-        self.assertEqual(visitor.variable_expression_result_type(merge), 'string')
+        self.assertEqual(result_type(merge), 'string')
         time_difference = oval(
             '<local_variable xmlns="OVAL" datatype="string" id="var-time">'
             '<time_difference format_2="seconds_since_epoch">'
             '<literal_component datatype="int">0</literal_component>'
             '</time_difference></local_variable>')
-        self.assertEqual(visitor.variable_expression_result_type(time_difference), 'int')
+        self.assertEqual(result_type(time_difference), 'int')
 
     def test_literal_escape_regex_is_materialized_without_cast(self):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
