@@ -141,16 +141,6 @@ def _assessment_document(source, component, definition_id, assessment_id, title,
     return {'assessment': assessment}, trace
 
 
-def _not_evaluated(assessment_id, title, reason):
-    return {'assessment': {
-        'id': assessment_id, 'version': 1, 'assessment_title': title,
-        'mode': 'automated', 'class': 'compliance',
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'},
-        'tests': {},
-        'evaluate': {'not_evaluated': {'reason': reason}},
-    }}
-
-
 def _make_composite(title, source_key, child_ids, operator, negate, shared, traces):
     """Build a native Boolean wrapper over shared Assessment references."""
     op = str(operator).upper()
@@ -227,19 +217,45 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             raise ValueError(f'conflicting generated applicability condition identity: {condition_id}')
         conditions[condition_id] = value
 
-    def unsupported_condition(identity, title, reason):
+    def condition_key(ref):
+        platform = next((node for node in source.benchmark.iter()
+                         if node.tag == f'{{{XCCDF}}}platform'
+                         and node.get('idref') == ref), None)
+        if platform is not None and hasattr(source, 'applicability_condition_id'):
+            return source.applicability_condition_id(platform)
+        return _slug(ref, 'platform-', '-condition')
+
+    def unsupported_condition(identity, title, reason, condition_id=None):
+        # A source identity without a qualified executable mapping is an
+        # explicit catalog hold, not a synthetic Assessment.  The RI must
+        # report applicability ERROR for this condition; it must never turn
+        # the hold into FALSE/not_applicable.
         key = ('unsupported', identity, reason)
         if key not in condition_cache:
-            condition_id = _slug(identity, 'platform-', '-condition')
-            assessment_id = _slug(f'{identity}-{reason}', 'platform-', '-assessment')
-            add_shared(assessment_id, _not_evaluated(assessment_id, title, reason), {
-                'assessment': assessment_id, 'source_identity': identity,
-                'conversion_status': 'APPLICABILITY_UNSUPPORTED_NOT_EVALUATED',
-                'reason': reason,
-            })
-            add_condition(condition_id, {'assessment': assessment_id})
-            condition_cache[key] = condition_id
+            condition_cache[key] = condition_id or _slug(identity, 'platform-', '-condition')
         return condition_cache[key]
+
+    def source_provenance(ref, spec=None):
+        """Return source identity for one XCCDF platform reference."""
+        platform = next((node for node in source.benchmark.iter()
+                         if node.tag == f'{{{XCCDF}}}platform'
+                         and node.get('idref') == ref), None)
+        if spec is not None:
+            value = {
+                'kind': 'cpe_platform', 'id': ref.lstrip('#'),
+                'sha256': spec['source_xml_sha256'], 'idref': ref,
+            }
+            value['cpe_expression'] = spec['logical_tests']
+            value['expression_sha256'] = hashlib.sha256(
+                _canonical(spec['logical_tests']).encode()).hexdigest()
+            return value
+        if platform is not None:
+            kind = 'cpe_platform' if ref.startswith('cpe:') else 'xccdf_platform'
+            return {'kind': kind, 'id': ref.lstrip('#'),
+                    'sha256': _xml_digest(platform), 'idref': ref}
+        kind = 'cpe_platform' if ref.startswith('cpe:') else 'xccdf_platform'
+        return {'kind': kind, 'id': ref.lstrip('#') or ref,
+                'sha256': hashlib.sha256(ref.encode()).hexdigest(), 'idref': ref}
 
     def fact_assessment(fact):
         href = fact.get('href') or ''
@@ -258,7 +274,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             cid = unsupported_condition(f'{href}:{source_id}',
                                         'Unsupported source applicability fact', reason)
             unsupported.append({'kind': 'oval_fact', 'identity': source_fact, 'reason': reason})
-            fact_cache[identity] = (cid, None)
+            fact_cache[identity] = (None, None)
             return fact_cache[identity]
         try:
             definition = source.node(component, source_id, 'definition')
@@ -300,13 +316,18 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             cid = unsupported_condition(f'{component}:{source_id}',
                                         'Unsupported source applicability fact', reason)
             unsupported.append({'kind': 'oval_fact', 'identity': source_fact, 'reason': reason})
-            fact_cache[identity] = (cid, None)
+            fact_cache[identity] = (None, None)
             return fact_cache[identity]
 
     def lower_logical(spec_id, logical, title):
         child_ids = [fact_assessment(fact)[0] for fact in logical['facts']]
         child_ids.extend(lower_logical(spec_id, child, title)
                           for child in logical.get('children', []))
+        # A single unqualified fact prevents the entire source CPE Boolean
+        # expression from being executable.  Keep its platform condition as
+        # a provenance-bearing hold rather than manufacturing a false leaf.
+        if any(child_id is None for child_id in child_ids):
+            return None
         return _make_composite(title, f'{spec_id}:{logical["source_xml_sha256"]}',
                                child_ids, logical['operator'], logical['negate'],
                                shared, shared_traces)
@@ -318,7 +339,10 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             if spec is None:
                 reason = 'unresolved CPE platform specification: ' + platform_id
                 unsupported.append({'kind': 'platform', 'identity': platform_id, 'reason': reason})
-                return unsupported_condition(platform_id, 'Unsupported CPE platform specification', reason)
+                condition_id = unsupported_condition(platform_id, 'Unsupported CPE platform specification', reason,
+                                                     condition_key(ref))
+                add_condition(condition_id, {'source': source_provenance(ref)})
+                return condition_id
             semantic = _canonical(spec)
             if semantic in condition_cache:
                 return condition_cache[semantic]
@@ -327,20 +351,29 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                                for logical in spec['logical_tests']]
                 if not logical_ids:
                     raise ValueError('CPE platform specification has no logical tests')
-                condition = logical_ids[0] if len(logical_ids) == 1 else _make_composite(
-                    spec['title'], platform_id, logical_ids, 'AND', 'false',
-                    shared, shared_traces)
+                condition = ((logical_ids[0] if len(logical_ids) == 1 else
+                              _make_composite(spec['title'], platform_id, logical_ids,
+                                              'AND', 'false', shared, shared_traces))
+                             if all(logical_ids) else None)
             except ValueError as error:
                 reason = f'unsupported CPE platform specification {platform_id}: {error}'
                 unsupported.append({'kind': 'platform', 'identity': platform_id, 'reason': reason})
-                condition = unsupported_condition(platform_id, spec['title'], reason)
-            condition_id = _slug(platform_id, 'platform-', '-condition')
-            add_condition(condition_id, {'assessment': condition})
+                condition = None
+            condition_id = condition_key(ref)
+            condition_value = {'source': source_provenance(ref, spec)}
+            if condition is not None:
+                condition_value['assessment'] = condition
+            else:
+                unsupported_condition(platform_id, spec['title'],
+                                      'unqualified CPE platform applicability')
+            add_condition(condition_id, condition_value)
             condition_cache[semantic] = condition_id
             return condition_id
         reason = 'CPE identity has no established executable SCAP-NG applicability mapping: ' + ref
         unsupported.append({'kind': 'cpe_identity', 'identity': ref, 'reason': reason})
-        return unsupported_condition(ref, 'Unsupported CPE identity', reason)
+        condition_id = unsupported_condition(ref, 'Unsupported CPE identity', reason, condition_key(ref))
+        add_condition(condition_id, {'source': source_provenance(ref)})
+        return condition_id
 
     def refs_conditions(refs):
         result = []
@@ -359,33 +392,59 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         rule = source.rules.get(rule_id)
         if rule is None:
             continue
-        refs = inherited_platform_refs(source, rule)
-        condition_ids = refs_conditions(refs)
+        context = (source.applicability_context(rule)
+                   if hasattr(source, 'applicability_context') else {'levels': []})
+        levels = []
+        rule_level = None
+        for level in context.get('levels', []):
+            refs = [condition.get('source_idref') for condition in level.get('conditions', [])]
+            refs = [ref for ref in refs if ref]
+            condition_ids = refs_conditions(refs)
+            record = {'kind': level.get('kind'), 'source_id': level.get('id'),
+                      'conditions': condition_ids, 'source_platform_refs': refs}
+            levels.append(record)
+            if level.get('kind') == 'rule':
+                rule_level = record
+        # Keep only Rule-local applicability on the Rule.  Benchmark and Group
+        # restrictions remain on their own native nodes; the effective
+        # predicate is the RI's AND of all ancestor levels plus this local one.
         rule_path = next((path for path in row.get('artifacts', [])
                           if '/rules/' in path and path in documents), None)
         if rule_path:
-            documents[rule_path]['rule']['applicability'] = condition_ids
+            if rule_level and rule_level['conditions']:
+                documents[rule_path]['rule']['applicability'] = {
+                    'any_of': [{'condition': condition_id}
+                               for condition_id in rule_level['conditions']]}
+            else:
+                documents[rule_path]['rule'].pop('applicability', None)
             row['applicability'] = {
-                'conditions': condition_ids, 'source_platform_refs': refs,
+                'levels': levels,
+                'effective_operator': 'all_of',
                 'unsupported': [item for item in unsupported
-                                if item.get('identity') in refs or
+                                if item.get('identity') in
+                                [ref for level in levels for ref in level['source_platform_refs']] or
                                 (isinstance(item.get('identity'), dict) and
-                                 item['identity'].get('id_ref') in refs)],
+                                 item['identity'].get('id_ref') in
+                                 [ref for level in levels for ref in level['source_platform_refs']])],
             }
             attached_rule_ids.add(rule_id)
 
     benchmark_refs = [child.get('idref') for child in
                       source.benchmark.findall(f'{{{XCCDF}}}platform')]
-    benchmark_conditions = refs_conditions([ref for ref in benchmark_refs if ref])
+    benchmark_refs = [ref for ref in benchmark_refs if ref]
+    benchmark_conditions = refs_conditions(benchmark_refs)
     benchmark_path = 'authoring/direct-slice/benchmark.json'
     if benchmark_path in documents:
         wrapper = documents[benchmark_path]['benchmark']
         wrapper['applicability_catalog'] = 'direct-slice-applicability'
         wrapper['platform']['title'] = (
-            'Source platform applicability; unresolved identities remain not evaluated')
-        wrapper['platform']['applicability'] = {
-            'operator': 'AND', 'conditions': benchmark_conditions,
-        }
+            'Source platform applicability; unresolved identities remain an explicit hold')
+        if benchmark_conditions:
+            wrapper['platform']['applicability'] = {
+                'any_of': [{'condition': condition_id}
+                           for condition_id in benchmark_conditions]}
+        else:
+            wrapper['platform'].pop('applicability', None)
 
     catalog_path = 'authoring/direct-slice/applicability.json'
     documents[catalog_path] = {'applicability': {
@@ -396,22 +455,38 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
     # Deduplicate diagnostics while retaining complete source identities.
     unsupported = list({(_canonical(item)): item for item in unsupported}.values())
 
-    # Verify the builder's core graph invariant before publication: every
-    # catalog condition resolves to an emitted Assessment document.
+    def expression_condition_ids(expression):
+        if not isinstance(expression, dict):
+            return set()
+        if 'condition' in expression:
+            return {expression['condition']}
+        result = set()
+        for key in ('all_of', 'any_of'):
+            for child in expression.get(key, []):
+                result.update(expression_condition_ids(child))
+        if 'not' in expression:
+            result.update(expression_condition_ids(expression['not']))
+        return result
+
+    # Qualified conditions must resolve to an emitted Assessment.  Conditions
+    # without `assessment` are intentional provenance-bearing applicability
+    # holds and are evaluated as ERROR by the RI, never as FALSE.
     emitted_ids = {doc['assessment']['id'] for path, doc in documents.items()
                    if '/assessments/' in path and 'assessment' in doc}
-    unresolved = sorted({value['assessment'] for value in conditions.values()} - emitted_ids)
+    unresolved = sorted({value['assessment'] for value in conditions.values()
+                         if 'assessment' in value} - emitted_ids)
     if unresolved:
         raise ValueError('applicability catalog has unresolved Assessments: ' + ', '.join(unresolved))
     condition_ids = set(conditions)
     for path, document in documents.items():
         if '/rules/' in path and 'rule' in document:
-            missing = sorted(set(document['rule'].get('applicability', [])) - condition_ids)
+            missing = sorted(expression_condition_ids(document['rule'].get('applicability')) - condition_ids)
             if missing:
                 raise ValueError(f'Rule {path} has unresolved applicability conditions: {missing}')
     benchmark_document = documents.get('authoring/direct-slice/benchmark.json')
     if benchmark_document:
-        missing = sorted(set(benchmark_document['benchmark']['platform'].get('applicability', {}).get('conditions', [])) - condition_ids)
+        missing = sorted(expression_condition_ids(
+            benchmark_document['benchmark']['platform'].get('applicability')) - condition_ids)
         if missing:
             raise ValueError(f'Benchmark has unresolved applicability conditions: {missing}')
 
@@ -424,11 +499,12 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         'source_platform_specifications': list(specifications.values()),
         'source_rule_count_attached': len(attached_rule_ids),
         'source_rule_count_with_conditions': sum(
-            bool(row.get('applicability', {}).get('conditions'))
+            bool(row.get('applicability', {}).get('levels'))
             for row in coverage.get('rules', [])),
         'source_platform_ref_count_attached': sum(
-            len(row.get('applicability', {}).get('source_platform_refs', []))
-            for row in coverage.get('rules', [])),
+            len(level.get('source_platform_refs', []))
+            for row in coverage.get('rules', [])
+            for level in row.get('applicability', {}).get('levels', [])),
         'catalog_condition_count': len(conditions),
         'shared_assessment_count': len(shared),
         'source_identity_preserved': True,

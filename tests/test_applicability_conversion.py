@@ -11,6 +11,9 @@ from scripts.publish_issue28_assessments import verify_published_inventory
 from scap_ng_tools.converter.applicability import (
     _make_composite, build_applicability, extract_platform_specifications, inherited_platform_refs,
 )
+from scap_ng_tools.converter.direct04 import load_runtime
+from scap_ng_tools.converter._v04_runtime.v04_direct_scap_source import SourceModel
+
 
 FIXTURES = Path(__file__).parent / 'fixtures' / 'applicability'
 XCCDF = 'http://checklists.nist.gov/xccdf/1.2'
@@ -119,11 +122,59 @@ class ApplicabilityConversionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'cycle'):
             verify_published_inventory(cyclic)
 
+    def test_nested_group_conversion_uses_rule_id_and_keeps_local_applicability(self):
+        benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
+          <Group id="outer"><platform idref="#outer-platform">
+            </platform><Group id="inner"><platform idref="#inner-platform"/>
+              <Rule id="fixture-rule"><platform idref="#rule-platform"/></Rule>
+            </Group>
+          </Group>
+        </Benchmark>''')
+        source = SourceModel.__new__(SourceModel)
+        source.benchmark = benchmark
+        source.parents = {child: parent for parent in benchmark.iter() for child in parent}
+        source.applicability_level = SourceModel.applicability_level.__get__(source)
+        rendered = load_runtime().native_group(source, benchmark.find(f'{{{XCCDF}}}Group'),
+                                {'fixture-rule': 'native-rule-id'})
+        self.assertEqual(rendered['rules'], [])
+        self.assertEqual(len(rendered['groups']), 1)
+        inner = rendered['groups'][0]
+        self.assertEqual(inner['rules'], ['native-rule-id'])
+        self.assertEqual([c['condition'] for c in inner['applicability']['any_of']],
+                         ['platform-inner-platform-condition'])
+        self.assertEqual(rendered['applicability']['any_of'][0]['condition'],
+                         'platform-outer-platform-condition')
+
+    def test_unqualified_platform_is_provenance_hold_without_synthetic_assessment(self):
+        benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
+          <platform idref="cpe:/o:unknown:platform"/>
+          <Rule id="fixture-rule"/>
+        </Benchmark>''')
+        rule = benchmark.find(f'{{{XCCDF}}}Rule')
+        source = SimpleNamespace(root=benchmark, benchmark=benchmark, rules={'fixture-rule': rule},
+                                parents={rule: benchmark}, catalog={})
+        docs = {
+            'authoring/direct-slice/benchmark.json': {'benchmark': {
+                'platform': {'id': 'fixture', 'title': 'fixture'}}},
+            'authoring/direct-slice/rules/fixture-rule.json': {'rule': {}}
+        }
+        coverage = {'rules': [{'source_rule': 'fixture-rule', 'status': 'converted',
+                               'artifacts': ['authoring/direct-slice/rules/fixture-rule.json']}]}
+        documents, trace = build_applicability(source, docs, coverage, mappings=[])
+        catalog = documents['authoring/direct-slice/applicability.json']['applicability']
+        condition = next(iter(catalog['conditions'].values()))
+        self.assertNotIn('assessment', condition)
+        self.assertEqual(condition['source']['kind'], 'cpe_platform')
+        self.assertEqual(condition['source']['id'], 'cpe:/o:unknown:platform')
+        self.assertFalse([path for path in documents if '/assessments/' in path])
+        self.assertTrue(trace['unsupported'])
+
     def test_shared_fact_and_rule_reference_resolution(self):
         cpe_root = ET.parse(FIXTURES / 'linux-platform.xml').getroot()
         benchmark = ET.Element(f'{{{XCCDF}}}Benchmark')
         ET.SubElement(benchmark, f'{{{XCCDF}}}platform', {'idref': '#fixture-linux-platform'})
         group = ET.SubElement(benchmark, f'{{{XCCDF}}}Group')
+        ET.SubElement(group, f'{{{XCCDF}}}platform', {'idref': '#fixture-linux-platform'})
         rule = ET.SubElement(group, f'{{{XCCDF}}}Rule', {'id': 'fixture-rule'})
         ET.SubElement(rule, f'{{{XCCDF}}}platform', {'idref': '#fixture-linux-platform'})
         source_root = ET.Element('root')
@@ -132,6 +183,9 @@ class ApplicabilityConversionTests(unittest.TestCase):
             root=source_root, benchmark=benchmark, rules={'fixture-rule': rule},
             parents={group: benchmark, rule: group}, catalog={'linux-oval.xml': 'oval-linux'},
         )
+        source.applicability_condition_id = SourceModel.applicability_condition_id.__get__(source)
+        source.applicability_level = SourceModel.applicability_level.__get__(source)
+        source.applicability_context = SourceModel.applicability_context.__get__(source)
         # Source node is sufficient for the converter stub; this test exercises
         # graph lowering, not OVAL capability semantics.
         definition = ET.Element(f'{{{OVAL}}}definition', {'id': 'unused', 'class': 'compliance'})
@@ -159,8 +213,15 @@ class ApplicabilityConversionTests(unittest.TestCase):
         self.assertEqual(trace['shared_assessment_count'], 5)  # 3 facts + OR + AND platform
         catalog = documents['authoring/direct-slice/applicability.json']['applicability']
         self.assertEqual(len(catalog['conditions']), 1)
-        self.assertEqual(documents['authoring/direct-slice/rules/fixture-rule.json']['rule']['applicability'], list(catalog['conditions']))
-        self.assertEqual(documents['authoring/direct-slice/benchmark.json']['benchmark']['platform']['applicability']['conditions'], list(catalog['conditions']))
+        rule_expression = documents['authoring/direct-slice/rules/fixture-rule.json']['rule']['applicability']
+        self.assertEqual([item['condition'] for item in rule_expression['any_of']],
+                         ['platform-fixture-linux-platform-condition'])
+        benchmark_expression = documents['authoring/direct-slice/benchmark.json']['benchmark']['platform']['applicability']
+        self.assertEqual([item['condition'] for item in benchmark_expression['any_of']],
+                         ['platform-fixture-linux-platform-condition'])
+        levels = coverage['rules'][0]['applicability']['levels']
+        self.assertEqual([level['kind'] for level in levels], ['benchmark', 'group', 'rule'])
+        self.assertTrue(all('source' in value for value in catalog['conditions'].values()))
         emitted = {d['assessment']['id'] for p, d in documents.items() if '/assessments/' in p}
         self.assertTrue(set(v['assessment'] for v in catalog['conditions'].values()) <= emitted)
 

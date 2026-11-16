@@ -1546,8 +1546,8 @@ def native_group(source, group, rule_links):
     value = {'id': native_identifier(group, 'group'),
              'groups': [native_group(source, child, rule_links)
                         for child in group.findall(f'{{{XCCDF}}}Group')],
-             'rules': [rule_links[r.get('idref')] for r in group.findall(f'{{{XCCDF}}}Rule')
-                       if r.get('idref') in rule_links]}
+             'rules': [rule_links[r.get('id')] for r in group.findall(f'{{{XCCDF}}}Rule')
+                       if r.get('id') in rule_links]}
     title = group.findtext(f'{{{XCCDF}}}title')
     if title is not None: value['title'] = title
     expression = native_applicability(level)
