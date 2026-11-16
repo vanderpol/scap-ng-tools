@@ -1533,6 +1533,28 @@ def convert_manual_only_rule(source, source_id):
     return documents, binding
 
 
+def native_applicability(level):
+    """Lower one source level without merging it with ancestors."""
+    if not level or not level.get('conditions'):
+        return None
+    return {'any_of': [{'condition': condition['id']} for condition in level['conditions']]}
+
+
+def native_group(source, group, rule_links):
+    """Project nested XCCDF Group structure and local platforms only."""
+    level = source.applicability_level(group)
+    value = {'id': native_identifier(group, 'group'),
+             'groups': [native_group(source, child, rule_links)
+                        for child in group.findall(f'{{{XCCDF}}}Group')],
+             'rules': [rule_links[r.get('idref')] for r in group.findall(f'{{{XCCDF}}}Rule')
+                       if r.get('idref') in rule_links]}
+    title = group.findtext(f'{{{XCCDF}}}title')
+    if title is not None: value['title'] = title
+    expression = native_applicability(level)
+    if expression is not None: value['applicability'] = expression
+    return value
+
+
 def convert_rule(source, source_id, mappings, *, human_compact=True, native_recovery=False):
     """Convert one entire automated closure; failures leave no emitted artifacts."""
     documents = {}
@@ -1568,8 +1590,11 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
         'severity': rule.get('severity', 'unknown'), 'role': 'full', 'weight': float(rule.get('weight', '1')),
         'discussion': rule.findtext(f'{{{XCCDF}}}description', ''), 'rationale': None,
         'extensions': {}, 'warnings': [], 'identifiers': [], 'references': [], 'requires': [], 'conflicts': [],
-        'applicability': [], 'parameters': {}, 'remediation': {}, 'organizational_input_requirements': {},
+        'parameters': {}, 'remediation': {}, 'organizational_input_requirements': {},
         'assessment_choices': {'automated': {'assessment': assessment_id}}, 'default_assessment_choice': 'automated'}
+    local_applicability = native_applicability(source.applicability_level(rule))
+    if local_applicability is not None:
+        native_rule['applicability'] = local_applicability
     optional_metadata = ('discussion', 'rationale', 'extensions', 'warnings', 'identifiers', 'references', 'remediation')
     omitted_metadata = [key for key in optional_metadata if native_rule[key] in (None, '', [], {})]
     for key in omitted_metadata:
@@ -1608,7 +1633,7 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
                            'default': check.get('selector', '') == ''}
                           for check in rule.findall(f'{{{XCCDF}}}check')],
         'source_selection_policy': 'oval_preferred_manual_ocil_alternative',
-        'source_platforms': [child.get('idref') for child in rule.findall(f'{{{XCCDF}}}platform')]}
+        'source_applicability': source.applicability_context(rule)}
     if manual_alternatives:
         binding['manual_alternatives'] = manual_alternatives
     recovered_controls = []
@@ -1705,9 +1730,12 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
         'status': [{'value': child.text, **child.attrib} for child in benchmark.findall(f'{{{XCCDF}}}status')],
         'metadata': {'prototype_subset': True, 'omitted_rule_count': len(source.rules) - len(rule_ids)},
         'notices': [], 'front_matter': [], 'rear_matter': [], 'references': [], 'text_blocks': [],
-        'platform': {'id': 'fixture-platform', 'title': 'Compilation fixture; applicability not converted', 'applicability': {}},
+        'platform': {'id': 'fixture-platform', 'title': 'Source Benchmark platform restriction'},
         'applicability_catalog': 'fixture-applicability', 'scoring': [], 'parameters': [], 'default_selection': True,
-        'groups': [], 'profiles': profiles, 'rules': list(rule_links.values())}
+        'groups': [native_group(source, group, rule_links) for group in benchmark.findall(f'{{{XCCDF}}}Group')], 'profiles': profiles, 'rules': list(rule_links.values())}
+    benchmark_applicability = native_applicability(source.applicability_level(benchmark))
+    if benchmark_applicability is not None:
+        wrapper['platform']['applicability'] = benchmark_applicability
     parameters={}
     for binding in rule_trace:
         for key,value in binding.get('policy_parameters',{}).items():
@@ -1717,7 +1745,7 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
         wrapper['parameters']=[parameters[key] for key in sorted(parameters)]
     if rule_ids:
         documents['authoring/direct-slice/benchmark.json'] = {'benchmark': wrapper}
-        documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': {}}}
+        documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': source.applicability_catalog()}}
     unsupported = ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
                    'other Object behaviors/traversal',
                    'record-level Variables, nested records, record absence and masking']

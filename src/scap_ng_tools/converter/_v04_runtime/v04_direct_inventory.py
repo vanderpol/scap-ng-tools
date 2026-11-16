@@ -129,12 +129,10 @@ class SourceInventory:
                     selections[name] = None
                     problems.append(issue('unsupported-selection', str(error), name))
             nodes = sorted(dependencies.values(), key=lambda n: (n['component'], n['id']))
-            ancestors, platforms = [], []
+            ancestors = []
             item = rule
             while True:
                 ancestors.append({'kind': local_name(item), 'id': item.get('id')})
-                platforms.extend({'origin': item.get('id'), 'idref': p.get('idref'),
-                                  'sha256': digest(xml_identity(p))} for p in item.findall(X + 'platform'))
                 if item is self.source.benchmark:
                     break
                 item = self.source.parents[item]
@@ -143,7 +141,8 @@ class SourceInventory:
                 'source': {'zip_sha256': self.source.zip_sha256, 'member': self.source.member,
                            'benchmark_component': self.source.benchmark_component, 'fragment': identifier},
                 'checks': checks, 'selection': selections, 'dependencies': nodes,
-                'unconverted_policy_context': {'ancestor_items': ancestors, 'platforms': platforms,
+                'unconverted_policy_context': {'ancestor_items': ancestors,
+                    'applicability': self.source.applicability_context(rule),
                     'original_rule_attributes': dict(rule.attrib),
                     'rule_children': [{'tag': c.tag, 'sha256': digest(xml_identity(c))} for c in rule
                                       if local_name(c) not in ('check', 'title', 'version', 'description')]},

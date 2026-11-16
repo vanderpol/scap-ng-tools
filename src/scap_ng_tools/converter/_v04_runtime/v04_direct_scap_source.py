@@ -232,6 +232,83 @@ class SourceModel:
         return [check for check in rule.findall(f'{{{XCCDF}}}check')
                 if check.get('system') == OCIL and check.get('selector', '') in ('', 'manual')]
 
+    def applicability_condition_id(self, platform):
+        """Stable native catalog key for one source platform reference."""
+        ref = (platform.get('idref') or '').lstrip('#')
+        stem = re.sub('[^a-z0-9]+', '-', ref.lower()).strip('-') or 'unnamed'
+        key = 'platform-' + stem + '-condition'
+        if len(key) > 64:
+            key = key[:48].rstrip('-') + '-' + digest(xml_identity(platform))[:12] + '-condition'
+        return key
+
+    def applicability_level(self, item):
+        """Preserve one XCCDF item's local platform restriction only.
+
+        XCCDF platform children are a local OR-set; inheritance is represented
+        by callers as separate ancestor levels and is never flattened here.
+        """
+        platforms = list(item.findall(f'{{{XCCDF}}}platform'))
+        if not platforms:
+            return None
+        return {'kind': local_name(item).lower(), 'id': item.get('id'),
+                'operator': 'any_of', 'conditions': [
+                    {'id': self.applicability_condition_id(platform),
+                     'source_idref': platform.get('idref'),
+                     'source_sha256': digest(xml_identity(platform))}
+                    for platform in platforms]}
+
+    def applicability_context(self, rule):
+        levels, item = [], rule
+        while True:
+            level = self.applicability_level(item)
+            if level is not None:
+                levels.append(level)
+            if item is self.benchmark:
+                break
+            item = self.parents[item]
+        levels.reverse()
+        return {'levels': levels, 'effective_operator': 'all_of',
+                'note': 'ancestor levels ANDed; platform children within one level ORed'}
+
+    def cpe_platform_expression(self, source_id):
+        """Return the CPE 2.0 Boolean tree without reducing it to names."""
+        wanted = source_id.lstrip('#')
+        for root in self.components.values():
+            for platform in root.iter():
+                if local_name(platform) != 'platform' or platform.get('id') != wanted:
+                    continue
+                logical = next((child for child in platform if local_name(child) == 'logical-test'), None)
+                def visit(node):
+                    name = local_name(node)
+                    if name == 'logical-test':
+                        return {'operator': (node.get('operator') or 'AND').upper(),
+                                'negate': (node.get('negate') or 'false').lower() == 'true',
+                                'operands': [visit(child) for child in node
+                                             if local_name(child) in ('logical-test', 'fact-ref', 'check-fact-ref')]}
+                    if name in ('fact-ref', 'check-fact-ref'):
+                        return {'fact_ref': dict(sorted(node.attrib.items()))}
+                    return {'element': name}
+                return visit(logical) if logical is not None else None
+        return None
+
+    def applicability_catalog(self):
+        catalog = {}
+    def applicability_catalog(self):
+        catalog = {}
+        for item in self.benchmark.iter():
+            for platform in item.findall(f'{{{XCCDF}}}platform'):
+                condition = self.applicability_condition_id(platform)
+                source_idref = platform.get('idref') or ''
+                kind = 'cpe_platform' if not source_idref.startswith('#') and source_idref.startswith('cpe:') else 'xccdf_platform'
+                source = {'kind': kind, 'id': source_idref.lstrip('#'),
+                          'sha256': digest(xml_identity(platform)), 'idref': source_idref}
+                expression = self.cpe_platform_expression(source_idref)
+                if expression is not None:
+                    source['cpe_expression'] = expression
+                    source['expression_sha256'] = digest(expression)
+                catalog.setdefault(condition, {'source': source})
+        return catalog
+
     def rule_selected(self, rule, profile=None):
         overrides = {}
         if profile is not None:

@@ -8,18 +8,18 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = 'aad2398a29088e0031524bf554722e212da97b697489dd5757bed325e2592223'
+CURRENT_RUNTIME_SHA256 = '26e58768b8004895607858c82fc4a080a1e337fa41b699d596cc5f4e3472ece3'
 UNCHANGED_SOURCE_SHA256 = '60fad2420a1208fe5e14bcd92b5fe75996796f3885faf768bfbdb3b9bfeaf350'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '5fa26ee62c5a636144ee182596e6faf972bfba364160de8c1a03208058aba98e',
-    'v04_direct_converter.py': 'd4db07761bd8dd66d178b701b98b9bdd8b3ffdaf83a5beb447df679e321e1e5d',
+    'v04_direct_converter.py': 'c42968962256385c277dfbf08704e0a6060b5f7866f46325b38fc24e7b0c3b05',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
-    'v04_direct_scap_source.py': '8969d250de92050674c849c4934c70506484d8fec9d6d82de84741cfb225d553',
+    'v04_direct_scap_source.py': '16c78f791bc3f7a1321400303f58c12bb96225191ddb466d345fa0254a5da7bf',
     'v04_draft_inputs.py': '6373bc9a7208f7ad2b2b3cbcd4674c2683d3ecf971c7380d1e3566b7d1367f07',
-    'v04_direct_inventory.py': '7b1ac0c502ed1e8d15a07935b677ae8f86e88b88a3efd9174de9fa46ba33f782',
+    'v04_direct_inventory.py': 'd275992ce013a75945456da73678ebb29649a9e031e113af4c35b953c962a0b8',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
     'v04_variable_function_migration.py': 'ab08c49569bde0458c4e7a567f131a7965cf35a78a050aa6a5a639eb6ecc3d44',
     'v04_direct_enum_variables.py': '6f8cdab49cbcfb4474b997e9a95421f26e4a11c64c77bf05ef19556b2c443101',
@@ -76,7 +76,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
         self.assertEqual(len(pack['behavior_attributes']), 8)
         self.assertEqual(pack['format'], 'scap-ng-portable-0.4.1-semantic-pack/1')
         self.assertEqual(pack['schema_version'], '0.4.1')
-        self.assertEqual(pack['frozen_schema_digest'], '578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829')
+        self.assertEqual(pack['frozen_schema_digest'], '6cd7b9160b90b7c98f159cfe1d83393082398c6072f5aff58f7289e3133fe7bf')
         self.assertEqual(pack['oval_commit'], '2f140ee5c5dd1ed9606fcd5afc301f6baeb48706')
         self.assertEqual(pack['generator_helper_sha256']['v04_capability_source.py'], 'b2e4a1cb053acc574b7677ef7d94a38905ce9acdd8a418be613840b330ca44e5')
         self.assertFalse((directory / 'contracts-0.4.0.json').exists())
