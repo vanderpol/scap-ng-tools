@@ -75,6 +75,12 @@ class RemainingCollectedAudit(unittest.TestCase):
             predicate_type({'equals': {'variable': 'captured'}}, allowed, assessment,
                            '/test/value', variable_types={'captured': semantic.DYNAMIC_COLLECTED})
 
+    def test_converter_maps_oval_none_exist_var_check_to_native_none(self):
+        from scap_ng_tools.converter.direct04 import load_runtime
+        load_runtime()
+        from v04_direct_converter import MATCHING  # noqa: E402
+        self.assertEqual(MATCHING['none exist'], 'none')
+
     def test_converter_preserves_source_consumer_datatype_on_variable_predicate(self):
         from scap_ng_tools.converter.direct04 import load_runtime
         load_runtime()

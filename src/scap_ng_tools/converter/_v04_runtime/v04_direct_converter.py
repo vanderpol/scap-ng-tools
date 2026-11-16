@@ -28,7 +28,7 @@ ensure(SUPPORT['specification_version'] == '0.4.1' and len(CAPABILITIES) == len(
 EXISTENCE = {'at_least_one_exists': 'one_or_more', 'none_exist': 'none',
              'only_one_exists': 'exactly_one', 'any_exist': 'zero_or_more'}
 FIELD_EXISTENCE = {**EXISTENCE, 'all_exist': 'every'}
-MATCHING = {'all': 'every', 'at least one': 'one_or_more', 'none satisfy': 'none', 'only one': 'exactly_one'}
+MATCHING = {'all': 'every', 'at least one': 'one_or_more', 'none satisfy': 'none', 'none exist': 'none', 'only one': 'exactly_one'}
 COMPARISONS = {'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'matches_regex',
                'case insensitive equals': 'case_insensitive_equals', 'less than': 'less_than',
                'greater than': 'greater_than', 'greater than or equal': 'greater_than_or_equal',
