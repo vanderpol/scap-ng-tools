@@ -450,9 +450,23 @@ class AssessmentConverter:
             return legacy_wmi_record_predicate(element, field, self)
         conditions, seen = [], set()
         for child in element:
-            field = local_name(child)
-            ensure(child.tag.startswith(f'{{{mapping["source"]["namespace"]}}}') and
-                   field in mapping['native']['state_field_map'], 'unsupported State field/namespace')
+            source_field = local_name(child)
+            ensure(child.tag.startswith(f'{{{mapping["source"]["namespace"]}}}'),
+                   'unsupported State field/namespace')
+            field = source_field
+            # OVAL 5.12.3 retains a small number of deprecated State field
+            # names whose canonical SCAP-NG mapping explicitly identifies the
+            # replacement field. Apply only that reviewed, one-to-one
+            # migration crosswalk; never guess an arbitrary spelling or
+            # silently drop a source predicate.
+            if field not in mapping['native']['state_field_map']:
+                deprecated = mapping.get('migration_crosswalk', {}).get('deprecated', {})
+                replacement = deprecated.get(field, '')
+                prefix = 'migration_error_replaced_by_'
+                if replacement.startswith(prefix):
+                    field = replacement[len(prefix):]
+                ensure(field in mapping['native']['state_field_map'],
+                       'unsupported State field/namespace')
             ensure(field not in seen, 'repeated State field outside bounded proof')
             seen.add(field)
             if mapping['capability'] == 'windows.fileeffectiverights':
