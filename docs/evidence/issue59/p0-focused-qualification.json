@@ -1,0 +1,100 @@
+{
+  "applicability": {
+    "duplicate_group_membership": "rejected as ambiguous; no implicit OR",
+    "fixture_source_sha256": "c4835cb9f10c34b4897199af74eb51049c9aa33b89b9f59ed4419692100c7f01",
+    "null_paths": "structural ERROR; top-level omission remains unrestricted TRUE",
+    "results": {
+      "ERROR": "error",
+      "FALSE": "not_applicable",
+      "PROFILE_DISABLED": "not_evaluated",
+      "TRUE": "applicable",
+      "UNKNOWN": "unknown"
+    },
+    "ri_probe_sha256": "9e411087e64832eefd964a27e4e1e13ed27d5016d56684a90dd9b36dc6f5e57a",
+    "source_provenance_emitted": true
+  },
+  "format": "scap-ng/p0-focused-converter-ri-qualification/1",
+  "holds": [
+    "Direct CPE URI mappings without qualified Assessments remain explicit catalog holds and RI ERROR, never FALSE/not_applicable.",
+    "Canonical/Tools schema aggregate is 65ad62d2; RI embedded evaluator pack remains 326f8266 until coordinated schema-pack repin is approved.",
+    "Independent OVAL equivalence is not established.",
+    "GitHub Actions billing/startup failures are infrastructure failures, not test failures."
+  ],
+  "native_to_ri": {
+    "def580": {
+      "error": 0,
+      "false": 0,
+      "independent_oval_equivalence": false,
+      "invalid": 0,
+      "parent_definition": "true",
+      "ri_commit": "cd9d04739242552d024e794639f56dbd09b584c2",
+      "tests_total": 30,
+      "true": 30,
+      "unknown": 0
+    },
+    "def963": {
+      "binary_sha256": "fe4af9d2400536343763f44b878fb8d00078db3f7f2bd4b0315a8997a1c308f1",
+      "error": 0,
+      "false": 0,
+      "outcome_reason": "permission_denied / collection_incomplete; no UNKNOWN-to-FALSE coercion",
+      "receipt_sha256": "f5f334e2f4337918dace204639ea929184e27b14dc206b44893414ebf0eefdda",
+      "ri_commit": "cd9d04739242552d024e794639f56dbd09b584c2",
+      "tests_total": 3,
+      "true": 0,
+      "unknown": 3
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "fcb2c220c05a933665477a6504586b9f47f83177",
+    "ri_90_head_preserved": "b5acbabde9396422ec7add3ec9b287bc66dded13",
+    "ri_applicability_implementation_commit": "9f06b1975863e0a19984da4681dde7c1feca98ec",
+    "schema_family_sha256": "65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54",
+    "tools_converter_implementation_commit": "0da62742953cccb1e909cb7cad95c0d71694caf0"
+  },
+  "recommended_merge_order": [
+    "canonical #72",
+    "Tools #68 (do not cherry-pick #67 wholesale; time_difference is already inherited)",
+    "RI #101 after schema-pack pin decision; keep RI #90 separate and untouched"
+  ],
+  "reproduction": {
+    "converter_def580": "PYTHONPATH=src python -m scap_ng_tools.converter.direct04 --schema-root <scap-ng@fcb2c220>/schema --source <SCAP-Self-Assertion@e3538595>/SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml --sha256 c7e974a0a14ba4c7b72807e46e8052527b34a6da3672ca916dd57e5b4c2fd056 --oval-definition oval:org.mitre.oval.test:def:580 --source-commit e3538595c5083b9c34d937a81d319234df9bbfaa --source-path SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml --recover-native --output <unique-output>",
+    "converter_def963": "same command with unix/unix-def_sshd_test.xml, sha256 a39e832aec71f537ff18eeaac3b181c7f63d6dbe5c311a8d7221ce86258ec8f0, and --oval-definition oval:org.mitre.oval.test:def:963",
+    "ri_def580": "python tools/qualify_time_difference.py --assessment <def580>/assessment.json --trace <def580>/source-trace.json --binary <ri-benchmark> --schema-family 326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329 --converter-commit 0da62742953cccb1e909cb7cad95c0d71694caf0 --ri-commit 9f06b1975863e0a19984da4681dde7c1feca98ec --out <unique-output>"
+  },
+  "source": {
+    "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "files": {
+      "def580": {
+        "definition": "oval:org.mitre.oval.test:def:580",
+        "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+        "sha256": "c7e974a0a14ba4c7b72807e46e8052527b34a6da3672ca916dd57e5b4c2fd056"
+      },
+      "def963": {
+        "definition": "oval:org.mitre.oval.test:def:963",
+        "path": "SCAP_1.4/OVAL_Test_Content/unix/unix-def_sshd_test.xml",
+        "sha256": "a39e832aec71f537ff18eeaac3b181c7f63d6dbe5c311a8d7221ce86258ec8f0"
+      }
+    },
+    "repository": "OVAL-Community/SCAP-Self-Assertion"
+  },
+  "source_to_native": {
+    "def580": {
+      "assessment_sha256": "d05b3ed1de5693aa1dace96e19f6cee1adb26f8443db0b81ca50a91f90d813d2",
+      "status": "CONVERTED_UNVERIFIED",
+      "tests": 30,
+      "trace_sha256": "3f574e656c795d43ff9869237cf45465ac2b3644c5bcf85532dbe56c23f246ae",
+      "variables": 31
+    },
+    "def963": {
+      "assessment_sha256": "420d762102b56e11109292718e9d090f347d94e3527a0e3a91ce5a2d3c168396",
+      "constant_variable_values": 10,
+      "native_value_match": "none",
+      "source_status_behavior": "not rewritten; real host collection status remains an RI outcome",
+      "status": "CONVERTED_UNVERIFIED",
+      "tests": 3,
+      "trace_sha256": "98aedce8afb733e062154288e5db9e74776cbd09631ee5bba1d297da25ef2ddad",
+      "var_check": "none exist"
+    }
+  },
+  "status": "focused_only_no_full_corpus_regeneration"
+}
