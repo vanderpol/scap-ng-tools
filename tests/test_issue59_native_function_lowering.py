@@ -121,7 +121,7 @@ class Active041FunctionLowering(unittest.TestCase):
         assessment = {
             'variables': {
                 'current-variable': {
-                    'kind': 'local', 'datatype': 'integer',
+                    'kind': 'local',
                     'expression': {'time_difference': {
                         'format_1': 'month_day_year',
                         'format_2': 'seconds_since_epoch',
