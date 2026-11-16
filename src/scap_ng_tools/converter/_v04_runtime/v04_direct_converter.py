@@ -1261,6 +1261,23 @@ class AssessmentConverter:
             element = deepcopy(element)
             element.set('datatype', self._variable_result_datatype)
         if selector and nil in element.attrib:
+            # OVAL unix.sshd nil filepath means the platform default
+            # configuration file. The active native Object requires an
+            # explicit selector, so materialize the documented Linux default
+            # while retaining the original nil XML in source provenance.
+            if mapping['capability'] == 'unix.sshd' and local_name(element) == 'filepath':
+                attributes(element, {nil, 'datatype'})
+                ensure(element.get(nil) in ('true', '1') and not len(element) and not (element.text or '').strip(),
+                       'unsupported nil selector')
+                self.conversion_warnings.append({
+                    'code': 'oval_sshd_nil_filepath_materialized',
+                    'source_element': local_name(element),
+                    'source_sha256': digest(xml_identity(element)),
+                    'native_default': '/etc/ssh/sshd_config',
+                    'semantic_basis': 'OVAL unix.sshd nil filepath selects the platform default configuration path',
+                    'independent_static_proof': 'OVAL_5_12_3_UNIX_SSHD_DEFAULT_PATH',
+                })
+                return {'equals': '/etc/ssh/sshd_config'}
             allowed = {nil, 'datatype'}
             # OVAL nil filename selects directory Items. Explicit default
             # equality preserves that selection; other operations stay strict.
