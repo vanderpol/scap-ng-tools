@@ -125,7 +125,7 @@ def qualify(source_url: str, source_sha: str | None, output: Path, ri_results: P
             "schema_aggregate_sha256": "65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54",
             "converter_commit": "654d6481d6d86f47e9b648bc31b992990ad67213",
             "ri_commit": "32e59aa24769056aa00e8938487bbc9a380b591b",
-            "ri_qualification_harness_commit": "cd9d047",
+            "ri_qualification_harness_commit": "cd9d04739242552d024e794639f56dbd09b584c2",
         },
         "source_platform_levels": levels,
         "native": {"benchmark": documents["authoring/direct-slice/benchmark.json"]["benchmark"],
