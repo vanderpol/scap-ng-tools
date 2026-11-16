@@ -1,0 +1,180 @@
+{
+  "authoring/direct-slice/applicability.json": {
+    "applicability": {
+      "conditions": {
+        "platform-cpe-a-false-condition": {
+          "source": {
+            "id": "cpe:/a:false",
+            "idref": "cpe:/a:false",
+            "kind": "cpe_platform",
+            "sha256": "6b947a70e264b77299aabe8024085193f74b7a27b0368d50d41a45a9efc83781"
+          }
+        },
+        "platform-cpe-a-true-condition": {
+          "source": {
+            "id": "cpe:/a:true",
+            "idref": "cpe:/a:true",
+            "kind": "cpe_platform",
+            "sha256": "19e96ba6724c9f16809c801f6d782abd4b34b19a7549b3abaf56894882bd016f"
+          }
+        }
+      },
+      "id": "direct-slice-applicability"
+    }
+  },
+  "authoring/direct-slice/benchmark.json": {
+    "benchmark": {
+      "applicability_catalog": "direct-slice-applicability",
+      "groups": [
+        {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-true-condition"
+              }
+            ]
+          },
+          "groups": [
+            {
+              "applicability": {
+                "any_of": [
+                  {
+                    "condition": "platform-cpe-a-true-condition"
+                  }
+                ]
+              },
+              "groups": [],
+              "id": "group-group",
+              "rules": [
+                "native-2edeea023f54e2e5"
+              ]
+            }
+          ],
+          "id": "applicable-group-group",
+          "rules": [
+            "native-68da1ecc1c872d90",
+            "native-5e6de51fd74abb13"
+          ],
+          "title": "Applicable group"
+        },
+        {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-false-condition"
+              }
+            ]
+          },
+          "groups": [
+            {
+              "applicability": {
+                "any_of": [
+                  {
+                    "condition": "platform-cpe-a-false-condition"
+                  }
+                ]
+              },
+              "groups": [],
+              "id": "group-group",
+              "rules": [
+                "native-4ec1239b9a759ec9"
+              ]
+            }
+          ],
+          "id": "not-applicable-group-group",
+          "rules": [
+            "native-7b7bba940d0714a7",
+            "native-4a64e6c2091d0734"
+          ],
+          "title": "Not applicable group"
+        }
+      ],
+      "id": "applicability-qualification",
+      "platform": {
+        "applicability": {
+          "any_of": [
+            {
+              "condition": "platform-cpe-a-true-condition"
+            }
+          ]
+        },
+        "id": "source-platform",
+        "title": "Source platform applicability; unresolved identities remain an explicit hold"
+      },
+      "profiles": [
+        {
+          "disabled_rules": [
+            "native-68da1ecc1c872d90"
+          ],
+          "id": "qualification-profile-disabled"
+        }
+      ],
+      "rules": [
+        "native-68da1ecc1c872d90",
+        "native-5e6de51fd74abb13",
+        "native-2edeea023f54e2e5",
+        "native-7b7bba940d0714a7",
+        "native-4a64e6c2091d0734",
+        "native-4ec1239b9a759ec9"
+      ]
+    }
+  },
+  "authoring/direct-slice/rules/native-2edeea023f54e2e5.json": {
+    "rule": {
+      "applicability": {
+        "any_of": [
+          {
+            "condition": "platform-cpe-a-true-condition"
+          }
+        ]
+      },
+      "id": "native-2edeea023f54e2e5"
+    }
+  },
+  "authoring/direct-slice/rules/native-4a64e6c2091d0734.json": {
+    "rule": {
+      "id": "native-4a64e6c2091d0734"
+    }
+  },
+  "authoring/direct-slice/rules/native-4ec1239b9a759ec9.json": {
+    "rule": {
+      "applicability": {
+        "any_of": [
+          {
+            "condition": "platform-cpe-a-true-condition"
+          }
+        ]
+      },
+      "id": "native-4ec1239b9a759ec9"
+    }
+  },
+  "authoring/direct-slice/rules/native-5e6de51fd74abb13.json": {
+    "rule": {
+      "id": "native-5e6de51fd74abb13"
+    }
+  },
+  "authoring/direct-slice/rules/native-68da1ecc1c872d90.json": {
+    "rule": {
+      "applicability": {
+        "any_of": [
+          {
+            "condition": "platform-cpe-a-false-condition"
+          }
+        ]
+      },
+      "id": "native-68da1ecc1c872d90"
+    }
+  },
+  "authoring/direct-slice/rules/native-7b7bba940d0714a7.json": {
+    "rule": {
+      "applicability": {
+        "any_of": [
+          {
+            "condition": "platform-cpe-a-false-condition"
+          }
+        ]
+      },
+      "id": "native-7b7bba940d0714a7"
+    }
+  }
+}
