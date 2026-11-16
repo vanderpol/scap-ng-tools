@@ -145,6 +145,38 @@ class ApplicabilityConversionTests(unittest.TestCase):
         self.assertEqual(rendered['applicability']['any_of'][0]['condition'],
                          'platform-outer-platform-condition')
 
+    def test_distinct_normalized_platform_refs_get_distinct_condition_ids(self):
+        # ``#Linux`` and ``#linux`` normalize to the same historical stem.
+        # They are nevertheless distinct source references and must not share
+        # a catalog condition or provenance record.
+        benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
+          <platform idref="#Linux"/>
+          <platform idref="#linux"/>
+          <Rule id="fixture-rule"/>
+        </Benchmark>''')
+        rule = benchmark.find(f'{{{XCCDF}}}Rule')
+        source = SimpleNamespace(root=benchmark, benchmark=benchmark,
+                                 rules={'fixture-rule': rule},
+                                 parents={rule: benchmark}, catalog={})
+        source.applicability_condition_id = SourceModel.applicability_condition_id.__get__(source)
+        source.applicability_level = SourceModel.applicability_level.__get__(source)
+        source.applicability_context = SourceModel.applicability_context.__get__(source)
+        docs = {
+            'authoring/direct-slice/benchmark.json': {'benchmark': {
+                'platform': {'id': 'fixture', 'title': 'fixture'}}},
+            'authoring/direct-slice/rules/fixture-rule.json': {'rule': {}},
+        }
+        coverage = {'rules': [{'source_rule': 'fixture-rule', 'status': 'converted',
+                               'artifacts': ['authoring/direct-slice/rules/fixture-rule.json']}]}
+        documents, trace = build_applicability(source, docs, coverage, mappings=[])
+        conditions = documents['authoring/direct-slice/applicability.json']['applicability']['conditions']
+        self.assertEqual(len(conditions), 2)
+        self.assertEqual({value['source']['idref'] for value in conditions.values()},
+                         {'#Linux', '#linux'})
+        self.assertEqual(len(set(conditions)), 2)
+        self.assertTrue(all(len(key) <= 64 for key in conditions))
+        self.assertEqual(trace['source_identity_preserved'], True)
+
     def test_unqualified_platform_is_provenance_hold_without_synthetic_assessment(self):
         benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
           <platform idref="cpe:/o:unknown:platform"/>

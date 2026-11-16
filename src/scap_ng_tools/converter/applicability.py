@@ -196,6 +196,23 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
     specifications = extract_platform_specifications(source)
     shared, shared_traces = OrderedDict(), OrderedDict()
     conditions, condition_cache = OrderedDict(), {}
+
+    # The historical key projection used only a normalized idref stem.  Two
+    # distinct XCCDF references (for example ``#Linux`` and ``#linux``) can
+    # therefore alias one native condition while retaining different CPE
+    # meaning.  Keep the established readable key for the common case, but
+    # reserve a deterministic digest suffix for a normalization collision.
+    # This is deliberately based on the source reference, not generated
+    # Assessment content, so provenance and catalog identity remain stable.
+    platform_nodes = [node for node in source.benchmark.iter()
+                      if node.tag == f'{{{XCCDF}}}platform' and node.get('idref')]
+    platform_key_groups = {}
+    for node in platform_nodes:
+        if hasattr(source, 'applicability_condition_id'):
+            base = source.applicability_condition_id(node)
+        else:
+            base = _slug(node.get('idref'), 'platform-', '-condition')
+        platform_key_groups.setdefault(base, set()).add(node.get('idref'))
     unsupported, attached_rule_ids = [], set()
     fact_cache = {}
 
@@ -218,12 +235,19 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         conditions[condition_id] = value
 
     def condition_key(ref):
-        platform = next((node for node in source.benchmark.iter()
-                         if node.tag == f'{{{XCCDF}}}platform'
-                         and node.get('idref') == ref), None)
+        platform = next((node for node in platform_nodes
+                         if node.get('idref') == ref), None)
         if platform is not None and hasattr(source, 'applicability_condition_id'):
-            return source.applicability_condition_id(platform)
-        return _slug(ref, 'platform-', '-condition')
+            base = source.applicability_condition_id(platform)
+        else:
+            base = _slug(ref, 'platform-', '-condition')
+        if len(platform_key_groups.get(base, ())) <= 1:
+            return base
+        # Keep the suffix within the native identifier budget while making
+        # every colliding source idref distinct.
+        stem = base[:-len('-condition')] if base.endswith('-condition') else base
+        suffix = hashlib.sha256(ref.encode('utf-8')).hexdigest()[:12]
+        return f'{stem[:64 - len(suffix) - 2].rstrip("-")}-{suffix}-condition'
 
     def unsupported_condition(identity, title, reason, condition_id=None):
         # A source identity without a qualified executable mapping is an
@@ -349,8 +373,12 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                 add_condition(condition_id, {'source': source_provenance(ref)})
                 return condition_id
             semantic = _canonical(spec)
-            if semantic in condition_cache:
-                return condition_cache[semantic]
+            # Do not use only the CPE tree as the cache key: two distinct
+            # platform ids may intentionally carry identical trees, and their
+            # source identities must remain independently addressable.
+            semantic_cache_key = ('platform', platform_id, semantic)
+            if semantic_cache_key in condition_cache:
+                return condition_cache[semantic_cache_key]
             try:
                 logical_ids = [lower_logical(platform_id, logical, spec['title'])
                                for logical in spec['logical_tests']]
@@ -372,7 +400,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                 unsupported_condition(platform_id, spec['title'],
                                       'unqualified CPE platform applicability')
             add_condition(condition_id, condition_value)
-            condition_cache[semantic] = condition_id
+            condition_cache[semantic_cache_key] = condition_id
             return condition_id
         reason = 'CPE identity has no established executable SCAP-NG applicability mapping: ' + ref
         unsupported.append({'kind': 'cpe_identity', 'identity': ref, 'reason': reason})
