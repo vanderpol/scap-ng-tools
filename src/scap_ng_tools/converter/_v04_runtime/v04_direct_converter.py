@@ -441,7 +441,17 @@ class AssessmentConverter:
             field_requirement = requirement.get('field_requirement')
             ensure(len(fields) == 1 and isinstance(field_requirement, dict),
                    'variable population quantifier requires one complete value field')
-            field_requirement['values_matching'] = MATCHING[source_check]
+            # A Variable Object is represented by one native wrapper Item.
+            # Preserve the source Test `check` at the wrapper/value boundary
+            # only when the State did not explicitly author an entity_check.
+            # An explicit OVAL entity_check governs the values inside that
+            # wrapper and must not be overwritten by the Test-level check.
+            state_has_entity_check = False
+            for state_ref in state_refs:
+                state_source = self.source.node(self.component_id, state_ref, 'state')
+                state_has_entity_check |= any('entity_check' in child.attrib for child in state_source)
+            if not state_has_entity_check:
+                field_requirement['values_matching'] = MATCHING[source_check]
             self.conversion_warnings.append({
                 'code': 'variable_test_quantifier_projected_to_value_field',
                 'source_test': element.get('id'),
