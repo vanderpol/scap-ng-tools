@@ -103,6 +103,18 @@ class VariableInference(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'unresolved'):
             self.infer({'a-variable':{'kind':'local','expression':{'variable':'missing-variable'}}})
 
+    def test_local_variable_datatype_qualifies_implicit_literal_component(self):
+        engine = direct04.load_runtime()
+        element = ET.fromstring(
+            '<local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int">'
+            '<literal_component>9</literal_component></local_variable>')
+        visitor = engine.AssessmentConverter(None, 'test-component', [])
+        visitor.native_name = lambda node, kind: 'implicit-int-variable'
+        visitor.convert_variable(element)
+        self.assertEqual(visitor.variables['implicit-int-variable'], {
+            'kind': 'local', 'expression': {
+                'literal': {'datatype': 'integer', 'value': 9}}})
+
     def test_converter_omits_native_declaration_datatype(self):
         engine = direct04.load_runtime()
         element = ET.fromstring(

@@ -911,7 +911,19 @@ class AssessmentConverter:
             return [self.literal(datatype, child.text or '') for child in element]
         ensure(local_name(element) == 'local_variable' and len(element) == 1, 'external/malformed Variable unsupported')
         identifier = self.native_name(element, 'variable')
-        expression = self.function(element[0])
+        # OVAL literal_component/@datatype is optional; when omitted, its
+        # enclosing local_variable datatype is the source type boundary.
+        # Carry that boundary into the visitor without emitting a native
+        # declaration-level datatype or applying a consumer-directed cast.
+        previous_datatype = getattr(self, '_variable_source_datatype', None)
+        self._variable_source_datatype = datatype
+        try:
+            expression = self.function(element[0])
+        finally:
+            if previous_datatype is None:
+                self.__dict__.pop('_variable_source_datatype', None)
+            else:
+                self._variable_source_datatype = previous_datatype
         if self.canonical_variable_functions:
             from v04_variable_function_migration import canonical_expression
             expression = canonical_expression(expression)
@@ -993,8 +1005,9 @@ class AssessmentConverter:
         if operation == 'literal_component':
             attributes(element, {'datatype'})
             ensure(not len(element), 'literal_component has children')
-            return {'literal': {'datatype': native_datatype(element.get('datatype', 'string')),
-                                'value': self.literal(element.get('datatype', 'string'), element.text or '')}}
+            source_datatype = element.get('datatype') or getattr(self, '_variable_source_datatype', 'string')
+            return {'literal': {'datatype': native_datatype(source_datatype),
+                                'value': self.literal(source_datatype, element.text or '')}}
         if operation == 'variable_component':
             attributes(element, {'var_ref'})
             ensure(not len(element), 'variable_component has children')
