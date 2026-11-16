@@ -102,8 +102,11 @@ class Active041FunctionLowering(unittest.TestCase):
             {'values': {'object': {'object_ref': 'source-object'}, 'field': 'value'}},
         ], 'format_1': 'year_month_day', 'format_2': 'seconds_since_epoch'}}
         self.assertEqual(lower_expression(nested), nested)
-        with self.assertRaisesRegex(ValueError, 'one-operand time_difference'):
-            lower_expression({'time_difference': {'values': [{'literal': '2009-02-04'}], 'format_1': 'year_month_day'}})
+        self.assertEqual(lower_expression({'time_difference': {
+            'values': [{'literal': '2009-02-04'}], 'format_1': 'year_month_day',
+        }}), {'time_difference': {
+            'values': [{'literal': '2009-02-04'}], 'format_1': 'year_month_day',
+        }})
         with self.assertRaisesRegex(ValueError, 'time_difference has unsupported format'):
             lower_expression({'time_difference': {'values': [{'literal': '2009-02-04'}, {'literal': '2004-02-04'}], 'format_1': 'cim_datetime', 'format_2': 'year_month_day'}})
         with self.assertRaisesRegex(ValueError, 'one or two operands'):
