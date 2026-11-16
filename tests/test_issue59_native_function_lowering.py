@@ -9,6 +9,7 @@ import xml.etree.ElementTree as ET
 from scap_ng_tools.converter.direct04 import load_runtime
 from scap_ng_tools.converter.native041_function_lowering import lower_expression, lower_assessment_inplace
 from scap_ng_tools.converter.native041_variable_result_type import result_type
+from unittest.mock import patch
 
 load_runtime()
 from v04_direct_converter import AssessmentConverter  # noqa: E402
@@ -112,6 +113,32 @@ class Active041FunctionLowering(unittest.TestCase):
                 'values': [{'literal': {'datatype': 'string', 'value': '2009-02-04'}}],
             },
         })
+
+    def test_time_difference_semantic_validation_accepts_unary_current_format(self):
+        # The active canonical contract intentionally keeps format_1 on the
+        # unary form: it governs the implicit current UTC operand. This must
+        # pass the semantic validator, not only the AST lowering helper.
+        assessment = {
+            'variables': {
+                'current-variable': {
+                    'kind': 'local', 'datatype': 'integer',
+                    'expression': {'time_difference': {
+                        'format_1': 'month_day_year',
+                        'format_2': 'seconds_since_epoch',
+                        'values': [{'literal': {'datatype': 'integer', 'value': 0}}],
+                    }},
+                },
+            },
+            'shared_objects': {},
+        }
+        # The validator checks declarations by their canonical identity shape;
+        # use the same declaration key form as generated assessments.
+        from scap_ng_tools.converter._v04_semantic import v04_variable_expressions as semantic
+        class CandidateSchema:
+            def iter_errors(self, declaration):
+                return iter(())
+        with patch.object(semantic, 'declaration_validator', return_value=CandidateSchema()):
+            semantic.assessment_variable_expressions(assessment)
 
     def test_time_difference_keeps_nested_graphs_and_rejects_invalid_shape(self):
         nested = {
