@@ -418,6 +418,29 @@ class AssessmentConverter:
                     requirement = compacted
         from v04_direct_authoring_contract import test_requirement
         requirement = test_requirement(requirement)
+        # A variable Object is represented by one native Variable Item whose
+        # value field retains the complete ordered source population. OVAL's
+        # Test `check` therefore applies to the values in that field, rather
+        # than only to the single wrapper Item. Preserve that quantifier in the
+        # field requirement; leaving the default `every` would incorrectly
+        # turn a valid at-least-one/only-one source Test into FALSE.
+        if (mapping['capability'] == 'variable.value' and
+                local_name(object_source) == 'variable_object' and conditions):
+            source_check = element.get('check')
+            ensure(source_check in MATCHING, 'unsupported Variable Test matching quantifier')
+            fields = requirement.get('fields', {})
+            field_requirement = requirement.get('field_requirement')
+            ensure(len(fields) == 1 and isinstance(field_requirement, dict),
+                   'variable population quantifier requires one complete value field')
+            field_requirement['values_matching'] = MATCHING[source_check]
+            self.conversion_warnings.append({
+                'code': 'variable_test_quantifier_projected_to_value_field',
+                'source_test': element.get('id'),
+                'source_check': source_check,
+                'native_values_matching': MATCHING[source_check],
+                'semantic_basis': 'OVAL Test check applies to variable population; native Variable Item retains population in value field',
+                'independent_static_proof': 'SOURCE_QUANTIFIER_CROSSWALK',
+            })
         self.same_family(object_id, 'object', mapping)
         acquisition = self.reference(object_id, 'object')
         if isinstance(acquisition, dict):
