@@ -184,38 +184,53 @@ class SourceModel:
         return element
 
     def automated_check(self, rule):
-        """A default OVAL check, optionally repeated as 'automated', is required.
+        """Select OVAL by owner policy; retain OCIL as a non-default alternative.
 
-        Explicit OCIL 'manual' choices are reported as omitted, never claimed as
-        converted. Other selectors/systems could change which check executes:
-        rejecting them avoids guessing XCCDF conditional-selection semantics.
+        XCCDF permits several checks and selector defaults.  The migration
+        contract is deterministic: any OVAL check wins over OCIL, an explicit
+        default OVAL check wins over an ``automated`` OVAL check, and an OCIL
+        only Rule is handled by the manual converter rather than rejected as a
+        conversion failure.
         """
         ensure(not rule.findall(f'{{{XCCDF}}}complex-check'), 'XCCDF complex-check unsupported')
-        choices, omitted, selectors = [], [], []
+        oval, omitted = [], []
         for check in rule.findall(f'{{{XCCDF}}}check'):
             attributes(check, {'system', 'selector'})
             selector, system = check.get('selector', ''), check.get('system')
             if system != OVAL:
-                ensure(system == OCIL and selector == 'manual', 'unsupported competing non-OVAL check/selector')
+                ensure(system == OCIL and selector in ('', 'manual'),
+                       'unsupported competing non-OVAL check/selector')
                 omitted.append({'system': system, 'selector': selector,
-                                'sha256': digest(xml_identity(check))})
+                                'sha256': digest(xml_identity(check)),
+                                'source': xml_identity(check)})
                 continue
             ensure(selector in ('', 'automated'), f'unsupported OVAL check selector: {selector}')
-            ensure(selector not in selectors, 'duplicate OVAL selector unsupported')
-            selectors.append(selector)
             references = check.findall(f'{{{XCCDF}}}check-content-ref')
-            if self.draft_compatibility:
-                ensure(len(references)==1 and all(c.tag in {f'{{{XCCDF}}}check-export',f'{{{XCCDF}}}check-content-ref'}
+            if self.draft_compatibility or getattr(self, 'native_recovery', False):
+                ensure(len(references) == 1 and all(c.tag in {f'{{{XCCDF}}}check-export', f'{{{XCCDF}}}check-content-ref'}
                        for c in check), 'OVAL check-import/result binding or complex check unsupported')
             else:
-                ensure(len(check) == 1 and check[0].tag == f'{{{XCCDF}}}check-content-ref', 'OVAL check imports/exports unsupported')
+                ensure(len(check) == 1 and check[0].tag == f'{{{XCCDF}}}check-content-ref',
+                       'OVAL check imports/exports unsupported')
             reference = references[0]
             attributes(reference, {'href', 'name'})
             ensure(reference.get('href') in self.catalog, 'unresolved checklist catalog href')
-            choices.append((self.catalog[reference.get('href')], reference.get('name')))
-        ensure('' in selectors and len(set(choices)) == 1, 'unambiguous default OVAL check required')
-        component_id, definition_id = choices[0]
+            oval.append((selector, self.catalog[reference.get('href')], reference.get('name'),
+                         digest(xml_identity(check)), xml_identity(check)))
+        if not oval:
+            raise UnsupportedSource('manual-only Rule has no OVAL check')
+        defaults = [row for row in oval if row[0] == '']
+        candidates = defaults or oval
+        ensure(len(candidates) == 1, 'ambiguous default OVAL check')
+        _, component_id, definition_id, check_hash, check_identity = candidates[0]
+        ensure(len({(row[1], row[2]) for row in oval}) == 1,
+               'conflicting OVAL check targets')
         return component_id, definition_id, omitted
+
+    def manual_checks(self, rule):
+        """Return OCIL checks in source order for optional manual alternatives."""
+        return [check for check in rule.findall(f'{{{XCCDF}}}check')
+                if check.get('system') == OCIL and check.get('selector', '') in ('', 'manual')]
 
     def rule_selected(self, rule, profile=None):
         overrides = {}

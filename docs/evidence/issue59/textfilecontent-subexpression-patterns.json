@@ -1,0 +1,1677 @@
+{
+  "canonical_schema_commit": "aece827964c785be77b088c3c61255a2d07fd9a9",
+  "distinct_source_patterns": 20,
+  "evidence": {
+    "item_subexpression": "oval-schemas/independent-system-characteristics-schema.xsd:383-387 EntityItemAnySimpleType",
+    "pattern_entity": "oval-schemas/independent-definitions-schema.xsd: pattern is EntityStateStringType and operation is pattern match",
+    "state_subexpression": "oval-schemas/independent-definitions-schema.xsd:1910-1914 EntityStateAnySimpleType",
+    "variable_datatype": "oval-schemas/oval-definitions-schema.xsd:533-534; value set must comply with datatype and error otherwise; no conversion is specified",
+    "variable_guidance": "guidelines/oval-schema-documentation/oval-definitions-schema.rst:721"
+  },
+  "format": "scap-ng-0.4.1-issue59-textfilecontent-patterns/1",
+  "oval_community_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "patterns": [
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^(.*)$",
+      "pattern_attributes": {
+        "datatype": "string",
+        "operation": "pattern match"
+      },
+      "pattern_number": 1,
+      "rules": [
+        {
+          "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "username",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.solaris11:obj:7200",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-216358r959010_rule",
+          "source_rule_sha256": "457ae02e69a5ed090bb8fa097e7493c41c5787a237ffd37bc4a34cd00aefd9a0",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.solaris11:var:7200"
+        },
+        {
+          "benchmark": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "username",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.solaris11:obj:7200",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-216121r959010_rule",
+          "source_rule_sha256": "ed146d598be12e1e2052f19b1c266519daba416267da048df3552b5f919efc2b",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.solaris11:var:7200"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^(?i)[ -]*audit-log-path=(\\S+)",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 2,
+      "rules": [
+        {
+          "benchmark": "U_Kubernetes_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:24246500",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-242465r961863_rule",
+          "source_rule_sha256": "912104467d5b5fb2e5d7a67944deddf2d676c6decfbeb38bbaa4748c1ab0a3a7",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:24246500"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^([^:]*):[^:]*:[^:]*:0*:",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 3,
+      "rules": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "username",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23036402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248694r1015054_rule",
+          "source_rule_sha256": "3aeda8101ccbe2379cbdab2be00c02ecaeef2a92436894ac3e393a360a448a0c",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23036400"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "username",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23036402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271630r1091602_rule",
+          "source_rule_sha256": "cc8de0fae7d3ea59c64eff57196c3f240002f757b7bef552ed42af4489eabc3f",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23036400"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "username",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23036402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230364r1017176_rule",
+          "source_rule_sha256": "7ce2a36258aebd0dbd6c2941be1f509f4dcefe02d2e420dc663bd4f75e28c48e",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23036400"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "username",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23036402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-258105r1045212_rule",
+          "source_rule_sha256": "ea8668856c6af74a315484f29f87f9e56726dc6881849d0ee4276b673d89c637",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23036400"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^[ -]*audit-policy-file=\\s*(\\S+)",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 4,
+      "rules": [
+        {
+          "benchmark": "U_Kubernetes_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:24240300",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-242403r986135_rule",
+          "source_rule_sha256": "51cce9cc8e675db746ef7ffd154246e82c19df417ab5c4154f6c03427045690b",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:24240300"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^[^#\\n]*\\bclientCAFile:\\s*(\\S+)",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 5,
+      "rules": [
+        {
+          "benchmark": "U_Kubernetes_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-242420r1043178_rule",
+          "source_rule_sha256": "e426e1480f7f9f053aad9d0ec97085cc67137874289613b5d4540027d28fb3d1",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000002"
+        },
+        {
+          "benchmark": "U_Kubernetes_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-242449r961863_rule",
+          "source_rule_sha256": "ac961d43aa9282a5f7452a7d6b675c516a609c511c2927d209791ce08d118c44",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000002"
+        },
+        {
+          "benchmark": "U_Kubernetes_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-242450r961863_rule",
+          "source_rule_sha256": "7f933e97a03567b09496e852870ecbcda374ccec1d6ec58d934a6c3b42a325bb",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000002"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^[^#\\s\\:]+:[^#\\s\\:]*:([0-9]+):",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 6,
+      "rules": [
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "subexpression",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ol7:obj:3747",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-221722r958482_rule",
+          "source_rule_sha256": "09b68f94c87cab7f1476130136c33cdb6432265a05dc9bd4d7e22d72ce912df2",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.ol7:var:3846"
+        },
+        {
+          "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "subexpression",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.rhel7:obj:3747",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-204461r958482_rule",
+          "source_rule_sha256": "8282138d42023f9d1a1dc3f9b108e8c9cc28e93d7c76b74f4ed70e05771153df",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.rhel7:var:3846"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^[^:#]*:[^:]*:(\\d+)",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 7,
+      "rules": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:25804800",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274159r1120465_rule",
+          "source_rule_sha256": "80c662fd928461d681191124dce91ed9ebb4c30c7160a5359aae85ce25b7967b",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:25804800"
+        }
+      ],
+      "source_variable_datatypes": [
+        "int"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:([^:]*?):.*",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 8,
+      "rules": [
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:navy.navwar.niwcatlantic.scc.linux:obj:22172902",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-221729r991589_rule",
+          "source_rule_sha256": "a5f6ae7b1ce1f951faa41ca828a465fb27b711d03155e1a33a1c54d475febe40",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.linux:var:22172901"
+        },
+        {
+          "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:navy.navwar.niwcatlantic.scc.linux:obj:20446802",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-204468r991589_rule",
+          "source_rule_sha256": "c2733bbababe92b02c3bbd631d81476f9f0b4a47a050ebc5c05209fa49ac2946",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.linux:var:20446801"
+        },
+        {
+          "benchmark": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:navy.navwar.niwcatlantic.scc.linux:obj:21717302",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-217173r1184441_rule",
+          "source_rule_sha256": "a6fea4316f84aa62569292ea4b1dc0a76a56eb7740524daff0cd9cd2dfb602b9",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.linux:var:21717301"
+        },
+        {
+          "benchmark": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:navy.navwar.niwcatlantic.scc.linux:obj:23499302",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-234993r1184474_rule",
+          "source_rule_sha256": "f90835cf65ce197d491625033af3b1ccbecbf15a3ac2f7986a69e2f30c248726",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.linux:var:23499301"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^[^:]+:[^:]*:(\\d+):",
+      "pattern_attributes": {
+        "datatype": "string",
+        "operation": "pattern match"
+      },
+      "pattern_number": 9,
+      "rules": [
+        {
+          "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.solaris11:obj:7101",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-216422r959010_rule",
+          "source_rule_sha256": "cc84b0eed69476c99afd216fbccd0c20eae3c165b11b354effd7c8a95fcbc2d7",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.solaris11:var:7100"
+        },
+        {
+          "benchmark": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.solaris11:obj:7101",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-216185r959010_rule",
+          "source_rule_sha256": "d0e139f018b4666418ab8d816efec4a6b7df0f216e94081a7a7112c06506df20",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.solaris11:var:7100"
+        }
+      ],
+      "source_variable_datatypes": [
+        "int"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^\\n*[\\s#]*banner\\s+(\\S+)$",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 10,
+      "rules": [
+        {
+          "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:navy.navwar.niwcatlantic.scc.linux:obj:20458002",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-204580r958390_rule",
+          "source_rule_sha256": "5597aed8bc0b876617d8cc1dc4ec21b54472e6b4c5e22e832defd77edd33c0e9",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:navy.navwar.niwcatlantic.scc.linux:var:20458001"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^\\s*([^#:]*):",
+      "pattern_attributes": {
+        "datatype": "string",
+        "operation": "pattern match"
+      },
+      "pattern_number": 11,
+      "rules": [
+        {
+          "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "variable_component",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.solaris11:obj:10702",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-216475r959010_rule",
+          "source_rule_sha256": "1613b9f26ad946ac9b3cf420d006026c0efeb9d2ed4388f2672d0f04c17a1c9d",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.solaris11:var:10700"
+        },
+        {
+          "benchmark": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "variable_component",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.solaris11:obj:10702",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-216239r959010_rule",
+          "source_rule_sha256": "ff8530c045133447fc60e0c319a1ebb6b87a2d0be5045cfe0b8e8ee78d4a5da8",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.solaris11:var:10700"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^\\s*dir\\s*=\\s*(.*)\\s*$",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 12,
+      "rules": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:25808000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248669r958388_rule",
+          "source_rule_sha256": "cc906439e12b8707b2cafc7349a7340b6da359962b0d5714685e687150c96f4c",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:25808000"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:25808000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271836r1092637_rule",
+          "source_rule_sha256": "b0bdd42e1cc514a7fbc09a9f4849be921c5c21a9d352dc5a3cd6fd567826ef9c",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:25808000"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:25808000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-250315r1017356_rule",
+          "source_rule_sha256": "4e18c313c0af0a4b203d3c8b7fadb83462ee673c0dd69d5f9536f6871385b2df",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:25808000"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:25808000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-258080r1045162_rule",
+          "source_rule_sha256": "07fd1685f7b63456f89d75a25bcda2b0ecffd81667cdd3f5d2989e296d9db9fd",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:25808000"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^\\s*log_file\\s*=\\s*(\\S+)/\\S+\\s*$",
+      "pattern_attributes": {
+        "datatype": "string",
+        "operation": "pattern match"
+      },
+      "pattern_number": 13,
+      "rules": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274068r1120192_rule",
+          "source_rule_sha256": "476c67685e84a37381ebcf0c320f760299155041db81c32c484d5346d0a317a2",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274109r1120315_rule",
+          "source_rule_sha256": "d423747c1d4baf7e867d5eeebf625b436b77878fefa0c64fc18adf5d45366587",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274117r1120339_rule",
+          "source_rule_sha256": "cc9e4e5ce5e23c998286e901c68875e9e9bef3486cad59da63bb914f9c357735",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:26060000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260600r958438_rule",
+          "source_rule_sha256": "bbad065683fe2ba4a4cfd36fe580263e6f9daec64a9d511f80c51dca2333ac7a",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:26060000"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:26060000",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270830r1068397_rule",
+          "source_rule_sha256": "06ea2caa0a2cb20f08967797cd7d5a69f8f8c3dec67cec42ceff879fa1e345a5",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:26060000"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248610r991589_rule",
+          "source_rule_sha256": "b61fb32e58985aff05bf679f320a8171cfda152928d9c82c3d29fb029725b17a",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248735r958434_rule",
+          "source_rule_sha256": "1b5f184bcdd20d13adfa524e1c5023f68aab9d03a370054cef5f03685ebed1f5",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248736r958434_rule",
+          "source_rule_sha256": "f0fda657ba528a5f53d61d023e95ed3ebb019a4b9af4cd808fdc1b49962504c6",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248737r958434_rule",
+          "source_rule_sha256": "c32065ddb3890f646e05c4c9b16cbc51096636b9eb9a9a0795e6927d0aec01f2",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271432r1091008_rule",
+          "source_rule_sha256": "b7a81cd81e7d6a5fe2e15439f4430d6fa11709e12e5d7ad91eb602c912b486ad",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271584r1091464_rule",
+          "source_rule_sha256": "c30405ff6b5b9e5dfcecf66b7f599667455fef8cd4d60bf89bc34809b956ade4",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230294r1017105_rule",
+          "source_rule_sha256": "c4cc1412d160718f5616aa9ce3d078f8c8872f7440268e1d16bafdc64c695dfa",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230399r1017205_rule",
+          "source_rule_sha256": "0eff6183b2dbfc293b444674e192a71c455dc80f7fd35acfdfd52c29b6de4e30",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230400r1017206_rule",
+          "source_rule_sha256": "b6fb65dfcd7a0c111225e424b24d3a1c9ab084c7299f1b903b67369b77a51b5a",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230401r1017207_rule",
+          "source_rule_sha256": "406c86fddecbecc50ed2bd1bf57ccb53954766e0ece271d47484ae11f4005feb",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-257847r1044924_rule",
+          "source_rule_sha256": "08f563d67db7e72d3dde2ec62577c37462b6a20f1f5029a4bcfc80870638513c",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "consumers": [
+            {
+              "datatype": "string",
+              "element": "mount_point",
+              "operation": "equals"
+            },
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-258166r1045303_rule",
+          "source_rule_sha256": "d7f7c318bf5e260425458e45faec3ed1e3a47749e9810ba2d4de0bd15d68527a",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-252978r958434_rule",
+          "source_rule_sha256": "c811c74cc273fe33e93f4d4cffe5701565948a24d54df6e5589365f31251a1d5",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-252981r958434_rule",
+          "source_rule_sha256": "31ce403fc2a3266004d4ee7d04a3b4cf788b8fd907de4d2d7d5710ac046f65d5",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "path",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23029402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-252982r958434_rule",
+          "source_rule_sha256": "1cc46c95637f67fdc3250ac13bfec857f8f8dd9de22dc6d32f4e2239fa41db8a",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23029400"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^\\s*log_file\\s*=\\s*(\\S+)\\s*(?:#.*)?$",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 14,
+      "rules": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274108r1120312_rule",
+          "source_rule_sha256": "e41a60ec38623e52d9245abe6b2bea0ee2946b477f921acd8803d748fd4df558",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274110r1120318_rule",
+          "source_rule_sha256": "1d545cbadbd674313121587d1c9433a975bbcd9851c5c83f118a3a6ec2ef3dfe",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000004"
+        },
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-274116r1120336_rule",
+          "source_rule_sha256": "581812af4c1eea421f6d591b012d8a176db2d22371df2051c04e29a60c50da26",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260597r958434_rule",
+          "source_rule_sha256": "91abc0ef5faf91792422c2d3da2698c5589892e80027111026913d0a6fec0cc8",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000004"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260598r958434_rule",
+          "source_rule_sha256": "33baa22ae5f727f91d8686f4b832d9af1b1d0a27d6b033222c946174118c77f4",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270827r1066970_rule",
+          "source_rule_sha256": "c5af8a7b0ba3e5eeb2c01751b9836c6e9f18363e1e3cf6f0d4763aa104acfaea",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000004"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270828r1066973_rule",
+          "source_rule_sha256": "d93d04625055899f2803b360552df0e62fb11d7a6fa118674c778151b352daf8",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270829r1066976_rule",
+          "source_rule_sha256": "033fc027341ce72a340739bb9e5e0dee177975db5aa50bd463ca29babfb45759",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248732r958434_rule",
+          "source_rule_sha256": "16daec66010eef40a36cffa1b84ce413371e7c4e3fa3bd23033f73ec1171d283",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000004"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248733r958434_rule",
+          "source_rule_sha256": "094170ed1639c29cf434492669970d2ff8a76b71eaf7816b69b1e38ea70ee09f",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-248734r958434_rule",
+          "source_rule_sha256": "a9e0b5f4fa864baf16ce866118927395c2387a9fcdfe8211ee4ae15d757595d2",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271583r1091461_rule",
+          "source_rule_sha256": "117bcbde7e244cac4b633e313d2c0d2e8333c9e6a304f7fd4f2d25bd2f268547",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-271585r1091467_rule",
+          "source_rule_sha256": "9e7fc970180695b840849b5012eb5751c1abe054b6c0df0084aa5c0e1ab720cf",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000004"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230396r1017202_rule",
+          "source_rule_sha256": "f6565501c6fbd20ecfdac7ccee8f00d470349c5d2839cd4097c178a900fb2c4a",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000004"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230397r1017203_rule",
+          "source_rule_sha256": "c9e6001cca13dc9e49a61c100b492f8cf62633ef57b7618e41527f3b3ed629e3",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-230398r1017204_rule",
+          "source_rule_sha256": "9f23c4453103f17ea796da1cfaf29ae78a4f71855548096ce28e8275c4241b55",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-258165r958434_rule",
+          "source_rule_sha256": "300dd3347386f7cbe28d6e63064b808a3371e49e17bfe27aaec8c9a654b0e101",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-258167r1155630_rule",
+          "source_rule_sha256": "3642e62a95f5daa236ef67545ae0290d5065ef1475e4594a36ab59e85f24e995",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000004"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:20000001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-252977r958434_rule",
+          "source_rule_sha256": "bec17ad4f7529775b31707f66fda840a889adba4fc806dea491e8180794bdb43",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:20000004"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-252979r958434_rule",
+          "source_rule_sha256": "f29681c430448712d2d991a95937db09ee65aee233c482a05695ac094c335137",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": null,
+              "element": "filepath",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23039701",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-252980r958434_rule",
+          "source_rule_sha256": "e9d506f92423863a3b5c165e4d517dd960b9cba0dd7510cd8944062e5234b526",
+          "source_variable_datatype": "string",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23039700"
+        }
+      ],
+      "source_variable_datatypes": [
+        "string"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^adm:[^:]*:([0-9]+):",
+      "pattern_attributes": {
+        "datatype": "string",
+        "operation": "pattern match"
+      },
+      "pattern_number": 15,
+      "rules": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ubuntu1804:obj:29401",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-219192r958566_rule",
+          "source_rule_sha256": "8bc13610c9d5bc614bc1ba81d32e2ec4a4008976e233726f4fdf09f8945f7583",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.ubuntu1804:var:29400"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ubuntu2004:obj:21301",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-238341r958566_rule",
+          "source_rule_sha256": "f580b4b33ce80956df0b5cc5a8f992af65cdb8bf4e7259ee04796923a2f67286",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.ubuntu2004:var:21300"
+        }
+      ],
+      "source_variable_datatypes": [
+        "int"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^adm:[^:]*:([0-9]+):",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 16,
+      "rules": [
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23834100",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260511r958566_rule",
+          "source_rule_sha256": "10871ba09c64456c75c9314ebbf46c34519c146efe885b7bf63f4fc148b367bd",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23834100"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23834100",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270768r1066793_rule",
+          "source_rule_sha256": "f97abf7b3994883b573a32dd6c5d10d2b2691c912812a5d6feb1cae7835f983d",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23834100"
+        }
+      ],
+      "source_variable_datatypes": [
+        "int"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^etcd:[^:]*:(\\d+):",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 17,
+      "rules": [
+        {
+          "benchmark": "U_Kubernetes_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:24244500",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-242445r961863_rule",
+          "source_rule_sha256": "7767b4439cb2da888a485481186ef7b714021afa634f67c9fed77ca4fab04b5f",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:24244501"
+        }
+      ],
+      "source_variable_datatypes": [
+        "int"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^syslog:[^:]*:([0-9]+):",
+      "pattern_attributes": {
+        "datatype": "string",
+        "operation": "pattern match"
+      },
+      "pattern_number": 18,
+      "rules": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ubuntu1804:obj:13500",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-219189r958566_rule",
+          "source_rule_sha256": "fbb1d7644179c035f89f6287a68bdf20df912022dfe0c35e830f4615834b8d7d",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.ubuntu1804:var:13500"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ubuntu2004:obj:21001",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-238338r958566_rule",
+          "source_rule_sha256": "2f97019163033c9fa39934b1a0d1939bb3e43245ff8c7f200e9f7169b03d9dd9",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.ubuntu2004:var:21000"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23833801",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260509r958566_rule",
+          "source_rule_sha256": "00a26972317d34d7155529f3b28ba4eac463062678dedee88a3806cc5b5339ed",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23833800"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23833801",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270765r1066784_rule",
+          "source_rule_sha256": "82a2c002b53874ab538e5f981d6268964e5b8e5891f18cefbaf903b7deadfe1b",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23833800"
+        }
+      ],
+      "source_variable_datatypes": [
+        "int"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^syslog:x:([0-9]+):[0-9]+::.*:.*$",
+      "pattern_attributes": {
+        "datatype": "string",
+        "operation": "pattern match"
+      },
+      "pattern_number": 19,
+      "rules": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "user_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ubuntu1804:obj:29501",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-219193r958566_rule",
+          "source_rule_sha256": "047f25e41e81b0ce0feaf5d05d2ef30c4f5926f22a2577bac2770b7d83ce5d66",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.ubuntu1804:var:29500"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "user_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ubuntu2004:obj:21401",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-238342r958566_rule",
+          "source_rule_sha256": "97eb3d330e26ceb38aacab39076bfa40e0fd7ce5848c45aca7993a3ec70c56a6",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.ubuntu2004:var:21400"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "user_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23834201",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260510r958566_rule",
+          "source_rule_sha256": "71f577227b49065794b01c5fc3d4d7115c09d028c7b9144eced4a5bd1ff83630",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23834200"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "user_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:23834201",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270769r1066796_rule",
+          "source_rule_sha256": "86300a44e16e5f37192bd7edbef5caa04f35a082efbe6da8d73a3c0008da672d",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:23834200"
+        }
+      ],
+      "source_variable_datatypes": [
+        "int"
+      ]
+    },
+    {
+      "capture_group_count_observed": 1,
+      "decision": "retain_blocker",
+      "owner_decision_required": "Approve a typed collected Item/result boundary and RI behavior for textfilecontent.subexpression, or provide a reviewed source operation that performs lexical conversion before the Variable expression. The source Variable datatype is a compliance constraint, not a converter cast.",
+      "pattern": "^systemd-journal:[^:]*:([0-9]+):",
+      "pattern_attributes": {
+        "operation": "pattern match"
+      },
+      "pattern_number": 20,
+      "rules": [
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:26050402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260502r1184054_rule",
+          "source_rule_sha256": "4c6f43b50b8e150ea11f19ae2650ccf5fe75244c12f9241e26a930da1a720e7c",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:26050400"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:26050402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-260504r1184058_rule",
+          "source_rule_sha256": "fc5a73727dfcb94a29e521530c59a4887b7296f459ca86a91f0b8951de3a4aa1",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:26050400"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:26050402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270761r1184074_rule",
+          "source_rule_sha256": "e56cdbdc154b5609ca3b980fcef8577c6fcdff86a3672c6a900f5d7c5f32131d",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:26050400"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "consumers": [
+            {
+              "datatype": "int",
+              "element": "group_id",
+              "operation": "equals"
+            }
+          ],
+          "source_object_id": "oval:mil.disa.stig.ind:obj:26050402",
+          "source_rule": "xccdf_mil.disa.stig_rule_SV-270762r1184076_rule",
+          "source_rule_sha256": "da5e3f043d2c6339e5bac9e8f18c3f882684825c6f17b21ed2f9049db2e9ae3d",
+          "source_variable_datatype": "int",
+          "source_variable_id": "oval:mil.disa.stig.defs:var:26050400"
+        }
+      ],
+      "source_variable_datatypes": [
+        "int"
+      ]
+    }
+  ],
+  "recovered": 0,
+  "retained_blocked": 85,
+  "scanner_equivalent": false,
+  "schema_aggregate_sha256": "578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829",
+  "source_regressions": 85
+}

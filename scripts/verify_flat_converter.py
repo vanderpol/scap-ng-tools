@@ -14,7 +14,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 
 
 def git_head(root):
@@ -33,7 +33,7 @@ def probe(args):
         raise ValueError('converter source HEAD differs from the requested pin')
     if not (original / 'tools/v04_direct_converter.py').is_file():
         raise ValueError('missing direct-0.4 converter in pinned source checkout')
-    snapshot = FrozenSchemaSnapshot(args.schema_root)
+    snapshot = Pinned041SchemaSnapshot(args.schema_root)
     zip_bytes = args.source_package.read_bytes()
     if sha256(zip_bytes).hexdigest() != args.source_sha256:
         raise ValueError('source fixture hash mismatch')

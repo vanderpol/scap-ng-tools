@@ -128,13 +128,13 @@ def object_errors(document, schema_dir=None):
     from jsonschema import ValidationError
     schema_dir = str(Path(schema_dir or snapshot().schema_root).resolve())
     assessment = document.get('assessment')
-    if not isinstance(assessment, dict) or (assessment.get('specification') or {}).get('version') != '0.4.0':
+    if not isinstance(assessment, dict) or (assessment.get('specification') or {}).get('version') != '0.4.1':
         return
     for site in object_sites(assessment):
         node, cap, path = site.node, site.capability, site.path
         def error(message, suffix=()):
             return ValidationError(format_path(path + suffix) + ': ' + message,
-                path=deque(path + suffix), validator='native_0.4_object_contract')
+                path=deque(path + suffix), validator='native_0.4.1_object_contract')
         if not isinstance(cap, str):
             yield error('acquisition Object requires explicit capability outside a Test/Set', ('capability',))
             continue

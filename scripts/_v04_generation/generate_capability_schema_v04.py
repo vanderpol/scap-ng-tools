@@ -17,7 +17,7 @@ from v04_capability_native import native_surface
 
 from v04_capability_source import direct_global, immediate_payload_elements, source_datatypes
 
-VERSION = "0.4.0"
+VERSION = "0.4.1"
 ROOT_ID = f"https://scap-ng.dev/schema/v{VERSION}/"
 LANG = ROOT_ID + "assessment-language.schema.json"
 COMMON = ROOT_ID + "capability-common.schema.json"
@@ -58,7 +58,7 @@ def _present(schema, root, enabled, mapping):
             if not node.get('description'):
                 description = parameters.get(name, {}).get('description') or controls.get(name)
                 if description: node['description'] = description
-        catalog_path = Path(root) / 'schema/v0.4.0/selector-api-contracts.json'
+        catalog_path = Path(root) / 'schema/v0.4.1/selector-api-contracts.json'
         if catalog_path.is_file():
             catalog = json.loads(catalog_path.read_text())
             contract = catalog['capabilities'].get(mapping['capability'], {})
@@ -128,13 +128,13 @@ def _selector_fields(mapping: dict, root: Path, document=None) -> dict:
 
 def generate(mapping: dict, repo_root: Path, *, authoring_metadata=True) -> dict:
     if mapping.get("specification_version") != VERSION:
-        raise ValueError("0.4 generator accepts only reviewed 0.4 source mappings")
+        raise ValueError("0.4.1 generator accepts only reviewed 0.4 source mappings")
     result, source_document = native_surface(mapping, repo_root)
     result["$id"] = (
         ROOT_ID + "generated/capabilities/" + mapping["capability"] + ".schema.json"
     )
     result["description"] = (
-        "DRAFT: SCAP-NG 0.4 generated native capability contract. One authored "
+        "DRAFT: SCAP-NG 0.4.1 generated native capability contract. One authored "
         "Test/Object/State grammar; derived from reviewed source OVAL 5.12.3 mappings."
     )
     result["x-specification-version"] = VERSION
@@ -247,7 +247,7 @@ def generate(mapping: dict, repo_root: Path, *, authoring_metadata=True) -> dict
         obj["required"] = [field for field in obj.get("required", [])
                            if field != "capability"]
         obj["properties"]["set"]={"$ref":"#/$defs/native_set_expression"}
-        # 0.4.0: a filtered leaf Object is not a Set. Permit the same
+        # 0.4.1: a filtered leaf Object is not a Set. Permit the same
         # ordered, observed-Item include/exclude predicates already supported
         # on Set operands, without inventing a one-operand Union.
         obj["properties"]["filters"]={
@@ -291,7 +291,7 @@ def generate(mapping: dict, repo_root: Path, *, authoring_metadata=True) -> dict
     }
     result["x-authoring-gate"] = (
         "Draft structural generation only; source enumeration and cross-field "
-        "semantics require additional validation before 0.4 freeze."
+        "semantics require additional validation before 0.4.1 freeze."
     )
     # Resolver scope changes when traversing external 0.4 language schemas.
     # Use fully qualified references for generated native recursion, so local

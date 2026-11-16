@@ -1,0 +1,70 @@
+{
+  "canonical_schema_commit": "aece827964c785be77b088c3c61255a2d07fd9a9",
+  "commands": [
+    "PYTHONPATH=src:. .venv/bin/python scripts/rebuild_issue59_full65.py --schema-root <scap-ng@aece8279> --source-root <scap-content-library@8c8e5d> --output <full65-enum-cycle.json>",
+    "PYTHONPATH=src:. .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <SCAP-Self-Assertion@e353859> --schema-root <scap-ng@aece8279> --source-commit e3538595c5083b9c34d937a81d319234df9bbfaa --output <enum-pack>",
+    "PYTHONPATH=src:. .venv/bin/python scripts/audit_self_assertion_parity.py --source-root <SCAP-Self-Assertion@e353859>/SCAP_1.4/OVAL_Test_Content --pack <enum-pack> --schema-root <scap-ng@aece8279>/schema --expected-xml 144 --expected-definitions 168 --expected-tests 803 --output <enum-parity.json>"
+  ],
+  "converter_worktree_commit": "fb5104b81b2def53151bad94db5218986227969f",
+  "converter_worktree_dirty": true,
+  "date": "2026-11-15",
+  "format": "scap-ng-tools-issue59-enum-datatype-cycle/1",
+  "full65": {
+    "blocker_category_counts": {
+      "schema-semantic": 14,
+      "unsupported-capability": 78,
+      "unsupported-construct": 6
+    },
+    "candidate": {
+      "blocked": 98,
+      "converted": 6489,
+      "manual_only": 1403
+    },
+    "newly_blocked_from_converted": 0,
+    "newly_converted_from_blocked": 10,
+    "nonregression_pass": true,
+    "original": {
+      "blocked": 108,
+      "converted": 6479,
+      "manual_only": 1403
+    },
+    "receipt": "full65-enum-cycle.json",
+    "receipt_sha256": "edec5abb1dbe89fe44dd3ab973e981f78f946c098147747341e73470a1e66a84",
+    "source_git_pin_verified": true,
+    "source_zip_hashes_verified": true
+  },
+  "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "qualification": "AUTHORING_SCHEMA_VALIDATED; SOURCE_ZIP_HASHES_VERIFIED; SOURCE_GIT_PIN_VERIFIED; PARITY_SOURCE_INVALID_HOLD; RI_SCANNER_UNVERIFIED",
+  "runtime_aggregate_sha256": "92de1ecf651ed617e9478d83d5fde1939888d4157cf594e9325e6310077fde78",
+  "schema_family_sha256": "578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829",
+  "schema_version": "0.4.1",
+  "semantic_pack_capabilities": 53,
+  "semantic_pack_sha256": "2903f815f04b0913b886a685f91a8d34f4125e117bc747dbf824ddd073a64629",
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "source_fix": {
+    "canonical_typed_literal_arrays": true,
+    "implicit_casts": false,
+    "path": "src/scap_ng_tools/converter/_v04_runtime/v04_direct_enum_variables.py",
+    "policy": "derive datatype from typed literals, Variable references and closed unique graphs; reject mixed/unresolved graphs"
+  },
+  "standalone": {
+    "blocked_definitions": 62,
+    "blocked_tests": 222,
+    "converted_definitions": 104,
+    "converted_parity_failures": 0,
+    "converted_tests": 579,
+    "definitions": 168,
+    "excluded_definitions": 2,
+    "excluded_tests": 2,
+    "pack_manifest_sha256": "4b3745fae6d0bfca0a3387056d825d5a41c7aa3c88e08e01058b7d6b225dcd6d",
+    "parity_checked_definitions": 102,
+    "parity_receipt_sha256": "904ddf943f355fec916d95a836e4c9af33400ee6291b59bfd10f56703ed935cb",
+    "schema_field_datatypes_loaded": 665,
+    "source_accounted": true,
+    "source_invalid_holds": 2,
+    "source_mapped_tests_checked": 585,
+    "tests": 803,
+    "tests_ledger_sha256": "7cb6c2f53709131e79007c31761732dd57a6888e69da16c5786113ea360ebded"
+  },
+  "standalone_source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+}

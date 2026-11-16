@@ -1,0 +1,773 @@
+{
+  "baseline": {
+    "blocked": 4368,
+    "converted": 4524,
+    "total": 8892
+  },
+  "benchmarks": {
+    "U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip": {
+      "baseline_blocked": 21,
+      "baseline_converted": 15,
+      "candidate_blocked": 21,
+      "candidate_converted": 15,
+      "recovered": 0,
+      "source_rules": 36,
+      "source_sha256": "94740b7929dd868043ab1b476c3b568712fc26d045a4d450359cea90effbfa1c"
+    },
+    "U_Active_Directory_Forest_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip": {
+      "baseline_blocked": 3,
+      "baseline_converted": 4,
+      "candidate_blocked": 3,
+      "candidate_converted": 4,
+      "recovered": 0,
+      "source_rules": 7,
+      "source_sha256": "0d7ac019b7133db86f30b83e4922ecfb8f07e364c09d789c3bbd7262bb57fda0"
+    },
+    "U_Adobe_Acrobat_Pro_DC_Continuous_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip": {
+      "baseline_blocked": 4,
+      "baseline_converted": 19,
+      "candidate_blocked": 1,
+      "candidate_converted": 22,
+      "recovered": 3,
+      "source_rules": 23,
+      "source_sha256": "01bdb16fcfee60d27f475cedbf25263919df52cb78aa58bb2242b259d409694b"
+    },
+    "U_Adobe_Acrobat_Reader_DC_Continuous_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip": {
+      "baseline_blocked": 1,
+      "baseline_converted": 25,
+      "candidate_blocked": 1,
+      "candidate_converted": 25,
+      "recovered": 0,
+      "source_rules": 26,
+      "source_sha256": "e1611d05432ed262238755cfee8fad770c4a76e064c915a10272c79448d5eb21"
+    },
+    "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip": {
+      "baseline_blocked": 69,
+      "baseline_converted": 118,
+      "candidate_blocked": 23,
+      "candidate_converted": 164,
+      "recovered": 46,
+      "source_rules": 187,
+      "source_sha256": "88cc35f98c9ff96c567110c284c06e6adfc556fd59967019bdec6fd1cc5a204f"
+    },
+    "U_Apache_Server_2-4_UNIX_Server_V3R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip": {
+      "baseline_blocked": 36,
+      "baseline_converted": 9,
+      "candidate_blocked": 36,
+      "candidate_converted": 9,
+      "recovered": 0,
+      "source_rules": 45,
+      "source_sha256": "8894123788ba415373625eaecdbbd834f190668697803c3319393c11889f1b80"
+    },
+    "U_Apache_Server_2-4_UNIX_Site_V2R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip": {
+      "baseline_blocked": 13,
+      "baseline_converted": 3,
+      "candidate_blocked": 13,
+      "candidate_converted": 3,
+      "recovered": 0,
+      "source_rules": 16,
+      "source_sha256": "9c93cbe5d8283bb8ab3ceb2221ef63cd6be16352e2bcf94939a1b2b576afb88c"
+    },
+    "U_Apache_Server_2-4_Windows_Server_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip": {
+      "baseline_blocked": 29,
+      "baseline_converted": 20,
+      "candidate_blocked": 29,
+      "candidate_converted": 20,
+      "recovered": 0,
+      "source_rules": 49,
+      "source_sha256": "d83045885c4e7eebe197d11b02f898ec41ecfac8da7949bc9a5b7538c8220408"
+    },
+    "U_Apache_Server_2-4_Windows_Site_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip": {
+      "baseline_blocked": 12,
+      "baseline_converted": 4,
+      "candidate_blocked": 11,
+      "candidate_converted": 5,
+      "recovered": 1,
+      "source_rules": 16,
+      "source_sha256": "9efd70c07316fce84255d1b092a4824b7cd4d47961598511f480783c3020f2ed"
+    },
+    "U_Apache_Tomcat_Application_Server_9_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip": {
+      "baseline_blocked": 79,
+      "baseline_converted": 0,
+      "candidate_blocked": 79,
+      "candidate_converted": 0,
+      "recovered": 0,
+      "source_rules": 79,
+      "source_sha256": "ac4160a0f0f9541507836ba44272ba479fe6f1f8e8da3aff9793700ee482288d"
+    },
+    "U_Apple_macOS_13_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip": {
+      "baseline_blocked": 113,
+      "baseline_converted": 0,
+      "candidate_blocked": 11,
+      "candidate_converted": 102,
+      "recovered": 102,
+      "source_rules": 113,
+      "source_sha256": "0fbdff446bba6b8e0efc320d599b1a38c02bc018f99f0127fc258bde583249de"
+    },
+    "U_Apple_macOS_14_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip": {
+      "baseline_blocked": 156,
+      "baseline_converted": 0,
+      "candidate_blocked": 4,
+      "candidate_converted": 152,
+      "recovered": 152,
+      "source_rules": 156,
+      "source_sha256": "5f3cd35984615828ce36b94ac2a2d7c81d49fb656c03b4b7ce522c71435a1efe"
+    },
+    "U_Apple_macOS_15_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip": {
+      "baseline_blocked": 160,
+      "baseline_converted": 0,
+      "candidate_blocked": 3,
+      "candidate_converted": 157,
+      "recovered": 157,
+      "source_rules": 160,
+      "source_sha256": "da8ff53600d31adf8917b49a3bf3a7b4eb6188edde6d21fbdcf7b54eed9d3c19"
+    },
+    "U_Apple_macOS_26_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip": {
+      "baseline_blocked": 160,
+      "baseline_converted": 0,
+      "candidate_blocked": 3,
+      "candidate_converted": 157,
+      "recovered": 157,
+      "source_rules": 160,
+      "source_sha256": "f4ad086a9d017dda38fdaf76590c4f4081d3927f54cd0c8a0953e85541561955"
+    },
+    "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip": {
+      "baseline_blocked": 113,
+      "baseline_converted": 63,
+      "candidate_blocked": 57,
+      "candidate_converted": 119,
+      "recovered": 56,
+      "source_rules": 176,
+      "source_sha256": "1a9f72cf7a050359f0bc4ea73a12d5a9c5675c93fa594c8305a1e238cf3bbd49"
+    },
+    "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip": {
+      "baseline_blocked": 57,
+      "baseline_converted": 116,
+      "candidate_blocked": 40,
+      "candidate_converted": 133,
+      "recovered": 17,
+      "source_rules": 173,
+      "source_sha256": "85cc4348a0bd85becf757f50e6f0d3ef67169c87e26f12f045c94914d7099ef5"
+    },
+    "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip": {
+      "baseline_blocked": 68,
+      "baseline_converted": 120,
+      "candidate_blocked": 20,
+      "candidate_converted": 168,
+      "recovered": 48,
+      "source_rules": 188,
+      "source_sha256": "dbbc87ffe6d0c84688993d96cd7007e76bf83b9206508109b586ccc5bf88b6b2"
+    },
+    "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip": {
+      "baseline_blocked": 73,
+      "baseline_converted": 121,
+      "candidate_blocked": 23,
+      "candidate_converted": 171,
+      "recovered": 50,
+      "source_rules": 194,
+      "source_sha256": "40229cd7a41e6ff4a8cfb675523f767292d1460edbc68fe9ba5258c530c8b4a7"
+    },
+    "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip": {
+      "baseline_blocked": 10,
+      "baseline_converted": 32,
+      "candidate_blocked": 10,
+      "candidate_converted": 32,
+      "recovered": 0,
+      "source_rules": 42,
+      "source_sha256": "82e2d4bf65abc53bb6da01874944c555efae51dbc98d80e6e42423d1025e7efa"
+    },
+    "U_Cisco_IOS-XE_Router_RTR_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip": {
+      "baseline_blocked": 91,
+      "baseline_converted": 6,
+      "candidate_blocked": 91,
+      "candidate_converted": 6,
+      "recovered": 0,
+      "source_rules": 97,
+      "source_sha256": "e2a2e23823d0610ca91c5ba2d73a952a4dbbb1afab7daf5874f6e416df50a095"
+    },
+    "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip": {
+      "baseline_blocked": 10,
+      "baseline_converted": 32,
+      "candidate_blocked": 10,
+      "candidate_converted": 32,
+      "recovered": 0,
+      "source_rules": 42,
+      "source_sha256": "0bd07f9acdf6cae7e6b2f0549c7bf42ce368114953b18f37f460fa66563aa600"
+    },
+    "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip": {
+      "baseline_blocked": 11,
+      "baseline_converted": 24,
+      "candidate_blocked": 11,
+      "candidate_converted": 24,
+      "recovered": 0,
+      "source_rules": 35,
+      "source_sha256": "cc90109437f9e26ab5ec6cbd43b6e83b1c60717b4da02ce0d5580a07bcdb147d"
+    },
+    "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip": {
+      "baseline_blocked": 11,
+      "baseline_converted": 24,
+      "candidate_blocked": 11,
+      "candidate_converted": 24,
+      "recovered": 0,
+      "source_rules": 35,
+      "source_sha256": "1d33596c80208a4b3d77004397b209b5038badfefe97e5e5d27ec536b1211b70"
+    },
+    "U_F5_NGINX_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip": {
+      "baseline_blocked": 12,
+      "baseline_converted": 20,
+      "candidate_blocked": 12,
+      "candidate_converted": 20,
+      "recovered": 0,
+      "source_rules": 32,
+      "source_sha256": "1e8e828b22f0c73673cbac1900dd56fd68537baf0dd2afd0a2379df9a2b0664f"
+    },
+    "U_Google_Chrome_V2R11_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip": {
+      "baseline_blocked": 2,
+      "baseline_converted": 44,
+      "candidate_blocked": 2,
+      "candidate_converted": 44,
+      "recovered": 0,
+      "source_rules": 46,
+      "source_sha256": "78e58d9ce76f458e8c436de80cb2b30e15ebce35d1527bf6e38aca5069e6bfd1"
+    },
+    "U_Kubernetes_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip": {
+      "baseline_blocked": 31,
+      "baseline_converted": 61,
+      "candidate_blocked": 31,
+      "candidate_converted": 61,
+      "recovered": 0,
+      "source_rules": 92,
+      "source_sha256": "3772f25da835952e83bdd3b230dbf2d73b42e9849e129982ce1efe6497e71ae0"
+    },
+    "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip": {
+      "baseline_blocked": 33,
+      "baseline_converted": 0,
+      "candidate_blocked": 33,
+      "candidate_converted": 0,
+      "recovered": 0,
+      "source_rules": 33,
+      "source_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7"
+    },
+    "U_MOZ_Firefox_Windows_V6R8_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": {
+      "baseline_blocked": 1,
+      "baseline_converted": 32,
+      "candidate_blocked": 1,
+      "candidate_converted": 32,
+      "recovered": 0,
+      "source_rules": 33,
+      "source_sha256": "ad37668f0f43cd0b973e7544ad1d44e21dac9388f750fa2dab2c43893e781f41"
+    },
+    "U_MS_Defender_Antivirus_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip": {
+      "baseline_blocked": 8,
+      "baseline_converted": 59,
+      "candidate_blocked": 0,
+      "candidate_converted": 67,
+      "recovered": 8,
+      "source_rules": 67,
+      "source_sha256": "8f0b317cd9c17bc27f3285a5e8810a6560c0ac8ffe475a6d6e7bd72dae5fefd6"
+    },
+    "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip": {
+      "baseline_blocked": 10,
+      "baseline_converted": 7,
+      "candidate_blocked": 10,
+      "candidate_converted": 7,
+      "recovered": 0,
+      "source_rules": 17,
+      "source_sha256": "9578b414bc8e406e15226b91d663d31f227f1164f8bca7c4d5ea3507d8f520c9"
+    },
+    "U_MS_Edge_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip": {
+      "baseline_blocked": 5,
+      "baseline_converted": 56,
+      "candidate_blocked": 5,
+      "candidate_converted": 56,
+      "recovered": 0,
+      "source_rules": 61,
+      "source_sha256": "612a1ee2696ca6453cdc363f236c364549981b5ef84a4cc9144afb9dafc77339"
+    },
+    "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip": {
+      "baseline_blocked": 15,
+      "baseline_converted": 53,
+      "candidate_blocked": 15,
+      "candidate_converted": 53,
+      "recovered": 0,
+      "source_rules": 68,
+      "source_sha256": "b6bd7ad2a458f464eca99deb9eac50aaeafa74d435cf0bb2ca76d0424d916692"
+    },
+    "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip": {
+      "baseline_blocked": 17,
+      "baseline_converted": 49,
+      "candidate_blocked": 17,
+      "candidate_converted": 49,
+      "recovered": 0,
+      "source_rules": 66,
+      "source_sha256": "46497542771fd7841cd96745d61dbdeb8ccf0d082415dcfa64a6694bf365f8f9"
+    },
+    "U_MS_IE11_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip": {
+      "baseline_blocked": 74,
+      "baseline_converted": 63,
+      "candidate_blocked": 20,
+      "candidate_converted": 117,
+      "recovered": 54,
+      "source_rules": 137,
+      "source_sha256": "c0d20d64249769c052f8ff9ecef3ddffb2944064b6211a9c8afb3f6dfb962f81"
+    },
+    "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip": {
+      "baseline_blocked": 21,
+      "baseline_converted": 19,
+      "candidate_blocked": 21,
+      "candidate_converted": 19,
+      "recovered": 0,
+      "source_rules": 40,
+      "source_sha256": "8bfa016748ea4c6478655a6777dc2aab9d601581b0429388e4d1ba0e3696ca1b"
+    },
+    "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip": {
+      "baseline_blocked": 19,
+      "baseline_converted": 25,
+      "candidate_blocked": 19,
+      "candidate_converted": 25,
+      "recovered": 0,
+      "source_rules": 44,
+      "source_sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae"
+    },
+    "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": {
+      "baseline_blocked": 28,
+      "baseline_converted": 15,
+      "candidate_blocked": 28,
+      "candidate_converted": 15,
+      "recovered": 0,
+      "source_rules": 43,
+      "source_sha256": "3b2f7aa396dbfc647b73de8f7506a5bca1578ff5b79f96d40d13859da57613e4"
+    },
+    "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": {
+      "baseline_blocked": 35,
+      "baseline_converted": 14,
+      "candidate_blocked": 35,
+      "candidate_converted": 14,
+      "recovered": 0,
+      "source_rules": 49,
+      "source_sha256": "21f5e5e7809b14e8bfb21b4571f156bb150a3db0afe449d2fdb0da9d06add27f"
+    },
+    "U_MS_Office_365_ProPlus_V3R8_STIG_SCAP_1-4_Benchmark-enhancedV11-signed.zip": {
+      "baseline_blocked": 117,
+      "baseline_converted": 22,
+      "candidate_blocked": 14,
+      "candidate_converted": 125,
+      "recovered": 103,
+      "source_rules": 139,
+      "source_sha256": "1129b2253c25cc52ff59a9c0a9a3213cf011cbccea801046514ec0ed8bb3c2eb"
+    },
+    "U_MS_OneDrive_V2R4_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip": {
+      "baseline_blocked": 0,
+      "baseline_converted": 12,
+      "candidate_blocked": 0,
+      "candidate_converted": 12,
+      "recovered": 0,
+      "source_rules": 12,
+      "source_sha256": "144d5d76eefb0707d5afe95ad804f0ee7ca696b061c77093d33892a193f1e592"
+    },
+    "U_MS_SQL_Server_2016_Database_V3R4_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": {
+      "baseline_blocked": 23,
+      "baseline_converted": 0,
+      "candidate_blocked": 23,
+      "candidate_converted": 0,
+      "recovered": 0,
+      "source_rules": 23,
+      "source_sha256": "b4ec35e6175b37f1e1ac798612092afe54066b8878f9b0ff9126e5b7e787c6ae"
+    },
+    "U_MS_SQL_Server_2016_Instance_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip": {
+      "baseline_blocked": 80,
+      "baseline_converted": 4,
+      "candidate_blocked": 80,
+      "candidate_converted": 4,
+      "recovered": 0,
+      "source_rules": 84,
+      "source_sha256": "15ac7e34b3fbc687092f71cb62d3043664e34061ddaed81988ce4a7d2cc1a45c"
+    },
+    "U_MS_SQL_Server_2022_Database_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip": {
+      "baseline_blocked": 23,
+      "baseline_converted": 0,
+      "candidate_blocked": 23,
+      "candidate_converted": 0,
+      "recovered": 0,
+      "source_rules": 23,
+      "source_sha256": "f278c41721a40c7a80e04e48353e42169747f215377eb63795058166a0b7ce48"
+    },
+    "U_MS_SQL_Server_2022_Instance_V1R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip": {
+      "baseline_blocked": 76,
+      "baseline_converted": 3,
+      "candidate_blocked": 76,
+      "candidate_converted": 3,
+      "recovered": 0,
+      "source_rules": 79,
+      "source_sha256": "5a05495768b1076a53ee6089949ba0209a0121d8728e766fd91b4b2442ad0f33"
+    },
+    "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip": {
+      "baseline_blocked": 64,
+      "baseline_converted": 203,
+      "candidate_blocked": 51,
+      "candidate_converted": 216,
+      "recovered": 13,
+      "source_rules": 267,
+      "source_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee"
+    },
+    "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip": {
+      "baseline_blocked": 37,
+      "baseline_converted": 220,
+      "candidate_blocked": 23,
+      "candidate_converted": 234,
+      "recovered": 14,
+      "source_rules": 257,
+      "source_sha256": "e4b8d55b58aa80124bd0974977af4c7f7bde35c748e2940e02857419292d8c3d"
+    },
+    "U_MS_Windows_2012_and_2012_R2_DC_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": {
+      "baseline_blocked": 260,
+      "baseline_converted": 104,
+      "candidate_blocked": 159,
+      "candidate_converted": 205,
+      "recovered": 101,
+      "source_rules": 364,
+      "source_sha256": "ecba937d43efc0a72037eefb501b46a2e417158088b2f2699f2c86b68bd1de9c"
+    },
+    "U_MS_Windows_2012_and_2012_R2_MS_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": {
+      "baseline_blocked": 242,
+      "baseline_converted": 87,
+      "candidate_blocked": 142,
+      "candidate_converted": 187,
+      "recovered": 100,
+      "source_rules": 329,
+      "source_sha256": "3ad256b29d6f85fe69ba9a14b18502a6f50e923faea2880d9ce10246f780a50a"
+    },
+    "U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip": {
+      "baseline_blocked": 21,
+      "baseline_converted": 0,
+      "candidate_blocked": 20,
+      "candidate_converted": 1,
+      "recovered": 1,
+      "source_rules": 21,
+      "source_sha256": "d16c868152e14bab0a1e2ecdfa6ec889972e068625d4d20d4ac3f861ff2009ca"
+    },
+    "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip": {
+      "baseline_blocked": 117,
+      "baseline_converted": 155,
+      "candidate_blocked": 79,
+      "candidate_converted": 193,
+      "recovered": 38,
+      "source_rules": 272,
+      "source_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8"
+    },
+    "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip": {
+      "baseline_blocked": 40,
+      "baseline_converted": 242,
+      "candidate_blocked": 33,
+      "candidate_converted": 249,
+      "recovered": 7,
+      "source_rules": 282,
+      "source_sha256": "54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1"
+    },
+    "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip": {
+      "baseline_blocked": 41,
+      "baseline_converted": 237,
+      "candidate_blocked": 34,
+      "candidate_converted": 244,
+      "recovered": 7,
+      "source_rules": 278,
+      "source_sha256": "5ba5577961a13ded0d4e9a0c6603f93b8201b4fc74d23ef679eba7726e0182f4"
+    },
+    "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip": {
+      "baseline_blocked": 44,
+      "baseline_converted": 247,
+      "candidate_blocked": 36,
+      "candidate_converted": 255,
+      "recovered": 8,
+      "source_rules": 291,
+      "source_sha256": "2f46264b5fa21c8a033236121794ebe372314bf7458dac0aca4f81179fe7ece0"
+    },
+    "U_MS_Windows_Server_DNS_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip": {
+      "baseline_blocked": 44,
+      "baseline_converted": 37,
+      "candidate_blocked": 44,
+      "candidate_converted": 37,
+      "recovered": 0,
+      "source_rules": 81,
+      "source_sha256": "f674b67e74acbd3037093d50e33dc20765bd9d45a6c9ed2be5d463d009a6c6b8"
+    },
+    "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip": {
+      "baseline_blocked": 157,
+      "baseline_converted": 86,
+      "candidate_blocked": 89,
+      "candidate_converted": 154,
+      "recovered": 68,
+      "source_rules": 243,
+      "source_sha256": "0235429534dfc1149824f1a6b5144f73e16dc28d84d899c638cc5ede31da8c1a"
+    },
+    "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip": {
+      "baseline_blocked": 161,
+      "baseline_converted": 215,
+      "candidate_blocked": 63,
+      "candidate_converted": 313,
+      "recovered": 98,
+      "source_rules": 376,
+      "source_sha256": "e811aadd425862d0483cb314b8f8f3efe31547dbf287d89da8c3b64efcb09a29"
+    },
+    "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip": {
+      "baseline_blocked": 160,
+      "baseline_converted": 288,
+      "candidate_blocked": 56,
+      "candidate_converted": 392,
+      "recovered": 104,
+      "source_rules": 448,
+      "source_sha256": "6733abd693380b43b2350c2692775e4ff902f895f16899db97b34fecf7fba74d"
+    },
+    "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip": {
+      "baseline_blocked": 148,
+      "baseline_converted": 96,
+      "candidate_blocked": 77,
+      "candidate_converted": 167,
+      "recovered": 71,
+      "source_rules": 244,
+      "source_sha256": "17c3ddd4d4ae40bd7ca3443dae0a0c9ed921444a57c34bff357f9f885e0d9ab8"
+    },
+    "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip": {
+      "baseline_blocked": 150,
+      "baseline_converted": 219,
+      "candidate_blocked": 51,
+      "candidate_converted": 318,
+      "recovered": 99,
+      "source_rules": 369,
+      "source_sha256": "7c3e8df208dd49ea0b9bbb4435e665b814bb69e9ad18853ac91b7f65b0be94b5"
+    },
+    "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip": {
+      "baseline_blocked": 144,
+      "baseline_converted": 301,
+      "candidate_blocked": 42,
+      "candidate_converted": 403,
+      "recovered": 102,
+      "source_rules": 445,
+      "source_sha256": "70aa6a16221df2c53b094b11b48b16aca1f6d7147c11123b655659ca7711dbb5"
+    },
+    "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip": {
+      "baseline_blocked": 166,
+      "baseline_converted": 44,
+      "candidate_blocked": 95,
+      "candidate_converted": 115,
+      "recovered": 71,
+      "source_rules": 210,
+      "source_sha256": "c19224227a7719b2b83499495349ca1050bcc9ab534410e69b44c2aed14dcaf5"
+    },
+    "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip": {
+      "baseline_blocked": 109,
+      "baseline_converted": 109,
+      "candidate_blocked": 88,
+      "candidate_converted": 130,
+      "recovered": 21,
+      "source_rules": 218,
+      "source_sha256": "9f3905efe7cc8e7e15a3713db86abcec65367d36b771fb32d1f7755213436f9c"
+    },
+    "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip": {
+      "baseline_blocked": 102,
+      "baseline_converted": 113,
+      "candidate_blocked": 79,
+      "candidate_converted": 136,
+      "recovered": 23,
+      "source_rules": 215,
+      "source_sha256": "b8ae7486d503b46e25ca885cfd53b9b47c40f313b9b4117683f88102c7222b1d"
+    },
+    "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip": {
+      "baseline_blocked": 102,
+      "baseline_converted": 112,
+      "candidate_blocked": 78,
+      "candidate_converted": 136,
+      "recovered": 24,
+      "source_rules": 214,
+      "source_sha256": "f988154cba7cf0ab39fa3063e510398c716e5d7d5865ae5cc187dc10d2071f2a"
+    },
+    "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip": {
+      "baseline_blocked": 129,
+      "baseline_converted": 96,
+      "candidate_blocked": 46,
+      "candidate_converted": 179,
+      "recovered": 83,
+      "source_rules": 225,
+      "source_sha256": "fbeda733bc200206f525d5667a8ec30be44a3865b0b48f58d837ad9f74a88b7d"
+    }
+  },
+  "candidate": {
+    "blocked": 2361,
+    "converted": 6531,
+    "mode": "native_recovery opt-in",
+    "total": 8892
+  },
+  "delta": {
+    "all_exist_recovered": 1716,
+    "check_import_export_recovered": 291,
+    "recovered": 2007,
+    "regressions": 0
+  },
+  "format": "scap-ng-tools/issue28-native-input-recovery/1",
+  "remaining_primary_blockers": [
+    {
+      "category": "unsupported-selection",
+      "message": "unsupported competing non-OVAL check/selector",
+      "rules": 1653
+    },
+    {
+      "category": "unsupported-capability",
+      "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+      "rules": 125
+    },
+    {
+      "category": "unsupported-capability",
+      "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}sqlext_test",
+      "rules": 66
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "unsupported function: count",
+      "rules": 37
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "XCCDF Value operator requires an explicit constraint adapter",
+      "rules": 36
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "multiple aggregation components need an approved collection expression",
+      "rules": 30
+    },
+    {
+      "category": "unsupported-capability",
+      "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_test",
+      "rules": 20
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "unsupported function: split",
+      "rules": 17
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native test name collision check-if-the-sharepoint-designer-2013-key-is-present-test: oval:mil.disa.stig.sharepointdesigner2013:tst:1 vs oval:mil.disa.stig.sharepointdesigner2013:tst:2",
+      "rules": 13
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "invalid nil input datatype",
+      "rules": 11
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "ordered comparison expansion requires integer source datatype",
+      "rules": 10
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "invalid original pattern-path recursion attributes",
+      "rules": 10
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native test name collision 64-bit-architecture-test: oval:mil.disa.stig.ol7:tst:1432 vs oval:mil.disa.stig.ol7:tst:1429",
+      "rules": 10
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "comparator-bearing absence blocked",
+      "rules": 9
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native test name collision 64-bit-architecture-test: oval:mil.disa.stig.rhel7:tst:1432 vs oval:mil.disa.stig.rhel7:tst:1429",
+      "rules": 9
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native variable name collision local-variable-lsetxattr-variable: oval:mil.disa.stig.defs:var:25303500 vs oval:mil.disa.stig.defs:var:25303501",
+      "rules": 8
+    },
+    {
+      "category": "unsupported-capability",
+      "message": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wmi_object",
+      "rules": 8
+    },
+    {
+      "category": "unsupported-capability",
+      "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
+      "rules": 8
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native test name collision audit-32-bit-invocations-of-syscall-with-exit-eperm-test: oval:mil.disa.stig.ind:tst:23044900 vs oval:mil.disa.stig.ind:tst:23044904",
+      "rules": 7
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "unsupported function: substring",
+      "rules": 7
+    },
+    {
+      "category": "unsupported-capability",
+      "message": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}sqlext_object",
+      "rules": 6
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native test name collision local-initialization-files-mode-0740-or-less-permissive-test: oval:mil.disa.stig.unix:tst:23032500 vs oval:mil.disa.stig.unix:tst:23032501",
+      "rules": 6
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native test name collision us-dod-cceb-interoperability-untrusted-certificates-store-test: oval:mil.disa.stig.win:tst:25343000 vs oval:mil.disa.stig.win:tst:25343001",
+      "rules": 5
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native object name collision textfilecontent54-filepath-greater-than-or-equal-1-object: oval:mil.disa.stig.ind:obj:23023300 vs oval:mil.disa.stig.ind:obj:23023301",
+      "rules": 5
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "unsupported function: arithmetic",
+      "rules": 4
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "unsupported Test matching/absence combination",
+      "rules": 4
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "XCCDF Value constraints require a supported Parameter adapter",
+      "rules": 4
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "native test name collision xscreensaver-must-have-a-timeout-of-15-minutes-test: oval:mil.disa.stig.solaris11:tst:4400 vs oval:mil.disa.stig.solaris11:tst:4405",
+      "rules": 4
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "conflicting Benchmark Parameter binding: javapermissions-localcomputer-var-parameter",
+      "rules": 3
+    },
+    {
+      "category": "unsupported-construct",
+      "message": "conflicting Benchmark Parameter binding: runnetframeworkreliantcompo-localcomputer-var-parameter",
+      "rules": 3
+    }
+  ],
+  "scope": {
+    "benchmarks": 65,
+    "ledger_access": "public pinned Q3 2026 ZIPs; VM-private ledger was not used",
+    "rules": 8892,
+    "schema_commit": "7354a24cdbfe18321153ccaef5d772801a10cd71",
+    "schema_family_sha256": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+    "source_revision": "niwc-atlantic/scap-content-library@8c8e5dff860af6b1290ee9273a282db24278f8d5"
+  },
+  "semantic_basis": {
+    "input_contract": "Explicit XCCDF check-export Value -> native 0.4 Input/Benchmark Parameter binding with exact datatype/cardinality/allowed values",
+    "proof": "authoring_validated only; no compiler, independent proof, scanner or compliance claim",
+    "source_fidelity": "Original external Variable and XCCDF Value XML identities are preserved in conversion warnings/provenance",
+    "unsupported_operator_boundary": "XCCDF Value operators other than equals remain blocked; no broad coercion is introduced"
+  }
+}

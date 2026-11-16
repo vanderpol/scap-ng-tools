@@ -1,0 +1,103 @@
+name: OVAL Test Content full-tree parity audit
+on:
+  pull_request:
+    paths:
+      - scripts/audit_self_assertion_parity.py
+      - tests/test_self_assertion_parity.py
+      - tests/test_unified_oval_conversion.py
+      - tests/test_v003_oval_source_truth.py
+      - tests/reference_v003/oval_result_truth_tables.py
+      - src/scap_ng_tools/converter/conversion_budget.py
+      - scripts/export_v003_oval_source_truth.py
+      - docs/qualification/full-oval-test-content-parity.md
+      - .github/workflows/oval-full-tree-parity.yml
+  push:
+    branches:
+      - audit/full-oval-test-content-parity-20261113
+permissions:
+  contents: read
+jobs:
+  independent-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install converter and run unified-architecture tests
+        run: |
+          python3 -m pip install .
+          python3 -m unittest discover -s tests -p test_unified_oval_conversion.py -v
+      - name: Run synthetic negative/positive parity tests
+        run: python3 -m unittest discover -s tests -p test_self_assertion_parity.py -v
+      - name: Enforce original 0.3 Set/Filter and status truth tables
+        run: |
+          python3 -m unittest discover -s tests -p test_v003_oval_source_truth.py -v
+          python3 scripts/export_v003_oval_source_truth.py --output /tmp/source-oval-v003-truth.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path("/tmp/source-oval-v003-truth.json").read_text())
+          assert len(data["set_flag_cases"]) == 108
+          assert len(data["filter_cases"]) == 12
+          assert len(data["existence_cases"]) == 40
+          assert len(data["boolean_operator_cases"]) == 144
+          print("Preserved 0.3 source-semantic vectors:", data["schema"],
+                data["qualification"])
+          PY
+      - name: Read original source at immutable commit
+        uses: actions/checkout@v4
+        with:
+          repository: OVAL-Community/SCAP-Self-Assertion
+          ref: e3538595c5083b9c34d937a81d319234df9bbfaa
+          path: external/source
+          persist-credentials: false
+      - name: Read historical scoped converter publication without regenerating
+        uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng-tools
+          ref: refs/pull/53/head
+          path: external/legacy-tools
+          persist-credentials: false
+      - name: Audit complete original source vs deliberately incomplete old pack
+        run: |
+          set -eu
+          python3 scripts/audit_self_assertion_parity.py \
+            --source-root external/source/SCAP_1.4/OVAL_Test_Content \
+            --pack external/legacy-tools/docs/evidence/issue37-platform-corpus \
+            --expected-xml 144 \
+            --output /tmp/oval-parity-legacy-baseline.json
+          python3 - <<'PY'
+          import json
+          data=json.load(open('/tmp/oval-parity-legacy-baseline.json'))
+          assert data["coverage"]["original"]["xml_documents"] >= 144, data
+          assert data["coverage"]["original"]["definitions"] == 168, data["coverage"]["original"]
+          assert data["coverage"]["original"]["tests"] == 803, data["coverage"]["original"]
+          assert data["coverage"]["source_git_pin_verified"] is True, data
+          assert data["complete"] is False, "Old scoped pack falsely labeled full conversion"
+          assert data["runtime_equivalence_proved"] is False, data
+          assert data["coverage"]["pack"]["source_definitions_without_disposition"] > 0, data
+          print("Full source accounted against old pack: incomplete as expected")
+          print("Original Definitions:", data["coverage"]["original"]["definitions"])
+          print("Unconverted/missing source Definitions:",
+                data["coverage"]["pack"]["source_definitions_without_disposition"])
+          from collections import Counter
+          print("Per-family original source:", json.dumps(
+                data["coverage"]["original"]["by_family"],sort_keys=True))
+          print("Original duplicate Definition IDs:", json.dumps(
+                data["coverage"]["original"]["duplicate_definitions"][:12]))
+          print("Old pack status counts:", data["coverage"]["pack"]["status_counts"])
+          print("Structural parity checked:", data["coverage"]["pack"]["parity_checked_definitions"])
+          print("Audit problem classes:",dict(sorted(Counter(
+                p["type"] for p in data["problems"]).items())))
+          for problem in data["problems"]:
+            if problem["type"] not in ("source_definition_without_converter_disposition",):
+              print("Nonmissing issue:",json.dumps(problem,sort_keys=True)[:500])
+          print("Missing sample:", json.dumps([
+            p for p in data["problems"]
+            if p["type"] == "source_definition_without_converter_disposition"
+          ][:15],sort_keys=True))
+          PY

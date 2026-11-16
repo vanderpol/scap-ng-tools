@@ -32,8 +32,7 @@ class SourceInventory:
         # Catalog names are descriptive inventory only, never admission authority.
         catalog = {}
         if mappings is None:
-            directory = Path(__file__).resolve().parents[1] / 'schema/v0.4.0/capability-mappings/supported'
-            mappings = [json.loads(path.read_text()) for path in sorted(directory.glob('*.json'))]
+            raise ValueError('inventory requires the explicit 0.4.1 mapping snapshot')
         for mapping in mappings:
             for kind in ('test', 'object', 'state'):
                 if mapping.get('source', {}).get(kind):
