@@ -363,8 +363,9 @@ class SourceModel:
             overrides.update(local)
         return overrides
 
-    def rule_selected(self, rule, profile=None):
-        overrides = self.profile_overrides(profile) if profile is not None else {}
+    def rule_selected(self, rule, profile=None, *, resolved_overrides=None):
+        overrides = (resolved_overrides if resolved_overrides is not None else
+                     self.profile_overrides(profile) if profile is not None else {})
         selected, item = True, rule
         while item is not self.benchmark:
             ensure(item.get('selected', 'true') in ('true', 'false'), 'noncanonical selected lexical unsupported')
