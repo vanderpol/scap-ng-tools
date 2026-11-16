@@ -245,9 +245,14 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                 'kind': 'cpe_platform', 'id': ref.lstrip('#'),
                 'sha256': spec['source_xml_sha256'], 'idref': ref,
             }
-            value['cpe_expression'] = spec['logical_tests']
+            expression = (spec['logical_tests'][0]
+                          if len(spec['logical_tests']) == 1 else {
+                              'operator': 'AND', 'negate': 'false',
+                              'facts': [], 'children': spec['logical_tests'],
+                          })
+            value['cpe_expression'] = expression
             value['expression_sha256'] = hashlib.sha256(
-                _canonical(spec['logical_tests']).encode()).hexdigest()
+                _canonical(expression).encode()).hexdigest()
             return value
         if platform is not None:
             kind = 'cpe_platform' if ref.startswith('cpe:') else 'xccdf_platform'
