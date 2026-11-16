@@ -67,6 +67,13 @@ class Active041FunctionLowering(unittest.TestCase):
                 'object': {'capability': 'independent.shellcommand', 'command': 'printf x'},
                 'field': 'subexpression'}}]}})
 
+    def test_result_type_uses_enclosing_datatype_for_implicit_literal(self):
+        from scap_ng_tools.converter.native041_variable_result_type import result_type
+        source = oval(
+            '<local_variable xmlns="OVAL" datatype="int">'
+            '<literal_component>9</literal_component></local_variable>')
+        self.assertEqual(result_type(source), 'int')
+
     def test_time_difference_uses_active_typed_expression_for_all_formats_and_arities(self):
         visitor = self.visitor()
         cases = [
