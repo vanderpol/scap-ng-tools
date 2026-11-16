@@ -76,7 +76,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
         self.assertEqual(len(pack['behavior_attributes']), 8)
         self.assertEqual(pack['format'], 'scap-ng-portable-0.4.1-semantic-pack/1')
         self.assertEqual(pack['schema_version'], '0.4.1')
-        self.assertEqual(pack['frozen_schema_digest'], '6cd7b9160b90b7c98f159cfe1d83393082398c6072f5aff58f7289e3133fe7bf')
+        self.assertEqual(pack['frozen_schema_digest'], '65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54')
         self.assertEqual(pack['oval_commit'], '2f140ee5c5dd1ed9606fcd5afc301f6baeb48706')
         self.assertEqual(pack['generator_helper_sha256']['v04_capability_source.py'], 'b2e4a1cb053acc574b7677ef7d94a38905ce9acdd8a418be613840b330ca44e5')
         self.assertFalse((directory / 'contracts-0.4.0.json').exists())
