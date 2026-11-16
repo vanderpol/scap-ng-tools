@@ -202,6 +202,12 @@ class AssessmentConverter:
         self.selector_equivalences = []
         self.enum_variable_copies = {}
         self.enum_variable_equivalences = []
+        # Source OVAL Object Sets can contain several logical Items.  The
+        # canonical variable.value Test shape has one Variable-backed Item,
+        # so a finite UNION is lowered to child Tests plus a native Evaluate
+        # expression rather than flattening the operands into one population.
+        self.expanded_set_tests = []
+        self._expanding_variable_set = False
         self.conversion_warnings = []
         self.bound_exports, self.inputs, self.policy_parameters, self.input_bindings = {}, {}, {}, {}
 
@@ -350,6 +356,18 @@ class AssessmentConverter:
         object_id = objects[0].get('object_ref')
         object_source = self.source.node(self.component_id, object_id, 'object')
         self._variable_result_datatype = ""
+        # OVAL evaluates the Test check over logical Items produced by an
+        # Object Set.  Flattening a UNION of Variable Objects into one
+        # Variable Item loses that boundary (for example [0] and [1,2,3]
+        # become [0,1,2,3]) and changes `only one`/`all` semantics.  The
+        # active 0.4.1 grammar can represent the same boundary as child
+        # Tests and one shared Evaluate expression, with no schema extension.
+        if (mapping['capability'] == 'variable.value' and
+                local_name(object_source) == 'variable_object' and
+                not self._expanding_variable_set):
+            expanded = self.expand_static_variable_set_test(element, mapping, object_source)
+            if expanded is not None:
+                return expanded
         if mapping['capability'] == 'variable.value' and local_name(object_source) == 'variable_object':
             variable_refs = [child.text.strip() for child in object_source
                              if local_name(child) == 'var_ref' and (child.text or '').strip()]
@@ -424,6 +442,11 @@ class AssessmentConverter:
             ensure(element.get('check') in MATCHING, 'unsupported Test matching/absence combination')
             requirement.update(items_satisfying=MATCHING[element.get('check')])
             requirement.update(logical_condition(element.get('state_operator', 'AND'), conditions))
+            if self._expanding_variable_set:
+                # The source Test quantifier is represented by the parent
+                # Evaluate expression. Each child Test decides only whether
+                # its one Object-Set operand satisfies the State.
+                requirement['items_satisfying'] = 'every'
             if self.human_compact:
                 from v04_human_authoring_compact import compact_test_requirement
                 compacted, edit = compact_test_requirement(requirement)
@@ -439,7 +462,8 @@ class AssessmentConverter:
         # field requirement; leaving the default `every` would incorrectly
         # turn a valid at-least-one/only-one source Test into FALSE.
         if (mapping['capability'] == 'variable.value' and
-                local_name(object_source) == 'variable_object' and conditions):
+                local_name(object_source) == 'variable_object' and conditions and
+                not self._expanding_variable_set):
             source_check = element.get('check')
             ensure(source_check in MATCHING, 'unsupported Variable Test matching quantifier')
             fields = requirement.get('fields', {})
@@ -488,6 +512,120 @@ class AssessmentConverter:
             self.tests[identifier]['variable'] = acquisition['variable']
             self.tests[identifier].pop('object')
         return {'test': identifier}
+
+    def expand_static_variable_set_test(self, element, mapping, object_source):
+        """Lower a finite UNION Variable Object Set without losing Item groups.
+
+        OVAL's Test ``check`` quantifies the logical Items returned by the
+        Object, not the scalar values inside one Variable Item.  A native
+        variable.value Object has one wrapper Item, therefore a static UNION
+        is represented as one native Test per source operand and a native
+        Evaluate expression (and/or/one/not-or).  This is a lossless lowering
+        for the finite UNION form used by the pinned self-assertion corpus.
+        Dynamic/filtered sets and non-UNION operators stay on the existing
+        fail-closed/materialization path until their Item-set semantics have
+        an independently reviewed mapping.
+        """
+        sets = [child for child in object_source if local_name(child) == 'set']
+        if len(sets) != 1 or len(object_source) != 1:
+            return None
+
+        def leaves(set_node):
+            operator = set_node.get('set_operator', 'UNION')
+            if operator != 'UNION':
+                return None
+            if any(local_name(child) == 'filter' for child in set_node):
+                return None
+            refs = [child for child in set_node
+                    if local_name(child) == 'object_reference']
+            nested = [child for child in set_node if local_name(child) == 'set']
+            if bool(refs) == bool(nested) or not (refs or nested):
+                return None
+            if len(refs) + len(nested) > 4096:
+                raise UnsupportedSource('Variable Object Set operand budget exceeded')
+            output = []
+            for ref in refs:
+                if len(ref) or not (ref.text or '').strip():
+                    return None
+                identifier = (ref.text or '').strip()
+                source_operand = self.source.node(self.component_id, identifier, 'object')
+                # Each leaf must itself be a finite one-Variable Object.  Do
+                # not expand a host/dynamic Object or guess its cardinality.
+                if local_name(source_operand) != 'variable_object':
+                    return None
+                var_refs = [child for child in source_operand
+                            if local_name(child) == 'var_ref']
+                if len(var_refs) != 1 or len(source_operand) != 1:
+                    return None
+                variable = self.source.node(self.component_id,
+                                            (var_refs[0].text or '').strip(),
+                                            'variable')
+                if local_name(variable) != 'constant_variable':
+                    return None
+                output.append(identifier)
+            for nested_node in nested:
+                nested_leaves = leaves(nested_node)
+                if nested_leaves is None:
+                    return None
+                output.extend(nested_leaves)
+            return output
+
+        operands = leaves(sets[0])
+        if not operands:
+            return None
+        check = element.get('check', 'all')
+        if check not in MATCHING:
+            raise UnsupportedSource('unsupported Variable Object Set Test check: ' + check)
+        source_test_id = element.get('id', '')
+        source_title = element.get('comment', '')
+        child_expressions = []
+        previous = self._expanding_variable_set
+        self._expanding_variable_set = True
+        try:
+            for number, operand in enumerate(operands, 1):
+                child = deepcopy(element)
+                child.set('id', f'{source_test_id}-set-operand-{number}')
+                child.set('comment', f'{source_title} (Object Set operand {number})')
+                object_children = [node for node in child
+                                   if local_name(node) == 'object']
+                if len(object_children) != 1:
+                    raise UnsupportedSource('Variable Object Set Test requires one Object child')
+                object_children[0].set('object_ref', operand)
+                result = self.convert_test(child)
+                if not isinstance(result, dict) or set(result) != {'test'}:
+                    raise UnsupportedSource('Variable Object Set operand did not produce one native Test')
+                child_expressions.append(result)
+                self.expanded_set_tests.append({
+                    'source_test': source_test_id,
+                    'native_test': result['test'],
+                    'source_object': operand,
+                    'operand': number,
+                })
+        finally:
+            self._expanding_variable_set = previous
+
+        # The Test check is the quantifier over the logical object results;
+        # child Tests must retain their per-Item state/entity checks.
+        if check == 'all':
+            expression = logical_condition('AND', child_expressions)
+        elif check == 'at least one':
+            expression = logical_condition('OR', child_expressions)
+        elif check == 'none satisfy':
+            expression = {'not': logical_condition('OR', child_expressions)}
+        else:  # only one
+            expression = logical_condition('ONE', child_expressions)
+        self.conversion_warnings.append({
+            'code': 'oval_variable_object_set_grouped_tests',
+            'source_test': source_test_id,
+            'source_object': object_source.get('id'),
+            'source_set_operator': 'UNION',
+            'source_check': check,
+            'operand_count': len(operands),
+            'semantic_basis': 'OVAL Test check quantifies Object Set logical Items; native child Tests preserve operand groups',
+            'independent_static_proof': 'SOURCE_OBJECT_SET_ITEM_GROUPING',
+            'scanner_evaluated': False,
+        })
+        return expression
 
     def same_family(self, identifier, kind, mapping):
         node = self.source.node(self.component_id, identifier, kind)

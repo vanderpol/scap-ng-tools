@@ -295,6 +295,36 @@ class Active041FunctionLowering(unittest.TestCase):
             self.visitor(recovery=False).function(source)
 
 
+class VariableObjectSetGrouping(unittest.TestCase):
+    def test_union_preserves_object_item_boundaries_for_test_quantifier(self):
+        nodes = {
+            'root': oval('<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
+                         '<object_reference>left</object_reference><object_reference>right</object_reference>'
+                         '</set></variable_object>'),
+            'left': oval('<variable_object xmlns="OVAL" id="left"><var_ref>one</var_ref></variable_object>'),
+            'right': oval('<variable_object xmlns="OVAL" id="right"><var_ref>many</var_ref></variable_object>'),
+            'one': oval('<constant_variable xmlns="OVAL" id="one" datatype="int"><value>0</value></constant_variable>'),
+            'many': oval('<constant_variable xmlns="OVAL" id="many" datatype="int"><value>1</value><value>2</value></constant_variable>'),
+        }
+
+        class Source:
+            native_recovery = True
+            def node(self, _component, identifier, _kind):
+                return nodes[identifier]
+
+        visitor = AssessmentConverter(Source(), 'component', [], native_recovery=True)
+        visitor.convert_test = lambda element: {'test': element.get('id') + '-native'}
+        test = oval('<variable_test xmlns="OVAL" id="source-test" check="only one">'
+                    '<object object_ref="root"/><state state_ref="state"/></variable_test>')
+        expression = visitor.expand_static_variable_set_test(test, {}, nodes['root'])
+        self.assertEqual(expression, {'one': [
+            {'test': 'source-test-set-operand-1-native'},
+            {'test': 'source-test-set-operand-2-native'},
+        ]})
+        self.assertEqual([row['source_object'] for row in visitor.expanded_set_tests], ['left', 'right'])
+        self.assertEqual(visitor.conversion_warnings[0]['source_check'], 'only one')
+
+
 if __name__ == '__main__':
     unittest.main()
 

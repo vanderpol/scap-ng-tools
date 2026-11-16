@@ -265,17 +265,31 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
                               if name not in {item["native_id"] for item in visitor.synthetic_variables}],
         "native_synthetic_variables": visitor.synthetic_variables,
         "native_inlined_variables": sorted(visitor.inlined_variables),
+        "native_expanded_set_tests": visitor.expanded_set_tests,
+        "conversion_warnings": visitor.conversion_warnings,
         "test_bindings": [{
             "source_test": source_id, "native_test": native_id,
             "source_object": next((child.get("object_ref") for child in original.node_index[source_id]
                                     if local_name(child) == "object"), None),
             "source_states": [child.get("state_ref") for child in original.node_index[source_id]
                               if local_name(child) == "state"],
-        } for (kind, native_id), source_id in sorted(visitor.native_names.items()) if kind == "test"],
+        } for (kind, native_id), source_id in sorted(visitor.native_names.items())
+          if kind == "test" and source_id in original.node_index],
         "qualification": "CONVERTED_UNVERIFIED", "schema_validated": True,
         "semantic_validated": True, "scanner_execution": False,
         **conversion_identity(snapshot),
     }
+    if visitor.expanded_set_tests:
+        trace["test_bindings"].extend({
+            "source_test": row["source_test"],
+            "native_test": row["native_test"],
+            "source_object": row["source_object"],
+            "source_states": [child.get("state_ref") for child in original.node_index[row["source_test"]]
+                              if local_name(child) == "state"],
+            "object_set_operand": row["operand"],
+        } for row in visitor.expanded_set_tests)
+        trace["test_bindings"] = sorted(
+            trace["test_bindings"], key=lambda row: (row["source_test"], row["native_test"]))
     if relation_witnesses:
         trace["native_041_input_relation_intersections"] = relation_witnesses
     root = subprocess.run(["git", "-C", str(Path(source).resolve().parent), "rev-parse", "--show-toplevel"],
