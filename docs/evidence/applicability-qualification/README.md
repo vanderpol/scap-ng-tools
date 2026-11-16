@@ -15,6 +15,8 @@ PYTHONPATH=src python scripts/qualify_applicability.py \
   --ri-results /tmp/applicability-qualification/ri-results.json
 ```
 
+The receipt records the immutable upstream source SHA and the exact merged converter implementation commit. The original PR head `654d6481d6d86f47e9b648bc31b992990ad67213` was merged with the moving Issue 59 base for CI qualification.
+
 The receipt records the immutable upstream source SHA and a separate SHA for
 the deterministic hierarchy overlay. The overlay is necessary because the
 public OpenSCAP regression source has Benchmark/Group/Rule platforms but no

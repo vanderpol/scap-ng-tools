@@ -41,7 +41,7 @@ def audit(raw, url, expected, schema_root=None, output=None):
       "format": "scap-ng/real-source-applicability-audit/1",
       "qualification_status": "BLOCKED_MISSING_REAL_SOURCE_LEVELS",
       "source": {"url": url, "sha256": actual, "member": member},
-      "pins": {"schema_commit": "fcb2c220c05a933665477a6504586b9f47f83177", "schema_aggregate_sha256": "65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54", "converter_commit": "654d6481d6d86f47e9b648bc31b992990ad67213", "ri_commit": "32e59aa24769056aa00e8938487bbc9a380b591b"},
+      "pins": {"schema_commit": "fcb2c220c05a933665477a6504586b9f47f83177", "schema_aggregate_sha256": "65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54", "converter_commit": "fec71c60ba8c0f0bb0eed099d731e448962980d0", "converter_pr_original_head": "654d6481d6d86f47e9b648bc31b992990ad67213", "ri_commit": "32e59aa24769056aa00e8938487bbc9a380b591b"},
       "source_structure": {"benchmark_platforms": [x.get("idref") for x in benchmark.findall(f"{X}platform")], "groups": len(groups), "nested_groups": len(nested_groups), "group_platforms": len(group_platforms), "rules": len(rules), "rule_platforms": len(rule_platforms), "profiles": len(benchmark.findall(f"{X}Profile")), "cpe_platform_specifications": len(cpe_specs)},
       "converter": {"executed": False},
       "gate": {"requires_benchmark_group_nested_group_rule_platforms": True, "missing": [], "synthetic_overlay_allowed": False},
