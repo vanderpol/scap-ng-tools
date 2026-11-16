@@ -331,7 +331,7 @@ def main():
         parser.error('standalone OVAL requires --source-commit and --source-path')
     if not (arguments.oval_definition or arguments.oval_test) and (arguments.source_commit or arguments.source_path):
         parser.error('--source-commit/--source-path require --oval-definition')
-    if (arguments.oval_definition or arguments.oval_test) and (arguments.all_rules or arguments.include_applicability or arguments.recover_native):
+    if (arguments.oval_definition or arguments.oval_test) and (arguments.all_rules or arguments.include_applicability):
         parser.error('standalone OVAL is not benchmark or native-recovery mode')
     if arguments.output.exists():
         parser.error('output path already exists; refusing overwrite')
