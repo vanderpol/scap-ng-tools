@@ -915,15 +915,23 @@ class AssessmentConverter:
         # enclosing local_variable datatype is the source type boundary.
         # Carry that boundary into the visitor without emitting a native
         # declaration-level datatype or applying a consumer-directed cast.
-        previous_datatype = getattr(self, '_variable_source_datatype', None)
-        self._variable_source_datatype = datatype
-        try:
-            expression = self.function(element[0])
-        finally:
-            if previous_datatype is None:
-                self.__dict__.pop('_variable_source_datatype', None)
-            else:
-                self._variable_source_datatype = previous_datatype
+        child = element[0]
+        # The enclosing declaration supplies the type only for a direct
+        # literal_component. Function operands have their own OVAL typing
+        # boundary; in particular time_difference returns integer while its
+        # date components remain string/int lexical inputs.
+        if local_name(child) != 'literal_component':
+            expression = self.function(child)
+        else:
+            previous_datatype = getattr(self, '_variable_source_datatype', None)
+            self._variable_source_datatype = datatype
+            try:
+                expression = self.function(child)
+            finally:
+                if previous_datatype is None:
+                    self.__dict__.pop('_variable_source_datatype', None)
+                else:
+                    self._variable_source_datatype = previous_datatype
         if self.canonical_variable_functions:
             from v04_variable_function_migration import canonical_expression
             expression = canonical_expression(expression)

@@ -74,6 +74,20 @@ class Active041FunctionLowering(unittest.TestCase):
             '<literal_component>9</literal_component></local_variable>')
         self.assertEqual(result_type(source), 'int')
 
+    def test_local_result_datatype_does_not_cast_time_difference_operands(self):
+        visitor = self.visitor()
+        source = oval(
+            '<local_variable xmlns="OVAL" id="implicit-time" datatype="string">'
+            '<time_difference format_1="year_month_day" format_2="year_month_day">'
+            '<literal_component>2009-02-04</literal_component>'
+            '<literal_component>2004-02-04</literal_component>'
+            '</time_difference></local_variable>')
+        visitor.native_name = lambda _node, _kind: 'implicit-time-variable'
+        native = visitor.convert_variable(source)
+        variable = visitor.variables[native['variable']]
+        self.assertEqual(variable['expression']['time_difference']['values'][0]['literal']['datatype'], 'string')
+        self.assertEqual(variable['expression']['time_difference']['values'][1]['literal']['datatype'], 'string')
+
     def test_time_difference_uses_active_typed_expression_for_all_formats_and_arities(self):
         visitor = self.visitor()
         cases = [
