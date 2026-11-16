@@ -132,6 +132,33 @@ def lower_expression(node):
     raise ValueError("unsupported native Variable expression: " + str(operation))
 
 
+
+
+def _lower_dpkg_evr_predicates(node):
+    """Use the native Debian EVR domain for linux.dpkginfo State predicates.
+
+    OVAL's generic ``evr_string`` source token is not evidence that a Debian
+    package should be compared with RPM ordering. The active capability
+    mapping emits ``debian_evr`` Items, so this narrow post-visitor adapter
+    changes only the comparison operator in that capability's expected
+    predicate. The immutable source visitor and source trace remain untouched.
+    """
+    if isinstance(node, list):
+        for value in node:
+            _lower_dpkg_evr_predicates(value)
+        return
+    if not isinstance(node, dict):
+        return
+    for key in list(node):
+        value = node.pop(key)
+        replacement = key
+        if key.startswith("rpm_evr_"):
+            replacement = "debian_evr_" + key[len("rpm_evr_"):]
+        if replacement in node and replacement != key:
+            raise ValueError("linux.dpkginfo EVR predicate collision")
+        node[replacement] = value
+        _lower_dpkg_evr_predicates(value)
+
 def lower_assessment_inplace(document):
     """Atomically migrate Variable expression ASTs in one generated Assessment.
 
@@ -154,4 +181,13 @@ def lower_assessment_inplace(document):
         if old != expression:
             variables[name]["expression"] = expression
             changed = True
+    # The original visitor intentionally retains the generic OVAL EVR token.
+    # Apply this capability-specific native datatype adapter only after the
+    # visitor has finished, alongside the other active-grammar recoveries.
+    for test in (assessment.get("tests") or {}).values():
+        if isinstance(test, dict) and test.get("capability") == "linux.dpkginfo":
+            before = deepcopy(test)
+            _lower_dpkg_evr_predicates(test.get("require"))
+            _lower_dpkg_evr_predicates(test.get("object"))
+            changed = changed or test != before
     return changed
