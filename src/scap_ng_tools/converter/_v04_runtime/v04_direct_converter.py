@@ -383,6 +383,11 @@ class AssessmentConverter:
         with (self.source_variable_scope() if preserve_object_graph_variables else nullcontext()):
             for child in element:
                 kind = local_name(child)
+                # OVAL Test notes are descriptive metadata, not execution
+                # children. Preserve them in source provenance but do not
+                # reject otherwise executable Tests that carry notes.
+                if kind == 'notes':
+                    continue
                 ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
                 attributes(child, {kind + '_ref'})
                 ensure(not len(child), 'Test reference has children')
