@@ -1,0 +1,32 @@
+Evaluator probe receipt (2026-11-06)
+====================================
+
+$ oscap --version | head -12
+OpenSCAP command line tool (oscap) 1.3.9
+OVAL Version: 5.11.1
+
+The probes used minimal variable_test fixtures with validation skipped because
+this installed evaluator does not advertise OVAL 5.12.3. They are behavior
+observations only, not independent OVAL 5.12.3 proof.
+
+Arithmetic, local_variable datatype=string, 1 + 2:
+$ oscap oval eval --skip-validation --without-syschar /tmp/min-oval-string.xml
+Definition oval:x:def:1: true
+Evaluation done.
+
+Count, local_variable datatype=string, count("a", "b"):
+$ oscap oval eval --skip-validation --without-syschar /tmp/min-count.xml
+Definition oval:x:def:1: true
+Evaluation done.
+
+Split, local_variable datatype=int, split("1,2"):
+$ oscap oval eval --skip-validation --without-syschar --results /tmp/min-split-results.xml /tmp/min-split.xml
+Definition oval:x:def:1: false
+Evaluation done.
+# results contained tested_variable values 1 and 2
+
+Split conversion error, local_variable datatype=int, split("1,x"):
+$ oscap oval eval --skip-validation --without-syschar /tmp/min-split-error.xml
+W: oscap: Conversion of the string "x" to an integer (64 bits) failed: Invalid argument
+Definition oval:x:def:1: error
+Evaluation done.

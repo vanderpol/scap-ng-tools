@@ -29,7 +29,7 @@ def validator(schema_root, kind):
 
 
 def document_errors(snapshot, kind, document):
-    """Return the original order and wording of 0.4 validation diagnostics."""
+    """Return the original order and wording of 0.4.1 validation diagnostics."""
     with selected_schema(snapshot):
         yield from validator(str(snapshot.schema_root), kind).iter_errors(document)
         if kind != 'assessment':

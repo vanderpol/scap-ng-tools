@@ -184,53 +184,188 @@ class SourceModel:
         return element
 
     def automated_check(self, rule):
-        """A default OVAL check, optionally repeated as 'automated', is required.
+        """Select OVAL by owner policy; retain OCIL as a non-default alternative.
 
-        Explicit OCIL 'manual' choices are reported as omitted, never claimed as
-        converted. Other selectors/systems could change which check executes:
-        rejecting them avoids guessing XCCDF conditional-selection semantics.
+        XCCDF permits several checks and selector defaults.  The migration
+        contract is deterministic: any OVAL check wins over OCIL, an explicit
+        default OVAL check wins over an ``automated`` OVAL check, and an OCIL
+        only Rule is handled by the manual converter rather than rejected as a
+        conversion failure.
         """
         ensure(not rule.findall(f'{{{XCCDF}}}complex-check'), 'XCCDF complex-check unsupported')
-        choices, omitted, selectors = [], [], []
+        oval, omitted = [], []
         for check in rule.findall(f'{{{XCCDF}}}check'):
             attributes(check, {'system', 'selector'})
             selector, system = check.get('selector', ''), check.get('system')
             if system != OVAL:
-                ensure(system == OCIL and selector == 'manual', 'unsupported competing non-OVAL check/selector')
+                ensure(system == OCIL and selector in ('', 'manual'),
+                       'unsupported competing non-OVAL check/selector')
                 omitted.append({'system': system, 'selector': selector,
-                                'sha256': digest(xml_identity(check))})
+                                'sha256': digest(xml_identity(check)),
+                                'source': xml_identity(check)})
                 continue
             ensure(selector in ('', 'automated'), f'unsupported OVAL check selector: {selector}')
-            ensure(selector not in selectors, 'duplicate OVAL selector unsupported')
-            selectors.append(selector)
             references = check.findall(f'{{{XCCDF}}}check-content-ref')
-            if self.draft_compatibility:
-                ensure(len(references)==1 and all(c.tag in {f'{{{XCCDF}}}check-export',f'{{{XCCDF}}}check-content-ref'}
+            if self.draft_compatibility or getattr(self, 'native_recovery', False):
+                ensure(len(references) == 1 and all(c.tag in {f'{{{XCCDF}}}check-export', f'{{{XCCDF}}}check-content-ref'}
                        for c in check), 'OVAL check-import/result binding or complex check unsupported')
             else:
-                ensure(len(check) == 1 and check[0].tag == f'{{{XCCDF}}}check-content-ref', 'OVAL check imports/exports unsupported')
+                ensure(len(check) == 1 and check[0].tag == f'{{{XCCDF}}}check-content-ref',
+                       'OVAL check imports/exports unsupported')
             reference = references[0]
             attributes(reference, {'href', 'name'})
             ensure(reference.get('href') in self.catalog, 'unresolved checklist catalog href')
-            choices.append((self.catalog[reference.get('href')], reference.get('name')))
-        ensure('' in selectors and len(set(choices)) == 1, 'unambiguous default OVAL check required')
-        component_id, definition_id = choices[0]
+            oval.append((selector, self.catalog[reference.get('href')], reference.get('name'),
+                         digest(xml_identity(check)), xml_identity(check)))
+        if not oval:
+            raise UnsupportedSource('manual-only Rule has no OVAL check')
+        defaults = [row for row in oval if row[0] == '']
+        candidates = defaults or oval
+        ensure(len(candidates) == 1, 'ambiguous default OVAL check')
+        _, component_id, definition_id, check_hash, check_identity = candidates[0]
+        ensure(len({(row[1], row[2]) for row in oval}) == 1,
+               'conflicting OVAL check targets')
         return component_id, definition_id, omitted
 
-    def rule_selected(self, rule, profile=None):
+    def manual_checks(self, rule):
+        """Return OCIL checks in source order for optional manual alternatives."""
+        return [check for check in rule.findall(f'{{{XCCDF}}}check')
+                if check.get('system') == OCIL and check.get('selector', '') in ('', 'manual')]
+
+    def applicability_condition_id(self, platform):
+        """Stable native catalog key for one source platform reference."""
+        ref = (platform.get('idref') or '').lstrip('#')
+        stem = re.sub('[^a-z0-9]+', '-', ref.lower()).strip('-') or 'unnamed'
+        key = 'platform-' + stem + '-condition'
+        if len(key) > 64:
+            key = key[:48].rstrip('-') + '-' + digest(xml_identity(platform))[:12] + '-condition'
+        return key
+
+    def applicability_level(self, item):
+        """Preserve one XCCDF item's local platform restriction only.
+
+        XCCDF platform children are a local OR-set; inheritance is represented
+        by callers as separate ancestor levels and is never flattened here.
+        """
+        platforms = list(item.findall(f'{{{XCCDF}}}platform'))
+        if not platforms:
+            return None
+        return {'kind': local_name(item).lower(), 'id': item.get('id'),
+                'operator': 'any_of', 'conditions': [
+                    {'id': self.applicability_condition_id(platform),
+                     'source_idref': platform.get('idref'),
+                     'source_sha256': digest(xml_identity(platform))}
+                    for platform in platforms]}
+
+    def applicability_context(self, rule):
+        levels, item = [], rule
+        while True:
+            level = self.applicability_level(item)
+            if level is not None:
+                levels.append(level)
+            if item is self.benchmark:
+                break
+            item = self.parents[item]
+        levels.reverse()
+        return {'levels': levels, 'effective_operator': 'all_of',
+                'note': 'ancestor levels ANDed; platform children within one level ORed'}
+
+    def cpe_platform_expression(self, source_id):
+        """Return the CPE 2.0 Boolean tree without reducing it to names."""
+        wanted = source_id.lstrip('#')
+        for root in self.components.values():
+            for platform in root.iter():
+                if local_name(platform) != 'platform' or platform.get('id') != wanted:
+                    continue
+                logical = next((child for child in platform if local_name(child) == 'logical-test'), None)
+                def visit(node):
+                    name = local_name(node)
+                    if name == 'logical-test':
+                        return {'operator': (node.get('operator') or 'AND').upper(),
+                                'negate': (node.get('negate') or 'false').lower() == 'true',
+                                'operands': [visit(child) for child in node
+                                             if local_name(child) in ('logical-test', 'fact-ref', 'check-fact-ref')]}
+                    if name in ('fact-ref', 'check-fact-ref'):
+                        return {'fact_ref': dict(sorted(node.attrib.items()))}
+                    return {'element': name}
+                return visit(logical) if logical is not None else None
+        return None
+
+    def applicability_catalog(self):
+        catalog = {}
+    def applicability_catalog(self):
+        catalog = {}
+        for item in self.benchmark.iter():
+            for platform in item.findall(f'{{{XCCDF}}}platform'):
+                condition = self.applicability_condition_id(platform)
+                source_idref = platform.get('idref') or ''
+                kind = 'cpe_platform' if not source_idref.startswith('#') and source_idref.startswith('cpe:') else 'xccdf_platform'
+                source = {'kind': kind, 'id': source_idref.lstrip('#'),
+                          'sha256': digest(xml_identity(platform)), 'idref': source_idref}
+                expression = self.cpe_platform_expression(source_idref)
+                if expression is not None:
+                    source['cpe_expression'] = expression
+                    source['expression_sha256'] = digest(expression)
+                catalog.setdefault(condition, {'source': source})
+        return catalog
+
+    def profile_lineage(self, profile):
+        """Resolve XCCDF Profile extends from oldest ancestor to child.
+
+        Inheritance is only admitted in the *source* model; every native
+        Profile is a fully flattened disabled Rule-ID list. Fail closed on
+        missing parents, duplicate source identities, and cycles.
+        """
+        profiles = {}
+        for candidate in self.benchmark.findall(f'{{{XCCDF}}}Profile'):
+            identifier = candidate.get('id')
+            ensure(identifier and identifier not in profiles,
+                   f'duplicate/missing source Profile ID: {identifier}')
+            profiles[identifier] = candidate
+        chain, visited = [], set()
+        cursor = profile
+        while cursor is not None:
+            attributes(cursor, {'id', 'extends'})
+            identifier = cursor.get('id')
+            ensure(identifier and identifier in profiles and profiles[identifier] is cursor,
+                   f'unknown source Profile: {identifier}')
+            ensure(identifier not in visited, f'Profile inheritance cycle at {identifier}')
+            visited.add(identifier)
+            chain.append(cursor)
+            parent_id = cursor.get('extends')
+            if not parent_id:
+                break
+            ensure(parent_id in profiles, f'Profile {identifier} extends missing Profile {parent_id}')
+            cursor = profiles[parent_id]
+        return list(reversed(chain))
+
+    def profile_overrides(self, profile):
+        """Merge original XCCDF selectors with child-over-parent precedence."""
         overrides = {}
-        if profile is not None:
-            attributes(profile, {'id'})
-            for child in profile:
-                ensure(child.tag in {f'{{{XCCDF}}}{name}' for name in ('title', 'description', 'select')}, 'Profile refinement/inheritance unsupported')
+        for layer in self.profile_lineage(profile):
+            local = {}
+            for child in layer:
+                ensure(child.tag in {f'{{{XCCDF}}}{name}'
+                                     for name in ('title', 'description', 'select')},
+                       'Profile refinement/unsupported source element')
                 if child.tag != f'{{{XCCDF}}}select':
                     continue
                 attributes(child, {'idref', 'selected'})
                 target = child.get('idref')
-                ensure(target in self.nodes[self.benchmark_component], f'unresolved Profile idref: {target}')
-                ensure(local_name(self.nodes[self.benchmark_component][target]) in ('Group', 'Rule'), 'Profile target is not an item')
-                ensure(target not in overrides and child.get('selected') in ('true', 'false'), 'repeated/noncanonical Profile selection')
-                overrides[target] = child.get('selected') == 'true'
+                ensure(target in self.nodes[self.benchmark_component],
+                       f'unresolved Profile idref: {target}')
+                ensure(local_name(self.nodes[self.benchmark_component][target]) in ('Group', 'Rule'),
+                       'Profile target is not an item')
+                ensure(target not in local and child.get('selected') in ('true', 'false'),
+                       'repeated/noncanonical Profile selection')
+                local[target] = child.get('selected') == 'true'
+            # A source child may deliberately reverse any parent selector.
+            overrides.update(local)
+        return overrides
+
+    def rule_selected(self, rule, profile=None, *, resolved_overrides=None):
+        overrides = (resolved_overrides if resolved_overrides is not None else
+                     self.profile_overrides(profile) if profile is not None else {})
         selected, item = True, rule
         while item is not self.benchmark:
             ensure(item.get('selected', 'true') in ('true', 'false'), 'noncanonical selected lexical unsupported')

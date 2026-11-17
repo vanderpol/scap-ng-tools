@@ -1,0 +1,477 @@
+{
+  "converter_trace": {
+    "catalog": "authoring/direct-slice/applicability.json",
+    "catalog_condition_count": 2,
+    "catalog_id": "direct-slice-applicability",
+    "conditions": [
+      {
+        "id": "platform-cpe-a-true-condition",
+        "source": {
+          "id": "cpe:/a:true",
+          "idref": "cpe:/a:true",
+          "kind": "cpe_platform",
+          "sha256": "19e96ba6724c9f16809c801f6d782abd4b34b19a7549b3abaf56894882bd016f"
+        }
+      },
+      {
+        "id": "platform-cpe-a-false-condition",
+        "source": {
+          "id": "cpe:/a:false",
+          "idref": "cpe:/a:false",
+          "kind": "cpe_platform",
+          "sha256": "6b947a70e264b77299aabe8024085193f74b7a27b0368d50d41a45a9efc83781"
+        }
+      }
+    ],
+    "format": "scap-ng-applicability/1",
+    "independent_semantic_proof": false,
+    "scanner_runtime": false,
+    "shared_assessment_count": 0,
+    "shared_assessments": [],
+    "source_identity_preserved": true,
+    "source_platform_ref_count_attached": 18,
+    "source_platform_specifications": [],
+    "source_rule_count_attached": 6,
+    "source_rule_count_with_conditions": 6,
+    "unsupported": [
+      {
+        "identity": "cpe:/a:true",
+        "kind": "cpe_identity",
+        "reason": "CPE identity has no established executable SCAP-NG applicability mapping: cpe:/a:true"
+      },
+      {
+        "identity": "cpe:/a:false",
+        "kind": "cpe_identity",
+        "reason": "CPE identity has no established executable SCAP-NG applicability mapping: cpe:/a:false"
+      }
+    ]
+  },
+  "format": "scap-ng/applicability-qualification/1",
+  "native": {
+    "applicability_catalog": {
+      "conditions": {
+        "platform-cpe-a-false-condition": {
+          "source": {
+            "id": "cpe:/a:false",
+            "idref": "cpe:/a:false",
+            "kind": "cpe_platform",
+            "sha256": "6b947a70e264b77299aabe8024085193f74b7a27b0368d50d41a45a9efc83781"
+          }
+        },
+        "platform-cpe-a-true-condition": {
+          "source": {
+            "id": "cpe:/a:true",
+            "idref": "cpe:/a:true",
+            "kind": "cpe_platform",
+            "sha256": "19e96ba6724c9f16809c801f6d782abd4b34b19a7549b3abaf56894882bd016f"
+          }
+        }
+      },
+      "id": "direct-slice-applicability"
+    },
+    "benchmark": {
+      "applicability_catalog": "direct-slice-applicability",
+      "groups": [
+        {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-true-condition"
+              }
+            ]
+          },
+          "groups": [
+            {
+              "applicability": {
+                "any_of": [
+                  {
+                    "condition": "platform-cpe-a-true-condition"
+                  }
+                ]
+              },
+              "groups": [],
+              "id": "group-group",
+              "rules": [
+                "native-2edeea023f54e2e5"
+              ]
+            }
+          ],
+          "id": "applicable-group-group",
+          "rules": [
+            "native-68da1ecc1c872d90",
+            "native-5e6de51fd74abb13"
+          ],
+          "title": "Applicable group"
+        },
+        {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-false-condition"
+              }
+            ]
+          },
+          "groups": [
+            {
+              "applicability": {
+                "any_of": [
+                  {
+                    "condition": "platform-cpe-a-false-condition"
+                  }
+                ]
+              },
+              "groups": [],
+              "id": "group-group",
+              "rules": [
+                "native-4ec1239b9a759ec9"
+              ]
+            }
+          ],
+          "id": "not-applicable-group-group",
+          "rules": [
+            "native-7b7bba940d0714a7",
+            "native-4a64e6c2091d0734"
+          ],
+          "title": "Not applicable group"
+        }
+      ],
+      "id": "applicability-qualification",
+      "platform": {
+        "applicability": {
+          "any_of": [
+            {
+              "condition": "platform-cpe-a-true-condition"
+            }
+          ]
+        },
+        "id": "source-platform",
+        "title": "Source platform applicability; unresolved identities remain an explicit hold"
+      },
+      "profiles": [
+        {
+          "disabled_rules": [
+            "native-68da1ecc1c872d90"
+          ],
+          "id": "qualification-profile-disabled"
+        }
+      ],
+      "rules": [
+        "native-68da1ecc1c872d90",
+        "native-5e6de51fd74abb13",
+        "native-2edeea023f54e2e5",
+        "native-7b7bba940d0714a7",
+        "native-4a64e6c2091d0734",
+        "native-4ec1239b9a759ec9"
+      ]
+    },
+    "rules": {
+      "authoring/direct-slice/rules/native-2edeea023f54e2e5.json": {
+        "rule": {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-true-condition"
+              }
+            ]
+          },
+          "id": "native-2edeea023f54e2e5"
+        }
+      },
+      "authoring/direct-slice/rules/native-4a64e6c2091d0734.json": {
+        "rule": {
+          "id": "native-4a64e6c2091d0734"
+        }
+      },
+      "authoring/direct-slice/rules/native-4ec1239b9a759ec9.json": {
+        "rule": {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-true-condition"
+              }
+            ]
+          },
+          "id": "native-4ec1239b9a759ec9"
+        }
+      },
+      "authoring/direct-slice/rules/native-5e6de51fd74abb13.json": {
+        "rule": {
+          "id": "native-5e6de51fd74abb13"
+        }
+      },
+      "authoring/direct-slice/rules/native-68da1ecc1c872d90.json": {
+        "rule": {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-false-condition"
+              }
+            ]
+          },
+          "id": "native-68da1ecc1c872d90"
+        }
+      },
+      "authoring/direct-slice/rules/native-7b7bba940d0714a7.json": {
+        "rule": {
+          "applicability": {
+            "any_of": [
+              {
+                "condition": "platform-cpe-a-false-condition"
+              }
+            ]
+          },
+          "id": "native-7b7bba940d0714a7"
+        }
+      }
+    }
+  },
+  "pins": {
+    "converter_commit": "fec71c60ba8c0f0bb0eed099d731e448962980d0",
+    "converter_pr_original_head": "654d6481d6d86f47e9b648bc31b992990ad67213",
+    "ri_commit": "32e59aa24769056aa00e8938487bbc9a380b591b",
+    "ri_qualification_harness_commit": "cd9d04739242552d024e794639f56dbd09b584c2",
+    "schema_aggregate_sha256": "65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54",
+    "schema_commit": "fcb2c220c05a933665477a6504586b9f47f83177"
+  },
+  "qualification_status": "SOURCE_HIERARCHY_CONVERTED_RI_PROBES_EXECUTED_WITH_SOURCE_HOLDS",
+  "qualified_cpe_mappings": [],
+  "ri_probe_input": {
+    "cases": [
+      {
+        "conditions": {
+          "probe-true": {
+            "outcome": "true",
+            "source": {
+              "id": "true",
+              "kind": "probe"
+            }
+          }
+        },
+        "expression": {
+          "condition": "probe-true"
+        },
+        "id": "true"
+      },
+      {
+        "conditions": {
+          "probe-false": {
+            "outcome": "false",
+            "source": {
+              "id": "false",
+              "kind": "probe"
+            }
+          }
+        },
+        "expression": {
+          "condition": "probe-false"
+        },
+        "id": "false"
+      },
+      {
+        "conditions": {
+          "probe-unknown": {
+            "outcome": "unknown",
+            "source": {
+              "id": "unknown",
+              "kind": "probe"
+            }
+          }
+        },
+        "expression": {
+          "condition": "probe-unknown"
+        },
+        "id": "unknown"
+      },
+      {
+        "conditions": {
+          "source-hold": {
+            "source": {
+              "id": "cpe:/a:unqualified",
+              "kind": "cpe_platform"
+            }
+          }
+        },
+        "expression": {
+          "condition": "source-hold"
+        },
+        "id": "error"
+      },
+      {
+        "conditions": {
+          "probe-false": {
+            "outcome": "false"
+          }
+        },
+        "expression": {
+          "condition": "probe-false"
+        },
+        "id": "not_applicable"
+      },
+      {
+        "conditions": {},
+        "expression": {
+          "condition": "probe-true"
+        },
+        "id": "profile_disabled",
+        "profile_disabled": true
+      }
+    ],
+    "format": "scap-ng/applicability-ri-probes/1"
+  },
+  "ri_result_details": {
+    "format": "scap-ng/applicability-ri-probes/1",
+    "results": [
+      {
+        "conditions": [
+          {
+            "id": "probe-true",
+            "outcome": "applicable",
+            "source": {
+              "id": "true",
+              "kind": "probe"
+            }
+          }
+        ],
+        "id": "true",
+        "outcome": "applicable",
+        "reason": "",
+        "state": "TRUE"
+      },
+      {
+        "conditions": [
+          {
+            "id": "probe-false",
+            "outcome": "not_applicable",
+            "source": {
+              "id": "false",
+              "kind": "probe"
+            }
+          }
+        ],
+        "id": "false",
+        "outcome": "not_applicable",
+        "reason": "",
+        "state": "FALSE"
+      },
+      {
+        "conditions": [
+          {
+            "id": "probe-unknown",
+            "outcome": "unknown",
+            "source": {
+              "id": "unknown",
+              "kind": "probe"
+            }
+          }
+        ],
+        "id": "unknown",
+        "outcome": "unknown",
+        "reason": "",
+        "state": "UNKNOWN"
+      },
+      {
+        "conditions": [
+          {
+            "id": "source-hold",
+            "outcome": "error",
+            "source": {
+              "id": "cpe:/a:unqualified",
+              "kind": "cpe_platform"
+            }
+          }
+        ],
+        "id": "error",
+        "outcome": "error",
+        "reason": "",
+        "state": "ERROR"
+      },
+      {
+        "conditions": [
+          {
+            "id": "probe-false",
+            "outcome": "not_applicable"
+          }
+        ],
+        "id": "not_applicable",
+        "outcome": "not_applicable",
+        "reason": "",
+        "state": "FALSE"
+      },
+      {
+        "id": "profile_disabled",
+        "outcome": "not_evaluated",
+        "reason": "profile_disabled",
+        "state": "PROFILE_DISABLED"
+      }
+    ]
+  },
+  "ri_results": {
+    "error": "error",
+    "false": "not_applicable",
+    "not_applicable": "not_applicable",
+    "profile_disabled": "not_evaluated",
+    "true": "applicable",
+    "unknown": "unknown"
+  },
+  "semantic_differences": [
+    "The upstream public regression source has no nested Group; the deterministic overlay is separately hashed and is not source provenance.",
+    "Direct CPE URI references have no qualified native mapping in this converter and remain explicit RI ERROR holds, never FALSE.",
+    "RI execution and TRUE/FALSE/UNKNOWN results require the coordinated RI harness; this receipt does not claim scanner equivalence."
+  ],
+  "source": {
+    "derived_overlay_reason": "adds Benchmark/Profile and nested Group containment; base is immutable public OpenSCAP test content",
+    "derived_overlay_sha256": "4fbaa986996cdf9d50ab9631a10f1428ecffd30386216360b589b91ebab2aa8d",
+    "sha256": "92899db9fe8c2c996869603f781306fb0d0891c675a1c88f468cd294cd9343f6",
+    "url": "https://raw.githubusercontent.com/OpenSCAP/openscap/38e6d9fd84d337f0f558a7d3b95b54bf4c6c6cef/tests/API/XCCDF/applicability/test_platform_inheritance.xccdf.xml"
+  },
+  "source_platform_levels": [
+    {
+      "conditions": [
+        {
+          "id": "platform-cpe-a-true-condition",
+          "source_idref": "cpe:/a:true",
+          "source_sha256": "19e96ba6724c9f16809c801f6d782abd4b34b19a7549b3abaf56894882bd016f"
+        }
+      ],
+      "id": "xccdf_moc.elpmaxe.www_benchmark_test",
+      "kind": "benchmark",
+      "operator": "any_of"
+    },
+    {
+      "conditions": [
+        {
+          "id": "platform-cpe-a-true-condition",
+          "source_idref": "cpe:/a:true",
+          "source_sha256": "19e96ba6724c9f16809c801f6d782abd4b34b19a7549b3abaf56894882bd016f"
+        }
+      ],
+      "id": "xccdf_moc.eplmaxe.www_group_true",
+      "kind": "group",
+      "operator": "any_of"
+    },
+    {
+      "conditions": [
+        {
+          "id": "platform-cpe-a-false-condition",
+          "source_idref": "cpe:/a:false",
+          "source_sha256": "6b947a70e264b77299aabe8024085193f74b7a27b0368d50d41a45a9efc83781"
+        }
+      ],
+      "id": "xccdf_moc.elpmaxe.www_rule_gtrue_rfalse",
+      "kind": "rule",
+      "operator": "any_of"
+    }
+  ],
+  "unqualified_holds": [
+    {
+      "identity": "cpe:/a:true",
+      "kind": "cpe_identity",
+      "reason": "CPE identity has no established executable SCAP-NG applicability mapping: cpe:/a:true"
+    },
+    {
+      "identity": "cpe:/a:false",
+      "kind": "cpe_identity",
+      "reason": "CPE identity has no established executable SCAP-NG applicability mapping: cpe:/a:false"
+    }
+  ]
+}

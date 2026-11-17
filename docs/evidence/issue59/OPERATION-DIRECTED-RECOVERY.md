@@ -1,0 +1,267 @@
+# Issue #69 operation-directed collected-field recovery
+
+This is the exact-head authoring qualification for the owner-approved generic operation-directed representation. It preserves the prior receipts; it does not replace them and does not assert runtime/RI equivalence.
+
+## Pins and exact receipt
+
+- Canonical schema commit: `aece827964c785be77b088c3c61255a2d07fd9a9`
+- Schema digest: `578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829`
+- Signed source commit: `8c8e5dff860af6b1290ee9273a282db24278f8d5`
+- Candidate receipt: [`full65-operation-directed-source-rule-rebuild.json`](full65-operation-directed-source-rule-rebuild.json), SHA-256 `b5123e41b7c950c1171fdee70f35d46d2ae3e8ce42ca0c4a0088a90b038cc39c`
+- Operation-directed ledger: [`operation-directed-recovery.json`](operation-directed-recovery.json), SHA-256 `615a52ff12039874ca8c047d8692fca3104128402864feb5e6d99b0e1257a09f`
+- OVAL 5.12.3 commit: `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`
+
+## Gates
+
+- Exact 65-ZIP rebuild: **PASS** (65 benchmarks; active scope 7,990 Rules).
+- Candidate authoring statuses: **6489 converted, 98 blocked, 1403 manual-only**.
+- Historical converted→blocked nonregression: **PASS** (`0` new regressions).
+- Historical blocked→converted: **10**.
+- Schema/authoring validation: **PASS** for admitted candidates.
+- Runtime/RI/source-equivalence: **HOLD**; no scanner execution or equivalence claim.
+- Release/PR state: **HOLD**; draft PR, no merge/tag.
+
+Against the immediately preceding candidate (6,379 converted / 208 blocked / 1,403 manual-only), the new candidate is +110 converted and -110 blocked. The exact source-ID ledger records 108 datatype-hold Rules and two additional generic candidates; the candidate receipt is authoritative for the remaining 98 blocker identities.
+
+## Recovered Rule IDs
+
+Every Rule below is authoring-converted in the candidate. Full source datatype, consumer, collected-field, source-variable, XML and provenance columns are in the JSON ledger.
+
+- `xccdf_mil.disa.stig_rule_SV-274067r1120653_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_mil.disa.stig_rule_SV-274068r1120192_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-274108r1120312_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-274109r1120315_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-274110r1120318_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-274116r1120336_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-274117r1120339_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-274159r1120465_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-219189r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-219192r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-219193r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-238338r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-238341r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-238342r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-238367r958902_rule` — OVAL 5.12.3 unique has an explicit lexical-string result
+- `xccdf_mil.disa.stig_rule_SV-260502r1184054_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-260504r1184058_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-260509r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-260510r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-260511r958566_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-260517r958902_rule` — OVAL 5.12.3 unique has an explicit lexical-string result
+- `xccdf_mil.disa.stig_rule_SV-260597r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-260598r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-260600r958438_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270754r1066751_rule` — OVAL 5.12.3 unique has an explicit lexical-string result
+- `xccdf_mil.disa.stig_rule_SV-270761r1184074_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270762r1184076_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270765r1066784_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270768r1066793_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270769r1066796_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270827r1066970_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270828r1066973_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270829r1066976_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-270830r1068397_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278382r1171898_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278383r1171901_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278385r1171907_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278386r1171910_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278387r1172701_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278388r1171916_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278392r1171928_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278397r1171943_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278399r1172775_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278408r1171976_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-242403r986135_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-242420r1043178_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-242445r961863_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-242449r961863_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-242450r961863_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-242465r961863_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.fso_rule_SV-284958r1208187_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259592r961095_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214429r879717_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214492r879887_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_mil.disa.stig_rule_SV-224861r991589_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-224970r958726_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-205739r958726_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-205854r991589_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-254280r991589_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-254391r958726_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-278028r1182265_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-278138r1182081_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259338r1028386_rule` — collected Item field contract is a singleton datatype
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-259368r1212359_rule` — collected Item field contract is a singleton datatype
+- `xccdf_mil.disa.stig_rule_SV-221722r958482_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-221729r991589_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-221734r991589_rule` — collected Item field contract is a singleton datatype
+- `xccdf_mil.disa.stig_rule_SV-248526r958390_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248610r991589_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248640r991589_rule` — collected Item field contract is a singleton datatype
+- `xccdf_mil.disa.stig_rule_SV-248669r958388_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248694r1015054_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248732r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248733r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248734r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248735r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248736r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-248737r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-271432r1091008_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-271583r1091461_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-271584r1091464_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-271585r1091467_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-271596r1091500_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_mil.disa.stig_rule_SV-271630r1091602_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-271836r1092637_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-204461r958482_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-204468r991589_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-204473r991589_rule` — collected Item field contract is a singleton datatype
+- `xccdf_mil.disa.stig_rule_SV-204580r958390_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230225r1184236_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230294r1017105_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230364r1017176_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230384r1017193_rule` — collected Item field contract is a singleton datatype
+- `xccdf_mil.disa.stig_rule_SV-230396r1017202_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230397r1017203_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230398r1017204_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230399r1017205_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230400r1017206_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-230401r1017207_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-244531r1017338_rule` — collected Item field contract is a singleton datatype
+- `xccdf_mil.disa.stig_rule_SV-250315r1017356_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-257847r1044924_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-258080r1045162_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-258105r1045212_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-258155r1045300_rule` — admitted by the generic typed-consumer representation; source-specific field semantics remain proof-gated
+- `xccdf_mil.disa.stig_rule_SV-258165r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-258166r1045303_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-258167r1155630_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-217173r1184441_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-234993r1184474_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-216358r959010_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-216422r959010_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-216475r959010_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-216121r959010_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-216185r959010_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-216239r959010_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-252977r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-252978r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-252979r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-252980r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-252981r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+- `xccdf_mil.disa.stig_rule_SV-252982r958434_rule` — collected Item field permits multiple datatypes; source declaration is not a native cast
+
+## Still-blocked Rule IDs
+
+These are the exact 98 candidate blocker records; messages and categories are in the candidate receipt.
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278400r1172752_rule` — `unsupported-capability`: state capability mismatch: oval:navy.navwar.niwcatlantic.scc.nginx:ste:27840004
+- `xccdf_mil.disa.fso_rule_SV-225223r961038_rule` — `schema-semantic`: authoring/direct-slice/assessments/digital-signatures-assemblies-verified-sv-225223-assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\Microsoft\\StrongName\\Verification'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas
+- `xccdf_mil.disa.fso_rule_SV-225230r1117185_rule` — `schema-semantic`: authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: Native comparison datatype: end requires string input; no implicit cast
+- `xccdf_mil.disa.fso_rule_SV-225232r1050651_rule` — `schema-semantic`: authoring/direct-slice/assessments/net-applications-that-of-net-stig-guidance-sv-225232-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_mil.disa.fso_rule_SV-225234r1188289_rule` — `schema-semantic`: authoring/direct-slice/assessments/net-default-proxy-reviewed-and-approved-sv-225234-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_mil.disa.fso_rule_SV-225235r960891_rule` — `schema-semantic`: authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: Native comparison datatype: end requires string input; no implicit cast
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule` — `schema-semantic`: authoring/direct-slice/assessments/exchange-software-partition-from-os-sv-259637-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule` — `schema-semantic`: authoring/direct-slice/assessments/exchange-email-with-another-application-sv-259704-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule` — `schema-semantic`: authoring/direct-slice/assessments/all-iis-10-0-web-server-iis-10-0-server-sv-218795-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218814r1067589_rule` — `unsupported-construct`: Variable cast outside bounded proof
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule` — `unsupported-capability`: state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874102
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218742r1022679_rule` — `unsupported-capability`: state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874205
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule` — `unsupported-construct`: Variable source requires one var_ref; Sets/Filters unsupported
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule` — `schema-semantic`: authoring/direct-slice/assessments/iis-10-0-website-have-application-pool-sv-218771-assessment.json: Native comparison datatype: /tests/the-iis-10-0-website-must-have-a-unique-application-pool-test/require/fields/value: operand/explicit datatype conflicts with capability contract
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule` — `unsupported-capability`: state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule` — `schema-semantic`: authoring/direct-slice/assessments/java-software-installed-virtual-machine-sv-214416-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214451r879567_rule` — `unsupported-capability`: state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:80
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214452r879568_rule` — `unsupported-capability`: state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:93
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule` — `unsupported-construct`: Variable source requires one var_ref; Sets/Filters unsupported
+- `xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule` — `unsupported-capability`: state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180
+- `xccdf_mil.disa.stig_rule_SV-220952r1051038_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test
+- `xccdf_mil.disa.stig_rule_SV-220956r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220957r1137691_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220958r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220959r1137691_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220960r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220961r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220962r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220963r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220964r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220965r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220966r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220967r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220968r1137691_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220969r1137691_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220970r1137691_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220971r1137691_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220972r1137691_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220973r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220974r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220975r1138519_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220976r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220977r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220978r958434_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220979r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220980r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220981r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220982r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-220983r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-253476r1210304_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test
+- `xccdf_mil.disa.stig_rule_SV-224975r958524_rule` — `schema-semantic`: authoring/direct-slice/assessments/data-files-owned-by-users-data-files-sv-224975-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_mil.disa.stig_rule_SV-224997r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-224998r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-224999r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225000r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225001r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225002r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225003r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225004r958672_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225005r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225014r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225015r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225016r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225017r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225018r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225019r958672_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225020r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225070r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225071r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225072r958472_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225073r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225074r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225076r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225077r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225078r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225079r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225080r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225081r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225082r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225083r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225084r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225085r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225086r958434_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225087r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225088r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225089r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225091r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225092r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-225093r958726_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test
+- `xccdf_mil.disa.stig_rule_SV-205657r1153431_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test
+- `xccdf_mil.disa.stig_rule_SV-205723r1137695_rule` — `schema-semantic`: authoring/direct-slice/assessments/windows-server-2019-data-server-data-files-sv-205723-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_mil.disa.stig_rule_SV-254239r1153440_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test
+- `xccdf_mil.disa.stig_rule_SV-254396r1137695_rule` — `schema-semantic`: authoring/direct-slice/assessments/windows-server-2022-data-server-data-files-sv-254396-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_mil.disa.stig_rule_SV-277986r1182007_rule` — `unsupported-capability`: unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test
+- `xccdf_mil.disa.stig_rule_SV-278143r1182092_rule` — `schema-semantic`: authoring/direct-slice/assessments/windows-server-2025-data-server-data-files-sv-278143-assessment.json: Native comparison datatype: concat requires a scalar text operand
+- `xccdf_mil.disa.stig_rule_SV-221653r1015161_rule` — `unsupported-construct`: unsupported State field/namespace
+- `xccdf_mil.disa.stig_rule_SV-221718r991590_rule` — `unsupported-construct`: Assessment Input function composition requires a supported typed expression
+- `xccdf_mil.disa.stig_rule_SV-214799r991589_rule` — `unsupported-construct`: unsupported State field/namespace
+
+## Semantic boundary
+
+- A broad collected Item domain is represented internally as `dynamic_collected`; it is never emitted as a YAML datatype.
+- A source consumer datatype is emitted on the predicate when a Variable reference is used. This is a visible operation-directed request, not a Variable declaration type and not a cast.
+- Raw collected evidence, lexical forms, multiplicity/order, `var_check`, statuses and source identities remain runtime/source-proof obligations.
+- The 0.4.1 schema is unchanged. Invalid/conflicting consumer requests remain blocked.
+- Remaining owner decisions are runtime semantics for invalid lexical values and missing/error/incomplete status, multiplicity/order and quantifier propagation; unresolved concrete source conflicts remain blocked.

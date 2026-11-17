@@ -1,0 +1,6 @@
+<platform xmlns="http://cpe.mitre.org/language/2.0" id="fixture-windows-platform">
+  <title>Windows feature absent</title>
+  <logical-test operator="AND" negate="true">
+    <check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="windows-oval.xml" id-ref="oval:fixture:windows:def:1"/>
+  </logical-test>
+</platform>

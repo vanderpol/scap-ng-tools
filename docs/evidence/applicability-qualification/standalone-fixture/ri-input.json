@@ -1,0 +1,83 @@
+{
+  "cases": [
+    {
+      "conditions": {
+        "probe-true": {
+          "outcome": "true",
+          "source": {
+            "id": "true",
+            "kind": "probe"
+          }
+        }
+      },
+      "expression": {
+        "condition": "probe-true"
+      },
+      "id": "true"
+    },
+    {
+      "conditions": {
+        "probe-false": {
+          "outcome": "false",
+          "source": {
+            "id": "false",
+            "kind": "probe"
+          }
+        }
+      },
+      "expression": {
+        "condition": "probe-false"
+      },
+      "id": "false"
+    },
+    {
+      "conditions": {
+        "probe-unknown": {
+          "outcome": "unknown",
+          "source": {
+            "id": "unknown",
+            "kind": "probe"
+          }
+        }
+      },
+      "expression": {
+        "condition": "probe-unknown"
+      },
+      "id": "unknown"
+    },
+    {
+      "conditions": {
+        "source-hold": {
+          "source": {
+            "id": "cpe:/a:unqualified",
+            "kind": "cpe_platform"
+          }
+        }
+      },
+      "expression": {
+        "condition": "source-hold"
+      },
+      "id": "error"
+    },
+    {
+      "conditions": {
+        "probe-false": {
+          "outcome": "false"
+        }
+      },
+      "expression": {
+        "condition": "probe-false"
+      },
+      "id": "not_applicable"
+    },
+    {
+      "conditions": {},
+      "expression": {
+        "condition": "probe-true"
+      },
+      "id": "profile_disabled",
+      "profile_disabled": true
+    }
+  ],
+  "format": "scap-ng/applicability-ri-probes/1"
+}

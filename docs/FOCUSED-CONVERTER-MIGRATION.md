@@ -86,6 +86,22 @@ digests are recorded in [the fixture ledger](TEST-FIXTURE-PINS.md) and enforced
 by CI. This inventory-only result remains a distinct read-only baseline;
 it is **not** evidence that every Rule can be converted or scanned.
 
+## Issue #28 native existence recovery — draft
+
+The native 0.4 `item_requirement` contract maps OVAL `all_exist` to
+`one_or_more`; no synthetic absent Items are introduced. The Issue #28 draft
+converter records each recovered source Test's original attributes and source
+hash in binding provenance. This is an authoring conversion only: it does not
+claim scanner, compiler, or independent proof equivalence.
+
+## Issue #28 native Input/Parameter recovery — draft
+
+The same opt-in native recovery mode accepts only explicit XCCDF
+`check-export` bindings to a matching `Value`: datatype, exact cardinality,
+and allowed-value constraints are retained. Unsupported Value operators remain
+blocked. Original external Variable/Value identities and the unproved runtime
+binding warning remain in provenance.
+
 ## Automatic benchmark authoring conversion — separately qualified
 
 The original 0.4 semantic passes were copied into `_v04_semantic/` and adapted
@@ -105,7 +121,7 @@ callback, inventory mapping injection, and source behavior defaults. The
 unchanged 15 have aggregate SHA-256
 `6360a01e45b460c8fa9669b996fa1406e647c76f539bff990fa3e7ba30a7acdb`;
 the adapted 18-file runtime has SHA-256
-`b8be370e6616ce3b9f31bd4d08577872e9fbc235ccb19f74ac6bcf8159b41cd4`.
+`157fbf09f424cac5d79c7ed0501863200f7d4ed4e015e6e2b3ff78ef97859e4a`.
 The earlier hashes above describe the preceding inventory-only checkpoint.
 
 | Original pinned source | Rules | Admitted | Blocked | Native docs |

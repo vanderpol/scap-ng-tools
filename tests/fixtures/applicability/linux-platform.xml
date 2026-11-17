@@ -1,0 +1,10 @@
+<platform xmlns="http://cpe.mitre.org/language/2.0" id="fixture-linux-platform">
+  <title>Linux package and kernel</title>
+  <logical-test operator="AND" negate="false">
+    <logical-test operator="OR" negate="false">
+      <check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="linux-oval.xml" id-ref="oval:fixture:linux:def:1"/>
+      <check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="linux-oval.xml" id-ref="oval:fixture:linux:def:2"/>
+    </logical-test>
+    <check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="linux-oval.xml" id-ref="oval:fixture:linux:def:3"/>
+  </logical-test>
+</platform>

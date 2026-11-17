@@ -1,0 +1,1449 @@
+{
+  "automated_rules": [
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:101"
+            }
+          ],
+          "selector": "",
+          "sha256": "68e8eafccdf781990484cdd9826fefdca3f72efdb9e9bed92b1e7571f7483cae",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:101"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "3a1ba079c018d90081ceb195fbb3d648432f88dce6473b774237fedb1d210625",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:301"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "1ec39427b07ae43711ae556e0cb1c359fa8cc9a632de094c612db14409b0b4dc",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251546r1201983_rule",
+      "source_rule_sha256": "3169885d0ed89c76dfd54b54299f0c027c9c10265bb8e168064ad2b58163a9c8",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:102"
+            }
+          ],
+          "selector": "",
+          "sha256": "aac46df61da3fc76b623bdad83acd813441390c063e5b29b38b7134a4711941b",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:102"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "ec8ada488243df87ea1fb57c254ef5e048d02aca385b3d30473e7d3a3eeedbd2",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:501"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "3c5d3f4225bf6d52e3ed41a5d1306b5be4f3739b5761b45a7f5c9975bd6d38a3",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251547r1067550_rule",
+      "source_rule_sha256": "061309a75d5abe56e5812484a941dee5ea81c0327ee609b3eb3d0f7441f1e38e",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:103"
+            }
+          ],
+          "selector": "",
+          "sha256": "f8a5bb4d7fbfb00598104a5485498601126ea63fb64e679a501966bbd55568a7",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:103"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "eb23f38ef52fae57806d4f2ab0ef758d1dc9a7322aec20755fa3a0dee3a517a2",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:701"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "c50047393c7174d8b043d2b93072a050141e2c1c994c9b1e0f5572e584b24ba3",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251548r1067552_rule",
+      "source_rule_sha256": "b2b787ac26c273351b80dd2ecfb2d5096e64a977584ecc854b75b8625e22de18",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:104"
+            }
+          ],
+          "selector": "",
+          "sha256": "a2163924ea6f1f0d380654c192551fc9bfb3c59eb63a8acfa80138f7db36285e",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:104"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "e7972b18ffa9a835bd08250ba9b12e7ff09938084c521f4b650cb62c2f54be52",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:901"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "ef904ffab5ce3268078a15ba17407e6b97f06b50962f63be66dc47e6d1b447f2",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251549r960963_rule",
+      "source_rule_sha256": "fdf6574450b7da03a3dc589e0e804de7f44dfc4e77c3b827d91ccb4c8e20101a",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:106"
+            }
+          ],
+          "selector": "",
+          "sha256": "06a9ef9b215a75728b2c1e676fe0a616c6ba293463bd7d34cc5456926062669d",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:106"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "8328eb1d1a61a13fbf2e190684c3167d6198feddc3ec4a3d610b905d5c14bc32",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:1301"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "27c237f8efa52b4ed00e149603fcf977520a1f27a93c342cc9bfa8f71b967377",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251551r960963_rule",
+      "source_rule_sha256": "f40400423c704153d7e626f2a8af03a53424d1cf9d9dd769b2c87a9f482a632a",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:107"
+            }
+          ],
+          "selector": "",
+          "sha256": "36272935df42e19f86200e5909514af8eec24cbbf14f26103d8186ddc0bec46a",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:107"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "8ed9d2e2712d91cc605ad5ddd222783ecfeb65d0d7e77597405de9449b35e99d",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:1501"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "d02d3c1ed237a577a8b4f4bb4fe549561cde95dff3eb5cf0e92cbc098c47ce1f",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251552r960963_rule",
+      "source_rule_sha256": "58256dcfc470971608b7931fe032e5a14eed0870d2c084961cd59699a6ca41a9",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:108"
+            }
+          ],
+          "selector": "",
+          "sha256": "e637abd34df371ba28f90e60ec7a8e4c8ebb8766f05546a940f191afa9e81ef1",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:108"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "62ea896deb906f6807529c99220908bec12b1210a81e2ada133edbbf14a24977",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:1701"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "4030190bdd5bd6260cdeb1909dbdff8245d38dd29216d1a7fd29d7d0577e3cb1",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251553r960963_rule",
+      "source_rule_sha256": "5b7bc7955644a2472989a0ea36865a996b2a3c36f92745c11c9ec2d835df765d",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:109"
+            }
+          ],
+          "selector": "",
+          "sha256": "34a07dbb49a7d03388d99bf7d57e56c314cee9feae4ade5336cbe28111e643ff",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:109"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "2759eed41cd3ae473ac604bd059589a2463b94fd9049ef7d2d9d24ba1f0103a2",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:1901"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "40e5be900124d372d01876c9b79513127aefbf5dfc93ea25b54b56ddfe1cf221",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251554r1067554_rule",
+      "source_rule_sha256": "02c2c4b32b92a2c7b75748049d82c034c80f8291b119d1358688fd3102f7f77e",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:110"
+            }
+          ],
+          "selector": "",
+          "sha256": "5790d6a7408c6ce841b89b1d7129b226127aca55d8a833f4c020ba3d60fb38a0",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:110"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "5b4202f38a7bdb8cb47506803ec6e170f773b780b4d0b639a92d86f99a7e0c7d",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:2101"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "e5ad5836e2727ad9804f2a4b45c2ac46516193786268e32687c3e3b5aa64c3a3",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251555r1067556_rule",
+      "source_rule_sha256": "d2fc617a9ea6e17bba2d5ff25f814f03b8aa048056ccba4f1707f4248630508d",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:112"
+            }
+          ],
+          "selector": "",
+          "sha256": "b6325885a3ca19274efb1c5be90c3a3741bc5d5923967728bf3ab21868298b75",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:112"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "cd985e81a2f5b3edd8d3002a483d4f92a5b292f65bdc4272cab0764549d94f4b",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:2301"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "0e716704a5c03470fe38110be12641523446ab81bc794f1e30d7af43f0afe750",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251557r960963_rule",
+      "source_rule_sha256": "6face78dd4de881f25ca50d1f7f36f1b2b4e98cf3c3a40049827f286960a3cad",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:113"
+            }
+          ],
+          "selector": "",
+          "sha256": "a4147e017170c7b3e243ed35a7939a457b7bd24acd62dbaa9e8e3ea46cd2fa2d",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:113"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "1b253868ff98471e0c6fab884fbe432bc9bc4cd87aab7d591441a4537ad7bb10",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:2501"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "2067b68d77db028eaffcec7a7899b7e35d5475f444c9168de413d968aea8a940",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251558r960963_rule",
+      "source_rule_sha256": "72959797e2d0facc29ba2baa6c252a95ae9ca2c913f2e4cb4bc4799e81f247b5",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:114"
+            }
+          ],
+          "selector": "",
+          "sha256": "a4157b02195d8a93ca5eac3e7369f774b453b91cdbf4c9a5275542f370506e3c",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:114"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "0c5dadbf8e0688da36504f1988ef6ffc8c135c1370f129cd9f984a5a7505cb7d",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:2701"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "ade43b68159eb92869901634dae0cbdd8c463a0de73047600497905731e75c7d",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251559r961167_rule",
+      "source_rule_sha256": "491e8fcbec65b3eca1b2f4783d0da9bbcece8716c9639c8ee4145e86ab674c4d",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:117"
+            }
+          ],
+          "selector": "",
+          "sha256": "f1022f936a4c5d519ad10538a2f5b38d3d159b4c54a3691553414070dc4d69aa",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:117"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "5439ef2b7f7ae612618d3bc3372bdc71500429a8b5fcb9c6d8ae55eb17ec905a",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:3101"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "9eadd78b646da25cca1d6ace4e6233f87b80c2dfb7c53fbaadb1ef6a7e240276",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251562r1156569_rule",
+      "source_rule_sha256": "674a7280f9a3a83b3bd477be4efe05a59be457157d4ec839f9060759de20446e",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:118"
+            }
+          ],
+          "selector": "",
+          "sha256": "840d32ace31cd5adb98a524ff8363729a97bd599ce7733c122be3ace35514b94",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:118"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "c26a0665cdc19d8522786267649453896b27d0cbdf6857044a05975d0dab7056",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:3301"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "ef4b82144d4c401e07525c308066ebc40e0292710fed556a121a270661ae84fc",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251563r960963_rule",
+      "source_rule_sha256": "3a374cde019c9c0760cf31a4107c592a295235379e249c409d1b90c9ab7dc582",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:119"
+            }
+          ],
+          "selector": "",
+          "sha256": "26ade075ea9c75928ce569f279267d267ddbfb27207caf8ac0ea0c50fb776d6f",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:119"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "77d127be76e3d76611b56a696b9d73ce30bf52893901b738e30658f425d6d283",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:3501"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "a054450b978d8d89dd61f9eaf1b048961517ce7d015bb5e0cc4187bd740d1605",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251564r960963_rule",
+      "source_rule_sha256": "f5c146c2fe04aae44ddcde647edf32b8879cf31160ef0ece9452b678825dfef0",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:120"
+            }
+          ],
+          "selector": "",
+          "sha256": "6ee2cbb987bfea7c668087aac9d5876bd5abe326355c9be2aea21e977647715c",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:120"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "7fbe483e82af8ef4bafb58b12c798acf83cae16f086f8584487be32db5560fe4",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:3701"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "273cad2f3d948ef4389147948e6ef93c2425c931baa9fa41953887dda0186dbc",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251565r960963_rule",
+      "source_rule_sha256": "6f872d6b7e25edf416bffbc55c98a08b9d1d98ae17296943fabcc474c0a47e6c",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:121"
+            }
+          ],
+          "selector": "",
+          "sha256": "ca1866cf785102a4898531022468dc6c16d8b8fe2a7afb19a65d1e4375bfcaa8",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:121"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "b88dfa80338639fd4d73477459b26afea247c35dbba61fdf359545b87caa9429",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:3901"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "a4d94bd1783ba5055d38b1114251c42e7fdd09ddecd39b110c0a91ec6252f968",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251566r960963_rule",
+      "source_rule_sha256": "bcffff53144937bc42163b004dc5c78ee456ab1c0ebdd1325d4ada7aa6df71e0",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:122"
+            }
+          ],
+          "selector": "",
+          "sha256": "8bc3059eae3715700a643068af908cbc90782fc3ce27805e2785f834e82f922f",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:122"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "ceda9b42c67dfc62505daf56ff1e4340831b54fd5232a7496b8e390509e1c7d4",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:4101"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "83b5193433eb22a8106e79d690fc459337c4e09ab8f4d334b70cde8769f5af43",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251567r960963_rule",
+      "source_rule_sha256": "e576c4ce0d5b2a4be50637f13c39e7ea45b4153c6c23b3109d528ea52cfbc8f6",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:123"
+            }
+          ],
+          "selector": "",
+          "sha256": "a07c19ee4bd734794dee8037f2beea673699ef691491a3d81190bdb4e013ddef",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:123"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "d6f95863541f1badc10e4e8b7582e1052cc4c16b28649a5482e5ffe2ab65420d",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:4301"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "b260e386a5a54874ae5d0bcaf16039a3e4894e000b2bc63b822d930fb899c9b2",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251568r960963_rule",
+      "source_rule_sha256": "ce6608ed8884164755bb173b5bb3dced836c4b87749233c591018a609362858f",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:124"
+            }
+          ],
+          "selector": "",
+          "sha256": "090e22392551f86f6adeeb991657d261501407075a3f6144dbc37d4a8f22b21e",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:124"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "cd14a7ccb65eedb52f3fb4beb5e8f425633da29b2ac4bd2c9e72a33400aca893",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:4501"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "bb77ef85008dfa932ba09e95b055a5514c3ec5d038585f992dafc95293ee9f8f",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251569r1067561_rule",
+      "source_rule_sha256": "0133e842e10d610aa9d5ba2113f37c8393218071b9753cd0b12e14a233e5c294",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:125"
+            }
+          ],
+          "selector": "",
+          "sha256": "5b7953bf5f42df2c0b429c7ac1f2aff47652f694e452e71a99a2199d50c23702",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:125"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "f85348a6ba6b91cd1ff67c9d6292d1749175ead3ad98c22c32e9f209b1b12808",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:4701"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "c153c7f6b2afd83b70bd0aada87ade7d5fffab7b09dd3a5fd3dd02f3a65bebd2",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251570r1067563_rule",
+      "source_rule_sha256": "8d13a498bd9467fde100905c35b1ace3da6b36702ac12fc52abaf72f0c708947",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:126"
+            }
+          ],
+          "selector": "",
+          "sha256": "7de69dbf0b82264db3a153f55cb608a774317ed18e0d85cce28783f4031df08d",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:126"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "ee5bb13d42d34befc01a1a03f22783ecf501f0b92afc580a393b08dce281ea6b",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:4901"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "9324f55b2f3481213a3c7a04275dc4cfb04fa34ec5db4585cd13f00f072e400e",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251571r960963_rule",
+      "source_rule_sha256": "2139bd02bdf90eee8b9dcfab9db2cb5f28c62f18970eaaf0070bc46f5e123a6c",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:127"
+            }
+          ],
+          "selector": "",
+          "sha256": "dd8417d2fb0b080c1979274a2f6fc20ed754527f9e32ace9f133ad50a7f08491",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:127"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "40f411409c5215cb2e2c93771d8312d910480f2c64f2ecc2921fb32abd4f5a3d",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:5101"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "501a2482b33cdd0ba92abf70c17512804282224cb726ee3bfc633901e2bea395",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251572r960963_rule",
+      "source_rule_sha256": "6287681a856a1243e3a56b4a0d1a60e326980f70d174e54fc0dd2e5451ca5dec",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:128"
+            }
+          ],
+          "selector": "",
+          "sha256": "799c56f2307c9c0f379bb6250aff623e54edda231d93ca609d0c6cf50c4cfe9a",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:128"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "b9ddcd6895a772f02187165ade187054f87648d85675c7ea992c83b5a9d5fbfc",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:5301"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "0bcec025f94b6bdb33fde6804f66b541d2f3584c70b418de5c226afeb14c8c84",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251573r960963_rule",
+      "source_rule_sha256": "c58f05736893d455983a8780ae4eb3ca752638050b6cf545d86945052c33744b",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:132"
+            }
+          ],
+          "selector": "",
+          "sha256": "2d5e3eda4571ed41c9ce69b7bec4142991b54e438ec28c494fb1356ef5124a50",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:132"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "c3fc2990272c7e337c5c913a893aa95e615256f51c68e81534f522d7773ff6b3",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:5501"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "be6b6396df0af1a8bc86b57e647b29326181168ed83b1741b56c10e3e93a52c0",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251577r960963_rule",
+      "source_rule_sha256": "9fcb70298674fdb05877d0d5833dd501b6c4434a6f06ca171cd273f43c1a2c0c",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:133"
+            }
+          ],
+          "selector": "",
+          "sha256": "fdd52c3dca17d6af87cecfb8eb45b242e28831a572ea1a906c4195197405c773",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:133"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "8f074e4add7876e69e9e22f3aebfb48ca3ad1deb6512ae45d8f24c02a626d68e",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:5701"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "761aff18aacc78ee0692c4dfd8c9aadc1814293f2bfe241e1afbd313b629b215",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251578r960963_rule",
+      "source_rule_sha256": "4251228399157fe420b86a0d2e5118d6d1a19a3080d15b2aeb209ce6c96a3b94",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:135"
+            }
+          ],
+          "selector": "",
+          "sha256": "4f3129c379d101cfe775027137e8d2620d94bbb3399c6ba469bf0a030b4e83cc",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:135"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "3a249450e7cd32d527ef2d8dccc161fed471161ec92456fe87197063adfde6c1",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:5901"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "d7160ef6372e184247198cabb2d10fd57983da944cfb3efca7904a4b25338a8c",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251580r960963_rule",
+      "source_rule_sha256": "4ed449d032a57aa62bb9a8550a6a5965a12c414667123f799f4a2d529823831f",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:136"
+            }
+          ],
+          "selector": "",
+          "sha256": "6336ad5f0bfb536af3af3dab031cde218be3bd1713efae44555f9eb789018f48",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:136"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "8069e113a84b1f199de7f33a749364b8f136036614e1045742461e170288d85c",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:6101"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "adf80cd21ac2b0e37a8e1ab8883c77272fae5f263e5f12dbd5170efbbdadf3e6",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251581r960963_rule",
+      "source_rule_sha256": "f2b64184627c818248010c0bd86248a6a9ea87d68bf52083db1f00756c0bff15",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:116"
+            }
+          ],
+          "selector": "",
+          "sha256": "704ea19441f13c52d21820e906b42ead1a506d842ef4d50217fde5fb65ab6c75",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:116"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "80186e8ddf348327c75693c88face10fe066b28387a5a2dfaba435092620ac5b",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:6301"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "23474175bdc68399c3e24856cdb30c50be0610aeee99a70a70b62acdfa5e746f",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-252881r960963_rule",
+      "source_rule_sha256": "555b6ca89e79393380a288f705bf5f0e81eb64a56a11f516edfa4a3e4f767c18",
+      "status": "converted"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:138"
+            }
+          ],
+          "selector": "",
+          "sha256": "5ae7e7afa08c13adcc4ef453897bd5d39d2031ae19ac4f73d55df9089cc1fc91",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_mil.disa.stig_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-oval.xml",
+              "name": "oval:mil.disa.stig.firefox.linux:def:138"
+            }
+          ],
+          "selector": "automated",
+          "sha256": "abcabd2f31fc9f29ddc9efffc28173e1b8b0b037f1a1a22223bcb564cb8ec4ac",
+          "system": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:6501"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "fae437d40b7b553a2db6a31a65859e1232e1a05f9b9b398e6f56848627cb7011",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "CONVERTED_UNVERIFIED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-252909r960963_rule",
+      "source_rule_sha256": "c185982958978e29968f3be8ef409e0a42f6896bac35ab5ffbe5848b3b8b7b76",
+      "status": "converted"
+    }
+  ],
+  "counts": {
+    "converted_unverified": 30,
+    "manual_only": 3,
+    "manual_preserved": 3,
+    "oval_automated": 30,
+    "rules": 33
+  },
+  "format": "scap-ng-tools/issue60-firefox-linux-evidence/1",
+  "manual_only_rules": [
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:101"
+            }
+          ],
+          "selector": "",
+          "sha256": "bea905ebe1648308f9c5ba481dd622ac36568dae94f30479a4f8b890e9a3c731",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:101"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "13f215eb62cb77bc14a4f32485b75ae777dc59e59e315142cfe7513e590ed31e",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "MANUAL_ONLY_PRESERVED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251545r1117151_rule",
+      "source_rule_sha256": "f5634bedf92bd555cdebba8998be2600d9ec809d687e13d4e68a1e1e33eedc36",
+      "status": "manual_only"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:1101"
+            }
+          ],
+          "selector": "",
+          "sha256": "afaa97ca5fd6ababe0190dec4108196d6c919d6afdd5578a185df951aaf40a7d",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:1101"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "9a15f257ffe003a6808d3b2e2ceeb65bfd2f58d6a510ab028ac54ed2109aba4b",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "MANUAL_ONLY_PRESERVED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251550r961194_rule",
+      "source_rule_sha256": "7b11b0165c8e1d799e53185ddc9b0de01cce934984b76538e863d3f59ab8c0e3",
+      "status": "manual_only"
+    },
+    {
+      "checks": [
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:2901"
+            }
+          ],
+          "selector": "",
+          "sha256": "c233295c48b5038a3b4c3d3427f6218e78119cc5d1e7cd3e9df8b6e477de737e",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        },
+        {
+          "references": [
+            {
+              "component": "scap_navy.navwar.niwcatlantic.scc_comp_U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "href": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-ocil.xml",
+              "name": "ocil:navy.navwar.niwcatlantic.scc.firefox.linux:questionnaire:2901"
+            }
+          ],
+          "selector": "manual",
+          "sha256": "13714eef43da65fe5a3382049a19183df3b781839186b14b2916146c688bc283",
+          "system": "http://scap.nist.gov/schema/ocil/2"
+        }
+      ],
+      "conversion_status": "MANUAL_ONLY_PRESERVED",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-251560r1067559_rule",
+      "source_rule_sha256": "996fe9455c4a8d8d2d774122409ec1fcc25ecac1179d1b029f1fbee6d5979d9e",
+      "status": "manual_only"
+    }
+  ],
+  "native_lowering": {
+    "concat": "native concat list preserving source order and Cartesian-product contract",
+    "generic_function_envelope": "not_emitted",
+    "unique": "native unique expression with ordered list components"
+  },
+  "qualification": {
+    "converted": "authoring drafts only",
+    "runtime_scanner": "not_run",
+    "scanner_equivalent": "not_proved"
+  },
+  "source": {
+    "archive": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.zip",
+    "archive_sha256": "c8afb0321ec0db0c831ddbc617ae734b2af3369d914d5034a4595e1d4be9f3b7",
+    "schema_commit": "9214368a046bc103e74488b8e3cadb9a0cbf9ffc",
+    "schema_expression_candidate": "/tmp/scap-ng-pr60/schema/variable-expression.schema.json",
+    "schema_expression_sha256": "47da0ed32dd8686a1bd1905d5ef8a0778cbb9093f123b7f7083a3a4c06dca12c",
+    "source_member": "U_MOZ_Firefox_Linux_V6R7_STIG_SCAP_1-4_Benchmark-enhancedV12-signed.xml",
+    "source_xml_sha256": "7dfdb6daddd3ec3021ee842c42fe2f89d9ce262b883c14926ab0e53fddd2c260"
+  }
+}

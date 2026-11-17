@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 
 import yaml
 
-from scap_ng_tools.contracts import FrozenSchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 from scap_ng_tools.converter.direct04 import load_runtime, validate_native_documents
 
 
@@ -22,7 +22,7 @@ class FilesystemSelectorCompatibilityTests(unittest.TestCase):
         schema_root = os.environ.get("SCAP_NG_SCHEMA_ROOT")
         if not schema_root:
             raise unittest.SkipTest("Set SCAP_NG_SCHEMA_ROOT to the accepted SCAP-NG checkout")
-        cls.snapshot = FrozenSchemaSnapshot(schema_root)
+        cls.snapshot = Pinned041SchemaSnapshot(schema_root)
         cls.engine = load_runtime()
         cls.capabilities = (
             "unix.file",

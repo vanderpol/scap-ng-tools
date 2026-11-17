@@ -1,0 +1,73 @@
+{
+  "format": "scap-ng-tools-issue59-literal-function-cycle/1",
+  "date": "2026-11-15",
+  "schema_version": "0.4.1",
+  "canonical_schema_commit": "aece827964c785be77b088c3c61255a2d07fd9a9",
+  "schema_family_sha256": "578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829",
+  "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "standalone_source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "converter_worktree_commit": "fb5104b81b2def53151bad94db5218986227969f",
+  "converter_worktree_dirty": true,
+  "runtime_aggregate_sha256": "040bc357fcf31b336a15134077509a8a005503ff854a366be778e618f3c6a5b7",
+  "source_function_witnesses": [
+    {
+      "operation": "escape_regex",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_escape_regex_function.xml",
+      "source_sha256": "4e561d9ca7db1cfe33035e78d906b3860ce555a86f459c1e5132c6ba354b6433",
+      "definitions": 1,
+      "tests": 2,
+      "lowering": "finite literal/constant-string values to typed native string literals"
+    },
+    {
+      "operation": "glob_to_regex",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_globtoregex_test.xml",
+      "source_sha256": "fb061d16c22c204d5ea9e7cbdb6a9bfff530136f9af340dd5cd9870ebde3d587",
+      "definitions": 1,
+      "tests": 20,
+      "lowering": "literal glob patterns to exact anchored Perl-style regex literals; dynamic operands remain held"
+    }
+  ],
+  "full65": {
+    "candidate": {
+      "blocked": 98,
+      "converted": 6489,
+      "manual_only": 1403
+    },
+    "original": {
+      "blocked": 108,
+      "converted": 6479,
+      "manual_only": 1403
+    },
+    "newly_converted_from_blocked": 10,
+    "newly_blocked_from_converted": 0,
+    "nonregression_pass": true,
+    "source_zip_hashes_verified": true,
+    "source_git_pin_verified": false,
+    "receipt_sha256": "f5e2ed174cd7459570197659b8c5773fa6b0eb141189fbd50ccf3b17eedf4f40"
+  },
+  "standalone": {
+    "definitions": 168,
+    "tests": 803,
+    "converted_definitions": 102,
+    "blocked_definitions": 64,
+    "converted_tests": 554,
+    "blocked_tests": 247,
+    "excluded_definitions": 2,
+    "excluded_tests": 2,
+    "source_accounted": true,
+    "converted_parity_failures": 0,
+    "source_invalid_holds": 2,
+    "parity_checked_definitions": 100,
+    "source_mapped_tests_checked": 560,
+    "pack_manifest_sha256": "46308b4f2d71fe8e32272acf8867b9801fc417f88041bf426dd23fdbd45d45a8",
+    "tests_ledger_sha256": "f7c5e38c6c2356a39a6db14a80f4b217c9c2d5cf858280f59e99537e6a3ac56d",
+    "parity_receipt_sha256": "50f435146c7b746c06dff8cb0b868efaf135e43928bd80201c2bb4e96e750540",
+    "schema_field_datatypes_loaded": 665
+  },
+  "qualification": "AUTHORING_SCHEMA_VALIDATED; SOURCE_ZIP_HASHES_VERIFIED; SOURCE_GIT_PIN_UNVERIFIED_LOCALLY; PARITY_SOURCE_INVALID_HOLD; RI_SCANNER_UNVERIFIED",
+  "tests": {
+    "full": "231 passed, 22 skipped, 103 subtests passed",
+    "focused_functions": "15 passed, 8 subtests passed"
+  }
+}

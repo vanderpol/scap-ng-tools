@@ -1,0 +1,721 @@
+{
+  "archive": {
+    "assessment_conflicts": {},
+    "assessment_ids": 14648,
+    "condition_conflicts": {},
+    "condition_ids": 243,
+    "cross_package_assessment_reuse": {
+      "background-submission-of-disabled-sv-251558-manual-0-assessment": 2,
+      "background-submission-of-mozilla-disabled-sv-251558-assessment": 2,
+      "firefox-accounts-must-be-disabled-sv-251578-assessment": 2,
+      "firefox-accounts-must-be-disabled-sv-251578-manual-0-assessment": 2,
+      "firefox-allow-only-tls-1-2-or-above-sv-251546-assessment": 2,
+      "firefox-allow-only-tls-1-or-above-sv-251546-manual-0-assessment": 2,
+      "firefox-ask-which-certificate-is-required-sv-251547-assessment": 2,
+      "firefox-ask-which-is-required-sv-251547-manual-0-assessment": 2,
+      "firefox-autoplay-must-be-disabled-sv-251565-assessment": 2,
+      "firefox-autoplay-must-be-disabled-sv-251565-manual-0-assessment": 2,
+      "firefox-block-pop-up-windows-sv-251553-assessment": 2,
+      "firefox-block-pop-up-windows-sv-251553-manual-0-assessment": 2,
+      "firefox-cryptomining-enabled-sv-251568-manual-0-assessment": 2,
+      "firefox-cryptomining-protection-enabled-sv-251568-assessment": 2,
+      "firefox-deprecated-ciphers-must-be-disabled-sv-251571-assessment": 2,
+      "firefox-deprecated-disabled-sv-251571-manual-0-assessment": 2,
+      "firefox-development-tools-disabled-sv-251559-manual-0-assessment": 2,
+      "firefox-development-tools-must-be-disabled-sv-251559-assessment": 2,
+      "firefox-disable-form-fill-assistance-sv-251551-assessment": 2,
+      "firefox-disable-form-fill-sv-251551-manual-0-assessment": 2,
+      "firefox-disable-installation-of-extensions-sv-251557-assessment": 2,
+      "firefox-disable-of-extensions-sv-251557-manual-0-assessment": 2,
+      "firefox-encrypted-media-disabled-sv-251581-manual-0-assessment": 2,
+      "firefox-encrypted-media-extensions-disabled-sv-251581-assessment": 2,
+      "firefox-enhanced-tracking-enabled-sv-251569-assessment": 2,
+      "firefox-enhanced-tracking-enabled-sv-251569-manual-0-assessment": 2,
+      "firefox-extension-disabled-sv-251570-manual-0-assessment": 2,
+      "firefox-extension-recommendations-disabled-sv-251570-assessment": 2,
+      "firefox-feedback-disabled-sv-251580-manual-0-assessment": 2,
+      "firefox-feedback-reporting-must-be-disabled-sv-251580-assessment": 2,
+      "firefox-fingerprinting-enabled-sv-251567-manual-0-assessment": 2,
+      "firefox-fingerprinting-protection-enabled-sv-251567-assessment": 2,
+      "firefox-network-disabled-sv-251566-manual-0-assessment": 2,
+      "firefox-network-prediction-must-be-disabled-sv-251566-assessment": 2,
+      "firefox-new-tab-page-not-or-snippets-sv-251573-assessment": 2,
+      "firefox-new-tab-page-not-snippets-sv-251573-manual-0-assessment": 2,
+      "firefox-not-automatically-ons-and-plugins-sv-251549-assessment": 2,
+      "firefox-not-automatically-plugins-sv-251548-manual-0-assessment": 2,
+      "firefox-not-automatically-plugins-sv-251549-manual-0-assessment": 2,
+      "firefox-not-automatically-search-plugins-sv-251548-assessment": 2,
+      "firefox-not-delete-data-shutdown-sv-252881-manual-0-assessment": 2,
+      "firefox-not-delete-data-upon-shutdown-sv-252881-assessment": 2,
+      "firefox-not-recommend-browser-sv-251572-manual-0-assessment": 2,
+      "firefox-not-recommend-is-using-browser-sv-251572-assessment": 2,
+      "firefox-not-use-password-master-password-sv-251552-assessment": 2,
+      "firefox-not-use-password-password-sv-251552-manual-0-assessment": 2,
+      "firefox-prevent-lowering-windows-sv-251555-manual-0-assessment": 2,
+      "firefox-prevent-moving-or-resizing-windows-sv-251554-assessment": 2,
+      "firefox-prevent-or-lowering-windows-sv-251555-assessment": 2,
+      "firefox-prevent-resizing-windows-sv-251554-manual-0-assessment": 2,
+      "firefox-prevent-user-from-data-sv-251562-manual-0-assessment": 2,
+      "firefox-prevent-user-from-deleting-data-sv-251562-assessment": 2,
+      "firefox-private-browsing-disabled-sv-251563-manual-0-assessment": 2,
+      "firefox-private-browsing-must-be-disabled-sv-251563-assessment": 2,
+      "firefox-search-disabled-sv-251564-manual-0-assessment": 2,
+      "firefox-search-suggestions-must-be-disabled-sv-251564-assessment": 2,
+      "firefox-so-that-dns-over-disabled-sv-251577-manual-0-assessment": 2,
+      "firefox-so-that-dns-over-https-is-disabled-sv-251577-assessment": 2,
+      "firefox-studies-must-be-disabled-sv-252909-assessment": 2,
+      "firefox-studies-must-be-disabled-sv-252909-manual-0-assessment": 2,
+      "installed-version-of-supported-sv-251545-manual-assessment": 2,
+      "platform-cpe-a-apache-http-server-2-4-cpe-i-3c8207c8-assessment": 4,
+      "platform-cpe-a-microsoft-active-directory-d-6c7aa86c-assessment": 2,
+      "platform-cpe-a-microsoft-iis-10-0-cpe-ident-0beae690-assessment": 2,
+      "platform-cpe-a-microsoft-iis-8-5-cpe-identi-5a9c9ac0-assessment": 2,
+      "platform-cpe-o-cisco-ios-cpe-identity-has-n-9ab2ca1a-assessment": 2,
+      "platform-cpe-o-cisco-ios-xe-cpe-identity-ha-ea844604-assessment": 3
+    },
+    "cross_package_condition_reuse": {
+      "platform-cpe-a-apache-http-server-2-4-055b1ce2-condition": 4,
+      "platform-cpe-a-microsoft-active-directory-do-b90c92aa-condition": 2,
+      "platform-cpe-a-microsoft-iis-10-0-6f4eacdb-condition": 2,
+      "platform-cpe-a-microsoft-iis-8-5-c1717ed4-condition": 2,
+      "platform-cpe-o-cisco-ios-0a774491-condition": 2,
+      "platform-cpe-o-cisco-ios-xe-451605bd-condition": 3,
+      "platform-xccdf-mil-disa-stig-platform-linux-56b028c5-condition": 2,
+      "platform-xccdf-mil-disa-stig-platform-linux-9000b097-condition": 2,
+      "platform-xccdf-mil-disa-stig-platform-linuxa-c6db288a-condition": 4,
+      "platform-xccdf-mil-disa-stig-platform-linuxb-6560219e-condition": 3,
+      "platform-xccdf-mil-disa-stig-platform-linuxb-c3af8b6b-condition": 5,
+      "platform-xccdf-mil-disa-stig-platform-linuxg-08bebc15-condition": 7,
+      "platform-xccdf-mil-disa-stig-platform-linuxi-cf28c3d7-condition": 5,
+      "platform-xccdf-mil-disa-stig-platform-linuxk-31a4a6de-condition": 4,
+      "platform-xccdf-mil-disa-stig-platform-linuxl-e4e30823-condition": 4,
+      "platform-xccdf-mil-disa-stig-platform-linuxn-55030b62-condition": 5,
+      "platform-xccdf-mil-disa-stig-platform-linuxn-7ee7b88b-condition": 2,
+      "platform-xccdf-mil-disa-stig-platform-linuxn-d9751b0e-condition": 4,
+      "platform-xccdf-mil-disa-stig-platform-linuxp-9ff7bb6e-condition": 4,
+      "platform-xccdf-mil-disa-stig-platform-linuxr-3a6fcf82-condition": 2,
+      "platform-xccdf-mil-disa-stig-platform-linuxt-bee3cc9e-condition": 4,
+      "platform-xccdf-mil-disa-stig-platform-linuxu-54be48b6-condition": 4,
+      "platform-xccdf-mil-disa-stig-platform-window-3fa6ee49-condition": 2,
+      "platform-xccdf-mil-disa-stig-platform-window-739f7e6b-condition": 4,
+      "platform-xccdf-mil-disa-stig-platform-window-8e89113e-condition": 3,
+      "platform-xccdf-mil-disa-stig-platform-window-a7f470f2-condition": 2,
+      "platform-xccdf-mil-disa-stig-platform-window-b69c8e0e-condition": 3,
+      "platform-xccdf-mil-disa-stig-platform-window-f3bf0b60-condition": 4,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-0f5e434d-condition": 2,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-24b77612-condition": 12,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-2c2e0f68-condition": 2,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-6df25c1c-condition": 2,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-7120aabd-condition": 4,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-75e55e70-condition": 3,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-774591b8-condition": 2,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-8254673d-condition": 2,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-8c113f7c-condition": 2,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-9f866936-condition": 4,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-e79e03c0-condition": 2,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-f53b8b5a-condition": 3,
+      "platform-xccdf-navy-navwar-niwcatlantic-scc-f7258d66-condition": 5
+    },
+    "packages": 59
+  },
+  "format": "scap-ng-applicability-collision-audit/1",
+  "source": {
+    "benchmarks": 63,
+    "conflicting_cpe_platform_ids": {},
+    "cross_benchmark_cpe_platform_reuse": {
+      "xccdf_mil.disa.stig_platform_LinuxAutofs": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "3cbdea74310ae4f23ab00e868e4d44824fc24006d25ff094c34c9890ffa53d9c"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "036f542dcdcdcc3c6f375639130de1c0e6b4c5c04695b403f0321b4f06d0c9f6"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "abe7acd1027aa62540ce27126c16a9cd4ef2003114e8846a586fac8b59427c81"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "368b2d824ecf49f0f15cf5c54967311b3858628f9137a2ac3b46c57b3f7c708b"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxBIND": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "97b7cc3c6c90f68de20510e558e4c5547dcb4a34dd65d0053afe619114a6f3ae"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "0ff07da5f8cdf95409ffd715a72b19ee0ff89047a6ff2e14de39071dc6631066"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "088fc52d745b4822ad78e515acb24aa0bd5d3601769bd3fdb0e0bca6da159d10"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "9b25dafd156bfd9a501881ea8da96314382abd5174a4adfc89980491298ec16b"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "b62fe99d9a55abf8030ce1764bd99921d8d9dea7c0d520f1a9a46be0a49c6d98"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxBIOS": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "4dcfc21233fa423475d8ea17962e4c093e4145b2a553c383439a24fcad1ab3af"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "14d87386e2c219da20fd236e0a59e8b339a78fcbd08b84584e981e7af6bd779d"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "b24b877f667dab4c7aaf5ff256b25dd7634faaeecd184125b195d95eba1c53ec"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxGnome": [
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "source_xml_sha256": "e6fabd9866312ca5c14297107173eab6ac5da52b6cc7e9526e92c11491682ed0"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "source_xml_sha256": "88109a4355364feb25c504e748c21c67e6581c13eba806df894b86252a9f01c5"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "096584328bf944f091d8af4ef82771191eec31f4effa993911327599bf3dddc6"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "9aa0e8ea6f1f0e820dec9a8903b62720f9b9f67e75cb098817ff1040db2eee30"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "801da9a842179a943ffa0061a79cc36364a0e61609ef6ea9650ed5111cdb2f01"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "01cad98951ee5d0befc1e1a21e3a5c675420b4e442ec4c24e0cf5ccdd51df1e0"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_xml_sha256": "5c3f6a9f40c4fa7c9c82524ec4c9f214c2218947983a0d5ec625faab3ab2860f"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxIPv6enabled": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "69a227fb301073a884588da114654e22c011589aa5d8fc6ca512cc3b965e08ef"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "2a3e5afa9cc4d99605a9205fbabac29d3741b2603d3af7dcaea4b8b6f3e03674"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "31a4a30f753b8b59b41e36a35012e392e3690bb2c1e036cbb44ceaf9dc4d5412"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "8695ff05bfe287f5ef439e03a16b5963b93daad8f2e944142dec10432559d699"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_xml_sha256": "2aa73f9cdae9f7f1adf1068c7320362f3d76f6513d53946adb9c799889673f03"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxKernelDumps": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "c0d4b88da68fdeba57a93cdc74e6a4993ea6a2b0d4afa7f1bbb73ebf74a4780d"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "1ebfcbc6d0b7b1246a72bd61f95e2c8e65bfde9d91efd71f1f245baf004c2ea7"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "fa9070086419423af0285302f3263d623a990420408cc78c0a54515d2111829b"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "94fb923ead5c3f314fc1070f6aadb53b3a13af853f6c1ec78cbc3755d7f72633"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxLibreswan": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "c1ffc3f5fc69d4949464ceef4e0d2085a2a8bb8be9215231bf6eac1909623fb4"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "ad72d64754b92e8f20768bd028c536bdafcb499e9f641041865708aa214ea50e"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "a4281ec7bb3c06ee2dee958dffc0e31a2fedf483c45c5fa5289d90617882d8b9"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "3482f84cad335b40ec0cfa6f7532afab806ef5ba37ef04d844812f3df8c433cc"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxNFSMounts": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "952d49c1fc9a9f2adf3aec7080a2aadf8047eaf08166919008e496be3351ad09"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "cd05999d64c6a7e8b421de14a0c4124b15f05da3259629493ed4785de9f49357"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "1653fcf16557547b4bcc0777eb7260d28eb18aa774878fec332a4bfbeccf75ef"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "9572dbfdc81fcf3fc6d6cb1cbf5a704e09639602a062730f9dd47e416aa48b12"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxNoNFSMounts": [
+        {
+          "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "e51b663b3d0430d8b2f413b612e841eee7b847242964ca3c22623773ffaaf284"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "efd09c6dc972cb4957f89464b2187764c9593840e8aaab892794be80a96e0439"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "8504038a5dd0333152927817fd904e2cbbcfa2362c216bf8a7ce45284e64f447"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "9765be21365f843d35062723fe5b6cc731ca6bf636b2a4a552d2e5bd1d3d455d"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "c1e31d987b766617473b74f7d62a87297d7c3b8f8d65e2bb4c4b69960988a646"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxNotFIPS": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "0e32b94f624a48c4a024980cdb936a3e41e50eb475cf1b7abb5de810fbc049b1"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "1eb6b533bdbaf30c546870d54b25ee2fe57aaf348c2efeebd471f43effbf54c4"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxPostfix": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "c18caf91636b11508ab137f74541cb02636ecb89b067233dfd768ae4f46eedd3"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "f45d2480055d656a1a3a5f7c4f6a754174cf27b8a2f5424404877bb4f56bd062"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "6ef6fe4a8d7ce702bea7f93b0fc720e3a92fd6b4b9d2896a7d2f147eae19b615"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "f24d36bdd1076adbe09baf15e3ef517b737a6d17f5395fd946d2f76c240eee5c"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxRsyslog": [
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "source_xml_sha256": "c788768311f9161f38d9b14a241a6a8d4f0074549ccb097b1becb5bb1778baa0"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "source_xml_sha256": "ce91ba8cba52e79f28f2f7970632308359a78e61cedb48760831295c099e0694"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxTFTP": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "d3c66e4f7bbb0e332d9238e53635e6dc785571cdf7f2d39674a08861bb70aee3"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "a9e677efd2a0a2629f095842d51a63db05a2dedc51df643cc36eb8bd68589476"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "e9958f20bfc34f801e539525c75b436a7cb986c168c716738f8aebf05f1f55f6"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_xml_sha256": "c189c56c055359e1471de75c3a0242744482f6cc5e9a2d23dd03f85093171bee"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_LinuxUEFI": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "12abcb23ef95dd23c833e84d2ece2f8698313995302a29f2576ad48103a20166"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "8186a2ce71a7c8164ddc875a0a397304e8c927fca67a97378150985914c8e128"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "85cd527f89250cf0e1afc56fd58d1d4be0fb1c9c63340a9e1b770495a065448c"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "275f9e105b7c68f611f1c1637d8378e22a542cff500a15931e74bef207917093"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_Linux_Not_krb5svr_1-17": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "1d47009dbf33ecffb1af41f71b963a822ee441c88c534d4e65ee7906fc28dad4"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "70c616155245fa5f62f138c0694df34b0991db82bf9580d30f4b25d881080775"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_Linux_Not_krb5wks_1-17": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "b5ba93c09baf5b43098edb5c30fb545a21471b210b493da7a453a2336897b4e7"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "8d7d1bb1851bd1086ec2ed3311d605e46af9ae080db9b37ceffc1e9ee1cd3ce1"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_Windows_DomainController": [
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "efaf0a9c4497cc165257f6a0fdcd76c02f80c44c2174866d561d7272222737d4"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "1b1c8d6e448734d8a7238daafff8b8fbe56fc12f14f8521dabccaf2adf5deb10"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "7320d16ec8a7f3a61b9eb1a9cf40cbf41884203abbfa1b76439e9be9ee69c4ba"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "44702c678810939471d5ce7b25c24962289e45c66bbb4bbedf623398bdddd541"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_Windows_MemberServer": [
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "f6791521ce3d95ff0a03501a8f021625d14c38d1f2ff1fd65390e4ba55afd5bb"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "fac8e777d28f2c2498eccdebb935f52d26301fbdc037f4f9ab7ccd9dbed044ac"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "baa2439cba81e249611eda0f821c661ded9a054d6963f03e88a8443064c801a1"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "f7fa5701aa67ce97cee828f58eb01a9fd63758d5a556757d979987f089181066"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_Windows_MemberWorkstation": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "source_xml_sha256": "b25df284e8b9a6a2312c1e722a96fca18d3dc470498df96c0603d406364ba12a"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "fa90dcc138a4468be77b8f8ee7c9eec0795d3f02e8eaff89ad09a5effe787ba0"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_Windows_NotEnterpriseLTSC": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "source_xml_sha256": "de08031a91348d353b7f9bab76ef6769f9afaf682652662e27e76f327de02177"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "5ac321cb4bce85f81298971cfa29cc155e735fd44eb1858624ba3c414b8dde81"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_Windows_NotServerCore": [
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "4e6c3ca342602c7d1fe6ba6fec752d154feeb180ba46f225fa2c61f0136f15ee"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "40f8dc833e36b744a86306e984d58938cb6ed9c0695ea89faeb14dec49aa49b8"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "c00be109c5cfda99dbd604d57e30668b50825522379496402fed887f681cb021"
+        }
+      ],
+      "xccdf_mil.disa.stig_platform_Windows_StandaloneServer": [
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "8fe1f243f89739fc06dd2f5d72ad9876f244a9317d0225a1bc83380e44c0437e"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "1ecf251bbb931eab51d90e7ee108caca173966bf63daab38bf56ca75f960ed79"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "b91eb430a1c32fd69429835cb77a2b6e72292169017d2b856b32fefd3cfeec7d"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_AspDotNet": [
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "fecac8f8439f618b1d96be8774c7c5bf988bc7d2ca84127362c7719d654e404a"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "320798a7d3ecc32980a830838160356f1aff1ef1f47f809d7d971c9beb2bb9dd"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_FTP": [
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "66b77bc857960f93d0d3fde0e9aed3b8c8ba8b741cf6e35e71edc848a904139a"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "b44a6dc66b6d4f6bb4f449376c647e973f762d5ad60774e9846ea94c59ae8e08"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "e86297f1af0bcc001c68ace407af4d26c27c8505beb27d29a711d7a834b4667e"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "e5bde5244e72c79df8a08779bf74e0719215fe04a7a6acb56b10fed2b411c8e2"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_LinuxGnome": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "source_xml_sha256": "2d11f6a68b6efed64bacb1434c8009a9ff3bf2e045d4b183e5f28cbdc93ad132"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "21ea18eb1b35a94051636d399cf857bb64b958e21ac13c9a0ebc6373874f5053"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "source_xml_sha256": "ffe21e41c7f4c1a6b98abe1785ab94df975f6caf3d9c2ebd824a145ba80cc62f"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "source_xml_sha256": "0b636ebf21db7e0cd24f138b0b8a1703475f7590477c8c7d9ee3cf42a5826a97"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "source_xml_sha256": "fe49aa26a5b2b34d1bdb39e40ded24ca99beb79c562741c819403f6736d87e23"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "621e4e94c9f9a3a4cbba98b558464155b8b46c938508da7f4810ad84d9dbdc03"
+        },
+        {
+          "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+          "source_xml_sha256": "7fd38ea228d68d8e891c3b086240c6bb3ef81236eeea3d93ce4dc5138721f76f"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "897e01858439b557b26dc55bb00096bc054384af1c82e56924c9132a2b7bf085"
+        },
+        {
+          "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+          "source_xml_sha256": "8a4a890bee2cf8eac3b260092bf4b2295851fd679a7cfcffec427c6218390b9f"
+        },
+        {
+          "benchmark": "U_SLES_12_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "source_xml_sha256": "986f8b6a565f4cb75f5d67d14bebe1fbef4df561a2d2c398e59f12eee827a9e5"
+        },
+        {
+          "benchmark": "U_SLES_15_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "e7c715c1639f1d3f329ecc4a2bc7ad9345533123e4531f3b697511a49b4b0075"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_xml_sha256": "e016e464c261662fd99990860701102855779ac56ef3d2daa2a38f4a5f0e4532"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_MemberServer_or_DomainController": [
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "83b9a00336983089fdee654e8bad74531133a0463b542201e21d43f02d3474c9"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "c6c80c18504e2d73647fa6a73058a28bbb7b57dae2f265ae50c11bfd21e1abc6"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "8c8c178011561039c8b46ab0fc34c93cc3471c5b440a2f5c151bca6b1e6d0eb6"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "ea339ce5d6744d33d8667997de26ca5bf099813c45746e686ec948d2d5d9d81f"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_StandaloneServer_or_MemberServer": [
+        {
+          "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "cc3fdc7e38c4bba810dfcd69f56b492505c0f5ba0c0453b84fb8ff6d821f8e37"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "f5c8227eff9cbb51e97b636bfbe21731950e6616929844319d8741a128633260"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "c1d2fb270686e237dc71514ba2bce230b0e924a5c9798b86cd65529ba7dc6a83"
+        },
+        {
+          "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+          "source_xml_sha256": "6a7f6ce1f216cfe16def72e1d591d2bbef8eebb00d99ef9b92ba90d7562a21ba"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_WSUS": [
+        {
+          "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "f3e38aa84a7e55b37c4b5bc55281f660b81b662d9325f5fcfc0328e473efbc99"
+        },
+        {
+          "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "9be18927df92873f4555af4200fa7402473c5586839ef1766e4861f8143949c9"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_bluetoothinstallation": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "source_xml_sha256": "c2151c0bd697ab86becdfd1f23041b4f3be4314fb686fb7c00419ce596ec7577"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "5dab0422b0c6ee356cca373d2897a1e60ca8e07177c4beb2ccedcd452e50aa08"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_camerainstallation": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "source_xml_sha256": "d403185be1313bc8c7731449c02df71716f72ba21855b93d54e199f4558e2299"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "6aff3c114c94a8332e3b59d921238d687b942a6951d7513feab3d7098ff8a832"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_local_enabled_administrators": [
+        {
+          "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+          "source_xml_sha256": "5ce41c0f513f733269ce319b3a79dc85e23b862466884e1c338a2f717c6b04ff"
+        },
+        {
+          "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "838f290b514c9446355eb5f4c76a9a8e2a524bdfe84b1e4a98d1963ae731677e"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_mixed_mode_authentication": [
+        {
+          "benchmark": "U_MS_SQL_Server_2016_Instance_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip",
+          "source_xml_sha256": "eb6e84c32113b05314fcd8c4ba4ad5815707ba348ea73165c6ddce576d7479f1"
+        },
+        {
+          "benchmark": "U_MS_SQL_Server_2022_Instance_V1R3_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_xml_sha256": "ddf79779e9b11596ff5c404fc4a83b12d60fd5d70b826da6c5aae6f45d62a3ba"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_networking_enabled": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "source_xml_sha256": "825b32ee9120d2e83ff63675861b2c0de1fa0d511c651397f25d9c5fda8b506f"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "b4f35573166b1f2123a0f0604738fb79bd724a5c44e0ff3eaaee7e74336c0011"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "source_xml_sha256": "d0a8a882445341c9d0db7d11e9078f82d78d096892dfe6a4651c3f23b32497f0"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "source_xml_sha256": "0906a07d24fb0e02a2f9ef7db6d6c1cb7795b74ba77dae2c60db5a168a0ba6fe"
+        },
+        {
+          "benchmark": "U_TOSS_4_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
+          "source_xml_sha256": "8e31a277149a5ead86afa0605bb054910085d2dd83ea6933b39b2ab7a2538799"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_osversion_8.2_or_later": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "5212f70caba45a1a73e5c639bffd2b3a4388bd33814e91410d46f26c96f4088c"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "629345f13fda0f5f92d03c25096197d6cfaacc01c4d1e5ab199915736e4ebc6d"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_osversion_8_0or1": [
+        {
+          "benchmark": "U_Oracle_Linux_8_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+          "source_xml_sha256": "5b7d99b23b7284235e89d57661018de79dabc761888116f092f2c9ecb00371d7"
+        },
+        {
+          "benchmark": "U_RHEL_8_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV22-signed.zip",
+          "source_xml_sha256": "4b3d22e6a1f3d300a6aa631f01fba3e66064bacff9e0b1bbaeb1d7045e481120"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_wireless_interface_installed": [
+        {
+          "benchmark": "U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+          "source_xml_sha256": "0a40f6300526fc17bd0f39c64d1aa41c3badeb2542df26a60bf734a8fcbc9c05"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_22-04_LTS_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV10-signed.zip",
+          "source_xml_sha256": "d18733838bffd1dda8e3a04390a43e5a20fee3073fbca7473972a304953d7779"
+        },
+        {
+          "benchmark": "U_CAN_Ubuntu_24-04_LTS_V1R5_STIG_SCAP_1-4_Benchmark-enhancedV7-signed.zip",
+          "source_xml_sha256": "5682a2d37a7c7e18f2a3fed45a327895c03d4ab678580a2a88b479f72579163c"
+        }
+      ],
+      "xccdf_navy.navwar.niwcatlantic.scc_platform_zoneNameIsGlobal": [
+        {
+          "benchmark": "U_SOL_11_SPARC_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "1463ff27bc4acc731f591fd4cff864469f1b272b5984a1d7128c124d84d965cc"
+        },
+        {
+          "benchmark": "U_SOL_11_X86_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+          "source_xml_sha256": "8adb67713b66cc037d41cd7a57ad4d09511982fe0a2c0c47c54978f6e2e68d6d"
+        }
+      ]
+    },
+    "duplicate_cpe_platform_ids": {},
+    "unique_cpe_platform_ids": 93
+  },
+  "status": "PASS"
+}

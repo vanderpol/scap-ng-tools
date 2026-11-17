@@ -25,10 +25,11 @@ def test_requirement(source):
                 vocabulary(child)
 
     vocabulary(result)
-    if set(result) == {'items_found'}:
-        # An existence-only Test has no satisfaction comparison. Keep the
-        # distinction while using the same authoring-level grouping.
-        return {'item_requirement': result}
+    if set(result) <= {'items_found', 'items_satisfying'} and not result.get('fields') and not any(result.get(key) for key in LOGIC):
+        # A Variable Test with no State is a pure population assertion. Keep
+        # only the schema-admitted Item existence quantifier; the evaluator's
+        # fieldless Variable profile treats every observed value as satisfying.
+        return {'item_requirement': {'items_found': result['items_found']}}
     pairs = []
 
     def policy(node, inherited=None, *, prune=False):

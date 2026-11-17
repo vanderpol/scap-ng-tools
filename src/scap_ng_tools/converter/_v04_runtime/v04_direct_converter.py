@@ -5,6 +5,7 @@ Conversion uses current capability metadata, not old NG renderers or IRs.
 Public validation, compilation and independent proof are separate commands.
 """
 import argparse
+from contextlib import contextmanager, nullcontext
 from copy import deepcopy
 import json
 from pathlib import Path
@@ -22,12 +23,12 @@ from v04_direct_datatypes import SOURCE_TYPES, SPECIAL_TYPES, native_datatype, l
 ROOT = Path(__file__).resolve().parents[1]
 SUPPORT = json.loads(Path(__file__).with_name('v04_direct_capabilities.json').read_text())
 CAPABILITIES = tuple(SUPPORT['enabled'])
-ensure(SUPPORT['specification_version'] == '0.4.0' and len(CAPABILITIES) == len(set(CAPABILITIES)),
+ensure(SUPPORT['specification_version'] == '0.4.1' and len(CAPABILITIES) == len(set(CAPABILITIES)),
        'invalid direct capability activation registry')
 EXISTENCE = {'at_least_one_exists': 'one_or_more', 'none_exist': 'none',
              'only_one_exists': 'exactly_one', 'any_exist': 'zero_or_more'}
 FIELD_EXISTENCE = {**EXISTENCE, 'all_exist': 'every'}
-MATCHING = {'all': 'every', 'at least one': 'one_or_more', 'none satisfy': 'none', 'only one': 'exactly_one'}
+MATCHING = {'all': 'every', 'at least one': 'one_or_more', 'none satisfy': 'none', 'none exist': 'none', 'only one': 'exactly_one'}
 COMPARISONS = {'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'matches_regex',
                'case insensitive equals': 'case_insensitive_equals', 'less than': 'less_than',
                'greater than': 'greater_than', 'greater than or equal': 'greater_than_or_equal',
@@ -36,12 +37,124 @@ COMPARISONS = {'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'm
                'subset of': 'subset_of', 'superset of': 'superset_of',
                'bitwise and': 'bitwise_and', 'bitwise or': 'bitwise_or'}
 SET_OPERATORS = {'UNION': 'union', 'INTERSECTION': 'intersection', 'COMPLEMENT': 'difference'}
+_REGEX_META = set('.^$*+?{}[]\\|()')
+
+
+def escape_regex_literal(value):
+    """Escape exactly the Perl/OVAL regular-expression metacharacters."""
+    return ''.join('\\' + character if character in _REGEX_META else character
+                   for character in value)
+
+
+def glob_to_regex_literal(pattern, *, glob_noescape=False):
+    """Lower one literal OVAL 5.12.3 glob to its anchored Perl-style regex.
+
+    This is intentionally a literal-only adapter.  Dynamic components remain
+    unsupported because SCAP-NG 0.4.1 has no glob function expression.  The
+    conversion preserves slash boundaries, hidden-name guards, bracket
+    classes, and OVAL's ``glob_noescape`` backslash rule.
+    """
+    result = ['^']
+    segment_start = True
+    index = 0
+    while index < len(pattern):
+        character = pattern[index]
+        if character == '/':
+            result.append('/')
+            segment_start = True
+            index += 1
+            continue
+        if segment_start:
+            escaped_dot = (character == '\\' and index + 1 < len(pattern)
+                           and pattern[index + 1] == '.')
+            if character != '.' and not escaped_dot:
+                result.append('(?=[^\\.])')
+            segment_start = False
+        if character == '\\' and not glob_noescape:
+            index += 1
+            if index == len(pattern):
+                result.append('\\\\')
+                break
+            result.append(escape_regex_literal(pattern[index]))
+            index += 1
+            continue
+        if character == '\\' and glob_noescape:
+            result.append('\\\\')
+            index += 1
+            continue
+        if character == '*':
+            result.append('[^/]*')
+            index += 1
+            continue
+        if character == '?':
+            result.append('[^/]')
+            index += 1
+            continue
+        if character == '[':
+            # Preserve POSIX classes such as [[:digit:]] while rejecting an
+            # unterminated class as the OVAL function does.
+            nested = 0
+            cursor = index + 1
+            closed = False
+            while cursor < len(pattern):
+                if pattern[cursor] == '[':
+                    nested += 1
+                elif pattern[cursor] == ']':
+                    if nested:
+                        nested -= 1
+                    else:
+                        closed = True
+                        break
+                cursor += 1
+            ensure(closed, 'invalid glob_to_regex bracket expression')
+            result.append(pattern[index:cursor + 1])
+            index = cursor + 1
+            continue
+        result.append(('\\' + character) if character in _REGEX_META else character)
+        index += 1
+    result.append('$')
+    return ''.join(result)
+
+
+def legacy_wmi_selected_field(wql):
+    """Return the one projected field permitted by legacy OVAL WMI."""
+    match = re.fullmatch(r'\s*select\s+([A-Za-z_][A-Za-z0-9_]*)\s+from\s+\S+.*', wql or '', re.IGNORECASE | re.DOTALL)
+    ensure(match is not None, 'legacy WMI query is not a single named field projection')
+    return match.group(1)
+
+
+def legacy_wmi_record_predicate(element, field, visitor):
+    """Adapt one legacy scalar result State to the existing WMI record State."""
+    attributes(element, {'id', 'version', 'comment', 'operator'})
+    children = list(element)
+    ensure(len(children) == 1 and local_name(children[0]) == 'result' and not len(children[0]),
+           'legacy WMI State requires exactly one scalar result')
+    child = children[0]
+    value = visitor.predicate(child, visitor._wmi_mapping, record_field=True)
+    found = element.get('check_existence', 'at_least_one_exists')
+    matching = element.get('entity_check', 'all')
+    ensure(found in FIELD_EXISTENCE and found != 'none_exist' and matching in MATCHING,
+           'legacy WMI State record absence/quantifier outside bounded proof')
+    return {'fields': {'result': {'record': {
+        'records_found': FIELD_EXISTENCE[found],
+        'records_matching': MATCHING[matching],
+        'fields': {field: value}}}}}
+
+
+def native_items_found(source_value):
+    """Lower the OVAL Test population to the native 0.4 cardinality."""
+    ensure(source_value in EXISTENCE or source_value == 'all_exist',
+           f'unsupported Test existence: {source_value}')
+    # SCAP-NG 0.4 has no synthetic absent Items. Its approved contract maps
+    # OVAL all_exist and at_least_one_exists to one_or_more; source spelling
+    # remains available through the binding provenance emitted for recovery.
+    return 'one_or_more' if source_value == 'all_exist' else EXISTENCE[source_value]
 
 
 def load_mappings():
-    mappings = [json.loads((ROOT / f'schema/v0.4.0/capability-mappings/supported/{name}.json').read_text())
+    mappings = [json.loads((ROOT / f'schema/capability-mappings/supported/{name}.json').read_text())
                 for name in CAPABILITIES]
-    ensure(all(mapping['specification_version'] == '0.4.0' for mapping in mappings), 'mapping version mismatch')
+    ensure(all(mapping['specification_version'] == '0.4.1' for mapping in mappings), 'mapping version mismatch')
     ensure(all((mapping['source']['namespace'].rsplit('#', 1)[-1] in ('independent', 'linux', 'unix', 'windows') or
                 mapping['capability'] in {'solaris.smf', 'iosxe.line', 'iosxe.global'})
                for mapping in mappings), 'capability outside approved direct-converter scope')
@@ -62,28 +175,51 @@ class AssessmentConverter:
     declarations. Cached values are copied so a consumer cannot mutate a peer.
     """
     def __init__(self, source, component_id, mappings, *, canonical_variable_functions=False,
-                 human_compact=True):
+                 human_compact=True, native_recovery=False):
         self.source, self.component_id, self.mappings = source, component_id, mappings
         # Opt-in migration probe only. Production output and source-proof paths
         # retain their current syntax until coordinated compiler migration.
         self.canonical_variable_functions = canonical_variable_functions
+        self.preserve_source_variables = False
+        # Never emit candidate syntax against a historical frozen schema.
+        self.native_specification_version = '0.4.1'  # sole supported native authoring contract
+        # Recovery candidates are opt-in until their changed golden deltas are
+        # owner-accepted; the historical default remains byte-compatible.
+        self.native_recovery = native_recovery
         # Opt-in authoring projection; a new program digest needs fresh review.
         self.human_compact = human_compact
         self.human_compaction = []
         self.active, self.cache, self.used = set(), {}, {}
         self.native_names = {}
         self.tests, self.variables, self.shared_objects = {}, {}, {}
+        # Native constants materialized from a finite OVAL Variable Object Set
+        # are not source Variable declarations. Keep their source Object and
+        # constant-Variable lineage explicit for independent parity tooling.
+        self.synthetic_variables = []
+        self.inlined_variables = []
         self.enum_projection_cache = {}
         self.object_uses = None
         self.selector_equivalences = []
         self.enum_variable_copies = {}
         self.enum_variable_equivalences = []
+        # Source OVAL Object Sets can contain several logical Items.  The
+        # canonical variable.value Test shape has one Variable-backed Item,
+        # so a finite UNION is lowered to child Tests plus a native Evaluate
+        # expression rather than flattening the operands into one population.
+        self.expanded_set_tests = []
+        self._expanding_variable_set = False
         self.conversion_warnings = []
         self.bound_exports, self.inputs, self.policy_parameters, self.input_bindings = {}, {}, {}, {}
 
     def capability(self, element, kind):
         matches = [mapping for mapping in self.mappings if element.tag ==
                    f'{{{mapping["source"]["namespace"]}}}{mapping["source"].get(kind)}']
+        if not matches and self.native_recovery and element.tag == f'{{{OVAL}#windows}}wmi_{kind}':
+            # OVAL 5.12.3 legacy wmi_* has the same namespace/query selectors
+            # as wmi57_*, but its scalar result must be wrapped as a named
+            # record member.  Keep this alias opt-in and fail closed elsewhere.
+            matches = [mapping for mapping in self.mappings
+                       if mapping['capability'] == 'windows.wmi.query']
         ensure(len(matches) == 1, f'unsupported {kind} capability: {element.tag}')
         return matches[0]
 
@@ -93,7 +229,7 @@ class AssessmentConverter:
         # first reference is allocated. Cache only the immutable node index;
         # SourceModel.index replaces that index and invalidates this cache.
         nodes = getattr(self.source, 'nodes', {}).get(self.component_id, {})
-        if nodes and suffix in ('object', 'test', 'variable'):
+        if self.native_recovery and nodes and suffix in ('object', 'test', 'variable'):
             from collections import Counter
             cache = getattr(self.source, '_native_name_census', {})
             entry = cache.get((self.component_id, suffix))
@@ -113,9 +249,19 @@ class AssessmentConverter:
                     # targets. Name the source kind, controls and target instead.
                     identifier = native_identifier(element, suffix,
                         ' '.join([local_name(element), *controls, *values]))
-        key = suffix, identifier
         original = element.get('id')
         ensure(isinstance(original, str) and original, 'source node lacks identity for native naming')
+        key = suffix, identifier
+        if self.native_recovery and key in self.native_names and self.native_names[key] != original:
+            # Readable comments are not identities. If the source-derived
+            # descriptor is still ambiguous (including identical comments,
+            # controls, and values), append a deterministic source-ID token.
+            token = digest(original)[:10]
+            stem = identifier.removesuffix('-' + suffix)
+            budget = 64 - len(suffix) - len(token) - 2
+            ensure(budget >= 1, 'native identity discriminator exceeds identifier budget')
+            identifier = stem[:budget].rstrip('-') + '-' + token + '-' + suffix
+            key = suffix, identifier
         ensure(key not in self.native_names or self.native_names[key] == original,
                f'native {suffix} name collision {identifier}: {self.native_names.get(key)} vs {original}')
         self.native_names[key] = original
@@ -146,6 +292,14 @@ class AssessmentConverter:
         if tokens:self.used[identifier]['original_datatype_tokens']=tokens
         try:
             result = getattr(self, 'convert_' + kind)(element)
+            if (kind == 'variable' and local_name(element) == 'constant_variable' and
+                    isinstance(result, list)):
+                # Standalone source parity needs to distinguish a constant
+                # Variable intentionally inlined into a predicate/function
+                # from a dropped declaration. This records lineage only; it
+                # does not alter the native expression or claim equivalence.
+                if identifier not in self.inlined_variables:
+                    self.inlined_variables.append(identifier)
             self.cache[key] = result
             return deepcopy(result)
         finally:
@@ -194,32 +348,153 @@ class AssessmentConverter:
             return {'test': identifier}
         objects = element.findall(f'{{{mapping["source"]["namespace"]}}}object')
         ensure(len(objects) == 1, 'one Test Object required')
-        conditions = []
-        for child in element:
-            kind = local_name(child)
-            ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
-            attributes(child, {kind + '_ref'})
-            ensure(not len(child), 'Test reference has children')
-            if kind == 'state':
-                self.same_family(child.get('state_ref'), 'state', mapping)
-                conditions.append(self.reference(child.get('state_ref'), 'state'))
         found = element.get('check_existence', 'at_least_one_exists')
-        draft_all_exist = found == 'all_exist' and getattr(self.source, 'draft_compatibility', False)
-        ensure(found in EXISTENCE or draft_all_exist, f'unsupported Test existence: {found}')
-        requirement = {'items_found': 'one_or_more' if draft_all_exist else EXISTENCE[found]}
+        conditions = []
+        state_refs = []
+        self._wmi_legacy_fields = {}
+        self._wmi_mapping = mapping
+        object_id = objects[0].get('object_ref')
+        object_source = self.source.node(self.component_id, object_id, 'object')
+        self._variable_result_datatype = ""
+        # OVAL evaluates the Test check over logical Items produced by an
+        # Object Set.  Flattening a UNION of Variable Objects into one
+        # Variable Item loses that boundary (for example [0] and [1,2,3]
+        # become [0,1,2,3]) and changes `only one`/`all` semantics.  The
+        # active 0.4.1 grammar can represent the same boundary as child
+        # Tests and one shared Evaluate expression, with no schema extension.
+        if (mapping['capability'] == 'variable.value' and
+                local_name(object_source) == 'variable_object' and
+                not self._expanding_variable_set):
+            expanded = self.expand_static_variable_set_test(element, mapping, object_source)
+            if expanded is not None:
+                return expanded
+        if mapping['capability'] == 'variable.value' and local_name(object_source) == 'variable_object':
+            variable_refs = [child.text.strip() for child in object_source
+                             if local_name(child) == 'var_ref' and (child.text or '').strip()]
+            if len(variable_refs) == 1:
+                variable_source = self.source.node(self.component_id, variable_refs[0], 'variable')
+                if variable_source.get('datatype') == 'int' or any(local_name(child) == 'time_difference'
+                                                                    for child in variable_source):
+                    self._variable_result_datatype = 'int'
+        preserve_object_graph_variables = any(
+            local_name(node) in ('set', 'filter') for node in object_source.iter())
+        if local_name(object_source) == 'wmi_object':
+            wql = next((child.text for child in object_source
+                        if local_name(child) == 'wql'), None)
+            field = legacy_wmi_selected_field(wql)
+            # Establish the projection before State references are evaluated.
+            self._wmi_legacy_fields = {child.get('state_ref'): field
+                                       for child in element if local_name(child) == 'state'}
+            self.conversion_warnings.append({
+                'code': 'legacy_wmi_migrated_to_wmi_query',
+                'source_test': element.get('id'),
+                'source_object': object_id,
+                'source_states': sorted(self._wmi_legacy_fields),
+                'selected_field': field,
+                'source_test_sha256': digest(xml_identity(element)),
+                'source_object_sha256': digest(xml_identity(object_source)),
+                'mapping': 'windows.wmi.query',
+                'semantic_basis': 'OVAL legacy wmi selects exactly one named simple field; native wmi query returns a record with that named field',
+                'independent_static_proof': 'UNPROVED',
+                'scanner_evaluated': False,
+            })
+        with (self.source_variable_scope() if preserve_object_graph_variables else nullcontext()):
+            for child in element:
+                kind = local_name(child)
+                # OVAL Test notes are descriptive metadata, not execution
+                # children. Preserve them in source provenance but do not
+                # reject otherwise executable Tests that carry notes.
+                if kind == 'notes':
+                    continue
+                ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
+                attributes(child, {kind + '_ref'})
+                ensure(not len(child), 'Test reference has children')
+                if kind == 'state':
+                    state_refs.append(child.get('state_ref'))
+                    # No Item can satisfy a none_exist Test. Do not execute or
+                    # require its State graph merely to lower the absence result.
+                    if found != 'none_exist' or not self.native_recovery:
+                        self.same_family(child.get('state_ref'), 'state', mapping)
+                        conditions.append(self.reference(child.get('state_ref'), 'state'))
+        # Native 0.4's item_requirement explicitly defines all_exist as
+        # one_or_more: collected Items have no synthetic does-not-exist
+        # entries. Keep the source spelling in the trace, but do not gate this
+        # approved native lowering behind the retired draft mode.
+        if found == 'all_exist' and not self.native_recovery:
+            ensure(False, 'unsupported Test existence: all_exist')
+        requirement = {'items_found': native_items_found(found)}
+        if self.native_recovery and found == 'none_exist' and state_refs:
+            # OVAL Test existence is evaluated before State matching. An
+            # absent population has no Items on which a comparator or State
+            # expression can operate, so preserve only the absence
+            # requirement and retain the dropped source controls.
+            self.conversion_warnings.append({
+                'code': 'oval_test_absence_controls_ignored',
+                'source_test': element.get('id'),
+                'source_test_sha256': digest(xml_identity(element)),
+                'source_check': element.get('check'),
+                'source_state_operator': element.get('state_operator', 'AND'),
+                'source_state_refs': state_refs,
+                'semantic_basis': 'OVAL check_existence none_exist takes precedence',
+                'independent_static_proof': 'SOURCE_RULE_OWNER_DECISION',
+            })
         if conditions:
-            ensure(element.get('check') in MATCHING and found != 'none_exist', 'unsupported Test matching/absence combination')
+            ensure(element.get('check') in MATCHING, 'unsupported Test matching/absence combination')
             requirement.update(items_satisfying=MATCHING[element.get('check')])
             requirement.update(logical_condition(element.get('state_operator', 'AND'), conditions))
+            if self._expanding_variable_set:
+                # The source Test quantifier is represented by the parent
+                # Evaluate expression. Each child Test decides only whether
+                # its one Object-Set operand satisfies the State.
+                requirement['items_satisfying'] = 'every'
             if self.human_compact:
                 from v04_human_authoring_compact import compact_test_requirement
                 compacted, edit = compact_test_requirement(requirement)
                 if edit:
                     self.human_compaction.append({'source_test': element.get('id'), **edit})
                     requirement = compacted
-        object_id = objects[0].get('object_ref')
         from v04_direct_authoring_contract import test_requirement
         requirement = test_requirement(requirement)
+        # A variable Object is represented by one native Variable Item whose
+        # value field retains the complete ordered source population. OVAL's
+        # Test `check` therefore applies to the values in that field, rather
+        # than only to the single wrapper Item. Preserve that quantifier in the
+        # field requirement; leaving the default `every` would incorrectly
+        # turn a valid at-least-one/only-one source Test into FALSE.
+        if (mapping['capability'] == 'variable.value' and
+                local_name(object_source) == 'variable_object' and conditions and
+                not self._expanding_variable_set):
+            source_check = element.get('check')
+            ensure(source_check in MATCHING, 'unsupported Variable Test matching quantifier')
+            fields = requirement.get('fields', {})
+            field_requirement = requirement.get('field_requirement')
+            ensure(len(fields) == 1 and isinstance(field_requirement, dict),
+                   'variable population quantifier requires one complete value field')
+            # A Variable Object is represented by one native wrapper Item.
+            # Preserve the source Test `check` at the wrapper/value boundary
+            # only when the State did not explicitly author an entity_check.
+            # An explicit OVAL entity_check governs the values inside that
+            # wrapper and must not be overwritten by the Test-level check.
+            state_has_entity_check = False
+            for state_ref in state_refs:
+                state_source = self.source.node(self.component_id, state_ref, 'state')
+                state_has_entity_check |= any('entity_check' in child.attrib for child in state_source)
+            if not state_has_entity_check:
+                field_requirement['values_matching'] = MATCHING[source_check]
+            # The native representation has one wrapper Item containing the
+            # complete Variable value population. The source Test check is a
+            # value-level quantifier after this projection, not a second
+            # wrapper-Item existence quantifier. Keep the wrapper present and
+            # let field_requirement.values_matching carry the source result.
+            requirement['item_requirement']['items_satisfying'] = 'every'
+            self.conversion_warnings.append({
+                'code': 'variable_test_quantifier_projected_to_value_field',
+                'source_test': element.get('id'),
+                'source_check': source_check,
+                'native_values_matching': MATCHING[source_check],
+                'semantic_basis': 'OVAL Test check applies to variable population; native Variable Item retains population in value field',
+                'independent_static_proof': 'SOURCE_QUANTIFIER_CROSSWALK',
+            })
         self.same_family(object_id, 'object', mapping)
         acquisition = self.reference(object_id, 'object')
         if isinstance(acquisition, dict):
@@ -227,10 +502,6 @@ class AssessmentConverter:
         identifier = self.native_name(element, 'test')
         self.tests[identifier] = {'test_title': element.get('comment', ''), 'capability': mapping['capability'],
                                   'object': acquisition, 'require': requirement, 'reported_elements': 'all'}
-        if draft_all_exist:
-            from v04_draft_compatibility import all_exist_warning
-            self.conversion_warnings.append(all_exist_warning(self.source, self.component_id, element,
-                self.source.node(self.component_id, object_id, 'object'), identifier))
         if mapping['native'].get('test_source', {}).get('kind') == 'none':
             # The version-local contract deliberately omits meaningless source
             # singleton Objects. The source dependency remains in provenance.
@@ -242,6 +513,120 @@ class AssessmentConverter:
             self.tests[identifier].pop('object')
         return {'test': identifier}
 
+    def expand_static_variable_set_test(self, element, mapping, object_source):
+        """Lower a finite UNION Variable Object Set without losing Item groups.
+
+        OVAL's Test ``check`` quantifies the logical Items returned by the
+        Object, not the scalar values inside one Variable Item.  A native
+        variable.value Object has one wrapper Item, therefore a static UNION
+        is represented as one native Test per source operand and a native
+        Evaluate expression (and/or/one/not-or).  This is a lossless lowering
+        for the finite UNION form used by the pinned self-assertion corpus.
+        Dynamic/filtered sets and non-UNION operators stay on the existing
+        fail-closed/materialization path until their Item-set semantics have
+        an independently reviewed mapping.
+        """
+        sets = [child for child in object_source if local_name(child) == 'set']
+        if len(sets) != 1 or len(object_source) != 1:
+            return None
+
+        def leaves(set_node):
+            operator = set_node.get('set_operator', 'UNION')
+            if operator != 'UNION':
+                return None
+            if any(local_name(child) == 'filter' for child in set_node):
+                return None
+            refs = [child for child in set_node
+                    if local_name(child) == 'object_reference']
+            nested = [child for child in set_node if local_name(child) == 'set']
+            if bool(refs) == bool(nested) or not (refs or nested):
+                return None
+            if len(refs) + len(nested) > 4096:
+                raise UnsupportedSource('Variable Object Set operand budget exceeded')
+            output = []
+            for ref in refs:
+                if len(ref) or not (ref.text or '').strip():
+                    return None
+                identifier = (ref.text or '').strip()
+                source_operand = self.source.node(self.component_id, identifier, 'object')
+                # Each leaf must itself be a finite one-Variable Object.  Do
+                # not expand a host/dynamic Object or guess its cardinality.
+                if local_name(source_operand) != 'variable_object':
+                    return None
+                var_refs = [child for child in source_operand
+                            if local_name(child) == 'var_ref']
+                if len(var_refs) != 1 or len(source_operand) != 1:
+                    return None
+                variable = self.source.node(self.component_id,
+                                            (var_refs[0].text or '').strip(),
+                                            'variable')
+                if local_name(variable) != 'constant_variable':
+                    return None
+                output.append(identifier)
+            for nested_node in nested:
+                nested_leaves = leaves(nested_node)
+                if nested_leaves is None:
+                    return None
+                output.extend(nested_leaves)
+            return output
+
+        operands = leaves(sets[0])
+        if not operands:
+            return None
+        check = element.get('check', 'all')
+        if check not in MATCHING:
+            raise UnsupportedSource('unsupported Variable Object Set Test check: ' + check)
+        source_test_id = element.get('id', '')
+        source_title = element.get('comment', '')
+        child_expressions = []
+        previous = self._expanding_variable_set
+        self._expanding_variable_set = True
+        try:
+            for number, operand in enumerate(operands, 1):
+                child = deepcopy(element)
+                child.set('id', f'{source_test_id}-set-operand-{number}')
+                child.set('comment', f'{source_title} (Object Set operand {number})')
+                object_children = [node for node in child
+                                   if local_name(node) == 'object']
+                if len(object_children) != 1:
+                    raise UnsupportedSource('Variable Object Set Test requires one Object child')
+                object_children[0].set('object_ref', operand)
+                result = self.convert_test(child)
+                if not isinstance(result, dict) or set(result) != {'test'}:
+                    raise UnsupportedSource('Variable Object Set operand did not produce one native Test')
+                child_expressions.append(result)
+                self.expanded_set_tests.append({
+                    'source_test': source_test_id,
+                    'native_test': result['test'],
+                    'source_object': operand,
+                    'operand': number,
+                })
+        finally:
+            self._expanding_variable_set = previous
+
+        # The Test check is the quantifier over the logical object results;
+        # child Tests must retain their per-Item state/entity checks.
+        if check == 'all':
+            expression = logical_condition('AND', child_expressions)
+        elif check == 'at least one':
+            expression = logical_condition('OR', child_expressions)
+        elif check == 'none satisfy':
+            expression = {'not': logical_condition('OR', child_expressions)}
+        else:  # only one
+            expression = logical_condition('ONE', child_expressions)
+        self.conversion_warnings.append({
+            'code': 'oval_variable_object_set_grouped_tests',
+            'source_test': source_test_id,
+            'source_object': object_source.get('id'),
+            'source_set_operator': 'UNION',
+            'source_check': check,
+            'operand_count': len(operands),
+            'semantic_basis': 'OVAL Test check quantifies Object Set logical Items; native child Tests preserve operand groups',
+            'independent_static_proof': 'SOURCE_OBJECT_SET_ITEM_GROUPING',
+            'scanner_evaluated': False,
+        })
+        return expression
+
     def same_family(self, identifier, kind, mapping):
         node = self.source.node(self.component_id, identifier, kind)
         ensure(self.capability(node, kind)['capability'] == mapping['capability'], f'{kind} capability mismatch: {identifier}')
@@ -249,11 +634,30 @@ class AssessmentConverter:
     def convert_state(self, element):
         from v04_direct_system_policy import policy_entity
         mapping = self.capability(element, 'state')
+        if local_name(element) == 'wmi_state':
+            field = getattr(self, '_wmi_legacy_fields', {}).get(element.get('id'))
+            ensure(field and getattr(self, '_wmi_mapping', None) is mapping,
+                   'legacy WMI State requires a paired legacy WMI Test projection')
+            return legacy_wmi_record_predicate(element, field, self)
         conditions, seen = [], set()
         for child in element:
-            field = local_name(child)
-            ensure(child.tag.startswith(f'{{{mapping["source"]["namespace"]}}}') and
-                   field in mapping['native']['state_field_map'], 'unsupported State field/namespace')
+            source_field = local_name(child)
+            ensure(child.tag.startswith(f'{{{mapping["source"]["namespace"]}}}'),
+                   'unsupported State field/namespace')
+            field = source_field
+            # OVAL 5.12.3 retains a small number of deprecated State field
+            # names whose canonical SCAP-NG mapping explicitly identifies the
+            # replacement field. Apply only that reviewed, one-to-one
+            # migration crosswalk; never guess an arbitrary spelling or
+            # silently drop a source predicate.
+            if field not in mapping['native']['state_field_map']:
+                deprecated = mapping.get('migration_crosswalk', {}).get('deprecated', {})
+                replacement = deprecated.get(field, '')
+                prefix = 'migration_error_replaced_by_'
+                if replacement.startswith(prefix):
+                    field = replacement[len(prefix):]
+                ensure(field in mapping['native']['state_field_map'],
+                       'unsupported State field/namespace')
             ensure(field not in seen, 'repeated State field outside bounded proof')
             seen.add(field)
             if mapping['capability'] == 'windows.fileeffectiverights':
@@ -280,9 +684,37 @@ class AssessmentConverter:
         acquisition = {'capability': mapping['capability']}
         if mapping['native'].get('test_source', {}).get('kind') == 'variable':
             references = element.findall(f'{{{mapping["source"]["namespace"]}}}var_ref')
+            # Standalone OVAL self-assertion includes static Variable Objects
+            # whose Set operands are constant Variables.  Materialize that
+            # finite, source-authored population as one typed native constant
+            # Variable.  This does not evaluate host data or silently lower a
+            # dynamic Set/Filter; non-static graphs remain held below.
+            if self.native_recovery and (element.find(f'{{{OVAL}}}set') is not None):
+                static = self.static_variable_object(element)
+                static['capability'] = mapping['capability']
+                return static
             ensure(len(element) == len(references) == 1, 'Variable source requires one var_ref; Sets/Filters unsupported')
-            attributes(references[0], set())
+            # OVAL variable_object permits the entity's datatype/operation
+            # controls on its var_ref. A direct native Variable source has no
+            # second selector comparator, so drop them only after proving the
+            # source is the default string equality boundary.
+            if self.native_recovery:
+                attributes(references[0], {'datatype', 'operation'})
+                ensure(references[0].get('datatype', 'string') == 'string' and
+                       references[0].get('operation', 'equals') == 'equals',
+                       'Variable source var_ref comparator/type outside bounded proof')
+            else:
+                attributes(references[0], set())
             ensure(not len(references[0]), 'Variable source var_ref has children')
+            if self.native_recovery and references[0].attrib:
+                self.conversion_warnings.append({
+                'code': 'oval_variable_source_ref_controls_ignored',
+                'source_object': element.get('id'),
+                'source_object_sha256': digest(xml_identity(element)),
+                'source_var_ref_attributes': dict(references[0].attrib),
+                'semantic_basis': 'native Variable source is already the selected equality domain',
+                'independent_static_proof': 'SOURCE_TYPED_EQUALITY_BOUNDARY',
+                })
             acquisition['variable'] = self.named_variable((references[0].text or '').strip())
             return acquisition
         if mapping['native'].get('test_source', {}).get('kind') == 'none':
@@ -316,19 +748,26 @@ class AssessmentConverter:
                 ensure(target not in acquisition, 'duplicate Object field')
                 if mapping['capability'] == 'windows.cmdlet':
                     from v04_direct_cmdlet_inputs import cmdlet_input
-                    acquisition[target] = cmdlet_input(child, mapping['native']['collection_parameters'][target],
-                        lambda entity: self.predicate(entity, mapping, selector=True), self.parameter)
+                    contract = mapping['native']['collection_parameters'][target]
+                    acquisition[target] = cmdlet_input(child, contract,
+                        lambda entity: self.predicate(entity, mapping, selector=True),
+                        (lambda entity: self.parameter(entity, datatype=contract.get('semantic_datatype', contract.get('type', 'string')))
+                         if self.native_recovery else self.parameter),
+                        native_recovery=self.native_recovery)
                 else:
                     if field in selectors:
                         acquisition[target] = self.predicate(child, mapping, selector=True)
                     else:
                         operations = ('equals',)
-                        if mapping['capability'] == 'independent.shellcommand' and field == 'pattern':
-                            # This field already denotes a regex acquisition input,
-                            # not a predicate over the command or returned Items.
+                        if mapping['capability'] == 'independent.shellcommand':
+                            # Shell and command acquisition inputs have
+                            # capability-specific case semantics. Pattern is
+                            # a regex input; command/shell may also use the
+                            # source's case-insensitive equality boundary.
+                            allowed = ('equals', 'case insensitive equals', 'pattern match')
                             operations = tuple(op for op in mapping['native'].get(
                                 'collection_parameter_source_operations', {}).get(field, ())
-                                if op in ('equals', 'pattern match'))
+                                if op in allowed)
                         acquisition[target] = self.parameter(child, operations=operations)
                 if (field in selectors and child.get('operation') == 'case insensitive equals'
                         and 'equals' in acquisition[target]):
@@ -359,7 +798,8 @@ class AssessmentConverter:
                 text_part, traversal_part = split_behaviors(behaviors,
                     {'ignore_case', 'multiline', 'singleline', 'item_creation'},
                     {'max_depth', 'recurse', 'recurse_direction', 'recurse_file_system'})
-                textfile_path_controls(traversal_part, acquisition)
+                textfile_path_controls(traversal_part, acquisition, native_recovery=self.native_recovery,
+                                     warnings=self.conversion_warnings)
                 acquisition.update(file_behaviors(text_part))
             if mapping['capability'] == 'independent.shellcommand':
                 from v04_direct_command_behaviors import command_behaviors
@@ -371,12 +811,14 @@ class AssessmentConverter:
                     from v04_direct_file_behaviors import traversal_behaviors
                     acquisition.update(traversal_behaviors(traversal_part, acquisition,
                         windows=mapping['native']['traversal_definition'] == 'windows_file_traversal',
-                        selector_map=mapping['native'].get('selector_map', {})))
+                        selector_map=mapping['native'].get('selector_map', {}),
+                        native_recovery=self.native_recovery, warnings=self.conversion_warnings))
                 if 'content' not in acquisition:
                     acquisition.setdefault('filesystem', 'all')
             if mapping['native'].get('traversal_definition') == 'hierarchy_traversal':
                 from v04_direct_file_behaviors import hierarchy_behaviors
-                acquisition.update(hierarchy_behaviors(traversal_part, acquisition))
+                acquisition.update(hierarchy_behaviors(traversal_part, acquisition,
+                                                       native_recovery=self.native_recovery))
             if filters:
                 acquisition['filters'] = filters
         # Source identity, not payload equality, determines shared acquisitions.
@@ -387,6 +829,120 @@ class AssessmentConverter:
             self.shared_objects[identifier] = acquisition
             return identifier
         return acquisition
+
+    def static_variable_object(self, element):
+        """Materialize a finite constant Variable Object Set safely.
+
+        OVAL Variable Objects in the self-assertion corpus use UNION,
+        INTERSECTION, or COMPLEMENT over constant Variable Objects.  The
+        canonical 0.4.1 Variable grammar has no source Variable-Object Set
+        wrapper, so a finite static population is represented as a typed
+        constant declaration.  Dynamic Variables, Filters, mixed datatypes,
+        cycles, and oversized populations fail closed rather than becoming a
+        guessed host result.
+        """
+        source_variable_ids = set()
+
+        def unique(values):
+            output, seen = [], set()
+            for value in values:
+                marker = json.dumps(value, sort_keys=True, separators=(',', ':'))
+                if marker not in seen:
+                    seen.add(marker)
+                    output.append(value)
+            return output
+
+        def combine(set_node, active):
+            children = list(set_node)
+            filters = [child for child in children if local_name(child) == 'filter']
+            refs = [child for child in children
+                    if local_name(child) == 'object_reference' and
+                    child.tag == f'{{{OVAL}}}object_reference']
+            nested = [child for child in children
+                      if local_name(child) == 'set' and child.tag == f'{{{OVAL}}}set']
+            ensure(not filters and len(refs) + len(nested) in (1, 2),
+                   'dynamic or filtered Variable Object Set is held')
+            operands = [values_for_object((ref.text or '').strip(), active)
+                        for ref in refs]
+            operands.extend(combine(child, active) for child in nested)
+            datatypes = {datatype for _, datatype in operands}
+            ensure(len(datatypes) == 1, 'mixed static Variable Object datatypes')
+            left = operands[0][0]
+            right = operands[1][0] if len(operands) == 2 else []
+            operator = set_node.get('set_operator', 'UNION')
+            if operator == 'UNION':
+                output = unique(left + right)
+            elif operator == 'INTERSECTION':
+                right_keys = {json.dumps(value, sort_keys=True, separators=(',', ':'))
+                              for value in right}
+                output = unique([value for value in left
+                                 if json.dumps(value, sort_keys=True, separators=(',', ':'))
+                                 in right_keys])
+            elif operator == 'COMPLEMENT':
+                excluded = {json.dumps(value, sort_keys=True, separators=(',', ':'))
+                            for value in right}
+                output = [value for value in left
+                          if json.dumps(value, sort_keys=True, separators=(',', ':'))
+                          not in excluded]
+            else:
+                ensure(False, 'unsupported static Variable Object Set operator: ' + operator)
+            ensure(len(output) <= 4096, 'static Variable Object Set population exceeds bound')
+            return output, next(iter(datatypes))
+
+        def values_for_object(identifier, active):
+            ensure(identifier and identifier not in active,
+                   'cyclic static Variable Object Set: ' + str(identifier))
+            active = set(active)
+            active.add(identifier)
+            node = self.source.node(self.component_id, identifier, 'object')
+            # Variable Object references are OVAL-definition elements, not
+            # capability elements; in the pinned 5.12.3 corpus their
+            # ``var_ref`` child is in the base OVAL namespace.  Match by local
+            # name plus the permitted source namespace so a prefix spelling
+            # cannot turn a static source into a false blocker.
+            var_refs = [child for child in node
+                        if local_name(child) == 'var_ref' and
+                        child.tag in (f'{{{OVAL}}}var_ref',
+                                      f'{{{OVAL}#independent}}var_ref')]
+            if len(var_refs) == 1 and len(node) == 1:
+                variable_id = (var_refs[0].text or '').strip()
+                source_variable_ids.add(variable_id)
+                variable = self.source.node(self.component_id, variable_id, 'variable')
+                ensure(local_name(variable) == 'constant_variable',
+                       'dynamic Variable Object Set is not a static population')
+                value = self.reference(variable.get('id'), 'variable')
+                ensure(isinstance(value, list) and len(value) <= 4096,
+                       'static Variable Object population exceeds bound')
+                return list(value), variable.get('datatype', 'string')
+            sets = [child for child in node
+                    if local_name(child) == 'set' and child.tag == f'{{{OVAL}}}set']
+            ensure(len(sets) == 1 and len(node) == 1,
+                   'unsupported Variable Object shape')
+            return combine(sets[0], active)
+
+        values, datatype = values_for_object(element.get('id'), set())
+        identifier = self.native_name(element, 'variable', title=element.get('comment'))
+        self.variables[identifier] = {'kind': 'constant', 'expression': {
+            'literal': {'datatype': native_datatype(datatype), 'value': values}}}
+        self.synthetic_variables.append({
+            'native_id': identifier,
+            'source_object': element.get('id'),
+            'source_object_sha256': digest(xml_identity(element)),
+            'source_variable_ids': sorted(source_variable_ids),
+            'set_operator': element.find(f'{{{OVAL}}}set').get('set_operator', 'UNION'),
+            'population_size': len(values),
+        })
+        self.conversion_warnings.append({
+            'code': 'oval_static_variable_object_set_materialized',
+            'source_object': element.get('id'),
+            'source_object_sha256': digest(xml_identity(element)),
+            'population_size': len(values),
+            'source_set_operator': element.find(f'{{{OVAL}}}set').get('set_operator', 'UNION'),
+            'semantic_basis': 'finite constant Variable Object Set materialized as native typed constant Variable',
+            'independent_static_proof': 'SOURCE_STATIC_POPULATION_ONLY',
+            'scanner_evaluated': False,
+        })
+        return {'variable': identifier}
 
     def object_title(self, element, mapping):
         """Describe source acquisition facts, never infer an unstated purpose."""
@@ -407,7 +963,20 @@ class AssessmentConverter:
         ensure(details, 'shared acquisition has no source-grounded title')
         return local_name(element).removesuffix('_object').replace('_', ' ').capitalize() + ': ' + '; '.join(details)
 
+    @contextmanager
+    def source_variable_scope(self):
+        previous = self.preserve_source_variables
+        self.preserve_source_variables = True
+        try:
+            yield
+        finally:
+            self.preserve_source_variables = previous
+
     def set_expression(self, element, mapping):
+        with self.source_variable_scope():
+            return self._set_expression(element, mapping)
+
+    def _set_expression(self, element, mapping):
         attributes(element, {'set_operator'})
         operator = element.get('set_operator', 'UNION')
         ensure(operator in SET_OPERATORS, f'unsupported Set operator: {operator}')
@@ -436,6 +1005,10 @@ class AssessmentConverter:
         return {'operator': SET_OPERATORS[operator], 'operands': operands}
 
     def filter(self, element, mapping):
+        with self.source_variable_scope():
+            return self._filter(element, mapping)
+
+    def _filter(self, element, mapping):
         attributes(element, {'action'})
         ensure(not len(element), 'Filter must reference a State')
         action = element.get('action', 'exclude')
@@ -464,9 +1037,11 @@ class AssessmentConverter:
     def convert_variable(self, element):
         datatype = element.get('datatype')
         ensure(datatype in SOURCE_TYPES, f'unsupported Variable datatype: {datatype}')
-        if local_name(element)=='external_variable' and getattr(self.source,'draft_compatibility',False):
+        if local_name(element) == 'external_variable' and (
+                getattr(self.source, 'draft_compatibility', False) or
+                getattr(self.source, 'native_recovery', False)):
             from v04_draft_inputs import external_input
-            return external_input(self,element)
+            return external_input(self, element)
         if local_name(element) == 'constant_variable':
             ensure(len(element) and all(child.tag == f'{{{OVAL}}}value' and not child.attrib and not len(child) for child in element), 'malformed constant Variable')
             # Immutable source constants become typed expected arrays. Keep the
@@ -474,12 +1049,33 @@ class AssessmentConverter:
             return [self.literal(datatype, child.text or '') for child in element]
         ensure(local_name(element) == 'local_variable' and len(element) == 1, 'external/malformed Variable unsupported')
         identifier = self.native_name(element, 'variable')
-        expression = self.function(element[0])
+        # OVAL literal_component/@datatype is optional; when omitted, its
+        # enclosing local_variable datatype is the source type boundary.
+        # Carry that boundary into the visitor without emitting a native
+        # declaration-level datatype or applying a consumer-directed cast.
+        child = element[0]
+        # The enclosing declaration supplies the type only for a direct
+        # literal_component. Function operands have their own OVAL typing
+        # boundary; in particular time_difference returns integer while its
+        # date components remain string/int lexical inputs.
+        if local_name(child) != 'literal_component':
+            expression = self.function(child)
+        else:
+            previous_datatype = getattr(self, '_variable_source_datatype', None)
+            self._variable_source_datatype = datatype
+            try:
+                expression = self.function(child)
+            finally:
+                if previous_datatype is None:
+                    self.__dict__.pop('_variable_source_datatype', None)
+                else:
+                    self._variable_source_datatype = previous_datatype
         if self.canonical_variable_functions:
             from v04_variable_function_migration import canonical_expression
             expression = canonical_expression(expression)
-        self.variables[identifier] = {'kind': 'local', 'datatype': native_datatype(datatype),
-                                      'expression': expression}
+        # Source OVAL datatype remains in provenance. Only the canonical
+        # native expression determines the result type under SCAP-NG 0.4.1.
+        self.variables[identifier] = {'kind': 'local', 'expression': expression}
         return {'variable': identifier}
 
     def named_variable(self, source_id):
@@ -497,20 +1093,67 @@ class AssessmentConverter:
             identifier = self.native_name(element, 'variable')
             datatype = element.get('datatype')
             self.variables[identifier] = {'kind': 'constant',
-                'datatype': native_datatype(datatype),
-                'expression': {'literal': value}}
+                'expression': {'literal': {'datatype': native_datatype(datatype),
+                                           'value': value}}}
             return identifier
         ensure('variable' in value, 'Assessment Input cannot replace a named runtime Variable source')
         return value['variable']
 
-    def function(self, element):
-        ensure(element.tag.startswith(f'{{{OVAL}}}'), 'function namespace mismatch')
+    def static_string_component_values(self, element):
+        """Return a finite string component for literal-only functions."""
         operation = local_name(element)
         if operation == 'literal_component':
             attributes(element, {'datatype'})
+            ensure(element.get('datatype', 'string') == 'string' and not len(element),
+                   'literal-only string function requires a string literal')
+            return [element.text or '']
+        if operation == 'variable_component':
+            attributes(element, {'var_ref'})
+            ensure(not len(element), 'literal-only string function component has children')
+            variable = self.source.node(self.component_id, element.get('var_ref'), 'variable')
+            ensure(local_name(variable) == 'constant_variable' and
+                   variable.get('datatype') == 'string',
+                   'literal-only string function requires a constant string Variable')
+            values = self.reference(element.get('var_ref'), 'variable')
+            ensure(isinstance(values, list) and all(isinstance(value, str) for value in values),
+                   'literal-only string function requires finite string values')
+            return list(values)
+        ensure(False, 'literal-only string function requires a literal or constant Variable')
+
+    def literal_function_result(self, element, operation):
+        values = self.static_string_component_values(next(iter(element)))
+        if operation == 'escape_regex':
+            result = [escape_regex_literal(value) for value in values]
+        else:
+            ensure(operation == 'glob_to_regex', 'unsupported literal function')
+            raw = element.get('glob_noescape', 'false').lower()
+            ensure(raw in ('true', 'false'), 'glob_noescape must be boolean')
+            result = [glob_to_regex_literal(value, glob_noescape=raw == 'true')
+                      for value in values]
+        self.conversion_warnings.append({
+            'code': 'oval_literal_function_materialized',
+            'source_function': operation,
+            'source_options': dict(element.attrib),
+            'value_count': len(result),
+            'independent_static_proof': 'SOURCE_LITERAL_FUNCTION_LOWERING',
+            'scanner_evaluated': False,
+        })
+        return {'literal': {'datatype': 'string',
+                            'value': result[0] if len(result) == 1 else result}}
+
+    def function(self, element):
+        ensure(element.tag.startswith(f'{{{OVAL}}}'), 'function namespace mismatch')
+        operation = local_name(element)
+        if self.native_recovery and operation in ('escape_regex', 'glob_to_regex'):
+            attributes(element, {'glob_noescape'} if operation == 'glob_to_regex' else set())
+            ensure(len(element) == 1, operation + ' requires one component')
+            return self.literal_function_result(element, operation)
+        if operation == 'literal_component':
+            attributes(element, {'datatype'})
             ensure(not len(element), 'literal_component has children')
-            return {'literal': {'datatype': native_datatype(element.get('datatype', 'string')),
-                                'value': self.literal(element.get('datatype', 'string'), element.text or '')}}
+            source_datatype = element.get('datatype') or getattr(self, '_variable_source_datatype', 'string')
+            return {'literal': {'datatype': native_datatype(source_datatype),
+                                'value': self.literal(source_datatype, element.text or '')}}
         if operation == 'variable_component':
             attributes(element, {'var_ref'})
             ensure(not len(element), 'variable_component has children')
@@ -539,26 +1182,99 @@ class AssessmentConverter:
             ensure(element.get('item_field') in mapping['native']['state_field_map'], 'unknown object_component field')
             return {'values': {'object': self.reference(identifier, 'object'),
                                'field': mapping['native']['state_field_map'][element.get('item_field')]}}
+        if operation == 'time_difference':
+            # OVAL 5.12.3 time_difference is a first-class active native
+            # expression.  It is deliberately not lowered through the
+            # inactive generic function envelope: the active schema and RI
+            # evaluator own its typed UTC/format semantics.
+            ensure(self.native_recovery, 'time_difference requires native recovery')
+            attributes(element, {'format_1', 'format_2'})
+            ensure(1 <= len(element) <= 2, 'time_difference requires one or two components')
+            formats = {key: element.get(key) for key in ('format_1', 'format_2') if key in element.attrib}
+            allowed = {'year_month_day', 'month_day_year', 'day_month_year',
+                       'seconds_since_epoch', 'win_filetime'}
+            ensure(all(value in allowed for value in formats.values()),
+                   'unsupported time_difference format')
+            values = [self.function(child) for child in element]
+            return {'time_difference': {'values': values, **formats}}
+        # The approved migration envelope is opt-in.  It is never emitted by
+        # the historical/default path, which remains byte-compatible.  Options
+        # are copied from OVAL only after exact lexical/range/arity checks; no
+        # value evaluation or implicit cast is performed here.
+        if self.native_recovery and operation in ('arithmetic', 'split', 'substring', 'count', 'begin', 'end'):
+            required = ({'arithmetic_operation'} if operation == 'arithmetic' else
+                        {'delimiter'} if operation == 'split' else
+                        {'substring_start', 'substring_length'} if operation == 'substring' else
+                        {'character'} if operation in ('begin', 'end') else set())
+            attributes(element, required)
+            ensure(set(element.attrib) == required, 'function options must be explicit')
+            # OVAL count aggregates every component (not just one), while the
+            # remaining recovered unary functions accept exactly one and
+            # arithmetic accepts two or more. Preserve that distinction in
+            # the canonical call envelope; never drop extra components.
+            minimum = 2 if operation == 'arithmetic' else 1
+            maximum = 1 if operation in ('split', 'substring', 'begin', 'end') else None
+            ensure(len(element) >= minimum and (maximum is None or len(element) <= maximum),
+                   'function arity mismatch')
+            options = dict(element.attrib)
+            if operation == 'arithmetic':
+                ensure(options['arithmetic_operation'] in ('add', 'multiply'),
+                       'unsupported arithmetic operation')
+            elif operation == 'substring':
+                for key, value in options.items():
+                    ensure(re.fullmatch(r'[+-]?[0-9]+', value.strip()) is not None,
+                           'substring option must be xsd:int')
+                    number = int(value)
+                    ensure(-2147483648 <= number <= 2147483647,
+                           'substring option outside xsd:int')
+                    options[key] = number
+            from v04_variable_function_migration import canonical_expression
+            # The migration envelope is recursive: nested OVAL functions must
+            # not leave a legacy operator beside the canonical outer call.
+            arguments = [canonical_expression(self.function(child), allow_existing=True) for child in element]
+            expression = {'function': {'name': operation, 'arguments': arguments,
+                                       'options': options}}
+            self.conversion_warnings.append({'code': 'native_function_contract_v1',
+                'source_function': operation, 'source_options': dict(element.attrib),
+                'independent_static_proof': 'UNPROVED', 'scanner_evaluated': False})
+            return expression
         ensure(operation in ('concat', 'regex_capture', 'merge', 'unique'), f'unsupported function: {operation}')
         attributes(element, {'pattern'} if operation == 'regex_capture' else
                    {'delimiter', 'sort', 'order'} if operation == 'merge' else set())
         ensure(len(element) and (operation != 'regex_capture' or (len(element) == 1 and 'pattern' in element.attrib)), 'function arity/pattern')
         values = [self.function(child) for child in element]
         if operation in ('merge', 'unique'):
-            # Existing native aggregation consumes one collection expression.
-            # Do not invent a union grammar for multiple source components.
-            ensure(len(values) == 1, 'multiple aggregation components need an approved collection expression')
+            # OVAL aggregation consumes every component in document order.
+            # The canonical 0.4 grammar represents that population directly
+            # as a non-empty expression list; never hide it in a generic
+            # function envelope, take the first component, or lower it to a
+            # Set UNION. Each child remains an independent expression so
+            # nested concat/Variable references retain their source graph.
             if operation == 'unique':
-                return {'unique': values[0]}
+                # OVAL 5.12.3 unique consumes lexical strings.  Make that
+                # source-only conversion explicit for collected Item values;
+                # literals and Variable references retain their native type
+                # and therefore remain fail-closed when mixed.  The empty
+                # prefix is one-to-one and does not change population,
+                # multiplicity, ordering, or collection status.
+                if getattr(self.source, 'native_recovery', False):
+                    values = [({'concat': [{'literal': ''}, value]}
+                               if isinstance(value, dict) and 'values' in value else value)
+                              for value in values]
+                return {'unique': values if len(values) > 1 else values[0]}
             ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
                    and element.get('order', 'ascending') in ('ascending', 'descending'), 'unsupported merge sort/order')
             return {'merge': {'delimiter': element.get('delimiter', ''), 'sort': element.get('sort', 'document'),
-                              'order': element.get('order', 'ascending'), 'values': values[0]}}
+                              'order': element.get('order', 'ascending'),
+                              'values': values if len(values) > 1 else values[0]}}
         ensure(operation != 'concat' or len(values) >= 2, 'concat requires at least two components')
         return {'concat': values} if operation == 'concat' else {'regex_capture': {'pattern': element.get('pattern'), 'value': values[0]}}
 
-    # Retained visitor API; lexical conversion has one reusable implementation.
-    literal = staticmethod(literal)
+    def literal(self, source_type, text):
+        # Float conversion is opt-in because the canonical binary32 contract
+        # is not a generic host-number coercion and the historical path must
+        # remain byte-compatible.
+        return literal(source_type, text, binary32=self.native_recovery)
 
     def operand(self, element, *, enum_aliases=None):
         if element.get('var_ref'):
@@ -569,12 +1285,21 @@ class AssessmentConverter:
             if self.renamed_enum_projection(element.get('var_ref')):
                 ensure(enum_aliases is not None, 'renamed enum projection requires a matching enum consumer')
                 self.enum_variable(element.get('var_ref'), enum_aliases)
-            return self.reference(element.get('var_ref'), 'variable')
+            value = self.reference(element.get('var_ref'), 'variable')
+            if (isinstance(value, list) and
+                    getattr(self.source, 'standalone_oval', False) and
+                    self.preserve_source_variables and
+                    not self.renamed_enum_projection(element.get('var_ref'))):
+                # Preserve the original Variable identity in standalone source
+                # parity. Inline arrays would retain values but silently drop
+                # the Variable graph (notably Set operands and Filter States).
+                return {'variable': self.named_variable(element.get('var_ref'))}
+            return value
         return self.literal(element.get('datatype', 'string'), element.text or '')
 
-    def parameter(self, element, *, operations=('equals',)):
+    def parameter(self, element, *, operations=('equals',), datatype='string'):
         attributes(element, {'datatype', 'operation', 'var_ref', 'var_check'})
-        ensure(not len(element) and element.get('datatype', 'string') == 'string' and
+        ensure(not len(element) and element.get('datatype', datatype) == datatype and
                element.get('operation', 'equals') in operations, 'unsupported acquisition parameter comparison/type')
         value = self.operand(element)
         if isinstance(value, list):
@@ -585,7 +1310,7 @@ class AssessmentConverter:
             return value[0]
         ensure('var_check' not in element.attrib or (element.get('var_ref') and
                element.get('var_check') == 'all'), 'acquisition parameter var_check outside bounded proof')
-        ensure(isinstance(value, (str, dict)), 'array acquisition parameter unsupported')
+        ensure(isinstance(value, (str, int, float, dict)), 'array acquisition parameter unsupported')
         return value
 
     def renamed_enum_projection(self, identifier, active=None):
@@ -686,7 +1411,32 @@ class AssessmentConverter:
 
     def predicate(self, element, mapping, selector=False, *, record_field=False):
         nil = '{http://www.w3.org/2001/XMLSchema-instance}nil'
+        if (not selector and mapping.get('capability') == 'variable.value' and
+                local_name(element) == 'value' and getattr(self, '_variable_result_datatype', '')):
+            # time_difference has an integer native result even when the
+            # original OVAL local_variable declared datatype=string. Copy the
+            # State entity for conversion; source XML remains untouched and
+            # source identity/provenance continue to use its original bytes.
+            element = deepcopy(element)
+            element.set('datatype', self._variable_result_datatype)
         if selector and nil in element.attrib:
+            # OVAL unix.sshd nil filepath means the platform default
+            # configuration file. The active native Object requires an
+            # explicit selector, so materialize the documented Linux default
+            # while retaining the original nil XML in source provenance.
+            if mapping['capability'] == 'unix.sshd' and local_name(element) == 'filepath':
+                attributes(element, {nil, 'datatype'})
+                ensure(element.get(nil) in ('true', '1') and not len(element) and not (element.text or '').strip(),
+                       'unsupported nil selector')
+                self.conversion_warnings.append({
+                    'code': 'oval_sshd_nil_filepath_materialized',
+                    'source_element': local_name(element),
+                    'source_sha256': digest(xml_identity(element)),
+                    'native_default': '/etc/ssh/sshd_config',
+                    'semantic_basis': 'OVAL unix.sshd nil filepath selects the platform default configuration path',
+                    'independent_static_proof': 'OVAL_5_12_3_UNIX_SSHD_DEFAULT_PATH',
+                })
+                return {'equals': '/etc/ssh/sshd_config'}
             allowed = {nil, 'datatype'}
             # OVAL nil filename selects directory Items. Explicit default
             # equality preserves that selection; other operations stay strict.
@@ -712,14 +1462,49 @@ class AssessmentConverter:
         ensure(not len(element), 'record/nested entity unsupported')
         existence = element.get('check_existence', 'at_least_one_exists')
         if existence == 'none_exist':
-            ensure(not selector and set(element.attrib) == {'check_existence'} and not element.text, 'comparator-bearing absence blocked')
+            ensure(not selector and not len(element),
+                   'record/selector absence shape unsupported')
+            ignored = set(element.attrib) - {'check_existence'}
+            if ignored:
+                # OVAL Test/State existence is evaluated before any entity
+                # comparator. With no matching entity, the comparator cannot
+                # change the result. Preserve the source shape in provenance,
+                # but do not fabricate a native comparator on an absent field.
+                self.conversion_warnings.append({
+                    'code': 'oval_absence_comparator_ignored',
+                    'source_element': local_name(element),
+                    'source_attributes': dict(element.attrib),
+                    'source_sha256': digest(xml_identity(element)),
+                    'ignored_attributes': sorted(ignored),
+                    'semantic_basis': 'OVAL check_existence none_exist takes precedence',
+                    'independent_static_proof': 'SOURCE_RULE_OWNER_DECISION',
+                })
             return {'values_found': 'none'}
         operation = element.get('operation', 'equals')
         ensure(existence in FIELD_EXISTENCE and operation in COMPARISONS, 'unsupported entity existence/comparator')
         if operation == 'case insensitive not equal':
             ensure(element.get('datatype', 'string') == 'string', 'case-insensitive inequality requires string datatype')
-        if operation in ('greater than', 'greater than or equal', 'less than or equal') and element.get('datatype', 'string') not in SPECIAL_TYPES:
-            ensure(element.get('datatype') == 'int', 'ordered comparison expansion requires integer source datatype')
+        datatype = element.get('datatype', 'string')
+        if datatype == 'float':
+            ensure(self.native_recovery,
+                   'float comparison requires the native binary32 recovery contract')
+            # The source contract is explicit about expected-value rounding;
+            # retain the lexical entity and contract binding in provenance. The
+            # converter does not claim scanner/runtime equivalence here.
+            self.conversion_warnings.append({
+                'code': 'native_float_binary32_contract',
+                'source_element': local_name(element),
+                'source_attributes': dict(element.attrib),
+                'source_sha256': digest(xml_identity(element)),
+                'contract': 'scap-ng-0.4.1-binary32-comparisons/1',
+                'contract_sha256': '676dfd1bbe1e83e781e68c9c66fd4e53ed6f9da4278affbd0a877edf49ab03dd',
+                'source_lexical': element.text,
+                'rounding': 'direct_decimal_to_ieee754_binary32_nearest_even',
+                'independent_static_proof': 'CONTRACT_AND_EXACT_LEXICAL_CONVERSION',
+                'scanner_evaluated': False,
+            })
+        if operation in ('greater than', 'greater than or equal', 'less than or equal') and datatype not in SPECIAL_TYPES:
+            ensure(datatype == 'int', 'ordered comparison expansion requires integer source datatype')
         crosswalk = mapping['native'].get('selector_value_crosswalk' if selector else 'state_value_crosswalk', {}).get(local_name(element))
         field = mapping['native']['state_field_map'].get(local_name(element))
         domain = mapping['native'].get('state_value_enums', {}).get(field, [])
@@ -801,13 +1586,18 @@ class AssessmentConverter:
         if element.get('var_ref'):
             ensure(element.get('var_check', 'all') in MATCHING, 'unsupported var_check')
             result['value_match'] = MATCHING[element.get('var_check', 'all')]
+            # Keep the source consumer's requested datatype visible when the
+            # expected value is a Variable. This is not a declaration-level
+            # Variable type and does not cast collected evidence; it gives the
+            # operation-directed evaluator its source comparison request.
+            result['datatype'] = native_datatype(element.get('datatype', 'string'))
         if not selector:
             ensure(element.get('entity_check', 'all') in MATCHING, 'unsupported entity_check')
             result.update(values_found=FIELD_EXISTENCE[existence], values_matching=MATCHING[element.get('entity_check', 'all')])
         return result
 
 
-def dependency_blockers(source, node, mappings):
+def dependency_blockers(source, node, mappings, *, native_recovery=False):
     """Probe independent obligations even when an earlier sibling failed.
 
     Uses the same conversion primitives, never a second acceptance grammar.
@@ -826,14 +1616,13 @@ def dependency_blockers(source, node, mappings):
             problem['source_path'] = label
             problems.append(problem)
 
-    visitor = AssessmentConverter(source, component, mappings)
+    visitor = AssessmentConverter(source, component, mappings, native_recovery=native_recovery)
     probe('closure', visitor.reference, identifier, kind)
     # Quantifier support is independent of which capability failed first.
     if kind == 'test':
         found = element.get('check_existence', 'at_least_one_exists')
-        probe('@check_existence', ensure, found in EXISTENCE or
-              (found == 'all_exist' and getattr(source, 'draft_compatibility', False)),
-              f'unsupported Test existence: {found}')
+        probe('@check_existence', (native_items_found if native_recovery else
+              lambda value: ensure(value in EXISTENCE, f'unsupported Test existence: {value}')), found)
     if kind in ('state', 'object'):
         try:
             mapping = visitor.capability(element, kind)
@@ -862,14 +1651,58 @@ def dependency_blockers(source, node, mappings):
     return problems
 
 
-def convert_rule(source, source_id, mappings, *, human_compact=True):
+def convert_manual_only_rule(source, source_id):
+    """Convert an OCIL-only Rule to a manual Assessment without automation."""
+    from scap_ng_tools.converter.manual04 import manual_rule
+    ensure(source_id in source.rules, f'source Rule not found: {source_id}')
+    rule = source.rules[source_id]
+    title = rule.findtext(f'{{{XCCDF}}}title', '')
+    control = re.search(r'SV-\d+', source_id)
+    local_title = title + (' ' + control.group() if control else '')
+    rule_id = native_identifier(rule, 'rule', local_title)
+    assessment_id = native_identifier(rule, 'assessment', local_title + ' manual')
+    documents, binding = manual_rule(source, rule, title=title, rule_id=rule_id,
+                                      assessment_id=assessment_id)
+    binding['source_selection_policy'] = 'ocil_only_manual_assessment'
+    binding['source_checks'] = [{'system': check.get('system'), 'selector': check.get('selector', ''),
+                                 'sha256': digest(xml_identity(check)), 'source': xml_identity(check),
+                                 'default': check.get('selector', '') == ''}
+                                for check in rule.findall(f'{{{XCCDF}}}check')]
+    return documents, binding
+
+
+def native_applicability(level):
+    """Lower one source level without merging it with ancestors."""
+    if not level or not level.get('conditions'):
+        return None
+    return {'any_of': [{'condition': condition['id']} for condition in level['conditions']]}
+
+
+def native_group(source, group, rule_links):
+    """Project nested XCCDF Group structure and local platforms only."""
+    level = source.applicability_level(group)
+    value = {'id': native_identifier(group, 'group'),
+             'groups': [native_group(source, child, rule_links)
+                        for child in group.findall(f'{{{XCCDF}}}Group')],
+             'rules': [rule_links[r.get('id')] for r in group.findall(f'{{{XCCDF}}}Rule')
+                       if r.get('id') in rule_links]}
+    title = group.findtext(f'{{{XCCDF}}}title')
+    if title is not None: value['title'] = title
+    expression = native_applicability(level)
+    if expression is not None: value['applicability'] = expression
+    return value
+
+
+def convert_rule(source, source_id, mappings, *, human_compact=True, native_recovery=False):
     """Convert one entire automated closure; failures leave no emitted artifacts."""
     documents = {}
     ensure(source_id in source.rules, f'source Rule not found: {source_id}')
     rule = source.rules[source_id]
     component, definition, omitted_checks = source.automated_check(rule)
-    converter = AssessmentConverter(source, component, mappings, human_compact=human_compact)
-    if getattr(source,'draft_compatibility',False):
+    converter = AssessmentConverter(source, component, mappings,
+                                     canonical_variable_functions=False,
+                                     human_compact=human_compact, native_recovery=native_recovery)
+    if getattr(source,'draft_compatibility',False) or getattr(source, 'native_recovery', False):
         from v04_draft_inputs import check_exports
         converter.bound_exports=check_exports(source,rule)
     expression = converter.reference(definition, 'definition')
@@ -882,7 +1715,7 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     assessment_id = native_identifier(rule, 'assessment', local_title)
     assessment = {'id': assessment_id, 'version': 1, 'assessment_title': title,
         'mode': 'automated', 'class': source.node(component, definition, 'definition').get('class'),
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'}}
+        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}}
     for section in ('shared_objects', 'variables'):
         if getattr(converter, section):
             assessment[section] = getattr(converter, section)
@@ -895,13 +1728,29 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
         'severity': rule.get('severity', 'unknown'), 'role': 'full', 'weight': float(rule.get('weight', '1')),
         'discussion': rule.findtext(f'{{{XCCDF}}}description', ''), 'rationale': None,
         'extensions': {}, 'warnings': [], 'identifiers': [], 'references': [], 'requires': [], 'conflicts': [],
-        'applicability': [], 'parameters': {}, 'remediation': {}, 'organizational_input_requirements': {},
+        'parameters': {}, 'remediation': {}, 'organizational_input_requirements': {},
         'assessment_choices': {'automated': {'assessment': assessment_id}}, 'default_assessment_choice': 'automated'}
+    local_applicability = native_applicability(source.applicability_level(rule))
+    if local_applicability is not None:
+        native_rule['applicability'] = local_applicability
     optional_metadata = ('discussion', 'rationale', 'extensions', 'warnings', 'identifiers', 'references', 'remediation')
     omitted_metadata = [key for key in optional_metadata if native_rule[key] in (None, '', [], {})]
     for key in omitted_metadata:
         native_rule.pop(key)
     documents[f'authoring/direct-slice/rules/{rule_id}.json'] = {'rule': native_rule}
+    # OCIL is an optional manual alternative.  It is never selected as the
+    # default when an OVAL check exists, and its source graph is not executed.
+    manual_alternatives = []
+    for number, check in enumerate(source.manual_checks(rule)):
+        from scap_ng_tools.converter.manual04 import _choice_assessment
+        manual_id = native_identifier(rule, 'assessment', local_title + f' manual {number}')
+        manual_document, manual_provenance = _choice_assessment(
+            source, rule, check, assessment_id=manual_id, title=title)
+        manual_path = f'authoring/direct-slice/assessments/{manual_id}.json'
+        ensure(manual_path not in documents, 'duplicate OCIL manual Assessment identity')
+        documents[manual_path] = manual_document
+        native_rule['assessment_choices']['manual'] = {'assessment': manual_id}
+        manual_alternatives.append({'assessment': manual_id, **manual_provenance})
     from scap_ng_tools.converter._v04_semantic.v04_input_presence import presence_contract
     from scap_ng_tools.authoring.input_discovery import validate_choice_map
     if converter.input_bindings:
@@ -917,12 +1766,37 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     binding = {'source_rule': source_id, 'source_rule_sha256': digest(xml_identity(rule)),
         'component': component, 'definition': definition, 'native_rule': rule_id, 'assessment': assessment_id,
         'dependencies': converter.used, 'omitted_checks': omitted_checks,
-        'source_platforms': [child.get('idref') for child in rule.findall(f'{{{XCCDF}}}platform')]}
+        'source_checks': [{'system': check.get('system'), 'selector': check.get('selector', ''),
+                           'sha256': digest(xml_identity(check)), 'source': xml_identity(check),
+                           'default': check.get('selector', '') == ''}
+                          for check in rule.findall(f'{{{XCCDF}}}check')],
+        'source_selection_policy': 'oval_preferred_manual_ocil_alternative',
+        'source_applicability': source.applicability_context(rule)}
+    if manual_alternatives:
+        binding['manual_alternatives'] = manual_alternatives
+    recovered_controls = []
+    for identifier, used in sorted(converter.used.items()):
+        if used.get('kind') != 'test':
+            continue
+        test_source = source.node(component, identifier, 'test')
+        if native_recovery and test_source.get('check_existence') == 'all_exist':
+            recovered_controls.append({
+                'source_test': identifier,
+                'source_test_sha256': digest(xml_identity(test_source)),
+                'source_test_attributes': dict(test_source.attrib),
+                'native_items_found': 'one_or_more',
+                'semantic_basis': 'SCAP-NG 0.4 item_requirement one_or_more; no synthetic nonexistent Items',
+            })
+    if recovered_controls:
+        binding['source_test_controls'] = recovered_controls
     binding['authoring_contract_migration'] = {'owner_decision_date': '2026-10-31',
         'decisions': [1, 3, 6, 10, 13, 14], 'requires_fresh_proof': True,
         'omitted_empty_optional_metadata': omitted_metadata,
         'native_identity_sources': [{'kind': kind, 'native_id': ident, 'source_id': original}
-                                    for (kind, ident), original in sorted(converter.native_names.items())]}
+                                    for (kind, ident), original in sorted(converter.native_names.items())
+                                    if ident not in {item['native_id'] for item in converter.synthetic_variables}],
+        'native_synthetic_variables': converter.synthetic_variables,
+        'native_inlined_variables': sorted(converter.inlined_variables)}
     if converter.selector_equivalences:
         binding['selector_equivalences'] = converter.selector_equivalences
     if converter.enum_variable_equivalences:
@@ -951,45 +1825,76 @@ def convert_rule(source, source_id, mappings, *, human_compact=True):
     return documents, binding
 
 
-def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True):
+def convert(source: SourceModel, rule_ids: list[str], *, human_compact=True, native_recovery=False):
     """Strict focused API; any unsupported selection fails the entire request."""
     ensure(rule_ids and len(set(rule_ids)) == len(rule_ids), 'distinct source Rules required')
     mappings = load_mappings()
     documents, bindings = {}, []
     for source_id in rule_ids:
-        native, binding = convert_rule(source, source_id, mappings, human_compact=human_compact)
+        rule = source.rules[source_id]
+        if not any(check.get('system') == OVAL
+                   for check in rule.findall(f'{{{XCCDF}}}check')):
+            native, binding = convert_manual_only_rule(source, source_id)
+        else:
+            native, binding = convert_rule(source, source_id, mappings,
+                                            human_compact=human_compact,
+                                            native_recovery=native_recovery)
         ensure(not set(native) & set(documents), 'native Rule/Assessment name collision in selected source Rules')
         documents.update(native)
         bindings.append(binding)
-    return assemble_subset(source, documents, bindings, mappings)
+    return assemble_subset(source, documents, bindings, mappings, native_recovery=native_recovery)
 
 
-def assemble_subset(source, documents, rule_trace, mappings):
+def render_profiles(source, rule_ids, rule_links):
+    """Flatten source XCCDF Profile inheritance into independent native Profiles."""
+    profiles, profile_trace, native_ids = [], [], set()
+    for profile in source.benchmark.findall(f'{{{XCCDF}}}Profile'):
+        lineage = source.profile_lineage(profile)
+        overrides = source.profile_overrides(profile)
+        selection = {identifier: source.rule_selected(source.rules[identifier], profile,
+                                                     resolved_overrides=overrides)
+                     for identifier in rule_ids}
+        identifier = native_identifier(profile, 'profile')
+        ensure(identifier not in native_ids, f'generated native Profile ID collision: {identifier}')
+        native_ids.add(identifier)
+        profiles.append({'id': identifier, 'title': profile.findtext(f'{{{XCCDF}}}title'),
+                         'disabled_rules': [rule_links[rule] for rule, enabled in selection.items()
+                                            if not enabled]})
+        profile_trace.append({
+            'source_id': profile.get('id'),
+            'source_sha256': digest(xml_identity(profile)),
+            'native_id': identifier,
+            'source_profile_chain': [
+                {'source_id': layer.get('id'), 'source_sha256': digest(xml_identity(layer))}
+                for layer in lineage],
+            'selected': selection,
+            'disabled_original_rule_ids': [rule for rule, enabled in selection.items() if not enabled],
+        })
+    return profiles, profile_trace
+
+
+def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=False):
     """Project selection only over emitted Rules; an empty subset has no package."""
     rule_ids = [row['source_rule'] for row in rule_trace]
     rule_links = {row['source_rule']: row['native_rule'] for row in rule_trace}
     benchmark = source.benchmark
     ensure(all(source.rule_selected(source.rules[identifier]) for identifier in rule_ids), 'disabled source defaults unsupported')
-    profiles, profile_trace = [], []
-    for profile in benchmark.findall(f'{{{XCCDF}}}Profile'):
-        selection = {identifier: source.rule_selected(source.rules[identifier], profile) for identifier in rule_ids}
-        identifier = native_identifier(profile, 'profile')
-        profiles.append({'id': identifier, 'title': profile.findtext(f'{{{XCCDF}}}title'),
-                         'disabled_rules': [rule_links[rule] for rule, enabled in selection.items() if not enabled]})
-        profile_trace.append({'source_id': profile.get('id'), 'source_sha256': digest(xml_identity(profile)),
-                              'native_id': identifier, 'selected': selection})
-    wrapper = {'id': 'direct-slice', 'ng_schema_version': '0.4.0', 'use_case': 'compliance',
+    profiles, profile_trace = render_profiles(source, rule_ids, rule_links)
+    wrapper = {'id': 'direct-slice', 'ng_schema_version': '0.4.1', 'use_case': 'compliance',
         'version': {'value': benchmark.findtext(f'{{{XCCDF}}}version', '')},
-        'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.0'}],
+        'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}],
         'title': [{'text': '[AUTOMATED PROTOTYPE SUBSET] ' + benchmark.findtext(f'{{{XCCDF}}}title', ''), 'language': 'en'}],
         'description': [{'text': benchmark.findtext(f'{{{XCCDF}}}description', ''), 'language': 'en'}],
         'language': benchmark.get('{http://www.w3.org/XML/1998/namespace}lang'),
         'status': [{'value': child.text, **child.attrib} for child in benchmark.findall(f'{{{XCCDF}}}status')],
         'metadata': {'prototype_subset': True, 'omitted_rule_count': len(source.rules) - len(rule_ids)},
         'notices': [], 'front_matter': [], 'rear_matter': [], 'references': [], 'text_blocks': [],
-        'platform': {'id': 'fixture-platform', 'title': 'Compilation fixture; applicability not converted', 'applicability': {}},
+        'platform': {'id': 'fixture-platform', 'title': 'Source Benchmark platform restriction'},
         'applicability_catalog': 'fixture-applicability', 'scoring': [], 'parameters': [], 'default_selection': True,
-        'groups': [], 'profiles': profiles, 'rules': list(rule_links.values())}
+        'groups': [native_group(source, group, rule_links) for group in benchmark.findall(f'{{{XCCDF}}}Group')], 'profiles': profiles, 'rules': list(rule_links.values())}
+    benchmark_applicability = native_applicability(source.applicability_level(benchmark))
+    if benchmark_applicability is not None:
+        wrapper['platform']['applicability'] = benchmark_applicability
     parameters={}
     for binding in rule_trace:
         for key,value in binding.get('policy_parameters',{}).items():
@@ -999,7 +1904,13 @@ def assemble_subset(source, documents, rule_trace, mappings):
         wrapper['parameters']=[parameters[key] for key in sorted(parameters)]
     if rule_ids:
         documents['authoring/direct-slice/benchmark.json'] = {'benchmark': wrapper}
-        documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': {}}}
+        documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': source.applicability_catalog()}}
+    unsupported = ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
+                   'other Object behaviors/traversal',
+                   'record-level Variables, nested records, record absence and masking']
+    if not native_recovery:
+        unsupported.append('all_exist')
+    unsupported.append('other capabilities/functions')
     trace = {'format': 'direct-converter-spike/1', 'source_zip_sha256': source.zip_sha256, 'source_xml_sha256': source.xml_sha256,
         'source_member': source.member, 'source_benchmark_component': source.benchmark_component,
         'component_hashes': source.component_hashes, 'rules': rule_trace, 'profiles': profile_trace,
@@ -1007,10 +1918,7 @@ def assemble_subset(source, documents, rule_trace, mappings):
         'omitted_rules': sorted(set(source.rules) - set(rule_ids)), 'xml_parse_calls': source.parse_count,
         'component_index_passes': len(source.components), 'mapping_sha256': {m['capability']: digest(m) for m in mappings},
         'scope': 'Automated Assessment/selection subset, not full Rule-policy or Benchmark conversion',
-        'unsupported': ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
-                        'other Object behaviors/traversal',
-                        'record-level Variables, nested records, record absence and masking',
-                        'all_exist', 'other capabilities/functions'],
+        'unsupported': unsupported,
         'coverage_promoted': False, 'scanner_evaluated': False}
     return documents, trace
 
@@ -1026,7 +1934,7 @@ def blocker_category(message):
 
 
 def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=None,
-                      human_compact=True, validate_document=None):
+                      human_compact=True, validate_document=None, native_recovery=False):
     """Inventory all Rules; isolate expected per-Rule failures and validate admission.
 
     Native output is atomic per Rule. Diagnostic probes of blocked closures are
@@ -1045,7 +1953,7 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
     if not inventory_only:
         if validate_document is None:
             from validate_native_json_schemas import build_validators, document_errors
-            validators = build_validators(ROOT / 'schema/v0.4.0')
+            validators = build_validators(ROOT / 'schema')
             validate_document = lambda kind, doc: document_errors(validators[kind + '.schema.json'], doc)
         for row in rows:
             blockers = list(row['inventory_problems'])
@@ -1054,8 +1962,15 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
             try:
                 rule = source.rules[row['source_rule']]
                 ensure(source.rule_selected(rule), 'disabled source defaults unsupported')
-                native, binding = convert_rule(source, row['source_rule'], mappings,
-                                               human_compact=human_compact)
+                if not any(check.get('system') == OVAL
+                           for check in rule.findall(f'{{{XCCDF}}}check')):
+                    native, binding = convert_manual_only_rule(source, row['source_rule'])
+                    row.update(status='manual_only', proof_level='none', artifacts=sorted(native),
+                               conversion_status='MANUAL_ONLY_PRESERVED')
+                else:
+                    native, binding = convert_rule(source, row['source_rule'], mappings,
+                                                   human_compact=human_compact,
+                                                   native_recovery=native_recovery)
                 for key, parameter in binding.get('policy_parameters', {}).items():
                     ensure(key not in accepted_parameters or accepted_parameters[key] == parameter,
                            'conflicting Benchmark Parameter binding: '+key)
@@ -1067,6 +1982,9 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 if set(native) & set(documents):
                     blockers.append(issue('native-identity',
                         'native Rule/Assessment name collision in selected source Rules', row['source_rule']))
+                # Multi-component unique/merge is represented by the native
+                # ordered population forms. Keep source warning provenance
+                # without reclassifying a schema-valid candidate as blocked.
                 for path, document in native.items():
                     kind, = document
                     for error in validate_document(kind, document):
@@ -1079,7 +1997,8 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 for node in row['dependencies']:
                     key = node['component'], node['id']
                     if key not in probes:
-                        probes[key] = dependency_blockers(source, node, mappings)
+                        probes[key] = dependency_blockers(source, node, mappings,
+                                                           native_recovery=native_recovery)
                     blockers.extend(probes[key])
                 # Distinct source contexts are kept even when diagnostics repeat.
                 row['blockers'] = list({digest(b): b for b in blockers}.values())
@@ -1089,14 +2008,16 @@ def convert_benchmark(source, *, inventory_only=False, timings=None, mappings=No
                 documents.update(native)
                 accepted_parameters.update(binding.get('policy_parameters', {}))
                 bindings.append(binding)
-                row.update(status='converted', proof_level='authoring_validated', artifacts=sorted(native),
-                           conversion_status='CONVERTED_UNVERIFIED')
+                if row.get('status') != 'manual_only':
+                    row.update(status='converted', proof_level='authoring_validated', artifacts=sorted(native),
+                               conversion_status='CONVERTED_UNVERIFIED')
                 if binding.get('conversion_warnings'):
                     row['conversion_warnings'] = binding['conversion_warnings']
                     row['independent_static_proof_eligible'] = False
             measured['diagnostics'] += time.perf_counter() - started
     started = time.perf_counter()
-    documents, trace = assemble_subset(source, documents, bindings, mappings)
+    documents, trace = assemble_subset(source, documents, bindings, mappings,
+                                      native_recovery=native_recovery)
     manifest = {'format': 'direct-benchmark-coverage/1', 'source_zip_sha256': source.zip_sha256,
         'source_xml_sha256': source.xml_sha256, 'source_member': source.member,
         'source_benchmark_component': source.benchmark_component,
@@ -1126,6 +2047,8 @@ def main():
                         help='allow warning-admitted catalog/all_exist drafts; never independent verification')
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True,
                         help='source-aware scalar State compaction with inverse ledger; --verify still requires independent proof')
+    parser.add_argument('--recover-native', action='store_true',
+                        help='opt into owner-review native 0.4 recovery candidates; changes baseline admission')
     parser.add_argument('--compile', action='store_true',
                         help='compile generated authoring and independently check package structure/operands; no semantic-proof claim')
     parser.add_argument('--output', type=Path, required=True)
@@ -1148,10 +2071,12 @@ def main():
     manifest = None
     stages = {}
     if arguments.rule:
-        documents, trace = convert(source, arguments.rule, human_compact=arguments.human_compact)
+        documents, trace = convert(source, arguments.rule, human_compact=arguments.human_compact,
+                                  native_recovery=arguments.recover_native)
     else:
         documents, trace, manifest = convert_benchmark(source, inventory_only=arguments.inventory_only,
-                                                       timings=stages, human_compact=arguments.human_compact)
+                                                       timings=stages, human_compact=arguments.human_compact,
+                                                       native_recovery=arguments.recover_native)
     converted = time.perf_counter()
     from v04_direct_yaml import authoring_yaml
     arguments.output.mkdir(parents=True)
