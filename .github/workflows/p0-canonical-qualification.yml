@@ -1,0 +1,75 @@
+name: P0 canonical pack and 46 Definitions
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qualification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GOTOOLCHAIN: local
+      GOMAXPROCS: '2'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng
+          ref: 5ee55288b369da26f308f40813e545b78dff2753
+          path: inputs/canonical
+          persist-credentials: false
+      - name: Require read access to the private RI repository
+        env:
+          RI_READ_TOKEN: ${{ secrets.SCAP_NG_RI_READ_TOKEN }}
+        run: |
+          test -n "$RI_READ_TOKEN" || {
+            echo '::error::Set SCAP_NG_RI_READ_TOKEN to a read-only credential scoped to vanderpol/scap-ng-ri contents. The Tools GITHUB_TOKEN cannot read that private repository.'
+            exit 1
+          }
+      - uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng-ri
+          ref: dc77e33cb9cc74479622681e00ff776e2161b6ba
+          token: ${{ secrets.SCAP_NG_RI_READ_TOKEN }}
+          path: inputs/ri
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: OVAL-Community/OVAL
+          ref: 2f140ee5c5dd1ed9606fcd5afc301f6baeb48706
+          path: inputs/oval
+          sparse-checkout: oval-schemas
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: OVAL-Community/SCAP-Self-Assertion
+          ref: e3538595c5083b9c34d937a81d319234df9bbfaa
+          path: inputs/source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /SCAP_1.4/OVAL_Test_Content/
+            /SCAP_1.4/SCAP_Test_Content/R700/U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.27.4'
+          cache: false
+      - run: python -m pip install -e .
+      - name: Run the same exact local qualification lane
+        run: scripts/qualify_p0_041.sh inputs/canonical inputs/oval inputs/ri inputs/source "$RUNNER_TEMP/p0-tools"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tools-p0-${{ github.event.pull_request.head.sha || github.sha }}
+          path: ${{ runner.temp }}/p0-tools
+          if-no-files-found: warn
+          retention-days: 30

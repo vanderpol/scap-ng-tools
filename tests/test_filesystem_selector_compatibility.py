@@ -42,7 +42,7 @@ class FilesystemSelectorCompatibilityTests(unittest.TestCase):
                 "class": "compliance",
                 "specification": {
                     "id": "scap-ng.pre-alpha.assessment",
-                    "version": "0.4.0",
+                    "version": "0.4.1",
                 },
                 "tests": {
                     "filesystem-selector-test": {

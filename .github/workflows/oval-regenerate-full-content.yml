@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: aece827964c785be77b088c3c61255a2d07fd9a9
+          ref: 5ee55288b369da26f308f40813e545b78dff2753
           path: external/schema
           persist-credentials: false
       - uses: actions/setup-python@v5

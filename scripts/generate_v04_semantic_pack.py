@@ -14,6 +14,12 @@ from hashlib import sha256
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
+
+from scap_ng_tools.contracts.schema_snapshot_v041 import (
+    ASSESSMENT_CLOSURE_SHA256, ASSESSMENT_EXECUTION_FAMILY_SHA256,
+    CANONICAL_COMMIT, fingerprint,
+)
 
 from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 from scap_ng_tools.converter.direct04 import load_runtime
@@ -29,8 +35,40 @@ def git_head(path):
         ['git', '-C', str(path), 'rev-parse', 'HEAD'], text=True).strip()
 
 
+def original_behavior_attributes(path, object_name):
+    """Derive behavior declarations from official XSD, never the old pack."""
+    xs = '{http://www.w3.org/2001/XMLSchema}'
+    schema = ET.parse(path).getroot()
+    obj = schema.find(xs + 'element[@name="' + object_name + '"]')
+    declarations = [] if obj is None else obj.findall('.//' + xs + 'element[@name="behaviors"]')
+    if len(declarations) != 1:
+        raise ValueError('one original behavior declaration required')
+    name = declarations[0].get('type', '').split(':')[-1]
+    declaration = schema.find(xs + 'complexType[@name="' + name + '"]')
+    if declaration is None:
+        raise ValueError('original behavior type unavailable')
+
+    def attributes_for(node, active):
+        name = node.get('name')
+        if name in active:
+            raise ValueError('cyclic original behavior inheritance')
+        result = {}
+        extension = node.find(xs + 'complexContent/' + xs + 'extension')
+        if extension is not None:
+            base = schema.find(xs + 'complexType[@name="' + extension.get('base').split(':')[-1] + '"]')
+            if base is None:
+                raise ValueError('unavailable original behavior base')
+            result.update(attributes_for(base, active | {name}))
+        result.update({a.get('name'): dict(a.attrib) for a in node.findall('.//' + xs + 'attribute')})
+        return result
+
+    return attributes_for(declaration, set())
+
+
 def build(schema_root, oval_root):
     snapshot = Pinned041SchemaSnapshot(schema_root)
+    if git_head(snapshot.schema_root.parent) != CANONICAL_COMMIT:
+        raise ValueError('canonical source is not the exact reviewed main commit')
     oval_root = Path(oval_root).resolve(strict=True)
     if git_head(oval_root) != OVAL_COMMIT:
         raise ValueError('official OVAL source is not the audited v5.12.3 commit')
@@ -58,37 +96,29 @@ def build(schema_root, oval_root):
         (root / 'schema' / 'v0.4.1').symlink_to(
             snapshot.schema_root, target_is_directory=True)
 
-        # This is a fresh build-only process. Restore and invalidate the
-        # source lookup on exit; no installed converter behavior is changed.
-        prior_root = behavior_source.ROOT
-        behavior_source.ROOT = root
-        behavior_source.original_attributes.cache_clear()
-        try:
-            capabilities = {}
-            behaviors = {}
-            for mapping in snapshot.supported_mappings(runtime.CAPABILITIES):
-                source = mapping['source']
-                fields, records = (_generated_state_fields(mapping, root)
-                                   if source.get('state') else ({}, set()))
-                capabilities[mapping['capability']] = {
-                    'generated': generate(mapping, root, authoring_metadata=False),
-                    'fields': fields,
-                    'records': sorted(records),
-                    'selectors': _selector_fields(mapping, root),
-                }
-                if behavior_source.behavior_routes(mapping):
-                    key = source['definitions_schema'] + '::' + source['object']
-                    behaviors[key] = behavior_source.original_attributes(
-                        source['definitions_schema'], source['object'])
-        finally:
-            behavior_source.ROOT = prior_root
-            behavior_source.original_attributes.cache_clear()
+        capabilities = {}
+        behaviors = {}
+        for mapping in snapshot.supported_mappings(runtime.CAPABILITIES):
+            source = mapping['source']
+            fields, records = (_generated_state_fields(mapping, root)
+                               if source.get('state') else ({}, set()))
+            capabilities[mapping['capability']] = {
+                'generated': generate(mapping, root, authoring_metadata=False),
+                'fields': fields,
+                'records': sorted(records),
+                'selectors': _selector_fields(mapping, root),
+            }
+            if behavior_source.behavior_routes(mapping):
+                key = source['definitions_schema'] + '::' + source['object']
+                behaviors[key] = original_behavior_attributes(
+                    root / source['definitions_schema'], source['object'])
 
     body = {
         'format': 'scap-ng-portable-0.4.1-semantic-pack/1',
         'frozen_schema_digest': snapshot.manifest()['flat_json_aggregate_sha256'],
         # Historical derivation provenance, not a runtime or CI checkout.
         'schema_version': '0.4.1',
+        'canonical_commit': CANONICAL_COMMIT,
         'oval_commit': OVAL_COMMIT,
         'research_generator_commit': RESEARCH_GENERATOR_COMMIT,
         'generator_helper_sha256': {
@@ -107,9 +137,40 @@ def main():
     parser.add_argument('--oval-root', type=Path, required=True)
     parser.add_argument('--schema-root', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--pin-output', type=Path, help='write exact canonical and regenerated semantic-pack checksums')
+    parser.add_argument('--ri-root', type=Path, help='verify the Assessment execution handshake against this exact RI checkout')
     args = parser.parse_args()
+    if args.pin_output and not args.ri_root:
+        parser.error('--pin-output requires --ri-root for the checked execution handshake')
     raw = build(args.schema_root, args.oval_root)
     args.output.write_text(raw, encoding='utf-8')
+    if args.pin_output:
+        snapshot = Pinned041SchemaSnapshot(args.schema_root)
+        root = snapshot.schema_root
+        paths = sorted([*root.glob('*.json'), *(root / 'capability-mappings').rglob('*.json')])
+        pin = {'schema_version': '0.4.1', 'single_version': True,
+               'canonical_repository': 'vanderpol/scap-ng', 'canonical_sha': CANONICAL_COMMIT,
+               'schema_family_sha256': fingerprint(paths, root),
+               'semantic_pack_sha256': sha256(raw.encode('utf-8')).hexdigest(),
+               'oval_commit': OVAL_COMMIT,
+               'files': {p.relative_to(root).as_posix(): {'sha256': sha256(p.read_bytes()).hexdigest(),
+                                                       'bytes': p.stat().st_size} for p in paths}}
+        ri_pin_path = args.ri_root / 'internal/nativeschema/pin.json'
+        ri_pin = json.loads(ri_pin_path.read_bytes())
+        closure = snapshot.assessment_closure()
+        expected = {name: {'sha256': sha256(raw).hexdigest(), 'bytes': len(raw)}
+                    for name, raw in sorted(closure.items())}
+        if (ri_pin['family_sha256'] != ASSESSMENT_EXECUTION_FAMILY_SHA256 or
+                ri_pin['files'] != expected):
+            raise ValueError('RI Assessment execution pin differs from canonical closure')
+        pin['assessment_execution'] = {
+            'family_sha256': ASSESSMENT_EXECUTION_FAMILY_SHA256,
+            'closure_sha256': ASSESSMENT_CLOSURE_SHA256,
+            'ri_commit': git_head(args.ri_root),
+            'ri_pin_sha256': sha256(ri_pin_path.read_bytes()).hexdigest(),
+            'files': expected,
+        }
+        args.pin_output.write_text(json.dumps(pin, indent=2, sort_keys=True) + '\n')
     print(json.dumps({'capabilities': 53, 'bytes': len(raw.encode('utf-8')),
                       'source': 'official OVAL v5.12.3 + canonical flat 0.4.1'}))
 

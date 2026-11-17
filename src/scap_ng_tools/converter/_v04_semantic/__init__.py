@@ -12,10 +12,10 @@ from hashlib import sha256
 import json
 from pathlib import Path
 
-from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_v041 import CANONICAL_COMMIT, Pinned041SchemaSnapshot
 
-PACK_HASH = '53f98279800df83c6da52281e43246dbf9ecce09b118304c0e762b127f0fe63c'
-SCHEMA_HASH = '65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54'
+PACK_HASH = 'ed1d19b08c9cf02555e61b1e4551342179baad086d1749fe2ff46e7ae4d56895'
+SCHEMA_HASH = '88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f'
 RESEARCH_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 OVAL_COMMIT = '2f140ee5c5dd1ed9606fcd5afc301f6baeb48706'
 GENERATOR_HELPER_SHA256 = {
@@ -55,6 +55,7 @@ def contracts():
     value = json.loads(raw)
     if (value.get('format') != PACK_FORMAT or
             value.get('schema_version') != '0.4.1' or
+            value.get('canonical_commit') != CANONICAL_COMMIT or
             value.get('oval_commit') != OVAL_COMMIT or
             value.get('generator_helper_sha256') != GENERATOR_HELPER_SHA256 or
             value.get('frozen_schema_digest') != SCHEMA_HASH or
