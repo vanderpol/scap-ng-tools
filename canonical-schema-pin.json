@@ -1,0 +1,631 @@
+{
+  "assessment_execution": {
+    "closure_sha256": "d6e3e6fde5dbacce39eef8a75285be053c85d52806517cda05eec132fc060bfd",
+    "family_sha256": "326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329",
+    "files": {
+      "assessment-language.schema.json": {
+        "bytes": 741181,
+        "sha256": "8d97a85ac66052c95040490c8315c8a26e4505f7d181815c75c54c979d2a80ee"
+      },
+      "assessment.schema.json": {
+        "bytes": 15514,
+        "sha256": "4ab2c711565471247c20f7c0a030242ddbb09553b2958f7e37571706bac9c0fd"
+      },
+      "capability-common.schema.json": {
+        "bytes": 35478,
+        "sha256": "261ac9e3c00dea24c1dbb4362bcd3454b23e31d3f597a325a5587714ebb925cb"
+      },
+      "expression.schema.json": {
+        "bytes": 8415,
+        "sha256": "5c26d647941c06c2c9085a430b6e4c184c95b1a9b71f03e951a3f2e546c04e96"
+      },
+      "manual-assessment.schema.json": {
+        "bytes": 3503,
+        "sha256": "6ad23a97c4b231b9c8ee93dce112feb9fb0213203b0d23bd2a84e706c8b80dc8"
+      },
+      "native-selector.schema.json": {
+        "bytes": 132253,
+        "sha256": "aeb1776677869861b31a863a8b90e5c63e6a20f3cd313d26eb8ab99a6565a70a"
+      },
+      "reported-elements.schema.json": {
+        "bytes": 661,
+        "sha256": "2e4dae1ec6ba9a409622cd709a30cc906bab951c0413c67b940ad8f52a8cf421"
+      },
+      "variable-expression.schema.json": {
+        "bytes": 34191,
+        "sha256": "3eed84e2142ef548c36cc0a9c381bfc1d7d38ad381e145fd8833d0d47f69fc39"
+      }
+    },
+    "ri_commit": "dc77e33cb9cc74479622681e00ff776e2161b6ba",
+    "ri_pin_sha256": "3027f510da9f42866c1a3bb7e3bc3b60cb568758446407bd6beac4ba353a8ae8"
+  },
+  "canonical_repository": "vanderpol/scap-ng",
+  "canonical_sha": "5ee55288b369da26f308f40813e545b78dff2753",
+  "files": {
+    "applicability.schema.json": {
+      "bytes": 5288,
+      "sha256": "8b4a5cf7aeb4ba562af1ceb478a65b1170a870bcd58c1a0b28c3baea64e5e53a"
+    },
+    "assessment-language.schema.json": {
+      "bytes": 741181,
+      "sha256": "8d97a85ac66052c95040490c8315c8a26e4505f7d181815c75c54c979d2a80ee"
+    },
+    "assessment-result-set.schema.json": {
+      "bytes": 872,
+      "sha256": "ed074fda8b6d22a9712b77ccb1006e6e397a0f9f0c35f8e51b5c14431ed13d6d"
+    },
+    "assessment-result.schema.json": {
+      "bytes": 19860,
+      "sha256": "7c22fe945c15cf353a92ace66a6115b38240c92f362bb1d7f47ef24464151944"
+    },
+    "assessment.schema.json": {
+      "bytes": 15514,
+      "sha256": "4ab2c711565471247c20f7c0a030242ddbb09553b2958f7e37571706bac9c0fd"
+    },
+    "authoring-vocabulary.en.json": {
+      "bytes": 11138,
+      "sha256": "16f007f7da1804e84785118ffb422d12472fffef08fc7304cfd55b86530138c7"
+    },
+    "benchmark-result.schema.json": {
+      "bytes": 7717,
+      "sha256": "10e6deea5ab822ebce00acf4915420dcfcfcb146249f3956c8d7d6e5b14dcf49"
+    },
+    "benchmark.schema.json": {
+      "bytes": 8445,
+      "sha256": "30b6af1e35132a08a629d9c17e726e2151ac28f2fb103a037a7a3382689b65ba"
+    },
+    "capability-common.schema.json": {
+      "bytes": 35478,
+      "sha256": "261ac9e3c00dea24c1dbb4362bcd3454b23e31d3f597a325a5587714ebb925cb"
+    },
+    "capability-mappings/experimental/esx.host_account.json": {
+      "bytes": 2049,
+      "sha256": "3f9d399f494b815b395e4748a47d243ecb8f94a15902051e4d4e66f141d42cb2"
+    },
+    "capability-mappings/experimental/esx.host_advancedsetting.json": {
+      "bytes": 1662,
+      "sha256": "a126fb59da57824c8d1bbc5f885214f5559a357622b6cecd0af6f0d289780380"
+    },
+    "capability-mappings/experimental/esx.host_service.json": {
+      "bytes": 1846,
+      "sha256": "4225fa29927169fce77a538f0e29c41f9efd96b2cd2901e2d9de918122a64e46"
+    },
+    "capability-mappings/experimental/esx.host_vib.json": {
+      "bytes": 2416,
+      "sha256": "75e38b4cf00a0687f1a731ca4638d697d564f34e6f4df8812c5b40403040cc81"
+    },
+    "capability-mappings/supported/aix.fileset.json": {
+      "bytes": 1314,
+      "sha256": "bfa5d1c0d07c71e6148be7f339bc0d6da147c858a8eb98861be9c862fa28e802"
+    },
+    "capability-mappings/supported/aix.fix.json": {
+      "bytes": 1334,
+      "sha256": "ce563ed305e784864c5e3c9b092336d34b042d2246262c9475171ae839badcc3"
+    },
+    "capability-mappings/supported/asa.line.json": {
+      "bytes": 1194,
+      "sha256": "d689338abc18184f834ade77cd76cb12a0f4d4b559781cc0f5e4f19e2696e93a"
+    },
+    "capability-mappings/supported/asa.version.json": {
+      "bytes": 1445,
+      "sha256": "9519e4703131cc1e0b57011d9b6be00b3054f89f617bdca968a9fb8b467e36d4"
+    },
+    "capability-mappings/supported/file.hash.json": {
+      "bytes": 3891,
+      "sha256": "d8d758f600586cf654df2f8ddc025639b25b1e2ebda82b81d836cbf7cc4d655e"
+    },
+    "capability-mappings/supported/independent.environmentvariable.json": {
+      "bytes": 2112,
+      "sha256": "c5b33be0a21358ce919a16358eb5d3a48a5b71fba0a8654391214ceb4801afca"
+    },
+    "capability-mappings/supported/independent.family.json": {
+      "bytes": 1756,
+      "sha256": "cf8ec82c4860ceecfba0f311fb1e5f49ab17c5cf300ff71925459094eff3a355"
+    },
+    "capability-mappings/supported/independent.shellcommand.json": {
+      "bytes": 5866,
+      "sha256": "59d5affc03ff25a0d5ee4de0e5f53e9fa35e0bff98f0ea76c319121d33d2d653"
+    },
+    "capability-mappings/supported/independent.sql.json": {
+      "bytes": 4655,
+      "sha256": "37f0a46f02d9e6981c1ffc7ff0b9798fcef40dec7539b40c44293dbd8e418a91"
+    },
+    "capability-mappings/supported/independent.textfilecontent.json": {
+      "bytes": 4881,
+      "sha256": "c5270e17481ae243997e3b7adeaa5f5b97b5f9044251af1c00722d6b6a6df649"
+    },
+    "capability-mappings/supported/independent.unknown.json": {
+      "bytes": 1106,
+      "sha256": "fc6fa450b4a4407cc942c1254c86afd22d92bff54059bc9f297b89016e15a59c"
+    },
+    "capability-mappings/supported/independent.xmlfilecontent.json": {
+      "bytes": 4143,
+      "sha256": "e49e6e4d0671cf7edc3a87ac287b333b8bba917331c78059a15261a2558bd852"
+    },
+    "capability-mappings/supported/independent.yamlfilecontent.json": {
+      "bytes": 3876,
+      "sha256": "79e535abbef4a7caf2f00603b2bcc59ee6781b443fdc8b6ca4eae76bdefb7ad1"
+    },
+    "capability-mappings/supported/ios.bgpneighbor.json": {
+      "bytes": 1256,
+      "sha256": "bef948ec13a70918d49089004fd25cb2cf74e01bb0c3d827c93da115368aa8bf"
+    },
+    "capability-mappings/supported/ios.global.json": {
+      "bytes": 1166,
+      "sha256": "7a37d694ed3704058395988934c851b30b96a711c0b04d326ae8afa5b9c6e76a"
+    },
+    "capability-mappings/supported/ios.interface.json": {
+      "bytes": 2043,
+      "sha256": "a840ec6f58acfcc6b040f43972422085f8c96750c2f2f2359a5028ef602bc9f3"
+    },
+    "capability-mappings/supported/ios.line.json": {
+      "bytes": 1237,
+      "sha256": "5535ef265f50d38fff3a557816c062196b700df93515fb654d9bd638887222a1"
+    },
+    "capability-mappings/supported/ios.routingprotocolauthintf.json": {
+      "bytes": 1745,
+      "sha256": "893229037f6ce13c025b1b8a0d2e55fd047291df7922a3e9d4def125cad5643d"
+    },
+    "capability-mappings/supported/ios.section.json": {
+      "bytes": 1379,
+      "sha256": "f229162295ed4f83739912039b14f753d2929dd1bd13ec343af46ca0935fbab6"
+    },
+    "capability-mappings/supported/ios.snmpcommunity.json": {
+      "bytes": 1456,
+      "sha256": "001e3b160914308f58d0ea1d3ab9facaec5fab59800cc385b450dfd5e5945c80"
+    },
+    "capability-mappings/supported/ios.snmpgroup.json": {
+      "bytes": 1707,
+      "sha256": "a2ef422f9bb01b7fd93427c303428ed0d87699c959f6aab2382c94e5ea6ab8b6"
+    },
+    "capability-mappings/supported/ios.snmphost.json": {
+      "bytes": 1469,
+      "sha256": "191c7ac6178bab223d1766f5dc5e7a07ea323664771300e4dfceb0d7e1efc9ef"
+    },
+    "capability-mappings/supported/ios.snmpuser.json": {
+      "bytes": 1546,
+      "sha256": "9cf6b4c8bfed083d286dff09673a7820b2a9d02892de9468f583de8b1f952526"
+    },
+    "capability-mappings/supported/iosxe.bgpneighbor.json": {
+      "bytes": 1268,
+      "sha256": "59e53aa899fe72f3db465fed8de430e6e657ca0c24d67f9facef42141da31025"
+    },
+    "capability-mappings/supported/iosxe.global.json": {
+      "bytes": 1178,
+      "sha256": "02016f4c14f0a498249fffe4f18fe28af7226ada27022377bf631e58a55dd8b3"
+    },
+    "capability-mappings/supported/iosxe.interface.json": {
+      "bytes": 2009,
+      "sha256": "3f4a51dea69ffa9f10cdf29a419c8ce1e6ea2e15f983eb447782ce4fee71a018"
+    },
+    "capability-mappings/supported/iosxe.line.json": {
+      "bytes": 1249,
+      "sha256": "112ade736d8d17073fd8078cf74f832ba57b311c0b3f4f7eaea6d6c885ccdbbf"
+    },
+    "capability-mappings/supported/iosxe.routingprotocolauthintf.json": {
+      "bytes": 1757,
+      "sha256": "87feb826d78e5aaa9e72b732e213e2da9c3245374b279f05dc3aa3c1c90e11af"
+    },
+    "capability-mappings/supported/iosxe.section.json": {
+      "bytes": 1391,
+      "sha256": "ecc08c489a1bf43fc6c961857beb001f7f0fa1034c57b1d5dd0373e2a1bc0606"
+    },
+    "capability-mappings/supported/iosxe.snmpcommunity.json": {
+      "bytes": 1468,
+      "sha256": "8f0d437b328d6dcef15706ce014fd988d70eab8bb86ee5b66b044408b3be2f35"
+    },
+    "capability-mappings/supported/iosxe.snmpgroup.json": {
+      "bytes": 1719,
+      "sha256": "5165c3d2968450b6968cc4934aa15d8080dc30ac5a6ef1f9e4ff511f94c755e0"
+    },
+    "capability-mappings/supported/iosxe.snmphost.json": {
+      "bytes": 1481,
+      "sha256": "b01a50142e8bb6a1f939ad76625a12fb3e3d994830a33d0fe7207940f04fb809"
+    },
+    "capability-mappings/supported/iosxe.snmpuser.json": {
+      "bytes": 1558,
+      "sha256": "d46025cb4490dad58b585d5eb80046a18caa5533ee434aa108c0d0d59b262815"
+    },
+    "capability-mappings/supported/iosxe.version.json": {
+      "bytes": 1486,
+      "sha256": "d0e611f6b613b68fb74c8f99ea10f4cfcc656bedb65362d7eb45db827a3bb978"
+    },
+    "capability-mappings/supported/junos.show.json": {
+      "bytes": 1158,
+      "sha256": "8379dcb719b654988486611885d31430539276298299633185f2bf3545bb81af"
+    },
+    "capability-mappings/supported/linux.apparmorstatus.json": {
+      "bytes": 2117,
+      "sha256": "6df7a9bf55c5c122877e214ba2675bd58bb6f4e8b0d3cc47c6fe4bb110f78cef"
+    },
+    "capability-mappings/supported/linux.dpkginfo.json": {
+      "bytes": 1782,
+      "sha256": "ebd7cc06c7b2343bcd669b2ed0b55937efea20376c55187bed1db7024fc800ca"
+    },
+    "capability-mappings/supported/linux.inetlisteningservers.json": {
+      "bytes": 2458,
+      "sha256": "540aea10732117159d59975e1ce1212f4c358043fb1795fb9c387179d38647fb"
+    },
+    "capability-mappings/supported/linux.kernelmodule.json": {
+      "bytes": 1382,
+      "sha256": "cb1e0ccb419d41e184c15be7ff296f412e2ee6cee05b0384217c391b43213d10"
+    },
+    "capability-mappings/supported/linux.partition.json": {
+      "bytes": 2151,
+      "sha256": "f978bf7d0c5c8098d15d5fe1284e7e68155fff56db8853a67194d71a9e83f0ae"
+    },
+    "capability-mappings/supported/linux.rpminfo.json": {
+      "bytes": 2706,
+      "sha256": "d928029d81a0ddadcf4292ce77e1a436b94a5d613ac2be47df0f394bb796fd20"
+    },
+    "capability-mappings/supported/linux.rpmverifyfile.json": {
+      "bytes": 7226,
+      "sha256": "2278182f40aef3054c0c15990d523dd5331244dde851b29db723c2caaf3fcfed"
+    },
+    "capability-mappings/supported/linux.rpmverifypackage.json": {
+      "bytes": 3308,
+      "sha256": "3eed259bc8baa2aa03f9e1755d701b7d31614bb2077217acff6b6605b61ed3c5"
+    },
+    "capability-mappings/supported/linux.selinuxboolean.json": {
+      "bytes": 1386,
+      "sha256": "1cb549a120ddfcf98faa2df88424f4dc4d9eecb849ac3c8f8c1460102ad55fcf"
+    },
+    "capability-mappings/supported/linux.selinuxsecuritycontext.json": {
+      "bytes": 4048,
+      "sha256": "53efbe5560fdfae7e25c8d28ef9a16d2b8a370001f180326e59a9875dc9e38f3"
+    },
+    "capability-mappings/supported/linux.sestatus.json": {
+      "bytes": 1609,
+      "sha256": "64edc903c55e521828dfa205da1e3d701f67dcb26c0e8d79e73f7c04550c5aa7"
+    },
+    "capability-mappings/supported/linux.systemdunitdependency.json": {
+      "bytes": 1341,
+      "sha256": "18db233f290645561f8325b99b1fcb2be1d3419b9bf6092da1ea37b622a773ad"
+    },
+    "capability-mappings/supported/linux.systemdunitproperty.json": {
+      "bytes": 1559,
+      "sha256": "7ac05380da595fc34c7171c948072bdf697a6440be4cdf5009119a8ab3a75eac"
+    },
+    "capability-mappings/supported/macos.accountinfo.json": {
+      "bytes": 1670,
+      "sha256": "1ab958a22f5e2ff1503a14b281b6abcd779bc4db096135e4c189e9cbf769ee0f"
+    },
+    "capability-mappings/supported/macos.authorizationdb.json": {
+      "bytes": 1590,
+      "sha256": "7c20ee20f82049a0eab067ac444feccfe4586d2cf481cbc28f71c5c0288bd22d"
+    },
+    "capability-mappings/supported/macos.disabledservice.json": {
+      "bytes": 1198,
+      "sha256": "e6b9153473daa2c23f2cc985c4f820e01da92b7be1b231dc0bb0211fbf5a1a92"
+    },
+    "capability-mappings/supported/macos.diskinfo.json": {
+      "bytes": 2147,
+      "sha256": "e4830d87ab04701e37eacf73d43443521f48e0167179fd86330cd5fc82d9ba7d"
+    },
+    "capability-mappings/supported/macos.filevault.json": {
+      "bytes": 1268,
+      "sha256": "4e5422aa4f50fcc0926ce5822164542b6c91b5dada3178bcd888d537d5e79c48"
+    },
+    "capability-mappings/supported/macos.firmwarepassword.json": {
+      "bytes": 1216,
+      "sha256": "2a0d6b141c17ad18b004cbe8e004d44f9c6e12fde18632eba082d29f8347e33c"
+    },
+    "capability-mappings/supported/macos.gatekeeper.json": {
+      "bytes": 1273,
+      "sha256": "e110098890c0ffbac0be70a29a4add497fb956819919932e8534928b22968e24"
+    },
+    "capability-mappings/supported/macos.installhistory.json": {
+      "bytes": 1552,
+      "sha256": "ba87aea8cbf4a0b74db3d23c9e95d46a6be74e31c72f02a1d5538feb70689ca7"
+    },
+    "capability-mappings/supported/macos.keychain.json": {
+      "bytes": 1281,
+      "sha256": "d037b94faba47294db99e144500b3c1b2b4a2320ea71ab92f845d0c6faab1b82"
+    },
+    "capability-mappings/supported/macos.launchd.json": {
+      "bytes": 1221,
+      "sha256": "0f0ebb2a619b08370fa9ca725db32d33938fdf78bf073fa8f41d53fe5621d7d2"
+    },
+    "capability-mappings/supported/macos.nvram.json": {
+      "bytes": 1170,
+      "sha256": "33f86e4c85fa755b3283119046d331b7de343eeb717d0b5b256c122c95ff3f13"
+    },
+    "capability-mappings/supported/macos.plist.json": {
+      "bytes": 1933,
+      "sha256": "dc0bbea0f30d31b7922bc4a107bcca65d603e1a3a4115f5aa3f5e754355a8854"
+    },
+    "capability-mappings/supported/macos.profiles.json": {
+      "bytes": 1255,
+      "sha256": "2bd0c5dd0f9085a045b9c0b28b83375cae1a4136c2fd38db90a69f217687aecc"
+    },
+    "capability-mappings/supported/macos.pwpolicy.json": {
+      "bytes": 3283,
+      "sha256": "3e0048d92941494d4a2be4c921a93fd255bf3ee1d65d62b77141af4f9c17521a"
+    },
+    "capability-mappings/supported/macos.softwareupdate.json": {
+      "bytes": 1230,
+      "sha256": "ca10115497717e615744ad7bc39c9c35255043ce5cde55a1c488bdc0fb5c5f95"
+    },
+    "capability-mappings/supported/macos.systemprofiler.json": {
+      "bytes": 1761,
+      "sha256": "da0b73dfe39cab786603fda034374bcea57f2d5bd7bed4a747d84ff15cfdba09"
+    },
+    "capability-mappings/supported/macos.systemsetup.json": {
+      "bytes": 3021,
+      "sha256": "7a2ae71bbc37cba2025bab16626d0bdcc786809ac16b71becf3e7e8e391eeb45"
+    },
+    "capability-mappings/supported/panos.config.json": {
+      "bytes": 1515,
+      "sha256": "659229fdd98a35012587b215e26225a9bafcecfb2f8031762a6479d019591102"
+    },
+    "capability-mappings/supported/panos.version.json": {
+      "bytes": 1797,
+      "sha256": "529108526ec17eb3765cb006661a543c74d17a4048c41a0b484ba89e656b1e0e"
+    },
+    "capability-mappings/supported/solaris.package.ips.json": {
+      "bytes": 1912,
+      "sha256": "3dbddec4fda69a8f861b19a7fa75cc5c31a275e3191515224939b9134f209f99"
+    },
+    "capability-mappings/supported/solaris.package.json": {
+      "bytes": 1480,
+      "sha256": "4ea99a98ae74f0fdf88d5d5e8d9d322bdd8e924cb3b40c57aafbe7a745a35400"
+    },
+    "capability-mappings/supported/solaris.smf.json": {
+      "bytes": 1697,
+      "sha256": "208227d76f668ba80bc4277fc93dd627fbd9a3b88da4532ca7a7e522e6b78d3a"
+    },
+    "capability-mappings/supported/solaris.smfproperty.json": {
+      "bytes": 1747,
+      "sha256": "d532e9c52bd3408fce83d991b7eb159c1fe8d1de4d0301be574957779e44a796"
+    },
+    "capability-mappings/supported/unix.file.json": {
+      "bytes": 5369,
+      "sha256": "3cc2be4dcf68ff0ee6de7fec4abbf0b6cf41015c76270aba35b0b687a49aa16f"
+    },
+    "capability-mappings/supported/unix.interface.json": {
+      "bytes": 2289,
+      "sha256": "a8189fb450adeb7ecf6d231bc8cbaf8fa9d70eb93136fb1351109ca33c440473"
+    },
+    "capability-mappings/supported/unix.password.json": {
+      "bytes": 1913,
+      "sha256": "4132a892128d493a920e36a1514ec335c14ae018675ec919041fe8dfcb1e687f"
+    },
+    "capability-mappings/supported/unix.process.json": {
+      "bytes": 2457,
+      "sha256": "55a594b8db7c44c2cab85cb21ba36c5b6daf7b1e8fe2d023e8c51cd328174da6"
+    },
+    "capability-mappings/supported/unix.shadow.json": {
+      "bytes": 2724,
+      "sha256": "b2de7e92b664c4a329a610d6e72cbe8632fa7ba4c36184ac73388bcb69b94020"
+    },
+    "capability-mappings/supported/unix.sshd.json": {
+      "bytes": 1546,
+      "sha256": "08a1240eedef5b68be2e91cdc61e773e8e782e6206393670fac99782eb160801"
+    },
+    "capability-mappings/supported/unix.symlink.json": {
+      "bytes": 1534,
+      "sha256": "cbdc49e8400e1c5be5d809afb99454849bb014cf73e524b1969f480073727af5"
+    },
+    "capability-mappings/supported/unix.sysctl.json": {
+      "bytes": 1391,
+      "sha256": "495bb360c4ec305b4bf849d22a0dd45b5b1303a7b6f3c3026640fa4f77aa12be"
+    },
+    "capability-mappings/supported/unix.uname.json": {
+      "bytes": 1557,
+      "sha256": "c489d55d220a9b1182d0c7491d1697f48a53b690f9d55622f4141d25465938e9"
+    },
+    "capability-mappings/supported/variable.value.json": {
+      "bytes": 2009,
+      "sha256": "c98abd3813a4f0848670ff460fd807f542c87fc2254f3d81ceceefa9106238ab"
+    },
+    "capability-mappings/supported/windows.appcmd.json": {
+      "bytes": 1948,
+      "sha256": "74ab801cf23a5548112dda9c226e87afbe89f52f010fdcef99815ba47ebeb3e1"
+    },
+    "capability-mappings/supported/windows.appcmdlistconfig.json": {
+      "bytes": 2337,
+      "sha256": "0e0722cda219e49056f53a59191d1f1ad476b9aa637f96d624caa88f91cfba72"
+    },
+    "capability-mappings/supported/windows.auditeventpolicysubcategories.json": {
+      "bytes": 17624,
+      "sha256": "d402972273442470af0854b99d3943c18bb56a053eb008be334e5613046301bd"
+    },
+    "capability-mappings/supported/windows.cmdlet.json": {
+      "bytes": 5791,
+      "sha256": "47c0adf3b555c6ea043b4c44b9d8b41fa5e64092173127a0017d48862cbbafc6"
+    },
+    "capability-mappings/supported/windows.file.json": {
+      "bytes": 6969,
+      "sha256": "4f3db61c85cd2c8e20edd17bfd9ef3a443e94dc305128a981e4ac0cc7a2eb54c"
+    },
+    "capability-mappings/supported/windows.fileeffectiverights.json": {
+      "bytes": 5631,
+      "sha256": "2e19dad5be4fdd230600fd048c391d436a7af1ec21e440529e8642b56fa155d0"
+    },
+    "capability-mappings/supported/windows.group_sid.json": {
+      "bytes": 1513,
+      "sha256": "8f92897965a79e1b284674930a5b5b27871d77982d1c24f289eb032b9b6566ef"
+    },
+    "capability-mappings/supported/windows.lockoutpolicy.json": {
+      "bytes": 1789,
+      "sha256": "bb0b6649b1641719c95ac1ad17bf464f0052c4781a0220f3f4119f9233d2d1b2"
+    },
+    "capability-mappings/supported/windows.ntuser.json": {
+      "bytes": 5797,
+      "sha256": "629289b168fed21edbd6796b574f896a1383f4a8f670b775853f8ca4478f3f72"
+    },
+    "capability-mappings/supported/windows.passwordpolicy.json": {
+      "bytes": 2072,
+      "sha256": "16c137d86406c0da0e947013d33852e418804610812fbd40eb70f697bede6257"
+    },
+    "capability-mappings/supported/windows.registry.json": {
+      "bytes": 5161,
+      "sha256": "ad01cc068759b6777cff644efcbb9e40e36235fb5c3cfd7fc3db3eb3e73bd3e9"
+    },
+    "capability-mappings/supported/windows.regkeyeffectiverights.json": {
+      "bytes": 5193,
+      "sha256": "c4ad6e13cb5c1b8b1f64b358b31779122a5bbd7fd63bbd0719365a48dd0113f4"
+    },
+    "capability-mappings/supported/windows.service.json": {
+      "bytes": 3205,
+      "sha256": "49d0d6864f123be8a1fb57ee579ea821eb875eadb8c24c98ebcdc6b1f8e4ba65"
+    },
+    "capability-mappings/supported/windows.sid.json": {
+      "bytes": 2024,
+      "sha256": "1928a3000aabad78e12f6ca5d57760cdcbdeaf79413cbf7d2b845b6fd0f129ac"
+    },
+    "capability-mappings/supported/windows.sid_sid.json": {
+      "bytes": 2061,
+      "sha256": "c2afd2b784eaec53cc9ea18ffdf2337e96eb107312350d4bbb111b0f9ea4d86c"
+    },
+    "capability-mappings/supported/windows.user_sid.json": {
+      "bytes": 1834,
+      "sha256": "a2907d0b57f345bc1f831a1d9cff0915350118dd8d3cf48fc0b3c875967c97ac"
+    },
+    "capability-mappings/supported/windows.userright.json": {
+      "bytes": 7408,
+      "sha256": "2e89238a835a5d474b3f984bd64cdf3586b517618da1cbd1c348e38ca61b9d57"
+    },
+    "capability-mappings/supported/windows.wmi.query.json": {
+      "bytes": 2532,
+      "sha256": "9a14f9b4485e560c3be2aafa65724b59e2b6682603729edf42178f68594eb113"
+    },
+    "capability-mappings/supported/windows.wuaupdatesearcher.json": {
+      "bytes": 3794,
+      "sha256": "29dcb233ebb9fa7f2975d5ab7e03d5e02b1e4a229ac2e5e8a76636445213fa24"
+    },
+    "capability-scope.json": {
+      "bytes": 1139,
+      "sha256": "2e139ca9bcf37c1dbb3478378810bf840f46cca4ff0aebd0b826e219d485f185"
+    },
+    "collected-item.schema.json": {
+      "bytes": 10555,
+      "sha256": "51ff4d9c2da8cfc28fad0b6c7de41c5c45455b7c1702d993f42829993177a6ef"
+    },
+    "collection-result.schema.json": {
+      "bytes": 3350,
+      "sha256": "1fc2736dd055fba6d4a68cb97a2b0d1122c11b4ebc6a112350161beab02e34cb"
+    },
+    "editor-default-policy.json": {
+      "bytes": 590298,
+      "sha256": "642b54e051673723f7fbda118fc72bf552e1cb663186f86aaa8f7c09c20b0905"
+    },
+    "entity-result.schema.json": {
+      "bytes": 575,
+      "sha256": "032161032e95edd3b6622559a5d8c8d87aac27bb5767a694d9a982e6e338f2b2"
+    },
+    "expression-invocation.schema.json": {
+      "bytes": 11726,
+      "sha256": "0645426f3dda139945170d6956431a9d5357071ee500b2bf7a52d4c2cbb0b172"
+    },
+    "expression-result.schema.json": {
+      "bytes": 9108,
+      "sha256": "ffee471ae65f0c79ce1cf38b542efcfeebea75ece588e44336345202a983dd60"
+    },
+    "expression.schema.json": {
+      "bytes": 8415,
+      "sha256": "5c26d647941c06c2c9085a430b6e4c184c95b1a9b71f03e951a3f2e546c04e96"
+    },
+    "field-result.schema.json": {
+      "bytes": 7610,
+      "sha256": "4a306cbccdd5918737af9da4112476e11a2212a452b483f80208fbc140c38f32"
+    },
+    "item-materialization.schema.json": {
+      "bytes": 1600,
+      "sha256": "490028051939d1cc7584a5a578cb4c85f1b154b7af9752f6cd3792caa5e6c682"
+    },
+    "item-report.schema.json": {
+      "bytes": 4322,
+      "sha256": "d7a4d3af2cc0c3e027130212ecef79c088d3d8ae1e4708960633519e9dd44600"
+    },
+    "manual-assessment-result.schema.json": {
+      "bytes": 4717,
+      "sha256": "b79703938521db8c2bc6e63ab0011ce6f3571f1ac172ce074938aca86fe21dc8"
+    },
+    "manual-assessment.schema.json": {
+      "bytes": 3503,
+      "sha256": "6ad23a97c4b231b9c8ee93dce112feb9fb0213203b0d23bd2a84e706c8b80dc8"
+    },
+    "native-selector-contracts.json": {
+      "bytes": 28436,
+      "sha256": "c7541d9b6b1e9183042bc055adb5b8389e760b929286dfc6e9d50d675ccd1ba6"
+    },
+    "native-selector.schema.json": {
+      "bytes": 132253,
+      "sha256": "aeb1776677869861b31a863a8b90e5c63e6a20f3cd313d26eb8ab99a6565a70a"
+    },
+    "organizational-input.schema.json": {
+      "bytes": 7066,
+      "sha256": "d220095b0ac742ab9268c5977e6eab5f017dbf92f800c2e79297eb041cb289c8"
+    },
+    "package-manifest.schema.json": {
+      "bytes": 4471,
+      "sha256": "07270f60b2e0d78d6085d19251ba7f1096126ffdaf4498925b8d5ff9e11f7370"
+    },
+    "reported-elements.schema.json": {
+      "bytes": 661,
+      "sha256": "2e4dae1ec6ba9a409622cd709a30cc906bab951c0413c67b940ad8f52a8cf421"
+    },
+    "require-result.schema.json": {
+      "bytes": 2818,
+      "sha256": "acb371094cd8efa1b199e5b52296cf0e374bc2d433dd09774e23d3ce7e06048d"
+    },
+    "result-field-extensions.json": {
+      "bytes": 637,
+      "sha256": "121092f4fd14fc472a6067b55a283a0ff2111b268630b213ff807d92ce386387"
+    },
+    "result-package-manifest.schema.json": {
+      "bytes": 2623,
+      "sha256": "c540bd3ecb0d36c7bbd4bad10c8d1afba08c018932d70f471635a441ff067234"
+    },
+    "result-types.schema.json": {
+      "bytes": 6240,
+      "sha256": "77387431a1ad9aee9e04192d85fbd1727609e1ab758dca6d03cc3db9999d6096"
+    },
+    "rule-result.schema.json": {
+      "bytes": 15824,
+      "sha256": "f7da14777af217b68bea67384d7be2680fec2ceec28c69ccbf3c169c1ec8aeda"
+    },
+    "rule.schema.json": {
+      "bytes": 7223,
+      "sha256": "812b8b9f0c46eae46f2ae09123a4d41465ff381df4e0ecac17eec88701f285f3"
+    },
+    "scan-result.schema.json": {
+      "bytes": 5506,
+      "sha256": "3044e2748c6311ce50de71a71a63835132cbabd4b31486162b8fe6bc6d7b0cfc"
+    },
+    "selector-api-contracts.json": {
+      "bytes": 82168,
+      "sha256": "1a3def43852c3809d624159960762677348b4654c98933d90f28c235583d60c6"
+    },
+    "state-result.schema.json": {
+      "bytes": 578,
+      "sha256": "ebc3be54c475f32702852eff720aaef59a2326eaa54a80e801c37a91ed264bb8"
+    },
+    "tailoring.schema.json": {
+      "bytes": 5423,
+      "sha256": "66f179cff014143c95d431ec85545cb5745272ee4cc93ba91673f236b6822de7"
+    },
+    "test-result.schema.json": {
+      "bytes": 7634,
+      "sha256": "71ff43f0476b7ce325a9d7c83db7b77878974650faf3f079fdec5d5239b01683"
+    },
+    "variable-expression.schema.json": {
+      "bytes": 34191,
+      "sha256": "3eed84e2142ef548c36cc0a9c381bfc1d7d38ad381e145fd8833d0d47f69fc39"
+    },
+    "variable-function-expression.schema.json": {
+      "bytes": 5105,
+      "sha256": "f359958a0e968e8b6857d4f7841d357664b31d1a7e00db9bd1e50d5af0e39060"
+    },
+    "variable-result.schema.json": {
+      "bytes": 3004,
+      "sha256": "f237a1c5fbb35052c6d1d03c1e25de2f01ba3da244e83f0ecb74b44472c847ff"
+    }
+  },
+  "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+  "schema_version": "0.4.1",
+  "semantic_pack_sha256": "ed1d19b08c9cf02555e61b1e4551342179baad086d1749fe2ff46e7ae4d56895",
+  "single_version": true
+}

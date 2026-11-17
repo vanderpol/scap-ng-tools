@@ -276,7 +276,10 @@ def conversion_identity(snapshot):
             'converter_source_sha256': checksum.hexdigest(),
             'converter_worktree_dirty': bool(dirty.stdout) if dirty and dirty.returncode == 0 else None,
             'schema_commit': revision(snapshot.schema_root),
-            'schema_family_sha256': snapshot.manifest()['aggregate_sha256']}
+            'schema_family_sha256': snapshot.manifest()['assessment_execution_family_sha256'],
+            'schema_family_scope': 'assessment_ref_closure',
+            'assessment_closure_sha256': snapshot.manifest()['assessment_closure_sha256'],
+            'flat_schema_family_sha256': snapshot.manifest()['aggregate_sha256']}
 
 
 def convert_oval_definition(**arguments):

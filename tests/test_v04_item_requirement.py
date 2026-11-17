@@ -16,8 +16,9 @@ class ItemRequirementContractTests(unittest.TestCase):
         root = os.environ.get('SCAP_NG_SCHEMA_ROOT')
         if not root:
             raise unittest.SkipTest('Set SCAP_NG_SCHEMA_ROOT to the canonical candidate')
-        cls.root = Path(root)
-        schema_dir = cls.root / 'schema'
+        from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+        schema_dir = Pinned041SchemaSnapshot(root).schema_root
+        cls.root = schema_dir.parent
         registry = Registry()
         documents = {}
         for path in schema_dir.glob('*.schema.json'):

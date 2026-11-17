@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from hashlib import sha256
 from pathlib import Path
+from urllib.parse import urlsplit
 import re
 
 import json
@@ -33,9 +34,15 @@ def load_json(path):
     return json.loads(path.read_bytes(), object_pairs_hook=unique,
                       parse_constant=nonfinite)
 
+CANONICAL_COMMIT = "5ee55288b369da26f308f40813e545b78dff2753"
 VERSION = "0.4.1"
 PREFIX = "https://scap-ng.dev/schema/v0.4.1/"
-FLAT_SCHEMA_SHA256 = "65ad62d207e39488eba670d0ab9cad740e66bbec1f4fc19737582363e2165a54"
+FLAT_SCHEMA_SHA256 = "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f"
+# RI's execution identity covers its frozen Assessment validator closure.
+# It is distinct from the production flat-family identity above. The current
+# canonical closure must match before this execution identity may be emitted.
+ASSESSMENT_EXECUTION_FAMILY_SHA256 = "326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329"
+ASSESSMENT_CLOSURE_SHA256 = "d6e3e6fde5dbacce39eef8a75285be053c85d52806517cda05eec132fc060bfd"
 RESOURCE_COUNT = 145
 ROOT_SCHEMA_COUNT = 35
 SUPPORTED_COUNT = 100
@@ -107,6 +114,42 @@ class Pinned041SchemaSnapshot:
                 raise SnapshotError("0.4.1 capability mapping is not version-pinned: " + path.name)
             self._supported_paths[path.stem] = path
 
+    def assessment_closure(self):
+        """Return the exact current Assessment $ref closure, with no fallback."""
+        pending = ['assessment.schema.json']
+        files = {}
+        while pending:
+            name = pending.pop()
+            if name in files:
+                continue
+            if Path(name).name != name or not name.endswith('.schema.json'):
+                raise SnapshotError('invalid Assessment schema reference')
+            path = self.schema_root / name
+            raw = path.read_bytes()
+            files[name] = raw
+
+            def references(value):
+                if isinstance(value, dict):
+                    for key, child in value.items():
+                        if key == '$ref':
+                            ref = urlsplit(child)
+                            if ref.scheme and not child.startswith(PREFIX):
+                                raise SnapshotError('foreign Assessment schema reference')
+                            if ref.path:
+                                pending.append(ref.path.rsplit('/', 1)[-1])
+                        references(child)
+                elif isinstance(value, list):
+                    for child in value:
+                        references(child)
+            references(load_json(path))
+        checksum = sha256()
+        for name, raw in sorted(files.items()):
+            checksum.update(name.encode() + b'\0')
+            checksum.update(raw)
+        if len(files) != 8 or checksum.hexdigest() != ASSESSMENT_CLOSURE_SHA256:
+            raise SnapshotError('Assessment closure does not match the RI execution pin')
+        return files
+
     def supported_mapping(self, capability):
         if not isinstance(capability, str) or not NAME.fullmatch(capability):
             raise SnapshotError("invalid capability identifier")
@@ -123,7 +166,11 @@ class Pinned041SchemaSnapshot:
         return [self.supported_mapping(name) for name in names]
 
     def manifest(self):
+        self.assessment_closure()
         return {
+            "assessment_execution_family_sha256": ASSESSMENT_EXECUTION_FAMILY_SHA256,
+            "assessment_closure_sha256": ASSESSMENT_CLOSURE_SHA256,
+            "canonical_commit": CANONICAL_COMMIT,
             "schema_version": VERSION,
             "logical_id_prefix": PREFIX,
             "flat_json_aggregate_sha256": FLAT_SCHEMA_SHA256,
