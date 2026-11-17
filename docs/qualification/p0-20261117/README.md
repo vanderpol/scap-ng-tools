@@ -101,6 +101,13 @@ original malformed OVAL equivalence, CPE scanner mappings or a product release.
 - Divergent Tools #67 `time_difference` and #53 work remain retrievable and
   unmerged. No claims about their incorporation. Existing old PR records are
   not closed without exact incorporation/supersession proof.
-- Hosted Actions historically fails before steps; only actual executed jobs
-  can establish hosted qualification. Canonical generated-doc and editor pin
-  failures remain separate handoffs.
+- Hosted Actions now executes steps: five workflows passed at `b0ce62c`,
+  including semantic-pack regeneration/handshake and the Windows diagnostic.
+  [The full hosted lane](https://github.com/vanderpol/scap-ng-tools/actions/runs/44142048131)
+  failed during private RI checkout (`Repository not found`, exit 128), before
+  tests. Tools' repository-scoped `GITHUB_TOKEN` cannot read private RI. The
+  workflow now explicitly requires `SCAP_NG_RI_READ_TOKEN`, a repository secret
+  containing a read-only credential scoped to RI contents. No credentials or
+  permissions were changed here. Local qualification is complete; hosted
+  full-lane qualification awaits that access. Canonical generated-doc and
+  editor pin failures remain separate handoffs.

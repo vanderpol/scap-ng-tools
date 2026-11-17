@@ -24,10 +24,19 @@ jobs:
           ref: 5ee55288b369da26f308f40813e545b78dff2753
           path: inputs/canonical
           persist-credentials: false
+      - name: Require read access to the private RI repository
+        env:
+          RI_READ_TOKEN: ${{ secrets.SCAP_NG_RI_READ_TOKEN }}
+        run: |
+          test -n "$RI_READ_TOKEN" || {
+            echo '::error::Set SCAP_NG_RI_READ_TOKEN to a read-only credential scoped to vanderpol/scap-ng-ri contents. The Tools GITHUB_TOKEN cannot read that private repository.'
+            exit 1
+          }
       - uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng-ri
           ref: dc77e33cb9cc74479622681e00ff776e2161b6ba
+          token: ${{ secrets.SCAP_NG_RI_READ_TOKEN }}
           path: inputs/ri
           persist-credentials: false
       - uses: actions/checkout@v4

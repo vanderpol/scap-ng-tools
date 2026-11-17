@@ -48,5 +48,22 @@
     "13 signed-benchmark assertion failures also reproduce on pre-change Tools; their goldens are unchanged.",
     "Tools #67 time_difference and #53 divergent histories are retained, not incorporated.",
     "No full-65 corpus or hosted CI qualification is claimed."
-  ]
+  ],
+  "hosted_ci": {
+    "reviewed_head": "b0ce62c40614eff14fdb1e5c7b57721f7fb2ef66",
+    "passed_runs": {
+      "flat_schema_and_pack_regeneration": 44142047923,
+      "semantic_pack_handshake": 44142048047,
+      "authoring_foundation": 44142047941,
+      "windows_relation_diagnostic": 44142048021,
+      "mainline_integration_discipline": 44142048050
+    },
+    "full_lane": {
+      "run_id": 44142048131,
+      "job_id": 134247144259,
+      "status": "BLOCKED_BEFORE_TESTS",
+      "reason": "Tools GITHUB_TOKEN cannot check out private scap-ng-ri; Git fetch returns Repository not found / exit 128.",
+      "setup_required": "Set SCAP_NG_RI_READ_TOKEN to a read-only RI contents credential; workflow fails explicitly until it is configured."
+    }
+  }
 }
