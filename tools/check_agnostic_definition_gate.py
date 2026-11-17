@@ -34,6 +34,7 @@ def compare(manifest, rows):
         identifier = row.get("source_id", "")
         if identifier in observed:
             problems.append({"source_id": identifier, "code": "duplicate_actual_definition"})
+            continue
         observed[identifier] = row
         if identifier not in expected:
             problems.append({"source_id": identifier, "code": "unexpected_source_definition"})
