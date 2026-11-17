@@ -58,6 +58,23 @@ class FocusedConverterTests(unittest.TestCase):
             self.assertFalse(scope['independent_semantic_proof'])
             self.assertFalse(scope['scanner_execution'])
             self.assertEqual(scope['compile_and_verify_modes'], 'not_migrated')
+            # Independent read-back checks the actual emitted artifacts, not
+            # just the internal converter object or its schema_validated label.
+            from scap_ng_tools.contracts import FrozenSchemaSnapshot
+            from scap_ng_tools.converter.direct04 import validate_native_documents
+            import yaml
+            snapshot = FrozenSchemaSnapshot(self.schema)
+            checked = 0
+            for path in output.rglob('*.json'):
+                doc = json.loads(path.read_text())
+                if not path.with_suffix('.yaml').is_file():
+                    continue
+                validate_native_documents(snapshot, {path.name: doc})
+                yaml_doc = yaml.safe_load(path.with_suffix('.yaml').read_text())
+                self.assertEqual(doc, yaml_doc)
+                validate_native_documents(snapshot, {path.name: yaml_doc})
+                checked += 1
+            self.assertEqual(checked, 6)
 
     def test_unmigrated_proof_flag_fails_without_creating_output(self):
         with tempfile.TemporaryDirectory(prefix='scapng-converter-gate-') as temp:

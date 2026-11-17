@@ -144,7 +144,67 @@ def convert_benchmark(*, schema_root, source, sha256_pin, human_compact=True):
             any(row['proof_level'] not in ('none', 'authoring_validated')
                 for row in coverage['rules'])):
         raise QualifiedConversionError('unexpected promotion beyond unverified authoring')
+    validate_native_documents(snapshot, documents)
     return documents, trace, coverage
+
+
+def render_native_documents(snapshot, documents):
+    """Validate the actual JSON/YAML payloads before any native file is written."""
+    import yaml
+    load_runtime()
+    from v04_direct_yaml import authoring_yaml
+    class UniqueKeys(yaml.SafeLoader):
+        def construct_mapping(self, node, deep=False):
+            self.flatten_mapping(node)
+            result = {}
+            for key_node, value_node in node.value:
+                key = self.construct_object(key_node, deep=deep)
+                if key in result:
+                    raise QualifiedConversionError('duplicate key in serialized native YAML')
+                result[key] = self.construct_object(value_node, deep=deep)
+            return result
+
+    validate_native_documents(snapshot, documents)
+    rendered = {}
+    for name, document in documents.items():
+        json_text = json.dumps(document, indent=2, allow_nan=False) + '\n'
+        yaml_text = authoring_yaml(document)
+        try:
+            decoded_json, decoded_yaml = json.loads(json_text), yaml.load(yaml_text, Loader=UniqueKeys)
+        except (ValueError, yaml.YAMLError) as error:
+            raise QualifiedConversionError('invalid serialized native output: ' + name) from error
+        if decoded_json != document or decoded_yaml != document:
+            raise QualifiedConversionError('serialized native output differs from validated document: ' + name)
+        validate_native_documents(snapshot, {name: decoded_json})
+        validate_native_documents(snapshot, {name: decoded_yaml})
+        rendered[name] = (json_text, yaml_text)
+    return rendered
+
+
+def conversion_identity(snapshot):
+    """Record actual source bytes/revisions without inferring release identity."""
+    import subprocess
+    from scap_ng_tools.contracts.schema_snapshot import FROZEN_DIGEST
+    package = Path(__file__).resolve().parents[1]
+    root = package.parent.parent
+    source_checkout = package.parent.name == 'src' and (root / 'pyproject.toml').is_file()
+
+    def revision(path):
+        result = subprocess.run(['git', '-C', str(path), 'rev-parse', 'HEAD'],
+                                capture_output=True, text=True)
+        return result.stdout.strip() if result.returncode == 0 else None
+
+    checksum = sha256()
+    for path in sorted(package.rglob('*')):
+        if path.is_file() and path.suffix in ('.py', '.json'):
+            checksum.update(path.relative_to(package.parent).as_posix().encode() + b'\0' + path.read_bytes())
+    dirty = subprocess.run(['git', '-C', str(root), 'status', '--porcelain', '--', 'src', 'pyproject.toml'],
+                           capture_output=True, text=True) if source_checkout else None
+    return {'converter_commit': revision(root) if source_checkout else None,
+            'converter_source_sha256': checksum.hexdigest(),
+            'converter_worktree_dirty': bool(dirty.stdout) if dirty and dirty.returncode == 0 else None,
+            'schema_commit': revision(snapshot.schema_root),
+            'schema_family_sha256': FROZEN_DIGEST}
 
 
 def safe_relative_filename(root, relative):
@@ -209,15 +269,16 @@ def main():
                 schema_root=arguments.schema_root, source=selected_source,
                 sha256_pin=arguments.sha256, rule_ids=arguments.rule,
                 human_compact=arguments.human_compact)
-        from v04_direct_yaml import authoring_yaml
+        snapshot = FrozenSchemaSnapshot(arguments.schema_root)
+        rendered = render_native_documents(snapshot, documents)
         targets = {name: safe_relative_filename(arguments.output, name)
                    for name in documents}
         arguments.output.mkdir(parents=True, exist_ok=False)
-        for name, document in documents.items():
+        for name, (json_text, yaml_text) in rendered.items():
             target = targets[name]
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text(json.dumps(document, indent=2) + '\n', encoding='utf-8')
-            target.with_suffix('.yaml').write_text(authoring_yaml(document), encoding='utf-8')
+            target.write_text(json_text, encoding='utf-8')
+            target.with_suffix('.yaml').write_text(yaml_text, encoding='utf-8')
         (arguments.output / 'source-trace.json').write_text(
             json.dumps(trace, indent=2) + '\n', encoding='utf-8')
         if arguments.all_rules:
@@ -228,6 +289,7 @@ def main():
                 coverage_markdown(coverage), encoding='utf-8')
         (arguments.output / 'conversion-scope.json').write_text(json.dumps({
             'schema_version': '0.4.0',
+            **conversion_identity(snapshot),
             'conversion_status': 'CONVERTED_UNVERIFIED',
             'structural_validation': 'Draft 2020-12 local pinned schema',
             'independent_semantic_proof': False,

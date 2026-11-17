@@ -1,0 +1,58 @@
+{
+  "baseline_commit": "c5f5b215000a1f9149ed56541320da5d7918c94a",
+  "read_only_inventory": true,
+  "authoritative_cli": "scapng-convert-v04 = scap_ng_tools.converter.direct04:main",
+  "equivalent_module_invocation": "python -m scap_ng_tools.converter.direct04",
+  "approved_schema_commit": "6012ae25281352a9c2d8a4fde7cb5a4968b4432c",
+  "workflow_schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
+  "schema_relationship": "Both local snapshots pass the same 145-file frozen digest; the workflow commit is earlier, not an obsolete schema grammar.",
+  "schema_digest": "63a61b3eb0ca95790721699f5e63b6f5a16b146660b9545a437519b508351db5",
+  "files": {
+    "pyproject.toml": "0782ec65a5324a9e9ca3428e2f41801376d37d5f8c87a69faea5f79f5e130bad",
+    "src/scap_ng_tools/converter/__init__.py": "7e7daa77f6cc0674dcccc5a1fe4c0065c3ef5a970c0ddf46fb9b19dc257729ce",
+    "src/scap_ng_tools/converter/direct04.py": "b8430222d33c6ccac372df7b4b155a6889139bd46d60949b83118708fd97b5d3",
+    "src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py": "e08bed4234090e9e53d93caf23109d881228901de9c46e6f965cfb6ca090851a",
+    "src/scap_ng_tools/converter/_v04_runtime/v04_direct_authoring_contract.py": "69258cc3765968074c4cee517510a2c56674f1aebdf4d806627d9fa61a7dd78d",
+    "src/scap_ng_tools/contracts/schema_snapshot.py": "693bc394c43ba36a07aecb8c3d322a498176dab8152dab2a4c608a606c84c638",
+    "src/scap_ng_tools/converter/_v04_semantic/validation.py": "8172d386fd1e5337477276062fd5efd0fed242d63f6fc7cfde7cd2abdf9024a3",
+    "scripts/verify_flat_converter.py": "47d0959133400e52ec64bafd4f9a29723072488c09ec949e1bdb80cfabf28a4f",
+    "scripts/generate_v04_semantic_pack.py": "861d0025024715b0f1fccd4f576b5c87b4e2707409c8b7ccdbad1b3100ba55e9",
+    "scripts/build_v04_editor_metadata_pack.py": "12f197fc2951219e1571ebbb362fa55532937344fe433f7c801ac5ea83423f68",
+    ".github/workflows/flat-schema-contract.yml": "b0b0a903d27c7f3fd34545004d2b211d08acf6bdf4e8d31831586ae61f45f9b5",
+    ".github/workflows/authoring-foundation.yml": "623a6a8c3b2c10f2a7f8feffb844fbb7332a203f8bf11b353c4ed1210c9f05f0"
+  },
+  "historical_published_corpus": {
+    "conversion_script": "tools/build_v04_full_draft.py",
+    "conversion_commit": "a08c9beb9dcf781a726adbdf05676f5ae2e57309",
+    "underlying_visitor": "tools/v04_direct_converter.py",
+    "normalized_export_script": "tools/scap_ng_library_cli.py export-draft",
+    "normalized_export_commit": "03ddc6beda8dcda5ff57439b0c3d7a2d12763d1b",
+    "archive_sha256": "a01ea589501bf8a53e5df68e50ca9478f19543d2bd3844546667fde743c28d8c",
+    "evidence_manifest": "vanderpol/scap-ng-evidence/runs/v04-library/2026-10-30-all65-normalized-review-ff69d46b3/manifest.json"
+  },
+  "obsolete_require_scope": "Historical research independent-Variable converter, not current production visitor. Current source routes Require through v04_direct_authoring_contract.test_requirement.",
+  "validation_gaps": [
+    "Benchmark API has only internal per-rule callback validation, no final returned-set structural gate.",
+    "CLI validates in-memory documents before rendering; actual serialized JSON/YAML are not revalidated or compared before publication."
+  ],
+  "review_split": [
+    "Consolidation/validation PR: document authority, guard production paths, enforce final API and artifact validation; no new conversions.",
+    "Functional PR stacked separately: standalone OVAL source adapter through the same visitor and same CLI."
+  ],
+  "preserved_internal_cli": {
+    "path": "src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py",
+    "symbols": [
+      "main",
+      "load_mappings",
+      "convert_benchmark (fallback validator)"
+    ],
+    "production_admission": false,
+    "dependencies": [
+      "ROOT/schema/v0.4.0/capability-mappings/supported/*.json",
+      "v04_native_bundle_compiler",
+      "verify_v04_package_consumer",
+      "verify_v04_direct_scope"
+    ],
+    "disposition": "Preserve historical body and source hashes; no installed entry point or working packaged legacy schema/proof environment. Production facade supplies explicit pinned mappings/validators instead. Guard .yml and .yaml workflows against invoking the raw module/internal runtime."
+  }
+}

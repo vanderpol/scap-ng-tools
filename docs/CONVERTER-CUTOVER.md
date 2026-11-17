@@ -1,5 +1,11 @@
 # Direct 0.4 converter: flat-schema compatibility gate
 
+Historical cutover checkpoints below retain their original pins and counts.
+For current converter authority, schema digest and validation boundaries use
+the [Issue #37 toolchain inventory and plan](ISSUE37-TOOLCHAIN-PLAN.md) and
+[README](../README.md). Earlier digest/count statements below are not current
+production schema selection instructions.
+
 **Status: focused conversion, read-only benchmark inventory and automatic
 benchmark authoring conversion migrated with preserved admission, source-trace
 and coverage parity. Native bytes were deliberately regenerated for the

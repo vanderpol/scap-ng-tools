@@ -1,0 +1,44 @@
+{
+  "production_main": "c5f5b215000a1f9149ed56541320da5d7918c94a",
+  "scope": "Read-only visitor probe using a file-local source index, not a preexisting standalone production entry point. Current approved schema, no historical conversion script.",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "schema_commit": "6012ae25281352a9c2d8a4fde7cb5a4968b4432c",
+  "cases": [
+    {
+      "source_file": "oval-def_constant_variable.xml",
+      "source_sha256": "57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91",
+      "definition_id": "oval:org.mitre.oval.test:def:92",
+      "native_execution": null,
+      "schema_valid": true,
+      "tests": 2,
+      "all_item_requirements_nested": true
+    },
+    {
+      "source_file": "oval-def_variable_component.xml",
+      "source_sha256": "5d32d88d7773bd89438f9afcb95f0afb9c3b9c6eca199899799b409b12abf2be",
+      "definition_id": "oval:org.mitre.oval.test:def:118",
+      "native_execution": null,
+      "schema_valid": true,
+      "tests": 2,
+      "all_item_requirements_nested": true
+    },
+    {
+      "source_file": "ind-def_variable_test.xml",
+      "source_sha256": "878fa0adc9e27e518fbdac75756b04ef8ed0c9facf937caf98576dc185414b85",
+      "definition_id": "oval:org.mitre.oval.test:def:538",
+      "native_execution": null,
+      "schema_valid": false,
+      "diagnostic": "native variable name collision constant-variable-a-b-c-d-variable: oval:org.mitre.oval.test:var:1 vs oval:org.mitre.oval.test:var:2"
+    },
+    {
+      "source_file": "oval_check_enumeration_variable_values.xml",
+      "source_sha256": "cb317fa5d8073a9fe994175e4ba270857f4278c3f00bd895096147e962e6e8be",
+      "definition_id": "oval:org.mitre.oval.test:def:170",
+      "native_execution": null,
+      "schema_valid": false,
+      "diagnostic": "native test name collision test-that-checkenumeration-of-individual-results-are-true-test: oval:org.mitre.oval.test:tst:636 vs oval:org.mitre.oval.test:tst:879"
+    }
+  ],
+  "conclusion": "No obsolete Require syntax in successful current visitor output. The four-way case fails identity naming, not Require syntax. Alias/operand folding still needs an explicit source-preserving standalone mode.",
+  "native_variable_outcomes": 0
+}
