@@ -202,7 +202,7 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     engine = load_runtime()
     original = StandalonePlatformSource(raw, source_path)
     from .native041_self_assertion_typing import (
-        qualification_policy, prepare_nodes, trace_records,
+        qualification_policy, prepare_nodes, source_node_digest, trace_records,
     )
     source_type_policy = qualification_policy(
         source_commit=source_commit, source_path=source_path,
@@ -278,18 +278,17 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     # The visitor observed an in-memory corrected Variable clone. Keep each
     # used source node's provenance hash tied to the unchanged original XML,
     # retaining the normalized visitor hash alongside it for full audit.
-    from ._v04_runtime.v04_direct_scap_source import xml_identity
     for variable_id, corrected in original._qualified_typing_nodes.items():
         if variable_id not in visitor.used:
             continue
         used = visitor.used[variable_id]
         used["normalized_visitor_sha256"] = used["sha256"]
         original_node = original.node_index[variable_id]
-        used["sha256"] = digest(identity(original_node))
+        used["sha256"] = source_node_digest(original_node)
         for entry in used.get("original_datatype_tokens", ()):
             if not entry["path"] and entry["qname"] == original_node.tag:
                 entry["token"] = original_node.get("datatype")
-                entry["entity_sha256"] = digest(identity(original_node))
+                entry["entity_sha256"] = source_node_digest(original_node)
     from ._v04_semantic.validation import document_errors
     errors = list(document_errors(snapshot, "assessment", documents["assessment.json"]))
     ensure(not errors, "standalone platform semantic validation failed: " +
