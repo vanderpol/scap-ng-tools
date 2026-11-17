@@ -73,7 +73,12 @@ uploaded by `.github/workflows/p0-canonical-qualification.yml`.
 
 The first full corrected-handshake run matched **46/46: 44 TRUE, one FALSE
 (`def:997`), one UNKNOWN (`def:337`)**, through normal RI main execution.
-Final committed-code evidence is linked in this PR's validation receipt.
+The final clean run on Tools `02b283c3dbe81c84532f434fbbf6d180d5eb84a8`
+also matched all 46. [Checksummed external manifest](https://github.com/vanderpol/scap-ng-evidence/blob/73170a5bfca44589fe6ba3fa2c2cfeb0a3ea9793/runs/tools-p0-041/2026-11-17-02b283c/manifest.json)
+and [actual Definition ledger](https://github.com/vanderpol/scap-ng-evidence/blob/73170a5bfca44589fe6ba3fa2c2cfeb0a3ea9793/runs/tools-p0-041/2026-11-17-02b283c/definition-results.csv) retain
+the results. [Local validation summary](validation.json) records the pins.
+287 converter tests passed with five existing fixture-dependent skips; Go
+1.27.4 full/race/vet/schema/module checks and both pack/pin rebuilds passed.
 This qualifies the owner's normalized source-compatibility milestone, not
 original malformed OVAL equivalence, CPE scanner mappings or a product release.
 
@@ -87,7 +92,9 @@ original malformed OVAL equivalence, CPE scanner mappings or a product release.
 - Enabling all original signed-benchmark fixtures exposed 13 assertion failures
   in the historical 535-Rule conversion/inventory hash/count/negative-gate tests
   and focused conversion hash. The 296-test run is retained as **failed**;
-  those goldens were not changed to force a pass. The scoped schema/OVAL suite
+  the identical 13 assertion failures reproduce on pre-change Tools
+  `29bc686` with its approved canonical `4c2713b` snapshot. Those goldens were
+  not changed to force a pass. The scoped schema/OVAL suite
   has no failures; source-benchmark requalification remains separate.
 - Historical full-65/publication replay lanes remain tied to their old source
   receipts; this task does not regenerate or promote a new full corpus.

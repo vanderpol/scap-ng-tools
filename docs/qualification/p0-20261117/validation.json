@@ -1,0 +1,52 @@
+{
+  "tested_tools_commit": "02b283c3dbe81c84532f434fbbf6d180d5eb84a8",
+  "ri_main_commit": "dc77e33cb9cc74479622681e00ff776e2161b6ba",
+  "canonical_main_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+  "status": "P0_46_DEFINITION_GATE_PASS_WITH_SEPARATE_HOLDS",
+  "execution": {
+    "actual_outcomes": {
+      "false": 1,
+      "true": 44,
+      "unknown": 1
+    },
+    "converter_tests": {
+      "failures": 0,
+      "fixture_dependent_skips": 5,
+      "run": 287
+    },
+    "definition_gate": "PASS",
+    "deterministic_pack_and_pin_builds": 2,
+    "executed": 46,
+    "go_full_tests": "PASS",
+    "go_race_benchmark_runtimecore_evaluate": "PASS",
+    "go_vet": "PASS",
+    "matching": 46,
+    "original_truth_vectors": 304,
+    "schema_and_module_checks": "PASS",
+    "source_normalizations": 8
+  },
+  "expected_outcomes_preserved": true,
+  "source_provenance_preserved": true,
+  "digest_validation_bypassed": false,
+  "evidence": {
+    "repository": "vanderpol/scap-ng-evidence",
+    "commit": "73170a5bfca44589fe6ba3fa2c2cfeb0a3ea9793",
+    "manifest": "https://github.com/vanderpol/scap-ng-evidence/blob/73170a5bfca44589fe6ba3fa2c2cfeb0a3ea9793/runs/tools-p0-041/2026-11-17-02b283c/manifest.json",
+    "definition_ledger": "https://github.com/vanderpol/scap-ng-evidence/blob/73170a5bfca44589fe6ba3fa2c2cfeb0a3ea9793/runs/tools-p0-041/2026-11-17-02b283c/definition-results.csv",
+    "manifest_sha256": "25ec831745456815382b1018db3c93b4fbba083b6d51cec6e6f5e3cfd8dc7b3a"
+  },
+  "source_acceptance": {
+    "historical_run_tests": 296,
+    "historical_assertion_failures": 13,
+    "baseline_matching_failures": 13,
+    "baseline_tools": "29bc68643ac192f90ba30403bbd301b3af7652aa",
+    "baseline_canonical": "4c2713b051203fe8e93570adc1ccc65b50129ae2"
+  },
+  "holds": [
+    "Owner-approved normalized source compatibility, not original malformed OVAL equivalence.",
+    "Five Windows source Input relation schema holds remain visible.",
+    "13 signed-benchmark assertion failures also reproduce on pre-change Tools; their goldens are unchanged.",
+    "Tools #67 time_difference and #53 divergent histories are retained, not incorporated.",
+    "No full-65 corpus or hosted CI qualification is claimed."
+  ]
+}
