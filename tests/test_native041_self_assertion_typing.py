@@ -30,6 +30,12 @@ class PinnedSelfAssertionTypingTests(unittest.TestCase):
             self.assertEqual(qualification_policy(source_commit="0" * 40,
                                                   source_path=path,
                                                   source_sha256=source_sha), {})
+            self.assertEqual(
+                qualification_policy(source_commit=SOURCE_COMMIT,
+                                     source_path="SCAP_1.4/OVAL_Test_Content/" + path,
+                                     source_sha256=source_sha),
+                correction,
+            )
             self.assertEqual(qualification_policy(source_commit=SOURCE_COMMIT,
                                                   source_path=path,
                                                   source_sha256="0" * 64), {})
