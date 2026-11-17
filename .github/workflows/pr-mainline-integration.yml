@@ -91,7 +91,7 @@ jobs:
 
           lines = [
               "## SCAP-NG mainline integration debt",
-              f"- Repository: \`{repo}\`",
+              f"- Repository: {repo}",
               f"- Open PRs: **{len(pulls)}**",
               f"- PRs open >=3 days: **{len(stale)}**",
               f"- Maximum resolvable stack depth: **{max_depth}**",
