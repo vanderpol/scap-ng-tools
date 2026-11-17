@@ -51,7 +51,12 @@ def qualification_policy(*, source_commit, source_path, source_sha256):
     """
     if source_commit != SOURCE_COMMIT:
         return {}
-    return PINNED.get((source_path, source_sha256), {})
+    # The standalone CLI uses the repository-relative Git blob path, while
+    # the independent Definition ledger uses OVAL_Test_Content-relative paths.
+    # Only this exact source root prefix is accepted as an alias.
+    prefix = "SCAP_1.4/OVAL_Test_Content/"
+    logical_path = source_path[len(prefix):] if source_path.startswith(prefix) else source_path
+    return PINNED.get((logical_path, source_sha256), {})
 
 
 def prepare_nodes(node_index, policy, *, source_path):
