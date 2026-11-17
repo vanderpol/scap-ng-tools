@@ -1,0 +1,342 @@
+{
+  "format": "scap-ng-agnostic-source-expected-definition-results/1",
+  "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_root": "SCAP_1.4/OVAL_Test_Content/",
+  "source_expected_outcomes_from": "pinned source XML Definition title and criteria; NOT the RI actual outcome",
+  "non_outcome_titles_assumed_true": [
+    "oval:org.mitre.oval.test:def:884",
+    "oval:org.mitre.oval.test:def:231"
+  ],
+  "expected_counts": {
+    "true": 44,
+    "false": 1,
+    "unknown": 1
+  },
+  "expected_total": 46,
+  "qualifications": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+  "definitions": [
+    {
+      "source_path": "agnostic/ind-def_family_test.xml",
+      "source_sha256": "6966982d66e004f77ceb9e5ccceb5161275a79729d4178f290f99efd3b8b84a7",
+      "source_definition_id": "oval:org.mitre.oval.test:def:95",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the ind-def:family_test is properly supported"
+    },
+    {
+      "source_path": "agnostic/ind-def_unknown_test.xml",
+      "source_sha256": "f5e8901c703438819f20ef4761d1b4f9f62f630c6c8e96ca016d0d0dd67862a7",
+      "source_definition_id": "oval:org.mitre.oval.test:def:337",
+      "expected_outcome": "unknown",
+      "source_title": "Evaluate to unknown if the ind-def:unknown_test is properly supported"
+    },
+    {
+      "source_path": "agnostic/ind-def_variable_test.xml",
+      "source_sha256": "878fa0adc9e27e518fbdac75756b04ef8ed0c9facf937caf98576dc185414b85",
+      "source_definition_id": "oval:org.mitre.oval.test:def:538",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the ind-def:variable_test is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval_binary_datatype.xml",
+      "source_sha256": "eb50e4c0ad2e1d94941e0a1c31d43dd31c6ce030c072790f5dbb3793aa8e1e91",
+      "source_definition_id": "oval:org.mitre.oval.test:def:707",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the binary datatype is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval_boolean_datatype.xml",
+      "source_sha256": "f58c191f31a8c1e32a5f4503a9252702cbc308ccc1462d36569f71dee09e2cef",
+      "source_definition_id": "oval:org.mitre.oval.test:def:709",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the boolean datatype is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval_check_enumeration_entity.xml",
+      "source_sha256": "f9e0c3706ecbe282f2e0ece9a833cfa419510557356bc0dfc3edd0d2a29ca19a",
+      "source_definition_id": "oval:org.mitre.oval.test:def:687",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval:CheckEnumeration simple type is properly supported for the relationship between the instances of an entity"
+    },
+    {
+      "source_path": "agnostic/oval_check_enumeration_object_state.xml",
+      "source_sha256": "bc01119212ddd8de4250f2f9187e62b7f13b2a376dc99ac7fcb97b49a3ca0f7a",
+      "source_definition_id": "oval:org.mitre.oval.test:def:549",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval:CheckEnumeration simple type is properly supported for the relationship between objects and states"
+    },
+    {
+      "source_path": "agnostic/oval_check_enumeration_variable_values.xml",
+      "source_sha256": "cb317fa5d8073a9fe994175e4ba270857f4278c3f00bd895096147e962e6e8be",
+      "source_definition_id": "oval:org.mitre.oval.test:def:170",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval:CheckEnumeration simple type is properly supported for the relationship between the instances of an entity and multiple variable values"
+    },
+    {
+      "source_path": "agnostic/oval_evr_string_datatype.xml",
+      "source_sha256": "d47f8b10868e052481aa9cfbe67f616d683f244a93c7810ee40c20b62c21d179",
+      "source_definition_id": "oval:org.mitre.oval.test:def:392",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the evr_string datatype is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval_existence_enumeration.xml",
+      "source_sha256": "5bc7d6e12fef4d6864f7a7d97ebbd5d4fcc549023d16d5358d7d3b89d171121b",
+      "source_definition_id": "oval:org.mitre.oval.test:def:834",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval:ExistenceEnumeration simple type is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval_float_datatype.xml",
+      "source_sha256": "006e8d8d293849e3478c1fa727eb3b7bda14ca490395608b40ea49dc686ec07e",
+      "source_definition_id": "oval:org.mitre.oval.test:def:275",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the float datatype is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval_int_datatype.xml",
+      "source_sha256": "bf3ae1b0f7dbbe4dde8bae9e30b16202ffd6101bfc42f053110eefaa97fa5965",
+      "source_definition_id": "oval:org.mitre.oval.test:def:356",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the int datatype is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval_ipv4address_datatype.xml",
+      "source_sha256": "cb45247269fcb983047c4f06d1aa3dfcf7fb9f5ed690f3c0358f87f308115d2b",
+      "source_definition_id": "oval:org.mitre.oval.test:def:884",
+      "expected_outcome": "true",
+      "source_title": "ipv4_address test"
+    },
+    {
+      "source_path": "agnostic/oval_ipv6address_datatype.xml",
+      "source_sha256": "7eb8fd0c02a044435981684cf02650e49b3c87247b3da45050a38dbe51c376b7",
+      "source_definition_id": "oval:org.mitre.oval.test:def:231",
+      "expected_outcome": "true",
+      "source_title": "ipv6_address test"
+    },
+    {
+      "source_path": "agnostic/oval_string_datatype.xml",
+      "source_sha256": "58ca3747e110831969600ecdd72f591c37adf099658e4cc3babf03779a2a9a2e",
+      "source_definition_id": "oval:org.mitre.oval.test:def:252",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the string datatype is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval_version_datatype.xml",
+      "source_sha256": "c20249735d1900285a293b958f03a94b359eb00b1023b87e22d8c2a9776737df",
+      "source_definition_id": "oval:org.mitre.oval.test:def:291",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the version datatype is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_arithmetic_function.xml",
+      "source_sha256": "573351f7b8e8a685ec90596ba7d0d5f8842988c42fbd6e1a34cdc73dc38ec1f8",
+      "source_definition_id": "oval:org.mitre.oval.test:def:895",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if arithmetic operations are properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_begin_function.xml",
+      "source_sha256": "f7261105acebb72aaf0e62793b289a21867a7a1b13eba71ad7fa1fa93e58db57",
+      "source_definition_id": "oval:org.mitre.oval.test:def:826",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the begin function is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_concat_function.xml",
+      "source_sha256": "6e5beb1c5efd6b4646955e0fdb36c50a9845609b44fd27d2aef306f57a07d4ba",
+      "source_definition_id": "oval:org.mitre.oval.test:def:65",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the concat function is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_constant_variable.xml",
+      "source_sha256": "57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91",
+      "source_definition_id": "oval:org.mitre.oval.test:def:92",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:constant_variable construct is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:142",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported with the XOR operator"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:357",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported with the negate attribute set to true"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:388",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported with two levels of nesting"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:404",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported with the AND operator"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:503",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported with the OR operator"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:560",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:599",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported with the ONE operator"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:903",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported with one level of nesting"
+    },
+    {
+      "source_path": "agnostic/oval-def_criteria.xml",
+      "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
+      "source_definition_id": "oval:org.mitre.oval.test:def:962",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criteria element is properly supported with three levels of nesting"
+    },
+    {
+      "source_path": "agnostic/oval-def_criterion.xml",
+      "source_sha256": "943136ebe4c6a9fd014a6dda43d1be126c801130dc1e7867165e56434d232f38",
+      "source_definition_id": "oval:org.mitre.oval.test:def:67",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:criterion construct is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_end_function.xml",
+      "source_sha256": "cbbc98cd2203a27ca10ca75316c0f0910cf5dfb29db8ef2ef52582e31823846b",
+      "source_definition_id": "oval:org.mitre.oval.test:def:427",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the end function is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_escape_regex_function.xml",
+      "source_sha256": "4e561d9ca7db1cfe33035e78d906b3860ce555a86f459c1e5132c6ba354b6433",
+      "source_definition_id": "oval:org.mitre.oval.test:def:167",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the escape_regex function is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_extend_definition.xml",
+      "source_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+      "source_definition_id": "oval:org.mitre.oval.test:def:117",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:extend_definition construct is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_extend_definition.xml",
+      "source_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+      "source_definition_id": "oval:org.mitre.oval.test:def:620",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true"
+    },
+    {
+      "source_path": "agnostic/oval-def_extend_definition.xml",
+      "source_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+      "source_definition_id": "oval:org.mitre.oval.test:def:97",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:extend_definition construct is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_extend_definition.xml",
+      "source_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+      "source_definition_id": "oval:org.mitre.oval.test:def:997",
+      "expected_outcome": "false",
+      "source_title": "Evaluate to false"
+    },
+    {
+      "source_path": "agnostic/oval-def_globtoregex_test.xml",
+      "source_sha256": "fb061d16c22c204d5ea9e7cbdb6a9bfff530136f9af340dd5cd9870ebde3d587",
+      "source_definition_id": "oval:x:def:167",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the glob_to_regex function is properly supported."
+    },
+    {
+      "source_path": "agnostic/oval-def_literal_component.xml",
+      "source_sha256": "6adbc711c9d046611c7c4987e14647155202d01299b5bf8a30ff470fcb43976a",
+      "source_definition_id": "oval:org.mitre.oval.test:def:367",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:literal_component construct is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_local_variable.xml",
+      "source_sha256": "bfde9f6411bf7b0d6b63fc2ef81cb9ecf801cf7df36fe96556ea47169c4bd308",
+      "source_definition_id": "oval:org.mitre.oval.test:def:270",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:local_variable construct is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_merge.xml",
+      "source_sha256": "e9cf10371c2d41a3c92087a93f62f597043828d0914a21c5ab4314f03fd8a6ef",
+      "source_definition_id": "oval:navy.navwar.niwcatlantic.scc:def:38",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the merge function is functioning properly"
+    },
+    {
+      "source_path": "agnostic/oval-def_object_component.xml",
+      "source_sha256": "9a8f889c6bb35ae4a6a70f97dc51d0b38e29250fbac08d518228092626e93914",
+      "source_definition_id": "oval:org.mitre.oval.test:def:670",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:object_component construct is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_regex_capture_function.xml",
+      "source_sha256": "97eb7a96b6d893b80277b0f0ae973884d736f8e4689992b93fa57fe0c5fa4c55",
+      "source_definition_id": "oval:org.mitre.oval.test:def:781",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:regex_capture test is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_split_function.xml",
+      "source_sha256": "823114699db0b071d3b1b7a2393ee31a5f91d35847e3ab0ec5a032146af9a674",
+      "source_definition_id": "oval:org.mitre.oval.test:def:29",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the split function is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_substring_function.xml",
+      "source_sha256": "892d18d9fa055cb59882b470a8e97e43c4069b968d4c136984b0692fcbd73e97",
+      "source_definition_id": "oval:org.mitre.oval.test:def:455",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the substring function is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_time_difference_function.xml",
+      "source_sha256": "c7e974a0a14ba4c7b72807e46e8052527b34a6da3672ca916dd57e5b4c2fd056",
+      "source_definition_id": "oval:org.mitre.oval.test:def:580",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:time_difference function is properly supported"
+    },
+    {
+      "source_path": "agnostic/oval-def_variable_component.xml",
+      "source_sha256": "5d32d88d7773bd89438f9afcb95f0afb9c3b9c6eca199899799b409b12abf2be",
+      "source_definition_id": "oval:org.mitre.oval.test:def:118",
+      "expected_outcome": "true",
+      "source_title": "Evaluate to true if the oval-def:variable_component construct is properly supported"
+    }
+  ]
+}
