@@ -95,6 +95,10 @@ class StandalonePlatformSource:
                 ensure(node.tag.startswith("{"), "unsupported OVAL declaration namespace")
                 self.nodes[component][ident] = node
         self.node_index = self.nodes[component]
+        # Only the pinned standalone Self-Assertion compatibility path may
+        # populate this overlay. Original indexed XML remains immutable and
+        # is used for source-hash/provenance verification.
+        self._qualified_typing_nodes = {}
 
     def node(self, component, identifier, kind):
         ensure(component == self.component_id and identifier in self.node_index,
@@ -102,6 +106,8 @@ class StandalonePlatformSource:
         node = self.node_index[identifier]
         ensure(local_name(node) == kind or local_name(node).endswith("_" + kind),
                f"wrong reference kind: {identifier}")
+        if kind == "variable":
+            return self._qualified_typing_nodes.get(identifier, node)
         return node
 
     def object_uses(self, component, identifier, kind):
@@ -195,6 +201,23 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
            "exact source commit required")
     engine = load_runtime()
     original = StandalonePlatformSource(raw, source_path)
+    from .native041_self_assertion_typing import (
+        qualification_policy, prepare_nodes, trace_records,
+    )
+    source_type_policy = qualification_policy(
+        source_commit=source_commit, source_path=source_path,
+        source_sha256=sha256_pin,
+    )
+    try:
+        original._qualified_typing_nodes = prepare_nodes(
+            original.node_index, source_type_policy, source_path=source_path,
+        )
+    except ValueError as error:
+        raise QualifiedConversionError(str(error)) from error
+    original_type_receipts = trace_records(
+        original.node_index, original._qualified_typing_nodes,
+        source_type_policy,
+    )
     definition = original.node(source_path, definition_id, "definition") if definition_id else None
     if test_id:
         original.node(source_path, test_id, "test")
@@ -207,6 +230,8 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     visitor = engine.AssessmentConverter(original, source_path, mappings,
                                          human_compact=False,
                                          native_recovery=True)
+    # These are source compatibility disclosures, never fabricated outcomes.
+    visitor.conversion_warnings.extend(original_type_receipts)
     if test_id:
         expression = visitor.reference(test_id, "test")
         assessment_id_source = original.node(source_path, test_id, "test")
@@ -250,6 +275,21 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
         raise QualifiedConversionError('standalone OVAL native authoring lowering: ' +
                                        str(error)) from error
     validate_native_documents(snapshot, documents)
+    # The visitor observed an in-memory corrected Variable clone. Keep each
+    # used source node's provenance hash tied to the unchanged original XML,
+    # retaining the normalized visitor hash alongside it for full audit.
+    from ._v04_runtime.v04_direct_scap_source import xml_identity
+    for variable_id, corrected in original._qualified_typing_nodes.items():
+        if variable_id not in visitor.used:
+            continue
+        used = visitor.used[variable_id]
+        used["normalized_visitor_sha256"] = used["sha256"]
+        original_node = original.node_index[variable_id]
+        used["sha256"] = digest(identity(original_node))
+        for entry in used.get("original_datatype_tokens", ()):
+            if not entry["path"] and entry["qname"] == original_node.tag:
+                entry["token"] = original_node.get("datatype")
+                entry["entity_sha256"] = digest(identity(original_node))
     from ._v04_semantic.validation import document_errors
     errors = list(document_errors(snapshot, "assessment", documents["assessment.json"]))
     ensure(not errors, "standalone platform semantic validation failed: " +
@@ -257,6 +297,7 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
     trace = {
         "source_commit": source_commit, "source_path": source_path,
         "source_sha256": sha256_pin, "definition_id": assessment_source_id, "test_id": test_id,
+        "source_type_normalizations": original_type_receipts,
         "source_oval_schema_version": original.oval_schema_version,
         "source_nodes": {ident: {**row, "references": references(original.node_index[ident])}
                          for ident, row in sorted(visitor.used.items())},
