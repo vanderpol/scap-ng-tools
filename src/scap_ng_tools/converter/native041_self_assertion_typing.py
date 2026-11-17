@@ -9,6 +9,8 @@ an invalid original OVAL declaration.
 from __future__ import annotations
 
 from copy import deepcopy
+from hashlib import sha256
+import json
 
 SOURCE_COMMIT = "e3538595c5083b9c34d937a81d319234df9bbfaa"
 
@@ -74,16 +76,27 @@ def prepare_nodes(node_index, policy, *, source_path):
     return replacements
 
 
+def source_node_digest(element):
+    """Hash the original XML node using the pinned visitor's identity rules."""
+    def identity(node):
+        return [
+            node.tag, sorted(node.attrib.items()),
+            node.text if not len(node) else None,
+            [identity(child) for child in node],
+        ]
+    payload = json.dumps(identity(element), sort_keys=True, ensure_ascii=False,
+                         separators=(",", ":")).encode()
+    return sha256(payload).hexdigest()
+
+
 def trace_records(node_index, replacements, policy):
     """Deterministic source-vs-native provenance for each adjusted Variable."""
-    from .oval_platform import digest, identity
-
     return [{
         "code": "pinned_source_variable_datatype_normalized",
         "source_variable": variable_id,
         "declared_datatype": policy[variable_id][0],
         "native_result_datatype": policy[variable_id][1],
-        "original_node_sha256": digest(identity(node_index[variable_id])),
-        "normalized_visitor_node_sha256": digest(identity(replacements[variable_id])),
+        "original_node_sha256": source_node_digest(node_index[variable_id]),
+        "normalized_visitor_node_sha256": source_node_digest(replacements[variable_id]),
         "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
     } for variable_id in sorted(replacements)]
