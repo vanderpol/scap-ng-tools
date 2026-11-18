@@ -244,7 +244,11 @@ class SourceModel:
             stem = re.sub('[^a-z0-9]+', '-', ref.lower()).strip('-') or 'unnamed'
             key = 'platform-' + stem + '-condition'
             if len(key) > 64:
-                key = key[:48].rstrip('-') + '-' + digest(xml_identity(node))[:12] + '-condition'
+                # Original long-ID shortening exceeded the 64-character
+                # contract. Hash the exact reference and budget every suffix.
+                suffix = sha256((node.get('idref') or '').encode('utf-8')).hexdigest()[:12]
+                budget = 64 - len('-condition') - len(suffix) - 1
+                key = key[:budget].rstrip('-') + '-' + suffix + '-condition'
             return key
 
         if not hasattr(self, '_applicability_collision_groups'):
