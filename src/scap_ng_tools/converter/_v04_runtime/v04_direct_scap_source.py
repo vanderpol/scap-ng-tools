@@ -233,13 +233,34 @@ class SourceModel:
                 if check.get('system') == OCIL and check.get('selector', '') in ('', 'manual')]
 
     def applicability_condition_id(self, platform):
-        """Stable native catalog key for one source platform reference."""
-        ref = (platform.get('idref') or '').lstrip('#')
-        stem = re.sub('[^a-z0-9]+', '-', ref.lower()).strip('-') or 'unnamed'
-        key = 'platform-' + stem + '-condition'
-        if len(key) > 64:
-            key = key[:48].rstrip('-') + '-' + digest(xml_identity(platform))[:12] + '-condition'
-        return key
+        """Preserve exact source idrefs when distinct refs normalize identically.
+
+        Ordinary noncolliding source IDs retain their existing native IDs.
+        Only a real collision gains a deterministic digest of the *exact*
+        source reference, so case and punctuation do not silently alias.
+        """
+        def base_key(node):
+            ref = (node.get('idref') or '').lstrip('#')
+            stem = re.sub('[^a-z0-9]+', '-', ref.lower()).strip('-') or 'unnamed'
+            key = 'platform-' + stem + '-condition'
+            if len(key) > 64:
+                key = key[:48].rstrip('-') + '-' + digest(xml_identity(node))[:12] + '-condition'
+            return key
+
+        if not hasattr(self, '_applicability_collision_groups'):
+            groups = {}
+            for item in self.benchmark.iter():
+                if item.tag == f'{{{XCCDF}}}platform':
+                    groups.setdefault(base_key(item), set()).add(item.get('idref') or '')
+            self._applicability_collision_groups = groups
+        key = base_key(platform)
+        idref = platform.get('idref') or ''
+        if len(self._applicability_collision_groups.get(key, ())) <= 1:
+            return key
+        suffix = sha256(idref.encode('utf-8')).hexdigest()[:12]
+        base = key[:-len('-condition')]
+        max_stem = 64 - len('-condition') - len(suffix) - 1
+        return base[:max_stem].rstrip('-') + '-' + suffix + '-condition'
 
     def applicability_level(self, item):
         """Preserve one XCCDF item's local platform restriction only.
