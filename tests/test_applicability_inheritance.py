@@ -38,6 +38,43 @@ class ApplicabilityInheritance(unittest.TestCase):
         self.assertEqual(level['operator'], 'any_of')
         self.assertEqual([c['source_idref'] for c in level['conditions']], ['#a', '#b'])
 
+    def test_colliding_platform_idrefs_preserve_independent_catalog_ids(self):
+        # Both case folding and punctuation normalization used to lose an
+        # independent XCCDF platform reference through catalog.setdefault.
+        for refs in (
+                ('#Linux', '#linux'),
+                ('#product.foo', '#product-foo'),
+                ('#' + 'Product' * 12 + '.x',
+                 '#' + 'Product' * 12 + '-x')):
+            with self.subTest(refs=refs):
+                root = ET.Element(X + 'Benchmark', {'id': 'b'})
+                elements = [ET.SubElement(root, X + 'platform', {'idref': ref})
+                            for ref in refs]
+                source = SourceModel.__new__(SourceModel)
+                source.benchmark = root
+                source.components = {}
+                ids = [source.applicability_condition_id(element) for element in elements]
+                self.assertEqual(len(set(ids)), 2)
+                self.assertTrue(all(len(identifier) <= 64 for identifier in ids))
+                self.assertEqual([source.applicability_condition_id(element)
+                                  for element in elements], ids)
+                catalog = source.applicability_catalog()
+                self.assertEqual(len(catalog), 2)
+                self.assertEqual({row['source']['idref'] for row in catalog.values()},
+                                 set(refs))
+
+    def test_repeated_exact_platform_reference_keeps_same_identity(self):
+        root = ET.Element(X + 'Benchmark', {'id': 'b'})
+        first = ET.SubElement(root, X + 'platform', {'idref': '#same'})
+        group = ET.SubElement(root, X + 'Group', {'id': 'g'})
+        second = ET.SubElement(group, X + 'platform', {'idref': '#same'})
+        source = SourceModel.__new__(SourceModel)
+        source.benchmark = root
+        source.components = {}
+        self.assertEqual(source.applicability_condition_id(first),
+                         source.applicability_condition_id(second))
+        self.assertEqual(len(source.applicability_catalog()), 1)
+
     def test_cpe_logical_test_is_retained_as_a_boolean_tree(self):
         cpe = ET.fromstring('''<platform-specification xmlns="http://cpe.mitre.org/language/2.0">
           <platform id="nested"><logical-test operator="AND" negate="true">
