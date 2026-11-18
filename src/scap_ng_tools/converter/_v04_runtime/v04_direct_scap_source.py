@@ -327,7 +327,14 @@ class SourceModel:
                 if expression is not None:
                     source['cpe_expression'] = expression
                     source['expression_sha256'] = digest(expression)
-                catalog.setdefault(condition, {'source': source})
+                previous = catalog.get(condition)
+                if previous is not None:
+                    ensure(previous['source']['idref'] == source_idref,
+                           f'conflicting XCCDF platform condition ID: {condition}')
+                    ensure(previous['source'].get('expression_sha256') == source.get('expression_sha256'),
+                           f'conflicting CPE expression for reused platform reference: {source_idref}')
+                else:
+                    catalog[condition] = {'source': source}
         return catalog
 
     def profile_lineage(self, profile):
