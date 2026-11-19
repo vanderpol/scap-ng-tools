@@ -46,6 +46,24 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_windows_policy_pr5_receipt_distinguishes_source_hold_and_recovery(self):
+        receipt = self.load("windows-policy-pr5-focused-qualification.json")
+        source = receipt["source"]
+        conversion = receipt["conversion"]
+        self.assertEqual(source["pull_request"], 5)
+        self.assertEqual(source["classification"], "source_typed_literal_invalid")
+        self.assertTrue(source["source_commit_fetch_verified"])
+        self.assertIn("0", source["files"][1]["correction"])
+        self.assertNotIn("86400", source["files"][1]["correction"])
+        self.assertEqual(len(source["files"]), 2)
+        self.assertEqual(len(conversion["cases"]), 2)
+        for case in conversion["cases"]:
+            self.assertEqual(case["base_status"], "blocked")
+            self.assertEqual(case["corrected_status"], "CONVERTED_UNVERIFIED")
+            self.assertTrue(case["corrected_schema_validated"])
+            self.assertRegex(case["corrected_assessment_sha256"], HEX64)
+        self.assertEqual(conversion["independent_runtime_equivalence"], "not_proved")
+
     def test_committed_receipt_is_compact_and_does_not_embed_source_or_host_data(self):
         path = ROOT / "docs" / "evidence" / "issue83" / "nvram-pr19-focused-qualification.json"
         receipt = self.load("nvram-pr19-focused-qualification.json")
