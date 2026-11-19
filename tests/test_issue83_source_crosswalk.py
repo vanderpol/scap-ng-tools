@@ -139,6 +139,11 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         attribute = extension["children"][1]
         self.assertEqual(attribute["attributes"]["use"], "required")
         self.assertEqual(attribute["attributes"]["default"], "strict")
+        derivation = row["schema_derivation_contract"]
+        self.assertEqual(derivation["rows"][0]["kind"], "extension")
+        self.assertEqual(derivation["rows"][0]["attributes"]["base"], "base_state")
+        self.assertEqual(derivation["status"], "structural_only")
+        self.assertEqual(derivation["semantics"], "not_interpreted")
 
     def test_schema_qnames_resolve_local_bases_and_preserve_external_builtins(self):
         xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"

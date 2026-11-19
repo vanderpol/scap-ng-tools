@@ -11,7 +11,7 @@ native support, conversion success, or runtime equivalence.
   python scripts/build_issue83_source_crosswalk.py ...` or call
   `oval_inventory` for schema-only output.
 - External receipt: `/tmp/tools-issue83-inheritance-final3-1795106291/oval-schema-inheritance.json`
-- Receipt SHA-256: `c0fd54871fb6b0828efa6bed5d8fb612a9661d58cbf0d72eb4b488a2ceb2a326`
+- Receipt SHA-256: `7d74a8e514c9c8254fac5997cf1373716d21be94c7205d0d69d80c5b2f5fe170`
 
 ## Measured result
 
@@ -29,6 +29,8 @@ The report records direct local base targets and external built-in bases and
 now emits 12,390 structural effective-member rows with origin, source path,
 cardinality/default/use/type attributes and inherited/direct provenance. This
 is an auditable field inventory, not semantic field merging or override
-behavior. Effective XSD field/cardinality semantics, Schematron/prose
-constraints, converter parity and RI execution remain separate qualification
-work.
+behavior. The same run records 1,599 extension/restriction rows and 4,447
+facet rows as structural source evidence; restriction validity and override
+semantics remain uninterpreted. Effective XSD field/cardinality semantics,
+Schematron/prose constraints, converter parity and RI execution remain
+separate qualification work.

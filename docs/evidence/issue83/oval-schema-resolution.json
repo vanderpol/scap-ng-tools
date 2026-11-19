@@ -17,15 +17,18 @@
     "unresolved_references": 0,
     "declarations_with_incomplete_inheritance": 0,
     "declarations_with_incomplete_effective_members": 0,
-    "effective_member_rows": 12390
+    "effective_member_rows": 12390,
+    "schema_derivation_rows": 1599,
+    "schema_restriction_facet_rows": 4447
   },
   "disposition": {
     "local_base_targets": "recorded without flattening",
     "xml_schema_builtins": "explicit external_builtin status",
     "effective_inherited_fields": "structural_inventory_only",
+    "derivation_and_facets": "structural_inventory_only",
     "schematron_and_prose_semantics": "not_assessed",
     "converter_parity": "not_proved",
     "runtime_equivalence": "not_proved"
   },
-  "receipt_sha256": "c0fd54871fb6b0828efa6bed5d8fb612a9661d58cbf0d72eb4b488a2ceb2a326"
+  "receipt_sha256": "7d74a8e514c9c8254fac5997cf1373716d21be94c7205d0d69d80c5b2f5fe170"
 }

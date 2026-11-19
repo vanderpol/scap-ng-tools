@@ -495,6 +495,42 @@ def _schema_references(declaration: ET.Element, schema_file: str, namespace: str
     return references
 
 
+def _schema_derivation_contract(node: ET.Element) -> dict:
+    """Capture extension/restriction/facet structure without validating it."""
+    derivations = []
+    facet_names = {
+        "enumeration", "fractionDigits", "length", "maxExclusive", "maxInclusive",
+        "maxLength", "minExclusive", "minInclusive", "minLength", "pattern",
+        "totalDigits", "whiteSpace",
+    }
+    for candidate in node.iter():
+        kind = local_name(candidate.tag)
+        if kind not in {"extension", "restriction"}:
+            continue
+        facets = []
+        for child in candidate.iter():
+            child_kind = local_name(child.tag)
+            if child is candidate or child_kind not in facet_names:
+                continue
+            facets.append({
+                "kind": child_kind,
+                "attributes": dict(sorted(child.attrib.items())),
+            })
+        derivations.append({
+            "kind": kind,
+            "attributes": dict(sorted(candidate.attrib.items())),
+            "facet_rows": facets,
+            "facet_count": len(facets),
+        })
+    return {
+        "status": "structural_only",
+        "rows": derivations,
+        "derivation_count": len(derivations),
+        "facet_count": sum(row["facet_count"] for row in derivations),
+        "semantics": "not_interpreted",
+    }
+
+
 def _schema_inheritance(references: list[dict]) -> dict:
     """Summarize direct resolved base relationships without flattening fields."""
     bases = [reference for reference in references
@@ -803,6 +839,7 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                 "schema_references": references,
                 "schema_inheritance": _schema_inheritance(references),
                 "schema_effective_members": effective_members,
+                "schema_derivation_contract": _schema_derivation_contract(child),
                 "grammar_row_count": len(grammar_rows),
                 "native_mapping_status": "deprecated_migration" if direct else "unproven",
                 "disposition": {
@@ -897,6 +934,14 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                 row.get("schema_effective_members", {}).get("member_count", 0)
                 for row in rows
             ),
+            "schema_derivation_rows": sum(
+                row.get("schema_derivation_contract", {}).get("derivation_count", 0)
+                for row in rows
+            ),
+            "schema_restriction_facet_rows": sum(
+                row.get("schema_derivation_contract", {}).get("facet_count", 0)
+                for row in rows
+            ),
             "schema_shape_contract": {
                 "status": "structural source witness only",
                 "preserves": [
@@ -905,10 +950,12 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                     "base/ref/extension/restriction relationships",
                     "resolved local QName references and direct base targets",
                     "structural inherited member rows with cardinality metadata",
+                    "extension/restriction and facet rows",
                     "cardinality and attribute-use metadata",
                 ],
                 "does_not_infer": [
                     "effective inherited field flattening",
+                    "restriction/extension override validity",
                     "native representability",
                     "converter support",
                     "runtime equivalence",
