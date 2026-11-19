@@ -1,0 +1,70 @@
+{
+  "format": "scap-ng-tools/issue83-source-correction-replay/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "correction_pr": 5,
+    "correction_commit": "cc3be23f51913561c96aacaf36f4838a78100cdf",
+    "base_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "files": [
+      {
+        "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_lockoutpolicy_test.xml",
+        "definition_id": "oval:org.mitre.oval.test:def:705",
+        "test_ids": ["oval:org.mitre.oval.test:tst:1268"],
+        "base_sha256": "30818be7d856dde1975e451858029e8de8deeb53c370dc979581256995681ade",
+        "corrected_sha256": "b15763af6a01f5340448d5a9ef22b44ca691ecca62d52cd96d14abbcb454c1cf",
+        "correction": "force_logoff -1 -> 0; preserve nonnegative lockout bounds"
+      },
+      {
+        "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+        "definition_id": "oval:org.mitre.oval.test:def:998",
+        "test_ids": [
+          "oval:mil.niwc.winpassword.test:tst:10",
+          "oval:mil.niwc.winpassword.test:tst:20",
+          "oval:mil.niwc.winpassword.test:tst:30",
+          "oval:mil.niwc.winpassword.test:tst:40",
+          "oval:mil.niwc.winpassword.test:tst:50",
+          "oval:mil.niwc.winpassword.test:tst:60",
+          "oval:mil.niwc.winpassword.test:tst:70"
+        ],
+        "base_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+        "corrected_sha256": "ea4162e67b683e7a8d85c4b06a65e86b56156f0044d7da36549f26976748d54a",
+        "correction": "max_passwd_age -1 -> 0; retain the source-authored nonnegative age contract"
+      }
+    ]
+  },
+  "converter": {
+    "repository": "vanderpol/scap-ng-tools",
+    "commit": "c6132809220f4214ba5b4842797a2b7fd0125df8",
+    "entrypoint": "scap_ng_tools.converter.direct04",
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "canonical_schema_aggregate_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f"
+  },
+  "cases": [
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:705",
+      "base_status": "blocked",
+      "base_failure_class": "source_typed_literal_invalid",
+      "corrected_status": "CONVERTED_UNVERIFIED",
+      "corrected_schema_validated": true,
+      "corrected_assessment_sha256": "13eef4c7f917a598a1af3ccd7461ab51ebb548f0a6d9ae379601eb398d6b64ce",
+      "corrected_trace_sha256": "b96abc16f20b3e0c61008aa5f8b75ad1a495b1051887547d59ea1e8a9de05dc2",
+      "test_count": 1
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:998",
+      "base_status": "blocked",
+      "base_failure_class": "source_typed_literal_invalid",
+      "corrected_status": "CONVERTED_UNVERIFIED",
+      "corrected_schema_validated": true,
+      "corrected_assessment_sha256": "6eb53450b651214224532eeafe060e7964e232c78705e4f615e87b9d5c1f76a2",
+      "corrected_trace_sha256": "217795a571fff547dc5d1dcd12f96c62647f2b57fee89c46a12caca14b0815ac",
+      "test_count": 7
+    }
+  ],
+  "qualification": {
+    "source_execution": "not_run",
+    "native_runtime_execution": "not_run",
+    "independent_oval_equivalence": "not_proved",
+    "transition_interpretation": "Both source-typed-literal conversion holds are removed by the proposed content correction; this does not prove Windows runtime or compliance equivalence."
+  }
+}

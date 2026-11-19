@@ -84,6 +84,19 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertFalse(receipt["qualification"]["runtime_execution"])
         self.assertFalse(receipt["qualification"]["independent_oval_equivalence"])
 
+    def test_windows_policy_pr5_replay_proves_source_hold_recovery(self):
+        receipt = self.load("windows-policy-pr5-replay-20261119.json")
+        self.assertEqual(receipt["source"]["correction_pr"], 5)
+        self.assertEqual(len(receipt["cases"]), 2)
+        for case in receipt["cases"]:
+            self.assertEqual(case["base_status"], "blocked")
+            self.assertEqual(case["base_failure_class"], "source_typed_literal_invalid")
+            self.assertEqual(case["corrected_status"], "CONVERTED_UNVERIFIED")
+            self.assertTrue(case["corrected_schema_validated"])
+            self.assertRegex(case["corrected_assessment_sha256"], HEX64)
+            self.assertRegex(case["corrected_trace_sha256"], HEX64)
+        self.assertEqual(receipt["qualification"]["independent_oval_equivalence"], "not_proved")
+
     def test_windows_update_pr13_receipt_has_verified_source_identity(self):
         receipt = self.load("windows-wuaupdatesearcher-variable-followup.json")
         source = receipt["source"]
