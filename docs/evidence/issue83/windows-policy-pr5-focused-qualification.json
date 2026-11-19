@@ -1,0 +1,81 @@
+{
+  "format": "scap-ng-tools/issue83-source-correction-focused/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "pull_request": 5,
+    "base_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "corrected_commit": "cc3be23f51913561c96aacaf36f4838a78100cdf",
+    "files": [
+      {
+        "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_lockoutpolicy_test.xml",
+        "definition_id": "oval:org.mitre.oval.test:def:705",
+        "test_ids": ["oval:org.mitre.oval.test:tst:1268"],
+        "state_ids": ["oval:org.mitre.oval.test:ste:1077"],
+        "base_sha256": "30818be7d856dde1975e451858029e8de8deeb53c370dc979581256995681ade",
+        "corrected_sha256": "b15763af6a01f5340448d5a9ef22b44ca691ecca62d52cd96d14abbcb454c1cf",
+        "correction": "force_logoff -1 -> 0; correct lockoupolicy spelling in authored comments."
+      },
+      {
+        "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+        "definition_id": "oval:org.mitre.oval.test:def:998",
+        "test_ids": [
+          "oval:mil.niwc.winpassword.test:tst:10",
+          "oval:mil.niwc.winpassword.test:tst:20",
+          "oval:mil.niwc.winpassword.test:tst:30",
+          "oval:mil.niwc.winpassword.test:tst:40",
+          "oval:mil.niwc.winpassword.test:tst:50",
+          "oval:mil.niwc.winpassword.test:tst:60",
+          "oval:mil.niwc.winpassword.test:tst:70"
+        ],
+        "state_ids": [
+          "oval:mil.niwc.winpassword.test:ste:10",
+          "oval:mil.niwc.winpassword.test:ste:20",
+          "oval:mil.niwc.winpassword.test:ste:30",
+          "oval:mil.niwc.winpassword.test:ste:40",
+          "oval:mil.niwc.winpassword.test:ste:50",
+          "oval:mil.niwc.winpassword.test:ste:60",
+          "oval:mil.niwc.winpassword.test:ste:70"
+        ],
+        "base_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+        "corrected_sha256": "ea4162e67b683e7a8d85c4b06a65e86b56156f0044d7da36549f26976748d54a",
+        "correction": "max_passwd_age -1 -> 0; no 86400 threshold was introduced."
+      }
+    ],
+    "classification": "source_typed_literal_invalid",
+    "source_commit_fetch_verified": true,
+    "interpretation": "The pinned OVAL 5.12.3 Schematron rejects the negative int literals. The source correction uses the broad schema-valid lower bound 0; it does not impose a one-day policy threshold."
+  },
+  "conversion": {
+    "converter": "scap_ng_tools.converter.direct04",
+    "converter_commit": "35f47240dab47931e3d77818b1a8f80b2cc26c91",
+    "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "flat_schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "cases": [
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:705",
+        "base_status": "blocked",
+        "base_diagnostic": "policy source literal must be nonnegative",
+        "corrected_status": "CONVERTED_UNVERIFIED",
+        "corrected_schema_validated": true,
+        "corrected_assessment_sha256": "13eef4c7f917a598a1af3ccd7461ab51ebb548f0a6d9ae379601eb398d6b64ce"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:998",
+        "base_status": "blocked",
+        "base_diagnostic": "policy source literal must be nonnegative",
+        "corrected_status": "CONVERTED_UNVERIFIED",
+        "corrected_schema_validated": true,
+        "corrected_assessment_sha256": "6eb53450b651214224532eeafe060e7964e232c78705e4f615e87b9d5c1f76a2"
+      }
+    ],
+    "independent_runtime_equivalence": "not_proved",
+    "host_qualification": "not_run"
+  },
+  "reproduction": {
+    "evidence_root": "<fresh-external-temp-directory>",
+    "generated_evidence_commit": "not committed; compact hashes only",
+    "source_fetch_template": "curl -fsSL https://raw.githubusercontent.com/OVAL-Community/SCAP-Self-Assertion/<source-commit>/<source-path>",
+    "converter_command_template": "PYTHONPATH=src python -m scap_ng_tools.converter.direct04 --schema-root <canonical-0.4.1-schema> --source <source-file> --sha256 <source-sha256> --oval-definition <definition-id> --source-commit <source-commit> --source-path <source-path> --output <new-output-directory>"
+  }
+}
