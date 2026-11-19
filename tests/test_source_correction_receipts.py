@@ -46,6 +46,20 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_macos_environmentvariable_pr6_receipt_records_type_recovery(self):
+        receipt = self.load("macos-environmentvariable-pr6-focused-qualification.json")
+        source = receipt["source"]
+        conversion = receipt["conversion"]
+        self.assertEqual(source["pull_request"], 6)
+        self.assertEqual(source["definition_id"], "oval:navy.navwar.niwcatlantic.scc.test:def:1")
+        self.assertEqual(source["affected_variable"], "oval:navy.navwar.niwcatlantic.scc.test:var:2")
+        self.assertTrue(source["source_commit_blob_verified"])
+        self.assertEqual(conversion["base_status"], "blocked")
+        self.assertEqual(conversion["base_diagnostic"], "Variable cast outside bounded proof")
+        self.assertEqual(conversion["corrected_status"], "CONVERTED_UNVERIFIED")
+        self.assertTrue(conversion["corrected_schema_validated"])
+        self.assertRegex(conversion["corrected_assessment_sha256"], HEX64)
+
     def test_sshd_pr17_receipt_records_recovered_source_test(self):
         receipt = self.load("sshd-pr17-focused-qualification.json")
         source = receipt["source"]
