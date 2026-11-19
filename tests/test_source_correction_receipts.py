@@ -54,7 +54,8 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertEqual(source["classification"], "source_typed_literal_invalid")
         self.assertTrue(source["source_commit_fetch_verified"])
         self.assertIn("0", source["files"][1]["correction"])
-        self.assertNotIn("86400", source["files"][1]["correction"])
+        self.assertEqual(source["files"][1]["correction"].split(";")[0], "max_passwd_age -1 -> 0")
+        self.assertIn("broad schema-valid lower bound 0", source["interpretation"])
         self.assertEqual(len(source["files"]), 2)
         self.assertEqual(len(conversion["cases"]), 2)
         for case in conversion["cases"]:
