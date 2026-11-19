@@ -53,7 +53,8 @@ class SourceDocument:
 
 class WitnessBuilder:
     def __init__(self, source_root: Path, schema_root: Path, *, output: Path | None,
-                 write_witnesses: bool, max_tests: int):
+                 write_witnesses: bool, max_tests: int, source_commit: str | None = None,
+                 schema_commit: str | None = None):
         try:
             from lxml import etree
         except ImportError as error:  # pragma: no cover - environment gated
@@ -64,6 +65,16 @@ class WitnessBuilder:
         self.output = output
         self.write_witnesses = write_witnesses
         self.max_tests = max_tests
+        self.source_commit = source_commit
+        self.schema_commit = schema_commit
+        manifest = [{
+            "file": path.relative_to(schema_root).as_posix(),
+            "sha256": digest(path.read_bytes()),
+            "bytes": path.stat().st_size,
+        } for path in sorted(schema_root.rglob("*.xsd"))]
+        self.schema_manifest_files = len(manifest)
+        self.schema_manifest_sha256 = digest(
+            json.dumps(manifest, sort_keys=True, separators=(",", ":")).encode("utf-8"))
         self.documents: list[SourceDocument] = []
         self.by_ref: dict[tuple[str, str], list[tuple[int, object]]] = {}
         self._load_documents()
@@ -303,7 +314,11 @@ class WitnessBuilder:
         summary = {
             "format": "scap-ng-tools/issue83-source-witnesses/1",
             "source_root": str(self.source_root),
+            "source_commit": self.source_commit,
             "schema_root": str(self.schema_root),
+            "schema_commit": self.schema_commit,
+            "schema_manifest_files": self.schema_manifest_files,
+            "schema_manifest_sha256": self.schema_manifest_sha256,
             "source_documents": len(self.documents),
             "tests_considered": len(tests),
             "positive_source_witnesses": sum(row["validation"]["positive_source_witness"] for row in rows),
@@ -320,6 +335,8 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-root", type=Path, required=True)
     parser.add_argument("--schema-root", type=Path, required=True)
+    parser.add_argument("--source-commit")
+    parser.add_argument("--schema-commit")
     parser.add_argument("--max-tests", type=int, default=256)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--write-witnesses", action="store_true")
@@ -328,7 +345,8 @@ def main(argv=None) -> int:
         parser.error("--max-tests must be positive")
     result = WitnessBuilder(args.source_root, args.schema_root, output=args.output,
                              write_witnesses=args.write_witnesses,
-                             max_tests=args.max_tests).build()
+                             max_tests=args.max_tests, source_commit=args.source_commit,
+                             schema_commit=args.schema_commit).build()
     args.output.mkdir(parents=True, exist_ok=True)
     path = args.output / "receipt.json"
     path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
