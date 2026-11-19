@@ -132,6 +132,30 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         self.assertEqual(native['requires'], [{'any_of': ['rule-b', 'rule-c']}])
         self.assertEqual(native['conflicts'], ['rule-d'])
 
+    def test_manual_rule_renderer_emits_the_same_relationship_contract(self):
+        from v04_direct_scap_source import OCIL
+        from scap_ng_tools.converter.manual04 import manual_rule
+        rule = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}" id="manual-a"><version>1</version>'
+            '<title>Manual relationship witness</title>'
+            '<requires idref="rule-b rule-c"/><conflicts idref="rule-d"/>'
+            f'<check system="{OCIL}" selector="manual"><check-content>Do it.</check-content></check>'
+            '</Rule>')
+        target_nodes = {'manual-a': rule,
+                        'rule-b': ET.Element(f'{{{crosswalk.XCCDF}}}Rule'),
+                        'rule-c': ET.Element(f'{{{crosswalk.XCCDF}}}Rule'),
+                        'rule-d': ET.Element(f'{{{crosswalk.XCCDF}}}Rule')}
+        source = type('Source', (), {
+            'nodes': {'benchmark': target_nodes}, 'benchmark_component': 'benchmark',
+            'catalog': {}, 'components': {},
+        })()
+        documents, _binding = manual_rule(
+            source, rule, title='Manual relationship witness',
+            rule_id='manual-rule', assessment_id='manual-assessment')
+        native = documents['authoring/direct-slice/rules/manual-rule.json']['rule']
+        self.assertEqual(native['requires'], [{'any_of': ['rule-b', 'rule-c']}])
+        self.assertEqual(native['conflicts'], ['rule-d'])
+
     def test_relationship_helper_preserves_order_and_empty_elements(self):
         from v04_source_metadata import source_description_text, source_relationships, validate_relationship_targets
         rule = ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}" id="r"><requires idref=" a  b "/><conflicts idref="c"/></Rule>')
