@@ -30,6 +30,20 @@ class Issue83SourceWitnessTests(unittest.TestCase):
         self.assertEqual(witnesses.local(comment.tag), "")
         self.assertEqual(witnesses.local("{urn:test}field"), "field")
 
+    def test_safe_clone_preserves_core_filter_namespace_under_platform_parent(self):
+        builder = object.__new__(witnesses.WitnessBuilder)
+        builder.etree = etree
+        source = etree.fromstring(
+            '<object xmlns="urn:platform" xmlns:oval-def="' + witnesses.OVAL +
+            '"><oval-def:filter>state-1</oval-def:filter></object>')
+        root = builder._new_root()
+        container = etree.SubElement(root, "{%s}objects" % witnesses.OVAL)
+        container.append(builder._safe_clone(source))
+        reparsed = etree.fromstring(etree.tostring(root))
+        filter_node = next(node for node in reparsed.iter()
+                           if etree.QName(node).localname == "filter")
+        self.assertEqual(etree.QName(filter_node).namespace, witnesses.OVAL)
+
 
 if __name__ == "__main__":
     unittest.main()

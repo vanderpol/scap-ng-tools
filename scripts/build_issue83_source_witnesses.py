@@ -198,9 +198,25 @@ class WitnessBuilder:
         visit("test", identifier, test)
         return order, unresolved, resolutions
 
+    def _safe_clone(self, node):
+        """Clone source nodes with explicit prefixes across default-namespace parents."""
+        if not isinstance(node.tag, str):
+            return deepcopy(node)
+        namespace = self.etree.QName(node).namespace
+        nsmap = {"oval-def": OVAL, "oval": COMMON, "xsi": XSI}
+        if namespace and namespace not in nsmap.values():
+            nsmap["src"] = namespace
+        clone = self.etree.Element(node.tag, nsmap=nsmap,
+                                   attrib=dict(node.attrib))
+        clone.text = node.text
+        clone.tail = node.tail
+        for child in node:
+            clone.append(self._safe_clone(child))
+        return clone
+
     def _new_root(self):
         return self.etree.Element(f"{{{OVAL}}}oval_definitions",
-                                  nsmap={None: OVAL, "oval": COMMON, "xsi": XSI})
+                                  nsmap={None: OVAL, "oval": COMMON, "oval-def": OVAL, "xsi": XSI})
 
     def _witness(self, test, source_index: int, witness_id: str):
         order, unresolved, resolutions = self._closure(test, source_index)
@@ -226,7 +242,7 @@ class WitnessBuilder:
                 continue
             container = self.etree.SubElement(root, f"{{{OVAL}}}{container_name}")
             for node in order[role]:
-                container.append(deepcopy(node))
+                container.append(self._safe_clone(node))
         return root, unresolved, resolutions
 
     def _references_valid(self, root) -> tuple[bool, list[dict]]:
