@@ -87,7 +87,8 @@
     "ios.global",
     "ios.line",
     "iosxe.section",
-    "iosxe.bgpneighbor"
+    "iosxe.bgpneighbor",
+    "ios.snmpcommunity"
   ],
   "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages.",
   "deprecated_source_tests": [

@@ -626,6 +626,6 @@
   "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
   "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
   "schema_version": "0.4.1",
-  "semantic_pack_sha256": "762177517baf4daf2d7e2f6f7adb7704551c9a10e6a0dfcd7f1a32738c581705",
+  "semantic_pack_sha256": "da7f6c265756e5795b7056fa862dd0fd50418ffb212135fb24c1f1528a91710f",
   "single_version": true
 }
