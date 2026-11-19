@@ -117,6 +117,18 @@ def build(args: argparse.Namespace) -> tuple[dict, str]:
         },
         "source_overlay": {
             "construction": "Synthetic local commit built from the pinned base with the listed upstream correction blobs; it is not a pushed upstream merge.",
+            "baseline_denominator": {"definitions": 168, "tests": 803},
+            "active_denominator": {"definitions": len(definitions), "tests": len(tests)},
+            "removed_by_correction": {
+                "definitions": 3,
+                "tests": 13,
+                "dispositions": [
+                    {"pr": 15, "reason": "deprecated Solaris package capabilities", "definitions": 2, "tests": 9},
+                    {"pr": 21, "reason": "deprecated Junos xml_config_test", "definitions": 1, "tests": 1},
+                    {"pr": 11, "reason": "deprecated Windows registry group behavior", "definitions": 0, "tests": 2, "test_ids": ["oval:org.mitre.oval.test:tst:1141", "oval:org.mitre.oval.test:tst:1474"]},
+                    {"pr": 16, "reason": "deprecated OVAL upward recursion", "definitions": 0, "tests": 1, "test_ids": ["oval:org.mitre.oval.test:tst:466"]},
+                ],
+            },
             "correction_commits": {
                 "5": "cc3be23f51913561c96aacaf36f4838a78100cdf",
                 "6": "33c6ad2bb254f2c60274a19891a9f9973f985e76",
@@ -174,6 +186,7 @@ def build(args: argparse.Namespace) -> tuple[dict, str]:
              "## Summary", "", "| Record | Total | Converted | Blocked |", "|---|---:|---:|---:|",
              f"| Definitions | {len(definitions)} | {result['summary']['converted_definitions']} | {len(blocked_definitions)} |",
              f"| Tests | {len(tests)} | {result['summary']['converted_tests']} | {len(blocked_tests)} |", "",
+             "The original pinned source denominator was 168 Definitions / 803 Tests. Source corrections intentionally remove 3 Definitions / 13 Tests: deprecated Solaris package content (PR #15), deprecated Junos XML config (PR #21), two deprecated Windows group behavior Tests (PR #11), and one deprecated upward-recursion Test (PR #16). These are dispositioned removals, not conversion successes.", "",
              "## Platform outcomes", "", "| Platform | Definitions | Tests |", "|---|---|---|"]
     for name in sorted(set(result["by_platform"]["definitions"]) | set(result["by_platform"]["tests"])):
         lines.append(f"| {name} | `{result['by_platform']['definitions'].get(name, {})}` | `{result['by_platform']['tests'].get(name, {})}` |")

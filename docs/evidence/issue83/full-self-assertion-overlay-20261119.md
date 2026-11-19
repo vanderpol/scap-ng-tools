@@ -12,6 +12,8 @@ This is schema admission/conversion evidence only; execution and independent OVA
 | Definitions | 165 | 160 | 5 |
 | Tests | 790 | 728 | 62 |
 
+The original pinned source denominator was 168 Definitions / 803 Tests. Source corrections intentionally remove 3 Definitions / 13 Tests: deprecated Solaris package content (PR #15), deprecated Junos XML config (PR #21), two deprecated Windows group behavior Tests (PR #11), and one deprecated upward-recursion Test (PR #16). These are dispositioned removals, not conversion successes.
+
 ## Platform outcomes
 
 | Platform | Definitions | Tests |

@@ -838,6 +838,14 @@
     "verifier": "PYTHONPATH=src .venv/bin/python scripts/build_issue83_overlay_receipt.py ..."
   },
   "source_overlay": {
+    "active_denominator": {
+      "definitions": 165,
+      "tests": 790
+    },
+    "baseline_denominator": {
+      "definitions": 168,
+      "tests": 803
+    },
     "construction": "Synthetic local commit built from the pinned base with the listed upstream correction blobs; it is not a pushed upstream merge.",
     "correction_commits": {
       "10": "8d8f1eb088f15aadf7d28cc6221d2808dc930a7f",
@@ -856,6 +864,43 @@
       "7": "c06d4899af19147a12add8008859a29a1de579e4",
       "8_19": "0a1ee9365aff7962118f316ed9df822217bbf850",
       "9": "e4ebc8722501c9911fc1d6c8682917c4276a3e1b"
+    },
+    "removed_by_correction": {
+      "definitions": 3,
+      "dispositions": [
+        {
+          "definitions": 2,
+          "pr": 15,
+          "reason": "deprecated Solaris package capabilities",
+          "tests": 9
+        },
+        {
+          "definitions": 1,
+          "pr": 21,
+          "reason": "deprecated Junos xml_config_test",
+          "tests": 1
+        },
+        {
+          "definitions": 0,
+          "pr": 11,
+          "reason": "deprecated Windows registry group behavior",
+          "test_ids": [
+            "oval:org.mitre.oval.test:tst:1141",
+            "oval:org.mitre.oval.test:tst:1474"
+          ],
+          "tests": 2
+        },
+        {
+          "definitions": 0,
+          "pr": 16,
+          "reason": "deprecated OVAL upward recursion",
+          "test_ids": [
+            "oval:org.mitre.oval.test:tst:466"
+          ],
+          "tests": 1
+        }
+      ],
+      "tests": 13
     },
     "removed_paths": [
       "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
