@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "iosxe.bgpneighbor mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:org.joval.iosxe.test:def:1",
+  "format": "scap-ng-tools/issue83-iosxe-bgp-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/iosxe-bgp-followup-1795115800",
+    "files": {
+      "assessment.json": {
+        "bytes": 906,
+        "sha256": "1dfd555dd01a387479917ebee138cbefca02ed5d1987b5cec0116730db85bfbd"
+      },
+      "assessment.yaml": {
+        "bytes": 678,
+        "sha256": "5faf8d723b0559b2231986d60650f1461bc7e55ecc56c80d379ff031b9df177f"
+      },
+      "conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "c4649206c53d0ba7d27d8bb6e9f9f3622eaf48946f41bd12f409a714fb3facd9"
+      },
+      "source-trace.json": {
+        "bytes": 2491,
+        "sha256": "3df6a009510b34b43dfd0daf4bd93e3e5ab611fb286a0c8e9fe0d11b260d61ee"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "c31b57946ebf016463c48ce6ee2a08c72e51b9b0",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "762177517baf4daf2d7e2f6f7adb7704551c9a10e6a0dfcd7f1a32738c581705",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "iosxe/iosxe-def_bgpneighbor_test.xml",
+  "source_sha256": "e5bad91d3d8403ab9e8980015e7923c3070df8500cd3077ea969cec9e2df127d",
+  "tests": 1
+}
