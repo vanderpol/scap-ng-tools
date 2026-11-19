@@ -264,6 +264,10 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertEqual(conversion["corrected_status"], "CONVERTED_UNVERIFIED")
         self.assertTrue(conversion["corrected_schema_validated"])
         self.assertRegex(conversion["corrected_assessment_sha256"], HEX64)
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["base_returncode"], 1)
+        self.assertEqual(conversion["corrected_returncode"], 0)
+        self.assertRegex(conversion["corrected_source_trace_sha256"], HEX64)
 
     def test_password_pr18_receipt_is_replayed_at_current_head(self):
         receipt = self.load("password-pr18-focused-qualification.json")
