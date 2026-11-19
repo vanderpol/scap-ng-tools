@@ -46,6 +46,20 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_unix_upward_recursion_pr16_stays_deprecated(self):
+        receipt = self.load("unix-upward-recursion-pr16-focused-qualification.json")
+        source = receipt["source"]
+        conversion = receipt["conversion"]
+        self.assertEqual(source["pull_request"], 16)
+        self.assertEqual(source["removed_test_id"], "oval:org.mitre.oval.test:tst:466")
+        self.assertEqual(source["classification"], "deprecated_source_construct")
+        self.assertTrue(source["source_commit_blob_verified"])
+        self.assertEqual(conversion["base_status"], "blocked")
+        self.assertEqual(conversion["corrected_status"], "CONVERTED_UNVERIFIED")
+        self.assertTrue(conversion["corrected_schema_validated"])
+        self.assertTrue(conversion["downward_recursion_preserved"])
+        self.assertFalse(conversion["upward_recursion_enabled"])
+
     def test_agnostic_external_float_pr14_preserves_input_hold(self):
         receipt = self.load("agnostic-external-float-pr14-focused-qualification.json")
         source = receipt["source"]
