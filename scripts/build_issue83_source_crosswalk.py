@@ -1087,6 +1087,52 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
 
 
 
+def _oval_content_references(element: ET.Element) -> list[dict]:
+    """Record authored OVAL graph references and Boolean controls."""
+    rows = []
+    ref_attributes = {
+        "object_ref", "state_ref", "var_ref", "variable_ref",
+        "definition_ref", "extend_definition_ref", "test_ref",
+    }
+
+    def walk(node: ET.Element, path: tuple[tuple[str, int], ...]) -> None:
+        kind = local_name(node.tag)
+        for attribute, value in sorted(node.attrib.items()):
+            local = attribute.rsplit("}", 1)[-1]
+            if local not in ref_attributes:
+                continue
+            rows.append({
+                "source_path": _schema_source_path(path),
+                "source_kind": kind,
+                "reference_kind": local,
+                "value": value,
+            })
+        if kind == "filter" and (node.text or "").strip():
+            rows.append({
+                "source_path": _schema_source_path(path),
+                "source_kind": kind,
+                "reference_kind": "filter_state_ref",
+                "value": (node.text or "").strip(),
+            })
+        controls = {
+            name: value for name, value in sorted(node.attrib.items())
+            if name in {"check", "check_existence", "state_operator", "var_check",
+                        "negate", "operator"}
+        }
+        if controls:
+            rows.append({
+                "source_path": _schema_source_path(path),
+                "source_kind": kind,
+                "reference_kind": "boolean_control",
+                "controls": controls,
+            })
+        for index, child in enumerate(node):
+            walk(child, (*path, (local_name(child.tag), index)))
+
+    walk(element, ((local_name(element.tag), 0),))
+    return rows
+
+
 def oval_content_inventory(root: Path, source_commit: str) -> dict:
     """Inventory source Definitions and Tests without converting or evaluating.
 
@@ -1100,6 +1146,8 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
     definitions = []
     tests = []
     variables = []
+    object_components = []
+    state_components = []
     files = []
     feature_counts = Counter()
     test_tag_counts = Counter()
@@ -1107,6 +1155,8 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
     definition_class_counts = Counter()
     attribute_counts = Counter()
     variable_child_counts = Counter()
+    reference_kind_counts = Counter()
+    boolean_control_counts = Counter()
     def record_document(document, relative, file_sha256, member_sha256=None):
         if local_name(document.tag) != "oval_definitions":
             return
@@ -1129,12 +1179,40 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
                     "source_id": identifier,
                     "source_element_sha256": identity_digest(element),
                     "definition_class": element.get("class", ""),
+                    "source_references": _oval_content_references(element),
                 }
                 if member_sha256:
                     row["source_member_sha256"] = member_sha256
                 definitions.append(row)
+                reference_kind_counts.update(
+                    reference["reference_kind"] for reference in row["source_references"]
+                    if reference["reference_kind"] != "boolean_control")
+                boolean_control_counts.update(
+                    name for reference in row["source_references"]
+                    if reference["reference_kind"] == "boolean_control"
+                    for name in reference["controls"])
                 file_record["definitions"] += 1
                 definition_class_counts[row["definition_class"]] += 1
+                continue
+            if identifier and (kind.endswith("_object") or kind.endswith("_state")):
+                row = {
+                    "source_file": relative,
+                    "source_file_sha256": file_sha256,
+                    "source_id": identifier,
+                    "source_element_sha256": identity_digest(element),
+                    "source_component_tag": kind,
+                    "source_references": _oval_content_references(element),
+                }
+                if member_sha256:
+                    row["source_member_sha256"] = member_sha256
+                (object_components if kind.endswith("_object") else state_components).append(row)
+                reference_kind_counts.update(
+                    reference["reference_kind"] for reference in row["source_references"]
+                    if reference["reference_kind"] != "boolean_control")
+                boolean_control_counts.update(
+                    name for reference in row["source_references"]
+                    if reference["reference_kind"] == "boolean_control"
+                    for name in reference["controls"])
                 continue
             if identifier and kind.endswith("_variable"):
                 child_tags = sorted(local_name(node.tag) for node in element)
@@ -1153,10 +1231,18 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
                         child.get("operation", "") for child in element.iter()
                         if local_name(child.tag) == "restriction"
                     }),
+                    "source_references": _oval_content_references(element),
                 }
                 if member_sha256:
                     row["source_member_sha256"] = member_sha256
                 variables.append(row)
+                reference_kind_counts.update(
+                    reference["reference_kind"] for reference in row["source_references"]
+                    if reference["reference_kind"] != "boolean_control")
+                boolean_control_counts.update(
+                    name for reference in row["source_references"]
+                    if reference["reference_kind"] == "boolean_control"
+                    for name in reference["controls"])
                 variable_tag_counts[kind] += 1
                 variable_child_counts.update(child_tags)
             if not (identifier and kind.endswith("_test")):
@@ -1173,10 +1259,18 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
                 "source_test_tag": kind,
                 "attributes": authored_attributes,
                 "feature_tags": sorted({local_name(node.tag) for node in element.iter()}),
+                "source_references": _oval_content_references(element),
             }
             if member_sha256:
                 row["source_member_sha256"] = member_sha256
             tests.append(row)
+            reference_kind_counts.update(
+                reference["reference_kind"] for reference in row["source_references"]
+                if reference["reference_kind"] != "boolean_control")
+            boolean_control_counts.update(
+                name for reference in row["source_references"]
+                if reference["reference_kind"] == "boolean_control"
+                for name in reference["controls"])
             file_record["tests"] += 1
             test_tag_counts[kind] += 1
             for name in authored_attributes:
@@ -1210,6 +1304,8 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
     definitions.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
     tests.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
     variables.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
+    object_components.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
+    state_components.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
     files.sort(key=lambda row: row["source_file"])
     return {
         "format": "scap-ng-tools/issue83-oval-content-inventory/1",
@@ -1225,17 +1321,23 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
             "definitions": len(definitions),
             "tests": len(tests),
             "variables": len(variables),
+            "object_components": len(object_components),
+            "state_components": len(state_components),
             "definition_classes": dict(sorted(definition_class_counts.items())),
             "test_tags": dict(sorted(test_tag_counts.items())),
             "variable_tags": dict(sorted(variable_tag_counts.items())),
             "authored_test_attributes": dict(sorted(attribute_counts.items())),
             "variable_child_tags": dict(sorted(variable_child_counts.items())),
             "feature_tags": dict(sorted(feature_counts.items())),
+            "source_reference_kinds": dict(sorted(reference_kind_counts.items())),
+            "boolean_control_attributes": dict(sorted(boolean_control_counts.items())),
         },
         "files": files,
         "definitions": definitions,
         "tests": tests,
         "variables": variables,
+        "objects": object_components,
+        "states": state_components,
         "qualification": {
             "conversion": "not_run",
             "execution": "not_run",

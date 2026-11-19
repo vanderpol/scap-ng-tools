@@ -1,0 +1,40 @@
+{
+  "format": "scap-ng-tools/issue83-oval-content-graph/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "path": "SCAP_1.4/OVAL_Test_Content",
+    "source_documents": 145
+  },
+  "inventory": {
+    "definitions": 168,
+    "tests": 803,
+    "variables": 267,
+    "object_components": 643,
+    "state_components": 611,
+    "source_reference_kinds": {
+      "definition_ref": 10,
+      "filter_state_ref": 17,
+      "object_ref": 820,
+      "state_ref": 733,
+      "test_ref": 853,
+      "var_ref": 169
+    },
+    "boolean_control_attributes": {
+      "check": 803,
+      "check_existence": 795,
+      "negate": 98,
+      "operator": 185,
+      "state_operator": 7,
+      "var_check": 121
+    }
+  },
+  "disposition": {
+    "source_identity": "preserved",
+    "expected_outcomes": "not_inferred",
+    "conversion": "not_run",
+    "execution": "not_run",
+    "independent_equivalence": "not_proved"
+  },
+  "receipt_sha256": "f3b0b0fd1c94daf5e0f2f6495ab070d063b5051511d515d5b3ac85b4d05d1da5"
+}

@@ -350,9 +350,13 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
               <oval:possible_restriction><oval:restriction operation=\"pattern match\">^x$</oval:restriction></oval:possible_restriction>
             </oval:external_variable>
           </oval:variables>
+          <oval:objects><ind:variable_object id=\"oval:test:obj:1\">
+            <oval-def:filter xmlns:oval-def=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\">oval:test:ste:1</oval-def:filter>
+          </ind:variable_object></oval:objects>
+          <oval:states><ind:variable_state id=\"oval:test:ste:1\"/></oval:states>
           <oval:tests>
             <ind:variable_test id=\"oval:test:tst:1\" check=\"at least one\"
-                check_existence=\"all_exist\" var_check=\"all\"/>
+                check_existence=\"all_exist\" var_check=\"all\" object_ref=\"oval:test:obj:1\"/>
           </oval:tests>
         </oval:oval_definitions>""".encode()
         with tempfile.TemporaryDirectory() as temporary:
@@ -369,6 +373,8 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(report["summary"]["definitions"], 1)
         self.assertEqual(report["summary"]["tests"], 1)
         self.assertEqual(report["summary"]["variables"], 1)
+        self.assertEqual(report["summary"]["object_components"], 1)
+        self.assertEqual(report["summary"]["state_components"], 1)
         self.assertEqual(report["summary"]["test_tags"], {"variable_test": 1})
         self.assertEqual(report["summary"]["variable_tags"], {"external_variable": 1})
         self.assertEqual(report["summary"]["variable_child_tags"], {"possible_restriction": 1})
@@ -379,6 +385,16 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         test = report["tests"][0]
         self.assertEqual(definition["source_id"], "oval:test:def:1")
         self.assertEqual(test["source_id"], "oval:test:tst:1")
+        self.assertEqual({reference["reference_kind"] for reference in test["source_references"]},
+                         {"boolean_control", "object_ref"})
+        controls = next(reference for reference in test["source_references"]
+                        if reference["reference_kind"] == "boolean_control")
+        self.assertEqual(controls["controls"]["check"], "at least one")
+        object_row = report["objects"][0]
+        self.assertEqual(object_row["source_references"][0]["reference_kind"],
+                         "filter_state_ref")
+        self.assertEqual(object_row["source_references"][0]["value"],
+                         "oval:test:ste:1")
         self.assertEqual(len(definition["source_file_sha256"]), 64)
         self.assertEqual(len(test["source_element_sha256"]), 64)
         self.assertEqual(report["qualification"]["expected_outcomes"], "not_inferred")
