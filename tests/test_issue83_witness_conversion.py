@@ -38,6 +38,12 @@ class Issue83WitnessConversionTests(unittest.TestCase):
         self.assertEqual(qualification.classify("unsupported recursion direction"),
                          "converter_unsupported_source")
 
+    def test_traversal_schema_hold_is_canonical_not_converter_failure(self):
+        self.assertEqual(
+            qualification.classify(
+                "generated authoring failed flat JSON Schema: traversal max_depth"),
+            "canonical_traversal_schema_hold")
+
     def test_unknown_failure_remains_converter_failure(self):
         self.assertEqual(qualification.classify("unexpected internal diagnostic"),
                          "converter_failure")

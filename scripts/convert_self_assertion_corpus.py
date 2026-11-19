@@ -243,6 +243,8 @@ def classify_failure(stderr: str, stdout: str, *, source_mismatches: list[dict[s
         return "source_invalid_var_ref_datatype"
     if "invalid int literal" in message or "policy source literal must be nonnegative" in message:
         return "source_typed_literal_invalid"
+    if "traversal" in message and ("schema" in message or "validation" in message):
+        return "canonical_traversal_schema_hold"
     if any(token in message for token in ("unsupported", "held", "not migrated")):
         return "unsupported"
     if "schema" in message or "validation" in message:

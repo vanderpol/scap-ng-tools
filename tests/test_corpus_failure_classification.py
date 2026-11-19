@@ -51,6 +51,12 @@ class CorpusFailureClassificationTests(unittest.TestCase):
                                      source_mismatches=mismatches),
             'deprecated_source_construct')
 
+    def test_traversal_schema_hold_is_distinct_from_generic_validation(self):
+        self.assertEqual(
+            _MODULE.classify_failure(
+                '', "generated authoring failed flat JSON Schema: traversal max_depth"),
+            'canonical_traversal_schema_hold')
+
     def test_unknown_remains_converter_failure(self):
         self.assertEqual(_MODULE.classify_failure('', 'unexpected internal diagnostic'),
                          'converter_failure')

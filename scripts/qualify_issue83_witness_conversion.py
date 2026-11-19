@@ -48,6 +48,8 @@ def classify(message: str) -> str:
         return "deprecated_source_construct"
     if "invalid int literal" in text:
         return "source_typed_literal_invalid"
+    if "traversal" in text and ("schema" in text or "validation" in text):
+        return "canonical_traversal_schema_hold"
     if "unsupported" in text or "held" in text:
         return "converter_unsupported_source"
     if "schema" in text or "validation" in text:
