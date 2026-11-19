@@ -22,6 +22,18 @@ def _tokens(value: str | None) -> list[str]:
     return (value or '').split()
 
 
+def _clause_ids(value: str | None, *, kind: str) -> list[str]:
+    ids = _tokens(value)
+    if not ids:
+        raise ValueError(f'XCCDF {kind} element has no idref')
+    # The canonical Rule any_of contract is uniqueItems.  XCCDF IDREFS is a
+    # lexical list and does not provide that native uniqueness guarantee; do
+    # not silently deduplicate a source relationship while claiming fidelity.
+    if len(ids) != len(set(ids)):
+        raise ValueError(f'XCCDF {kind} idref contains duplicate IDs not representable by canonical any_of')
+    return ids
+
+
 def source_relationships(item: ET.Element) -> dict[str, list]:
     """Return exact XCCDF selectable-item relationships in authored order.
 
@@ -35,9 +47,7 @@ def source_relationships(item: ET.Element) -> dict[str, list]:
     """
     requires = []
     for child in item.findall(f'{{{XCCDF}}}requires'):
-        ids = _tokens(child.get('idref'))
-        if not ids:
-            raise ValueError('XCCDF requires element has no idref')
+        ids = _clause_ids(child.get('idref'), kind='requires')
         requires.append(ids[0] if len(ids) == 1 else {'any_of': ids})
     conflicts = []
     for child in item.findall(f'{{{XCCDF}}}conflicts'):

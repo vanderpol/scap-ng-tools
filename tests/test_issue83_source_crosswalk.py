@@ -76,6 +76,9 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         self.assertEqual(source_relationships(empty), {"requires": [], "conflicts": []})
         with self.assertRaisesRegex(ValueError, "requires element"):
             source_relationships(ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}"><requires/></Rule>'))
+        with self.assertRaisesRegex(ValueError, "duplicate IDs"):
+            source_relationships(ET.fromstring(
+                f'<Rule xmlns="{crosswalk.XCCDF}"><requires idref="a a"/></Rule>'))
         with self.assertRaisesRegex(ValueError, "one idref"):
             source_relationships(ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}"><conflicts idref="a b"/></Rule>'))
 

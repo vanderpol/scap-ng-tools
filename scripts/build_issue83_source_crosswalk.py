@@ -59,6 +59,15 @@ def local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 
 
+def relationship_clause(value: str, *, kind: str, source: str) -> list[str]:
+    ids = value.split()
+    if not ids:
+        raise ValueError(f"empty {kind} idref in {source}")
+    if len(ids) != len(set(ids)):
+        raise ValueError(f"duplicate {kind} idref in {source}; canonical any_of is uniqueItems")
+    return ids
+
+
 def parse_disa_description(description: ET.Element | None) -> tuple[dict[str, str], str]:
     """Parse publisher tags embedded as escaped XML in XCCDF description text.
 
@@ -135,9 +144,7 @@ def archive_record(path: Path) -> dict:
         conflicts_raw = [element.get("idref", "") for element in conflicts_elements]
         requires = []
         for value in requires_raw:
-            ids = value.split()
-            if not ids:
-                raise ValueError(f"empty requires idref in {path.name}:{source_id}")
+            ids = relationship_clause(value, kind="requires", source=f"{path.name}:{source_id}")
             requires.append(ids[0] if len(ids) == 1 else {"any_of": ids})
         conflicts = []
         for value in conflicts_raw:
@@ -177,9 +184,7 @@ def archive_record(path: Path) -> dict:
         conflicts_raw = [element.get("idref", "") for element in conflicts_elements]
         requires = []
         for value in requires_raw:
-            ids = value.split()
-            if not ids:
-                raise ValueError(f"empty Group requires idref in {path.name}:{source_id}")
+            ids = relationship_clause(value, kind="Group requires", source=f"{path.name}:{source_id}")
             requires.append(ids[0] if len(ids) == 1 else {"any_of": ids})
         conflicts = []
         for value in conflicts_raw:
