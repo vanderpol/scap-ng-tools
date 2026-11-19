@@ -32,6 +32,23 @@
       "runtime_qualification": "not_run",
       "source_prefix": "agnostic/oval-def_regex_capture_function.xml",
       "tests_considered": 4
+    },
+    {
+      "blocked": 0,
+      "converted": 5,
+      "receipt": "/tmp/tools-issue83-current-conversion-split-1795107159/receipt.json",
+      "receipt_sha256": "b71794f6bddc6edfc36b55ec851c13769df254a305d2a3bf4eaa057c98ac8920",
+      "source_prefix": "agnostic/oval-def_split_function.xml",
+      "tests_considered": 5
+    },
+    {
+      "blocked": 0,
+      "converted": 20,
+      "receipt": "/tmp/tools-issue83-current-conversion-glob-1795107159/receipt.json",
+      "receipt_sha256": "de85685066796f2d027722631f8a0998da01f9b0915f66705ccaf1e4b6389504",
+      "runtime_qualification": "not_run",
+      "source_prefix": "agnostic/oval-def_globtoregex_test.xml",
+      "tests_considered": 20
     }
   ],
   "format": "scap-ng-tools/issue83-focused-converter-replay/1",

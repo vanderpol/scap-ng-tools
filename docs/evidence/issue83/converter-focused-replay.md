@@ -29,6 +29,13 @@ Pins:
   conversion only; runtime regex qualification remains separate)
   - Receipt: `/tmp/tools-issue83-current-conversion-regex-1795107133/receipt.json`
   - SHA-256: `2691057366984314171722af808de7b233a8d46b68db26240b570a72dc6c3499`
+- `agnostic/oval-def_split_function.xml`: **5/5 converted**
+  - Receipt: `/tmp/tools-issue83-current-conversion-split-1795107159/receipt.json`
+  - SHA-256: `b71794f6bddc6edfc36b55ec851c13769df254a305d2a3bf4eaa057c98ac8920`
+- `agnostic/oval-def_globtoregex_test.xml`: **20/20 converted** (authoring
+  conversion only; runtime regex qualification remains separate)
+  - Receipt: `/tmp/tools-issue83-current-conversion-glob-1795107159/receipt.json`
+  - SHA-256: `de85685066796f2d027722631f8a0998da01f9b0915f66705ccaf1e4b6389504`
 
 All output retains source Test IDs/hashes, witness hashes, source traces and
 conversion-scope hashes. Runtime evaluation and independent OVAL equivalence
