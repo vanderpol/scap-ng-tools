@@ -59,6 +59,23 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
             self.assertRegex(case["corrected_results_sha256"], HEX64)
         self.assertTrue(any("expected outcome" in x.lower() for x in receipt["limitations"]))
 
+    def test_pr20_pr21_focused_receipt_keeps_content_and_canonical_holds_separate(self):
+        receipt = self.load("source-correction-pr20-pr21-focused-20261119.json")
+        self.assertEqual(receipt["pins"]["ios_candidate_source_commit"],
+                         "34d471b20ecf110d19b04396645e891cfb772487")
+        self.assertEqual(receipt["pins"]["junos_candidate_source_commit"],
+                         "9e079baea4432b3babff5429ca726c281872de1f")
+        ios = next(row for row in receipt["source_corrections"] if row["pull_request"] == 20)
+        self.assertEqual(ios["replay"]["baseline_failure_class"], "deprecated_source_construct")
+        self.assertEqual(ios["replay"]["candidate_failure_class"], "unsupported")
+        self.assertEqual(ios["replay"]["candidate_semantic_disposition"], "canonical_capability_gap")
+        self.assertEqual(len(ios["affected_test_ids"]), 4)
+        junos = next(row for row in receipt["source_corrections"] if row["pull_request"] == 21)
+        self.assertIsNone(junos["candidate_source_sha256"])
+        self.assertEqual(junos["replay"]["candidate_status"], "removed_by_content_correction")
+        self.assertEqual(receipt["summary"]["ios_definitions_recovered"], 0)
+        self.assertEqual(receipt["summary"]["junos_definitions_removed_by_correction"], 1)
+
     def test_pr11_batch_replay_excludes_removed_deprecated_tests(self):
         receipt = self.load("source-correction-batch-20261119.json")
         case = next(row for row in receipt["cases"] if row["pull_request"] == 11)
