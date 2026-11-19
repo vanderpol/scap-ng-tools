@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "ios.line mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+  "format": "scap-ng-tools/issue83-ios-line-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/ios-line-followup-1795115400",
+    "files": {
+      "assessment.json": {
+        "bytes": 2141,
+        "sha256": "61aa874c70f9d13e1b821af1a4e647ffc4b973bf7017224601e35e8512fcd2ee"
+      },
+      "assessment.yaml": {
+        "bytes": 1501,
+        "sha256": "c2d3f6df097083897868adf61b10d50f2f009d1434b09f095cc813cbfb4575d1"
+      },
+      "conversion-scope.json": {
+        "bytes": 574,
+        "sha256": "59c335961fb3be64e0325ff9c5ad56d37a635c1f5a1aa8d4ed68062323c0c613"
+      },
+      "source-trace.json": {
+        "bytes": 5731,
+        "sha256": "e321794e9247fff20a4ee458fe4a009c48a3cd582f51a672766177aeba2fbe99"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "b29d8bf7db58ccd1b3134ba1bf61668cae92920a",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "39ec7b89c7c335dbd4501fba332287349c65790170cbc8a23f9c86adf786664c",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "ios/ios-def_line_test.xml",
+  "source_sha256": "9ac722055447ba16d976ae04d617e4cb2c4e942a71095b1209f919856b14ceb2",
+  "tests": 2
+}
