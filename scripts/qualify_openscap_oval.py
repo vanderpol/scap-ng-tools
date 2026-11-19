@@ -17,7 +17,9 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
 import time
+import zipfile
 from typing import Any
 import xml.etree.ElementTree as ET
 
@@ -135,15 +137,19 @@ def run_one(
     timeout_seconds: int,
     max_result_bytes: int,
     source_commit: str,
+    relative: Path | None = None,
+    extra_args: list[str] | None = None,
+    source_archive_sha256: str | None = None,
 ) -> dict[str, Any]:
-    relative = source.relative_to(corpus)
+    relative = relative or source.relative_to(corpus)
     stem = safe_name(relative)
     result_path = output / "results" / f"{stem}.xml"
     stdout_path = output / "logs" / f"{stem}.stdout.log"
     stderr_path = output / "logs" / f"{stem}.stderr.log"
     source_sha256 = digest_file(source)
     source_test_ids = parse_source_test_ids(source)
-    command = [executable, "oval", "eval", "--skip-valid", "--results", str(result_path), str(source)]
+    command = [executable, "oval", "eval", *(extra_args or []), "--skip-valid",
+               "--results", str(result_path), str(source)]
     started = time.monotonic()
     status = "execution_error"
     returncode: int | None = None
@@ -199,6 +205,7 @@ def run_one(
         "source_path": relative.as_posix(),
         "source_commit": source_commit,
         "source_sha256": source_sha256,
+        "source_archive_sha256": source_archive_sha256,
         "source_test_ids": source_test_ids,
         "source_test_count": len(source_test_ids),
         "status": status,
@@ -214,12 +221,12 @@ def run_one(
         "test_outcomes": summarize_outcomes(tests),
         "unexecuted_source_test_ids": sorted(set(source_test_ids) - {row["test_id"] for row in tests}),
         "diagnostic": diagnostic,
-        "command": [executable, "oval", "eval", "--skip-valid", "--results", "<external-result>", "<source>"],
+        "command": [executable, "oval", "eval", *(extra_args or []), "--skip-valid", "--results", "<external-result>", "<source>"],
     }
 
 
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
-    fields = ["family", "source_path", "source_sha256", "status", "returncode",
+    fields = ["family", "source_path", "source_sha256", "source_archive_sha256", "status", "returncode",
               "duration_seconds", "result_bytes", "result_sha256", "definition_count",
               "outcomes", "source_test_count", "test_count", "test_outcomes",
               "unexecuted_source_test_count", "diagnostic"]
@@ -248,6 +255,8 @@ def main(argv: list[str] | None = None) -> int:
                         help="new external bounded output directory; never overwritten")
     parser.add_argument("--family", action="append", choices=FAMILIES,
                         help="restrict to one or more families (default: all present families)")
+    parser.add_argument("--archive", action="append", type=Path,
+                        help="OVAL ZIP archive; execute each oval_definitions XML member (repeatable)")
     parser.add_argument("--oscap", default="oscap")
     parser.add_argument("--timeout-seconds", type=int, default=60)
     parser.add_argument("--max-result-bytes", type=int, default=64 * 1024 * 1024)
@@ -269,6 +278,39 @@ def main(argv: list[str] | None = None) -> int:
     rows = [run_one(source, args.corpus, args.output, args.oscap,
                     args.timeout_seconds, args.max_result_bytes, args.source_commit)
             for source in sources]
+    for archive in args.archive or []:
+        if not archive.is_file():
+            raise SystemExit(f"archive is not a file: {archive}")
+        archive_sha256 = digest_file(archive)
+        try:
+            archive_rel = archive.relative_to(args.corpus)
+        except ValueError:
+            archive_rel = Path("archives") / archive.name
+        with zipfile.ZipFile(archive) as bundle, tempfile.TemporaryDirectory(prefix="openscap-oval-archive-") as staging:
+            variable_member = next((name for name in bundle.namelist()
+                                    if name.endswith(".xml") and "external-variables" in Path(name).name), None)
+            variable_path = None
+            if variable_member:
+                variable_path = Path(staging) / "external-variables.xml"
+                variable_path.write_bytes(bundle.read(variable_member))
+            for member in sorted(bundle.namelist()):
+                if not member.endswith(".xml") or member == variable_member:
+                    continue
+                data = bundle.read(member)
+                try:
+                    root = ET.fromstring(data)
+                except ET.ParseError:
+                    continue
+                if local_name(root.tag) != "oval_definitions":
+                    continue
+                source_path = Path(staging) / safe_name(Path(member))
+                source_path.write_bytes(data)
+                relative = archive_rel.parent / f"{archive_rel.name}!{member}"
+                rows.append(run_one(source_path, args.corpus, args.output, args.oscap,
+                                    args.timeout_seconds, args.max_result_bytes, args.source_commit,
+                                    relative=relative,
+                                    extra_args=["--variables", str(variable_path)] if variable_path else [],
+                                    source_archive_sha256=archive_sha256))
     summary: dict[str, Any] = {"files": len(rows), "source_tests": 0, "observed_tests": 0, "unexecuted_tests": 0, "statuses": {}, "outcomes": {}, "test_outcomes": {}, "families": {}}
     for row in rows:
         summary["statuses"][row["status"]] = summary["statuses"].get(row["status"], 0) + 1

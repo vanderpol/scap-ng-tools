@@ -6,9 +6,9 @@
     "version": "OpenSCAP command line tool (oscap) 1.3.9"
   },
   "external_evidence": {
-    "ledger_csv_sha256": "bd4881b8ee7532148f462cd033f396e7e99c1dfd238f186f1a5bd51220c8c585",
-    "ledger_sha256": "be639aac665b68d60c1a64243efff15907a57a79741432f9b9afccc8d76767db",
-    "output_root": "/tmp/issue83-openscap-all-inventory-run.TYu5hH/results",
+    "ledger_csv_sha256": "931389f339759180e24c92768b4f0e2c340dc38e32c97ba50edf9b3b62bd0c60",
+    "ledger_sha256": "e3e2914c369bf7927f116dc69e22e70d3dfa487360d6439ed41f9cd97d5b44c4",
+    "output_root": "/tmp/issue83-openscap-full-run.Z3tu5L/results",
     "raw_results_retained_external": true
   },
   "files": [
@@ -21,8 +21,9 @@
         "true": 1
       },
       "result_bytes": 9821,
-      "result_sha256": "4186d1076f08b3ecf6810040142d6fc7deb1eebe7ee0ee6fb4e41e3390191b0c",
+      "result_sha256": "01008c3dbcbcf23775a476f34bbe9202e43bf89dd445589cda9a5d741116f331",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/ind-def_family_test.xml",
       "source_sha256": "6966982d66e004f77ceb9e5ccceb5161275a79729d4178f290f99efd3b8b84a7",
@@ -52,8 +53,9 @@
         "unknown": 1
       },
       "result_bytes": 8059,
-      "result_sha256": "3d8c639198de25523ed34fd6224e511f86d43cbf5dd37295789063de6fc0a84a",
+      "result_sha256": "43ae7c1b7329fedd1812094b0a6b43648c9f50fbe136895db21164c33092196c",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/ind-def_unknown_test.xml",
       "source_sha256": "f5e8901c703438819f20ef4761d1b4f9f62f630c6c8e96ca016d0d0dd67862a7",
@@ -83,8 +85,9 @@
         "true": 1
       },
       "result_bytes": 16408,
-      "result_sha256": "eaac5da029c8806af0781d404f86cb38e97fe217520fd530c061852da007ecb8",
+      "result_sha256": "6f811e024c403e72a100d4280c4588e0efe8d78b8f22c4540d1ff4a8bb14b6c9",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/ind-def_variable_test.xml",
       "source_sha256": "878fa0adc9e27e518fbdac75756b04ef8ed0c9facf937caf98576dc185414b85",
@@ -129,8 +132,9 @@
         "true": 1
       },
       "result_bytes": 38241,
-      "result_sha256": "f89ec4b12db0bab949eead14a14ffc1e34ee2332d4e97381552d2d242eb0bf89",
+      "result_sha256": "4eca1d9d5ad652c389d9ad8844ebcd4f5c0d3b41a2205c5edaf45ae50c47201a",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_arithmetic_function.xml",
       "source_sha256": "573351f7b8e8a685ec90596ba7d0d5f8842988c42fbd6e1a34cdc73dc38ec1f8",
@@ -205,8 +209,9 @@
         "true": 1
       },
       "result_bytes": 16316,
-      "result_sha256": "48497fb8efead15c19a0255ab9e7017626f465d4ee816b5610f67675d17780f6",
+      "result_sha256": "ebb2da71e338fae87bd978ff5c5d12aa86eea07951d08292374b40fc76bdc2f6",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_begin_function.xml",
       "source_sha256": "f7261105acebb72aaf0e62793b289a21867a7a1b13eba71ad7fa1fa93e58db57",
@@ -251,8 +256,9 @@
         "true": 1
       },
       "result_bytes": 24008,
-      "result_sha256": "d0a8c3dc2151c101ece03a4281f8331d600d4fc0c46da2fcf1301fff21feb162",
+      "result_sha256": "21f2ab56a2fe1186499538b0685f81f7bb4a3049f4b4f1f3c36f59c48991f4c9",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_concat_function.xml",
       "source_sha256": "6e5beb1c5efd6b4646955e0fdb36c50a9845609b44fd27d2aef306f57a07d4ba",
@@ -297,8 +303,9 @@
         "true": 1
       },
       "result_bytes": 13728,
-      "result_sha256": "dbe4a9e21636f0cc862b6faaa24b315c544c12be8f312d3a82f4864638dada0a",
+      "result_sha256": "f0f6c4e571ad5ed00a05b9aaa4af754cc35cf37ffcfb73b38894a530e21cad75",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_constant_variable.xml",
       "source_sha256": "57113e1d5991bec0c7cee30d2789ecf9bff5223d2f2ab78900098c187a716e91",
@@ -333,8 +340,9 @@
         "true": 9
       },
       "result_bytes": 35863,
-      "result_sha256": "b32f6b5eacce8de6a5aad05e3b553f51890eaffdb48722d84186681ee2fb08bb",
+      "result_sha256": "970b0fe516303bff910211833571d6321ea8a967b4db23eb20a78772a5f1a30d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_criteria.xml",
       "source_sha256": "2908b910c40b7e802eef47efe47eb557674bb286fbe1c0f03bbc442a44c76bea",
@@ -370,8 +378,9 @@
         "true": 1
       },
       "result_bytes": 11753,
-      "result_sha256": "2264a6f820972db6e7ed12b08d7f3a939661f80c4983397cd6389da019c42a8a",
+      "result_sha256": "cf1fe9c8105b65f34f16484f4caa252b22d0aa2afde94e2a97467be9f80f621d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_criterion.xml",
       "source_sha256": "943136ebe4c6a9fd014a6dda43d1be126c801130dc1e7867165e56434d232f38",
@@ -407,8 +416,9 @@
         "true": 1
       },
       "result_bytes": 16260,
-      "result_sha256": "91457612513faa855eaa4468e6be83121086668d8961a7746a937a545b62fa9b",
+      "result_sha256": "624aff405e399163e70b88ddd9b572db2d4429731f98ab7eeda796a214c7c74a",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_end_function.xml",
       "source_sha256": "cbbc98cd2203a27ca10ca75316c0f0910cf5dfb29db8ef2ef52582e31823846b",
@@ -453,8 +463,9 @@
         "true": 1
       },
       "result_bytes": 14864,
-      "result_sha256": "6bf67a17ee16e8e6f522f9d6a2cde8e72a40ba1add5ce6d113a6cdd3ac9466ef",
+      "result_sha256": "c828050bdcfc98dfbf6c3fce72460f4b7600ec763b328ab9b32e7f3b9eba661f",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_escape_regex_function.xml",
       "source_sha256": "4e561d9ca7db1cfe33035e78d906b3860ce555a86f459c1e5132c6ba354b6433",
@@ -490,8 +501,9 @@
         "true": 3
       },
       "result_bytes": 12220,
-      "result_sha256": "e9d102391ca350bdbfa590c4ad66769147975f1c0b0d531fbade2e405ea9b5e0",
+      "result_sha256": "0f4ab0a5f4b834d86fb138f0287160774cf301de867a9794081c8851162f5fe1",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_extend_definition.xml",
       "source_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
@@ -521,8 +533,9 @@
         "false": 1
       },
       "result_bytes": 44581,
-      "result_sha256": "96240b74770e658dfb01151b38e527ef8869d5f32ff876b5dc3b875a99ca8582",
+      "result_sha256": "20d38506946d81e07b6348324273383bf8dac723a5a1cef2f4348ff469333ea6",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_globtoregex_test.xml",
       "source_sha256": "fb061d16c22c204d5ea9e7cbdb6a9bfff530136f9af340dd5cd9870ebde3d587",
@@ -648,8 +661,9 @@
         "true": 1
       },
       "result_bytes": 23302,
-      "result_sha256": "9dc34efd3a346abc94ffe3d4663dc45078a54dcf8071fccd99ed694ed288c509",
+      "result_sha256": "07d65e53f25a141858fbd82672efc9d4dfaa8a7432ca0e2061949ce62dc28835",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_literal_component.xml",
       "source_sha256": "6adbc711c9d046611c7c4987e14647155202d01299b5bf8a30ff470fcb43976a",
@@ -709,8 +723,9 @@
         "true": 1
       },
       "result_bytes": 14073,
-      "result_sha256": "187a5e22d40fc207e14f268d896cf0fd61d22abbfbabde16837abef701189786",
+      "result_sha256": "b3af5ecfb3c6f540145b44c8a728aaf598c02ac6b61b4017c99881d56b42268a",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_local_variable.xml",
       "source_sha256": "bfde9f6411bf7b0d6b63fc2ef81cb9ecf801cf7df36fe96556ea47169c4bd308",
@@ -739,12 +754,13 @@
     {
       "definition_count": 0,
       "diagnostic": "W: oscap: NULL component bound to a variable, id: oval:navy.navwar.niwcatlantic.scc:var:1. oscap: ./src/OVAL/oval_component.c:273: oval_component_get_type: Assertion `(component) != NULL' failed.",
-      "duration_seconds": 1.154,
+      "duration_seconds": 1.155,
       "family": "agnostic",
       "outcomes": {},
       "result_bytes": 0,
       "result_sha256": null,
       "returncode": -6,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_merge.xml",
       "source_sha256": "e9cf10371c2d41a3c92087a93f62f597043828d0914a21c5ab4314f03fd8a6ef",
@@ -775,8 +791,9 @@
         "true": 1
       },
       "result_bytes": 30541,
-      "result_sha256": "ee97ec6c88f2d3d017c0cd3ad4012d15078184b2c040368a864888fb2d4dd2f5",
+      "result_sha256": "2644143e2ecbbe4f6f1bb5cce5ae8f6418c17a34eb173b690cd98c5691689bea",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_object_component.xml",
       "source_sha256": "9a8f889c6bb35ae4a6a70f97dc51d0b38e29250fbac08d518228092626e93914",
@@ -821,8 +838,9 @@
         "true": 1
       },
       "result_bytes": 18707,
-      "result_sha256": "2276c9366bd38f885ef9dad7feafabb8e6823364f0578502b9ec6c9470294839",
+      "result_sha256": "c7055094b05788e670acac24eabbdf5c74aaef9de132531fb9249e47cb90c6e2",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_regex_capture_function.xml",
       "source_sha256": "97eb7a96b6d893b80277b0f0ae973884d736f8e4689992b93fa57fe0c5fa4c55",
@@ -867,8 +885,9 @@
         "true": 1
       },
       "result_bytes": 24443,
-      "result_sha256": "8e2af3177f47cc92a6e150363ef80f47cda2ea5ea73a1d0fc9134de2ae727fd3",
+      "result_sha256": "41acd89bb1bec6e7bd0f5781c1d1d97725dfdae456de12a353277126bacce435",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_split_function.xml",
       "source_sha256": "823114699db0b071d3b1b7a2393ee31a5f91d35847e3ab0ec5a032146af9a674",
@@ -918,8 +937,9 @@
         "true": 1
       },
       "result_bytes": 22070,
-      "result_sha256": "c4d5443db017673f27c6690690e60d0410b0a6bd89ef1da93e00377b9218ffea",
+      "result_sha256": "685cd6cee34511c651f5e68c23fda962cabdd7a776f575546afd46064a20434e",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_substring_function.xml",
       "source_sha256": "892d18d9fa055cb59882b470a8e97e43c4069b968d4c136984b0692fcbd73e97",
@@ -969,8 +989,9 @@
         "false": 1
       },
       "result_bytes": 91358,
-      "result_sha256": "e6068ac0aca69ce21a4d25fac9ef623ffb438ee7a1e4f0c15cb6c48cc75558f2",
+      "result_sha256": "ec66528518f777141f1d3cbcaebdc0069609300f285203760d9e9e7b75833112",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_time_difference_function.xml",
       "source_sha256": "c7e974a0a14ba4c7b72807e46e8052527b34a6da3672ca916dd57e5b4c2fd056",
@@ -1146,8 +1167,9 @@
         "true": 1
       },
       "result_bytes": 14896,
-      "result_sha256": "bddf16d045a11660edad6dbd27a345492d5866a9cbdccc3af5d9929196eb4818",
+      "result_sha256": "48b07d45491faa6f13f654268f41e22a712fb57fd2f2f4b3f60569f623181827",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval-def_variable_component.xml",
       "source_sha256": "5d32d88d7773bd89438f9afcb95f0afb9c3b9c6eca199899799b409b12abf2be",
@@ -1182,8 +1204,9 @@
         "true": 1
       },
       "result_bytes": 14616,
-      "result_sha256": "e6230f79b6d1875a18f3aecb31bba9eccdf45e21a9a03b8dc044ffacbbcfe4f5",
+      "result_sha256": "ff167285108ecc87f8c2e8001ed1d05f9cd8adf17f925fa4eea70664234f1fa7",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_binary_datatype.xml",
       "source_sha256": "eb50e4c0ad2e1d94941e0a1c31d43dd31c6ce030c072790f5dbb3793aa8e1e91",
@@ -1229,8 +1252,9 @@
         "true": 1
       },
       "result_bytes": 21551,
-      "result_sha256": "166497225bd22412d23f4f4133a4727bd664aaf3d167ca8e2cdac6896d680e9c",
+      "result_sha256": "8c030cfc5827d211e429e3e11ca3080a39af0a33e0f5e309eb21d8f4b7876141",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_boolean_datatype.xml",
       "source_sha256": "f58c191f31a8c1e32a5f4503a9252702cbc308ccc1462d36569f71dee09e2cef",
@@ -1296,8 +1320,9 @@
         "true": 1
       },
       "result_bytes": 23898,
-      "result_sha256": "e384c5e8ccdd07379947373d06e1af2a1cc7e3dd3f66e9e23b7dc335c68b9952",
+      "result_sha256": "80a908017f644d27166f829477509bca99bd42b2639aaa5b2b39863bbee7a940",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_check_enumeration_entity.xml",
       "source_sha256": "f9e0c3706ecbe282f2e0ece9a833cfa419510557356bc0dfc3edd0d2a29ca19a",
@@ -1367,14 +1392,15 @@
     {
       "definition_count": 1,
       "diagnostic": "Definition oval:org.mitre.oval.test:def:549: true Evaluation done.",
-      "duration_seconds": 0.052,
+      "duration_seconds": 0.051,
       "family": "agnostic",
       "outcomes": {
         "true": 1
       },
       "result_bytes": 24136,
-      "result_sha256": "8cda9069ed118b9c12b54f2d376d1361c8572aef486b4364135783b88bce2a32",
+      "result_sha256": "aaad2bc98d2c146fa05c033e7a4e584358ce3c14a535c4d20e0fe316ee9cc77d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_check_enumeration_object_state.xml",
       "source_sha256": "bc01119212ddd8de4250f2f9187e62b7f13b2a376dc99ac7fcb97b49a3ca0f7a",
@@ -1450,8 +1476,9 @@
         "true": 1
       },
       "result_bytes": 27005,
-      "result_sha256": "7d7a2478f80fe246ed682e3150dc5762e213e7739531abfb3579b5ff1faed92d",
+      "result_sha256": "9dac728d6842a3dddbfd07d934179d734314262e09556292d55b265d39da6547",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_check_enumeration_variable_values.xml",
       "source_sha256": "cb317fa5d8073a9fe994175e4ba270857f4278c3f00bd895096147e962e6e8be",
@@ -1527,8 +1554,9 @@
         "true": 1
       },
       "result_bytes": 33999,
-      "result_sha256": "c9de57d2ca28acf1a1929da0b14a2764c2633e6a8945afa9aca4ff61d7b783a3",
+      "result_sha256": "a4112b863dcc6cc0676b8184d104f1b49b0e8cdc5799413a7d187c83eed85f62",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_evr_string_datatype.xml",
       "source_sha256": "d47f8b10868e052481aa9cfbe67f616d683f244a93c7810ee40c20b62c21d179",
@@ -1634,8 +1662,9 @@
         "true": 1
       },
       "result_bytes": 26265,
-      "result_sha256": "c924e945d57739845b4281630526676a71836576dbaa820ef01b1d0c851cdc7a",
+      "result_sha256": "9742d678f1f6090b13b481fca27ad634229c32c92563ec66160b3e5c81fc2940",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_existence_enumeration.xml",
       "source_sha256": "5bc7d6e12fef4d6864f7a7d97ebbd5d4fcc549023d16d5358d7d3b89d171121b",
@@ -1715,14 +1744,15 @@
     {
       "definition_count": 1,
       "diagnostic": "Definition oval:org.mitre.oval.test:def:275: true Evaluation done.",
-      "duration_seconds": 0.055,
+      "duration_seconds": 0.051,
       "family": "agnostic",
       "outcomes": {
         "true": 1
       },
       "result_bytes": 30583,
-      "result_sha256": "ef9c3f93ade9be882e0bc6e0fd27fd0d12e13ca7447af49cd59eb2971ade883a",
+      "result_sha256": "d287f6c5cfa4bf9b47f14af4dbaa71016a5f08fd2fbd6445ea2007126e6105de",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_float_datatype.xml",
       "source_sha256": "006e8d8d293849e3478c1fa727eb3b7bda14ca490395608b40ea49dc686ec07e",
@@ -1822,14 +1852,15 @@
     {
       "definition_count": 1,
       "diagnostic": "Definition oval:org.mitre.oval.test:def:356: true Evaluation done.",
-      "duration_seconds": 0.055,
+      "duration_seconds": 0.051,
       "family": "agnostic",
       "outcomes": {
         "true": 1
       },
       "result_bytes": 37723,
-      "result_sha256": "659149736d276defcd38d49757d67faf6c157a2620134af585dd9f3705e04c15",
+      "result_sha256": "21c3830961b302dd2e837bc49644ee4e663e393e82a02c402184d677e8289153",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_int_datatype.xml",
       "source_sha256": "bf3ae1b0f7dbbe4dde8bae9e30b16202ffd6101bfc42f053110eefaa97fa5965",
@@ -1949,14 +1980,15 @@
     {
       "definition_count": 1,
       "diagnostic": "W: oscap: inet_pton() failed. W: oscap: inet_pton() failed. W: oscap: inet_pton() failed. W: oscap: inet_pton() failed. W: oscap: inet_pton() failed. W: oscap: inet_pton() failed. W: oscap: inet_pton() failed. W: oscap: inet_pton() failed. W: oscap: inet_pton() failed. W: oscap: inet_pton() failed.",
-      "duration_seconds": 0.055,
+      "duration_seconds": 0.051,
       "family": "agnostic",
       "outcomes": {
         "error": 1
       },
       "result_bytes": 22710,
-      "result_sha256": "5de521d0036e4239d3e34f85e1f24fdd268491e67010ec742407519218e0c595",
+      "result_sha256": "02a05b44e9ebb63392188e0456b2410c6ce2c2b473c1b1606dac86a81326e9ac",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_ipv4address_datatype.xml",
       "source_sha256": "cb45247269fcb983047c4f06d1aa3dfcf7fb9f5ed690f3c0358f87f308115d2b",
@@ -2047,8 +2079,9 @@
         "true": 1
       },
       "result_bytes": 22621,
-      "result_sha256": "a709617c385665f46dc21cc11b49845afb85ea38f2e936cc8c5df55777ada069",
+      "result_sha256": "00472cf41364881e824743904c5781d7964d4c4f3d2abc4b206bdca3d4855994",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_ipv6address_datatype.xml",
       "source_sha256": "7eb8fd0c02a044435981684cf02650e49b3c87247b3da45050a38dbe51c376b7",
@@ -2132,14 +2165,15 @@
     {
       "definition_count": 1,
       "diagnostic": "Definition oval:org.mitre.oval.test:def:252: true Evaluation done.",
-      "duration_seconds": 0.057,
+      "duration_seconds": 0.051,
       "family": "agnostic",
       "outcomes": {
         "true": 1
       },
       "result_bytes": 26697,
-      "result_sha256": "ab9c938d94a6dcf9688f8e84eb1405ed2b9e4a12ddee5d47b171b1ff20705442",
+      "result_sha256": "f6c37ccd10db9a66399f7a41f03a7af4f0be4c2c046482f92e34c84403c28e32",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_string_datatype.xml",
       "source_sha256": "58ca3747e110831969600ecdd72f591c37adf099658e4cc3babf03779a2a9a2e",
@@ -2215,8 +2249,9 @@
         "true": 1
       },
       "result_bytes": 98020,
-      "result_sha256": "41514e5138eb95c8c9011ed8010db2b0d0dacc38f0b35c5a7d035ecfef5617c1",
+      "result_sha256": "f48c71157a92b088afe532bdaa559e3060a804325a902ee749ec8e7e061b2b2c",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "agnostic/oval_version_datatype.xml",
       "source_sha256": "c20249735d1900285a293b958f03a94b359eb00b1023b87e22d8c2a9776737df",
@@ -2476,14 +2511,15 @@
     {
       "definition_count": 1,
       "diagnostic": "W: oscap: OVAL object 'fileset_object' is not supported.",
-      "duration_seconds": 0.051,
+      "duration_seconds": 0.052,
       "family": "aix",
       "outcomes": {
         "unknown": 1
       },
       "result_bytes": 8970,
-      "result_sha256": "777c8001320e54fd80e7b62c70fb981ea98c18888bde36f56d9a93099447ea91",
+      "result_sha256": "d58dec86e7d62ec302dc91b1fc6a1fd56c6d656073e406b1b0f0cdff36ef4755",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "aix/aix-def_fileset_test.xml",
       "source_sha256": "7efa6222d526a5c82392f53e7a46af4e7c7ada22031ace80ce65ce1d584c3d48",
@@ -2507,14 +2543,15 @@
     {
       "definition_count": 1,
       "diagnostic": "W: oscap: OVAL object 'fix_object' is not supported.",
-      "duration_seconds": 0.051,
+      "duration_seconds": 0.052,
       "family": "aix",
       "outcomes": {
         "unknown": 1
       },
       "result_bytes": 9243,
-      "result_sha256": "226a032090227de8eda3845c4db58cfb634b38debd42537146fc3f697c7f110c",
+      "result_sha256": "2f25d6c5c7b300c4dd9db43eb5beacb61b70c3c2c24455f75aba233aa5880165",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "aix/aix-def_fix_test.xml",
       "source_sha256": "25b8852f13ec7b89deefefe2210da55cc941a910c48fe66d3ef61c449dc59c55",
@@ -2544,8 +2581,9 @@
         "unknown": 1
       },
       "result_bytes": 7971,
-      "result_sha256": "d5e9e1d51a6b2ab88eae31e15c003958f58bc2152199faac71e8094d133e5fd5",
+      "result_sha256": "c28bc5235dd4f15bd8f80cba6a7f7139971e10b116d0413ca61f57998eb4e957",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "asa/asa-def_line_test.xml",
       "source_sha256": "fb52e2ffc200a42a525587a9fffc4e872319ff73fdcf1bf8915afe66ca360108",
@@ -2575,8 +2613,9 @@
         "unknown": 1
       },
       "result_bytes": 8194,
-      "result_sha256": "358f30e02ab2688b045fdb254a2180ce8b4adcaf7f046c8dc9346593089a8cb2",
+      "result_sha256": "303bd3b1e7a35ccf72d2cbf6706ec76ee08a29209d05f583ccc1a768b399234a",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "asa/asa-def_version_test.xml",
       "source_sha256": "46feff4138b561c3029495ce62760baa21c0046d9d99980e7c8e411128abd80f",
@@ -2606,8 +2645,9 @@
         "true": 1
       },
       "result_bytes": 8055,
-      "result_sha256": "fc60d490bbba548362492463f81d58e883f65d096e11d85fa3519201ddb4c8ef",
+      "result_sha256": "44d9fb9196b94efba23e66b3fde6b0b1540a79b7ca896c773568ec69dff2f327",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_bgpneighbor_test.xml",
       "source_sha256": "0fda1bb444e9e545c9b2853a69171fe5eb1d55517ac03152447654f676fce401",
@@ -2637,8 +2677,9 @@
         "unknown": 1
       },
       "result_bytes": 12950,
-      "result_sha256": "2783d8892d31861fe2dab15c3f9e63bf4b0a50c3d14a149322f2e581a439b1ca",
+      "result_sha256": "f41d0ad991488d00fff51e8f22ffe7b4fb06122629dfd351edaf2cc343b3caab",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_global_test.xml",
       "source_sha256": "6015ddb9a1540fff61b7d8d6749a2bf6a1d309d823b40f53941e5ce6e488c7ec",
@@ -2673,8 +2714,9 @@
         "unknown": 1
       },
       "result_bytes": 11728,
-      "result_sha256": "fede7c8434f199715fdfc57b8c7040f7db43aac6194f96c937f0adb031bbdda5",
+      "result_sha256": "a99b44355e5c56c5c3e791faa9cd7942e200fee7f8d55146e9e0a0e4de522dbe",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_interface_test.xml",
       "source_sha256": "efdea2fbde95043f7e2fc311d65333feb0195e67a51b4e74bba7fbf19ecbfe73",
@@ -2704,8 +2746,9 @@
         "unknown": 1
       },
       "result_bytes": 12855,
-      "result_sha256": "edbbca0da3ac6e1073b14936d061bdfe970cf1893f5c58fe2b3276ac069d551b",
+      "result_sha256": "ca775065c594d99dde0fcd4240c2d31f2ff10d7ee0abd5de56026c040d893376",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_line_test.xml",
       "source_sha256": "9ac722055447ba16d976ae04d617e4cb2c4e942a71095b1209f919856b14ceb2",
@@ -2740,8 +2783,9 @@
         "true": 1
       },
       "result_bytes": 8221,
-      "result_sha256": "ebfe2aeb6babf852b713875746bb7fc71d1990075d29880eaa0bd8f599e0aaee",
+      "result_sha256": "37a44612e099fac685ae26ec90da9d0173c64254960e4f607df5bdbc7d8c7673",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_routingprotocolauthintf_test.xml",
       "source_sha256": "f9a1393482f3264e4cd3f2bd0d174a6fe3a0f2d84b47ae06228d353e277fe446",
@@ -2771,8 +2815,9 @@
         "true": 1
       },
       "result_bytes": 8042,
-      "result_sha256": "8790fd3fb06f403ea172d84cfb410dd4f1a7ef398e1a43862695832a2f7b1afd",
+      "result_sha256": "a7ad50e0c5adb44e2702846377b34065adf1127c934bd3caadbb31e285516425",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_section_test.xml",
       "source_sha256": "2dec7fa64afa8244a653074ffb54e6e01e1f7fd4dba03621142255e4d9fef554",
@@ -2802,8 +2847,9 @@
         "true": 1
       },
       "result_bytes": 8065,
-      "result_sha256": "4c443ff91f422622984d5506308a793cfd5be54eb07ca566a26868a51715cc20",
+      "result_sha256": "797f8efed34a661c4e33375923eab0cada6c649f26502386b3ee58f02780c614",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_snmpcommunity_test.xml",
       "source_sha256": "3e82492fb2d8445e35fc45ee3c36039d68ba38a5279d97ba789e8bf37db40763",
@@ -2827,14 +2873,15 @@
     {
       "definition_count": 1,
       "diagnostic": "W: oscap: OVAL object 'snmpgroup_object' is not supported.",
-      "duration_seconds": 0.052,
+      "duration_seconds": 0.051,
       "family": "ios",
       "outcomes": {
         "true": 1
       },
       "result_bytes": 8029,
-      "result_sha256": "442eb81889ba4f6bea4240cefb9d3a003eb468daffab36ae2e54c6af14b84961",
+      "result_sha256": "0f151e8eeac4b847a976b4ed4d7b9af4d869544846985c62a643a5b721714750",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_snmpgroup_test.xml",
       "source_sha256": "242009d3ea52f6ef84f02f0de6f96dde1a88f9fc7ed17eb79b0618e6e0409133",
@@ -2864,8 +2911,9 @@
         "true": 1
       },
       "result_bytes": 8020,
-      "result_sha256": "1b95016f21ad92dc06dac847aef891cf39376f3b2a22dd1ad607f1fa694f8f75",
+      "result_sha256": "7a85f4f1af4ea2fae2214eb32b2a076ed8549e1c151a22ac1784e827e937e9a7",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_snmphost_test.xml",
       "source_sha256": "9fd43d2aee5a0a6496f8afcb2f7804d698164d20936d2612110de42e3018978a",
@@ -2895,8 +2943,9 @@
         "true": 1
       },
       "result_bytes": 8020,
-      "result_sha256": "726bb28d5854b49782d968fc6428a7ecdc051971921cf12921516db8baba059f",
+      "result_sha256": "8e7ecb2eb41fba0874ab3016650e6d5bfc256e77edd72e6d4fc98d99e22c107b",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_snmpuser_test.xml",
       "source_sha256": "f8f5a8b92339021bbdb68bcc7bd0bdf029aa2c0eabfa0cbe43b69e105908a3dc",
@@ -2926,8 +2975,9 @@
         "unknown": 1
       },
       "result_bytes": 15143,
-      "result_sha256": "2311dc991617b959fa79c579c1a8f5de626120b3cd7b01d0f21c99acef18dd50",
+      "result_sha256": "01d8ce0ee097ccff0e28b3edd2820534478b8f7230a4b97ceb7eea9694ee0457",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "ios/ios-def_version55_test.xml",
       "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897",
@@ -2972,8 +3022,9 @@
         "true": 1
       },
       "result_bytes": 8077,
-      "result_sha256": "c45a54ec745d58e5a722de59bae8494efe6ab8e8161065a482d5472c64972e79",
+      "result_sha256": "3e290fde88418f29ae848925680d292c11fe5b81b0a6184e5e14d1f70f9be220",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_bgpneighbor_test.xml",
       "source_sha256": "e5bad91d3d8403ab9e8980015e7923c3070df8500cd3077ea969cec9e2df127d",
@@ -3003,8 +3054,9 @@
         "unknown": 1
       },
       "result_bytes": 12835,
-      "result_sha256": "e95b747687e4ed2a7defa17062f8aa6e047cf2fb2dcb8dd30afa24d34485fda4",
+      "result_sha256": "a40ce553832e6708fc87592d79d739415f1711425a4ac274a4c92f749866eda0",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_global_test.xml",
       "source_sha256": "f88a4eea2858c07f76f6b03904cf6ce530a1e6b39bfc547589896dd586b0c87c",
@@ -3039,8 +3091,9 @@
         "unknown": 1
       },
       "result_bytes": 11596,
-      "result_sha256": "9bc402b73320ae391dfcd830e57b095dace3b5ee4b7dae3aafa1781b287e7ab7",
+      "result_sha256": "1dd58a204108c6418d00a1f0bd70b0df5558915a58c4cb2e52380bfbb162e9a4",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_interface_test.xml",
       "source_sha256": "6b20819c213ce23706eea75d970c1fd8cc1cad3c84b5a327722146c5d161719d",
@@ -3070,8 +3123,9 @@
         "unknown": 1
       },
       "result_bytes": 12898,
-      "result_sha256": "ccebae1bad36ab0ae152895827a9cab150b2c1117d03fd7fe01d7e10441f6be0",
+      "result_sha256": "be6a986b17cc706a881d518fda240c93b5e54c49b04af14a249213c6a54e4447",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_line_test.xml",
       "source_sha256": "f5ea9c24b5d6b99bcf8b37ed88f7b55f6c1d98f333fc3b9dc366c163a4ffe505",
@@ -3106,8 +3160,9 @@
         "true": 1
       },
       "result_bytes": 8243,
-      "result_sha256": "9c69520a18e8bb8b1528218a800f6441964a3d8b26e909612949d826a8590975",
+      "result_sha256": "6e818cfc5ca55150d99045064c2f82dcb37fcecf92b1e2a9e77005a7a9be2cdb",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_routingprotocolauthintf_test.xml",
       "source_sha256": "3b826fa0600baa51cbb30717efe79bb3eca34693675d62bc72f1f1a018e26fda",
@@ -3137,8 +3192,9 @@
         "true": 1
       },
       "result_bytes": 8064,
-      "result_sha256": "b4d9d0b3de38270ad216fb9764013192d03e5070a45bfe97925ed8753902be2d",
+      "result_sha256": "b191b40113fd18d35d7a141304d7767d526eed48c4dde57da094eb568fc1b1bc",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_section_test.xml",
       "source_sha256": "2338e6a3c5ab1fb79c47437d3a12bdcd1d018fa99a6b07191634b5bdddc3b60c",
@@ -3168,8 +3224,9 @@
         "true": 1
       },
       "result_bytes": 8087,
-      "result_sha256": "be732c7013dd11e7ef4348a8cbbbc1eca7ee4f9ac27f5013aeb2e9c5b1c1feb2",
+      "result_sha256": "75c655ce3514f91eb8debfbfe1bdc8c6e472b2ca6da074655a0c7ccf6256c235",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_snmpcommunity_test.xml",
       "source_sha256": "70e20164b69eaa4e61c61c836503a8bbbec01b17fdee4a980dcc33a3360a791d",
@@ -3199,8 +3256,9 @@
         "true": 1
       },
       "result_bytes": 8051,
-      "result_sha256": "b7dac6358ca4e2395b251532b6b94a74095d0f1b4d4abe9d1acbc5034a4d12f0",
+      "result_sha256": "01237f330bfb85a6a91770b0a24f13af97ca84d6cc26f0f6e790e45aaffc1ec5",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_snmpgroup_test.xml",
       "source_sha256": "0d6458e9164fe27dc112ecd4efb5e4f212f295c019f11fd7a291281bca243333",
@@ -3230,8 +3288,9 @@
         "true": 1
       },
       "result_bytes": 8042,
-      "result_sha256": "72c1f79fccdefccc533cb3392f0b6d6d475d9cd662e6f591e7892d5a47da0a97",
+      "result_sha256": "793d53a835f1ee1fa4329a013dab0f3c34551381f160feb3e50b981a2637cee9",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_snmphost_test.xml",
       "source_sha256": "e8c2dd30278bed7b511d2116bb5909b95045add7cd3c2ac2cc0e91de7b0142b8",
@@ -3261,8 +3320,9 @@
         "true": 1
       },
       "result_bytes": 8042,
-      "result_sha256": "af4205f9c7d3d5a84d2374fffea4d96be36206dd6b55a167269d4e6114080da2",
+      "result_sha256": "b41d1ce36d07bf1cbb0a5c018d7b6b5394a5e84d5f27de9350dd5a14e16186d2",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_snmpuser_test.xml",
       "source_sha256": "b777ff9d1041b3265b1ccb0e5993c4870881226b6043769403ae64abcb2432d3",
@@ -3292,8 +3352,9 @@
         "unknown": 1
       },
       "result_bytes": 15330,
-      "result_sha256": "7ccc7cf926988a856e3434fed651f7205d447a87f65ce3c81a87fd6daf99c7ad",
+      "result_sha256": "bb49966e24dc029634f7fab5950db18c39fe87bda210ac761810ad657c60cccc",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "iosxe/iosxe-def_version_test.xml",
       "source_sha256": "ebb65d04a2fd219ca07481b38007dca17da4b4116f3800d5786f2906fd07be88",
@@ -3343,8 +3404,9 @@
         "unknown": 1
       },
       "result_bytes": 7999,
-      "result_sha256": "6573073387a00eeb15c8261cd303796fe559beffa11e95effad0b88247e3a3d8",
+      "result_sha256": "71cb4a55bf8629e84fde560321e6a2e06650b7d9af39466614e88c3f6a9e6397",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "junos/junos-def_show_test.xml",
       "source_sha256": "3e3a552fd277af8ff3a3dd0f50a2afea3ebbcc1673ccb70b3283229c1c061342",
@@ -3374,8 +3436,9 @@
         "unknown": 1
       },
       "result_bytes": 8024,
-      "result_sha256": "2e26544798207528d2cfea5004fc2b4bd4c736a49d95af3ccce617fc09407c7c",
+      "result_sha256": "e6aa2abddd121a713973cda3acf8b27ac8316f2f3b019d8b6fd3a6ba9690bc83",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "junos/junos-def_xml_config_test.xml",
       "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5",
@@ -3399,14 +3462,15 @@
     {
       "definition_count": 1,
       "diagnostic": "proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied.",
-      "duration_seconds": 0.201,
+      "duration_seconds": 0.251,
       "family": "linux",
       "outcomes": {
         "error": 1
       },
-      "result_bytes": 289825,
-      "result_sha256": "e45d0de61d27ef5ef2b1cb525ace0b75ed005cbebe8bcded0f5559771d93f6d6",
+      "result_bytes": 290237,
+      "result_sha256": "b65f20ccb05b9c520d8fc95654b6fe7542990debec9ef6d5ea260e28f66559e3",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/ind-def_environmentvariable58_test_linux.xml",
       "source_sha256": "c6ac03ec0d2745e3545d16cb3fba38e8b7486cbbbb39c03edf5fa27960d49c73",
@@ -3447,8 +3511,9 @@
         "unknown": 1
       },
       "result_bytes": 8306,
-      "result_sha256": "c67cab01ff630561d73d9441f04e5f9cfce66e3b660641aeb58c0ec61f0444a6",
+      "result_sha256": "f2b7fc5b563a501a71eb4b2a074927c47460e150f5d70cd37c795f8f98c60cae",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_apparmorstatus_test.xml",
       "source_sha256": "1e9b6d6bab5a40226db960cebf08c8124282b86e8b0c52316027d48b2c97a5d6",
@@ -3472,14 +3537,15 @@
     {
       "definition_count": 1,
       "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:683: false Evaluation done.",
-      "duration_seconds": 0.301,
+      "duration_seconds": 0.302,
       "family": "linux",
       "outcomes": {
         "false": 1
       },
       "result_bytes": 14295,
-      "result_sha256": "b8cecffcae86225fc17056d44fbb96fad53c0c47e38c2da2dc0d7a308cc2cc90",
+      "result_sha256": "7d08be243f9559629b4cbc109aa1b8e9925272ee757fd1a6f96f0aa5bc1a3a8f",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_dpkginfo_test.xml",
       "source_sha256": "4e35f1adb03485170451f80932e8bba2950ad86a176a7584f96d98ed5ed5d762",
@@ -3519,9 +3585,10 @@
       "outcomes": {
         "true": 1
       },
-      "result_bytes": 48951,
-      "result_sha256": "af29bad7203d8a5a9a410584ff3ceaa535e9d03f453fb13ed723cbdf76e1bbe7",
+      "result_bytes": 44397,
+      "result_sha256": "a52a770cc07ce5c03ed31c60182220ea6372da70aab3f171d47feb99f946f650",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_inetlisteningservers_test.xml",
       "source_sha256": "e84eebb297f602d5b89a4025a1cd43bb74e4d61aa04634a5b2ff2fbb8a0f99b6",
@@ -3561,8 +3628,9 @@
         "unknown": 1
       },
       "result_bytes": 10824,
-      "result_sha256": "7bc172cd4b369c19b23a82bae2aaeb7714ce439aab0f7ff938d08cde49d5204b",
+      "result_sha256": "599e8f40e92d278730c6e7e2ef71ba279df78278c2eb1ceb7e479d8c35f395c3",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_kernelmodule_test.xml",
       "source_sha256": "b64529cebac9dab4760b2114f4b30edfcc891b4af0c94d8464795aebf0a8bbf5",
@@ -3602,8 +3670,9 @@
         "false": 1
       },
       "result_bytes": 73103,
-      "result_sha256": "5eeeb679be2eb363eb50b85ebc498126e3b672bea88c43a8d218277a6583ef8e",
+      "result_sha256": "26814eff7291ab8d0a7e627036bd8771f32de9ff8755d4b6ea6f22713c0b4792",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_partition_test.xml",
       "source_sha256": "a5d1f874433020c994969f484d57ec0ff6027f1277d370c67de83bf57f876b8d",
@@ -3644,8 +3713,9 @@
         "false": 1
       },
       "result_bytes": 12616,
-      "result_sha256": "56c2c36c779832a0f789e8af49ef259cee36ea0559cd68e0b6d48f86f5d1e99b",
+      "result_sha256": "9497ae9d4f6073177676fe4f565bc279c07327b7eb778f828bf4b3c8bc443d76",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_rpminfo_test.xml",
       "source_sha256": "08b522c1d2d921cfcb53f1c1d80241d3bfc8d47929fef463672dcb0c32ab27aa",
@@ -3685,8 +3755,9 @@
         "false": 1
       },
       "result_bytes": 16919,
-      "result_sha256": "06e330e714cac37cc51066945b28efd69b947cc19edeadc158a42b6b08ca7a52",
+      "result_sha256": "0d8e3e712ebf2cb22ab2b488c05bc02e703d70bc4f69a23e0a5331cad91d493b",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_rpmverifyfile_test.xml",
       "source_sha256": "bb8c520b76172b42e78bd2e2801114b0e87fbec5b757fd1e01519ef34dc8653e",
@@ -3726,8 +3797,9 @@
         "false": 1
       },
       "result_bytes": 17612,
-      "result_sha256": "f606279bc933891f49bb5691ddad5b3157805fac57484ab9b32b95ba421f5587",
+      "result_sha256": "ac1a0b30d29fcd7fe7e7fb4466113d5fe14d0ec9cd85a0908d5c2495e4413bfe",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_rpmverifypackage_test.xml",
       "source_sha256": "b621e869fabd11225adaee015ffd3e6aa189caeb4e18f40f214e954429d26a39",
@@ -3772,6 +3844,7 @@
       "result_bytes": 0,
       "result_sha256": null,
       "returncode": 1,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_selinuxboolean_test.xml",
       "source_sha256": "9847326f4cdd47a003e28a2efb820c395179645f447d5f12d6a3c329e10a9efc",
@@ -3800,6 +3873,7 @@
       "result_bytes": 0,
       "result_sha256": null,
       "returncode": -11,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_selinuxsecuritycontext_test.xml",
       "source_sha256": "60e5a044c9049eeab61479621b341ac66437a61b292061c39cccb7a880f0987f",
@@ -3836,8 +3910,9 @@
         "unknown": 1
       },
       "result_bytes": 9949,
-      "result_sha256": "600b7dd87b745e1a2498f343bb7e76d5fefbf08ca081d1e5ee7a6525ed0420d1",
+      "result_sha256": "a36b2cc8d5983859fa4e93cc4cb2d27536cca7ca9825c9cdf2a257704404da54",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_sestatus_test.xml",
       "source_sha256": "3a81ce58742438c97a738cbcfa8eef6d686168b0a22086c270f50d9c1e131104",
@@ -3871,14 +3946,15 @@
     {
       "definition_count": 1,
       "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:1: false Evaluation done.",
-      "duration_seconds": 6.474,
+      "duration_seconds": 6.623,
       "family": "linux",
       "outcomes": {
         "false": 1
       },
-      "result_bytes": 238802,
-      "result_sha256": "76257b804e259b4a7665572de4a4307c04e0de0838fff455b4d08fa852e79ccf",
+      "result_bytes": 238806,
+      "result_sha256": "48e063885fe27fdb4aafb1d7615065d60593f042769ea9745095836e215b0345",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_systemdunitproperty_test.xml",
       "source_sha256": "77a1e2125cb24bf6c29ca2c0e94f515fcea80802354a40620c4994659f2984be",
@@ -3947,15 +4023,16 @@
     },
     {
       "definition_count": 1,
-      "diagnostic": "W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:1') not found in item (id: '13592812'). W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:4') not found in item (id: '13592813'). W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:1') not found in item (id: '13592812').",
-      "duration_seconds": 1.907,
+      "diagnostic": "W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:1') not found in item (id: '13613452'). W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:4') not found in item (id: '13613453'). W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:1') not found in item (id: '13613452').",
+      "duration_seconds": 1.958,
       "family": "linux",
       "outcomes": {
         "unknown": 1
       },
       "result_bytes": 15786,
-      "result_sha256": "103c0ce7572d1909140ee74935108d1526e956bd84f464b7b3b4a5dc704097ed",
+      "result_sha256": "54bce6c6cfffea350bc34e8c9b4ca2ed28665c96724872aa154cf190c643a936",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/linux-def_sytemunitdependancy_test.xml",
       "source_sha256": "7e10470fb59f85177a22746992efe77d2c4d0164157a13dfdd733b830781f435",
@@ -3995,8 +4072,9 @@
         "false": 1
       },
       "result_bytes": 22335,
-      "result_sha256": "4caf95571fbbaffa8688f4b040e8342dd44e3ed308f2e995ad507e28986897cc",
+      "result_sha256": "f5dbb0615b6b21ffda7abc361593e84328200fc02d95dc72d4fd334d0d251fad",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/unix-def_interface_test.xml",
       "source_sha256": "f27ce16dc8f7b066fbb7c2275d22a62e315ec02a62bb56453923f5091afb1882",
@@ -4041,14 +4119,15 @@
     {
       "definition_count": 1,
       "diagnostic": "ry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied",
-      "duration_seconds": 1.104,
+      "duration_seconds": 1.054,
       "family": "linux",
       "outcomes": {
         "error": 1
       },
-      "result_bytes": 635993,
-      "result_sha256": "a750f1baeb582e0a47a825e5b15d277488c11fd9b47556a129db71d9e3315ad1",
+      "result_bytes": 635767,
+      "result_sha256": "148a6a74976e13d874f04389dd9028d0873548cdf941a94cc23b0a30367d86c7",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "linux/unix-def_sysctl_test.xml",
       "source_sha256": "1c868b153c91a7667d1f51a4783bee5d8ef4204549f69fd3eaaf255aadc6588d",
@@ -4093,14 +4172,15 @@
     {
       "definition_count": 1,
       "diagnostic": "proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied.",
-      "duration_seconds": 0.201,
+      "duration_seconds": 0.252,
       "family": "macos",
       "outcomes": {
         "false": 1
       },
-      "result_bytes": 293910,
-      "result_sha256": "e8b41b9f6cc0128d163606ce9791ef1ce9e63796183d82f1004b3030ffaf7d3c",
+      "result_bytes": 294322,
+      "result_sha256": "4d42ef6eb36984701bce6edae282090dc0723401538dd0a9fd4639a6ef486c1f",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/ind-def_environmentvariable58_test_mac.xml",
       "source_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16",
@@ -4142,8 +4222,9 @@
         "unknown": 1
       },
       "result_bytes": 15957,
-      "result_sha256": "0fea15c2ea588dd3268eb78180bd55aef50152d824c562512726ac5ba6411567",
+      "result_sha256": "44a3e67a45d024f2228dd93093c48fb7304fb9d16e7c7429cddf249378519f9c",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_accountinfo_test.xml",
       "source_sha256": "f2b56bfe787abd3a8c668ddcbaf70c20ec2470a7208d37d42ac0ad2ff39144ac",
@@ -4183,8 +4264,9 @@
         "unknown": 1
       },
       "result_bytes": 14434,
-      "result_sha256": "052db7de1b878e302b28a2718d98315739405931404919dcaa7cab300c574945",
+      "result_sha256": "d79f8581625a9339e2239b277ea301e4b8d658e016427f76205981ef8808a6f2",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_authorizationdb_test.xml",
       "source_sha256": "1ec0e848b6db2099b644edf51d70f5a693b4d4e5fd874ff63d0e1f947ec5d99e",
@@ -4224,8 +4306,9 @@
         "unknown": 1
       },
       "result_bytes": 8312,
-      "result_sha256": "16f8d0893885ed250512f2ec4ba242d8aef1933912a69fa2bdd57a68307d44bb",
+      "result_sha256": "328eef0deeac0bd53fe3d6d77d597e1003485a31e07c4724bf2e0ccda6eec859",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_disabledservice_test.xml",
       "source_sha256": "9eecb92ed98a7f5ae46814c03d51ee9b8fc289d08d8f7feb8edef43d1d2a63ba",
@@ -4255,8 +4338,9 @@
         "unknown": 1
       },
       "result_bytes": 7773,
-      "result_sha256": "bd8f972cbb767e0bd66d608fc75e580cfff508b0795084ca3c991a68dcb02ea1",
+      "result_sha256": "8d5ebda02b35be1dabb0c66e84a79a30457fd0eca50856a5a4166379d6bce2b9",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_diskinfo_test.xml",
       "source_sha256": "b11a4b5d8eb387cd577b59712dcceaaf59c773d744d1fd54d1cef4edd4794ba9",
@@ -4286,8 +4370,9 @@
         "unknown": 1
       },
       "result_bytes": 7733,
-      "result_sha256": "91c7a6301a9d1eea64a65bf031b3431d187a0c75b6f97a86015a941b1ebd2f04",
+      "result_sha256": "2c6e06454c632be6d5bf7b57e8169941255696077e9f000b3bbfaa1255b3587e",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_filevault_test.xml",
       "source_sha256": "83a66de7e3f997cfad206ff33335e28b939717738003329d5c4be0c630e3d22d",
@@ -4317,8 +4402,9 @@
         "unknown": 1
       },
       "result_bytes": 7768,
-      "result_sha256": "8ba43667c13d2685ecb8b18e1ca4be84901be885357ae432beecfcf4f755b99d",
+      "result_sha256": "93dc019e4fd703ff31e233d729e70f5304fa9cd674fe96236abbb218086095d7",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_firmwarepassword_test.xml",
       "source_sha256": "200c768c7add252fb437f3d38b2bcdb839a12b119d1c7af36c82b316d6c01bd2",
@@ -4348,8 +4434,9 @@
         "unknown": 1
       },
       "result_bytes": 12034,
-      "result_sha256": "27c0a31bf16bc94aeef52b017f60dce860290a0851cc8d15c2e695d2bbdcfb05",
+      "result_sha256": "60a35453ee6142036708f14f921838e3f23e26cf71dd4d225abaa4d25762830a",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_gatekeeper_test.xml",
       "source_sha256": "a76301de534a71f84fc498108c59b065551b9ec933db1b0a8e8582e835b2eebf",
@@ -4379,8 +4466,9 @@
         "unknown": 1
       },
       "result_bytes": 7916,
-      "result_sha256": "63119b8a85e979ece3755748e84bdb2ae9c6ca09aa0ac4211630e7b0e06c3dfb",
+      "result_sha256": "610f0f39989da5e82dbcb4822d171e3effb612e638cb3f06cf67e214a66c587f",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_installhistory_test.xml",
       "source_sha256": "288da3a1f6d7e158ac9613d1b7a40033512f878a9e2ab3d1bf3da9cabd9f17fe",
@@ -4410,8 +4498,9 @@
         "unknown": 1
       },
       "result_bytes": 9534,
-      "result_sha256": "9a02225bb9038b36bbba9ce078efc0017b83bc8a90e197791b911af9d993bd25",
+      "result_sha256": "50ebf0fc1e5be2d0be4135b12f621f2a3a0c9e791af053a8c79d62e46e3d4e70",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_keychain_test.xml",
       "source_sha256": "53e1beb968074d18a1bade43e8d251a2387d44d19e12e76a720966ed5130a62b",
@@ -4441,8 +4530,9 @@
         "unknown": 1
       },
       "result_bytes": 14778,
-      "result_sha256": "cd5a6052c91289894aa31597ffe21e4b67f6bc839da4bba86bc9dd93772f9cf5",
+      "result_sha256": "b7950fcc118c3f55aec2cfdc32c79572d8e279363652e6621212a7598f619631",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_launchd_test.xml",
       "source_sha256": "4b31ad27b5a13b8ae2550415772f6ff99e62ec74af21a5d74276571f1ece2ab1",
@@ -4482,8 +4572,9 @@
         "unknown": 1
       },
       "result_bytes": 15445,
-      "result_sha256": "a0c90a357cbc173a99a65535435a5820ba9670a496d3add066f98232b134deb2",
+      "result_sha256": "d9b30106f50a7900e319e1a47ab9b5829ba0ed58d78829ef6f05f7af6fbc6885",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_nvram512_test.xml",
       "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd",
@@ -4533,8 +4624,9 @@
         "unknown": 1
       },
       "result_bytes": 12211,
-      "result_sha256": "3efbad83a2b29b13f8f8c9c574de02df040e4144527f21fa5379af4d521df5f4",
+      "result_sha256": "178dff5c957ae3462c9c8e48bbe8be336f70d5a0b0f6ea2ac2ee0e38584e8800",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_plist511_test.xml",
       "source_sha256": "c299d1d4145d79a28f122cd913ee214a8c1217417dbed7c477ffc0a59e0caf79",
@@ -4564,8 +4656,9 @@
         "unknown": 1
       },
       "result_bytes": 7728,
-      "result_sha256": "2879d2c28692005fde2f85b292bb590df342a85a0a71ae9c867530837b816609",
+      "result_sha256": "dff8236e73eddc31c8532e0fa9961d213db6d7eed31ea991bb96cf0f848f6d58",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_profiles_test.xml",
       "source_sha256": "21c845bb2076a939d216ca9ea8fa37c1dc783ded7d04a881e274b70df8c6abce",
@@ -4595,8 +4688,9 @@
         "unknown": 1
       },
       "result_bytes": 9341,
-      "result_sha256": "aea32ca3e38222ddb97658762d01c18a2e2720b4f4901a7f391156ebc3e66f39",
+      "result_sha256": "f3f8fbbc5c2149b65bce4aa44bc28b69f3e8419bc8ee3e214532c4052bb2768a",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_pwpolicy512_test.xml",
       "source_sha256": "fd7f6c29caab6c5238f97c2f97df6fcfdab1464e6ce846469391f54a381b273c",
@@ -4631,8 +4725,9 @@
         "unknown": 1
       },
       "result_bytes": 11897,
-      "result_sha256": "ccb12f520c1d066eba70d2d41adcf51a56bf926640c5c7968a9e42566eaf15ba",
+      "result_sha256": "496585c689b05ba7971bb423f5ca1ce2a4fa817086679327317435819d2e8e6c",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_softwareupdate_test.xml",
       "source_sha256": "77016edd47f380559b9e1f2beb4ec4998b11e410591bf67db92cad56f4b8c8a0",
@@ -4662,8 +4757,9 @@
         "unknown": 1
       },
       "result_bytes": 14952,
-      "result_sha256": "fae842128aee788d8f49f01d3bce7b32172a42e8c6a7fc172f25af14fe7be767",
+      "result_sha256": "14acf23e07ff67046d8f7f00ba45a8d3a4b86854e8618c0692acca7752182b3d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_systemprofiler_test.xml",
       "source_sha256": "8f118ba83cee8686af1d5a62ff8032338e7cc82c94b3317b755004bc8d57ecec",
@@ -4703,8 +4799,9 @@
         "unknown": 1
       },
       "result_bytes": 11930,
-      "result_sha256": "39d36f828800e9fa4387ff3522495fcb42e501e579664abc538aba1d5ce44e1d",
+      "result_sha256": "33a86539672e70f4ae4a0635f2c5ca4abbe212ee784006936bf3ad89c25f737c",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/macos-def_systemsetup_test.xml",
       "source_sha256": "7c357cda4df4959cbf188e96bebbfcec7f70e79d41eabf88ce0936c5ec1c5077",
@@ -4734,8 +4831,9 @@
         "false": 1
       },
       "result_bytes": 22091,
-      "result_sha256": "6c86d981f05d84a97fbcefa1a15f8ebbea7851dff1fbbece0587b1db96288cf6",
+      "result_sha256": "69124da15b9ae9824ed76811161bbca151a114e43e8eeaf0b84d863dbed85bf4",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/unix-def_interface_test_mac.xml",
       "source_sha256": "bb2e88020c28286207f17ae18d26e4c6e4c9ef84c468d7a217ebb769f902feff",
@@ -4780,14 +4878,15 @@
     {
       "definition_count": 1,
       "diagnostic": "ry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied",
-      "duration_seconds": 1.154,
+      "duration_seconds": 1.105,
       "family": "macos",
       "outcomes": {
         "false": 1
       },
       "result_bytes": 635956,
-      "result_sha256": "f7538de0f95cb5d1d8df81a788688642d87a63044d21ae4e21c2612ec5d17654",
+      "result_sha256": "065777650bf5c72566f8d3bc2b69d559928778811215daca07bd88d4c0985ccd",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "macos/unix-def_sysctl_test_mac.xml",
       "source_sha256": "23bede24f1818acc16bb88f0635fbc18337a8b04aa63aaa5438f8168b5a7c6ce",
@@ -4838,8 +4937,9 @@
         "unknown": 1
       },
       "result_bytes": 7816,
-      "result_sha256": "316453f7b3ead3aecfd707482871e916a8d2c17c652427dfcb04a7dc2e44f9a2",
+      "result_sha256": "2ddf801634b1d83aeafda315374d541b4b44e152a30614f3af0ce65dc731e2e6",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "panos/panos-def_config_test.xml",
       "source_sha256": "bcf36c2b5c5ed64a0ee4ab5f617187e0061b864829025e91f7ec52990b5736d9",
@@ -4869,8 +4969,9 @@
         "unknown": 1
       },
       "result_bytes": 8503,
-      "result_sha256": "6067334700e33aabef5f36c7d39c52d7b65a45576e18727533f906a23d758119",
+      "result_sha256": "31dd1e9fd8933dd19153fb202704fbcf86d5026e153db316274dcce44bbf7bf3",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "panos/panos-def_version_test.xml",
       "source_sha256": "ad1cfdfc9e4ea7bb6e0eb51b3b28053fff102fb9b8ae9871f45e2b0e9f20dc90",
@@ -4894,14 +4995,15 @@
     {
       "definition_count": 1,
       "diagnostic": "proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied.",
-      "duration_seconds": 0.201,
+      "duration_seconds": 0.251,
       "family": "solaris",
       "outcomes": {
         "false": 1
       },
-      "result_bytes": 290582,
-      "result_sha256": "81290ea21ca585f6b2aff9d8fe8f58e651f73afafe7096e251e568193837e0b6",
+      "result_bytes": 290994,
+      "result_sha256": "0e23391dce7b40bb24d294adad28cbdca12f889bf67a16d256468997e18a7f47",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "solaris/ind-def_environmentvariable58_test_solaris.xml",
       "source_sha256": "0c493dda2d34824553be1e16f69e56475f8805855899afc08c9d3817c76377f5",
@@ -4943,8 +5045,9 @@
         "unknown": 1
       },
       "result_bytes": 21060,
-      "result_sha256": "203a0d2097b7af6b2bdef7bfd8aa81056e32ece21a1cfb41b0e3883c55a13169",
+      "result_sha256": "9d8b4f8e75ee23a12967fbb1863412c76d3371db414fd9afe0b783dbfb878cd0",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "solaris/sol-def_package511_test.xml",
       "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
@@ -4999,8 +5102,9 @@
         "unknown": 1
       },
       "result_bytes": 12904,
-      "result_sha256": "a865600201b432b0a04a5cf1f04ec20dceaa6a36828ed50c6c7cb244669e8462",
+      "result_sha256": "c74fa53b805b10774c5e15ac1aeae01310033096dc2197f57927b67cde4abd77",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "solaris/sol-def_package_test.xml",
       "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
@@ -5040,8 +5144,9 @@
         "unknown": 1
       },
       "result_bytes": 16834,
-      "result_sha256": "5d398140a5ae5ec7a4f39fe92fac37215966bef4df8fb98b489fa023332ff982",
+      "result_sha256": "99c1d23e1696cbd73076e87ca18b8567454704d069fd89a8e44c7c11349f366a",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "solaris/sol-def_smf_test.xml",
       "source_sha256": "1b89eed39fd6f2a64d8c80abf894b3be9cdb8061a1585198beb2958294813f9c",
@@ -5081,8 +5186,9 @@
         "unknown": 1
       },
       "result_bytes": 15954,
-      "result_sha256": "cc1dc6295353a848dd4f416900ebb301eba975bccd1618892c0524eb53c3221e",
+      "result_sha256": "5a14d37b4c2a684982f43ac5fe4a4a69b76b6c1d99867218470a6bfeb1c82118",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "solaris/sol-def_smfproperty_test.xml",
       "source_sha256": "b01e5c48957cb15e8cf7dd7d67e2e8c45fe9cad0d8be23aa9bcbe65583296f1f",
@@ -5122,8 +5228,9 @@
         "false": 1
       },
       "result_bytes": 18509,
-      "result_sha256": "b304af584d28aa20f2e600a6b33c3d028862af11eba198b1a26065b2d7054c31",
+      "result_sha256": "4319514fb17c21438691f922cbaca4f4336cbe38bb6aa0cfa36f233b348b0d82",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "solaris/unix-def_interface_test_solaris.xml",
       "source_sha256": "331b723bd3eff522526ad4020ad628e15cadd77fb656f9cc86bc6e3fbf1c6f61",
@@ -5164,8 +5271,9 @@
         "true": 1
       },
       "result_bytes": 18768,
-      "result_sha256": "403c0996cbf235593be9c476aa30b93164cad6a1c04f6e0f4f1b05bdfe1e17f8",
+      "result_sha256": "fe890080f32baaa265781ad5c45bdb7d3aa480ec1a070dcc0622afef63c000de",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/ind-def_filehash58_test_unix.xml",
       "source_sha256": "fee16d02756928ee1606921370d244fdb4d8c700db2c706443583e86cb7d38cf",
@@ -5205,8 +5313,9 @@
         "unknown": 1
       },
       "result_bytes": 16749,
-      "result_sha256": "a28d24c42c20600f0ac1dfaf1e53157511fd6e311bad25a9e6e2d95c5df44820",
+      "result_sha256": "b67682ee9678b85a49e77b5e8a36891e0cea174ae134d55e56490f92a8d4be62",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/ind-def_shellcommand_unix_test.xml",
       "source_sha256": "004756aa7d05bd145702d1a3d4fd7d74437d0c2827b628db007d0dabc1915069",
@@ -5256,8 +5365,9 @@
         "false": 1
       },
       "result_bytes": 59276,
-      "result_sha256": "c72867fafc9560bda37640d4d5483bcc753f3adb2f1f2d8848059e68f5d9c6ea",
+      "result_sha256": "bd242ad52ac544703cc7d5d49f1b2f8f078863b202a321a3380af99b0ae09552",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/ind-def_textfilecontent54_test_unix.xml",
       "source_sha256": "876dbcd2a5bebfd5e0479f7bd0715736e53ab8b3553ced06832f95a61138b086",
@@ -5338,8 +5448,9 @@
         "false": 1
       },
       "result_bytes": 34598,
-      "result_sha256": "9f4bb0fa6a9b70d20c64c82759fb64003f887a037837766eb91fc8599e9d7bdd",
+      "result_sha256": "881dee0fff72be182dfb113c67d506f5d7ec130f7db041847ce54bd314ea5910",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/ind-def_xmlfilecontent_test_unix.xml",
       "source_sha256": "0f3ffab0e7047f73fddf0526777ee7c0f2e0ac4e81cbf7051d076dd36d525a78",
@@ -5400,8 +5511,9 @@
         "true": 1
       },
       "result_bytes": 28073,
-      "result_sha256": "e5c5458d52eb71c1a509e2e92d8ada5a8be87e77f34aa60714124057e57ae148",
+      "result_sha256": "6c37213f1c1882735100c17622c748a6ea4e0d8002cd903cea79f936c64ac13d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/oval-def_set-unix.xml",
       "source_sha256": "ca472ba6709eb0290284287897bd7a976c8634f9107de7e29fd1eae21001e808",
@@ -5461,8 +5573,9 @@
         "true": 1
       },
       "result_bytes": 44963,
-      "result_sha256": "0f79a0ff844dbe79d5e00a4061fad2a7b388d98cecc4ad9caf02aceaa4189b71",
+      "result_sha256": "b3998e760cc0bfc88ebd53f3e9ea51f87ddcb1f346655300d7b6090a6af82b64",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/unix-def_file_test.xml",
       "source_sha256": "8d0b0a33aa53815498f0adb501fb7177ec7e887dff243f07afc7866659dced7f",
@@ -5542,8 +5655,9 @@
         "true": 1
       },
       "result_bytes": 71607,
-      "result_sha256": "e4fef10cdf1320e9e1501691bcfb1a8660d637fd7c07ee414bfb543d09554bd2",
+      "result_sha256": "6af9ef520dfc2e2e5ba8d1e1845fd3bf931bb1857167166d0acc7aa291f8ab7d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/unix-def_password_test.xml",
       "source_sha256": "b09a04f5b562cee3d84ac41b2b99dbd6326f48aa50b8a037dcd7163449827472",
@@ -5592,14 +5706,15 @@
     {
       "definition_count": 1,
       "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:307: true Evaluation done.",
-      "duration_seconds": 0.502,
+      "duration_seconds": 0.503,
       "family": "unix",
       "outcomes": {
         "true": 1
       },
-      "result_bytes": 402342,
-      "result_sha256": "5477495229de5382f044033daf126c15cc1592fc51107e1c473b81aa14f407c1",
+      "result_bytes": 402464,
+      "result_sha256": "f7742ba7515bbd49b4353e658a61465a2af03ceeea5e900011f48a47fe1714d3",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/unix-def_process58_test.xml",
       "source_sha256": "a75037bfabd721b0f6a8a64a4eb4079a8b3feeb63c09776390e8fa9eb4d2f720",
@@ -5664,8 +5779,9 @@
         "false": 1
       },
       "result_bytes": 11914,
-      "result_sha256": "4db4239c6317a1205516878d86765306c68582d4fd5a5eed61aec4a62622abb6",
+      "result_sha256": "847c5e6dda35adcf4d37e64c92efb02939e5a5b32da9f29dc0d8ee8f31958173",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/unix-def_shadow_test.xml",
       "source_sha256": "6c0416594df195f08eaddaa987e8ad95b2a98cca9ce8b8875fa03e19d8f69e4b",
@@ -5706,8 +5822,9 @@
         "unknown": 1
       },
       "result_bytes": 13299,
-      "result_sha256": "82362e33cc6c99f7ad13be3e1cd4ea73b2f5bdbb096a119ec91d5a08013faaf4",
+      "result_sha256": "119d01521073aae0e2451cffa84ae573996dfc3f804dc6bc4c3f23744aec8eec",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/unix-def_sshd_test.xml",
       "source_sha256": "a39e832aec71f537ff18eeaac3b181c7f63d6dbe5c311a8d7221ce86258ec8f0",
@@ -5751,8 +5868,9 @@
         "true": 1
       },
       "result_bytes": 19488,
-      "result_sha256": "1a309c0026d2f4e09ebf18f14f38d852fa24b32244b1785bad866c83076f7efa",
+      "result_sha256": "448c2a198ba62eb0d9f1b0ce75fd110f14c8e762f791f2d6943dc8fc1188e97e",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/unix-def_symlink_test.xml",
       "source_sha256": "48a100f193c0052757b63f50f438183e967a7c9450554911ef23b5b000be3415",
@@ -5809,8 +5927,9 @@
         "true": 1
       },
       "result_bytes": 10133,
-      "result_sha256": "3808b7fddf8d32e172e6106fe40f95dbb342c4e13424da417b81ef642fa1ec4a",
+      "result_sha256": "3925d8ee92d6fee214e144700625cb0fa6002eb2267c51f6b05348f2e58cb72d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "unix/unix-def_uname_test.xml",
       "source_sha256": "3c175c94a1a43a17049d39002f95d8e3ed9143eb943c76c47047f1f535c7c070",
@@ -5839,9 +5958,10 @@
       "outcomes": {
         "false": 1
       },
-      "result_bytes": 291808,
-      "result_sha256": "78e39b75aeb93441dd4f62e64d82b01fd62cec84d3b945c72eb6457a7707fa86",
+      "result_bytes": 292220,
+      "result_sha256": "4ddfc5fc09639d2ef3040f86cc5e47652817059af663a7d193042e83a937c52a",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/ind-def_environmentvariable58_test_windows.xml",
       "source_sha256": "6740b7e585793f88689998d869b1c171338903da3123f327b547a0d0f8ea33f2",
@@ -5892,8 +6012,9 @@
         "false": 1
       },
       "result_bytes": 15572,
-      "result_sha256": "3380ff8770b8d884fc12af393e6a87c1f7179f992b6d7acbd891d3e4d842d465",
+      "result_sha256": "497d3a8570fea9549004b062d90d2a7c3493e2312764737f6cb66bfe4531f524",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/ind-def_filehash58_test_windows.xml",
       "source_sha256": "ccd2569a6b5992d40ff84a5775b2f369e5134dbf9e4df583b272d34410e3e229",
@@ -5933,8 +6054,9 @@
         "unknown": 1
       },
       "result_bytes": 17848,
-      "result_sha256": "78f8f22fa7ede2ef0c925d09881250d7cea2e19d02b7791cc29e08427f8cc965",
+      "result_sha256": "a2b33221c05434c7b93923c878cf9e3f9c2e809be4935f01c1a101be315571a7",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/ind-def_shellcommand_windows_test.xml",
       "source_sha256": "64c460e9024d4053eb29695f0111e138363577f74ee3ac9c4b867c9689257e88",
@@ -5989,8 +6111,9 @@
         "false": 1
       },
       "result_bytes": 28464,
-      "result_sha256": "d272d79a4121d798376d3b3a7b7381ded46383858fb2a2e68077e91043577d0e",
+      "result_sha256": "bb79278de27cdf096ecbc8ef83800eac08158c53edf05cf53690d978338e8c3e",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/ind-def_textfilecontent54_test_windows.xml",
       "source_sha256": "512f3256a4d5a8333567eba7cda3e53b48929df851a835af1a4b23254175d34f",
@@ -6066,8 +6189,9 @@
         "false": 1
       },
       "result_bytes": 23050,
-      "result_sha256": "3e26b7c171dd560e03606d8a241cad73c7ab79ab9f00f0beebbc84ef74eecaeb",
+      "result_sha256": "e6e98fb4b20bf0582ea91753029214bc2ece8020810b9049fee65c244b56c516",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/ind-def_xmlfilecontent_test_windows.xml",
       "source_sha256": "34e81e7613e85bef8f6d8d8837d8480a6767044315bfe5d1e041da4ec5649d99",
@@ -6121,14 +6245,15 @@
     {
       "definition_count": 1,
       "diagnostic": "W: oscap: OVAL object 'file_object' is not supported. W: oscap: OVAL object 'file_object' is not supported. W: oscap: OVAL object 'file_object' is not supported. W: oscap: OVAL object 'file_object' is not supported. W: oscap: OVAL object 'file_object' is not supported. W: oscap: OVAL object 'file_object' is not supported. W: oscap: OVAL object 'file_object' is not supported.",
-      "duration_seconds": 0.051,
+      "duration_seconds": 0.052,
       "family": "windows",
       "outcomes": {
         "unknown": 1
       },
       "result_bytes": 23654,
-      "result_sha256": "48173c5978eacc42e919ff81f90c234e6016522082499d6585fc249cbaf0f160",
+      "result_sha256": "2b694e82802d5c728517d52dc0b120fb53688a992d391845145569ecf1346a4e",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/oval-def_set-windows.xml",
       "source_sha256": "352a0b99e0df90cc3ddf9f7e410f3d9a8b44659a6a12c38c938ab861be595262",
@@ -6188,8 +6313,9 @@
         "unknown": 2
       },
       "result_bytes": 30792,
-      "result_sha256": "63f4f9b45e611d6777adfd711fed049dd514c173cd3aa8daa4152a1cb4e7f419",
+      "result_sha256": "4e0a912b18d2b2cef7e0b9269446707562c1a46ed74fc91601ae4e6f030765c9",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_appcmd_test.xml",
       "source_sha256": "b0c8c60a85980dbf33df92b62e519dcb519add734b726a0125ac00b3c8bce1c2",
@@ -6284,8 +6410,9 @@
         "unknown": 2
       },
       "result_bytes": 35027,
-      "result_sha256": "3dd6fb8d800914932422fc204ab934767715e5ca5f5d04b1f26e06d42928630f",
+      "result_sha256": "c780d876b289735c2c0f2759f77f3f0268f4a8ce810cbef58ac12d9bde94a403",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_appcmdlistconfig_test.xml",
       "source_sha256": "79c777d462bd80eacc474e2a23267f41c409363d39190ab524d5965d1ed46eeb",
@@ -6390,8 +6517,9 @@
         "unknown": 1
       },
       "result_bytes": 16626,
-      "result_sha256": "eee5ad92df89b6866bd3233da37da61ef8eab2c427d04d3cf04bd36ed74508d0",
+      "result_sha256": "4ef2a301ec2cb6ba4e1980abd070a1ccd8f30eeafbbe1896b807e5fe00dd13cf",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_auditeventpolicysubcategories_test.xml",
       "source_sha256": "ed2cb11222b6fc78e27696b91f87ecbd649757e3e38752c89a245d9099905363",
@@ -6421,8 +6549,9 @@
         "unknown": 6
       },
       "result_bytes": 27844,
-      "result_sha256": "23f4f8bd10396d67ef6c371ee55579d349f0e1c324a2ed6e31da6248f51da06c",
+      "result_sha256": "fb330212adbbb78601c92614dc9b284b6719f1d664d88d2d7ce85218826f2791",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_cmdlet_test.xml",
       "source_sha256": "cd2240c929bbd1171461035e7fd8b4336fd505ce1687c1f178af7a800fb50c33",
@@ -6477,8 +6606,9 @@
         "unknown": 1
       },
       "result_bytes": 20877,
-      "result_sha256": "34f3daab8062134323f6d41a8eed84a9fcaf3062d2e8efb2df110a3d882173f6",
+      "result_sha256": "41a2afbfc5118bab12a924734eb4d817f3429ab42a4868019397cc442ce494c9",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_file_test.xml",
       "source_sha256": "c607d861a44bf143bf7a2910372cf04f19fbce7a822309c5d8c708afc6353c74",
@@ -6538,8 +6668,9 @@
         "unknown": 1
       },
       "result_bytes": 22431,
-      "result_sha256": "716c6bdcd8ce8dd28f4d088ba03464646339db127f7d200b0d9a95c6b4e55673",
+      "result_sha256": "b4dd280efd6308dcf3e18bb08a2d0e0abd3b9b40aebd0e9382b1a4cf47c3c652",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_fileeffectiverights53_test.xml",
       "source_sha256": "24fa96ee59786787c95abb65882dc2a9b1ea7f4fc7e1275af0a0b9829df59032",
@@ -6599,8 +6730,9 @@
         "unknown": 1
       },
       "result_bytes": 15620,
-      "result_sha256": "7ec5b889d3fb33a55c17291286309c98ccd2e0ec835b05d5c08120390b510872",
+      "result_sha256": "41d5b754d2f354fd6828b165dd385cea0a8e2eb8e880ea71ae1ca62651712ea7",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_group_sid_test.xml",
       "source_sha256": "b1a8eda555eaad9cbaf7d325a4164316e5997494ce58392a2112fc2e9138c352",
@@ -6649,14 +6781,15 @@
     {
       "definition_count": 1,
       "diagnostic": "W: oscap: OVAL object 'lockoutpolicy_object' is not supported.",
-      "duration_seconds": 0.052,
+      "duration_seconds": 0.051,
       "family": "windows",
       "outcomes": {
         "unknown": 1
       },
       "result_bytes": 9521,
-      "result_sha256": "4db8a97e8f4e4986baca0058a0160f2de8be93b0d35cc9bceddc12f735eabc2a",
+      "result_sha256": "b0f5d51fe5b97c2691d71650d25b2af8e5c90b672f99a9508d6b12859ccfae2d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_lockoutpolicy_test.xml",
       "source_sha256": "30818be7d856dde1975e451858029e8de8deeb53c370dc979581256995681ade",
@@ -6686,8 +6819,9 @@
         "unknown": 1
       },
       "result_bytes": 43206,
-      "result_sha256": "187732d2fef58d3cb69a0eba6f4c33793b63c3095ec27d9a473d3a9c8078fb37",
+      "result_sha256": "ec511ca6f27dc9821bfc8246712535bdffd3c145812dccd63b6c04f2c5768cf6",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_ntuser_test.xml",
       "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
@@ -6812,8 +6946,9 @@
         "unknown": 1
       },
       "result_bytes": 15507,
-      "result_sha256": "b97d9f34690e40a167faea3c6fb89aa48375a5a3db8740e7afc6501a17de57d2",
+      "result_sha256": "291b25076955af2eea6059f31a03a88711e976fac698c9abcbb28959a8bd3da4",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_passwordpolicy_test.xml",
       "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
@@ -6873,8 +7008,9 @@
         "unknown": 1
       },
       "result_bytes": 33969,
-      "result_sha256": "e8ed56675d7057cd73c808c14eb605e821c4b74b4bc3fdba1dcedd29998d1f24",
+      "result_sha256": "c27b789a53e59ff88e58b41a54cd0cc3840e7f3f211faaf69144582e22423836",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_registry_test.xml",
       "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
@@ -6974,8 +7110,9 @@
         "unknown": 1
       },
       "result_bytes": 23300,
-      "result_sha256": "3dc62aa7fba6f0c4457ca373d93b4024c22ff59fb6ac45b0ab39b26cf900f259",
+      "result_sha256": "25ed2300efdc420a8f036b622831d5bfe3c5f71ed746eb422b57abd04c1e9fc7",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_regkeyeffectiverights53_test.xml",
       "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
@@ -7035,8 +7172,9 @@
         "unknown": 1
       },
       "result_bytes": 17609,
-      "result_sha256": "1e7a01ee7bebece9713005a626690ce53a1eb92579df49cf2557933821c71416",
+      "result_sha256": "499d38b770a41a7dae6acc28f45aa0f743ecf1a0346e1e8248bc75439191dc62",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_service_test.xml",
       "source_sha256": "d4130c1c406e5ca0a095d0b826d39db0d9421945170c42dd5ee07f47ecab75d1",
@@ -7086,8 +7224,9 @@
         "unknown": 1
       },
       "result_bytes": 18474,
-      "result_sha256": "d511ad662db0915db0a85e0c3a8112a0bdf9c2cf97e318d8a2b50e54d3082ccc",
+      "result_sha256": "aed18c50ee6a2dee5ec3f7d2764edca33c0144e06b9ed8d293936d8c19da71d2",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_sid_sid_test.xml",
       "source_sha256": "5b146b98e9089dd8d7d7f8c392d5b8f2ffac5701ee5f0821574f62d05797b55d",
@@ -7142,8 +7281,9 @@
         "unknown": 1
       },
       "result_bytes": 17635,
-      "result_sha256": "1126acad0f682a1a4839576d3762ba3aa690a2fc04ae4538bd8af0ba3d51bb09",
+      "result_sha256": "dca10bd9be81ddfb69b906180d8f9514137dc4af4e6c767b07c8520f591474b1",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_sid_test.xml",
       "source_sha256": "b2e21faef8bd4127e3f9d9de2ec1eeb010502f3bc7b134d091d3f5eefd403085",
@@ -7198,8 +7338,9 @@
         "unknown": 1
       },
       "result_bytes": 25648,
-      "result_sha256": "b38a6e1dd8a842c708a274c258dc265689e4e3bb2f0f40db7d5192331b40bac7",
+      "result_sha256": "c414b72331dfdf2adf4c9bd2bc0f15048b0fe14d5880705a12d55e5a4aeaf447",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_user_sid55_test.xml",
       "source_sha256": "2328e8bf15f79d90486e979e842b0029e23801a9e1782c6d6e22304b39536eb3",
@@ -7289,8 +7430,9 @@
         "unknown": 1
       },
       "result_bytes": 69126,
-      "result_sha256": "099de615c965662a424071629a0c756f71c5fa31b944082be4639cd521351612",
+      "result_sha256": "590583bd559c825631996196bfaec5489ace4c8411cc3580f6d4e7724fead6dc",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_userrights_test.xml",
       "source_sha256": "00065e6289670d2807312cfdf038a88f3fd68add7e83892f98b1f81f2adc6cba",
@@ -7550,8 +7692,9 @@
         "unknown": 5
       },
       "result_bytes": 18769,
-      "result_sha256": "37711280125f17eea8a290963e7b58e7f216803508280b69ce816032ffad3c75",
+      "result_sha256": "7ba4cb73812725cfa6e6d4c59abe933d0bac71bebfeacd83e7151292f14d9dda",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_wmi57_object_test.xml",
       "source_sha256": "ac9a8bc062d9a261624eefc963da7cc3e190be96519da5369054d1bde8a52cdb",
@@ -7601,8 +7744,9 @@
         "unknown": 1
       },
       "result_bytes": 22986,
-      "result_sha256": "b5049a021b4bad7826cf72aa79744af56435d1be0cd8687356c27186a38e5ec4",
+      "result_sha256": "405da159a33b5d41aa24ce7d77abe1b447b87c6fed96a86faa930b8ed0752e7d",
       "returncode": 0,
+      "source_archive_sha256": null,
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "windows/win-def_wuaupdatesearcher_test.xml",
       "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
@@ -7662,36 +7806,153 @@
         }
       ],
       "unexecuted_source_test_ids": []
+    },
+    {
+      "definition_count": 1,
+      "diagnostic": "Definition oval:org.mitre.oval.test:def:562: true Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "agnostic",
+      "outcomes": {
+        "true": 1
+      },
+      "result_bytes": 60229,
+      "result_sha256": "dcf9e95361cdaa0718fc88bb9fd0c8568ba223ca162d1a31d693489f8bfd0ca6",
+      "returncode": 0,
+      "source_archive_sha256": "d062d308545db20d090ccb516d8e6d804fa584704e8e5c5987f18ca5ef53fa10",
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "agnostic/oval-def-ext.zip!oval-def-ext.xml",
+      "source_sha256": "48b14ebc959d86f8911b5ca4b614ce0e0bff24f1183184cf6632f42f4945beb5",
+      "source_test_count": 18,
+      "source_test_ids": [
+        "oval:org.mitre.oval.test:tst:126",
+        "oval:org.mitre.oval.test:tst:132",
+        "oval:org.mitre.oval.test:tst:154",
+        "oval:org.mitre.oval.test:tst:170",
+        "oval:org.mitre.oval.test:tst:275",
+        "oval:org.mitre.oval.test:tst:34",
+        "oval:org.mitre.oval.test:tst:350",
+        "oval:org.mitre.oval.test:tst:38",
+        "oval:org.mitre.oval.test:tst:439",
+        "oval:org.mitre.oval.test:tst:487",
+        "oval:org.mitre.oval.test:tst:509",
+        "oval:org.mitre.oval.test:tst:608",
+        "oval:org.mitre.oval.test:tst:64",
+        "oval:org.mitre.oval.test:tst:71",
+        "oval:org.mitre.oval.test:tst:851",
+        "oval:org.mitre.oval.test:tst:936",
+        "oval:org.mitre.oval.test:tst:943",
+        "oval:org.mitre.oval.test:tst:983"
+      ],
+      "status": "completed",
+      "test_count": 18,
+      "test_outcomes": {
+        "true": 18
+      },
+      "tests": [
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:126"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:132"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:154"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:170"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:275"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:34"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:350"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:38"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:439"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:487"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:509"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:608"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:64"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:71"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:851"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:936"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:943"
+        },
+        {
+          "result": "true",
+          "test_id": "oval:org.mitre.oval.test:tst:983"
+        }
+      ],
+      "unexecuted_source_test_ids": []
     }
   ],
-  "format": "scap-ng-tools/issue83/openscap-all-platforms-ledger/3",
+  "format": "scap-ng-tools/issue83/openscap-all-platforms-ledger/4",
   "limits": {
     "max_result_bytes": 67108864,
     "timeout_seconds": 30
   },
   "qualification": "independent legacy OpenSCAP source execution; not SCAP-NG/OVAL 5.12.3 equivalence",
   "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
-  "source_scope": "144 XML files; 785 authored XML Test IDs (18 additional agnostic Tests remain inside oval-def-ext.zip and are outside this XML harness scope)",
+  "source_scope": "144 XML files plus agnostic/oval-def-ext.zip!oval-def-ext.xml (803 authored Tests)",
   "summary": {
     "families": {
       "agnostic": {
-        "files": 35,
-        "observed_tests": 306,
+        "files": 36,
+        "observed_tests": 324,
         "outcomes": {
           "error": 1,
           "false": 3,
-          "true": 40,
+          "true": 41,
           "unknown": 1
         },
-        "source_tests": 310,
+        "source_tests": 328,
         "statuses": {
-          "completed": 34,
+          "completed": 35,
           "execution_error": 1
         },
         "test_outcomes": {
           "error": 10,
           "false": 115,
-          "true": 180,
+          "true": 198,
           "unknown": 1
         },
         "unexecuted_tests": 4
@@ -7891,23 +8152,23 @@
         "unexecuted_tests": 0
       }
     },
-    "files": 144,
-    "observed_tests": 770,
+    "files": 145,
+    "observed_tests": 788,
     "outcomes": {
       "error": 4,
       "false": 22,
-      "true": 62,
+      "true": 63,
       "unknown": 76
     },
-    "source_tests": 785,
+    "source_tests": 803,
     "statuses": {
-      "completed": 141,
+      "completed": 142,
       "execution_error": 3
     },
     "test_outcomes": {
       "error": 21,
       "false": 173,
-      "true": 274,
+      "true": 292,
       "unknown": 302
     },
     "unexecuted_tests": 15
