@@ -100,6 +100,8 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(rows["current_state"]["deprecated_members"][0]["scope"], "nested")
         self.assertIsNone(rows["current_state"]["deprecated_members"][0]["value"])
         self.assertEqual(report["summary"]["official_deprecation_annotations"], 2)
+        self.assertEqual(report["summary"]["schema_dependencies"], 0)
+        self.assertEqual(report["summary"]["unresolved_schema_dependencies"], 0)
 
     def test_schema_shape_preserves_defaults_cardinality_and_base_relationships(self):
         xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
@@ -125,6 +127,26 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         attribute = extension["children"][1]
         self.assertEqual(attribute["attributes"]["use"], "required")
         self.assertEqual(attribute["attributes"]["default"], "strict")
+
+    def test_schema_dependency_inventory_records_resolved_and_missing_edges(self):
+        xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+              targetNamespace=\"urn:test\"><xs:import schemaLocation=\"base.xsd\"/>
+              <xs:include schemaLocation=\"missing.xsd\"/></xs:schema>""".encode()
+        base = b'<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"/>'
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "test-definitions-schema.xsd").write_bytes(xsd)
+            (root / "base.xsd").write_bytes(base)
+            report = crosswalk.oval_inventory(root)
+        edges = report["schema_dependencies"]
+        self.assertEqual(len(edges), 2)
+        self.assertEqual([edge["resolved"] for edge in edges], [True, False])
+        resolved = next(edge for edge in edges if edge["resolved"])
+        self.assertEqual(resolved["target_schema"], "base.xsd")
+        self.assertEqual(len(resolved["target_schema_sha256"]), 64)
+        missing = next(edge for edge in edges if not edge["resolved"])
+        self.assertEqual(missing["schema_location"], "missing.xsd")
+        self.assertEqual(report["summary"]["unresolved_schema_dependencies"], 1)
 
     def test_pinned_oval_deprecation_inventory_is_environment_gated(self):
         source = __import__("os").environ.get("SCAP_NG_OVAL_SCHEMA_ROOT")

@@ -310,11 +310,48 @@ def _nested_deprecation_records(declaration: ET.Element) -> tuple[list[dict], li
     return direct, nested
 
 
+def _schema_dependency_inventory(root: Path, schema_paths: list[Path]) -> list[dict]:
+    """Inventory XSD imports/includes without resolving semantic inheritance.
+
+    XSD declarations are frequently spread across imported files.  Record the
+    exact edge and the resolved target hash so the later crosswalk can merge
+    only a verified closure.  Missing targets are explicit diagnostics, never
+    silently treated as empty imports.
+    """
+    edges = []
+    xsd_namespace = f"{{{XSD}}}"
+    for path in sorted(schema_paths):
+        document = ET.parse(path).getroot()
+        for child in document:
+            kind = local_name(child.tag)
+            if kind not in {"import", "include", "redefine"}:
+                continue
+            href = child.get("schemaLocation", "")
+            target = (path.parent / href).resolve() if href else None
+            inside_root = target is not None and root.resolve() in target.parents
+            resolved = target is not None and inside_root and target.is_file()
+            row = {
+                "source_schema": path.name,
+                "source_schema_sha256": digest(path.read_bytes()),
+                "kind": kind,
+                "schema_location": href,
+                "namespace": child.get("namespace", ""),
+                "resolved": resolved,
+            }
+            if resolved:
+                row["target_schema"] = target.relative_to(root.resolve()).as_posix()
+                row["target_schema_sha256"] = digest(target.read_bytes())
+            edges.append(row)
+    return edges
+
+
 def oval_inventory(root: Path) -> dict:
     rows = []
+    schema_paths = []
     for path in sorted(root.iterdir()):
         if not path.is_file() or not OVAL_DEFINITION_FILES.match(path.name):
             continue
+        schema_paths.append(path)
         raw = path.read_bytes()
         document = ET.parse(path).getroot()
         namespace = document.get("targetNamespace", "")
@@ -350,12 +387,16 @@ def oval_inventory(root: Path) -> dict:
             rows.append(row)
     statuses = Counter(row["native_mapping_status"] for row in rows)
     nested_count = sum(bool(row.get("deprecated_members")) for row in rows)
+    dependencies = _schema_dependency_inventory(root, schema_paths)
     return {
         "source_commit_expected": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
         "schema_files": sorted({row["schema_file"] for row in rows}),
+        "schema_dependencies": dependencies,
         "declarations": rows,
         "summary": {
             "schema_files": len({row["schema_file"] for row in rows}),
+            "schema_dependencies": len(dependencies),
+            "unresolved_schema_dependencies": sum(not row["resolved"] for row in dependencies),
             "declarations": len(rows),
             "native_mapping_status": dict(sorted(statuses.items())),
             "declarations_with_deprecated_members": nested_count,
