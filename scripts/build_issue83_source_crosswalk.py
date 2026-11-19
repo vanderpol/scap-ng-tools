@@ -372,12 +372,26 @@ def oval_inventory(root: Path) -> dict:
                 "schema_shape": shape,
                 "schema_shape_sha256": _schema_shape_digest(shape),
                 "schema_shape_summary": _shape_summary(shape),
-                "native_mapping_status": "deprecated" if direct else "unclassified",
+                "native_mapping_status": "deprecated_migration" if direct else "unproven",
+                "disposition": {
+                    "category": "deprecated_migration" if direct else "unproven",
+                    "native_representability": "not_assessed",
+                    "converter_proof": "not_run",
+                    "runtime_equivalence": "not_proved",
+                    "basis": (
+                        "Official OVAL oval:deprecated_info is attached directly to this declaration; "
+                        "the declaration is not admitted as an active native feature."
+                        if direct else
+                        "Declaration is present in the pinned source grammar but has no reviewed "
+                        "source-to-native disposition in this inventory increment."
+                    ),
+                },
                 "classification_reason": (
                     "Official OVAL oval:deprecated_info marks this declaration deprecated; "
                     "do not treat it as an in-scope native conversion."
                     if direct else
-                    "XSD declaration inventory is not proof of a native mapping; classify against canonical 0.4.1 and converter evidence."
+                    "Explicitly unproven pending field/attribute-level source-to-native crosswalk; "
+                    "this is not a claim of unsupported or supported behavior."
                 ),
             }
             if direct:
@@ -406,6 +420,7 @@ def oval_inventory(root: Path) -> dict:
             "unresolved_schema_dependencies": sum(not row["resolved"] for row in dependencies),
             "declarations": len(rows),
             "native_mapping_status": dict(sorted(statuses.items())),
+            "unclassified_declarations": statuses.get("unclassified", 0),
             "declarations_with_deprecated_members": nested_count,
             "official_deprecation_annotations": sum(
                 len(row.get("deprecation", [])) + len(row.get("deprecated_members", []))
@@ -716,7 +731,7 @@ def markdown(report: dict) -> str:
     lines.extend([
         "## Holds",
         "",
-        "- The OVAL XSD declaration inventory (when supplied) is intentionally `unclassified`; XSD declaration names are not native support proof. Each declaration now carries a deterministic structural witness of authored attributes, defaults, cardinalities, ordered particles and base/ref relationships; imported/inherited resolution remains a separate hold.",
+        "- The OVAL XSD declaration inventory (when supplied) has no silent `unclassified` rows: direct official deprecations are `deprecated_migration`, and all other declarations are explicitly `unproven` until field/attribute-level mapping is reviewed. XSD declaration names are not native support proof. Each declaration carries a deterministic structural witness; imported/inherited resolution remains a separate hold.",
         "- Canonical schema changes are out of scope for this Tools increment; any missing native representation is a canonical-language decision for `scap-ng` #80.",
         "- Native conversion output and RI execution are separate qualification stages.",
     ])

@@ -84,9 +84,12 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
             report = crosswalk.oval_inventory(root)
         rows = {row["name"]: row for row in report["declarations"]}
         self.assertEqual(report["summary"]["native_mapping_status"],
-                         {"deprecated": 1, "unclassified": 1})
+                         {"deprecated_migration": 1, "unproven": 1})
+        self.assertEqual(report["summary"]["unclassified_declarations"], 0)
         self.assertEqual(rows["old_test"]["deprecation"][0]["version"], "5.12")
-        self.assertEqual(rows["current_state"]["native_mapping_status"], "unclassified")
+        self.assertEqual(rows["current_state"]["native_mapping_status"], "unproven")
+        self.assertEqual(rows["current_state"]["disposition"]["runtime_equivalence"],
+                         "not_proved")
         self.assertEqual(rows["current_state"]["deprecated_members"][0]["name"], "old_field")
         shape = rows["current_state"]["schema_shape"]
         self.assertEqual(shape["kind"], "complexType")
@@ -162,7 +165,7 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertGreater(report["summary"]["official_deprecation_annotations"], 0)
         direct = next(row for row in report["declarations"]
                       if row["name"] == "rpmverify_test")
-        self.assertEqual(direct["native_mapping_status"], "deprecated")
+        self.assertEqual(direct["native_mapping_status"], "deprecated_migration")
         md5 = next(row for row in report["declarations"]
                    if row["name"] == "rpmverifyfile_state")
         member = next(row for row in md5["deprecated_members"]
