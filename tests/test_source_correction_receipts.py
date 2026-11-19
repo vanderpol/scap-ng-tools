@@ -156,6 +156,10 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertEqual(receipt["after"]["blocked"], 9)
         self.assertFalse(receipt["qualification"]["runtime_execution"])
         self.assertFalse(receipt["qualification"]["independent_oval_equivalence"])
+        self.assertTrue(receipt["qualification"]["current_replay_verified"])
+        self.assertEqual(receipt["pins"]["converter_commit"], "e9ef68668625aa724fe994c82ebba364f4b90359")
+        self.assertRegex(receipt["recovered"][0]["trace_sha256"], HEX64)
+        self.assertTrue(receipt["recovered"][0]["current_replay_verified"])
 
     def test_existing_source_correction_batch_keeps_exact_transitions(self):
         receipt = self.load("source-correction-batch-20261119.json")
