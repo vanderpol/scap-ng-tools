@@ -5,6 +5,8 @@ This source-pinned crosswalk records authored `var_check` values and their curre
 - Source: `OVAL-Community/SCAP-Self-Assertion@e3538595c5083b9c34d937a81d319234df9bbfaa`
 - Source root: `SCAP_1.4/OVAL_Test_Content`
 - Tools converter: `a150d36b0d259a74cdbcd1887a0943687e222e27`
+- OVAL definitions XSD SHA-256: `06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc`
+- OVAL common XSD SHA-256: `678824ffa43a26ec6a7c49b2f9536dbc85be2a94627d9835e4cc65afdd827df2`
 - Canonical 0.4.1: `5ee55288b369da26f308f40813e545b78dff2753`
 - Schema family SHA-256: `88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f`
 
@@ -43,6 +45,12 @@ These components contain authored `var_check` but are not reachable from a Test 
 | `SCAP_1.4/OVAL_Test_Content/unix/oval-def_set-unix.xml` | `oval:org.mitre.oval.test:ste:746` | `path` | `only one` | `oval:org.mitre.oval.test:var:134` |
 | `SCAP_1.4/OVAL_Test_Content/unix/unix-def_password_test.xml` | `oval:navy.navwar.niwcatlantic.scc.test:obj:24` | `username` | `all` | `oval:navy.navwar.niwcatlantic.scc.test:var:549` |
 | `SCAP_1.4/OVAL_Test_Content/windows/oval-def_set-windows.xml` | `oval:org.mitre.oval.test:ste:746` | `path` | `only one` | `oval:org.mitre.oval.test:var:134` |
+
+## Reproduction
+
+```sh
+python scripts/build_oval_var_check_crosswalk.py --corpus "$SCAP_NG_SELF_ASSERTION_ROOT" --source-commit e3538595c5083b9c34d937a81d319234df9bbfaa --oval-schema-commit 2f140ee5c5dd1ed9606fcd5afc301f6baeb48706 --oval-definitions-schema-sha256 06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc --oval-common-schema-sha256 678824ffa43a26ec6a7c49b2f9536dbc85be2a94627d9835e4cc65afdd827df2 --converter-commit a150d36b0d259a74cdbcd1887a0943687e222e27 --canonical-commit 5ee55288b369da26f308f40813e545b78dff2753 --schema-family-sha256 88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f --output /tmp/oval-var-check.json --markdown-output /tmp/oval-var-check.md
+```
 
 ## Semantic boundaries
 

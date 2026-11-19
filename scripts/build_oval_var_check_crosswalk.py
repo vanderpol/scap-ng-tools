@@ -263,6 +263,8 @@ def markdown(result: dict) -> str:
         f"- Source: `{result['source']['repository']}@{result['source']['commit']}`",
         f"- Source root: `{result['source']['root']}`",
         f"- Tools converter: `{result['pins']['converter_commit']}`",
+        f"- OVAL definitions XSD SHA-256: `{result['pins']['oval_definitions_schema_sha256']}`",
+        f"- OVAL common XSD SHA-256: `{result['pins']['oval_common_schema_sha256']}`",
         f"- Canonical 0.4.1: `{result['pins']['canonical_commit']}`",
         f"- Schema family SHA-256: `{result['pins']['canonical_schema_family_sha256']}`",
         "",
@@ -300,6 +302,21 @@ def markdown(result: dict) -> str:
             lines.append(f"| `{row['source_path']}` | `{row['component_id']}` | `{row['element']}` | `{row['var_check']}` | `{row['var_ref']}` |")
     lines.extend([
         "",
+        "## Reproduction",
+        "",
+        "```sh",
+        "python scripts/build_oval_var_check_crosswalk.py "
+        "--corpus \"$SCAP_NG_SELF_ASSERTION_ROOT\" "
+        f"--source-commit {result['source']['commit']} "
+        f"--oval-schema-commit {result['pins']['oval_schema_commit']} "
+        f"--oval-definitions-schema-sha256 {result['pins']['oval_definitions_schema_sha256']} "
+        f"--oval-common-schema-sha256 {result['pins']['oval_common_schema_sha256']} "
+        f"--converter-commit {result['pins']['converter_commit']} "
+        f"--canonical-commit {result['pins']['canonical_commit']} "
+        f"--schema-family-sha256 {result['pins']['canonical_schema_family_sha256']} "
+        "--output /tmp/oval-var-check.json --markdown-output /tmp/oval-var-check.md",
+        "```",
+        "",
         "## Semantic boundaries",
         "",
         "- Missing `var_check` defaults to OVAL `all`; this ledger covers explicit authored values only.",
@@ -316,6 +333,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--corpus", type=Path, required=True)
     parser.add_argument("--source-commit", required=True)
     parser.add_argument("--oval-schema-commit", required=True)
+    parser.add_argument("--oval-definitions-schema-sha256", required=True)
+    parser.add_argument("--oval-common-schema-sha256", required=True)
     parser.add_argument("--converter-commit", required=True)
     parser.add_argument("--canonical-commit", required=True)
     parser.add_argument("--schema-family-sha256", required=True)
@@ -331,6 +350,8 @@ def main(argv: list[str] | None = None) -> int:
     }
     result["pins"] = {
         "oval_schema_commit": args.oval_schema_commit,
+        "oval_definitions_schema_sha256": args.oval_definitions_schema_sha256,
+        "oval_common_schema_sha256": args.oval_common_schema_sha256,
         "converter_commit": args.converter_commit,
         "canonical_commit": args.canonical_commit,
         "canonical_schema_family_sha256": args.schema_family_sha256,
