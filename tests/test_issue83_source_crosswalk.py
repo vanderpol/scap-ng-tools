@@ -207,6 +207,7 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         assertion = next(row for row in semantic["schematron"]
                          if row["kind"] == "assert")
         self.assertEqual(assertion["attributes"]["test"], "@id")
+        self.assertEqual(assertion["test_feature_tags"], ["attribute_reference"])
         self.assertEqual(assertion["namespace_bindings"]["sch"],
                          crosswalk.SCHEMATRON)
         self.assertIn("schema[0]/pattern[1]/rule[0]/assert[0]",

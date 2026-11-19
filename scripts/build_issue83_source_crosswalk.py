@@ -659,11 +659,47 @@ def _schema_source_path(path: tuple[tuple[str, int], ...]) -> str:
     )
 
 
+def _schematron_test_features(test: str) -> list[str]:
+    """Tag XPath surface syntax lexically; tags are not semantic evaluation."""
+    features = set()
+    if not test:
+        return []
+    if "@" in test:
+        features.add("attribute_reference")
+    if "[" in test or "]" in test:
+        features.add("predicate")
+    if "/" in test:
+        features.add("path_navigation")
+    if "::" in test:
+        features.add("axis_navigation")
+    if "=" in test:
+        features.add("equality")
+    if "<" in test or ">" in test:
+        features.add("ordering")
+    if re.search(r"\b(and|or|not)\b", test):
+        features.add("boolean_operator")
+    if re.search(r"\b(some|every)\b", test):
+        features.add("quantifier")
+    if re.search(r"\b(matches|replace|tokenize)\s*\(", test):
+        features.add("regular_expression_function")
+    if re.search(r"\b(count|string-length|normalize-space|local-name|name)\s*\(", test):
+        features.add("string_or_count_function")
+    functions = re.findall(r"(?<![.\w-])([A-Za-z_][\w.-]*)\s*\(", test)
+    if functions:
+        features.add("function_call")
+    if re.search(r"\b(true|false)\s*\(\s*\)", test):
+        features.add("boolean_literal_function")
+    if not features:
+        features.add("literal_or_name_test")
+    return sorted(features)
+
+
 def _schema_semantic_inventory(root: Path,
                                documents: dict[Path, tuple[ET.Element, dict[str, str]]]) -> dict:
     """Inventory embedded Schematron and evaluation prose as unproved rules."""
     schematron = []
     documentation = []
+    test_feature_counts = Counter()
 
     def walk(node: ET.Element, path: tuple[tuple[str, int], ...], schema_file: str,
              prefixes: dict[str, str]) -> None:
@@ -677,10 +713,12 @@ def _schema_semantic_inventory(root: Path,
                 "kind": kind,
                 "attributes": dict(sorted(node.attrib.items())),
                 "namespace_bindings": dict(sorted(prefixes.items())),
+                "test_feature_tags": _schematron_test_features(node.get("test", "")),
                 "text_sha256": digest(text.encode("utf-8")),
                 "text_bytes": len(text.encode("utf-8")),
                 "disposition": "not_interpreted",
             })
+            test_feature_counts.update(schematron[-1]["test_feature_tags"])
         elif kind in {"documentation", "evaluation_documentation", "evaluation_chart"}:
             documentation.append({
                 "schema_file": schema_file,
@@ -713,6 +751,7 @@ def _schema_semantic_inventory(root: Path,
                 row["kind"] == "evaluation_documentation" for row in documentation),
             "evaluation_chart_rows": sum(
                 row["kind"] == "evaluation_chart" for row in documentation),
+            "schematron_test_feature_counts": dict(sorted(test_feature_counts.items())),
         },
         "disposition": {
             "status": "inventory_only",
@@ -1022,6 +1061,8 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
             "prose_rows": semantic_inventory["summary"]["prose_rows"],
             "evaluation_documentation_rows": semantic_inventory["summary"]["evaluation_documentation_rows"],
             "evaluation_chart_rows": semantic_inventory["summary"]["evaluation_chart_rows"],
+            "schematron_test_feature_counts": semantic_inventory["summary"][
+                "schematron_test_feature_counts"],
             "schema_shape_contract": {
                 "status": "structural source witness only",
                 "preserves": [

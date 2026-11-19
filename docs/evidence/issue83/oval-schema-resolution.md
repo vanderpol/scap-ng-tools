@@ -10,8 +10,8 @@ native support, conversion success, or runtime equivalence.
 - Reproducible command: `SCAP_NG_OVAL_SCHEMA_ROOT=/path/to/oval-schemas
   python scripts/build_issue83_source_crosswalk.py ...` or call
   `oval_inventory` for schema-only output.
-- External receipt: `/tmp/tools-issue83-semantics-prefixes-final-1795106592/oval-schema-inheritance.json`
-- Receipt SHA-256: `93d15ea3bb3c06df4eede9f929b2ea8baaeb7b57bffcf27d8897db2403c75aae`
+- External receipt: `/tmp/tools-issue83-semantics-features-final2-1795106658/oval-schema-inheritance.json`
+- Receipt SHA-256: `5e1f6661cf38b6e76859888dfe952e5b3107e8403ff1da16ff83be2acc5321b0`
 
 ## Measured result
 
@@ -36,6 +36,7 @@ semantics remain uninterpreted. The pinned schemas additionally contain
 9 evaluation-documentation rows and 21 evaluation charts. These are retained
 as source-linked semantic holds, not executed rules; Schematron namespace
 bindings are retained with each assertion/report for reproducible validation.
-Effective XSD
+Lexical feature tags are also recorded for the 982 assertion/200 report test
+expressions; they are inventory labels, not XPath evaluation. Effective XSD
 field/cardinality semantics, converter parity and RI execution remain separate
 qualification work.

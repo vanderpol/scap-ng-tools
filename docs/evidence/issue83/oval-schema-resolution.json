@@ -25,7 +25,20 @@
     "schematron_reports": 200,
     "prose_rows": 9023,
     "evaluation_documentation_rows": 9,
-    "evaluation_chart_rows": 21
+    "evaluation_chart_rows": 21,
+    "schematron_test_feature_counts": {
+      "attribute_reference": 813,
+      "axis_navigation": 606,
+      "boolean_literal_function": 155,
+      "boolean_operator": 427,
+      "equality": 931,
+      "function_call": 588,
+      "literal_or_name_test": 1,
+      "ordering": 25,
+      "path_navigation": 748,
+      "predicate": 132,
+      "string_or_count_function": 11
+    }
   },
   "disposition": {
     "local_base_targets": "recorded without flattening",
