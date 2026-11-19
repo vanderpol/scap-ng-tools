@@ -59,6 +59,21 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
             self.assertRegex(case["corrected_results_sha256"], HEX64)
         self.assertTrue(any("expected outcome" in x.lower() for x in receipt["limitations"]))
 
+    def test_pr11_batch_replay_excludes_removed_deprecated_tests(self):
+        receipt = self.load("source-correction-batch-20261119.json")
+        case = next(row for row in receipt["cases"] if row["pull_request"] == 11)
+        self.assertEqual(case["source_test_ids"], [
+            "oval:org.mitre.oval.test:tst:664",
+            "oval:org.mitre.oval.test:tst:1289",
+            "oval:org.mitre.oval.test:tst:525",
+            "oval:org.mitre.oval.test:tst:1006",
+            "oval:org.mitre.oval.test:tst:680",
+        ])
+        self.assertEqual(case["base_failure_class"], "deprecated_source_construct")
+        self.assertEqual(case["corrected_failure_class"], "canonical_traversal_schema_hold")
+        self.assertNotIn("oval:org.mitre.oval.test:tst:1474", case["source_test_ids"])
+        self.assertNotIn("oval:org.mitre.oval.test:tst:1141", case["source_test_ids"])
+
     def test_existing_deprecated_followups_have_exact_blob_provenance(self):
         names = [
             "macos-keychain-deprecated-object-followup.json",

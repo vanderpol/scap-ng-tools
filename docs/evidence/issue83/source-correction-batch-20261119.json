@@ -116,12 +116,13 @@
     {
       "base_diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
       "base_disposition": "blocked",
-      "base_failure_class": "unsupported",
+      "base_failure_class": "deprecated_source_construct",
       "base_source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
       "base_status": "blocked",
       "branch": "codex/remove-deprecated-registry-group-behaviors",
       "corrected_assessment_sha256": null,
       "corrected_diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not v",
+      "corrected_failure_class": "canonical_traversal_schema_hold",
       "corrected_source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
       "corrected_status": "blocked",
       "corrected_trace_sha256": null,
@@ -134,9 +135,7 @@
         "oval:org.mitre.oval.test:tst:1289",
         "oval:org.mitre.oval.test:tst:525",
         "oval:org.mitre.oval.test:tst:1006",
-        "oval:org.mitre.oval.test:tst:680",
-        "oval:org.mitre.oval.test:tst:1474",
-        "oval:org.mitre.oval.test:tst:1141"
+        "oval:org.mitre.oval.test:tst:680"
       ],
       "test_count": null
     },
