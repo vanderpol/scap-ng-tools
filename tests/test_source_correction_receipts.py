@@ -66,6 +66,40 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertNotEqual(conversion["base_source_trace_sha256"],
                             conversion["corrected_source_trace_sha256"])
 
+    def test_full_overlay_receipt_accounts_for_corrected_source_corpus(self):
+        path = ROOT / "docs" / "evidence" / "issue83" / "full-self-assertion-overlay-20261119.json"
+        receipt = self.load("full-self-assertion-overlay-20261119.json")
+        self.assertEqual(receipt["format"],
+                         "scap-ng-tools/issue83-self-assertion-overlay-receipt/1")
+        self.assertEqual(receipt["pins"]["converter_commit"],
+                         "0311226e3f752f529d0a8ff1a3d337bb5a908590")
+        self.assertEqual(receipt["summary"], {
+            "blocked_definitions": 5,
+            "blocked_tests": 62,
+            "converted_definitions": 160,
+            "converted_tests": 728,
+            "definitions": 165,
+            "execution": "not_run",
+            "schema_validated_documents": 160,
+            "tests": 790,
+        })
+        self.assertEqual(receipt["source_verification"]["files"], 151)
+        self.assertEqual(receipt["source_verification"]["git_verified_files"], 143)
+        self.assertRegex(receipt["pins"]["source_manifest_sha256"], HEX64)
+        blocked = {row["definition_id"] for row in receipt["blocked"]["definitions"]}
+        self.assertEqual(blocked, {
+            "oval:org.mitre.oval.test:def:38",
+            "oval:org.mitre.oval.test:def:562",
+            "oval:org.mitre.oval.test:def:729",
+            "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+            "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+        })
+        self.assertEqual(receipt["by_platform"]["tests"]["linux"],
+                         {"CONVERTED_UNVERIFIED": 62})
+        self.assertEqual(receipt["by_platform"]["tests"]["unix"],
+                         {"CONVERTED_UNVERIFIED": 71})
+        self.assertLess(path.stat().st_size, 128 * 1024)
+
     def test_nvram_pr8_replay_keeps_version_hold_and_recovery_separate(self):
         receipt = self.load("macos-nvram-followup.json")
         self.assertEqual(receipt["format"], "scap-ng-tools/issue83-macos-nvram-followup/1")

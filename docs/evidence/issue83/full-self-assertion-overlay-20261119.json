@@ -1,0 +1,884 @@
+{
+  "blocked": {
+    "definitions": [
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:562",
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_ids": [
+          "oval:org.mitre.oval.test:tst:487",
+          "oval:org.mitre.oval.test:tst:943",
+          "oval:org.mitre.oval.test:tst:64",
+          "oval:org.mitre.oval.test:tst:38",
+          "oval:org.mitre.oval.test:tst:350",
+          "oval:org.mitre.oval.test:tst:170",
+          "oval:org.mitre.oval.test:tst:936",
+          "oval:org.mitre.oval.test:tst:851",
+          "oval:org.mitre.oval.test:tst:126",
+          "oval:org.mitre.oval.test:tst:608",
+          "oval:org.mitre.oval.test:tst:983",
+          "oval:org.mitre.oval.test:tst:154",
+          "oval:org.mitre.oval.test:tst:34",
+          "oval:org.mitre.oval.test:tst:71",
+          "oval:org.mitre.oval.test:tst:509",
+          "oval:org.mitre.oval.test:tst:439",
+          "oval:org.mitre.oval.test:tst:132",
+          "oval:org.mitre.oval.test:tst:275"
+        ]
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "source_test_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+        ]
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28"
+        ]
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:38",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_ids": [
+          "oval:org.mitre.oval.test:tst:1000",
+          "oval:org.mitre.oval.test:tst:1010",
+          "oval:org.mitre.oval.test:tst:1020",
+          "oval:org.mitre.oval.test:tst:5020",
+          "oval:org.mitre.oval.test:tst:1030",
+          "oval:org.mitre.oval.test:tst:1040",
+          "oval:org.mitre.oval.test:tst:1080",
+          "oval:org.mitre.oval.test:tst:1090",
+          "oval:org.mitre.oval.test:tst:1100",
+          "oval:org.mitre.oval.test:tst:1110",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3000",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3010",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4000",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4010",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4020"
+        ]
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:729",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "source_test_ids": [
+          "oval:org.mitre.oval.test:tst:664",
+          "oval:org.mitre.oval.test:tst:1289",
+          "oval:org.mitre.oval.test:tst:525",
+          "oval:org.mitre.oval.test:tst:1006",
+          "oval:org.mitre.oval.test:tst:680"
+        ]
+      }
+    ],
+    "tests": [
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:126"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:132"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:154"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:170"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:275"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:34"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:350"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:38"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:439"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:487"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:509"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:608"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:64"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:71"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:851"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:936"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:943"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_id": "oval:org.mitre.oval.test:tst:983"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:def:1"
+        ],
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:1"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:def:1"
+        ],
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:2"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:def:1"
+        ],
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:3"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:def:1"
+        ],
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7"
+      },
+      {
+        "definition_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3000"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3010"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4000"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4010"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4020"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1000"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1010"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1020"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1030"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1040"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1080"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1090"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1100"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:1110"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "test_id": "oval:org.mitre.oval.test:tst:5020"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:729"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "test_id": "oval:org.mitre.oval.test:tst:1006"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:729"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "test_id": "oval:org.mitre.oval.test:tst:1289"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:729"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "test_id": "oval:org.mitre.oval.test:tst:525"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:729"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "test_id": "oval:org.mitre.oval.test:tst:664"
+      },
+      {
+        "definition_ids": [
+          "oval:org.mitre.oval.test:def:729"
+        ],
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "test_id": "oval:org.mitre.oval.test:tst:680"
+      }
+    ]
+  },
+  "by_platform": {
+    "definitions": {
+      "agnostic": {
+        "CONVERTED_UNVERIFIED": 46,
+        "blocked": 1
+      },
+      "aix": {
+        "CONVERTED_UNVERIFIED": 2
+      },
+      "asa": {
+        "CONVERTED_UNVERIFIED": 2
+      },
+      "ios": {
+        "CONVERTED_UNVERIFIED": 10,
+        "blocked": 1
+      },
+      "iosxe": {
+        "CONVERTED_UNVERIFIED": 11
+      },
+      "junos": {
+        "CONVERTED_UNVERIFIED": 1
+      },
+      "linux": {
+        "CONVERTED_UNVERIFIED": 16
+      },
+      "macos": {
+        "CONVERTED_UNVERIFIED": 20
+      },
+      "panos": {
+        "CONVERTED_UNVERIFIED": 2
+      },
+      "solaris": {
+        "CONVERTED_UNVERIFIED": 4
+      },
+      "unix": {
+        "CONVERTED_UNVERIFIED": 13
+      },
+      "windows": {
+        "CONVERTED_UNVERIFIED": 33,
+        "blocked": 3
+      }
+    },
+    "tests": {
+      "agnostic": {
+        "CONVERTED_UNVERIFIED": 310,
+        "blocked": 18
+      },
+      "aix": {
+        "CONVERTED_UNVERIFIED": 2
+      },
+      "asa": {
+        "CONVERTED_UNVERIFIED": 2
+      },
+      "ios": {
+        "CONVERTED_UNVERIFIED": 12,
+        "blocked": 4
+      },
+      "iosxe": {
+        "CONVERTED_UNVERIFIED": 17
+      },
+      "junos": {
+        "CONVERTED_UNVERIFIED": 1
+      },
+      "linux": {
+        "CONVERTED_UNVERIFIED": 62
+      },
+      "macos": {
+        "CONVERTED_UNVERIFIED": 43
+      },
+      "panos": {
+        "CONVERTED_UNVERIFIED": 2
+      },
+      "solaris": {
+        "CONVERTED_UNVERIFIED": 12
+      },
+      "unix": {
+        "CONVERTED_UNVERIFIED": 71
+      },
+      "windows": {
+        "CONVERTED_UNVERIFIED": 194,
+        "blocked": 40
+      }
+    }
+  },
+  "format": "scap-ng-tools/issue83-self-assertion-overlay-receipt/1",
+  "output": {
+    "bytes": 5236820,
+    "files": 651,
+    "tree_sha256": "64f6bbaa2a42649cb2ddd0b5a02da5058fb5e89df59e89e80c58faf1d23888ca"
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "canonical_schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "converter_commit": "0311226e3f752f529d0a8ff1a3d337bb5a908590",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "source_base_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "source_commit": "7299504eb5c2356e85437b123e6b6ff8355325c9",
+    "source_manifest_sha256": "606982ac61102aeb22a382079ddc9f6bb1ea74450953848eba8f12aba7657c13"
+  },
+  "qualification": "schema admission/conversion only; execution and independent OVAL equivalence not proved",
+  "reproduction": {
+    "command": "PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <overlay-root> --schema-root <schema-root> --source-commit <source-commit> --output <external-output> --python <repo>/.venv/bin/python",
+    "source_artifacts": "external; only hashes and bounded blocker rows are committed",
+    "verifier": "PYTHONPATH=src .venv/bin/python scripts/build_issue83_overlay_receipt.py ..."
+  },
+  "source_overlay": {
+    "construction": "Synthetic local commit built from the pinned base with the listed upstream correction blobs; it is not a pushed upstream merge.",
+    "correction_commits": {
+      "10": "8d8f1eb088f15aadf7d28cc6221d2808dc930a7f",
+      "11": "088b6e9083eca68c45196bd3c8eb7f1ba5d6c263",
+      "12": "fa62bece68f7b86bbdd71db2fa30c40fc35d7e92",
+      "13": "6dbdda26e56ba23f3ba0a3a8b39b2a4a1cfcce30",
+      "14": "50f801e3f4bdb5d3f6583195ad2ce29a2920546d",
+      "15": "8132076d52362fe54da357da5f9a3178a1a8ff00",
+      "16": "799e8d6dbc43fe68044996c9cf2628f13c17a320",
+      "17": "d3c93ced3a7518e875d61079d945ade6669af442",
+      "18": "8728b036c093f90ddb05b7b5d330ed4f206b4c18",
+      "20": "f63e2c899ef97f93198d8b6663ead93e105d0a3f",
+      "21": "9e079baea4432b3babff5429ca726c281872de1f",
+      "5": "cc3be23f51913561c96aacaf36f4838a78100cdf",
+      "6": "33c6ad2bb254f2c60274a19891a9f9973f985e76",
+      "7": "c06d4899af19147a12add8008859a29a1de579e4",
+      "8_19": "0a1ee9365aff7962118f316ed9df822217bbf850",
+      "9": "e4ebc8722501c9911fc1d6c8682917c4276a3e1b"
+    },
+    "removed_paths": [
+      "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+      "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml"
+    ]
+  },
+  "source_verification": {
+    "bytes": 1378760,
+    "embedded_member": "oval-def-ext.xml",
+    "embedded_member_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+    "files": 151,
+    "git_verified_files": 143,
+    "manifest_sha256": "606982ac61102aeb22a382079ddc9f6bb1ea74450953848eba8f12aba7657c13"
+  },
+  "summary": {
+    "blocked_definitions": 5,
+    "blocked_tests": 62,
+    "converted_definitions": 160,
+    "converted_tests": 728,
+    "definitions": 165,
+    "execution": "not_run",
+    "schema_validated_documents": 160,
+    "tests": 790
+  }
+}
