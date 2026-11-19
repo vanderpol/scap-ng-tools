@@ -122,6 +122,11 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
           <oval:definitions>
             <oval:definition id=\"oval:test:def:1\" class=\"compliance\"/>
           </oval:definitions>
+          <oval:variables>
+            <oval:external_variable id=\"oval:test:var:1\" datatype=\"string\">
+              <oval:possible_restriction><oval:restriction operation=\"pattern match\">^x$</oval:restriction></oval:possible_restriction>
+            </oval:external_variable>
+          </oval:variables>
           <oval:tests>
             <ind:variable_test id=\"oval:test:tst:1\" check=\"at least one\"
                 check_existence=\"all_exist\" var_check=\"all\"/>
@@ -136,9 +141,15 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
             repeat = crosswalk.oval_content_inventory(root, "source-pin")
         self.assertEqual(report, repeat)
         self.assertEqual(report["summary"]["xml_files"], 1)
+        self.assertEqual(report["summary"]["embedded_xml_members"], 0)
+        self.assertEqual(report["summary"]["source_documents"], 1)
         self.assertEqual(report["summary"]["definitions"], 1)
         self.assertEqual(report["summary"]["tests"], 1)
+        self.assertEqual(report["summary"]["variables"], 1)
         self.assertEqual(report["summary"]["test_tags"], {"variable_test": 1})
+        self.assertEqual(report["summary"]["variable_tags"], {"external_variable": 1})
+        self.assertEqual(report["summary"]["variable_child_tags"], {"possible_restriction": 1})
+        self.assertEqual(report["variables"][0]["restriction_operations"], ["pattern match"])
         self.assertEqual(report["summary"]["authored_test_attributes"], {
             "check": 1, "check_existence": 1, "var_check": 1})
         definition = report["definitions"][0]
@@ -148,6 +159,24 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(len(definition["source_file_sha256"]), 64)
         self.assertEqual(len(test["source_element_sha256"]), 64)
         self.assertEqual(report["qualification"]["expected_outcomes"], "not_inferred")
+
+    def test_oval_content_inventory_includes_embedded_definition_members(self):
+        xml = f"""<oval:oval_definitions xmlns:oval=\"{crosswalk.OVAL_DEFINITIONS}\">
+          <oval:definitions><oval:definition id=\"oval:test:def:zip\"/></oval:definitions>
+        </oval:oval_definitions>""".encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "content"
+            root.mkdir()
+            archive = root / "oval-def-ext.zip"
+            with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as package:
+                package.writestr("oval-def-ext.xml", xml)
+            report = crosswalk.oval_content_inventory(root, "source-pin")
+        self.assertEqual(report["summary"]["xml_files"], 0)
+        self.assertEqual(report["summary"]["embedded_xml_members"], 1)
+        self.assertEqual(report["summary"]["source_documents"], 1)
+        self.assertEqual(report["summary"]["definitions"], 1)
+        self.assertIn("!oval-def-ext.xml", report["definitions"][0]["source_file"])
+        self.assertEqual(len(report["definitions"][0]["source_member_sha256"]), 64)
 
     def test_published_oval_deprecation_receipt_is_pinned(self):
         receipt = json.loads((ROOT / "docs/evidence/issue83/oval-schema-deprecation-summary.json").read_text())

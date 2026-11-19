@@ -23,6 +23,7 @@ import re
 import sys
 import zipfile
 import xml.etree.ElementTree as ET
+import zipfile
 
 DS = "http://scap.nist.gov/schema/scap/source/1.2"
 XCCDF = "http://checklists.nist.gov/xccdf/1.2"
@@ -333,26 +334,25 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
         raise ValueError(f"OVAL content root is not a directory: {root}")
     definitions = []
     tests = []
+    variables = []
     files = []
     feature_counts = Counter()
     test_tag_counts = Counter()
+    variable_tag_counts = Counter()
     definition_class_counts = Counter()
     attribute_counts = Counter()
-    for path in sorted(root.rglob("*.xml")):
-        raw = path.read_bytes()
-        try:
-            document = ET.fromstring(raw)
-        except ET.ParseError as error:
-            raise ValueError(f"invalid OVAL XML {path}: {error}") from error
+    variable_child_counts = Counter()
+    def record_document(document, relative, file_sha256, member_sha256=None):
         if local_name(document.tag) != "oval_definitions":
-            continue
-        relative = path.relative_to(root).as_posix()
+            return
         file_record = {
             "source_file": relative,
-            "source_file_sha256": digest(raw),
+            "source_file_sha256": file_sha256,
             "definitions": 0,
             "tests": 0,
         }
+        if member_sha256:
+            file_record["source_member_sha256"] = member_sha256
         files.append(file_record)
         for element in document.iter():
             kind = local_name(element.tag)
@@ -360,15 +360,40 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
             if kind == "definition" and identifier:
                 row = {
                     "source_file": relative,
-                    "source_file_sha256": file_record["source_file_sha256"],
+                    "source_file_sha256": file_sha256,
                     "source_id": identifier,
                     "source_element_sha256": identity_digest(element),
                     "definition_class": element.get("class", ""),
                 }
+                if member_sha256:
+                    row["source_member_sha256"] = member_sha256
                 definitions.append(row)
                 file_record["definitions"] += 1
                 definition_class_counts[row["definition_class"]] += 1
                 continue
+            if identifier and kind.endswith("_variable"):
+                child_tags = sorted(local_name(node.tag) for node in element)
+                child_counts = Counter(child_tags)
+                row = {
+                    "source_file": relative,
+                    "source_file_sha256": file_sha256,
+                    "source_id": identifier,
+                    "source_element_sha256": identity_digest(element),
+                    "source_variable_tag": kind,
+                    "datatype": element.get("datatype", ""),
+                    "child_tags": child_tags,
+                    "possible_value_count": child_counts.get("possible_value", 0),
+                    "possible_restriction_count": child_counts.get("possible_restriction", 0),
+                    "restriction_operations": sorted({
+                        child.get("operation", "") for child in element.iter()
+                        if local_name(child.tag) == "restriction"
+                    }),
+                }
+                if member_sha256:
+                    row["source_member_sha256"] = member_sha256
+                variables.append(row)
+                variable_tag_counts[kind] += 1
+                variable_child_counts.update(child_tags)
             if not (identifier and kind.endswith("_test")):
                 continue
             authored_attributes = {
@@ -377,21 +402,49 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
             }
             row = {
                 "source_file": relative,
-                "source_file_sha256": file_record["source_file_sha256"],
+                "source_file_sha256": file_sha256,
                 "source_id": identifier,
                 "source_element_sha256": identity_digest(element),
                 "source_test_tag": kind,
                 "attributes": authored_attributes,
                 "feature_tags": sorted({local_name(node.tag) for node in element.iter()}),
             }
+            if member_sha256:
+                row["source_member_sha256"] = member_sha256
             tests.append(row)
             file_record["tests"] += 1
             test_tag_counts[kind] += 1
             for name in authored_attributes:
                 attribute_counts[name] += 1
             feature_counts.update(row["feature_tags"])
+
+    for path in sorted(root.rglob("*.xml")):
+        raw = path.read_bytes()
+        try:
+            document = ET.fromstring(raw)
+        except ET.ParseError as error:
+            raise ValueError(f"invalid OVAL XML {path}: {error}") from error
+        record_document(document, path.relative_to(root).as_posix(), digest(raw))
+    # The pinned corpus contains one source Definition archive with a second
+    # XML member.  It is part of the source denominator and must not disappear
+    # merely because it is packaged rather than checked out as a loose file.
+    for path in sorted(root.rglob("*.zip")):
+        archive_raw = path.read_bytes()
+        with zipfile.ZipFile(path) as package:
+            if package.testzip() is not None:
+                raise ValueError(f"CRC failure in OVAL content archive {path}")
+            for member in sorted(name for name in package.namelist()
+                                 if name.lower().endswith(".xml")):
+                raw = package.read(member)
+                try:
+                    document = ET.fromstring(raw)
+                except ET.ParseError as error:
+                    raise ValueError(f"invalid OVAL XML {path.name}!{member}: {error}") from error
+                record_document(document, f"{path.relative_to(root).as_posix()}!{member}",
+                                digest(archive_raw), digest(raw))
     definitions.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
     tests.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
+    variables.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
     files.sort(key=lambda row: row["source_file"])
     return {
         "format": "scap-ng-tools/issue83-oval-content-inventory/1",
@@ -401,17 +454,23 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
             "path": root.name,
         },
         "summary": {
-            "xml_files": len(files),
+            "xml_files": sum("!" not in row["source_file"] for row in files),
+            "embedded_xml_members": sum("!" in row["source_file"] for row in files),
+            "source_documents": len(files),
             "definitions": len(definitions),
             "tests": len(tests),
+            "variables": len(variables),
             "definition_classes": dict(sorted(definition_class_counts.items())),
             "test_tags": dict(sorted(test_tag_counts.items())),
+            "variable_tags": dict(sorted(variable_tag_counts.items())),
             "authored_test_attributes": dict(sorted(attribute_counts.items())),
+            "variable_child_tags": dict(sorted(variable_child_counts.items())),
             "feature_tags": dict(sorted(feature_counts.items())),
         },
         "files": files,
         "definitions": definitions,
         "tests": tests,
+        "variables": variables,
         "qualification": {
             "conversion": "not_run",
             "execution": "not_run",
