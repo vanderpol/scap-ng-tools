@@ -77,7 +77,8 @@
     "iosxe.version",
     "asa.version",
     "asa.line",
-    "junos.show"
+    "junos.show",
+    "panos.version"
   ],
   "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages.",
   "deprecated_source_tests": [
