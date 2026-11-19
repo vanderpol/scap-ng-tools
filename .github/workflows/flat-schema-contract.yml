@@ -27,6 +27,8 @@ jobs:
           path: signed-source
           sparse-checkout-cone-mode: false
           sparse-checkout: |
+            Archive/2026_Q3/U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip
+            Archive/2026_Q3/U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip
             Archive/2026_Q3/U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
             Archive/2026_Q3/U_Active_Directory_Domain_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV2-signed.zip
             Archive/2026_Q3/U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip
@@ -68,3 +70,6 @@ jobs:
             python -m unittest discover -s tests -p 'test_variable_inference_candidate.py' -v
           python -m unittest discover -s tests -p 'test_issue59_qualification.py' -v
           python -m unittest discover -s tests -v
+          SCAP_NG_SCHEMA_ROOT="${{ github.workspace }}/spec-snapshot/schema" \
+          SCAP_NG_Q3_SIGNED_ROOT="${{ github.workspace }}/signed-source" \
+            python -m unittest discover -s tests -p 'test_issue71_deprecated_rpm_digest_replay.py' -v
