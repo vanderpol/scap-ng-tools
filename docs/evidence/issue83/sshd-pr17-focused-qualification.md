@@ -11,7 +11,7 @@ This bounded receipt verifies a source-content defect: a valid Test criterion wa
 - PR #17 corrected commit/hash: `d3c93ced3a7518e875d61079d945ade6669af442` / `ae085feed857e10466bb97623a15da533f09a909a4151b33c69e7e66f584759b`
 - Affected Test: `oval:org.mitre.oval.test:tst:483`
 
-The source already contained a valid `sshd_test` with two State references for `ClientAliveInterval >= 1` and `<= 300`. The Definition criterion was commented out. PR #17 activates that criterion and increments the Definition version without changing the Test/Object/State graph.
+The source hashes were independently recomputed from exact Git blobs at both commits. The source already contained a valid `sshd_test` with two State references for `ClientAliveInterval >= 1` and `<= 300`. The Definition criterion was commented out. PR #17 activates that criterion and increments the Definition version without changing the Test/Object/State graph.
 
 ## Focused conversion
 

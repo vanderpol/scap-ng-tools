@@ -42,7 +42,7 @@
       }
     ],
     "classification": "source_typed_literal_invalid",
-    "source_commit_fetch_verified": true,
+    "source_commit_blob_verified": true,
     "interpretation": "The pinned OVAL 5.12.3 Schematron rejects the negative int literals. The source correction uses the broad schema-valid lower bound 0; it does not impose a one-day policy threshold."
   },
   "conversion": {

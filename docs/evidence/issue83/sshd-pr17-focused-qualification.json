@@ -10,7 +10,7 @@
     "base_sha256": "a39e832aec71f537ff18eeaac3b181c7f63d6dbe5c311a8d7221ce86258ec8f0",
     "corrected_commit": "d3c93ced3a7518e875d61079d945ade6669af442",
     "corrected_sha256": "ae085feed857e10466bb97623a15da533f09a909a4151b33c69e7e66f584759b",
-    "source_commit_fetch_verified": true,
+    "source_commit_blob_verified": true,
     "classification": "source_content_defect",
     "defect": "The valid ClientAliveInterval Test criterion was enclosed in an XML comment, orphaning tst:483 from Definition def:963.",
     "correction": "PR #17 activates the existing criterion and increments only the Definition version; Test, Object, State IDs, datatypes and bounds are unchanged."

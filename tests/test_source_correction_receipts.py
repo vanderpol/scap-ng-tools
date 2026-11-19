@@ -53,7 +53,7 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertEqual(source["pull_request"], 17)
         self.assertEqual(source["definition_id"], "oval:org.mitre.oval.test:def:963")
         self.assertEqual(source["affected_test_ids"], ["oval:org.mitre.oval.test:tst:483"])
-        self.assertTrue(source["source_commit_fetch_verified"])
+        self.assertTrue(source["source_commit_blob_verified"])
         self.assertEqual(conversion["base_assessment_test_count"], 3)
         self.assertEqual(conversion["corrected_assessment_test_count"], 4)
         self.assertTrue(conversion["base_schema_validated"])
@@ -67,7 +67,7 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         conversion = receipt["conversion"]
         self.assertEqual(source["pull_request"], 5)
         self.assertEqual(source["classification"], "source_typed_literal_invalid")
-        self.assertTrue(source["source_commit_fetch_verified"])
+        self.assertTrue(source["source_commit_blob_verified"])
         self.assertIn("0", source["files"][1]["correction"])
         self.assertEqual(source["files"][1]["correction"].split(";")[0], "max_passwd_age -1 -> 0")
         self.assertIn("broad schema-valid lower bound 0", source["interpretation"])

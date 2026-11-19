@@ -9,7 +9,7 @@ The exact pinned base is `OVAL-Community/SCAP-Self-Assertion@e3538595c5083b9c34d
 - `win-def_lockoutpolicy_test.xml`, Definition `oval:org.mitre.oval.test:def:705`, Test `tst:1268`, State `ste:1077`: `force_logoff` changes from `-1` to `0`.
 - `win-def_passwordpolicy_test.xml`, Definition `oval:org.mitre.oval.test:def:998`, Tests `mil.niwc.winpassword.test:tst:10`–`:tst:70`: `max_passwd_age` changes from `-1` to `0`.
 
-The source XML hashes and all IDs are recorded in the machine receipt. No `86400` threshold is introduced. That would narrow the broad support witness and could reject valid no-expiration configurations; `0` is the intended schema-valid lower bound for this content correction.
+The source XML hashes were independently recomputed from exact Git blobs at both commits; all IDs are recorded in the machine receipt. No `86400` threshold is introduced. That would narrow the broad support witness and could reject valid no-expiration configurations; `0` is the intended schema-valid lower bound for this content correction.
 
 ## Converter result
 
