@@ -23,6 +23,10 @@ from v04_direct_datatypes import SOURCE_TYPES, SPECIAL_TYPES, native_datatype, l
 ROOT = Path(__file__).resolve().parents[1]
 SUPPORT = json.loads(Path(__file__).with_name('v04_direct_capabilities.json').read_text())
 CAPABILITIES = tuple(SUPPORT['enabled'])
+DEPRECATED_SOURCE_TESTS = {
+    f"{{{row['namespace']}}}{row['name']}": row
+    for row in SUPPORT.get('deprecated_source_tests', [])
+}
 ensure(SUPPORT['specification_version'] == '0.4.1' and len(CAPABILITIES) == len(set(CAPABILITIES)),
        'invalid direct capability activation registry')
 EXISTENCE = {'at_least_one_exists': 'one_or_more', 'none_exist': 'none',
@@ -215,6 +219,11 @@ class AssessmentConverter:
         self.bound_exports, self.inputs, self.policy_parameters, self.input_bindings = {}, {}, {}, {}
 
     def capability(self, element, kind):
+        deprecated = DEPRECATED_SOURCE_TESTS.get(element.tag) if kind == 'test' else None
+        if deprecated:
+            raise UnsupportedSource(
+                f"deprecated source capability: {deprecated['name']} "
+                f"(OVAL {deprecated['since']}; {deprecated['reason']})")
         matches = [mapping for mapping in self.mappings if element.tag ==
                    f'{{{mapping["source"]["namespace"]}}}{mapping["source"].get(kind)}']
         if not matches and self.native_recovery and element.tag == f'{{{OVAL}#windows}}wmi_{kind}':

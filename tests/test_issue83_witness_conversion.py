@@ -33,6 +33,8 @@ class Issue83WitnessConversionTests(unittest.TestCase):
     def test_deprecated_source_is_not_a_generic_converter_gap(self):
         self.assertEqual(qualification.classify("unsupported/deprecated recursion direction"),
                          "deprecated_source_construct")
+        self.assertEqual(qualification.classify("deprecated source capability: solaris.package"),
+                         "deprecated_source_construct")
         self.assertEqual(qualification.classify("unsupported recursion direction"),
                          "converter_unsupported_source")
 

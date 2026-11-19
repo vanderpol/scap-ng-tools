@@ -75,5 +75,23 @@
     "iosxe.line",
     "iosxe.global"
   ],
-  "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages."
+  "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages.",
+  "deprecated_source_tests": [
+    {
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "name": "package_test",
+      "since": "5.12",
+      "reason": "OVAL 5.12.3 marks solaris:package_test deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "name": "package511_test",
+      "since": "5.12",
+      "reason": "OVAL 5.12.3 marks solaris:package511_test deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    }
+  ]
 }

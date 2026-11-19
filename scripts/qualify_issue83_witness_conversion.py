@@ -44,6 +44,8 @@ def classify(message: str) -> str:
         return "deprecated_source_construct"
     if "possible_restriction" in text or "external variable" in text:
         return "canonical_input_constraint_hold"
+    if "deprecated" in text:
+        return "deprecated_source_construct"
     if "invalid int literal" in text:
         return "source_typed_literal_invalid"
     if "unsupported" in text or "held" in text:
