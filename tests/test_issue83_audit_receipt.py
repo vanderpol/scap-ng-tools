@@ -78,6 +78,32 @@ class Issue83AuditReceiptTests(unittest.TestCase):
         self.assertTrue(result["proof_limits"])
         self.assertEqual(result["candidate_qualification"], None)
 
+    def test_mapping_join_rejects_namespace_drift(self):
+        oval = {
+            "grammar_rows": [{
+                "schema_file": "esx-definitions-schema.xsd",
+                "source_qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#esx}host_account_test",
+                "source_name": "host_account_test",
+            }],
+            "canonical_mappings": [{
+                "capability": "esx.host_account",
+                "mapping_file": "experimental/esx.host_account.json",
+                "source_role": "test",
+                "source_language": "OVAL 6.0 new tests only",
+                "source_upstream_commit": "upstream",
+                "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+                "source_schema": "esx-definitions-schema.xsd",
+                "source_namespace": "urn:oval:v6:definitions:esx",
+                "source_name": "host_account_test",
+            }],
+        }
+        result = audit._mapping_join_diagnostics(oval)
+        self.assertEqual(result["exact_grammar_join_rows"], 0)
+        self.assertEqual(result["unmatched_by_reason"], {"mapping_source_version_out_of_scope": 1})
+        self.assertEqual(result["unmatched"][0]["source_language"], "OVAL 6.0 new tests only")
+        self.assertEqual(result["unmatched"][0]["source_namespace"],
+                         "urn:oval:v6:definitions:esx")
+
     def test_candidate_holds_keep_source_identity_and_class(self):
         candidate = {
             "summary": {"blocked_tests": 1},

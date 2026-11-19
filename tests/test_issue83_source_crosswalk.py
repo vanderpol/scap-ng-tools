@@ -282,6 +282,8 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
             "capability": "test.foo",
             "specification_version": "0.4.1",
             "source": {
+                "language": "OVAL 5.12.3",
+                "upstream_commit": "source-pin",
                 "definitions_schema": "third_party/foo/test-definitions-schema.xsd",
                 "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#foo",
                 "test": "foo_test",
@@ -304,6 +306,8 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(row["mapping_disposition"], "mapped_unproven")
         self.assertEqual(row["canonical_mapping_candidates"][0]["capability"], "test.foo")
         self.assertEqual(row["canonical_mapping_candidates"][0]["converter_proof"], "not_run")
+        self.assertEqual(row["canonical_mapping_candidates"][0]["source_language"], "OVAL 5.12.3")
+        self.assertEqual(row["canonical_mapping_candidates"][0]["source_upstream_commit"], "source-pin")
         self.assertEqual(row["canonical_mapping_candidates"][0]["field_mapping_status"],
                          "declared_unproven")
         self.assertIsInstance(row["canonical_mapping_candidates"][0]["source_member_names"], list)

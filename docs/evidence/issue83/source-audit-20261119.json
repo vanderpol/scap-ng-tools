@@ -294,12 +294,166 @@
       "tests": 791
     }
   },
+  "canonical_mapping_join": {
+    "exact_grammar_join_rows": 379,
+    "mapping_rows": 391,
+    "unmatched": [
+      {
+        "capability": "esx.host_account",
+        "mapping_file": "experimental/esx.host_account.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_account_object",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "object",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_account",
+        "mapping_file": "experimental/esx.host_account.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_account_state",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "state",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_account",
+        "mapping_file": "experimental/esx.host_account.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_account_test",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "test",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_advancedsetting",
+        "mapping_file": "experimental/esx.host_advancedsetting.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_advancedsetting_object",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "object",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_advancedsetting",
+        "mapping_file": "experimental/esx.host_advancedsetting.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_advancedsetting_state",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "state",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_advancedsetting",
+        "mapping_file": "experimental/esx.host_advancedsetting.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_advancedsetting_test",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "test",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_service",
+        "mapping_file": "experimental/esx.host_service.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_service_object",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "object",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_service",
+        "mapping_file": "experimental/esx.host_service.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_service_state",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "state",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_service",
+        "mapping_file": "experimental/esx.host_service.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_service_test",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "test",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_vib",
+        "mapping_file": "experimental/esx.host_vib.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_vib_object",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "object",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_vib",
+        "mapping_file": "experimental/esx.host_vib.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_vib_state",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "state",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_vib",
+        "mapping_file": "experimental/esx.host_vib.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_vib_test",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "test",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      }
+    ],
+    "unmatched_by_reason": {
+      "mapping_source_version_out_of_scope": 12
+    },
+    "unmatched_rows": 12
+  },
   "format": "scap-ng-tools/issue83-compact-audit/1",
   "generated_by": {
     "script": "scripts/build_issue83_audit_receipt.py",
-    "script_sha256": "c731b5b148c94a3241a0c68941bfcfa25b9ae68765774b82ce23f9a113e951cc",
+    "script_sha256": "a0930d12ed20935b546ea6c57f70491454e4a50c3be16567e147292790a26056",
     "source_crosswalk_script": "scripts/build_issue83_source_crosswalk.py",
-    "source_crosswalk_script_sha256": "ba741a1edb8fefa97e7ec5f9566ccb2b1d2bac7713b9e8ab7fe6cd9f37d5d8c7"
+    "source_crosswalk_script_sha256": "0c34d9814a3b8cc559d5b271b87fe88ef6c75afcf57d3d5e18fa732156ff061e"
   },
   "oval_schema_inventory": {
     "canonical_mapping_rows": 391,
@@ -344,7 +498,7 @@
   "pins": {
     "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
     "canonical_schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
-    "converter_commit": "1add34c",
+    "converter_commit": "5eaef50",
     "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
     "oval_schema_commit_verified": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706"
   },
@@ -382,14 +536,19 @@
       "rank": 2
     },
     {
-      "action": "Complete field/attribute/default/cardinality/function dispositions from pinned XSD, Schematron and prose; mapping-file presence is not proof.",
+      "action": "Complete field/attribute/default/cardinality/function dispositions from pinned XSD, Schematron and prose; keep the 12 explicitly OVAL 6.0 experimental mappings outside the OVAL 5.12.3 coverage denominator.",
       "class": "oval_shared_grammar",
-      "disposition": "source_crosswalk_incomplete",
+      "disposition": "source_crosswalk_incomplete_with_out_of_scope_mappings",
       "measured": {
         "canonical_mapping_rows": 391,
         "declarations": 1426,
+        "exact_mapping_join_rows": 379,
         "grammar_rows": 42567,
         "grammar_rows_with_mapping": 379,
+        "unmatched_mapping_reasons": {
+          "mapping_source_version_out_of_scope": 12
+        },
+        "unmatched_mapping_rows": 12,
         "unproven_declarations": 1189
       },
       "owner": "scap-ng canonical language + Tools",
@@ -426,8 +585,8 @@
     "archive_count": 65,
     "archive_set_sha256": "6e04353f3b1ef32b31a6ef022f75cd7c68486dadb017bd18aa9108c3864ed1ca",
     "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
-    "full_crosswalk_bytes": 108834481,
-    "full_crosswalk_sha256": "2a707e40002ed4da19e41e4bbd6021b68e3937eb5aed9538d55a7fa0182f8beb",
+    "full_crosswalk_bytes": 109067599,
+    "full_crosswalk_sha256": "3b5ddd4fd95cb0e5e2228bd0b7fced88d761cf1023f0668394f2dc2f34925f5b",
     "repository": "vanderpol/scap-content-library",
     "source_rule_count": 8892,
     "xccdf_schema": {

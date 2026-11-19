@@ -36,6 +36,65 @@ def _hold_rows(receipt: dict[str, Any]) -> list[dict[str, Any]]:
         row["record_type"], row["source_path"], row["source_ids"], row["failure_class"]))
 
 
+def _mapping_join_diagnostics(oval: dict[str, Any]) -> dict[str, Any]:
+    """Compare canonical mapping keys with exact pinned XSD grammar keys.
+
+    A mapping file is not source support proof.  Keep namespace/schema mismatches
+    explicit because an old or experimental namespace must not be treated as a
+    mapping for the current OVAL 5.12.3 declaration.
+    """
+    grammar = oval.get("grammar_rows", [])
+    mappings = oval.get("canonical_mappings", [])
+
+    def grammar_key(row: dict[str, Any]) -> tuple[str, str, str]:
+        qname = row.get("source_qname", "")
+        namespace = qname.split("}", 1)[0].lstrip("{") if "}" in qname else ""
+        return row.get("schema_file", ""), namespace, row.get("source_name", "")
+
+    grammar_keys = {grammar_key(row) for row in grammar}
+    declaration_namespaces = {(row.get("schema_file", ""), row.get("source_name", ""))
+                              for row in grammar}
+    unmatched = []
+    joined = 0
+    for row in mappings:
+        key = (row.get("source_schema", ""), row.get("source_namespace", ""),
+               row.get("source_name", ""))
+        if key in grammar_keys:
+            joined += 1
+            continue
+        same_name = (key[0], key[2]) in declaration_namespaces
+        source_language = row.get("source_language", "")
+        if source_language and source_language != "OVAL 5.12.3":
+            reason = "mapping_source_version_out_of_scope"
+        else:
+            reason = "source_namespace_mismatch" if same_name else "no_exact_pinned_grammar_declaration"
+        unmatched.append({
+            "capability": row.get("capability", ""),
+            "mapping_file": row.get("mapping_file", ""),
+            "source_role": row.get("source_role", ""),
+            "source_language": source_language,
+            "source_upstream_commit": row.get("source_upstream_commit", ""),
+            "source_definitions_schema": row.get("source_definitions_schema", ""),
+            "source_schema": key[0],
+            "source_namespace": key[1],
+            "source_name": key[2],
+            "reason": reason,
+        })
+    unmatched.sort(key=lambda row: (row["reason"], row["source_schema"],
+                                    row["source_namespace"], row["source_name"],
+                                    row["source_role"], row["mapping_file"]))
+    reasons = {}
+    for row in unmatched:
+        reasons[row["reason"]] = reasons.get(row["reason"], 0) + 1
+    return {
+        "mapping_rows": len(mappings),
+        "exact_grammar_join_rows": joined,
+        "unmatched_rows": len(unmatched),
+        "unmatched_by_reason": dict(sorted(reasons.items())),
+        "unmatched": unmatched,
+    }
+
+
 def _platform_hold_summary(receipt: dict[str, Any]) -> list[dict[str, Any]]:
     families = receipt.get("families", {})
     rows = []
@@ -113,6 +172,7 @@ def build(crosswalk_path: Path, candidate_path: Path | None, *,
             "group": "fail-closed canonical mapping hold; do not flatten Group relationships into Rule prerequisites",
         },
     }
+    mapping_join = _mapping_join_diagnostics(oval)
     oval_inventory = {
         key: oval_summary[key] for key in (
             "schema_files", "schema_manifest_files", "definition_schema_files",
@@ -145,6 +205,7 @@ def build(crosswalk_path: Path, candidate_path: Path | None, *,
         },
         "xccdf": xccdf,
         "oval_schema_inventory": oval_inventory,
+        "canonical_mapping_join": mapping_join,
         "candidate_qualification": None,
         "ranked_gap_inventory": [],
         "proof_limits": [
@@ -203,10 +264,13 @@ def build(crosswalk_path: Path, candidate_path: Path | None, *,
                 "grammar_rows": oval_summary.get("grammar_rows", 0),
                 "canonical_mapping_rows": oval_summary.get("canonical_mapping_rows", 0),
                 "grammar_rows_with_mapping": oval_summary.get("grammar_rows_with_mapping", 0),
+                "exact_mapping_join_rows": mapping_join["exact_grammar_join_rows"],
+                "unmatched_mapping_rows": mapping_join["unmatched_rows"],
+                "unmatched_mapping_reasons": mapping_join["unmatched_by_reason"],
                 "unproven_declarations": oval_summary.get("native_mapping_status", {}).get("unproven", 0),
             },
-            "disposition": "source_crosswalk_incomplete",
-            "action": "Complete field/attribute/default/cardinality/function dispositions from pinned XSD, Schematron and prose; mapping-file presence is not proof.",
+            "disposition": "source_crosswalk_incomplete_with_out_of_scope_mappings",
+            "action": "Complete field/attribute/default/cardinality/function dispositions from pinned XSD, Schematron and prose; keep the 12 explicitly OVAL 6.0 experimental mappings outside the OVAL 5.12.3 coverage denominator.",
             "owner": "scap-ng canonical language + Tools",
         },
         {
@@ -287,6 +351,7 @@ def markdown(receipt: dict[str, Any]) -> str:
         "## OVAL schema inventory",
         "",
         f"- Declarations/grammar rows: **{oval.get('declarations', 0)} / {oval.get('grammar_rows', 0)}**; canonical mapping rows **{oval.get('canonical_mapping_rows', 0)}**.",
+        f"- Exact canonical mapping joins: **{receipt['canonical_mapping_join']['exact_grammar_join_rows']}**; unmatched mapping rows: **{receipt['canonical_mapping_join']['unmatched_rows']}** (`{json.dumps(receipt['canonical_mapping_join']['unmatched_by_reason'], sort_keys=True)}`).",
         f"- Official deprecation annotations: **{oval.get('official_deprecation_annotations', 0)}**; unproven declarations: **{oval.get('native_mapping_status', {}).get('unproven', 0)}**.",
         f"- Schematron assertions/reports and prose rows: **{oval.get('schematron_assertions', 0)} / {oval.get('schematron_reports', 0)} / {oval.get('prose_rows', 0)}**.",
         "",

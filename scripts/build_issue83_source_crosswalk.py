@@ -859,6 +859,9 @@ def _canonical_mapping_inventory(mapping_root: Path) -> list[dict]:
             rows.append({
                 "capability": capability,
                 "source_role": role,
+                "source_language": source.get("language", ""),
+                "source_upstream_commit": source.get("upstream_commit", ""),
+                "source_definitions_schema": source.get("definitions_schema", ""),
                 "source_schema": schema_file,
                 "source_namespace": source_namespace,
                 "source_name": name,
