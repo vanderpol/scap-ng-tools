@@ -140,6 +140,45 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(attribute["attributes"]["use"], "required")
         self.assertEqual(attribute["attributes"]["default"], "strict")
 
+    def test_canonical_mapping_index_is_explicitly_unproven(self):
+        xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+              targetNamespace=\"http://oval.mitre.org/XMLSchema/oval-definitions-5#foo\"><xs:element name=\"foo_test\"/>
+        </xs:schema>""".encode()
+        item_xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+              targetNamespace=\"http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#foo\"><xs:element name=\"foo_item\"/>
+        </xs:schema>""".encode()
+        mapping = {
+            "capability": "test.foo",
+            "specification_version": "0.4.1",
+            "source": {
+                "definitions_schema": "third_party/foo/test-definitions-schema.xsd",
+                "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#foo",
+                "test": "foo_test",
+                "item": "foo_item",
+            },
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "test-definitions-schema.xsd").write_bytes(xsd)
+            (root / "test-system-characteristics-schema.xsd").write_bytes(item_xsd)
+            mappings = root / "mappings"
+            mappings.mkdir()
+            mapping_path = mappings / "foo.json"
+            mapping_path.write_text(json.dumps(mapping))
+            report = crosswalk.oval_inventory(root, mappings, "canonical-pin")
+        self.assertEqual(report["summary"]["canonical_mapping_rows"], 2)
+        self.assertEqual(report["summary"]["grammar_rows_with_mapping"], 2)
+        row = next(item for item in report["grammar_rows"]
+                   if item["source_name"] == "foo_test")
+        self.assertEqual(row["mapping_disposition"], "mapped_unproven")
+        self.assertEqual(row["canonical_mapping_candidates"][0]["capability"], "test.foo")
+        self.assertEqual(row["canonical_mapping_candidates"][0]["converter_proof"], "not_run")
+        item_row = next(item for item in report["grammar_rows"]
+                        if item["source_name"] == "foo_item")
+        self.assertEqual(item_row["schema_file"], "test-system-characteristics-schema.xsd")
+        self.assertEqual(item_row["canonical_mapping_candidates"][0]["source_role"], "item")
+        self.assertEqual(report["summary"]["canonical_mapping_commit"], "canonical-pin")
+
     def test_schema_dependency_inventory_records_resolved_and_missing_edges(self):
         xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
               targetNamespace=\"urn:test\"><xs:import schemaLocation=\"base.xsd\"/>
@@ -167,7 +206,9 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         report = crosswalk.oval_inventory(Path(source))
         self.assertEqual(report["source_commit_expected"],
                          "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706")
-        self.assertEqual(report["summary"]["schema_files"], 23)
+        self.assertEqual(report["summary"]["schema_files"], 46)
+        self.assertEqual(report["summary"]["definition_schema_files"], 23)
+        self.assertEqual(report["summary"]["system_characteristics_schema_files"], 23)
         self.assertGreater(report["summary"]["official_deprecation_annotations"], 0)
         direct = next(row for row in report["declarations"]
                       if row["name"] == "rpmverify_test")

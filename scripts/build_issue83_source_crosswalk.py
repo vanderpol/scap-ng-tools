@@ -35,7 +35,7 @@ DISA_FIELDS = (
     "Mitigations", "SeverityOverrideGuidance", "PotentialImpacts",
     "ThirdPartyTools", "MitigationControl", "Responsibility", "IAControls",
 )
-OVAL_DEFINITION_FILES = re.compile(r"^[^-]+-definitions-schema\.xsd$")
+OVAL_SCHEMA_FILES = re.compile(r"^[^-]+-(?:definitions|system-characteristics)-schema\.xsd$")
 XSD = "http://www.w3.org/2001/XMLSchema"
 OVAL_COMMON = "http://oval.mitre.org/XMLSchema/oval-common-5"
 OVAL_DEFINITIONS = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
@@ -357,6 +357,14 @@ def _nested_deprecation_records(declaration: ET.Element) -> tuple[list[dict], li
     return direct, nested
 
 
+def _schema_role(path: Path) -> str:
+    if path.name.endswith("-definitions-schema.xsd"):
+        return "definitions"
+    if path.name.endswith("-system-characteristics-schema.xsd"):
+        return "system_characteristics"
+    return "other"
+
+
 def _schema_dependency_inventory(root: Path, schema_paths: list[Path]) -> list[dict]:
     """Inventory XSD imports/includes without resolving semantic inheritance.
 
@@ -392,13 +400,90 @@ def _schema_dependency_inventory(root: Path, schema_paths: list[Path]) -> list[d
     return edges
 
 
-def oval_inventory(root: Path) -> dict:
+def _canonical_mapping_inventory(mapping_root: Path) -> list[dict]:
+    """Index reviewed canonical capability mappings without claiming proof.
+
+    Mapping files describe the source family and native field contract; they
+    are evidence of an authoring mapping, not converter or RI equivalence.
+    Keep their exact file hashes so a later source-to-native comparison cannot
+    silently drift with a moving canonical checkout.
+    """
+    if not mapping_root.is_dir():
+        raise ValueError(f"canonical mapping root is not a directory: {mapping_root}")
+    rows = []
+    for path in sorted(mapping_root.rglob("*.json")):
+        try:
+            mapping = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as error:
+            raise ValueError(f"invalid canonical mapping {path}: {error}") from error
+        source = mapping.get("source")
+        capability = mapping.get("capability")
+        if not isinstance(source, dict) or not capability:
+            continue
+        definitions_schema = Path(source.get("definitions_schema", "")).name
+        if not definitions_schema:
+            continue
+        for role in ("test", "object", "state", "item"):
+            name = source.get(role)
+            if not name:
+                continue
+            schema_file = definitions_schema
+            source_namespace = source.get("namespace", "")
+            if role == "item":
+                schema_file = schema_file.replace(
+                    "-definitions-schema.xsd", "-system-characteristics-schema.xsd")
+                source_namespace = source_namespace.replace(
+                    "oval-definitions-5", "oval-system-characteristics-5")
+            rows.append({
+                "capability": capability,
+                "source_role": role,
+                "source_schema": schema_file,
+                "source_namespace": source_namespace,
+                "source_name": name,
+                "mapping_file": path.relative_to(mapping_root).as_posix(),
+                "mapping_file_sha256": digest(path.read_bytes()),
+                "mapping_specification_version": mapping.get("specification_version", ""),
+                "mapping_status": "declared_unproven",
+                "converter_entrypoint": f"AssessmentConverter.convert_{role}"
+                    if role != "item" else "collector_item_contract",
+                "converter_proof": "not_run",
+                "runtime_equivalence": "not_proved",
+            })
+    return rows
+
+
+def _attach_canonical_mappings(grammar_rows: list[dict], mapping_rows: list[dict]) -> None:
+    by_key = {}
+    for row in mapping_rows:
+        key = (row["source_schema"], row["source_namespace"], row["source_name"])
+        by_key.setdefault(key, []).append(row)
+    for row in grammar_rows:
+        key = (row["schema_file"], row["source_qname"].split("}", 1)[0].lstrip("{"),
+               row["source_name"])
+        candidates = by_key.get(key, []) if row["source_kind"] in {
+            "element", "complexType", "simpleType", "group"
+        } else []
+        if candidates:
+            row["canonical_mapping_candidates"] = sorted(
+                candidates, key=lambda candidate: (candidate["capability"], candidate["source_role"],
+                                                   candidate["mapping_file"]))
+            row["mapping_disposition"] = "mapped_unproven"
+
+
+def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
+                   canonical_mapping_commit: str | None = None) -> dict:
     rows = []
     schema_paths = []
+    definition_schema_paths = []
+    system_characteristics_schema_paths = []
     for path in sorted(root.iterdir()):
-        if not path.is_file() or not OVAL_DEFINITION_FILES.match(path.name):
+        if not path.is_file() or not OVAL_SCHEMA_FILES.match(path.name):
             continue
         schema_paths.append(path)
+        if _schema_role(path) == "definitions":
+            definition_schema_paths.append(path)
+        elif _schema_role(path) == "system_characteristics":
+            system_characteristics_schema_paths.append(path)
         raw = path.read_bytes()
         document = ET.parse(path).getroot()
         namespace = document.get("targetNamespace", "")
@@ -413,6 +498,7 @@ def oval_inventory(root: Path) -> dict:
             grammar_rows = _schema_grammar_rows(child, path.name, namespace)
             row = {
                 "schema_file": path.name,
+                "schema_role": _schema_role(path),
                 "schema_sha256": digest(raw),
                 "namespace": namespace,
                 "declaration_kind": child.tag.rsplit("}", 1)[-1],
@@ -450,6 +536,10 @@ def oval_inventory(root: Path) -> dict:
             row["grammar_rows"] = grammar_rows
             rows.append(row)
     grammar_rows = [grammar_row for row in rows for grammar_row in row["grammar_rows"]]
+    mapping_rows = []
+    if canonical_mapping_root is not None:
+        mapping_rows = _canonical_mapping_inventory(canonical_mapping_root)
+        _attach_canonical_mappings(grammar_rows, mapping_rows)
     statuses = Counter(row["native_mapping_status"] for row in rows)
     nested_count = sum(bool(row.get("deprecated_members")) for row in rows)
     dependencies = _schema_dependency_inventory(root, schema_paths)
@@ -463,15 +553,22 @@ def oval_inventory(root: Path) -> dict:
         "schema_files": sorted({row["schema_file"] for row in rows}),
         "schema_manifest": all_xsd,
         "schema_dependencies": dependencies,
+        "canonical_mappings": mapping_rows,
         "declarations": rows,
         "grammar_rows": grammar_rows,
         "summary": {
             "schema_files": len({row["schema_file"] for row in rows}),
+            "definition_schema_files": len(definition_schema_paths),
+            "system_characteristics_schema_files": len(system_characteristics_schema_paths),
             "schema_manifest_files": len(all_xsd),
             "schema_dependencies": len(dependencies),
             "unresolved_schema_dependencies": sum(not row["resolved"] for row in dependencies),
             "declarations": len(rows),
             "grammar_rows": len(grammar_rows),
+            "canonical_mapping_rows": len(mapping_rows),
+            "grammar_rows_with_mapping": sum(
+                bool(row.get("canonical_mapping_candidates")) for row in grammar_rows),
+            "canonical_mapping_commit": canonical_mapping_commit,
             "native_mapping_status": dict(sorted(statuses.items())),
             "unclassified_declarations": statuses.get("unclassified", 0),
             "declarations_with_deprecated_members": nested_count,
@@ -657,7 +754,9 @@ def oval_content_inventory(root: Path, source_commit: str) -> dict:
 
 def build(source_root: Path, expected_archives: int, source_commit: str,
           oval_root: Path | None, oval_content_root: Path | None = None,
-          oval_content_commit: str | None = None) -> dict:
+          oval_content_commit: str | None = None,
+          canonical_mapping_root: Path | None = None,
+          canonical_mapping_commit: str | None = None) -> dict:
     archives = sorted(source_root.glob("*.zip"))
     if len(archives) != expected_archives:
         raise ValueError(f"expected {expected_archives} source ZIPs, found {len(archives)}")
@@ -732,7 +831,8 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
         },
     }
     if oval_root is not None:
-        result["oval_schema_inventory"] = oval_inventory(oval_root)
+        result["oval_schema_inventory"] = oval_inventory(
+            oval_root, canonical_mapping_root, canonical_mapping_commit)
     if oval_content_root is not None:
         if not oval_content_commit:
             raise ValueError("--oval-content-commit is required with --oval-content-root")
@@ -799,12 +899,15 @@ def main(argv=None) -> int:
     parser.add_argument("--oval-schema-root", type=Path)
     parser.add_argument("--oval-content-root", type=Path)
     parser.add_argument("--oval-content-commit")
+    parser.add_argument("--canonical-mapping-root", type=Path)
+    parser.add_argument("--canonical-mapping-commit")
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-md", type=Path, required=True)
     args = parser.parse_args(argv)
     report = build(args.source_root, args.expected_archives, args.source_commit,
                    args.oval_schema_root, args.oval_content_root,
-                   args.oval_content_commit)
+                   args.oval_content_commit, args.canonical_mapping_root,
+                   args.canonical_mapping_commit)
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
     args.output_md.parent.mkdir(parents=True, exist_ok=True)
     args.output_json.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
