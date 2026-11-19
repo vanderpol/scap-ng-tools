@@ -82,6 +82,7 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         rule = ET.fromstring(
             f'<Rule xmlns="{crosswalk.XCCDF}" id="rule-a"><version>1</version>'
             '<title>Production relationship witness</title>'
+            '<description>before<em>middle</em>after</description>'
             '<requires idref="rule-b rule-c"/><conflicts idref="rule-d"/>'
             f'<check system="{runtime.OVAL}"><check-content-ref href="#oval" name="definition-a"/></check>'
             '</Rule>')
@@ -131,6 +132,7 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         native = next(value['rule'] for value in documents.values() if 'rule' in value)
         self.assertEqual(native['requires'], [{'any_of': ['rule-b', 'rule-c']}])
         self.assertEqual(native['conflicts'], ['rule-d'])
+        self.assertEqual(native['discussion'], 'beforemiddleafter')
 
     def test_manual_rule_renderer_emits_the_same_relationship_contract(self):
         from v04_direct_scap_source import OCIL
