@@ -226,6 +226,10 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertEqual(conversion["base_diagnostic"], conversion["corrected_diagnostic"])
         self.assertEqual(conversion["schema_validated"], False)
         self.assertIn("does not resolve", conversion["semantic_transition"])
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["converter_commit"], "562896a24aca13fe47cca4ea412035404196d9c2")
+        self.assertEqual(conversion["base_returncode"], 1)
+        self.assertEqual(conversion["corrected_returncode"], 1)
 
     def test_macos_environmentvariable_pr6_receipt_records_type_recovery(self):
         receipt = self.load("macos-environmentvariable-pr6-focused-qualification.json")
