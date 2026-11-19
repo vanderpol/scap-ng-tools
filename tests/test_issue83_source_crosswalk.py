@@ -98,6 +98,12 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(field["attributes"]["name"], "old_field")
         self.assertEqual(rows["current_state"]["schema_shape_sha256"],
                          crosswalk._schema_shape_digest(shape))
+        self.assertGreater(rows["current_state"]["grammar_row_count"], 1)
+        field_row = next(item for item in report["grammar_rows"]
+                         if item["source_name"] == "old_field")
+        self.assertEqual(field_row["source_kind"], "element")
+        self.assertEqual(field_row["disposition"], "deprecated_migration")
+        self.assertEqual(report["summary"]["grammar_rows"], len(report["grammar_rows"]))
         self.assertIn("cardinality and attribute-use metadata",
                       report["summary"]["schema_shape_contract"]["preserves"])
         self.assertEqual(rows["current_state"]["deprecated_members"][0]["scope"], "nested")

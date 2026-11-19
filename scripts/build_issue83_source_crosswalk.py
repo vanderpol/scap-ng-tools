@@ -273,6 +273,53 @@ def _shape_summary(shape: dict) -> dict:
     }
 
 
+def _schema_grammar_rows(declaration: ET.Element, schema_file: str,
+                         namespace: str) -> list[dict]:
+    """Emit one deterministic row for each authored XSD grammar node.
+
+    These rows are a structural source register, not a native AST.  Keeping
+    the node path, source QName, type/cardinality/default attributes and
+    enumerated values makes a later field-level crosswalk auditable without
+    pretending that an XSD particle alone defines runtime semantics.
+    """
+    rows = []
+
+    def walk(node: ET.Element, path: tuple[int, ...]):
+        kind = local_name(node.tag)
+        attrs = dict(sorted(node.attrib.items()))
+        named = node.get("name") or node.get("ref") or ""
+        qname = (f"{{{namespace}}}{node.get('name')}"
+                 if node.get("name") and kind in {"element", "attribute", "group", "attributeGroup"}
+                 else "")
+        enumerations = sorted({
+            child.get("value", "") for child in node.iter()
+            if local_name(child.tag) == "enumeration"
+        })
+        direct_deprecated = _deprecated_info(node)
+        rows.append({
+            "schema_file": schema_file,
+            "source_path": "/" + "/".join(
+                f"{local_name(ancestor.tag)}[{index}]"
+                for ancestor, index in [(declaration, 0)]
+            ) if not path else "/" + "/".join(
+                [f"{local_name(declaration.tag)}[@name={declaration.get('name', '')}]",
+                 *[f"{local_name(node.tag)}[{index}]" for index in path]]
+            ),
+            "source_kind": kind,
+            "source_name": named,
+            "source_qname": qname,
+            "attributes": attrs,
+            "enumeration_values": enumerations,
+            "disposition": "deprecated_migration" if direct_deprecated else "unproven",
+            "deprecation": [{"scope": "node", **record} for record in direct_deprecated],
+        })
+        for index, child in enumerate(node):
+            walk(child, (*path, index))
+
+    walk(declaration, ())
+    return rows
+
+
 def _deprecated_info(node: ET.Element) -> list[dict]:
     """Read official OVAL deprecation annotations under one XSD node.
 
@@ -363,6 +410,7 @@ def oval_inventory(root: Path) -> dict:
                 continue
             direct, nested = _nested_deprecation_records(child)
             shape = _schema_shape(child)
+            grammar_rows = _schema_grammar_rows(child, path.name, namespace)
             row = {
                 "schema_file": path.name,
                 "schema_sha256": digest(raw),
@@ -372,6 +420,7 @@ def oval_inventory(root: Path) -> dict:
                 "schema_shape": shape,
                 "schema_shape_sha256": _schema_shape_digest(shape),
                 "schema_shape_summary": _shape_summary(shape),
+                "grammar_row_count": len(grammar_rows),
                 "native_mapping_status": "deprecated_migration" if direct else "unproven",
                 "disposition": {
                     "category": "deprecated_migration" if direct else "unproven",
@@ -398,7 +447,9 @@ def oval_inventory(root: Path) -> dict:
                 row["deprecation"] = [{"scope": "declaration", **record} for record in direct]
             if nested:
                 row["deprecated_members"] = nested
+            row["grammar_rows"] = grammar_rows
             rows.append(row)
+    grammar_rows = [grammar_row for row in rows for grammar_row in row["grammar_rows"]]
     statuses = Counter(row["native_mapping_status"] for row in rows)
     nested_count = sum(bool(row.get("deprecated_members")) for row in rows)
     dependencies = _schema_dependency_inventory(root, schema_paths)
@@ -413,12 +464,14 @@ def oval_inventory(root: Path) -> dict:
         "schema_manifest": all_xsd,
         "schema_dependencies": dependencies,
         "declarations": rows,
+        "grammar_rows": grammar_rows,
         "summary": {
             "schema_files": len({row["schema_file"] for row in rows}),
             "schema_manifest_files": len(all_xsd),
             "schema_dependencies": len(dependencies),
             "unresolved_schema_dependencies": sum(not row["resolved"] for row in dependencies),
             "declarations": len(rows),
+            "grammar_rows": len(grammar_rows),
             "native_mapping_status": dict(sorted(statuses.items())),
             "unclassified_declarations": statuses.get("unclassified", 0),
             "declarations_with_deprecated_members": nested_count,
