@@ -367,8 +367,159 @@ def _schema_role(path: Path) -> str:
     return "other"
 
 
+def _schema_document(path: Path) -> tuple[ET.Element, dict[str, str]]:
+    """Parse one XSD and retain its namespace bindings for QName resolution."""
+    prefixes: dict[str, str] = {}
+    root = None
+    for event, value in ET.iterparse(path, events=("start-ns", "start")):
+        if event == "start-ns":
+            prefix, namespace = value
+            prefixes[prefix or ""] = namespace
+        elif root is None:
+            root = value
+    if root is None:
+        raise ValueError(f"empty XSD document: {path}")
+    return root, prefixes
+
+
+def _schema_qname(value: str, target_namespace: str, prefixes: dict[str, str]) -> tuple[str, str]:
+    """Resolve an XSD QName without treating an unknown prefix as local.
+
+    XSD component references commonly use unprefixed names for components in
+    the document's target namespace.  Unknown prefixes are retained as a
+    namespace marker so they become an explicit unresolved dependency rather
+    than a false local match.
+    """
+    value = value.strip()
+    if not value:
+        return "", ""
+    if ":" in value:
+        prefix, local = value.split(":", 1)
+        return prefixes.get(prefix, f"urn:unresolved-prefix:{prefix}"), local
+    return prefixes.get("", target_namespace) or target_namespace, value
+
+
+def _schema_component_index(root: Path, schema_paths: list[Path]) -> tuple[dict[tuple[str, str], dict], dict[Path, tuple[ET.Element, dict[str, str]]]]:
+    """Index named local XSD components for source-level type inheritance.
+
+    Only components physically present in the pinned schema root are resolved.
+    XML Schema built-ins and external imports stay explicit in the reference
+    rows; the inventory never guesses their fields or promotes them to native
+    support.
+    """
+    documents: dict[Path, tuple[ET.Element, dict[str, str]]] = {}
+    components: dict[tuple[str, str], dict] = {}
+    component_kinds = {"element", "complexType", "simpleType", "group",
+                       "attribute", "attributeGroup", "key", "unique"}
+    for path in schema_paths:
+        document, prefixes = _schema_document(path)
+        documents[path] = (document, prefixes)
+        namespace = document.get("targetNamespace", "")
+        global_kinds = component_kinds - {"key", "unique"}
+        candidate_nodes = [child for child in document
+                           if local_name(child.tag) in global_kinds]
+        # Identity constraints are scoped below an element, while the other
+        # XSD components are global. Indexing every named nested element would
+        # falsely resolve a QName to whichever local field was visited last.
+        candidate_nodes.extend(node for child in document for node in child.iter()
+                               if local_name(node.tag) in {"key", "unique"})
+        for child in candidate_nodes:
+            kind = local_name(child.tag)
+            name = child.get("name")
+            if kind not in component_kinds or not name:
+                continue
+            # A namespace may legitimately contain same-name components of
+            # different kinds, so include kind in the index key. Identity
+            # constraints are indexed too: keyref/@refer is a real XSD
+            # relationship, not an unresolved native field reference.
+            components[(namespace, f"{kind}:{name}")] = {
+                "namespace": namespace,
+                "name": name,
+                "kind": kind,
+                "schema_file": path.relative_to(root).as_posix(),
+                "schema_sha256": digest(path.read_bytes()),
+            }
+    return components, documents
+
+
+def _schema_references(declaration: ET.Element, schema_file: str, namespace: str,
+                       prefixes: dict[str, str], components: dict[tuple[str, str], dict],
+                       root: Path) -> list[dict]:
+    """Resolve QName-bearing XSD attributes and preserve unresolved reasons."""
+    qname_attributes = {"base", "type", "ref", "itemType", "memberTypes",
+                        "substitutionGroup", "refer"}
+    references = []
+    for node in declaration.iter():
+        for attribute, raw in sorted(node.attrib.items()):
+            if attribute.rsplit("}", 1)[-1] not in qname_attributes:
+                continue
+            values = raw.split() if attribute.rsplit("}", 1)[-1] == "memberTypes" else [raw]
+            for value in values:
+                target_namespace, target_name = _schema_qname(value, namespace, prefixes)
+                local = attribute.rsplit("}", 1)[-1]
+                kind_candidates = {
+                    "base": ("complexType", "simpleType"),
+                    "type": ("complexType", "simpleType"),
+                    "ref": ("element", "attribute", "group", "attributeGroup"),
+                    "substitutionGroup": ("element",),
+                    "itemType": ("simpleType",),
+                    "memberTypes": ("simpleType",),
+                    "refer": ("key", "unique"),
+                }.get(local, ())
+                target = next((components.get((target_namespace, f"{kind}:{target_name}"))
+                               for kind in kind_candidates
+                               if components.get((target_namespace, f"{kind}:{target_name}"))), None)
+                if target is not None:
+                    status = "resolved"
+                elif target_namespace in {XSD, "http://www.w3.org/2001/XMLSchema-instance"}:
+                    status = "external_builtin"
+                elif target_namespace.startswith("urn:unresolved-prefix:"):
+                    status = "unresolved_prefix"
+                else:
+                    status = "unresolved_external"
+                references.append({
+                    "source_schema": schema_file,
+                    "source_kind": local_name(node.tag),
+                    "source_name": node.get("name", ""),
+                    "attribute": local,
+                    "lexical_qname": value,
+                    "target_namespace": target_namespace,
+                    "target_name": target_name,
+                    "target_kinds": list(kind_candidates),
+                    "status": status,
+                    **({"target": target} if target is not None else {}),
+                })
+    return references
+
+
+def _schema_inheritance(references: list[dict]) -> dict:
+    """Summarize direct resolved base relationships without flattening fields."""
+    bases = [reference for reference in references
+             if reference["attribute"] == "base"]
+    resolved = [{
+        "namespace": reference["target"]["namespace"],
+        "kind": reference["target"]["kind"],
+        "name": reference["target"]["name"],
+        "schema_file": reference["target"]["schema_file"],
+    } for reference in bases if reference["status"] == "resolved"]
+    external = [{key: reference[key] for key in (
+        "lexical_qname", "target_namespace", "target_name", "status")}
+                for reference in bases if reference["status"] == "external_builtin"]
+    unresolved = [{key: reference[key] for key in (
+        "lexical_qname", "target_namespace", "target_name", "status")}
+                  for reference in bases
+                  if reference["status"] not in {"resolved", "external_builtin"}]
+    return {
+        "base_chain": resolved,
+        "external_bases": external,
+        "unresolved_bases": unresolved,
+        "cycles": [],
+        "status": "resolved" if not unresolved else "incomplete",
+    }
+
+
 def _schema_dependency_inventory(root: Path, schema_paths: list[Path]) -> list[dict]:
-    """Inventory XSD imports/includes without resolving semantic inheritance.
+    """Inventory XSD imports/includes without guessing external semantics.
 
     XSD declarations are frequently spread across imported files.  Record the
     exact edge and the resolved target hash so the later crosswalk can merge
@@ -513,6 +664,8 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
     schema_paths = []
     definition_schema_paths = []
     system_characteristics_schema_paths = []
+    component_paths = sorted(root.rglob("*.xsd"))
+    components, documents = _schema_component_index(root, component_paths)
     for path in sorted(root.iterdir()):
         if not path.is_file() or not OVAL_SCHEMA_FILES.match(path.name):
             continue
@@ -522,7 +675,7 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
         elif _schema_role(path) == "system_characteristics":
             system_characteristics_schema_paths.append(path)
         raw = path.read_bytes()
-        document = ET.parse(path).getroot()
+        document, prefixes = documents[path]
         namespace = document.get("targetNamespace", "")
         for child in document:
             if child.tag.rsplit("}", 1)[-1] not in {"element", "complexType", "simpleType", "group"}:
@@ -533,6 +686,8 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
             direct, nested = _nested_deprecation_records(child)
             shape = _schema_shape(child)
             grammar_rows = _schema_grammar_rows(child, path.name, namespace)
+            references = _schema_references(
+                child, path.name, namespace, prefixes, components, root)
             row = {
                 "schema_file": path.name,
                 "schema_role": _schema_role(path),
@@ -543,6 +698,8 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                 "schema_shape": shape,
                 "schema_shape_sha256": _schema_shape_digest(shape),
                 "schema_shape_summary": _shape_summary(shape),
+                "schema_references": references,
+                "schema_inheritance": _schema_inheritance(references),
                 "grammar_row_count": len(grammar_rows),
                 "native_mapping_status": "deprecated_migration" if direct else "unproven",
                 "disposition": {
@@ -613,15 +770,33 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                 len(row.get("deprecation", [])) + len(row.get("deprecated_members", []))
                 for row in rows
             ),
+            "schema_components_indexed": len(components),
+            "schema_references": sum(len(row.get("schema_references", [])) for row in rows),
+            "resolved_schema_references": sum(
+                sum(reference["status"] == "resolved"
+                    for reference in row.get("schema_references", []))
+                for row in rows
+            ),
+            "unresolved_schema_references": sum(
+                sum(reference["status"] not in {"resolved", "external_builtin"}
+                    for reference in row.get("schema_references", []))
+                for row in rows
+            ),
+            "declarations_with_incomplete_inheritance": sum(
+                row.get("schema_inheritance", {}).get("status") == "incomplete"
+                for row in rows
+            ),
             "schema_shape_contract": {
                 "status": "structural source witness only",
                 "preserves": [
                     "declaration attributes and defaults",
                     "ordered child particles",
                     "base/ref/extension/restriction relationships",
+                    "resolved local QName references and direct base targets",
                     "cardinality and attribute-use metadata",
                 ],
                 "does_not_infer": [
+                    "effective inherited field flattening",
                     "native representability",
                     "converter support",
                     "runtime equivalence",

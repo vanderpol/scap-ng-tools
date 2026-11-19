@@ -1,0 +1,29 @@
+{
+  "format": "scap-ng-tools/issue83-oval-schema-resolution/1",
+  "source": {
+    "repository": "OVAL-Community/OVAL",
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "schema_files": 54,
+    "schema_manifest_sha256": "740713202daef9c24ded3b6d8a19d90eb6101067d9098f2b7cf371b2a38007de"
+  },
+  "inventory": {
+    "definition_and_system_characteristics_schema_files": 46,
+    "declarations": 1426,
+    "grammar_rows": 42567,
+    "named_components_indexed": 1572,
+    "qname_references": 7913,
+    "resolved_references": 7707,
+    "external_builtin_references": 206,
+    "unresolved_references": 0,
+    "declarations_with_incomplete_inheritance": 0
+  },
+  "disposition": {
+    "local_base_targets": "recorded without flattening",
+    "xml_schema_builtins": "explicit external_builtin status",
+    "effective_inherited_fields": "not_assessed",
+    "schematron_and_prose_semantics": "not_assessed",
+    "converter_parity": "not_proved",
+    "runtime_equivalence": "not_proved"
+  },
+  "receipt_sha256": "796c0b3fad7af5c954398e1d5a2424ac8ef1a39f60fb7fa571c4b174bf7cc964"
+}

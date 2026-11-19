@@ -140,6 +140,74 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(attribute["attributes"]["use"], "required")
         self.assertEqual(attribute["attributes"]["default"], "strict")
 
+    def test_schema_qnames_resolve_local_bases_and_preserve_external_builtins(self):
+        xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+              xmlns:t=\"urn:test\" targetNamespace=\"urn:test\">
+          <xs:complexType name=\"base_state\"><xs:sequence>
+            <xs:element name=\"base_value\" type=\"xs:string\"/>
+          </xs:sequence></xs:complexType>
+          <xs:complexType name=\"derived_state\"><xs:complexContent>
+            <xs:extension base=\"t:base_state\"><xs:sequence>
+              <xs:element name=\"value\" type=\"xs:int\"/>
+            </xs:sequence></xs:extension>
+          </xs:complexContent></xs:complexType>
+        </xs:schema>""".encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "test-definitions-schema.xsd").write_bytes(xsd)
+            report = crosswalk.oval_inventory(root)
+        derived = next(row for row in report["declarations"]
+                       if row["name"] == "derived_state")
+        base = next(reference for reference in derived["schema_references"]
+                    if reference["attribute"] == "base")
+        self.assertEqual(base["status"], "resolved")
+        self.assertEqual(base["target_name"], "base_state")
+        self.assertEqual(derived["schema_inheritance"]["base_chain"][0]["name"],
+                         "base_state")
+        self.assertEqual(derived["schema_inheritance"]["status"], "resolved")
+        builtin = next(reference for reference in derived["schema_references"]
+                       if reference["attribute"] == "type" and
+                       reference["target_name"] == "int")
+        self.assertEqual(builtin["status"], "external_builtin")
+        self.assertEqual(report["summary"]["resolved_schema_references"], 1)
+        self.assertEqual(report["summary"]["unresolved_schema_references"], 0)
+
+    def test_schema_keyref_refer_resolves_identity_constraint(self):
+        xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+              xmlns:t=\"urn:test\" targetNamespace=\"urn:test\">
+          <xs:element name=\"catalog\"><xs:key name=\"entryKey\">
+            <xs:selector xpath=\"t:entry\"/><xs:field xpath=\"@id\"/>
+          </xs:key><xs:keyref name=\"entryRef\" refer=\"t:entryKey\">
+            <xs:selector xpath=\"t:ref\"/><xs:field xpath=\"@id\"/>
+          </xs:keyref></xs:element>
+        </xs:schema>""".encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "test-definitions-schema.xsd").write_bytes(xsd)
+            report = crosswalk.oval_inventory(root)
+        catalog = report["declarations"][0]
+        refer = next(reference for reference in catalog["schema_references"]
+                     if reference["attribute"] == "refer")
+        self.assertEqual(refer["status"], "resolved")
+        self.assertEqual(refer["target_name"], "entryKey")
+        self.assertEqual(report["summary"]["unresolved_schema_references"], 0)
+
+    def test_schema_qname_unknown_prefix_is_not_treated_as_local(self):
+        xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+              targetNamespace=\"urn:test\">
+          <xs:complexType name=\"derived_state\"><xs:complexContent>
+            <xs:extension base=\"missing:base_state\"/>
+          </xs:complexContent></xs:complexType>
+        </xs:schema>""".encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "test-definitions-schema.xsd").write_bytes(xsd)
+            report = crosswalk.oval_inventory(root)
+        derived = report["declarations"][0]
+        base = derived["schema_inheritance"]["unresolved_bases"][0]
+        self.assertEqual(base["status"], "unresolved_prefix")
+        self.assertEqual(report["summary"]["unresolved_schema_references"], 1)
+
     def test_canonical_mapping_index_is_explicitly_unproven(self):
         xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
               targetNamespace=\"http://oval.mitre.org/XMLSchema/oval-definitions-5#foo\"><xs:element name=\"foo_test\"/>
