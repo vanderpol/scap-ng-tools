@@ -101,7 +101,10 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertIsNone(rows["current_state"]["deprecated_members"][0]["value"])
         self.assertEqual(report["summary"]["official_deprecation_annotations"], 2)
         self.assertEqual(report["summary"]["schema_dependencies"], 0)
+        self.assertEqual(report["summary"]["schema_manifest_files"], 1)
         self.assertEqual(report["summary"]["unresolved_schema_dependencies"], 0)
+        self.assertEqual(report["schema_manifest"][0]["schema_file"],
+                         "test-definitions-schema.xsd")
 
     def test_schema_shape_preserves_defaults_cardinality_and_base_relationships(self):
         xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"

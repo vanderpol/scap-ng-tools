@@ -388,13 +388,20 @@ def oval_inventory(root: Path) -> dict:
     statuses = Counter(row["native_mapping_status"] for row in rows)
     nested_count = sum(bool(row.get("deprecated_members")) for row in rows)
     dependencies = _schema_dependency_inventory(root, schema_paths)
+    all_xsd = [{
+        "schema_file": path.relative_to(root).as_posix(),
+        "sha256": digest(path.read_bytes()),
+        "bytes": path.stat().st_size,
+    } for path in sorted(root.rglob("*.xsd"))]
     return {
         "source_commit_expected": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
         "schema_files": sorted({row["schema_file"] for row in rows}),
+        "schema_manifest": all_xsd,
         "schema_dependencies": dependencies,
         "declarations": rows,
         "summary": {
             "schema_files": len({row["schema_file"] for row in rows}),
+            "schema_manifest_files": len(all_xsd),
             "schema_dependencies": len(dependencies),
             "unresolved_schema_dependencies": sum(not row["resolved"] for row in dependencies),
             "declarations": len(rows),
