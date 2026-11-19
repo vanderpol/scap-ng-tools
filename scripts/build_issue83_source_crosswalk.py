@@ -665,7 +665,8 @@ def _schema_semantic_inventory(root: Path,
     schematron = []
     documentation = []
 
-    def walk(node: ET.Element, path: tuple[tuple[str, int], ...], schema_file: str) -> None:
+    def walk(node: ET.Element, path: tuple[tuple[str, int], ...], schema_file: str,
+             prefixes: dict[str, str]) -> None:
         kind = local_name(node.tag)
         text = "".join(node.itertext())
         namespace = node.tag.rsplit("}", 1)[0].lstrip("{") if "}" in node.tag else ""
@@ -675,6 +676,7 @@ def _schema_semantic_inventory(root: Path,
                 "source_path": _schema_source_path(path),
                 "kind": kind,
                 "attributes": dict(sorted(node.attrib.items())),
+                "namespace_bindings": dict(sorted(prefixes.items())),
                 "text_sha256": digest(text.encode("utf-8")),
                 "text_bytes": len(text.encode("utf-8")),
                 "disposition": "not_interpreted",
@@ -689,11 +691,12 @@ def _schema_semantic_inventory(root: Path,
                 "disposition": "prose_not_interpreted",
             })
         for index, child in enumerate(node):
-            walk(child, (*path, (local_name(child.tag), index)), schema_file)
+            walk(child, (*path, (local_name(child.tag), index)), schema_file, prefixes)
 
     for path in sorted(documents):
-        document, _ = documents[path]
-        walk(document, ((local_name(document.tag), 0),), path.relative_to(root).as_posix())
+        document, prefixes = documents[path]
+        walk(document, ((local_name(document.tag), 0),),
+             path.relative_to(root).as_posix(), prefixes)
     schematron.sort(key=lambda row: (row["schema_file"], row["source_path"]))
     documentation.sort(key=lambda row: (row["schema_file"], row["source_path"]))
     return {
