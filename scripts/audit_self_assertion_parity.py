@@ -389,18 +389,55 @@ def normalize_source_evaluate(source, definition_id):
         return ("not", result) if node.get("negate", "false").lower() == "true" else result
     return definition_tree(definition_id)
 
-def normalize_native_evaluate(node, native_to_source):
+def _expanded_group_source(node, expanded_native_to_source, expanded_source_checks):
+    """Return a source Test ID when *node* is one explicit Set expansion."""
+    if not isinstance(node, dict) or len(node) != 1:
+        return None
+    op, value = next(iter(node.items()))
+    if op == "test" and value in expanded_native_to_source:
+        return expanded_native_to_source[value]
+    if op == "not" and isinstance(value, dict):
+        # ``none satisfy`` is lowered as NOT(OR(child Tests)); only a NOT
+        # directly around that logical child group owns this NOT. A second
+        # nested NOT is the authored Definition criterion negate.
+        child_op = next(iter(value), None)
+        if child_op not in ("and", "or", "xor", "one"):
+            return None
+        source_id = _expanded_group_source(
+            value, expanded_native_to_source, expanded_source_checks)
+        return (source_id if source_id and
+                expanded_source_checks.get(source_id) == "none satisfy" else None)
+    if op in ("and", "or", "xor", "one") and isinstance(value, list) and len(value) > 1:
+        source_ids = {_expanded_group_source(
+            item, expanded_native_to_source, expanded_source_checks)
+                      for item in value}
+        if None not in source_ids and len(source_ids) == 1:
+            return next(iter(source_ids))
+    return None
+
+
+def normalize_native_evaluate(node, native_to_source, expanded_native_to_source=None,
+                              expanded_source_checks=None):
     if not isinstance(node, dict) or len(node) != 1:
         raise ValueError("malformed native Evaluate")
+    expanded_native_to_source = expanded_native_to_source or {}
+    expanded_source_checks = expanded_source_checks or {}
+    collapsed = _expanded_group_source(
+        node, expanded_native_to_source, expanded_source_checks)
+    if collapsed is not None:
+        return ("test", collapsed)
     op, val = next(iter(node.items()))
     if op == "test":
         if val not in native_to_source:
             raise ValueError("unmapped native Test " + str(val))
         return ("test", native_to_source[val])
     if op == "not":
-        return ("not", normalize_native_evaluate(val, native_to_source))
+        return ("not", normalize_native_evaluate(
+            val, native_to_source, expanded_native_to_source, expanded_source_checks))
     if op in ("and", "or", "xor", "one") and isinstance(val, list):
-        children = tuple(normalize_native_evaluate(v, native_to_source) for v in val)
+        children = tuple(normalize_native_evaluate(
+            v, native_to_source, expanded_native_to_source, expanded_source_checks)
+            for v in val)
         return children[0] if len(children) == 1 and op in ("and", "or") else (op, children)
     raise ValueError("unknown native Evaluate operator " + str(op))
 
@@ -428,7 +465,7 @@ def source_literal(value, datatype):
             raise ValueError("invalid original float value") from error
     raise ValueError("unqualified original Variable datatype: " + str(datatype))
 
-def audit_source_set_filter_retention(source, selected_tests, native, synthetic=()):
+def audit_source_set_filter_retention(source, selected_tests, native, synthetic=(), expanded=()):
     """Fail closed when the converter silently drops source Set/Filter logic.
 
     Restores 0.3 source-graph coverage for OVAL Object Sets and Filter States.
@@ -480,6 +517,12 @@ def audit_source_set_filter_retention(source, selected_tests, native, synthetic=
                      "COMPLEMENT": "difference"}.get(item.get("set_operator", "UNION"))
         if operation:
             observed[operation] += 1
+    # A finite Variable Object UNION may be lowered into child Tests plus an
+    # Evaluate expression instead of a native Set node. The expansion trace is
+    # the explicit retained source boundary for that representation.
+    expanded_sources = {item.get("source_test") for item in expanded
+                        if isinstance(item, dict) and item.get("source_test")}
+    observed["union"] += len(expanded_sources)
     stack = [native]
     while stack:
         item = stack.pop()
@@ -641,6 +684,8 @@ def _native_expression_type(expression, known, field_datatypes=None, native=None
         for payload in payloads:
             _native_expression_type(payload, known, field_datatypes, native)
         return "string"
+    if operation == "time_difference":
+        return "integer"
     if operation == "arithmetic":
         operands = value.get("values", []) if isinstance(value, dict) else []
         if not isinstance(operands, list) or len(operands) < 2:
@@ -694,6 +739,8 @@ def _source_expression_type(node, source):
     if operation == "object_component":
         return None
     children = [child for child in node if isinstance(child.tag, str)]
+    if operation == "time_difference":
+        return "integer"
     if operation == "arithmetic":
         types = {_source_expression_type(child, source) for child in children}
         if types <= {"integer", "float"} and types:
@@ -852,6 +899,19 @@ def _source_expression_matches(source_node, native_expression, source_to_native,
             return False
         return _source_expression_matches(children[0], payload.get("value"),
                                           source_to_native, source, inlined)
+    if operation == "time_difference":
+        if not isinstance(native_expression, dict) or set(native_expression) != {"time_difference"}:
+            return False
+        payload = native_expression["time_difference"]
+        for key in ("format_1", "format_2"):
+            if key in source_node.attrib and payload.get(key) != source_node.get(key):
+                return False
+        children = [child for child in source_node if isinstance(child.tag, str)]
+        values = payload.get("values")
+        return (isinstance(values, list) and len(values) == len(children) and
+                all(_source_expression_matches(child, value, source_to_native,
+                                               source, inlined)
+                    for child, value in zip(children, values)))
     if operation == "literal_component":
         datatype = source_node.get("datatype", "string")
         expected = source_literal(source_node.text or "", datatype)
@@ -983,7 +1043,7 @@ def compare_mapped_variables(source, native, trace, selected_tests, field_dataty
                     raise ValueError("original Variable alias is not preserved: " + srcid)
             elif tag(child) == "literal_component":
                 native_type, native_value = _native_literal_payload(expression)
-                datatype = child.get("datatype", "string")
+                datatype = child.get("datatype") or dtype
                 expected = source_literal(child.text or "", datatype)
                 expected_type = SOURCE_TO_NATIVE_TYPES.get(datatype, datatype)
                 if native_type != expected_type or native_value not in (expected, [expected]):
@@ -1114,24 +1174,41 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
             if trace.get("source_oval_schema_version") != source["source_oval_schema_version"]:
                 raise ValueError("original OVAL schema version missing or altered in trace")
             mapping = trace.get("test_bindings", [])
+            expanded = {(entry.get("source_test"), entry.get("native_test"))
+                        for entry in trace.get("native_expanded_set_tests", [])
+                        if isinstance(entry, dict)}
             source_to_native = {}
+            native_to_source = {}
+            binding_by_pair = {}
             for bound in mapping:
                 a, b = bound["source_test"], bound["native_test"]
-                if a in source_to_native or b in source_to_native.values():
-                    raise ValueError("duplicate Test mapping in trace")
-                source_to_native[a] = b
+                if b in native_to_source:
+                    raise ValueError("duplicate native Test mapping in trace")
+                if a in source_to_native and (a, b) not in expanded:
+                    raise ValueError("duplicate Test mapping in trace without explicit Set expansion")
+                source_to_native.setdefault(a, []).append(b)
+                native_to_source[b] = a
+                binding_by_pair[(a, b)] = bound
             selected_tests = reachable_source_tests(source, ident)
             if set(source_to_native) != selected_tests:
                 raise ValueError("missing or extra source Test mapping")
-            if set(native.get("tests", {})) != set(source_to_native.values()):
+            if set(native.get("tests", {})) != set(native_to_source):
                 raise ValueError("native Test map differs from source trace")
-            for source_id, native_id in source_to_native.items():
+            for source_id, native_ids in source_to_native.items():
                 source_test = source["tests"].get(source_id)
                 if source_test is None:
                     raise ValueError("source Test reference undefined in source XML")
-                native_test = native["tests"][native_id]
-                compare_variable_test_binding(source, source_test, native_test, trace)
+                for native_id in native_ids:
+                    native_test = native["tests"][native_id]
+                    # A source variable Object Set is lowered to explicit
+                    # child Tests. The child Variable is the materialized
+                    # operand, not the source Object's single var_ref; the
+                    # expansion trace and Set-retention gate verify that
+                    # transformation separately.
+                    if not binding_by_pair[(source_id, native_id)].get("object_set_operand"):
+                        compare_variable_test_binding(source, source_test, native_test, trace)
                 if tag(source_test) == "unknown_test":
+                    native_test = native["tests"][native_ids[0]]
                     # OVAL unknown_test has a fixed unknown result. Its legacy
                     # cardinality attributes are ignored by specification.
                     if native_test.get("capability") != "independent.unknown":
@@ -1141,26 +1218,60 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                 expected_existence = EXISTENCE.get(original_existence)
                 if expected_existence is None:
                     raise ValueError("unqualified original existence: " + str(original_existence))
-                if (native_test.get("require", {}).get("item_requirement", {})
-                              .get("items_found") != expected_existence):
-                    raise ValueError("OVAL existence cardinality differs at " + source_id)
+                for native_id in native_ids:
+                    native_test = native["tests"][native_id]
+                    if (native_test.get("require", {}).get("item_requirement", {})
+                                  .get("items_found") != expected_existence):
+                        raise ValueError("OVAL existence cardinality differs at " + source_id)
                 has_states = any(tag(child) == "state" for child in source_test)
                 # OVAL has no State match to evaluate for a presence-only Test
                 # or when the existence boundary itself is none_exist.
-                if has_states and original_existence != "none_exist":
+                expanded_source_test = any(
+                    binding_by_pair[(source_id, native_id)].get("object_set_operand")
+                    for native_id in native_ids)
+                if (has_states and original_existence != "none_exist" and
+                        not expanded_source_test):
                     original_check = source_test.get("check", "all")
                     expected_check = CHECK.get(original_check)
                     if expected_check is None:
                         raise ValueError("unqualified original check: " + str(original_check))
-                    if (native_test.get("require", {}).get("item_requirement", {})
-                                  .get("items_satisfying") != expected_check):
-                        raise ValueError("OVAL check cardinality differs at " + source_id)
+                    for native_id in native_ids:
+                        native_test = native["tests"][native_id]
+                        requirement = native_test.get("require", {})
+                        item_requirement = requirement.get("item_requirement", {})
+                        if item_requirement.get("items_satisfying") == expected_check:
+                            continue
+                        # The canonical record evaluator applies the OVAL Test
+                        # check to a field's value population after the Item
+                        # record itself has matched. Converters disclose this
+                        # projection through field_requirement.values_matching.
+                        field_requirement = requirement.get("field_requirement", {})
+                        projected = (isinstance(requirement.get("fields"), dict) and
+                                     field_requirement.get("values_matching") == expected_check)
+                        if not (item_requirement.get("items_satisfying") == "every" and projected):
+                            raise ValueError("OVAL check cardinality differs at " + source_id)
+            normalizations = trace.get("source_type_normalizations", [])
+            if normalizations:
+                identifiers = sorted({item.get("source_variable", "")
+                                      for item in normalizations if item.get("source_variable")})
+                raise ValueError("source-invalid Variable datatype normalization: " +
+                                 ", ".join(identifiers))
             compare_mapped_variables(
                 source, native, trace, selected_tests, field_datatypes)
-            audit_source_set_filter_retention(source, selected_tests, native, trace.get("native_synthetic_variables", []))
-            native_to_source = {v: k for k, v in source_to_native.items()}
+            audit_source_set_filter_retention(
+                source, selected_tests, native, trace.get("native_synthetic_variables", []),
+                trace.get("native_expanded_set_tests", []))
             oval_tree = normalize_source_evaluate(source, ident)
-            native_tree = normalize_native_evaluate(native.get("evaluate"), native_to_source)
+            expanded_native_to_source = {
+                item.get("native_test"): item.get("source_test")
+                for item in trace.get("native_expanded_set_tests", [])
+                if isinstance(item, dict) and item.get("native_test") and item.get("source_test")}
+            expanded_source_checks = {
+                source_id: source["tests"].get(source_id, {}).get("check")
+                for source_id in set(expanded_native_to_source.values())}
+            native_tree = normalize_native_evaluate(
+                native.get("evaluate"), native_to_source, expanded_native_to_source,
+                expanded_source_checks)
             if oval_tree != native_tree:
                 raise ValueError("source/native Evaluate logic mismatch")
             tested += len(selected_tests)
