@@ -594,7 +594,14 @@
       }
     ],
     "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
-    "repository": "vanderpol/scap-content-library"
+    "repository": "vanderpol/scap-content-library",
+    "xccdf_schema": {
+      "conflicts_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']//xsd:element[@name='conflicts']",
+      "requires_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']//xsd:element[@name='requires']",
+      "selectable_item_type_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']",
+      "sha256": "22c6c2eeca08e517a278a9571304cb84277651ebb6fe4934af5af46c2428424e",
+      "url": "https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd"
+    }
   },
   "summary": {
     "archives": 65,

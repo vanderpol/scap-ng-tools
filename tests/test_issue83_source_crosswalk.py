@@ -2,6 +2,7 @@
 from pathlib import Path
 import sys
 import tempfile
+import json
 import unittest
 import zipfile
 import xml.etree.ElementTree as ET
@@ -61,6 +62,13 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(report["summary"]["archives"], 65)
         self.assertEqual(report["summary"]["source_rules"], 8892)
         self.assertEqual(report["summary"]["rules_with_requires_or_conflicts"], 0)
+
+    def test_relationship_crosswalk_pins_official_xccdf_schema(self):
+        self.assertEqual(crosswalk.XCCDF_SCHEMA_URL,
+                         "https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd")
+        self.assertEqual(len(crosswalk.XCCDF_SCHEMA_SHA256), 64)
+        receipt = json.loads((ROOT / "docs/evidence/issue83/source-crosswalk-summary.json").read_text())
+        self.assertEqual(receipt["source"]["xccdf_schema"]["sha256"], crosswalk.XCCDF_SCHEMA_SHA256)
 
 
 if __name__ == "__main__":

@@ -27,6 +27,8 @@ import xml.etree.ElementTree as ET
 DS = "http://scap.nist.gov/schema/scap/source/1.2"
 XCCDF = "http://checklists.nist.gov/xccdf/1.2"
 XSI = "http://www.w3.org/2001/XMLSchema-instance"
+XCCDF_SCHEMA_URL = "https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd"
+XCCDF_SCHEMA_SHA256 = "22c6c2eeca08e517a278a9571304cb84277651ebb6fe4934af5af46c2428424e"
 DISA_FIELDS = (
     "VulnDiscussion", "FalsePositives", "FalseNegatives", "Documentable",
     "Mitigations", "SeverityOverrideGuidance", "PotentialImpacts",
@@ -288,6 +290,13 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
             "commit": source_commit,
             "expected_archives": expected_archives,
             "archive_set_sha256": archive_set_sha256,
+            "xccdf_schema": {
+                "url": XCCDF_SCHEMA_URL,
+                "sha256": XCCDF_SCHEMA_SHA256,
+                "selectable_item_type_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']",
+                "requires_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']//xsd:element[@name='requires']",
+                "conflicts_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']//xsd:element[@name='conflicts']",
+            },
             "archives": records,
         },
         "summary": {
@@ -308,12 +317,14 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
         "group_relationships": group_relations,
         "mapping": {
             "requires": {
-                "source": "XCCDF 1.2 Rule/requires/@idref, one child per clause; IDs in one child are ORed",
+                "source": "XCCDF 1.2 selectableItemType/requires/@idref (idrefListType), one child per clause; IDs in one child are ORed",
+                "source_schema": XCCDF_SCHEMA_URL + "#selectableItemType",
                 "native": "SCAP-NG 0.4.1 rule.requires; clauses are ANDed and any_of members are ORed",
                 "status": "implemented for Rule output; Group relationships remain a canonical mapping hold",
             },
             "conflicts": {
-                "source": "XCCDF 1.2 Rule/conflicts/@idref, one ID per child",
+                "source": "XCCDF 1.2 selectableItemType/conflicts/@idref (idrefType), one ID per child",
+                "source_schema": XCCDF_SCHEMA_URL + "#selectableItemType",
                 "native": "SCAP-NG 0.4.1 rule.conflicts; IDs remain source identities",
                 "status": "implemented for Rule output; Group relationships remain a canonical mapping hold",
             },
@@ -344,6 +355,7 @@ def markdown(report: dict) -> str:
         f"- Rules with `requires`/`conflicts`: **{summary['rules_with_requires_or_conflicts']}**",
         f"- `requires` rows: **{summary['requires_rows']}**; `conflicts` rows: **{summary['conflicts_rows']}**",
         f"- Groups with relationships: **{summary['groups_with_requires_or_conflicts']}** (requires **{summary['group_requires_rows']}**, conflicts **{summary['group_conflicts_rows']}**)",
+        f"- XCCDF 1.2 schema: `{report['source']['xccdf_schema']['url']}` (`{report['source']['xccdf_schema']['sha256']}`)",
         "",
         "## Result",
         "",

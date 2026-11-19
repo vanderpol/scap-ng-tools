@@ -8,6 +8,7 @@ This report is generated from immutable signed SCAP 1.4 source ZIPs. It is a sou
 - Rules with `requires`/`conflicts`: **0**
 - `requires` rows: **0**; `conflicts` rows: **0**
 - Groups with relationships: **0** (requires **0**, conflicts **0**)
+- XCCDF 1.2 schema: `https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd` (`22c6c2eeca08e517a278a9571304cb84277651ebb6fe4934af5af46c2428424e`)
 
 ## Result
 
