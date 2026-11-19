@@ -46,6 +46,21 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_sshd_pr17_receipt_records_recovered_source_test(self):
+        receipt = self.load("sshd-pr17-focused-qualification.json")
+        source = receipt["source"]
+        conversion = receipt["conversion"]
+        self.assertEqual(source["pull_request"], 17)
+        self.assertEqual(source["definition_id"], "oval:org.mitre.oval.test:def:963")
+        self.assertEqual(source["affected_test_ids"], ["oval:org.mitre.oval.test:tst:483"])
+        self.assertTrue(source["source_commit_fetch_verified"])
+        self.assertEqual(conversion["base_assessment_test_count"], 3)
+        self.assertEqual(conversion["corrected_assessment_test_count"], 4)
+        self.assertTrue(conversion["base_schema_validated"])
+        self.assertTrue(conversion["corrected_schema_validated"])
+        self.assertRegex(conversion["corrected_assessment_sha256"], HEX64)
+        self.assertEqual(conversion["independent_runtime_equivalence"], "not_proved")
+
     def test_windows_policy_pr5_receipt_distinguishes_source_hold_and_recovery(self):
         receipt = self.load("windows-policy-pr5-focused-qualification.json")
         source = receipt["source"]
