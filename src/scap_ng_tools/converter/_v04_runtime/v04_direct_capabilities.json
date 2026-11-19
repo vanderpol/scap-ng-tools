@@ -82,7 +82,8 @@
     "aix.fileset",
     "aix.fix",
     "panos.config",
-    "iosxe.interface"
+    "iosxe.interface",
+    "ios.interface"
   ],
   "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages.",
   "deprecated_source_tests": [
