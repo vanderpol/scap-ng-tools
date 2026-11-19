@@ -53,6 +53,7 @@
     "independent.yamlfilecontent",
     "linux.rpmverifyfile",
     "macos.accountinfo",
+    "macos.authorizationdb",
     "solaris.smf",
     "solaris.smfproperty",
     "solaris.package",
