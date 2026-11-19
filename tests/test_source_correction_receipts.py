@@ -46,6 +46,20 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_existing_deprecated_followups_have_exact_blob_provenance(self):
+        names = [
+            "macos-keychain-deprecated-object-followup.json",
+            "windows-audit-deprecated-field-followup.json",
+            "windows-object-notes-followup.json",
+            "windows-registry-group-deprecated-followup.json",
+        ]
+        for name in names:
+            with self.subTest(name=name):
+                source = self.load(name)["source"]
+                self.assertTrue(source["source_commit_blob_verified"])
+                self.assertRegex(source["baseline_sha256"], HEX64)
+                self.assertRegex(source["candidate_sha256"], HEX64)
+
     def test_solaris_pr15_receipt_preserves_deprecated_removals(self):
         receipt = self.load("solaris-followup.json")
         correction = receipt["source_correction"]

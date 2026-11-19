@@ -10,7 +10,8 @@
     "definition_id": "oval:org.mitre.oval.test:def:708",
     "test_id": "oval:org.mitre.oval.test:tst:768",
     "state_id": "oval:org.mitre.oval.test:ste:1195",
-    "removed_source_field": "kerberos_ticket_events"
+    "removed_source_field": "kerberos_ticket_events",
+    "source_commit_blob_verified": true
   },
   "source_schema_evidence": {
     "schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",

@@ -15,7 +15,8 @@
     "tests": [
       "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
       "oval:navy.navwar.niwcatlantic.scc.test:tst:4"
-    ]
+    ],
+    "source_commit_blob_verified": true
   },
   "change": {
     "classification": "source_content_deprecated_construct",

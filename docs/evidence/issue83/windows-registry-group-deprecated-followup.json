@@ -12,7 +12,11 @@
       "oval:org.mitre.oval.test:tst:1474",
       "oval:org.mitre.oval.test:tst:1141"
     ],
-    "removed_behaviors": ["include_group", "resolve_group"]
+    "removed_behaviors": [
+      "include_group",
+      "resolve_group"
+    ],
+    "source_commit_blob_verified": true
   },
   "source_schema_evidence": {
     "schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
