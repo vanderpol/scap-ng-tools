@@ -416,12 +416,12 @@ class AssessmentConverter:
                     if found != 'none_exist' or not self.native_recovery:
                         self.same_family(child.get('state_ref'), 'state', mapping)
                         conditions.append(self.reference(child.get('state_ref'), 'state'))
-        # Native 0.4's item_requirement explicitly defines all_exist as
-        # one_or_more: collected Items have no synthetic does-not-exist
-        # entries. Keep the source spelling in the trace, but do not gate this
-        # approved native lowering behind the retired draft mode.
-        if found == 'all_exist' and not self.native_recovery:
-            ensure(False, 'unsupported Test existence: all_exist')
+        # Native 0.4.1's item_requirement explicitly maps OVAL all_exist to
+        # one_or_more.  The canonical contract has no synthetic
+        # does-not-exist Items, so the source spelling is retained in the
+        # source-test provenance below while the executable requirement uses
+        # the approved one_or_more cardinality.  This is a representability
+        # mapping, not an independent source-runtime equivalence claim.
         requirement = {'items_found': native_items_found(found)}
         if self.native_recovery and found == 'none_exist' and state_refs:
             # OVAL Test existence is evaluated before State matching. An
@@ -1787,21 +1787,23 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
         'source_applicability': source.applicability_context(rule)}
     if manual_alternatives:
         binding['manual_alternatives'] = manual_alternatives
-    recovered_controls = []
+    source_test_controls = []
     for identifier, used in sorted(converter.used.items()):
         if used.get('kind') != 'test':
             continue
         test_source = source.node(component, identifier, 'test')
-        if native_recovery and test_source.get('check_existence') == 'all_exist':
-            recovered_controls.append({
+        if test_source.get('check_existence') == 'all_exist':
+            source_test_controls.append({
                 'source_test': identifier,
                 'source_test_sha256': digest(xml_identity(test_source)),
                 'source_test_attributes': dict(test_source.attrib),
                 'native_items_found': 'one_or_more',
-                'semantic_basis': 'SCAP-NG 0.4 item_requirement one_or_more; no synthetic nonexistent Items',
+                'semantic_basis': 'SCAP-NG 0.4.1 item_requirement one_or_more; no synthetic nonexistent Items',
+                'proof_status': 'native_representability_only',
+                'runtime_equivalence': 'not_proved',
             })
-    if recovered_controls:
-        binding['source_test_controls'] = recovered_controls
+    if source_test_controls:
+        binding['source_test_controls'] = source_test_controls
     binding['authoring_contract_migration'] = {'owner_decision_date': '2026-10-31',
         'decisions': [1, 3, 6, 10, 13, 14], 'requires_fresh_proof': True,
         'omitted_empty_optional_metadata': omitted_metadata,
@@ -1921,10 +1923,8 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
         documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': source.applicability_catalog()}}
     unsupported = ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
                    'other Object behaviors/traversal',
-                   'record-level Variables, nested records, record absence and masking']
-    if not native_recovery:
-        unsupported.append('all_exist')
-    unsupported.append('other capabilities/functions')
+                   'record-level Variables, nested records, record absence and masking',
+                   'other capabilities/functions']
     trace = {'format': 'direct-converter-spike/1', 'source_zip_sha256': source.zip_sha256, 'source_xml_sha256': source.xml_sha256,
         'source_member': source.member, 'source_benchmark_component': source.benchmark_component,
         'component_hashes': source.component_hashes, 'rules': rule_trace, 'profiles': profile_trace,
