@@ -57,7 +57,7 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
             self.assertIn(case["corrected_result"], {"true", "false", "unknown", "error"})
             self.assertRegex(case["base_results_sha256"], HEX64)
             self.assertRegex(case["corrected_results_sha256"], HEX64)
-        self.assertTrue(any("expected result" in x.lower() for x in receipt["limitations"]))
+        self.assertTrue(any("expected outcome" in x.lower() for x in receipt["limitations"]))
 
     def test_existing_deprecated_followups_have_exact_blob_provenance(self):
         names = [
