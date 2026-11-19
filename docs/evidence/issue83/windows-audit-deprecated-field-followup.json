@@ -1,54 +1,59 @@
 {
-  "format": "scap-ng-tools/issue83/windows-audit-deprecated-field-followup/1",
-  "source": {
-    "repository": "OVAL-Community/SCAP-Self-Assertion",
-    "baseline_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
-    "candidate_commit": "8d8f1eb088f15aadf7d28cc6221d2808dc930a7f",
-    "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_auditeventpolicysubcategories_test.xml",
-    "baseline_sha256": "ed2cb11222b6fc78e27696b91f87ecbd649757e3e38752c89a245d9099905363",
-    "candidate_sha256": "802687014b8337f16668a639e889e6b8e1843186a518f670e732946ef0293056",
-    "definition_id": "oval:org.mitre.oval.test:def:708",
-    "test_id": "oval:org.mitre.oval.test:tst:768",
-    "state_id": "oval:org.mitre.oval.test:ste:1195",
-    "removed_source_field": "kerberos_ticket_events",
-    "source_commit_blob_verified": true
-  },
-  "source_schema_evidence": {
-    "schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-    "deprecated_since": "5.11",
-    "removal_version": "6.0",
-    "reason": "This entity does not map to any known audit event policy subcategory.",
-    "replacement": null
-  },
   "change": {
     "classification": "deprecated_source_construct",
     "definition_version": "1 -> 2",
-    "state_version": "1 -> 2",
-    "remaining_valid_state_fields": 55,
     "ids_and_test_reference_preserved": true,
-    "replacement_substituted": false
-  },
-  "pins": {
-    "tools_commit": "f4a0df0361d199f66d582dc20a5eab1e1ba8ebdc",
-    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
-    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f"
+    "remaining_valid_state_fields": 55,
+    "replacement_substituted": false,
+    "state_version": "1 -> 2"
   },
   "conversion": {
     "baseline": {
-      "status": "blocked",
       "diagnostic": "deprecated source State field: kerberos_ticket_events (migration_error_deprecated)",
-      "interpretation": "deprecated source field is not admitted as a native semantic field"
+      "interpretation": "deprecated source field is not admitted as a native semantic field",
+      "returncode": 1,
+      "status": "blocked"
     },
     "candidate": {
-      "status": "CONVERTED_UNVERIFIED",
-      "schema_validated": true,
       "assessment_sha256": "7e2ebfa804e8d2334d429c33557f92deaa2c2ede340b5179c2911bb6b138dfe4",
+      "independent_oval_equivalence": false,
+      "returncode": 0,
       "runtime_execution": false,
-      "independent_oval_equivalence": false
-    }
+      "schema_validated": true,
+      "source_trace_sha256": "28249ed06814ead8478a7009796ab12c7981fc1b76d7ef8b25235f868f5eb705",
+      "status": "CONVERTED_UNVERIFIED"
+    },
+    "current_replay_verified": true,
+    "replay_note": "Direct production CLI replay at current Tools head; deprecated field fails closed and corrected State converts schema-valid."
+  },
+  "format": "scap-ng-tools/issue83/windows-audit-deprecated-field-followup/1",
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "tools_commit": "8ae5be1064f0c795a2429dc0e33f2c7ef4b11800"
   },
   "related": {
-    "source_pr": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/10",
-    "converter_pr": "https://github.com/vanderpol/scap-ng-tools/pull/84"
+    "converter_pr": "https://github.com/vanderpol/scap-ng-tools/pull/84",
+    "source_pr": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/10"
+  },
+  "source": {
+    "baseline_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "baseline_sha256": "ed2cb11222b6fc78e27696b91f87ecbd649757e3e38752c89a245d9099905363",
+    "candidate_commit": "8d8f1eb088f15aadf7d28cc6221d2808dc930a7f",
+    "candidate_sha256": "802687014b8337f16668a639e889e6b8e1843186a518f670e732946ef0293056",
+    "definition_id": "oval:org.mitre.oval.test:def:708",
+    "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_auditeventpolicysubcategories_test.xml",
+    "removed_source_field": "kerberos_ticket_events",
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_commit_blob_verified": true,
+    "state_id": "oval:org.mitre.oval.test:ste:1195",
+    "test_id": "oval:org.mitre.oval.test:tst:768"
+  },
+  "source_schema_evidence": {
+    "deprecated_since": "5.11",
+    "reason": "This entity does not map to any known audit event policy subcategory.",
+    "removal_version": "6.0",
+    "replacement": null,
+    "schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706"
   }
 }

@@ -199,6 +199,16 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
             self.assertRegex(case["corrected_trace_sha256"], HEX64)
         self.assertEqual(receipt["qualification"]["independent_oval_equivalence"], "not_proved")
 
+    def test_windows_pr10_replay_removes_deprecated_audit_field(self):
+        receipt = self.load("windows-audit-deprecated-field-followup.json")
+        conversion = receipt["conversion"]
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["baseline"]["returncode"], 1)
+        self.assertEqual(conversion["candidate"]["returncode"], 0)
+        self.assertRegex(conversion["candidate"]["source_trace_sha256"], HEX64)
+        self.assertEqual(conversion["candidate"]["assessment_sha256"],
+                         "7e2ebfa804e8d2334d429c33557f92deaa2c2ede340b5179c2911bb6b138dfe4")
+
     def test_windows_update_pr13_receipt_has_verified_source_identity(self):
         receipt = self.load("windows-wuaupdatesearcher-variable-followup.json")
         source = receipt["source"]
