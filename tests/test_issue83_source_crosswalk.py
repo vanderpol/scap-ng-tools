@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
 class Issue83ConverterRelationshipTests(unittest.TestCase):
     def test_relationship_helper_preserves_order_and_empty_elements(self):
-        from v04_source_metadata import source_relationships
+        from v04_source_metadata import source_relationships, validate_relationship_targets
         rule = ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}" id="r"><requires idref=" a  b "/><conflicts idref="c"/></Rule>')
         self.assertEqual(source_relationships(rule), {
             "requires": [{"any_of": ["a", "b"]}], "conflicts": ["c"]})
@@ -81,6 +81,17 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
                 f'<Rule xmlns="{crosswalk.XCCDF}"><requires idref="a a"/></Rule>'))
         with self.assertRaisesRegex(ValueError, "one idref"):
             source_relationships(ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}"><conflicts idref="a b"/></Rule>'))
+        validate_relationship_targets(
+            {"requires": [{"any_of": ["group-a", "rule-a"]}], "conflicts": ["rule-b"]},
+            {"group-a": ET.Element(f'{{{crosswalk.XCCDF}}}Group'),
+             "rule-a": ET.Element(f'{{{crosswalk.XCCDF}}}Rule'),
+             "rule-b": ET.Element(f'{{{crosswalk.XCCDF}}}Rule')})
+        with self.assertRaisesRegex(ValueError, "target is unresolved"):
+            validate_relationship_targets({"requires": ["missing"], "conflicts": []}, {})
+        with self.assertRaisesRegex(ValueError, "not a Rule or Group"):
+            validate_relationship_targets(
+                {"requires": ["benchmark"], "conflicts": []},
+                {"benchmark": ET.Element(f'{{{crosswalk.XCCDF}}}Benchmark')})
 
     def test_group_relationships_are_inventoried_without_rule_flattening(self):
         with tempfile.TemporaryDirectory() as temporary:

@@ -58,6 +58,30 @@ def source_relationships(item: ET.Element) -> dict[str, list]:
     return {'requires': requires, 'conflicts': conflicts}
 
 
+def validate_relationship_targets(relationships: dict[str, list], nodes: dict[str, ET.Element]) -> None:
+    """Reject dangling/non-selectable XCCDF relationship targets.
+
+    XCCDF relationships are IDREF(S), while the native Rule contract stores
+    source IDs without a resolver. Validate the source graph before emission
+    so a typo cannot become a seemingly valid prerequisite or conflict.
+    Group targets are accepted for source fidelity; Group *relationships*
+    themselves remain held by ``native_group`` until canonical mapping exists.
+    """
+    for kind, clauses in relationships.items():
+        targets = []
+        if kind == 'requires':
+            for clause in clauses:
+                targets.extend(clause.get('any_of', []) if isinstance(clause, dict) else [clause])
+        else:
+            targets.extend(clauses)
+        for identifier in targets:
+            target = nodes.get(identifier)
+            if target is None:
+                raise ValueError(f'XCCDF {kind} target is unresolved: {identifier}')
+            if target.tag.rsplit('}', 1)[-1] not in ('Rule', 'Group'):
+                raise ValueError(f'XCCDF {kind} target is not a Rule or Group: {identifier}')
+
+
 def parse_disa_description(description: ET.Element | None) -> dict:
     """Inspect literal DISA XML in an XCCDF description without data loss.
 

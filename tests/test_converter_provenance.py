@@ -8,12 +8,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '1bc43ec0e9fdadd029351f70ceb43015ec23c8c2ed3fbf54fec57cf6c8595998'
+CURRENT_RUNTIME_SHA256 = 'cd0abb03341937c55575e1700756a600c9240bdc78409acfa9e8c7b5d536ed27'
 UNCHANGED_SOURCE_SHA256 = '60fad2420a1208fe5e14bcd92b5fe75996796f3885faf768bfbdb3b9bfeaf350'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '5fa26ee62c5a636144ee182596e6faf972bfba364160de8c1a03208058aba98e',
-    'v04_direct_converter.py': '5fcba9af1ff10da60287a249fcbab6d129bd3fd9fdef20d9662c458bde72d324',
+    'v04_direct_converter.py': 'b1f2c170da7e8b495c793a66e5bbef7640e1da4d72ef977802acc373221dd779',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
@@ -24,7 +24,7 @@ AUDITED_ADAPTATIONS = {
     'v04_variable_function_migration.py': 'ab08c49569bde0458c4e7a567f131a7965cf35a78a050aa6a5a639eb6ecc3d44',
     'v04_direct_enum_variables.py': '6f8cdab49cbcfb4474b997e9a95421f26e4a11c64c77bf05ef19556b2c443101',
     # New source-fidelity helper; it is reviewed code, not a copied visitor.
-    'v04_source_metadata.py': '136cb8b1867c0d9730b963ae8edd2f609a6b5e7c6c2fa149d6bb44a40379a0c5',
+    'v04_source_metadata.py': 'bbac59324a5c1293f51b2290636129676f6c86cc75915ebcb9bbf0f4125b770e',
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',

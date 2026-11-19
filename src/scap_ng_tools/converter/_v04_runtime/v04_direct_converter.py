@@ -1686,7 +1686,7 @@ def native_group(source, group, rule_links):
     source identity in the diagnostic and fail closed until the coordinated
     canonical mapping is approved.
     """
-    from v04_source_metadata import source_relationships
+    from v04_source_metadata import source_relationships, validate_relationship_targets
     relationships = source_relationships(group)
     source_identity = digest(xml_identity(group))
     ensure(not relationships['requires'] and not relationships['conflicts'],
@@ -1736,8 +1736,9 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     assessment.update(tests=converter.tests, evaluate=expression)
     documents[f'authoring/direct-slice/assessments/{assessment_id}.json'] = {'assessment': assessment}
     # This is a compilation fixture, not a full Rule-policy renderer.
-    from v04_source_metadata import source_relationships
+    from v04_source_metadata import source_relationships, validate_relationship_targets
     relationships = source_relationships(rule)
+    validate_relationship_targets(relationships, source.nodes[source.benchmark_component])
     native_rule = {'id': rule_id, 'version': rule.findtext(f'{{{XCCDF}}}version', ''), 'title': title,
         'severity': rule.get('severity', 'unknown'), 'role': 'full', 'weight': float(rule.get('weight', '1')),
         'discussion': rule.findtext(f'{{{XCCDF}}}description', ''), 'rationale': None,

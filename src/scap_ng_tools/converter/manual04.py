@@ -73,7 +73,7 @@ def _choice_assessment(source, rule, check, *, assessment_id, title):
 def manual_rule(source, rule, *, title, rule_id, assessment_id):
     """Return one native Rule and one manual Assessment for an OCIL Rule."""
     from v04_direct_scap_source import XCCDF, OCIL, digest, ensure, xml_identity
-    from v04_source_metadata import source_relationships
+    from v04_source_metadata import source_relationships, validate_relationship_targets
 
     checks = [check for check in rule.findall('{' + XCCDF + '}check')
               if check.get('system') == OCIL]
@@ -90,10 +90,12 @@ def manual_rule(source, rule, *, title, rule_id, assessment_id):
         assessment['assessment']['procedure'] += '\n\n' + extra['assessment']['procedure']
         assessment['assessment']['references'].extend(extra['assessment'].get('references', []))
         provenance.setdefault('additional_source_checks', []).append(extra_provenance)
+    relationships = source_relationships(rule)
+    validate_relationship_targets(relationships, source.nodes[source.benchmark_component])
     native_rule = {'id': rule_id, 'version': rule.findtext('{' + XCCDF + '}version', ''),
         'title': title, 'severity': rule.get('severity', 'unknown'), 'role': 'full',
         'weight': float(rule.get('weight', '1')), 'discussion': rule.findtext('{' + XCCDF + '}description', ''),
-        'requires': source_relationships(rule)['requires'], 'conflicts': source_relationships(rule)['conflicts'], 'applicability': [], 'parameters': {},
+        'requires': relationships['requires'], 'conflicts': relationships['conflicts'], 'applicability': [], 'parameters': {},
         'remediation': {}, 'organizational_input_requirements': {},
         'assessment_choices': {'manual': {'assessment': assessment_id}},
         'default_assessment_choice': 'manual'}
