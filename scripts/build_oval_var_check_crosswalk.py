@@ -97,7 +97,7 @@ def referenced_components(test: ET.Element, by_id: dict[str, ET.Element]) -> lis
         for key, value in node.attrib.items():
             if key.endswith("_ref") and value:
                 pending.append(value)
-        if local(node.tag) == "var_ref" and (node.text or "").strip():
+        if local(node.tag) in {"var_ref", "object_reference", "filter"} and (node.text or "").strip():
             pending.append(node.text.strip())
     while pending:
         ident = pending.pop()
@@ -112,7 +112,7 @@ def referenced_components(test: ET.Element, by_id: dict[str, ET.Element]) -> lis
             for key, value in child.attrib.items():
                 if key.endswith("_ref") and value:
                     pending.append(value)
-            if local(child.tag) == "var_ref" and (child.text or "").strip():
+            if local(child.tag) in {"var_ref", "object_reference", "filter"} and (child.text or "").strip():
                 pending.append(child.text.strip())
     return result
 

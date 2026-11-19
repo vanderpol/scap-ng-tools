@@ -55,6 +55,19 @@ class OvalVarCheckCrosswalkTests(unittest.TestCase):
             second = crosswalk.rows_for_document(Path("agnostic/witness.xml"), xml, "source-pin")
         self.assertEqual(first, second)
 
+    def test_source_graph_follows_textual_set_and_filter_references(self):
+        xml = b'''<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+          xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+          <tests><ind:variable_test id="oval:test:tst:1"><object object_ref="oval:test:obj:1"/></ind:variable_test></tests>
+          <objects><ind:variable_object id="oval:test:obj:1"><set><object_reference>oval:test:obj:2</object_reference><filter>oval:test:ste:1</filter></set></ind:variable_object><ind:variable_object id="oval:test:obj:2"><var_ref>oval:test:var:1</var_ref></ind:variable_object></objects>
+          <states><ind:variable_state id="oval:test:ste:1"><value var_ref="oval:test:var:1" var_check="only one"/></ind:variable_state></states>
+          <variables><ind:constant_variable id="oval:test:var:1" datatype="string"><value>a</value></ind:constant_variable></variables>
+        </oval_definitions>'''
+        rows = crosswalk.rows_for_document(Path("agnostic/witness.xml"), xml, "source-pin")
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["component_id"], "oval:test:ste:1")
+        self.assertFalse(rows[0]["orphan_component"])
+
 
 if __name__ == "__main__":
     unittest.main()

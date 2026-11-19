@@ -13,10 +13,10 @@ This source-pinned crosswalk records authored `var_check` values and their curre
 ## Inventory
 
 - Source elements with `var_check`: **121**
-- Test-linked rows: **120**
-- Explicit orphan component rows: **3**
-- Rows including shared-component links: **123**
-- Tests with `var_check`: **58**
+- Test-linked rows: **124**
+- Explicit orphan component rows: **1**
+- Rows including shared-component links: **125**
+- Tests with `var_check`: **62**
 - Definitions referenced: **21**
 
 | Source family | Rows |
@@ -25,8 +25,8 @@ This source-pinned crosswalk records authored `var_check` values and their curre
 | `linux` | 7 |
 | `macos` | 2 |
 | `solaris` | 1 |
-| `unix` | 15 |
-| `windows` | 67 |
+| `unix` | 16 |
+| `windows` | 68 |
 
 | Authored value | Count | Native projection |
 |---|---:|---|
@@ -34,7 +34,7 @@ This source-pinned crosswalk records authored `var_check` values and their curre
 | `at least one` | 33 | `one_or_more` |
 | `none exist` | 1 | `none` |
 | `none satisfy` | 6 | `none` |
-| `only one` | 17 | `exactly_one` |
+| `only one` | 19 | `exactly_one` |
 
 ## Orphan source components
 
@@ -42,9 +42,7 @@ These components contain authored `var_check` but are not reachable from a Test 
 
 | Source path | Component | Element | `var_check` | Variable |
 |---|---|---|---|---|
-| `SCAP_1.4/OVAL_Test_Content/unix/oval-def_set-unix.xml` | `oval:org.mitre.oval.test:ste:746` | `path` | `only one` | `oval:org.mitre.oval.test:var:134` |
 | `SCAP_1.4/OVAL_Test_Content/unix/unix-def_password_test.xml` | `oval:navy.navwar.niwcatlantic.scc.test:obj:24` | `username` | `all` | `oval:navy.navwar.niwcatlantic.scc.test:var:549` |
-| `SCAP_1.4/OVAL_Test_Content/windows/oval-def_set-windows.xml` | `oval:org.mitre.oval.test:ste:746` | `path` | `only one` | `oval:org.mitre.oval.test:var:134` |
 
 ## Reproduction
 

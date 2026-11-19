@@ -2,7 +2,7 @@
   "format": "scap-ng-tools/issue83-oval-var-check-crosswalk/1",
   "generated_by": {
     "script": "scripts/build_oval_var_check_crosswalk.py",
-    "script_sha256": "e4fd278f19a9a33173430e41319abdc6732e5722f4168319c4a55f6b25990f87"
+    "script_sha256": "001c60c02ad6c9fb267bd0fda4169af6344957ba9da3b47e0d4d8eeb659b6445"
   },
   "pins": {
     "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
@@ -1143,19 +1143,45 @@
     },
     {
       "component_id": "oval:org.mitre.oval.test:ste:746",
-      "definition_ids": [],
+      "definition_ids": [
+        "oval:org.mitre.oval.test:def:276"
+      ],
       "element": "path",
       "independent_equivalence": "not_proved",
       "native_disposition": "admitted_value_match_crosswalk",
       "native_value_match": "exactly_one",
-      "orphan_component": true,
+      "orphan_component": false,
       "possible_restriction_count": 0,
       "runtime_qualification": "not_run",
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "SCAP_1.4/OVAL_Test_Content/unix/oval-def_set-unix.xml",
       "source_sha256": "ca472ba6709eb0290284287897bd7a976c8634f9107de7e29fd1eae21001e808",
-      "test_id": null,
-      "test_kind": null,
+      "test_id": "oval:org.mitre.oval.test:tst:116",
+      "test_kind": "file_test",
+      "var_check": "only one",
+      "var_ref": "oval:org.mitre.oval.test:var:134",
+      "variable_datatype": "string",
+      "variable_kind": "constant_variable",
+      "variable_value_count": 2,
+      "variable_values_sha256": "859da1aec9b97b9186e80c59571784d9c64832d8a1650ab5d214965af5dd828a"
+    },
+    {
+      "component_id": "oval:org.mitre.oval.test:ste:746",
+      "definition_ids": [
+        "oval:org.mitre.oval.test:def:276"
+      ],
+      "element": "path",
+      "independent_equivalence": "not_proved",
+      "native_disposition": "admitted_value_match_crosswalk",
+      "native_value_match": "exactly_one",
+      "orphan_component": false,
+      "possible_restriction_count": 0,
+      "runtime_qualification": "not_run",
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/unix/oval-def_set-unix.xml",
+      "source_sha256": "ca472ba6709eb0290284287897bd7a976c8634f9107de7e29fd1eae21001e808",
+      "test_id": "oval:org.mitre.oval.test:tst:451",
+      "test_kind": "file_test",
       "var_check": "only one",
       "var_ref": "oval:org.mitre.oval.test:var:134",
       "variable_datatype": "string",
@@ -1499,19 +1525,45 @@
     },
     {
       "component_id": "oval:org.mitre.oval.test:ste:746",
-      "definition_ids": [],
+      "definition_ids": [
+        "oval:org.mitre.oval.test:def:276"
+      ],
       "element": "path",
       "independent_equivalence": "not_proved",
       "native_disposition": "admitted_value_match_crosswalk",
       "native_value_match": "exactly_one",
-      "orphan_component": true,
+      "orphan_component": false,
       "possible_restriction_count": 0,
       "runtime_qualification": "not_run",
       "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
       "source_path": "SCAP_1.4/OVAL_Test_Content/windows/oval-def_set-windows.xml",
       "source_sha256": "352a0b99e0df90cc3ddf9f7e410f3d9a8b44659a6a12c38c938ab861be595262",
-      "test_id": null,
-      "test_kind": null,
+      "test_id": "oval:org.mitre.oval.test:tst:116",
+      "test_kind": "file_test",
+      "var_check": "only one",
+      "var_ref": "oval:org.mitre.oval.test:var:134",
+      "variable_datatype": "string",
+      "variable_kind": "constant_variable",
+      "variable_value_count": 2,
+      "variable_values_sha256": "b3cfb1fbe7c852a7e1185816e7624d09c1f8b194969495df65af4017f329f4e1"
+    },
+    {
+      "component_id": "oval:org.mitre.oval.test:ste:746",
+      "definition_ids": [
+        "oval:org.mitre.oval.test:def:276"
+      ],
+      "element": "path",
+      "independent_equivalence": "not_proved",
+      "native_disposition": "admitted_value_match_crosswalk",
+      "native_value_match": "exactly_one",
+      "orphan_component": false,
+      "possible_restriction_count": 0,
+      "runtime_qualification": "not_run",
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/oval-def_set-windows.xml",
+      "source_sha256": "352a0b99e0df90cc3ddf9f7e410f3d9a8b44659a6a12c38c938ab861be595262",
+      "test_id": "oval:org.mitre.oval.test:tst:451",
+      "test_kind": "file_test",
       "var_check": "only one",
       "var_ref": "oval:org.mitre.oval.test:var:134",
       "variable_datatype": "string",
@@ -2979,25 +3031,25 @@
       "linux": 7,
       "macos": 2,
       "solaris": 1,
-      "unix": 15,
-      "windows": 67
+      "unix": 16,
+      "windows": 68
     },
     "independent_equivalence": "not_proved",
     "native_disposition": {
-      "admitted_value_match_crosswalk": 123
+      "admitted_value_match_crosswalk": 125
     },
-    "orphan_rows": 3,
+    "orphan_rows": 1,
     "runtime_qualification": "not_run",
     "source_elements_with_var_check": 121,
-    "test_linked_rows": 120,
-    "tests_with_var_check": 58,
+    "test_linked_rows": 124,
+    "tests_with_var_check": 62,
     "values": {
       "all": 66,
       "at least one": 33,
       "none exist": 1,
       "none satisfy": 6,
-      "only one": 17
+      "only one": 19
     },
-    "var_check_rows": 123
+    "var_check_rows": 125
   }
 }
