@@ -81,6 +81,23 @@
       "receipt_sha256": "980b586d5cebe8bc4d31e0c271e815a3bc620af5da194fd5a3bc59bdf39a4754",
       "source_prefix": "agnostic/oval_check_enumeration_variable_values.xml",
       "tests_considered": 10
+    },
+    {
+      "blocked": 0,
+      "converted": 4,
+      "receipt": "/tmp/tools-issue83-current-conversion-variable-test-1795107266/receipt.json",
+      "receipt_sha256": "c8e7a892e25cd08a413ebd0eb7a0ddde75b2145eba0272b7cfd7a6812fb8178c",
+      "source_prefix": "agnostic/ind-def_variable_test.xml",
+      "tests_considered": 4
+    },
+    {
+      "blocked": 0,
+      "converted": 2,
+      "receipt": "/tmp/tools-issue83-current-conversion-escape-regex-1795107266/receipt.json",
+      "receipt_sha256": "53806de9caabfb193d8a505b00b39441c09e9182efd3bba2ebaa493410294d09",
+      "runtime_qualification": "not_run",
+      "source_prefix": "agnostic/oval-def_escape_regex_function.xml",
+      "tests_considered": 2
     }
   ],
   "format": "scap-ng-tools/issue83-focused-converter-replay/1",

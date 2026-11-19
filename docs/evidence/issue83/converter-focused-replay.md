@@ -46,6 +46,11 @@ Pins:
 - `agnostic/oval_check_enumeration_variable_values.xml`: **10/10 converted**
   - SHA-256: `980b586d5cebe8bc4d31e0c271e815a3bc620af5da194fd5a3bc59bdf39a4754`
 
+- `agnostic/ind-def_variable_test.xml`: **4/4 converted**
+  - SHA-256: `c8e7a892e25cd08a413ebd0eb7a0ddde75b2145eba0272b7cfd7a6812fb8178c`
+- `agnostic/oval-def_escape_regex_function.xml`: **2/2 converted**
+  - SHA-256: `53806de9caabfb193d8a505b00b39441c09e9182efd3bba2ebaa493410294d09`
+
 All output retains source Test IDs/hashes, witness hashes, source traces and
 conversion-scope hashes. Runtime evaluation and independent OVAL equivalence
 remain unproved.
