@@ -746,6 +746,28 @@ class AssessmentConverter:
                     filters.append(self.filter(child, mapping))
                     continue
                 field = local_name(child)
+                # OVAL Object notes are descriptive metadata, not acquisition
+                # selectors.  The source XML/object hash remains in the
+                # provenance trace; omitting this non-executable child keeps
+                # canonical common-namespace oval:notes and the deprecated
+                # definitions-namespace oval-def:notes from changing native
+                # execution semantics.  Retain a warning for the deprecated
+                # spelling so source classification is never silently lost.
+                if field == 'notes':
+                    common_notes = '{http://oval.mitre.org/XMLSchema/oval-common-5}notes'
+                    deprecated_notes = f'{{{OVAL}}}notes'
+                    ensure(child.tag in (common_notes, deprecated_notes),
+                           'unsupported Object notes namespace')
+                    if child.tag == deprecated_notes:
+                        self.conversion_warnings.append({
+                            'code': 'oval_deprecated_object_notes_ignored',
+                            'source_object': element.get('id'),
+                            'source_object_sha256': digest(xml_identity(element)),
+                            'source_namespace': OVAL,
+                            'semantic_basis': 'OVAL object notes are descriptive metadata and do not affect acquisition',
+                            'independent_static_proof': 'OVAL_5_12_3_DEPRECATED_NOTES_REPLACED_BY_OVAL_NOTES',
+                        })
+                    continue
                 if field == 'behaviors' and (mapping['capability'] in (
                         'independent.textfilecontent', 'independent.shellcommand') or
                         mapping['native'].get('traversal_definition') in ('file_traversal', 'windows_file_traversal', 'hierarchy_traversal') or
