@@ -1251,16 +1251,13 @@ class AssessmentConverter:
             # Set UNION. Each child remains an independent expression so
             # nested concat/Variable references retain their source graph.
             if operation == 'unique':
-                # OVAL 5.12.3 unique consumes lexical strings.  Make that
-                # source-only conversion explicit for collected Item values;
-                # literals and Variable references retain their native type
-                # and therefore remain fail-closed when mixed.  The empty
-                # prefix is one-to-one and does not change population,
-                # multiplicity, ordering, or collection status.
-                if getattr(self.source, 'native_recovery', False):
-                    values = [({'concat': [{'literal': ''}, value]}
-                               if isinstance(value, dict) and 'values' in value else value)
-                              for value in values]
+                # OVAL 5.12.3 defines unique over lexical strings, regardless
+                # of the source component datatype.  Make that conversion
+                # explicit for every source operand, not just collected Item
+                # values.  The empty prefix is one-to-one and preserves
+                # population, multiplicity, document order, and collection
+                # status; record operands still fail in native concat typing.
+                values = [{'concat': [{'literal': ''}, value]} for value in values]
                 return {'unique': values if len(values) > 1 else values[0]}
             ensure(element.get('sort', 'document') in ('document', 'lexical', 'numeric', 'natural')
                    and element.get('order', 'ascending') in ('ascending', 'descending'), 'unsupported merge sort/order')

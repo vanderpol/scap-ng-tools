@@ -26,6 +26,16 @@ class Issue83VariableObjectCrosswalkTests(unittest.TestCase):
         self.assertFalse(receipt["claims"]["runtime_equivalence"])
         self.assertFalse(receipt["claims"]["silent_loss"])
 
+
+    def test_unique_lexical_projection_receipt_is_source_pinned(self):
+        receipt = json.loads((ROOT / "docs/evidence/issue83/oval-unique-lexical-projection.json").read_text())
+        self.assertEqual(receipt["source"]["commit"],
+                         "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706")
+        self.assertEqual(receipt["source"]["type"], "UniqueFunctionType")
+        self.assertEqual(receipt["native_mapping"]["projection"],
+                         "concat(literal(''), operand)")
+        self.assertFalse(receipt["proof"]["runtime_equivalence"])
+
     def test_xsd_digests_match_retained_pinned_checkout(self):
         import hashlib
         root_value = os.environ.get("SCAP_NG_OVAL_SCHEMA_ROOT")

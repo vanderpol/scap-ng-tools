@@ -391,8 +391,10 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
         </unique>''')
         expression = visitor.function(source)
         self.assertEqual(expression, {'unique': [
-            {'literal': {'datatype': 'string', 'value': 'a'}},
-            {'literal': {'datatype': 'string', 'value': 'b'}},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'a'}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'b'}}]},
         ]})
         self.assertEqual(visitor.conversion_warnings, [])
 
@@ -427,8 +429,10 @@ class MultiComponentAggregationRecovery(unittest.TestCase):
           <literal_component datatype="string">b</literal_component>
         </unique>''')
         self.assertEqual(visitor.function(source), {'unique': [
-            {'literal': {'datatype': 'string', 'value': 'a'}},
-            {'literal': {'datatype': 'string', 'value': 'b'}},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'a'}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'b'}}]},
         ]})
 
 class NestedAggregationPopulation(unittest.TestCase):
@@ -447,11 +451,12 @@ class NestedAggregationPopulation(unittest.TestCase):
           </concat>
         </unique>""")
         self.assertEqual(visitor.function(source), {'unique': [
-            {'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}},
-            {'concat': [
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': '/etc/firefox/policies'}}]},
+            {'concat': [{'literal': ''}, {'concat': [
                 {'literal': {'datatype': 'string', 'value': '/usr/firefox'}},
                 {'literal': {'datatype': 'string', 'value': '/distribution'}},
-            ]},
+            ]}]},
         ]})
 
 

@@ -36,15 +36,18 @@ class Active041FunctionLowering(unittest.TestCase):
         self.assertIn('function', original)  # immutable source visitor
         value = lower_expression(original)
         self.assertEqual(value, {'count': {'unique': [
-            {'literal': {'datatype': 'string', 'value': 'alpha'}},
-            {'literal': {'datatype': 'string', 'value': 'alpha'}},
-            {'literal': {'datatype': 'string', 'value': 'beta'}},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'alpha'}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'alpha'}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'beta'}}]},
         ]}})
         self.assertNotIn('function', str(value))
         self.assertEqual(visitor.conversion_warnings[0]['independent_static_proof'], 'UNPROVED')
         self.assertFalse(visitor.conversion_warnings[0]['scanner_evaluated'])
 
-    def test_direct_source_unique_projects_only_collected_item_values(self):
+    def test_direct_source_unique_projects_every_source_operand(self):
         class Source:
             native_recovery = True
             def __init__(self, object_node):

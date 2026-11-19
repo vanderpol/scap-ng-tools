@@ -91,7 +91,7 @@ class AtomicLoweringBoundaries(unittest.TestCase):
         self.assertEqual(lower_expression(source), source)
         self.assertEqual(lower_expression(lower_expression(source)), source)
 
-    def test_source_unique_never_silently_converts_typed_literals_or_aliases(self):
+    def test_source_unique_projects_all_operands_to_lexical_text(self):
         for operand in (
             {"literal": {"datatype": "integer", "value": 1}},
             {"literal": {"datatype": "string", "value": "001"}},
@@ -99,7 +99,9 @@ class AtomicLoweringBoundaries(unittest.TestCase):
         ):
             with self.subTest(operand=operand):
                 native = lower_expression(source_unique(deepcopy(operand)))
-                self.assertEqual(native, {"unique": operand})
+                self.assertEqual(native, {"unique": {
+                    "concat": [{"literal": ""}, operand],
+                }})
                 self.assertEqual(lower_expression(native), native)
 
     def test_source_unique_keeps_collection_expression_unevaluated(self):
