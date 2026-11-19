@@ -73,7 +73,8 @@
     "solaris.smfproperty",
     "solaris.package",
     "iosxe.line",
-    "iosxe.global"
+    "iosxe.global",
+    "iosxe.version"
   ],
   "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages.",
   "deprecated_source_tests": [
