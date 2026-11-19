@@ -636,6 +636,34 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
             f'<Rule xmlns="{crosswalk.XCCDF}"><description>before<em>middle</em>after</description></Rule>')
         self.assertEqual(source_description_text(rule), 'beforemiddleafter')
 
+    def test_manual_rule_renderer_preserves_standard_metadata_in_provenance(self):
+        from v04_direct_scap_source import OCIL
+        from scap_ng_tools.converter.manual04 import manual_rule
+        rule = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}" id="manual-metadata"><version>1</version>'
+            '<title>Manual metadata witness</title>'
+            '<ident system="cce">CCE-MANUAL</ident>'
+            '<reference href="https://example.invalid/manual">Manual reference</reference>'
+            '<fix system="shell">echo manual</fix>'
+            '<fixtext fixref="manual-fix">Manual fix text</fixtext>'
+            f'<check system="{OCIL}" selector="manual">'
+            '<check-content>Review the setting.</check-content></check></Rule>')
+        target_nodes = {'manual-metadata': rule}
+        source = type("Source", (), {
+            'nodes': {'benchmark': target_nodes}, 'benchmark_component': 'benchmark',
+            'catalog': {}, 'components': {},
+        })()
+        documents, binding = manual_rule(
+            source, rule, title='Manual metadata witness', rule_id='manual-rule',
+            assessment_id='manual-assessment')
+        metadata = binding['source_standard_metadata']
+        self.assertEqual([row['kind'] for row in metadata],
+                         ['ident', 'reference', 'fix', 'fixtext'])
+        self.assertEqual([row['text'] for row in metadata],
+                         ['CCE-MANUAL', 'Manual reference', 'echo manual', 'Manual fix text'])
+        native = documents['authoring/direct-slice/rules/manual-rule.json']['rule']
+        self.assertNotIn('source_standard_metadata', native)
+
     def test_group_relationships_are_inventoried_without_rule_flattening(self):
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "group-witness.zip"

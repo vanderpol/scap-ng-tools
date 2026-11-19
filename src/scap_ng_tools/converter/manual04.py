@@ -73,7 +73,8 @@ def _choice_assessment(source, rule, check, *, assessment_id, title):
 def manual_rule(source, rule, *, title, rule_id, assessment_id):
     """Return one native Rule and one manual Assessment for an OCIL Rule."""
     from v04_direct_scap_source import XCCDF, OCIL, digest, ensure, xml_identity
-    from v04_source_metadata import source_description_text, source_relationships, validate_relationship_targets
+    from v04_source_metadata import (source_description_text, source_relationships,
+                                     source_standard_metadata, validate_relationship_targets)
 
     checks = [check for check in rule.findall('{' + XCCDF + '}check')
               if check.get('system') == OCIL]
@@ -105,5 +106,10 @@ def manual_rule(source, rule, *, title, rule_id, assessment_id):
         'source_rule_sha256': digest(xml_identity(rule)), 'native_rule': rule_id,
         'assessment': assessment_id, 'conversion_status': 'MANUAL_ONLY_PRESERVED',
         'manual_provenance': provenance, 'source_checks': [xml_identity(check) for check in checks]}
+    metadata = source_standard_metadata(rule)
+    if metadata:
+        # Keep the same source-fidelity contract for OCIL-only Rules; do not
+        # project unapproved metadata/remediation semantics into native Rule.
+        binding['source_standard_metadata'] = metadata
     return ({f'authoring/direct-slice/assessments/{assessment_id}.json': assessment,
              f'authoring/direct-slice/rules/{rule_id}.json': {'rule': native_rule}}, binding)
