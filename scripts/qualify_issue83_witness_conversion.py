@@ -17,9 +17,22 @@ import re
 import subprocess
 import sys
 
+from scap_ng_tools.contracts.schema_snapshot_v041 import (
+    CANONICAL_COMMIT, FLAT_SCHEMA_SHA256, Pinned041SchemaSnapshot,
+)
+
 
 def digest(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
+
+
+def verify_schema_root(schema_root: Path, schema_commit: str) -> tuple[Path, str]:
+    """Require the exact active 0.4.1 schema family before conversion."""
+    if schema_commit != CANONICAL_COMMIT:
+        raise ValueError(
+            f"schema commit {schema_commit} is not the active canonical pin {CANONICAL_COMMIT}")
+    snapshot = Pinned041SchemaSnapshot(schema_root)
+    return snapshot.schema_root, FLAT_SCHEMA_SHA256
 
 
 def classify(message: str) -> str:
@@ -51,6 +64,8 @@ def main(argv=None) -> int:
         raise SystemExit(f"refusing to overwrite existing output: {args.output}")
     if args.timeout_seconds < 1:
         raise SystemExit("--timeout-seconds must be positive")
+    schema_root, schema_family_sha256 = verify_schema_root(
+        args.schema_root, args.schema_commit)
     receipt = json.loads(args.witness_receipt.read_text(encoding="utf-8"))
     rows = []
     selected = [row for row in receipt["tests"]
@@ -75,7 +90,7 @@ def main(argv=None) -> int:
         output = args.output / f"{ordinal:04d}"
         witness_sha = digest(witness.read_bytes())
         command = [sys.executable, "-m", "scap_ng_tools.converter.direct04",
-                   "--schema-root", str(args.schema_root), "--source", str(witness),
+                   "--schema-root", str(schema_root), "--source", str(witness),
                    "--sha256", witness_sha, "--oval-definition",
                    row["witness_definition_id"], "--source-commit", args.source_commit,
                    "--source-path", f"witness/{row['source_file']}!{row['source_test_id']}",
@@ -114,6 +129,8 @@ def main(argv=None) -> int:
         "format": "scap-ng-tools/issue83-witness-conversion/1",
         "source_commit": args.source_commit,
         "schema_commit": args.schema_commit,
+        "schema_family_sha256": schema_family_sha256,
+        "schema_root_verified": True,
         "converter_commit": args.converter_commit,
         "witness_receipt_sha256": digest(args.witness_receipt.read_bytes()),
         "source_prefix": args.source_prefix,
