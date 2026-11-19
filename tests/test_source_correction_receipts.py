@@ -211,6 +211,17 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertTrue(conversion["downward_recursion_preserved"])
         self.assertFalse(conversion["upward_recursion_enabled"])
 
+    def test_unix_pr16_replay_keeps_upward_recursion_deprecated(self):
+        receipt = self.load("unix-upward-recursion-pr16-focused-qualification.json")
+        conversion = receipt["conversion"]
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["converter_commit"],
+                         "d9addb9a9fe9699e8dea33d1bf60ecb891ccb94e")
+        self.assertEqual(conversion["base_returncode"], 1)
+        self.assertEqual(conversion["corrected_returncode"], 0)
+        self.assertRegex(conversion["corrected_source_trace_sha256"], HEX64)
+        self.assertFalse(conversion["upward_recursion_enabled"])
+
     def test_agnostic_external_float_pr14_preserves_input_hold(self):
         receipt = self.load("agnostic-external-float-pr14-focused-qualification.json")
         source = receipt["source"]
