@@ -82,6 +82,19 @@ def validate_relationship_targets(relationships: dict[str, list], nodes: dict[st
                 raise ValueError(f'XCCDF {kind} target is not a Rule or Group: {identifier}')
 
 
+def source_description_text(item: ET.Element) -> str:
+    """Return all authored XCCDF description text, including mixed-content tails.
+
+    ``ElementTree.findtext`` returns only the first text node.  XCCDF
+    descriptions may contain escaped publisher payloads or valid inline
+    markup, so using it would silently truncate source discussion.  The
+    native discussion field is plain text; retain the complete ordered text
+    while the source Rule identity digest preserves the original structure.
+    """
+    description = item.find(f'{{{XCCDF}}}description')
+    return '' if description is None else ''.join(description.itertext())
+
+
 def parse_disa_description(description: ET.Element | None) -> dict:
     """Inspect literal DISA XML in an XCCDF description without data loss.
 

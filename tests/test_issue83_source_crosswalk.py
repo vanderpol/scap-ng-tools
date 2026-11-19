@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
 class Issue83ConverterRelationshipTests(unittest.TestCase):
     def test_relationship_helper_preserves_order_and_empty_elements(self):
-        from v04_source_metadata import source_relationships, validate_relationship_targets
+        from v04_source_metadata import source_description_text, source_relationships, validate_relationship_targets
         rule = ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}" id="r"><requires idref=" a  b "/><conflicts idref="c"/></Rule>')
         self.assertEqual(source_relationships(rule), {
             "requires": [{"any_of": ["a", "b"]}], "conflicts": ["c"]})
@@ -92,6 +92,9 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
             validate_relationship_targets(
                 {"requires": ["benchmark"], "conflicts": []},
                 {"benchmark": ET.Element(f'{{{crosswalk.XCCDF}}}Benchmark')})
+        rule = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}"><description>before<em>middle</em>after</description></Rule>')
+        self.assertEqual(source_description_text(rule), 'beforemiddleafter')
 
     def test_group_relationships_are_inventoried_without_rule_flattening(self):
         with tempfile.TemporaryDirectory() as temporary:

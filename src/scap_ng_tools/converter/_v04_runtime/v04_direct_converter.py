@@ -1736,12 +1736,12 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     assessment.update(tests=converter.tests, evaluate=expression)
     documents[f'authoring/direct-slice/assessments/{assessment_id}.json'] = {'assessment': assessment}
     # This is a compilation fixture, not a full Rule-policy renderer.
-    from v04_source_metadata import source_relationships, validate_relationship_targets
+    from v04_source_metadata import source_description_text, source_relationships, validate_relationship_targets
     relationships = source_relationships(rule)
     validate_relationship_targets(relationships, source.nodes[source.benchmark_component])
     native_rule = {'id': rule_id, 'version': rule.findtext(f'{{{XCCDF}}}version', ''), 'title': title,
         'severity': rule.get('severity', 'unknown'), 'role': 'full', 'weight': float(rule.get('weight', '1')),
-        'discussion': rule.findtext(f'{{{XCCDF}}}description', ''), 'rationale': None,
+        'discussion': source_description_text(rule), 'rationale': None,
         'extensions': {}, 'warnings': [], 'identifiers': [], 'references': [],
         'requires': relationships['requires'], 'conflicts': relationships['conflicts'],
         'parameters': {}, 'remediation': {}, 'organizational_input_requirements': {},
@@ -1891,6 +1891,7 @@ def render_profiles(source, rule_ids, rule_links):
 
 def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=False):
     """Project selection only over emitted Rules; an empty subset has no package."""
+    from v04_source_metadata import source_description_text
     rule_ids = [row['source_rule'] for row in rule_trace]
     rule_links = {row['source_rule']: row['native_rule'] for row in rule_trace}
     benchmark = source.benchmark
@@ -1900,7 +1901,7 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
         'version': {'value': benchmark.findtext(f'{{{XCCDF}}}version', '')},
         'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}],
         'title': [{'text': '[AUTOMATED PROTOTYPE SUBSET] ' + benchmark.findtext(f'{{{XCCDF}}}title', ''), 'language': 'en'}],
-        'description': [{'text': benchmark.findtext(f'{{{XCCDF}}}description', ''), 'language': 'en'}],
+        'description': [{'text': source_description_text(benchmark), 'language': 'en'}],
         'language': benchmark.get('{http://www.w3.org/XML/1998/namespace}lang'),
         'status': [{'value': child.text, **child.attrib} for child in benchmark.findall(f'{{{XCCDF}}}status')],
         'metadata': {'prototype_subset': True, 'omitted_rule_count': len(source.rules) - len(rule_ids)},
