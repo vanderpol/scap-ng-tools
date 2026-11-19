@@ -46,6 +46,18 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_windows_update_pr13_receipt_has_verified_source_identity(self):
+        receipt = self.load("windows-wuaupdatesearcher-variable-followup.json")
+        source = receipt["source"]
+        conversion = receipt["conversion"]
+        self.assertTrue(source["source_commit_blob_verified"])
+        self.assertEqual(source["definition_id"], "oval:navy.navwar.niwcatlantic.scc.windows.update:def:1")
+        self.assertEqual(source["variable_id"], "oval:navy.navwar.niwcatlantic.scc.windows.update:var:4")
+        self.assertEqual(conversion["baseline"]["status"], "blocked")
+        self.assertEqual(conversion["candidate"]["status"], "CONVERTED_UNVERIFIED")
+        self.assertTrue(conversion["candidate"]["schema_validated"])
+        self.assertRegex(conversion["candidate"]["assessment_sha256"], HEX64)
+
     def test_unix_upward_recursion_pr16_stays_deprecated(self):
         receipt = self.load("unix-upward-recursion-pr16-focused-qualification.json")
         source = receipt["source"]

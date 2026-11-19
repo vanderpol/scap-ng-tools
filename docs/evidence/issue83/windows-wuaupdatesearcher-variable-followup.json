@@ -10,14 +10,18 @@
     "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:def:1",
     "affected_test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:4",
     "affected_state_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:ste:4",
-    "variable_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:var:4"
+    "variable_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:var:4",
+    "source_commit_blob_verified": true
   },
   "change": {
     "classification": "source_content_datatype_defect",
     "variable_datatype": "string -> boolean",
     "definition_version": "1 -> 2",
     "variable_version": "1 -> 2",
-    "values_preserved": ["0", "1"],
+    "values_preserved": [
+      "0",
+      "1"
+    ],
     "state_var_check_preserved": "at least one",
     "implicit_cast_added": false
   },
