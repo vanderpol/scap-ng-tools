@@ -51,6 +51,23 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_agnostic_merge_pr7_replay_refreshes_current_converter_pin(self):
+        receipt = self.load("merge-pr7-focused-qualification.json")
+        conversion = receipt["conversion"]
+        self.assertEqual(receipt["source"]["corrected_pr"], 7)
+        self.assertEqual(receipt["pins"]["tools_commit"],
+                         "26fc48e13752922627c59719a53fc64db60d32ce")
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertTrue(conversion["semantic_projection_equal"])
+        self.assertEqual(conversion["base_assessment_sha256"],
+                         "4cbbc6644c1de30afac52eb7e928bf9a56dbfc907f65cc12d9133d568235d3f2")
+        self.assertEqual(conversion["corrected_assessment_sha256"],
+                         "9a863c12efd97ae2ff46cdf5e4ef05d77ff182288aa7a2099f2036bf9c748788")
+        self.assertRegex(conversion["base_source_trace_sha256"], HEX64)
+        self.assertRegex(conversion["corrected_source_trace_sha256"], HEX64)
+        self.assertNotEqual(conversion["base_source_trace_sha256"],
+                            conversion["corrected_source_trace_sha256"])
+
     def test_nvram_pr8_replay_keeps_version_hold_and_recovery_separate(self):
         receipt = self.load("macos-nvram-followup.json")
         self.assertEqual(receipt["format"], "scap-ng-tools/issue83-macos-nvram-followup/1")
