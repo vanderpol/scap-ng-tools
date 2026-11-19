@@ -107,7 +107,9 @@ def diagnose_disa_description(raw_text: str) -> dict[str, str]:
     try:
         root = ET.fromstring(f"<disa-wrapper>{html.unescape(raw_text)}</disa-wrapper>")
     except ET.ParseError as error:
-        return {"category": "source_malformed_publisher_xml", "error": str(error)}
+        return {"category": "source_embedded_publisher_payload_malformed",
+                "scope": "literal DISA fields inside a valid XCCDF description",
+                "error": str(error)}
     if not any(child.tag in DISA_FIELDS for child in root):
         return {"category": "unrecognized_publisher_payload", "error": "no recognized DISA field element"}
     return {"category": "recognized_publisher_payload", "error": ""}

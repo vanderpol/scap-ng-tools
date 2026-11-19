@@ -74,7 +74,7 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
     def test_disa_diagnostic_classifies_malformed_publisher_xml_without_body(self):
         diagnostic = crosswalk.diagnose_disa_description(
             '<VulnDiscussion>literal <tag></VulnDiscussion>')
-        self.assertEqual(diagnostic['category'], 'source_malformed_publisher_xml')
+        self.assertEqual(diagnostic['category'], 'source_embedded_publisher_payload_malformed')
         self.assertRegex(diagnostic['error'], r'line \d+, column \d+')
 
     def test_malformed_or_non_publisher_description_is_not_promoted(self):
