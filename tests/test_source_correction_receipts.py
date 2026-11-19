@@ -46,6 +46,17 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_solaris_pr15_receipt_preserves_deprecated_removals(self):
+        receipt = self.load("solaris-followup.json")
+        correction = receipt["source_correction"]
+        self.assertEqual(correction["pull_request"], 15)
+        self.assertTrue(correction["source_commit_blob_verified"])
+        self.assertEqual(len(correction["removed_paths"]), 2)
+        self.assertEqual(receipt["before"]["blocked"], 12)
+        self.assertEqual(receipt["after"]["blocked"], 9)
+        self.assertFalse(receipt["qualification"]["runtime_execution"])
+        self.assertFalse(receipt["qualification"]["independent_oval_equivalence"])
+
     def test_windows_update_pr13_receipt_has_verified_source_identity(self):
         receipt = self.load("windows-wuaupdatesearcher-variable-followup.json")
         source = receipt["source"]

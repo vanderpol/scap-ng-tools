@@ -66,5 +66,16 @@
       ],
       "tests": 6
     }
-  ]
+  ],
+  "source_correction": {
+    "pull_request": 15,
+    "corrected_commit": "8132076d52362fe54da357da5f9a3178a1a8ff00",
+    "classification": "deprecated_source_construct_removal",
+    "source_commit_blob_verified": true,
+    "removed_paths": [
+      "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+      "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml"
+    ],
+    "interpretation": "Both exact baseline files were verified from the pinned Git blob; PR #15 deletes deprecated capabilities without aliasing them to a different native capability."
+  }
 }
