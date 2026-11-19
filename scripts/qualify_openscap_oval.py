@@ -47,19 +47,28 @@ def local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 
 
-def parse_results(path: Path) -> list[dict[str, str]]:
-    """Extract only Definition IDs/results; never retain collected Item values."""
+def parse_results(path: Path) -> dict[str, list[dict[str, str]]]:
+    """Extract source Definition and Test outcomes, never collected Item values."""
     root = ET.parse(path).getroot()
-    rows = []
+    definitions = []
+    tests = []
     for element in root.iter():
-        if local_name(element.tag) != "definition" or "result" not in element.attrib:
+        kind = local_name(element.tag)
+        if "result" not in element.attrib:
             continue
-        definition_id = element.attrib.get("definition_id") or element.attrib.get("id")
-        result = element.attrib["result"].lower()
-        if not definition_id:
+        if kind == "definition":
+            identifier = element.attrib.get("definition_id") or element.attrib.get("id")
+            key = "definition_id"
+        elif kind == "test":
+            identifier = element.attrib.get("test_id") or element.attrib.get("id")
+            key = "test_id"
+        else:
             continue
-        rows.append({"definition_id": definition_id, "result": result})
-    return rows
+        if not identifier:
+            continue
+        row = {key: identifier, "result": element.attrib["result"].lower()}
+        (definitions if kind == "definition" else tests).append(row)
+    return {"definitions": definitions, "tests": tests}
 
 
 def summarize_outcomes(definitions: list[dict[str, str]]) -> dict[str, int]:
@@ -155,6 +164,7 @@ def run_one(
     stderr_tail = sanitize_diagnostic(stderr_path.read_text(errors="replace"), replacements)
     stdout_tail = sanitize_diagnostic(stdout_path.read_text(errors="replace"), replacements)
     definitions: list[dict[str, str]] = []
+    tests: list[dict[str, str]] = []
     parse_error = None
     result_sha256 = None
     result_bytes = result_path.stat().st_size if result_path.exists() else 0
@@ -163,7 +173,9 @@ def run_one(
     elif result_path.exists():
         result_sha256 = digest_file(result_path)
         try:
-            definitions = parse_results(result_path)
+            parsed = parse_results(result_path)
+            definitions = parsed["definitions"]
+            tests = parsed["tests"]
             status = "completed" if returncode == 0 else "completed_with_engine_error"
         except (ET.ParseError, OSError) as exc:
             parse_error = sanitize_diagnostic(str(exc), replacements)
@@ -184,6 +196,9 @@ def run_one(
         "definitions": definitions,
         "definition_count": len(definitions),
         "outcomes": summarize_outcomes(definitions),
+        "tests": tests,
+        "test_count": len(tests),
+        "test_outcomes": summarize_outcomes(tests),
         "diagnostic": diagnostic,
         "command": [executable, "oval", "eval", "--skip-valid", "--results", "<external-result>", "<source>"],
     }
@@ -192,13 +207,14 @@ def run_one(
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     fields = ["family", "source_path", "source_sha256", "status", "returncode",
               "duration_seconds", "result_bytes", "result_sha256", "definition_count",
-              "outcomes", "diagnostic"]
+              "outcomes", "test_count", "test_outcomes", "diagnostic"]
     with path.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             values = dict(row)
             values["outcomes"] = json.dumps(row["outcomes"], sort_keys=True)
+            values["test_outcomes"] = json.dumps(row["test_outcomes"], sort_keys=True)
             values.pop("definitions", None)
             values.pop("command", None)
             writer.writerow({field: values.get(field) for field in fields})
@@ -234,16 +250,20 @@ def main(argv: list[str] | None = None) -> int:
     rows = [run_one(source, args.corpus, args.output, args.oscap,
                     args.timeout_seconds, args.max_result_bytes, args.source_commit)
             for source in sources]
-    summary: dict[str, Any] = {"files": len(rows), "statuses": {}, "outcomes": {}, "families": {}}
+    summary: dict[str, Any] = {"files": len(rows), "statuses": {}, "outcomes": {}, "test_outcomes": {}, "families": {}}
     for row in rows:
         summary["statuses"][row["status"]] = summary["statuses"].get(row["status"], 0) + 1
         for outcome, count in row["outcomes"].items():
             summary["outcomes"][outcome] = summary["outcomes"].get(outcome, 0) + count
-        family = summary["families"].setdefault(row["family"], {"files": 0, "statuses": {}, "outcomes": {}})
+        for outcome, count in row["test_outcomes"].items():
+            summary["test_outcomes"][outcome] = summary["test_outcomes"].get(outcome, 0) + count
+        family = summary["families"].setdefault(row["family"], {"files": 0, "statuses": {}, "outcomes": {}, "test_outcomes": {}})
         family["files"] += 1
         family["statuses"][row["status"]] = family["statuses"].get(row["status"], 0) + 1
         for outcome, count in row["outcomes"].items():
             family["outcomes"][outcome] = family["outcomes"].get(outcome, 0) + count
+        for outcome, count in row["test_outcomes"].items():
+            family["test_outcomes"][outcome] = family["test_outcomes"].get(outcome, 0) + count
     receipt = {
         "format": "scap-ng-tools/openscap-oval-ledger/1",
         "source_commit": args.source_commit,

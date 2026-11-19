@@ -25,9 +25,21 @@ class OpenSCAPQualificationTests(unittest.TestCase):
                 '</definitions></results>', encoding="utf-8")
             self.assertEqual(
                 qualification.parse_results(path),
-                [{"definition_id": "oval:def:1", "result": "true"},
-                 {"definition_id": "oval:def:2", "result": "unknown"}],
+                {"definitions": [
+                    {"definition_id": "oval:def:1", "result": "true"},
+                    {"definition_id": "oval:def:2", "result": "unknown"},
+                ], "tests": []},
             )
+
+    def test_parse_results_extracts_test_outcomes_without_items(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "results.xml"
+            path.write_text(
+                '<results><tests><test test_id="oval:tst:1" result="false">'
+                '<tested_item item_id="secret" result="true" /></test></tests></results>',
+                encoding="utf-8")
+            parsed = qualification.parse_results(path)
+            self.assertEqual(parsed["tests"], [{"test_id": "oval:tst:1", "result": "false"}])
 
     def test_summary_preserves_outcome_names_and_omits_zeroes(self):
         result = qualification.summarize_outcomes([
