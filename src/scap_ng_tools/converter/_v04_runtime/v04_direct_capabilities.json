@@ -78,7 +78,8 @@
     "asa.version",
     "asa.line",
     "junos.show",
-    "panos.version"
+    "panos.version",
+    "aix.fileset"
   ],
   "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages.",
   "deprecated_source_tests": [
