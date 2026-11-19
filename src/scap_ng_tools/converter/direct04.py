@@ -49,6 +49,8 @@ def load_runtime():
     # Native 0.4.1 Input/Variable composition; frozen visitor stays byte-identical.
     from .native041_input_expression import install as install_input_expression
     install_input_expression(engine)
+    from .native041_input_semantics import install as install_input_semantics
+    install_input_semantics()
     return engine
 
 
