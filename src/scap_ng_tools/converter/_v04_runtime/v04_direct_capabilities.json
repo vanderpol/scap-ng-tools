@@ -53,6 +53,8 @@
     "independent.yamlfilecontent",
     "linux.rpmverifyfile",
     "solaris.smf",
+    "solaris.smfproperty",
+    "solaris.package",
     "iosxe.line",
     "iosxe.global"
   ],
