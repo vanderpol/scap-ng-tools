@@ -305,7 +305,7 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         conversion = receipt["conversion"]
         self.assertTrue(conversion["current_replay_verified"])
         self.assertEqual(conversion["converter_commit"],
-                         "d9addb9a9fe9699e8dea33d1bf60ecb891ccb94e")
+                         "26fc48e13752922627c59719a53fc64db60d32ce")
         self.assertEqual(conversion["base_returncode"], 1)
         self.assertEqual(conversion["corrected_returncode"], 0)
         self.assertRegex(conversion["corrected_source_trace_sha256"], HEX64)

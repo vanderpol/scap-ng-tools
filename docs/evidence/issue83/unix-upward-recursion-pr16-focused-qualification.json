@@ -5,11 +5,11 @@
     "base_status": "blocked",
     "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
     "converter": "scap_ng_tools.converter.direct04",
-    "converter_commit": "d9addb9a9fe9699e8dea33d1bf60ecb891ccb94e",
+    "converter_commit": "26fc48e13752922627c59719a53fc64db60d32ce",
     "corrected_assessment_sha256": "3cc302f3a9b0c16fa4f2cc16fe1b86db9ed6fc37d1b487df9b0aec3d106043f2",
     "corrected_returncode": 0,
     "corrected_schema_validated": true,
-    "corrected_source_trace_sha256": "999688cf0164e8cb36d86b8e05d0208788d7c200c2be694e7881844d3fa61ed9",
+    "corrected_source_trace_sha256": "2752132fb0f1deaf255fde6681a0a1e92280a7d478bcd1dde778cbc28e781849",
     "corrected_status": "CONVERTED_UNVERIFIED",
     "current_replay_verified": true,
     "downward_recursion_preserved": true,
@@ -25,7 +25,7 @@
     "converter_command_template": "PYTHONPATH=src python -m scap_ng_tools.converter.direct04 --schema-root <canonical-0.4.1-schema> --source <source-file> --sha256 <source-sha256> --oval-definition oval:org.mitre.oval.test:def:48 --source-commit <source-commit> --source-path SCAP_1.4/OVAL_Test_Content/unix/ind-def_textfilecontent54_test_unix.xml --output <new-output-directory>",
     "evidence_root": "<fresh-external-temp-directory>",
     "generated_evidence_commit": "not committed; compact hashes only",
-    "source_fetch_template": "git show <source-commit>:SCAP_1.4/OVAL_Test_Content/unix/ind-def_textfilecontent54_test_unix.xml"
+    "source_fetch_template": "Fetch exact immutable source blob from the pinned Self-Assertion commit; do not edit XML."
   },
   "source": {
     "base_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
