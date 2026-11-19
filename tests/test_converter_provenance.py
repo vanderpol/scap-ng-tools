@@ -8,21 +8,23 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '01fc84b0fc2f346a65437ba24e3a205f3aae0ecffd7e789fa78684297de03b52'
+CURRENT_RUNTIME_SHA256 = '3001301440656577e6e9328a74b3ca75900c455f8025a519439a5f434f8f5044'
 UNCHANGED_SOURCE_SHA256 = '60fad2420a1208fe5e14bcd92b5fe75996796f3885faf768bfbdb3b9bfeaf350'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
     'v04_direct_authoring_contract.py': '5fa26ee62c5a636144ee182596e6faf972bfba364160de8c1a03208058aba98e',
-    'v04_direct_converter.py': 'a734b1e88365e8c9b6162bb33d6c1d4a75a32e8ad3567d5ca73551a666bd67b4',
+    'v04_direct_converter.py': '1af1ddc63b3c0af9f2cf30ac2097d5ba723ce51c61693495e0a2f73de508722e',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
-    'v04_direct_scap_source.py': '1d297d3a510d5aa8cf52f15a61c71cc40e468ca7f3fd38265d6acc6a47aa5fe9',
+    'v04_direct_scap_source.py': '6c826d9a34d5e5256e4fa40ee502cde0ac316a62286d8b14f6229909f371f9ad',
     'v04_draft_inputs.py': '6373bc9a7208f7ad2b2b3cbcd4674c2683d3ecf971c7380d1e3566b7d1367f07',
     'v04_direct_inventory.py': 'd275992ce013a75945456da73678ebb29649a9e031e113af4c35b953c962a0b8',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
     'v04_variable_function_migration.py': 'ab08c49569bde0458c4e7a567f131a7965cf35a78a050aa6a5a639eb6ecc3d44',
     'v04_direct_enum_variables.py': '6f8cdab49cbcfb4474b997e9a95421f26e4a11c64c77bf05ef19556b2c443101',
+    # New source-fidelity helper; it does not copy an external visitor.
+    'v04_source_metadata.py': '8456e3cf511abda386657c36fa33736063fda0b795bb4240ed54768978e149e7',
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',
@@ -50,7 +52,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
     def test_runtime_matches_allowlisted_inventory_path_adaptation(self):
         paths = sorted(p for p in RUNTIME.iterdir()
                        if p.suffix in ('.py', '.json') and p.name != '__init__.py')
-        self.assertEqual(len(paths), 18)
+        self.assertEqual(len(paths), 19)
         digest = sha256()
         unchanged = sha256()
         for path in paths:

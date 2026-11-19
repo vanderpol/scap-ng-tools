@@ -128,10 +128,22 @@ def archive_record(path: Path) -> dict:
             # malformed publisher-looking payloads as a diagnostic.
             if raw_description.lstrip().startswith("<"):
                 malformed_descriptions.append(source_id)
-        requires_raw = rule.get("requires", "")
-        conflicts_raw = rule.get("conflicts", "")
-        requires = requires_raw.split()
-        conflicts = conflicts_raw.split()
+        requires_elements = rule.findall(f"{{{XCCDF}}}requires")
+        conflicts_elements = rule.findall(f"{{{XCCDF}}}conflicts")
+        requires_raw = [element.get("idref", "") for element in requires_elements]
+        conflicts_raw = [element.get("idref", "") for element in conflicts_elements]
+        requires = []
+        for value in requires_raw:
+            ids = value.split()
+            if not ids:
+                raise ValueError(f"empty requires idref in {path.name}:{source_id}")
+            requires.append(ids[0] if len(ids) == 1 else {"any_of": ids})
+        conflicts = []
+        for value in conflicts_raw:
+            ids = value.split()
+            if len(ids) != 1:
+                raise ValueError(f"conflicts requires one idref in {path.name}:{source_id}")
+            conflicts.append(ids[0])
         row = {
             "source_rule": source_id,
             "source_rule_sha256": identity_digest(rule),
@@ -214,6 +226,11 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
     records = [archive_record(path) for path in archives]
     source_rules = sum(record["rule_count"] for record in records)
     relations = [row for record in records for row in record["relations"]]
+    archive_manifest = [{key: record[key] for key in (
+        "archive", "archive_sha256", "xml_member", "xml_sha256", "benchmark_id", "rule_count")}
+        for record in records]
+    archive_set_sha256 = digest(json.dumps(
+        archive_manifest, sort_keys=True, separators=(",", ":")).encode("utf-8"))
     field_counts = Counter()
     nonempty = Counter()
     malformed = []
@@ -227,6 +244,7 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
             "root": "external source root (not copied into repository)",
             "commit": source_commit,
             "expected_archives": expected_archives,
+            "archive_set_sha256": archive_set_sha256,
             "archives": records,
         },
         "summary": {
@@ -243,12 +261,12 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
         "relationships": relations,
         "mapping": {
             "requires": {
-                "source": "XCCDF 1.2 Rule/@requires, whitespace-separated Rule IDs",
-                "native": "SCAP-NG 0.4.1 rule.requires; one source token is one required clause",
+                "source": "XCCDF 1.2 Rule/requires/@idref, one child per clause; IDs in one child are ORed",
+                "native": "SCAP-NG 0.4.1 rule.requires; clauses are ANDed and any_of members are ORed",
                 "status": "converter currently initializes an empty native array; loss is a converter defect",
             },
             "conflicts": {
-                "source": "XCCDF 1.2 Rule/@conflicts, whitespace-separated Rule IDs",
+                "source": "XCCDF 1.2 Rule/conflicts/@idref, one ID per child",
                 "native": "SCAP-NG 0.4.1 rule.conflicts; IDs remain source identities",
                 "status": "converter currently initializes an empty native array; loss is a converter defect",
             },
@@ -281,7 +299,7 @@ def markdown(report: dict) -> str:
         "",
         "## Result",
         "",
-        "The pinned 65-archive corpus contains no non-empty `Rule/@requires` or `Rule/@conflicts` relationships. This is a measured zero, not evidence that the converter may drop relationships: the converter must preserve them for source streams that use them. The relationship ledger is empty for this corpus and the test fixture exercises positive and negative source attributes.",
+        "The pinned 65-archive corpus contains no non-empty `Rule/requires` or `Rule/conflicts` relationships. This is a measured zero, not evidence that the converter may drop relationships: the converter must preserve them for source streams that use them. The relationship ledger is empty for this corpus and the test fixture exercises positive and negative source relationship elements.",
         "",
         "## DISA extended description mapping",
         "",

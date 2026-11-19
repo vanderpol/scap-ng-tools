@@ -73,6 +73,7 @@ def _choice_assessment(source, rule, check, *, assessment_id, title):
 def manual_rule(source, rule, *, title, rule_id, assessment_id):
     """Return one native Rule and one manual Assessment for an OCIL Rule."""
     from v04_direct_scap_source import XCCDF, OCIL, digest, ensure, xml_identity
+    from v04_source_metadata import source_relationships
 
     checks = [check for check in rule.findall('{' + XCCDF + '}check')
               if check.get('system') == OCIL]
@@ -92,7 +93,7 @@ def manual_rule(source, rule, *, title, rule_id, assessment_id):
     native_rule = {'id': rule_id, 'version': rule.findtext('{' + XCCDF + '}version', ''),
         'title': title, 'severity': rule.get('severity', 'unknown'), 'role': 'full',
         'weight': float(rule.get('weight', '1')), 'discussion': rule.findtext('{' + XCCDF + '}description', ''),
-        'requires': [], 'conflicts': [], 'applicability': [], 'parameters': {},
+        'requires': source_relationships(rule)['requires'], 'conflicts': source_relationships(rule)['conflicts'], 'applicability': [], 'parameters': {},
         'remediation': {}, 'organizational_input_requirements': {},
         'assessment_choices': {'manual': {'assessment': assessment_id}},
         'default_assessment_choice': 'manual'}

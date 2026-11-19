@@ -8,17 +8,20 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "src/scap_ng_tools/converter/_v04_runtime"))
 import build_issue83_source_crosswalk as crosswalk  # noqa: E402
 
 
 class Issue83SourceCrosswalkTests(unittest.TestCase):
     def make_archive(self, directory: Path, *, requires="", conflicts="") -> Path:
-        rule = f'''<xccdf:Rule xmlns:xccdf="{crosswalk.XCCDF}" id="xccdf:test_rule" requires="{requires}" conflicts="{conflicts}">
+        rule = f'''<xccdf:Rule xmlns:xccdf="{crosswalk.XCCDF}" id="xccdf:test_rule">
+          <xccdf:requires idref="rule_a rule_b"/><xccdf:requires idref="rule_c"/><xccdf:conflicts idref="rule_d"/>
           <xccdf:title>Relationship witness</xccdf:title>
           <xccdf:description>&lt;VulnDiscussion&gt;Keep this discussion&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;</xccdf:description>
         </xccdf:Rule>'''
         xml = f'''<ds:data-stream-collection xmlns:ds="{crosswalk.DS}" xmlns:xccdf="{crosswalk.XCCDF}" id="collection">
-          <ds:component id="checklist"><xccdf:Benchmark id="benchmark" xccdf-version="1.2"><xccdf:Rule id="xccdf:test_rule" requires="{requires}" conflicts="{conflicts}">
+          <ds:component id="checklist"><xccdf:Benchmark id="benchmark" xccdf-version="1.2"><xccdf:Rule id="xccdf:test_rule">
+          <xccdf:requires idref="rule_a rule_b"/><xccdf:requires idref="rule_c"/><xccdf:conflicts idref="rule_d"/>
             <xccdf:title>Relationship witness</xccdf:title>
             <xccdf:description>&lt;VulnDiscussion&gt;Keep this discussion&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;</xccdf:description>
           </xccdf:Rule></xccdf:Benchmark></ds:component>
@@ -34,8 +37,8 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
             path = self.make_archive(Path(temporary), requires="rule_a rule_b", conflicts="rule_c")
             record = crosswalk.archive_record(path)
         self.assertEqual(record["rule_count"], 1)
-        self.assertEqual(record["relations"][0]["requires"], ["rule_a", "rule_b"])
-        self.assertEqual(record["relations"][0]["conflicts"], ["rule_c"])
+        self.assertEqual(record["relations"][0]["requires"], [{"any_of": ["rule_a", "rule_b"]}, "rule_c"])
+        self.assertEqual(record["relations"][0]["conflicts"], ["rule_d"])
         fields = record["disa_description"]
         self.assertEqual(fields["rule_field_counts"]["VulnDiscussion"], 1)
         self.assertEqual(fields["rule_field_counts"]["FalsePositives"], 1)
@@ -62,3 +65,30 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class Issue83ConverterRelationshipTests(unittest.TestCase):
+    def test_relationship_helper_preserves_order_and_empty_elements(self):
+        from v04_source_metadata import source_relationships
+        rule = ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}" id="r"><requires idref=" a  b "/><conflicts idref="c"/></Rule>')
+        self.assertEqual(source_relationships(rule), {
+            "requires": [{"any_of": ["a", "b"]}], "conflicts": ["c"]})
+        empty = ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}" id="r2"/>')
+        self.assertEqual(source_relationships(empty), {"requires": [], "conflicts": []})
+        with self.assertRaisesRegex(ValueError, "requires element"):
+            source_relationships(ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}"><requires/></Rule>'))
+        with self.assertRaisesRegex(ValueError, "one idref"):
+            source_relationships(ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}"><conflicts idref="a b"/></Rule>'))
+
+    def test_disa_parser_retains_empty_values_and_explicit_false(self):
+        from v04_source_metadata import parse_disa_description
+        element = ET.fromstring(
+            f'<description xmlns="{crosswalk.XCCDF}">'
+            '&lt;VulnDiscussion&gt;discussion&lt;/VulnDiscussion&gt;'
+            '&lt;FalsePositives&gt;&lt;/FalsePositives&gt;'
+            '&lt;Documentable&gt;false&lt;/Documentable&gt;'
+            '</description>')
+        parsed = parse_disa_description(element)
+        self.assertTrue(parsed["parsed"])
+        self.assertEqual(parsed["fields"], {
+            "VulnDiscussion": "discussion", "FalsePositives": "", "Documentable": "false"})
+        self.assertIn("Documentable", parsed["raw"])

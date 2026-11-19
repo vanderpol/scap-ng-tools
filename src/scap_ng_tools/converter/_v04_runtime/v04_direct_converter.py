@@ -1724,10 +1724,13 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     assessment.update(tests=converter.tests, evaluate=expression)
     documents[f'authoring/direct-slice/assessments/{assessment_id}.json'] = {'assessment': assessment}
     # This is a compilation fixture, not a full Rule-policy renderer.
+    from v04_source_metadata import source_relationships
+    relationships = source_relationships(rule)
     native_rule = {'id': rule_id, 'version': rule.findtext(f'{{{XCCDF}}}version', ''), 'title': title,
         'severity': rule.get('severity', 'unknown'), 'role': 'full', 'weight': float(rule.get('weight', '1')),
         'discussion': rule.findtext(f'{{{XCCDF}}}description', ''), 'rationale': None,
-        'extensions': {}, 'warnings': [], 'identifiers': [], 'references': [], 'requires': [], 'conflicts': [],
+        'extensions': {}, 'warnings': [], 'identifiers': [], 'references': [],
+        'requires': relationships['requires'], 'conflicts': relationships['conflicts'],
         'parameters': {}, 'remediation': {}, 'organizational_input_requirements': {},
         'assessment_choices': {'automated': {'assessment': assessment_id}}, 'default_assessment_choice': 'automated'}
     local_applicability = native_applicability(source.applicability_level(rule))
