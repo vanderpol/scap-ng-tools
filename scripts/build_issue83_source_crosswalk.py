@@ -37,6 +37,7 @@ DISA_FIELDS = (
 OVAL_DEFINITION_FILES = re.compile(r"^[^-]+-definitions-schema\.xsd$")
 XSD = "http://www.w3.org/2001/XMLSchema"
 OVAL_COMMON = "http://oval.mitre.org/XMLSchema/oval-common-5"
+OVAL_DEFINITIONS = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 
 
 def digest(raw: bytes) -> str:
@@ -319,8 +320,109 @@ def oval_inventory(root: Path) -> dict:
     }
 
 
+
+def oval_content_inventory(root: Path, source_commit: str) -> dict:
+    """Inventory source Definitions and Tests without converting or evaluating.
+
+    The standalone OVAL corpus is a source-language witness, not a runtime
+    result set.  Keep one row per source XML file/element, preserve the exact
+    file and structural element digests, and summarize only authored syntax.
+    No expected or actual outcome is inferred here.
+    """
+    if not root.is_dir():
+        raise ValueError(f"OVAL content root is not a directory: {root}")
+    definitions = []
+    tests = []
+    files = []
+    feature_counts = Counter()
+    test_tag_counts = Counter()
+    definition_class_counts = Counter()
+    attribute_counts = Counter()
+    for path in sorted(root.rglob("*.xml")):
+        raw = path.read_bytes()
+        try:
+            document = ET.fromstring(raw)
+        except ET.ParseError as error:
+            raise ValueError(f"invalid OVAL XML {path}: {error}") from error
+        if local_name(document.tag) != "oval_definitions":
+            continue
+        relative = path.relative_to(root).as_posix()
+        file_record = {
+            "source_file": relative,
+            "source_file_sha256": digest(raw),
+            "definitions": 0,
+            "tests": 0,
+        }
+        files.append(file_record)
+        for element in document.iter():
+            kind = local_name(element.tag)
+            identifier = element.get("id")
+            if kind == "definition" and identifier:
+                row = {
+                    "source_file": relative,
+                    "source_file_sha256": file_record["source_file_sha256"],
+                    "source_id": identifier,
+                    "source_element_sha256": identity_digest(element),
+                    "definition_class": element.get("class", ""),
+                }
+                definitions.append(row)
+                file_record["definitions"] += 1
+                definition_class_counts[row["definition_class"]] += 1
+                continue
+            if not (identifier and kind.endswith("_test")):
+                continue
+            authored_attributes = {
+                name: value for name, value in sorted(element.attrib.items())
+                if name in {"check", "check_existence", "state_operator", "var_check"}
+            }
+            row = {
+                "source_file": relative,
+                "source_file_sha256": file_record["source_file_sha256"],
+                "source_id": identifier,
+                "source_element_sha256": identity_digest(element),
+                "source_test_tag": kind,
+                "attributes": authored_attributes,
+                "feature_tags": sorted({local_name(node.tag) for node in element.iter()}),
+            }
+            tests.append(row)
+            file_record["tests"] += 1
+            test_tag_counts[kind] += 1
+            for name in authored_attributes:
+                attribute_counts[name] += 1
+            feature_counts.update(row["feature_tags"])
+    definitions.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
+    tests.sort(key=lambda row: (row["source_file"], row["source_id"], row["source_element_sha256"]))
+    files.sort(key=lambda row: row["source_file"])
+    return {
+        "format": "scap-ng-tools/issue83-oval-content-inventory/1",
+        "source": {
+            "root": "external source root (not copied into repository)",
+            "commit": source_commit,
+            "path": root.name,
+        },
+        "summary": {
+            "xml_files": len(files),
+            "definitions": len(definitions),
+            "tests": len(tests),
+            "definition_classes": dict(sorted(definition_class_counts.items())),
+            "test_tags": dict(sorted(test_tag_counts.items())),
+            "authored_test_attributes": dict(sorted(attribute_counts.items())),
+            "feature_tags": dict(sorted(feature_counts.items())),
+        },
+        "files": files,
+        "definitions": definitions,
+        "tests": tests,
+        "qualification": {
+            "conversion": "not_run",
+            "execution": "not_run",
+            "expected_outcomes": "not_inferred",
+            "independent_equivalence": "not_proved",
+        },
+    }
+
 def build(source_root: Path, expected_archives: int, source_commit: str,
-          oval_root: Path | None) -> dict:
+          oval_root: Path | None, oval_content_root: Path | None = None,
+          oval_content_commit: str | None = None) -> dict:
     archives = sorted(source_root.glob("*.zip"))
     if len(archives) != expected_archives:
         raise ValueError(f"expected {expected_archives} source ZIPs, found {len(archives)}")
@@ -396,6 +498,11 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
     }
     if oval_root is not None:
         result["oval_schema_inventory"] = oval_inventory(oval_root)
+    if oval_content_root is not None:
+        if not oval_content_commit:
+            raise ValueError("--oval-content-commit is required with --oval-content-root")
+        result["oval_content_inventory"] = oval_content_inventory(
+            oval_content_root, oval_content_commit)
     return result
 
 
@@ -426,12 +533,26 @@ def markdown(report: dict) -> str:
         "",
         f"The source ledger has the eleven-field DISA payload on {summary['disa_description_rule_field_counts'].get('VulnDiscussion', 0)} Rules; {len(summary['malformed_publisher_payload_rules'])} Rules have publisher-looking descriptions that require source-specific review. Per-Rule field hashes are retained in JSON. `rule.discussion` retains the original description text for compatibility.",
         "",
+        "## OVAL source-content inventory",
+        "",
+        "The optional standalone OVAL inventory records source IDs, exact source file/element hashes, authored syntax and no outcomes. Conversion, execution and independent equivalence remain explicitly unproved.",
+        "",
+    ]
+    if "oval_content_inventory" in report:
+        inventory = report["oval_content_inventory"]["summary"]
+        lines.extend([
+            f"- XML files: **{inventory['xml_files']}**; Definitions: **{inventory['definitions']}**; Tests: **{inventory['tests']}**",
+            f"- Test tags: `{json.dumps(inventory['test_tags'], sort_keys=True)}`",
+            f"- Authored controls: `{json.dumps(inventory['authored_test_attributes'], sort_keys=True)}`",
+            "",
+        ])
+    lines.extend([
         "## Holds",
         "",
         "- The OVAL XSD declaration inventory (when supplied) is intentionally `unclassified`; XSD declaration names are not native support proof.",
         "- Canonical schema changes are out of scope for this Tools increment; any missing native representation is a canonical-language decision for `scap-ng` #80.",
         "- Native conversion output and RI execution are separate qualification stages.",
-    ]
+    ])
     return "\n".join(lines) + "\n"
 
 
@@ -441,20 +562,31 @@ def main(argv=None) -> int:
     parser.add_argument("--source-commit", required=True)
     parser.add_argument("--expected-archives", type=int, default=65)
     parser.add_argument("--oval-schema-root", type=Path)
+    parser.add_argument("--oval-content-root", type=Path)
+    parser.add_argument("--oval-content-commit")
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-md", type=Path, required=True)
     args = parser.parse_args(argv)
     report = build(args.source_root, args.expected_archives, args.source_commit,
-                   args.oval_schema_root)
+                   args.oval_schema_root, args.oval_content_root,
+                   args.oval_content_commit)
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
     args.output_md.parent.mkdir(parents=True, exist_ok=True)
     args.output_json.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     args.output_md.write_text(markdown(report), encoding="utf-8")
-    print(json.dumps({"archives": report["summary"]["archives"],
-                      "source_rules": report["summary"]["source_rules"],
-                      "relationships": len(report["relationships"]),
-                      "output_json": str(args.output_json),
-                      "output_md": str(args.output_md)}, sort_keys=True))
+    output = {"archives": report["summary"]["archives"],
+              "source_rules": report["summary"]["source_rules"],
+              "relationships": len(report["relationships"]),
+              "output_json": str(args.output_json),
+              "output_md": str(args.output_md)}
+    if "oval_content_inventory" in report:
+        inventory = report["oval_content_inventory"]["summary"]
+        output["oval_content"] = {
+            "xml_files": inventory["xml_files"],
+            "definitions": inventory["definitions"],
+            "tests": inventory["tests"],
+        }
+    print(json.dumps(output, sort_keys=True))
     return 0
 
 

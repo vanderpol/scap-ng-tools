@@ -116,6 +116,39 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(upward["version"], "5.12.3")
         self.assertIn("being removed", upward["reason"])
 
+    def test_oval_content_inventory_preserves_source_identity_and_authored_controls(self):
+        xml = f"""<oval:oval_definitions xmlns:oval=\"{crosswalk.OVAL_DEFINITIONS}\"
+              xmlns:ind=\"{crosswalk.OVAL_DEFINITIONS}#independent\">
+          <oval:definitions>
+            <oval:definition id=\"oval:test:def:1\" class=\"compliance\"/>
+          </oval:definitions>
+          <oval:tests>
+            <ind:variable_test id=\"oval:test:tst:1\" check=\"at least one\"
+                check_existence=\"all_exist\" var_check=\"all\"/>
+          </oval:tests>
+        </oval:oval_definitions>""".encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "content"
+            root.mkdir()
+            source = root / "agnostic-test.xml"
+            source.write_bytes(xml)
+            report = crosswalk.oval_content_inventory(root, "source-pin")
+            repeat = crosswalk.oval_content_inventory(root, "source-pin")
+        self.assertEqual(report, repeat)
+        self.assertEqual(report["summary"]["xml_files"], 1)
+        self.assertEqual(report["summary"]["definitions"], 1)
+        self.assertEqual(report["summary"]["tests"], 1)
+        self.assertEqual(report["summary"]["test_tags"], {"variable_test": 1})
+        self.assertEqual(report["summary"]["authored_test_attributes"], {
+            "check": 1, "check_existence": 1, "var_check": 1})
+        definition = report["definitions"][0]
+        test = report["tests"][0]
+        self.assertEqual(definition["source_id"], "oval:test:def:1")
+        self.assertEqual(test["source_id"], "oval:test:tst:1")
+        self.assertEqual(len(definition["source_file_sha256"]), 64)
+        self.assertEqual(len(test["source_element_sha256"]), 64)
+        self.assertEqual(report["qualification"]["expected_outcomes"], "not_inferred")
+
     def test_published_oval_deprecation_receipt_is_pinned(self):
         receipt = json.loads((ROOT / "docs/evidence/issue83/oval-schema-deprecation-summary.json").read_text())
         self.assertEqual(receipt["source"]["commit"],
