@@ -73,6 +73,41 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
                 self.assertRegex(source["baseline_sha256"], HEX64)
                 self.assertRegex(source["candidate_sha256"], HEX64)
 
+    def test_windows_pr11_preserves_downward_traversal_schema_hold(self):
+        receipt = self.load("windows-registry-group-deprecated-followup.json")
+        source = receipt["source"]
+        candidate = receipt["conversion"]["candidate"]
+        self.assertEqual(len(source["retained_tests"]), 5)
+        self.assertEqual(source["definition_version_transition"], {"baseline": "1", "candidate": "2"})
+        self.assertEqual(source["removed_objects"], [
+            "oval:org.mitre.oval.test:obj:305",
+            "oval:org.mitre.oval.test:obj:1080",
+        ])
+        self.assertEqual(source["removed_states"], [
+            "oval:org.mitre.oval.test:ste:1091",
+            "oval:org.mitre.oval.test:ste:1153",
+        ])
+        self.assertEqual(
+            {row["test_id"] for row in source["retained_tests"]},
+            {
+                "oval:org.mitre.oval.test:tst:664",
+                "oval:org.mitre.oval.test:tst:1289",
+                "oval:org.mitre.oval.test:tst:525",
+                "oval:org.mitre.oval.test:tst:1006",
+                "oval:org.mitre.oval.test:tst:680",
+            },
+        )
+        for row in source["retained_tests"]:
+            self.assertRegex(row["object_source_xml_sha256"], HEX64)
+            self.assertRegex(row["test_source_xml_sha256"], HEX64)
+        self.assertEqual(candidate["schema_evidence"]["schema_object_pointer"],
+                         "native-selector.schema.json#/$defs/windows_regkeyeffectiverights_object/oneOf/1")
+        self.assertNotIn("traversal", candidate["schema_evidence"]["schema_allowed_properties"])
+        self.assertEqual(candidate["schema_evidence"]["canonical_gap"],
+                         "valid downward OVAL recursion is described by the mapping but is not representable by the pinned native object schema")
+        self.assertFalse(candidate["runtime_execution"])
+        self.assertFalse(candidate["independent_oval_equivalence"])
+
     def test_solaris_pr15_receipt_preserves_deprecated_removals(self):
         receipt = self.load("solaris-followup.json")
         correction = receipt["source_correction"]

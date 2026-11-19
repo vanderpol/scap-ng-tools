@@ -1,51 +1,159 @@
 {
+  "conversion": {
+    "baseline": {
+      "classification": "deprecated_source_construct",
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "status": "blocked"
+    },
+    "candidate": {
+      "classification": "canonical_traversal_schema_hold",
+      "diagnostic": "generated authoring failed flat JSON Schema for traversal max_depth Tests tst:1006 and tst:680",
+      "independent_oval_equivalence": false,
+      "runtime_execution": false,
+      "schema_evidence": {
+        "attempted_native_objects": [
+          {
+            "candidate": {
+              "capability": "windows.regkeyeffectiverights",
+              "hive": {
+                "equals": "local_machine"
+              },
+              "key": {
+                "equals": "SOFTWARE\\Microsoft\\Windows NT"
+              },
+              "traversal": {
+                "max_depth": 1
+              },
+              "trustee_sid": {
+                "equals": "S-1-5-32-544"
+              }
+            },
+            "source_object_id": "oval:org.mitre.oval.test:obj:284",
+            "source_test_id": "oval:org.mitre.oval.test:tst:1006"
+          },
+          {
+            "candidate": {
+              "capability": "windows.regkeyeffectiverights",
+              "hive": {
+                "equals": "local_machine"
+              },
+              "key": {
+                "equals": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon"
+              },
+              "traversal": {
+                "max_depth": "unlimited"
+              },
+              "trustee_sid": {
+                "equals": "S-1-5-32-544"
+              }
+            },
+            "source_object_id": "oval:org.mitre.oval.test:obj:785",
+            "source_test_id": "oval:org.mitre.oval.test:tst:680"
+          }
+        ],
+        "canonical_gap": "valid downward OVAL recursion is described by the mapping but is not representable by the pinned native object schema",
+        "capability": "windows.regkeyeffectiverights",
+        "mapping_claim": "traversal present with max_depth",
+        "mapping_file": "capability-mappings/supported/windows.regkeyeffectiverights.json",
+        "mapping_pointer": "/migration_crosswalk/behaviors/recurse_direction.down",
+        "schema_allowed_properties": [
+          "capability",
+          "filters",
+          "set",
+          "hive",
+          "key",
+          "trustee_sid"
+        ],
+        "schema_object_pointer": "native-selector.schema.json#/$defs/windows_regkeyeffectiverights_object/oneOf/1",
+        "schema_rejection": "traversal is absent from the capability-specific object properties and additionalProperties=false rejects the attempted field",
+        "schema_traversal_definition": "capability-common.schema.json#/$defs/hierarchy_traversal"
+      },
+      "source_deprecation_hold_resolved": true,
+      "status": "blocked"
+    }
+  },
   "format": "scap-ng-tools/issue83/windows-registry-group-deprecated-followup/1",
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "tools_commit": "17e9d07944acb58f7ecb146471a301514df8fc97"
+  },
+  "related": {
+    "converter_pr": "https://github.com/vanderpol/scap-ng-tools/pull/84",
+    "source_pr": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/11"
+  },
   "source": {
-    "repository": "OVAL-Community/SCAP-Self-Assertion",
     "baseline_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
-    "candidate_commit": "088b6e9083eca68c45196bd3c8eb7f1ba5d6c263",
-    "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
     "baseline_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+    "candidate_commit": "088b6e9083eca68c45196bd3c8eb7f1ba5d6c263",
     "candidate_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
     "definition_id": "oval:org.mitre.oval.test:def:729",
-    "removed_tests": [
-      "oval:org.mitre.oval.test:tst:1474",
-      "oval:org.mitre.oval.test:tst:1141"
-    ],
+    "definition_version_transition": {
+      "baseline": "1",
+      "candidate": "2"
+    },
+    "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
     "removed_behaviors": [
       "include_group",
       "resolve_group"
     ],
+    "removed_objects": [
+      "oval:org.mitre.oval.test:obj:305",
+      "oval:org.mitre.oval.test:obj:1080"
+    ],
+    "removed_states": [
+      "oval:org.mitre.oval.test:ste:1091",
+      "oval:org.mitre.oval.test:ste:1153"
+    ],
+    "removed_tests": [
+      "oval:org.mitre.oval.test:tst:1474",
+      "oval:org.mitre.oval.test:tst:1141"
+    ],
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "retained_source_test_count": 5,
+    "retained_tests": [
+      {
+        "behavior": "none",
+        "object_id": "oval:org.mitre.oval.test:obj:1022",
+        "object_source_xml_sha256": "3bf31cbc14c4fc4146265b410fcad3fdfe6116a0e5b574fbd2705ca873813f4e",
+        "test_id": "oval:org.mitre.oval.test:tst:664",
+        "test_source_xml_sha256": "ed848f43117e391f9b8c450585359195323b9c72c8527ed352619cbafb90944b"
+      },
+      {
+        "behavior": "none",
+        "object_id": "oval:org.mitre.oval.test:obj:151",
+        "object_source_xml_sha256": "4c2fb88893711c25be9607849025d3ccec47fee554dfaa28cfa40d68d6241add",
+        "test_id": "oval:org.mitre.oval.test:tst:1289",
+        "test_source_xml_sha256": "63f98fad46ca2c678848363c747055901707390686e718e068209f4ed8ec7e6c"
+      },
+      {
+        "behavior": "none",
+        "object_id": "oval:org.mitre.oval.test:obj:98",
+        "object_source_xml_sha256": "5829835f4aa4a629975cca8437d34ccc81fef176ca58b9fb4f2b49b95e985473",
+        "test_id": "oval:org.mitre.oval.test:tst:525",
+        "test_source_xml_sha256": "b83bd632e70b8f961c682d9aa42ea961ce056f6e223433f043b1e263be240acf"
+      },
+      {
+        "behavior": "downward max_depth=1",
+        "object_id": "oval:org.mitre.oval.test:obj:284",
+        "object_source_xml_sha256": "c0a66608dfc998e91586eb5607e31189ede24be7384bcabb0ef045c446b44ec1",
+        "test_id": "oval:org.mitre.oval.test:tst:1006",
+        "test_source_xml_sha256": "6bc7684d5914e9baf675b68f872f8e658b7eb9f7900917f997d66af31e91db3b"
+      },
+      {
+        "behavior": "downward max_depth=-1 (unlimited)",
+        "object_id": "oval:org.mitre.oval.test:obj:785",
+        "object_source_xml_sha256": "83a68e99cb699edf30ffcb3da149ff222743d66bae61b3629ea2acffb1c31863",
+        "test_id": "oval:org.mitre.oval.test:tst:680",
+        "test_source_xml_sha256": "e902921ec7b9d857c21695376cde6fa3580089e34881054e283f69b111ccc107"
+      }
+    ],
     "source_commit_blob_verified": true
   },
   "source_schema_evidence": {
-    "schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
     "include_group_deprecated_since": "5.10",
+    "replacement": "SID objects/Variables; no direct canonical substitution",
     "resolve_group_deprecated_since": "5.6",
-    "replacement": "SID objects/Variables; no direct canonical substitution"
-  },
-  "pins": {
-    "tools_commit": "17e9d07944acb58f7ecb146471a301514df8fc97",
-    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
-    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f"
-  },
-  "conversion": {
-    "baseline": {
-      "status": "blocked",
-      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
-      "classification": "deprecated_source_construct"
-    },
-    "candidate": {
-      "status": "blocked",
-      "diagnostic": "generated authoring failed flat JSON Schema for traversal max_depth Tests tst:1006 and tst:680",
-      "classification": "canonical_traversal_schema_hold",
-      "source_deprecation_hold_resolved": true,
-      "runtime_execution": false,
-      "independent_oval_equivalence": false
-    }
-  },
-  "related": {
-    "source_pr": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/11",
-    "converter_pr": "https://github.com/vanderpol/scap-ng-tools/pull/84"
+    "schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706"
   }
 }
