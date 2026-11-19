@@ -46,6 +46,22 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_agnostic_external_float_pr14_preserves_input_hold(self):
+        receipt = self.load("agnostic-external-float-pr14-focused-qualification.json")
+        source = receipt["source"]
+        conversion = receipt["conversion"]
+        self.assertEqual(source["pull_request"], 14)
+        self.assertEqual(source["definition_id"], "oval:org.mitre.oval.test:def:562")
+        self.assertEqual(source["affected_test_id"], "oval:org.mitre.oval.test:tst:936")
+        self.assertTrue(source["source_commit_blob_verified"])
+        self.assertRegex(source["base_archive_sha256"], HEX64)
+        self.assertRegex(source["corrected_archive_sha256"], HEX64)
+        self.assertEqual(conversion["base_status"], "blocked")
+        self.assertEqual(conversion["corrected_status"], "blocked")
+        self.assertEqual(conversion["base_diagnostic"], conversion["corrected_diagnostic"])
+        self.assertEqual(conversion["schema_validated"], False)
+        self.assertIn("does not resolve", conversion["semantic_transition"])
+
     def test_macos_environmentvariable_pr6_receipt_records_type_recovery(self):
         receipt = self.load("macos-environmentvariable-pr6-focused-qualification.json")
         source = receipt["source"]
