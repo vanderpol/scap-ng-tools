@@ -317,20 +317,18 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 definitions = graph["definitions"]
                 definition_features = graph["definition_features"]
                 for definition_id, refs in definitions.items():
-                    # AIX is explicitly outside the owner's automatic target.
-                    # Keep every source row and its immutable path/hash in the
-                    # ledger; never turn an owner exclusion into a converter
-                    # blocker or silently omit its Test graph.
-                    owner_excluded = family == "aix"
+                    # Every pinned OVAL platform family is an authoring target.
+                    # Runtime qualification remains separate, but a platform must
+                    # not be hidden as an owner exclusion when the canonical pack
+                    # already has a capability mapping. Unsupported or schema-held
+                    # AIX content must be reported through the ordinary blocker
+                    # ledger with its exact source diagnostic.
                     artifact_dir = temp / "definitions" / slug(str(source_path)) / slug(definition_id)
-                    command = process = files = None
-                    success = False
-                    if not owner_excluded:
-                        command, process, files, success = run_one(
-                            python=python, schema_root=schema_root, source=source_text_path,
-                            source_sha=source_sha, source_commit=source_commit,
-                            source_path=str(provenance_path), definition=definition_id,
-                            out=artifact_dir)
+                    command, process, files, success = run_one(
+                        python=python, schema_root=schema_root, source=source_text_path,
+                        source_sha=source_sha, source_commit=source_commit,
+                        source_path=str(provenance_path), definition=definition_id,
+                        out=artifact_dir)
                     recorded_command = (public_command(
                         command, schema_root=schema_root, source=source_text_path,
                         output=artifact_dir) if command else None)
@@ -342,17 +340,15 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "source_test_count": len(refs),
                         "feature_categories": definition_features.get(definition_id, []),
                         "converter_command": recorded_command,
-                        "converter_returncode": None if owner_excluded else process.returncode,
-                        "conversion_status": ("intentionally_excluded" if owner_excluded else
-                                               "CONVERTED_UNVERIFIED" if success else "blocked"),
-                        "scope_classification": "excluded_by_owner:aix" if owner_excluded else "in_scope",
-                        "owner_decision": "issue-56:aix-excluded" if owner_excluded else None,
+                        "converter_returncode": process.returncode,
+                        "conversion_status": "CONVERTED_UNVERIFIED" if success else "blocked",
+                        "scope_classification": "in_scope",
+                        "owner_decision": None,
                         "schema_validated": False,
                         "independent_semantic_proof": False,
                         "scanner_execution": False,
-                        "failure_class": "owner_exclusion" if owner_excluded else (None if success else classify_failure(process.stderr, process.stdout)),
-                        "diagnostic": ("AIX is excluded by owner from the automatic-conversion target" if owner_excluded
-                                       else None if success else (process.stderr.strip() or process.stdout.strip())),
+                        "failure_class": None if success else classify_failure(process.stderr, process.stdout),
+                        "diagnostic": None if success else (process.stderr.strip() or process.stdout.strip()),
                         "artifacts": None,
                     }
                     trace = None
@@ -398,27 +394,11 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     bindings = [result["native_bindings"].get(test_id)
                                 for result in owner_results]
                     native_ids = sorted({value for value in bindings if value})
-                    is_aix = str(provenance_path).startswith(str(CORPUS_ROOT / "aix"))
-                    if is_aix:
-                        # Every AIX Test row is governed by the same explicit
-                        # owner exclusion, including helper Tests with no
-                        # Definition owner. Never silently downgrade one to a
-                        # generic converter blocker.
-                        status = "intentionally_excluded"
-                        schema_validated = False
-                        failure_class = "owner_exclusion"
-                        diagnostic = "AIX is excluded by owner from the automatic-conversion target"
-                    elif native_ids:
+                    if native_ids:
                         status = "CONVERTED_UNVERIFIED"
                         schema_validated = True
                         failure_class = None
                         diagnostic = None
-                    elif owner_ids and all(result["status"] == "intentionally_excluded"
-                                           for result in owner_results):
-                        status = "intentionally_excluded"
-                        schema_validated = False
-                        failure_class = "owner_exclusion"
-                        diagnostic = "AIX is excluded by owner from the automatic-conversion target"
                     elif owner_ids:
                         status = "blocked"
                         schema_validated = False
@@ -452,8 +432,8 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "test_id": test_id,
                         "feature_categories": test_features.get(test_id, []),
                         "conversion_status": status,
-                        "scope_classification": "excluded_by_owner:aix" if status == "intentionally_excluded" else "in_scope",
-                        "owner_decision": "issue-56:aix-excluded" if status == "intentionally_excluded" else None,
+                        "scope_classification": "in_scope",
+                        "owner_decision": None,
                         "schema_validated": schema_validated,
                         "native_test_ids": native_ids,
                         "execution": "not_run",
@@ -507,8 +487,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "execution": "not_run",
             "expected_outcomes_derived": False,
             "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
-            "owner_exclusions": {"aix": sum(row.get("scope_classification") == "excluded_by_owner:aix"
-                                             for row in definition_rows)},
+            "owner_exclusions": {},
             "test_ledger_reconciliation": {
                 "source_universe": "all XML Tests, including helper/unowned Tests",
                 "complete": True,
@@ -549,9 +528,9 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "The complete ledgers preserve every source Definition and Test; blocked "
             "entries retain the exact converter diagnostic.\n\n"
             f"- Definitions: {len(definition_rows)} ({len(converted_rows)} converted, "
-            f"{blocked_definition_count} blocked, {excluded_definition_count} owner-excluded)\n"
+            f"{blocked_definition_count} blocked, {excluded_definition_count} excluded)\n"
             f"- Tests: {len(test_rows)} ({converted_test_count} converted, "
-            f"{len(blocked_tests)} blocked, {excluded_test_count} owner-excluded)\n"
+            f"{len(blocked_tests)} blocked, {excluded_test_count} excluded)\n"
             "- Generated native documents are schema-valid and remain `CONVERTED_UNVERIFIED`.\n"
             "- No expected outcomes, collected Items, or execution results are derived.\n"
             "- See `source-mappings.json`, `feature-inventory.json`, `definitions.json`, `tests.jsonl`, and the blocked ledgers.\n"
@@ -575,8 +554,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "feature_inventory": feature_inventory,
             "source_inventory": {
                 "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
-                "owner_exclusions": {"aix": sum(row.get("scope_classification") == "excluded_by_owner:aix"
-                                                 for row in definition_rows)},
+                "owner_exclusions": {},
                 "test_ledger_reconciliation": {
                     "source_universe": "all XML Tests, including helper/unowned Tests",
                     "complete": True,
