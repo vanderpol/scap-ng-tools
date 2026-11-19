@@ -71,6 +71,12 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(fields['VulnDiscussion'], 'before')
         self.assertEqual(fields['Documentable'], 'false')
 
+    def test_disa_diagnostic_classifies_malformed_publisher_xml_without_body(self):
+        diagnostic = crosswalk.diagnose_disa_description(
+            '<VulnDiscussion>literal <tag></VulnDiscussion>')
+        self.assertEqual(diagnostic['category'], 'source_malformed_publisher_xml')
+        self.assertRegex(diagnostic['error'], r'line \d+, column \d+')
+
     def test_malformed_or_non_publisher_description_is_not_promoted(self):
         element = ET.fromstring(f'<description xmlns="{crosswalk.XCCDF}">ordinary text</description>')
         fields, raw = crosswalk.parse_disa_description(element)

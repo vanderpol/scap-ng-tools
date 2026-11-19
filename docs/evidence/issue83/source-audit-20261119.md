@@ -4,10 +4,10 @@ This compact receipt is derived from an external full source crosswalk. It is a 
 
 - Source archives/Rules: **65 / 8892**
 - Source archive-set SHA-256: `6e04353f3b1ef32b31a6ef022f75cd7c68486dadb017bd18aa9108c3864ed1ca`
-- Full crosswalk SHA-256: `3b5ddd4fd95cb0e5e2228bd0b7fced88d761cf1023f0668394f2dc2f34925f5b` (109067599 bytes)
+- Full crosswalk SHA-256: `b5d77454128f3950b861bfc90dcd52451dd0640f0daca896533bbacea9b57d74` (109088039 bytes)
 - OVAL schema: `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`
 - Canonical 0.4.1: `5ee55288b369da26f308f40813e545b78dff2753`; schema family `88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f`
-- Converter audit head: `696b7a5`
+- Converter audit head: `a210935`
 
 ## Reproduction
 
@@ -38,6 +38,7 @@ python3 scripts/build_issue83_audit_receipt.py \
 - Group relationships: **0** (requires 0, conflicts 0)
 - Standard metadata elements: `{"fix": 8892, "fixtext": 8892, "ident": 21661, "reference": 8892}`
 - DISA extended fields are present on `8867` Rules; only `VulnDiscussion` text is currently retained in the native Rule mapping.
+- Publisher-looking malformed descriptions: **25**, classified as `{"source_malformed_publisher_xml": 25}`; source IDs/hashes and parse locations are retained in JSON without source bodies.
 
 ## OVAL schema inventory
 

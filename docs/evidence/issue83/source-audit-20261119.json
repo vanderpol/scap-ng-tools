@@ -451,9 +451,9 @@
   "format": "scap-ng-tools/issue83-compact-audit/1",
   "generated_by": {
     "script": "scripts/build_issue83_audit_receipt.py",
-    "script_sha256": "a0930d12ed20935b546ea6c57f70491454e4a50c3be16567e147292790a26056",
+    "script_sha256": "ba62a273397ad754208c7a0ae63d76ac53c82ce7654051169571a6d423bb50f4",
     "source_crosswalk_script": "scripts/build_issue83_source_crosswalk.py",
-    "source_crosswalk_script_sha256": "0f3f7148981d9f80e0204107eb4aa694cdc425bbd14a6915ea48572dfadcce0d"
+    "source_crosswalk_script_sha256": "f54bf0c59c02306cef4fb96672308a9faf4fa3883e965d371cd1b576be4555e2"
   },
   "oval_schema_inventory": {
     "canonical_mapping_rows": 391,
@@ -498,7 +498,7 @@
   "pins": {
     "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
     "canonical_schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
-    "converter_commit": "696b7a5",
+    "converter_commit": "a210935",
     "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
     "oval_schema_commit_verified": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706"
   },
@@ -585,8 +585,8 @@
     "archive_count": 65,
     "archive_set_sha256": "6e04353f3b1ef32b31a6ef022f75cd7c68486dadb017bd18aa9108c3864ed1ca",
     "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
-    "full_crosswalk_bytes": 109067599,
-    "full_crosswalk_sha256": "3b5ddd4fd95cb0e5e2228bd0b7fced88d761cf1023f0668394f2dc2f34925f5b",
+    "full_crosswalk_bytes": 109088039,
+    "full_crosswalk_sha256": "b5d77454128f3950b861bfc90dcd52451dd0640f0daca896533bbacea9b57d74",
     "repository": "vanderpol/scap-content-library",
     "source_rule_count": 8892,
     "xccdf_schema": {
@@ -619,6 +619,161 @@
     "group_conflicts_rows": 0,
     "group_requires_rows": 0,
     "groups_with_requires_or_conflicts": 0,
+    "malformed_publisher_payload_categories": {
+      "source_malformed_publisher_xml": 25
+    },
+    "malformed_publisher_payload_diagnostics": [
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 7, column 13",
+        "source_rule": "xccdf_gov.nist_rule_SV-257214r958478_rule",
+        "source_rule_sha256": "b034d289254f14d90d63dd205e4a568d1bf5c84fbbd1d0492f906db98e4e48c0"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 7, column 12",
+        "source_rule": "xccdf_gov.nist_rule_SV-257215r958478_rule",
+        "source_rule_sha256": "ee8835f9fb55d24336a73dae12e01ff8898f36b0aad93f29b26a03ac22a0b659"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 10, column 34",
+        "source_rule": "xccdf_gov.nist_rule_SV-259519r1117265_rule",
+        "source_rule_sha256": "94904f9795a868ef490ac4b9cc2e669e0cafb872d6bc62c418416e6bc4de795a"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 10, column 34",
+        "source_rule": "xccdf_gov.nist_rule_SV-268518r1137691_rule",
+        "source_rule_sha256": "311bba1fc3f7e0bb2aa19a0a64a91f320442cd67c89de3eba2a576910398d680"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 23, column 271",
+        "source_rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
+        "source_rule_sha256": "48a2a0aa4c6614f012f0f43e114c05a07b8faad1c685895c1c4f3f0aab063f4b"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 13, column 42",
+        "source_rule": "xccdf_mil.disa.fso_rule_SV-225233r1117179_rule",
+        "source_rule_sha256": "a3bc96bf0c69e2e7273f2668ba89055194fcdc6b04a353dd19d821af0638d80a"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 1, column 107",
+        "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-216679r531086_rule",
+        "source_rule_sha256": "d9c4f10d99baf48a7a9031c4399d79d856efc511ef00659ec8012025d6d7a1bd"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 5, column 20",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-223291r961128_rule",
+        "source_rule_sha256": "0c119464083226e7ea95c39f34421eccf18ff962cecfd03822d4ffbcdb1b4f7a"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 5, column 20",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-223292r961128_rule",
+        "source_rule_sha256": "69c31bdcfc9e5d9032f118c7142adc24f570fcf2670e4996ffca289d43487cc3"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-230225r1184236_rule",
+        "source_rule_sha256": "165d29d2b485e3e1423c94fab8dd8a75c03a7e4094b6357ff153896244f1bc8c"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 10, column 109",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-230552r1101902_rule",
+        "source_rule_sha256": "888a2d8fb972aeb58b3892f008e2bc9794fbe0cd93e640bdd4a90fad60d9d119"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-238197r958390_rule",
+        "source_rule_sha256": "0f5764a82f2a39c8bd75a9b0586cccd85c326e3d1c1270eafd1f1c12d04688a0"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-238198r958390_rule",
+        "source_rule_sha256": "0d4ddc1bf65b05699bb823962fd7c55d4f1fae667bdb8e8a723cc1de055ec49b"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-238214r958586_rule",
+        "source_rule_sha256": "aa31528458b346d26a6209e07681d4308cc27bccb0bc4eba04463994e98fbdbb"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-248526r958390_rule",
+        "source_rule_sha256": "5341ee494e77c4cf9eb676e63aa8511d2203d36e73cea1cc2cc5e80f2b8fe4da"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 10, column 63",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-258134r1155620_rule",
+        "source_rule_sha256": "99ad205eac15f46a97671527d1d6bb673b76be179f851b23f041b349e1a26f68"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 10, column 41",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-273999r1155171_rule",
+        "source_rule_sha256": "62f56bcadb6aa3638db4715879c1b3be343970816871d97298d2c0ed4851119a"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-274065r1184021_rule",
+        "source_rule_sha256": "a273bdab06e0a15de5b5d7828a3512fe811da81666fd761d2108c2e2a054ccf5"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-274066r1120186_rule",
+        "source_rule_sha256": "704e3bb8cfc2882fe0bf26dc39e7344c273211659f8b508b7316300200aa58d6"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 3, column 193",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222930r960765_rule",
+        "source_rule_sha256": "7b7c923cceffca2c2d637aefa7d4aff28e1f4dd4b90cc15c08597e326444b8f7"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 3, column 116",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222932r1137578_rule",
+        "source_rule_sha256": "b5a46147e99712215e7ed54317cfa62465fb950d421e0c0fff7ff7269ba8dc7d"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 3, column 116",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222933r1137578_rule",
+        "source_rule_sha256": "cd30467d452c1a3a80e236a7bf3ff716917b32bfca7e34d345a67ad1248013cc"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 5, column 376",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222974r961122_rule",
+        "source_rule_sha256": "626e57e8bcab2b706f9f6c34674d5eeba6a7ae4f0c40e17a386f690b80232edf"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "mismatched tag: line 5, column 115",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222997r1016518_rule",
+        "source_rule_sha256": "c89775e549cc72c016a2e567cee57c81244f1b8a3627c8fd46f5f883abed53da"
+      },
+      {
+        "category": "source_malformed_publisher_xml",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278384r1171904_rule",
+        "source_rule_sha256": "b77bc6998ea54a26572db636b58765754db91e3fd5b5b2f935a4565e903873cf"
+      }
+    ],
     "malformed_publisher_payload_rule_count": 25,
     "metadata_element_counts": {
       "fix": 8892,

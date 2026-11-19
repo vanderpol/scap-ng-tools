@@ -161,6 +161,10 @@ def build(crosswalk_path: Path, candidate_path: Path | None, *,
         "disa_description_rule_field_counts": summary["disa_description_rule_field_counts"],
         "disa_description_nonempty_rule_field_counts": summary["disa_description_nonempty_rule_field_counts"],
         "malformed_publisher_payload_rule_count": len(summary["malformed_publisher_payload_rules"]),
+        "malformed_publisher_payload_categories": summary.get(
+            "malformed_publisher_payload_categories", {}),
+        "malformed_publisher_payload_diagnostics": summary.get(
+            "malformed_publisher_payload_diagnostics", []),
         "native_disposition": {
             "discussion": "source description text is retained by source_description_text",
             "identifiers_references_remediation": "converter emits no populated native fields in this increment",
@@ -347,6 +351,7 @@ def markdown(receipt: dict[str, Any]) -> str:
         f"- Group relationships: **{xccdf['groups_with_requires_or_conflicts']}** (requires {xccdf['group_requires_rows']}, conflicts {xccdf['group_conflicts_rows']})",
         f"- Standard metadata elements: `{json.dumps(xccdf['metadata_element_counts'], sort_keys=True)}`",
         f"- DISA extended fields are present on `{xccdf['disa_description_rule_field_counts'].get('VulnDiscussion', 0)}` Rules; only `VulnDiscussion` text is currently retained in the native Rule mapping.",
+        f"- Publisher-looking malformed descriptions: **{xccdf['malformed_publisher_payload_rule_count']}**, classified as `{json.dumps(xccdf['malformed_publisher_payload_categories'], sort_keys=True)}`; source IDs/hashes and parse locations are retained in JSON without source bodies.",
         "",
         "## OVAL schema inventory",
         "",

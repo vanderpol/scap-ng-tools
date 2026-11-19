@@ -102,6 +102,17 @@ def parse_disa_description(description: ET.Element | None) -> tuple[dict[str, st
     return fields, text
 
 
+def diagnose_disa_description(raw_text: str) -> dict[str, str]:
+    """Classify publisher-looking description text without exposing its body."""
+    try:
+        root = ET.fromstring(f"<disa-wrapper>{html.unescape(raw_text)}</disa-wrapper>")
+    except ET.ParseError as error:
+        return {"category": "source_malformed_publisher_xml", "error": str(error)}
+    if not any(child.tag in DISA_FIELDS for child in root):
+        return {"category": "unrecognized_publisher_payload", "error": "no recognized DISA field element"}
+    return {"category": "recognized_publisher_payload", "error": ""}
+
+
 def find_benchmark(raw_xml: bytes) -> ET.Element:
     root = ET.fromstring(raw_xml)
     if root.tag != f"{{{DS}}}data-stream-collection":
@@ -134,6 +145,7 @@ def archive_record(path: Path) -> dict:
     field_counts = Counter()
     field_nonempty = Counter()
     malformed_descriptions = []
+    malformed_diagnostics = []
     xccdf_metadata_rule_counts = Counter()
     xccdf_metadata_element_counts = Counter()
     for rule in benchmark.iter(f"{{{XCCDF}}}Rule"):
@@ -163,6 +175,12 @@ def archive_record(path: Path) -> dict:
             # malformed publisher-looking payloads as a diagnostic.
             if raw_description.lstrip().startswith("<"):
                 malformed_descriptions.append(source_id)
+                diagnostic = diagnose_disa_description(raw_description)
+                malformed_diagnostics.append({
+                    "source_rule": source_id,
+                    "source_rule_sha256": identity_digest(rule),
+                    **diagnostic,
+                })
         requires_elements = rule.findall(f"{{{XCCDF}}}requires")
         conflicts_elements = rule.findall(f"{{{XCCDF}}}conflicts")
         requires_raw = [element.get("idref", "") for element in requires_elements]
@@ -250,6 +268,8 @@ def archive_record(path: Path) -> dict:
             "rule_field_counts": dict(sorted(field_counts.items())),
             "nonempty_rule_field_counts": dict(sorted(field_nonempty.items())),
             "malformed_publisher_payload_rules": sorted(malformed_descriptions),
+            "malformed_publisher_payload_diagnostics": sorted(
+                malformed_diagnostics, key=lambda row: row["source_rule"]),
         },
         "xccdf_metadata": {
             "field_names": list(XCCDF_RULE_METADATA_FIELDS),
@@ -1406,12 +1426,14 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
     xccdf_metadata_counts = Counter()
     xccdf_metadata_elements = Counter()
     malformed = []
+    malformed_diagnostics = []
     for record in records:
         field_counts.update(record["disa_description"]["rule_field_counts"])
         nonempty.update(record["disa_description"]["nonempty_rule_field_counts"])
         xccdf_metadata_counts.update(record["xccdf_metadata"]["rule_field_counts"])
         xccdf_metadata_elements.update(record["xccdf_metadata"]["element_counts"])
         malformed.extend(record["disa_description"]["malformed_publisher_payload_rules"])
+        malformed_diagnostics.extend(record["disa_description"]["malformed_publisher_payload_diagnostics"])
     result = {
         "format": "scap-ng-tools/issue83-source-crosswalk/1",
         "source": {
@@ -1443,6 +1465,10 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
             "xccdf_metadata_rule_field_counts": dict(sorted(xccdf_metadata_counts.items())),
             "xccdf_metadata_element_counts": dict(sorted(xccdf_metadata_elements.items())),
             "malformed_publisher_payload_rules": sorted(malformed),
+            "malformed_publisher_payload_diagnostics": sorted(
+                malformed_diagnostics, key=lambda row: row["source_rule"]),
+            "malformed_publisher_payload_categories": dict(sorted(
+                Counter(row["category"] for row in malformed_diagnostics).items())),
         },
         "relationships": relations,
         "group_relationships": group_relations,
