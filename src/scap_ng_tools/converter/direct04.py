@@ -46,6 +46,8 @@ def load_runtime():
     # result-type adaptation is installed in memory at this boundary.
     from .native041_variable_result_type import install
     install(engine)
+    from .native041_registry_traversal import install as install_registry_traversal
+    install_registry_traversal()
     return engine
 
 
