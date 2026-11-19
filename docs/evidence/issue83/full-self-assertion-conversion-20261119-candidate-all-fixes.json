@@ -1,0 +1,431 @@
+{
+  "artifacts": {
+    "blocked-definitions.json": {
+      "bytes": 13820,
+      "sha256": "a61ddcd00c974afde78d597a457797a092557e1df5b04a9db17a6e06847675dd"
+    },
+    "blocked-tests.jsonl": {
+      "bytes": 108739,
+      "sha256": "9108af9f7acdc6a4e8982401f098b584abf1a37440fe1779b3107595ac2a7fa8"
+    },
+    "blocked.json": {
+      "bytes": 137470,
+      "sha256": "7e787355f6866a5db119fcb8a3c5616e41b5a33f1c3bb79fe0a46648ca1fe6a9"
+    },
+    "definitions.json": {
+      "bytes": 357750,
+      "sha256": "ba0c8eec611e1c099852e65baa6f11be024719b105188f4ba26031aeb8e7c22c"
+    },
+    "manifest.json": {
+      "bytes": 164032,
+      "sha256": "543c5a28fc6e47ce7d3a3f8e6fbb2bf401d6513df0ecea7a871e37ad57d78ecc"
+    },
+    "source-mappings.json": {
+      "bytes": 157815,
+      "sha256": "905967d0d51e0cb78991f4d69e1b4261022d9c450552196efd3b1d38ad257830"
+    },
+    "tests.jsonl": {
+      "bytes": 796356,
+      "sha256": "04f30d757a07cf8ec6cb8d2ce58aab82e77b31b3cdf09266fed54d378dd0267d"
+    },
+    "validation.json": {
+      "bytes": 735,
+      "sha256": "4022aa91f0350c3b319455f755dfe468598e0b52349c78694d3b141bda3186b2"
+    }
+  },
+  "blocked_by_source": {
+    "definitions": [
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#junos}xml_config_test",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.joval.junos.test:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml",
+        "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:org.mitre.oval.test:def:729"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf"
+      }
+    ],
+    "tests": [
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "ids": [
+          "oval:org.mitre.oval.test:tst:126",
+          "oval:org.mitre.oval.test:tst:132",
+          "oval:org.mitre.oval.test:tst:154",
+          "oval:org.mitre.oval.test:tst:170",
+          "oval:org.mitre.oval.test:tst:275",
+          "oval:org.mitre.oval.test:tst:34",
+          "oval:org.mitre.oval.test:tst:350",
+          "oval:org.mitre.oval.test:tst:38",
+          "oval:org.mitre.oval.test:tst:439",
+          "oval:org.mitre.oval.test:tst:487",
+          "oval:org.mitre.oval.test:tst:509",
+          "oval:org.mitre.oval.test:tst:608",
+          "oval:org.mitre.oval.test:tst:64",
+          "oval:org.mitre.oval.test:tst:71",
+          "oval:org.mitre.oval.test:tst:851",
+          "oval:org.mitre.oval.test:tst:936",
+          "oval:org.mitre.oval.test:tst:943",
+          "oval:org.mitre.oval.test:tst:983"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#junos}xml_config_test",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.joval.junos.test:tst:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml",
+        "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3000",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3010",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4000",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4010",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4020",
+          "oval:org.mitre.oval.test:tst:1000",
+          "oval:org.mitre.oval.test:tst:1010",
+          "oval:org.mitre.oval.test:tst:1020",
+          "oval:org.mitre.oval.test:tst:1030",
+          "oval:org.mitre.oval.test:tst:1040",
+          "oval:org.mitre.oval.test:tst:1080",
+          "oval:org.mitre.oval.test:tst:1090",
+          "oval:org.mitre.oval.test:tst:1100",
+          "oval:org.mitre.oval.test:tst:1110",
+          "oval:org.mitre.oval.test:tst:5020"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:org.mitre.oval.test:tst:1006",
+          "oval:org.mitre.oval.test:tst:1289",
+          "oval:org.mitre.oval.test:tst:525",
+          "oval:org.mitre.oval.test:tst:664",
+          "oval:org.mitre.oval.test:tst:680"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf"
+      }
+    ]
+  },
+  "canonical_schema": {
+    "commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "version": "0.4.1"
+  },
+  "command": "PYTHONPATH=src:. .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <candidate-source-overlay> --schema-root <canonical-schema>/schema --source-commit da25e94d3665bfc1bb93adab56965b0a8e46b677 --output <external-evidence> --python <tools>/.venv/bin/python",
+  "converter_commit": "40c8c9ca3c00dc546df60b186f040557c102eba4",
+  "families": {
+    "definitions": {
+      "agnostic": {
+        "failure_classes": {
+          "canonical_input_constraint_hold": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 46,
+          "blocked": 1
+        },
+        "total": 47
+      },
+      "aix": {
+        "failure_classes": {
+          "owner_exclusion": 2
+        },
+        "outcomes": {
+          "intentionally_excluded": 2
+        },
+        "total": 2
+      },
+      "asa": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 2
+        },
+        "total": 2
+      },
+      "ios": {
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 10,
+          "blocked": 1
+        },
+        "total": 11
+      },
+      "iosxe": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 11
+        },
+        "total": 11
+      },
+      "junos": {
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 1,
+          "blocked": 1
+        },
+        "total": 2
+      },
+      "linux": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 16
+        },
+        "total": 16
+      },
+      "macos": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 20
+        },
+        "total": 20
+      },
+      "panos": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 2
+        },
+        "total": 2
+      },
+      "solaris": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 4
+        },
+        "total": 4
+      },
+      "unix": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 13
+        },
+        "total": 13
+      },
+      "windows": {
+        "failure_classes": {
+          "schema_or_validation_failure": 3
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 33,
+          "blocked": 3
+        },
+        "total": 36
+      }
+    },
+    "tests": {
+      "agnostic": {
+        "failure_classes": {
+          "canonical_input_constraint_hold": 18
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 310,
+          "blocked": 18
+        },
+        "total": 328
+      },
+      "aix": {
+        "failure_classes": {
+          "owner_exclusion": 2
+        },
+        "outcomes": {
+          "intentionally_excluded": 2
+        },
+        "total": 2
+      },
+      "asa": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 2
+        },
+        "total": 2
+      },
+      "ios": {
+        "failure_classes": {
+          "unsupported": 4
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 12,
+          "blocked": 4
+        },
+        "total": 16
+      },
+      "iosxe": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 17
+        },
+        "total": 17
+      },
+      "junos": {
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 1,
+          "blocked": 1
+        },
+        "total": 2
+      },
+      "linux": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 62
+        },
+        "total": 62
+      },
+      "macos": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 43
+        },
+        "total": 43
+      },
+      "panos": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 2
+        },
+        "total": 2
+      },
+      "solaris": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 12
+        },
+        "total": 12
+      },
+      "unix": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 71
+        },
+        "total": 71
+      },
+      "windows": {
+        "failure_classes": {
+          "schema_or_validation_failure": 40
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 194,
+          "blocked": 40
+        },
+        "total": 234
+      }
+    }
+  },
+  "format": "scap-ng-tools/issue83/full-self-assertion-conversion/candidate/1",
+  "interpretation": {
+    "blocked": "63 remain: 18 agnostic canonical Input constraints, 40 Windows canonical schema/traversal, 4 iOS unsupported version55, 1 Junos unsupported xml_config",
+    "converted": "authoring/schema-valid only; runtime not executed",
+    "equivalence": "independent OVAL equivalence not proved",
+    "removed_source": "9 Solaris legacy Tests/2 Definitions, 2 deprecated Windows group Tests, 1 deprecated UNIX upward-recursion Test are absent from candidate denominator; absence is not conversion success"
+  },
+  "output_root": "/tmp/issue83-full-conversion-candidate-all-179511",
+  "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "qualification": "candidate overlay only; not merged source baseline",
+  "source": {
+    "applied_open_prs": "#5-#17 (source branches cherry-picked locally; no source PR merged)",
+    "base_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "candidate_commit": "da25e94d3665bfc1bb93adab56965b0a8e46b677",
+    "repository": "OVAL-Community/SCAP-Self-Assertion"
+  },
+  "summary": {
+    "blocked_definitions": 6,
+    "blocked_tests": 63,
+    "converted_definitions": 158,
+    "converted_tests": 726,
+    "definitions": 166,
+    "excluded_definitions": 2,
+    "excluded_tests": 2,
+    "execution": "not_run",
+    "schema_valid_yaml_documents": 158,
+    "test_ledger_reconciled": 791,
+    "tests": 791
+  }
+}

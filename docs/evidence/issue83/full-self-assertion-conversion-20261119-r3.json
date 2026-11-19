@@ -669,25 +669,25 @@
   "output_root": "/tmp/issue83-full-conversion-run3-179511",
   "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
   "projection_after_all_open_source_prs": {
-    "basis": "focused candidate conversions plus source-file accounting, not the run-3 baseline",
+    "basis": "candidate source overlay da25e94d3665bfc1bb93adab56965b0a8e46b677, all open PR heads #5-#17 cherry-picked locally",
     "definitions": {
-      "blocked_expected": 6,
-      "converted_expected": 158,
-      "owner_excluded_expected": 2,
-      "source_total_after_PR15_removal": 166
+      "blocked_observed": 6,
+      "converted_observed": 158,
+      "owner_excluded_observed": 2,
+      "source_total_after_source_removals": 166
     },
     "remaining_hold_shape": [
       "18 agnostic external Variable/Input constraint Tests (1 Definition)",
-      "37 Windows schema/canonical traversal Tests (3 Definitions)",
+      "40 Windows schema/canonical traversal Tests (3 Definitions)",
       "4 iOS version55 Tests (1 Definition)",
       "1 Junos xml_config Test (1 Definition)"
     ],
-    "status": "projection only; requires a clean rerun after owner merges/rejects PRs",
+    "status": "replaced by observed candidate overlay replay; see full-self-assertion-conversion-20261119-candidate-all-fixes.json",
     "tests": {
-      "blocked_expected": 60,
-      "converted_expected": 732,
-      "owner_excluded_expected": 2,
-      "source_total_after_PR15_removal": 794
+      "blocked_observed": 63,
+      "converted_observed": 726,
+      "owner_excluded_observed": 2,
+      "source_total_after_source_removals": 791
     }
   },
   "qualification": {

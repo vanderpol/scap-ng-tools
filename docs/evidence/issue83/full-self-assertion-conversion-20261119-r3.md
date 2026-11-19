@@ -74,7 +74,7 @@ All 803 source Tests reconcile by `(source_path, test_id)` with transitive Defin
 
 ## Source correction PRs
 
-See the machine-readable `source_correction_prs` list in the JSON receipt for exact heads, categories and focused effects. The projected post-merge counts are explicitly not a qualification result; run a fresh clean corpus replay after the owner decides each PR.
+See the machine-readable `source_correction_prs` list in the JSON receipt for exact heads, categories and focused effects. The earlier projection is superseded by the observed candidate overlay replay in [`full-self-assertion-conversion-20261119-candidate-all-fixes.json`](full-self-assertion-conversion-20261119-candidate-all-fixes.json). It is still not a merged-source qualification result: the candidate cherry-picked open PR heads #5–#17 locally.
 
 ## Reproduction
 
