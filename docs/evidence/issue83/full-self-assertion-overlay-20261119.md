@@ -5,6 +5,8 @@ Converter: `0311226e3f752f529d0a8ff1a3d337bb5a908590`; canonical schema: `5ee552
 
 This is schema admission/conversion evidence only; execution and independent OVAL equivalence are not proved.
 
+Independent pinned OVAL 5.12.3 witness gate: 790/790 positive closures and 790/790 negative mutations rejected; unresolved closures: 0.
+
 ## Summary
 
 | Record | Total | Converted | Blocked |

@@ -100,6 +100,13 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
                          {"CONVERTED_UNVERIFIED": 62})
         self.assertEqual(receipt["by_platform"]["tests"]["unix"],
                          {"CONVERTED_UNVERIFIED": 71})
+        witness = receipt["source_schema_witness"]
+        self.assertEqual(witness["tests_considered"], 790)
+        self.assertEqual(witness["positive_source_witnesses"], 790)
+        self.assertEqual(witness["negative_mutations_rejected"], 790)
+        self.assertEqual(witness["unresolved_closures"], 0)
+        self.assertEqual(witness["schema_commit"],
+                         "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706")
         self.assertLess(path.stat().st_size, 128 * 1024)
 
     def test_nvram_pr8_replay_keeps_version_hold_and_recovery_separate(self):

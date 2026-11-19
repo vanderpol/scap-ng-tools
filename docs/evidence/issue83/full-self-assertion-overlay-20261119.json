@@ -976,6 +976,20 @@
       "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml"
     ]
   },
+  "source_schema_witness": {
+    "evidence_root": "<fresh-external-temp-directory>",
+    "independent_equivalence": "not_proved",
+    "negative_mutations_rejected": 790,
+    "positive_source_witnesses": 790,
+    "receipt_bytes": 1246944,
+    "receipt_sha256": "af49e36e85346f7c14cfdb122487b323fb5c9c4c28a51418b7f7b937f8338465",
+    "schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "schema_manifest_files": 54,
+    "schema_manifest_sha256": "740713202daef9c24ded3b6d8a19d90eb6101067d9098f2b7cf371b2a38007de",
+    "source_documents": 142,
+    "tests_considered": 790,
+    "unresolved_closures": 0
+  },
   "source_verification": {
     "bytes": 1378760,
     "embedded_member": "oval-def-ext.xml",

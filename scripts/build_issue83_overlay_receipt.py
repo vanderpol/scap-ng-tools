@@ -130,6 +130,25 @@ def build(args: argparse.Namespace) -> tuple[dict, str]:
     definitions = json.loads((root / "definitions.json").read_text())
     tests = [json.loads(line) for line in (root / "tests.jsonl").read_text().splitlines()]
     source = source_verify(args.source_root, args.source_repo, args.source_commit)
+    witness = None
+    if args.source_witness_receipt:
+        witness_path = args.source_witness_receipt
+        witness_document = json.loads(witness_path.read_text())
+        witness = witness_document.get("summary", witness_document)
+        witness = {
+            "receipt_sha256": sha(witness_path.read_bytes()),
+            "receipt_bytes": witness_path.stat().st_size,
+            "schema_commit": witness.get("schema_commit"),
+            "schema_manifest_files": witness.get("schema_manifest_files"),
+            "schema_manifest_sha256": witness.get("schema_manifest_sha256"),
+            "source_documents": witness.get("source_documents"),
+            "tests_considered": witness.get("tests_considered"),
+            "positive_source_witnesses": witness.get("positive_source_witnesses"),
+            "negative_mutations_rejected": witness.get("negative_mutations_rejected"),
+            "unresolved_closures": witness.get("unresolved_closures"),
+            "independent_equivalence": witness.get("independent_equivalence"),
+            "evidence_root": "<fresh-external-temp-directory>",
+        }
     blocked_definitions = [row for row in definitions if row["conversion_status"] == "blocked"]
     blocked_tests = [row for row in tests if row["conversion_status"] == "blocked"]
     titles = source_titles(args.source_root, {row["source_path"] for row in blocked_definitions + blocked_tests})
@@ -191,6 +210,7 @@ def build(args: argparse.Namespace) -> tuple[dict, str]:
             ],
         },
         "source_verification": source,
+        "source_schema_witness": witness,
         "output": output_digest(root),
         "summary": {
             "definitions": len(definitions),
@@ -220,6 +240,7 @@ def build(args: argparse.Namespace) -> tuple[dict, str]:
              f"Source overlay commit: `{args.source_commit}` (base `{args.source_base_commit}`).  ",
              f"Converter: `{args.converter_commit}`; canonical schema: `{args.canonical_commit}`.", "",
              "This is schema admission/conversion evidence only; execution and independent OVAL equivalence are not proved.", "",
+             (f"Independent pinned OVAL 5.12.3 witness gate: {witness['positive_source_witnesses']}/{witness['tests_considered']} positive closures and {witness['negative_mutations_rejected']}/{witness['tests_considered']} negative mutations rejected; unresolved closures: {witness['unresolved_closures']}." if witness else "Independent pinned OVAL 5.12.3 witness gate: not supplied."), "",
              "## Summary", "", "| Record | Total | Converted | Blocked |", "|---|---:|---:|---:|",
              f"| Definitions | {len(definitions)} | {result['summary']['converted_definitions']} | {len(blocked_definitions)} |",
              f"| Tests | {len(tests)} | {result['summary']['converted_tests']} | {len(blocked_tests)} |", "",
@@ -248,6 +269,7 @@ def main() -> int:
     parser.add_argument("--canonical-commit", required=True)
     parser.add_argument("--schema-family-sha256", required=True)
     parser.add_argument("--oval-commit", required=True)
+    parser.add_argument("--source-witness-receipt", type=Path)
     parser.add_argument("--report-json", type=Path, required=True)
     parser.add_argument("--report-md", type=Path, required=True)
     args = parser.parse_args()
