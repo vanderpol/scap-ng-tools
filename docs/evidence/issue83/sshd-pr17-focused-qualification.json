@@ -3,15 +3,15 @@
     "base_assessment_sha256": "420d762102b56e11109292718e9d090f347d94e3527a0e3a91ce5a2d3c168396",
     "base_assessment_test_count": 3,
     "base_schema_validated": true,
-    "base_source_trace_sha256": "fe3c9d5009271f46ad9ad721c8a6f548d5d1725a916e4bf0823cb286af51a641",
+    "base_source_trace_sha256": "30b189a794b018d967685ec45332b67681981853cbd5fa74a43ba6c61737cffc",
     "base_status": "CONVERTED_UNVERIFIED",
     "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
     "converter": "scap_ng_tools.converter.direct04",
-    "converter_commit": "d9addb9a9fe9699e8dea33d1bf60ecb891ccb94e",
+    "converter_commit": "26fc48e13752922627c59719a53fc64db60d32ce",
     "corrected_assessment_sha256": "6efe348de3a69f66fbe0b124badd7aab16592a715aec68fab135b54a5f6334ae",
     "corrected_assessment_test_count": 4,
     "corrected_schema_validated": true,
-    "corrected_source_trace_sha256": "014a9557ff421aa7c773434663c30310d68d22720fc62615ad040d6877aa2bdd",
+    "corrected_source_trace_sha256": "107b19566d2d3e957d19084e77f66f398b6218dd3db882d655058b6c3ac5a271",
     "corrected_status": "CONVERTED_UNVERIFIED",
     "current_replay_verified": true,
     "flat_schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
@@ -26,7 +26,7 @@
     "converter_command_template": "PYTHONPATH=src python -m scap_ng_tools.converter.direct04 --schema-root <canonical-0.4.1-schema> --source <source-file> --sha256 <source-sha256> --oval-definition oval:org.mitre.oval.test:def:963 --source-commit <source-commit> --source-path SCAP_1.4/OVAL_Test_Content/unix/unix-def_sshd_test.xml --output <new-output-directory>",
     "evidence_root": "<fresh-external-temp-directory>",
     "generated_evidence_commit": "not committed; compact hashes only",
-    "source_fetch_template": "curl -fsSL https://raw.githubusercontent.com/OVAL-Community/SCAP-Self-Assertion/<source-commit>/SCAP_1.4/OVAL_Test_Content/unix/unix-def_sshd_test.xml"
+    "source_fetch_template": "Fetch exact immutable source blob from the pinned Self-Assertion commit; do not edit XML."
   },
   "source": {
     "affected_test_ids": [
