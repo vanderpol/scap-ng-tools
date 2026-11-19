@@ -47,6 +47,16 @@ def local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 
 
+def parse_source_test_ids(path: Path) -> list[str]:
+    """Inventory authored OVAL Test IDs without importing expected outcomes."""
+    root = ET.parse(path).getroot()
+    return sorted({
+        element.attrib["id"]
+        for element in root.iter()
+        if local_name(element.tag).endswith("_test") and element.attrib.get("id")
+    })
+
+
 def parse_results(path: Path) -> dict[str, list[dict[str, str]]]:
     """Extract source Definition and Test outcomes, never collected Item values."""
     root = ET.parse(path).getroot()
@@ -132,6 +142,7 @@ def run_one(
     stdout_path = output / "logs" / f"{stem}.stdout.log"
     stderr_path = output / "logs" / f"{stem}.stderr.log"
     source_sha256 = digest_file(source)
+    source_test_ids = parse_source_test_ids(source)
     command = [executable, "oval", "eval", "--skip-valid", "--results", str(result_path), str(source)]
     started = time.monotonic()
     status = "execution_error"
@@ -188,6 +199,8 @@ def run_one(
         "source_path": relative.as_posix(),
         "source_commit": source_commit,
         "source_sha256": source_sha256,
+        "source_test_ids": source_test_ids,
+        "source_test_count": len(source_test_ids),
         "status": status,
         "returncode": returncode,
         "duration_seconds": elapsed,
@@ -199,6 +212,7 @@ def run_one(
         "tests": tests,
         "test_count": len(tests),
         "test_outcomes": summarize_outcomes(tests),
+        "unexecuted_source_test_ids": sorted(set(source_test_ids) - {row["test_id"] for row in tests}),
         "diagnostic": diagnostic,
         "command": [executable, "oval", "eval", "--skip-valid", "--results", "<external-result>", "<source>"],
     }
@@ -207,7 +221,8 @@ def run_one(
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     fields = ["family", "source_path", "source_sha256", "status", "returncode",
               "duration_seconds", "result_bytes", "result_sha256", "definition_count",
-              "outcomes", "test_count", "test_outcomes", "diagnostic"]
+              "outcomes", "source_test_count", "test_count", "test_outcomes",
+              "unexecuted_source_test_count", "diagnostic"]
     with path.open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
@@ -215,7 +230,11 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
             values = dict(row)
             values["outcomes"] = json.dumps(row["outcomes"], sort_keys=True)
             values["test_outcomes"] = json.dumps(row["test_outcomes"], sort_keys=True)
+            values["unexecuted_source_test_count"] = len(row["unexecuted_source_test_ids"])
             values.pop("definitions", None)
+            values.pop("tests", None)
+            values.pop("source_test_ids", None)
+            values.pop("unexecuted_source_test_ids", None)
             values.pop("command", None)
             writer.writerow({field: values.get(field) for field in fields})
 
@@ -250,15 +269,21 @@ def main(argv: list[str] | None = None) -> int:
     rows = [run_one(source, args.corpus, args.output, args.oscap,
                     args.timeout_seconds, args.max_result_bytes, args.source_commit)
             for source in sources]
-    summary: dict[str, Any] = {"files": len(rows), "statuses": {}, "outcomes": {}, "test_outcomes": {}, "families": {}}
+    summary: dict[str, Any] = {"files": len(rows), "source_tests": 0, "observed_tests": 0, "unexecuted_tests": 0, "statuses": {}, "outcomes": {}, "test_outcomes": {}, "families": {}}
     for row in rows:
         summary["statuses"][row["status"]] = summary["statuses"].get(row["status"], 0) + 1
+        summary["source_tests"] += row["source_test_count"]
+        summary["observed_tests"] += row["test_count"]
+        summary["unexecuted_tests"] += len(row["unexecuted_source_test_ids"])
         for outcome, count in row["outcomes"].items():
             summary["outcomes"][outcome] = summary["outcomes"].get(outcome, 0) + count
         for outcome, count in row["test_outcomes"].items():
             summary["test_outcomes"][outcome] = summary["test_outcomes"].get(outcome, 0) + count
-        family = summary["families"].setdefault(row["family"], {"files": 0, "statuses": {}, "outcomes": {}, "test_outcomes": {}})
+        family = summary["families"].setdefault(row["family"], {"files": 0, "source_tests": 0, "observed_tests": 0, "unexecuted_tests": 0, "statuses": {}, "outcomes": {}, "test_outcomes": {}})
         family["files"] += 1
+        family["source_tests"] += row["source_test_count"]
+        family["observed_tests"] += row["test_count"]
+        family["unexecuted_tests"] += len(row["unexecuted_source_test_ids"])
         family["statuses"][row["status"]] = family["statuses"].get(row["status"], 0) + 1
         for outcome, count in row["outcomes"].items():
             family["outcomes"][outcome] = family["outcomes"].get(outcome, 0) + count

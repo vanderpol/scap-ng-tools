@@ -16,6 +16,16 @@ class OpenSCAPQualificationTests(unittest.TestCase):
         self.assertNotIn("/", name)
         self.assertTrue(name.endswith("-a.xml"))
 
+    def test_parse_source_test_ids_inventory_excludes_non_tests(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "source.xml"
+            path.write_text(
+                '<oval_definitions><tests><file_test id="oval:tst:2" />'
+                '<variable_test id="oval:tst:1" /></tests><objects>'
+                '<file_object id="oval:obj:1" /></objects></oval_definitions>',
+                encoding="utf-8")
+            self.assertEqual(qualification.parse_source_test_ids(path), ["oval:tst:1", "oval:tst:2"])
+
     def test_parse_results_extracts_only_definition_outcomes(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "results.xml"
