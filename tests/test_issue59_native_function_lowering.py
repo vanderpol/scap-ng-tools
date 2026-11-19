@@ -481,6 +481,27 @@ class StaticVariableObjectSetRecovery(unittest.TestCase):
         self.assertEqual(result_type(mixed, lambda identifier: {
             'float-source': float_source}[identifier]), 'float')
 
+    def test_literal_functions_are_admitted_in_production_mode(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=False)
+        escaped = oval('<escape_regex xmlns="OVAL"><literal_component datatype="string">a.b</literal_component></escape_regex>')
+        self.assertEqual(visitor.function(escaped), {
+            'literal': {'datatype': 'string', 'value': r'a\.b'}})
+        glob = oval('<glob_to_regex glob_noescape="false" xmlns="OVAL"><literal_component datatype="string">*.txt</literal_component></glob_to_regex>')
+        self.assertEqual(visitor.function(glob), {
+            'literal': {'datatype': 'string', 'value': r'^(?=[^\.])[^/]*\.txt$'}})
+        self.assertEqual([warning['source_function'] for warning in visitor.conversion_warnings],
+                         ['escape_regex', 'glob_to_regex'])
+
+    def test_literal_function_population_and_byte_limits_fail_closed(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=False)
+        source = oval('<escape_regex xmlns="OVAL"><literal_component datatype="string">x</literal_component></escape_regex>')
+        visitor.static_string_component_values = lambda _component: ['x'] * 4097
+        with self.assertRaisesRegex(ValueError, 'population exceeds bound'):
+            visitor.function(source)
+        visitor.static_string_component_values = lambda _component: ['x' * (1 << 20) + 'x']
+        with self.assertRaisesRegex(ValueError, 'source bytes exceed bound'):
+            visitor.function(source)
+
     def test_literal_escape_regex_is_materialized_without_cast(self):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)
         source = oval('<escape_regex xmlns="OVAL"><literal_component datatype="string">\\^.$|()[]{}*+?</literal_component></escape_regex>')

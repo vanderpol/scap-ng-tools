@@ -38,6 +38,8 @@ COMPARISONS = {'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'm
                'bitwise and': 'bitwise_and', 'bitwise or': 'bitwise_or'}
 SET_OPERATORS = {'UNION': 'union', 'INTERSECTION': 'intersection', 'COMPLEMENT': 'difference'}
 _REGEX_META = set('.^$*+?{}[]\\|()')
+_LITERAL_FUNCTION_MAX_VALUES = 4096
+_LITERAL_FUNCTION_MAX_BYTES = 1 << 20
 
 
 def escape_regex_literal(value):
@@ -1122,6 +1124,11 @@ class AssessmentConverter:
 
     def literal_function_result(self, element, operation):
         values = self.static_string_component_values(next(iter(element)))
+        ensure(len(values) <= _LITERAL_FUNCTION_MAX_VALUES,
+               'literal function population exceeds bound')
+        source_bytes = sum(len(value.encode('utf-8')) for value in values)
+        ensure(source_bytes <= _LITERAL_FUNCTION_MAX_BYTES,
+               'literal function source bytes exceed bound')
         if operation == 'escape_regex':
             result = [escape_regex_literal(value) for value in values]
         else:
@@ -1130,11 +1137,16 @@ class AssessmentConverter:
             ensure(raw in ('true', 'false'), 'glob_noescape must be boolean')
             result = [glob_to_regex_literal(value, glob_noescape=raw == 'true')
                       for value in values]
+        result_bytes = sum(len(value.encode('utf-8')) for value in result)
+        ensure(result_bytes <= _LITERAL_FUNCTION_MAX_BYTES,
+               'literal function result bytes exceed bound')
         self.conversion_warnings.append({
             'code': 'oval_literal_function_materialized',
             'source_function': operation,
             'source_options': dict(element.attrib),
             'value_count': len(result),
+            'source_bytes': source_bytes,
+            'result_bytes': result_bytes,
             'independent_static_proof': 'SOURCE_LITERAL_FUNCTION_LOWERING',
             'scanner_evaluated': False,
         })
@@ -1144,7 +1156,7 @@ class AssessmentConverter:
     def function(self, element):
         ensure(element.tag.startswith(f'{{{OVAL}}}'), 'function namespace mismatch')
         operation = local_name(element)
-        if self.native_recovery and operation in ('escape_regex', 'glob_to_regex'):
+        if operation in ('escape_regex', 'glob_to_regex'):
             attributes(element, {'glob_noescape'} if operation == 'glob_to_regex' else set())
             ensure(len(element) == 1, operation + ' requires one component')
             return self.literal_function_result(element, operation)
