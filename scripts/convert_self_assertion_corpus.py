@@ -17,6 +17,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import re
 from typing import Any
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
@@ -227,7 +228,9 @@ def source_variable_datatype_mismatches(raw: bytes) -> list[dict[str, str]]:
     return sorted(mismatches, key=lambda item: (item["element"], item["element_id"], item["variable_id"]))
 
 
-def classify_failure(stderr: str, stdout: str, *, source_mismatches: list[dict[str, str]] | None = None) -> str:
+def classify_failure(stderr: str, stdout: str, *,
+                     source_mismatches: list[dict[str, str]] | None = None,
+                     supported_source_capabilities: dict[str, set[str]] | None = None) -> str:
     """Classify a failed source conversion without hiding source holds.
 
     Diagnostics often contain both ``unsupported`` and ``deprecated``.  The
@@ -245,6 +248,13 @@ def classify_failure(stderr: str, stdout: str, *, source_mismatches: list[dict[s
         return "source_typed_literal_invalid"
     if "traversal" in message and ("schema" in message or "validation" in message):
         return "canonical_traversal_schema_hold"
+    capability = re.search(
+        r"unsupported\s+(test|object|state)\s+capability:\s*\{[^}]+\}([a-z0-9_]+)",
+        message)
+    if capability and supported_source_capabilities is not None:
+        kind, source_name = capability.groups()
+        if source_name not in supported_source_capabilities.get(kind, set()):
+            return "canonical_capability_gap"
     if any(token in message for token in ("unsupported", "held", "not migrated")):
         return "unsupported"
     if "schema" in message or "validation" in message:
@@ -300,6 +310,13 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
     if output.exists():
         raise ValueError(f"refusing to overwrite existing output: {output}")
     snapshot = Pinned041SchemaSnapshot(schema_root)
+    supported_source_capabilities = {"test": set(), "object": set(), "state": set()}
+    for mapping in snapshot.supported_mappings():
+        source = mapping.get("source", {})
+        for kind in supported_source_capabilities:
+            name = source.get(kind)
+            if name:
+                supported_source_capabilities[kind].add(name)
     output.parent.mkdir(parents=True, exist_ok=True)
     temp = Path(tempfile.mkdtemp(prefix="self-assertion-conversion-", dir=output.parent))
     try:
@@ -368,7 +385,8 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         output=artifact_dir) if command else None)
                     source_mismatches = graph["source_variable_datatype_mismatches"]
                     failure_class = None if success else classify_failure(
-                        process.stderr, process.stdout, source_mismatches=source_mismatches)
+                        process.stderr, process.stdout, source_mismatches=source_mismatches,
+                        supported_source_capabilities=supported_source_capabilities)
                     diagnostic = None if success else (process.stderr.strip() or process.stdout.strip())
                     if source_mismatches and failure_class == "source_invalid_var_ref_datatype":
                         diagnostic = (

@@ -35,7 +35,7 @@ def verify_schema_root(schema_root: Path, schema_commit: str) -> tuple[Path, str
     return snapshot.schema_root, FLAT_SCHEMA_SHA256
 
 
-def classify(message: str) -> str:
+def classify(message: str, supported_source_capabilities: dict[str, set[str]] | None = None) -> str:
     text = message.lower()
     # Deprecated source syntax is not a generic converter gap. Keep it
     # fail-closed, but give the qualification ledger a distinct disposition
@@ -50,6 +50,13 @@ def classify(message: str) -> str:
         return "source_typed_literal_invalid"
     if "traversal" in text and ("schema" in text or "validation" in text):
         return "canonical_traversal_schema_hold"
+    capability = re.search(
+        r"unsupported\s+(test|object|state)\s+capability:\s*\{[^}]+\}([a-z0-9_]+)",
+        text)
+    if capability and supported_source_capabilities is not None:
+        kind, source_name = capability.groups()
+        if source_name not in supported_source_capabilities.get(kind, set()):
+            return "canonical_capability_gap"
     if "unsupported" in text or "held" in text:
         return "converter_unsupported_source"
     if "schema" in text or "validation" in text:
@@ -75,6 +82,14 @@ def main(argv=None) -> int:
         raise SystemExit("--timeout-seconds must be positive")
     schema_root, schema_family_sha256 = verify_schema_root(
         args.schema_root, args.schema_commit)
+    snapshot = Pinned041SchemaSnapshot(schema_root)
+    supported_source_capabilities = {"test": set(), "object": set(), "state": set()}
+    for mapping in snapshot.supported_mappings():
+        source = mapping.get("source", {})
+        for kind in supported_source_capabilities:
+            name = source.get(kind)
+            if name:
+                supported_source_capabilities[kind].add(name)
     receipt = json.loads(args.witness_receipt.read_text(encoding="utf-8"))
     rows = []
     selected = [row for row in receipt["tests"]
@@ -113,7 +128,8 @@ def main(argv=None) -> int:
             result = {**base, "witness_sha256": witness_sha, "status": status,
                       "returncode": process.returncode}
             if status == "blocked":
-                result["failure_class"] = classify(diagnostic)
+                result["failure_class"] = classify(
+                    diagnostic, supported_source_capabilities=supported_source_capabilities)
                 result["diagnostic"] = diagnostic[:500]
             else:
                 result["outputs"] = {

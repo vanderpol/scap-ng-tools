@@ -38,6 +38,15 @@ class Issue83WitnessConversionTests(unittest.TestCase):
         self.assertEqual(qualification.classify("unsupported recursion direction"),
                          "converter_unsupported_source")
 
+    def test_missing_source_capability_is_canonical_gap_when_pack_is_checked(self):
+        message = "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test"
+        self.assertEqual(
+            qualification.classify(message, {"test": {"version_test"}}),
+            "canonical_capability_gap")
+        self.assertEqual(
+            qualification.classify(message, {"test": {"version55_test"}}),
+            "converter_unsupported_source")
+
     def test_traversal_schema_hold_is_canonical_not_converter_failure(self):
         self.assertEqual(
             qualification.classify(
