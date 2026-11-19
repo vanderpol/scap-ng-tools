@@ -322,6 +322,18 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertRegex(conversion["corrected_assessment_sha256"], HEX64)
         self.assertEqual(conversion["independent_runtime_equivalence"], "not_proved")
 
+    def test_windows_pr9_replay_keeps_object_note_semantics_equal(self):
+        receipt = self.load("windows-object-notes-followup.json")
+        conversion = receipt["conversion"]
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["baseline"]["status"], "CONVERTED_UNVERIFIED")
+        self.assertEqual(conversion["candidate"]["status"], "CONVERTED_UNVERIFIED")
+        self.assertTrue(conversion["assessment_semantics_equal"])
+        self.assertRegex(conversion["base_source_trace_sha256"], HEX64)
+        self.assertRegex(conversion["candidate"]["source_trace_sha256"], HEX64)
+        self.assertEqual(conversion["candidate"]["assessment_sha256"],
+                         "c84d3f9e82dc4efdeff8d67d7b6208524253658ae39e8d0547175dbc471f10a1")
+
     def test_windows_policy_pr5_receipt_distinguishes_source_hold_and_recovery(self):
         receipt = self.load("windows-policy-pr5-focused-qualification.json")
         source = receipt["source"]
