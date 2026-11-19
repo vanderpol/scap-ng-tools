@@ -159,6 +159,9 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         source = receipt["source"]
         candidate = receipt["conversion"]["candidate"]
         self.assertEqual(len(source["retained_tests"]), 5)
+        self.assertEqual(receipt["pins"]["tools_commit"],
+                         "26fc48e13752922627c59719a53fc64db60d32ce")
+        self.assertTrue(receipt["conversion"]["replay"]["current_replay_verified"])
         self.assertEqual(source["definition_version_transition"], {"baseline": "1", "candidate": "2"})
         self.assertEqual(source["removed_objects"], [
             "oval:org.mitre.oval.test:obj:305",
