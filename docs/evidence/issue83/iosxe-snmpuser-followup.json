@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "iosxe.snmpuser mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:org.joval.iosxe.test:def:1",
+  "format": "scap-ng-tools/issue83-iosxe-snmpuser-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/iosxe-snmpuser-followup-1795116600",
+    "files": {
+      "assessment.json": {
+        "bytes": 887,
+        "sha256": "dc3aa9ca14b6f77ea0ed352657126fdb5383f6d5491c28a82bebbd1a3ce1c7da"
+      },
+      "assessment.yaml": {
+        "bytes": 659,
+        "sha256": "5c6799404598f31c4eeac91e79c0aa6387f2fee0f7aaf9b52320b4f37cb29f2e"
+      },
+      "conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "e799b9de00aeb8fa652dbe46a335fbd4769031e9f59c771c3756d06aeacb5062"
+      },
+      "source-trace.json": {
+        "bytes": 2482,
+        "sha256": "ce29e0c57f83ab92fa0e3b44445a5e67f8330407c23e384cf7a11d56b6a11600"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "112b9c3c276c730136d2a79b7a6e2803a9fec555",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "2c1946320e05f83ae688897fb95187d3ab930021454e2f6d321043bb41f7058c",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "iosxe/iosxe-def_snmpuser_test.xml",
+  "source_sha256": "b777ff9d1041b3265b1ccb0e5993c4870881226b6043769403ae64abcb2432d3",
+  "tests": 1
+}
