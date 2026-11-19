@@ -8,7 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '033a4709cef41f65f67be7c7ff71537c2236fb026990e600bf33c8677a021920'
+CURRENT_RUNTIME_SHA256 = '25ccab13ebd4e52a4b38099295dfb42947856fd837bf041f0647e6e59129e157'
 UNCHANGED_SOURCE_SHA256 = 'e50b51edb503793ca20c8046a04b15412eeda34e3fc3da537375fecbde1ca26e'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping, compiler-derived Input discovery, and
@@ -26,7 +26,7 @@ AUDITED_ADAPTATIONS = {
     'v04_direct_enum_variables.py': '6f8cdab49cbcfb4474b997e9a95421f26e4a11c64c77bf05ef19556b2c443101',
     # New source-fidelity helper; it is reviewed code, not a copied visitor.
     'v04_source_metadata.py': 'c8ab17fdbb17383eb4c600403212669873209004909ad50388fbdeaffc4045cd',
-    'v04_direct_capabilities.json': '63040afa9eb71f310b15db239f5e2e29d56923836673f7977179bb55f68e4579',
+    'v04_direct_capabilities.json': 'c0438f2a61e9c44a991f99e49f80c718a6e4435ca609b7ccf88d7f497427d34b',
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',
@@ -76,7 +76,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
         for name, expected in SEMANTIC_PORT.items():
             self.assertEqual(sha256((directory / name).read_bytes()).hexdigest(), expected)
         pack = contracts()
-        self.assertEqual(len(pack['capabilities']), 93)
+        self.assertEqual(len(pack['capabilities']), 98)
         self.assertEqual(len(pack['behavior_attributes']), 8)
         self.assertEqual(pack['format'], 'scap-ng-portable-0.4.1-semantic-pack/1')
         self.assertEqual(pack['schema_version'], '0.4.1')
