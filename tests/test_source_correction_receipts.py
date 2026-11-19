@@ -244,6 +244,21 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
             self.assertRegex(case["corrected_trace_sha256"], HEX64)
         self.assertEqual(receipt["qualification"]["independent_oval_equivalence"], "not_proved")
 
+    def test_windows_pr5_replay_is_pinned_to_current_converter(self):
+        receipt = self.load("windows-policy-pr5-replay-20261119.json")
+        self.assertEqual(receipt["converter"]["commit"],
+                         "26fc48e13752922627c59719a53fc64db60d32ce")
+        self.assertTrue(receipt["replay"]["current_replay_verified"])
+        self.assertEqual(receipt["replay"]["base_diagnostics"],
+                         "policy source literal must be nonnegative")
+        outputs = receipt["replay"]["corrected_outputs"]
+        self.assertEqual(outputs["def:705"]["assessment_sha256"],
+                         receipt["cases"][0]["corrected_assessment_sha256"])
+        self.assertEqual(outputs["def:998"]["assessment_sha256"],
+                         receipt["cases"][1]["corrected_assessment_sha256"])
+        for row in outputs.values():
+            self.assertRegex(row["source_trace_sha256"], HEX64)
+
     def test_windows_pr10_replay_removes_deprecated_audit_field(self):
         receipt = self.load("windows-audit-deprecated-field-followup.json")
         conversion = receipt["conversion"]
