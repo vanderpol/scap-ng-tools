@@ -61,6 +61,16 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(metadata["element_counts"], metadata["rule_field_counts"])
         self.assertEqual(len(record["rules"][0]["xccdf_metadata_field_sha256"]["fixtext"]), 1)
 
+    def test_mixed_description_text_is_not_truncated(self):
+        element = ET.fromstring(
+            f'<description xmlns="{crosswalk.XCCDF}">&lt;VulnDiscussion&gt;before'
+            '&lt;/VulnDiscussion&gt;<em>middle</em>&lt;Documentable&gt;false'
+            '&lt;/Documentable&gt;</description>')
+        fields, raw = crosswalk.parse_disa_description(element)
+        self.assertEqual(raw, '<VulnDiscussion>before</VulnDiscussion>middle<Documentable>false</Documentable>')
+        self.assertEqual(fields['VulnDiscussion'], 'before')
+        self.assertEqual(fields['Documentable'], 'false')
+
     def test_malformed_or_non_publisher_description_is_not_promoted(self):
         element = ET.fromstring(f'<description xmlns="{crosswalk.XCCDF}">ordinary text</description>')
         fields, raw = crosswalk.parse_disa_description(element)

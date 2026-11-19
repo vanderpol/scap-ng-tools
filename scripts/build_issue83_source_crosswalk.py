@@ -85,7 +85,10 @@ def parse_disa_description(description: ET.Element | None) -> tuple[dict[str, st
     DISA streams carry these tags as literal text, not XML children.  Empty
     values and ``Documentable=false`` are retained exactly as authored.
     """
-    text = "" if description is None else (description.text or "")
+    # XCCDF descriptions may contain mixed content.  Element.text alone
+    # silently truncates publisher payloads at the first inline element; the
+    # source Rule identity still preserves the original XML structure.
+    text = "" if description is None else "".join(description.itertext())
     if not text.strip():
         return {}, text
     try:
