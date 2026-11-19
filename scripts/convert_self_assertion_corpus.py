@@ -199,7 +199,19 @@ def slug(value: str) -> str:
 
 
 def classify_failure(stderr: str, stdout: str) -> str:
+    """Classify a failed source conversion without hiding source holds.
+
+    Diagnostics often contain both ``unsupported`` and ``deprecated``.  The
+    source disposition is more specific and must win, otherwise a deprecated
+    construct is incorrectly reported as a converter implementation gap.
+    """
     message = (stderr.strip() or stdout.strip()).lower()
+    if "deprecated" in message:
+        return "deprecated_source_construct"
+    if "possible_restriction" in message or "external variable" in message:
+        return "canonical_input_constraint_hold"
+    if "invalid int literal" in message or "policy source literal must be nonnegative" in message:
+        return "source_typed_literal_invalid"
     if any(token in message for token in ("unsupported", "held", "not migrated")):
         return "unsupported"
     if "schema" in message or "validation" in message:
