@@ -82,10 +82,7 @@ def hierarchy_behaviors(element, acquisition, *, native_recovery=False):
     ensure(depth >= -1, 'original hierarchy max_depth must be -1 or nonnegative')
     direction = values.get('recurse_direction', 'none')
     ensure(direction in ('none', 'down'), 'unsupported/deprecated hierarchy recursion direction')
-    # OVAL RegistryBehaviors max_depth=0 selects only the starting key.
-    # Do not emit a traversal instruction (and risk runtime interpretation
-    # as descending recursion) when source recursion is explicitly disabled.
-    if direction == 'none' or depth == 0:
+    if direction == 'none':
         return {}
     key = acquisition.get('key')
     equality = {'equals', 'case_insensitive_equals'} if native_recovery else {'equals'}
