@@ -88,9 +88,43 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(rows["old_test"]["deprecation"][0]["version"], "5.12")
         self.assertEqual(rows["current_state"]["native_mapping_status"], "unclassified")
         self.assertEqual(rows["current_state"]["deprecated_members"][0]["name"], "old_field")
+        shape = rows["current_state"]["schema_shape"]
+        self.assertEqual(shape["kind"], "complexType")
+        self.assertEqual(shape["children"][0]["kind"], "sequence")
+        field = shape["children"][0]["children"][0]
+        self.assertEqual(field["attributes"]["name"], "old_field")
+        self.assertEqual(rows["current_state"]["schema_shape_sha256"],
+                         crosswalk._schema_shape_digest(shape))
+        self.assertIn("cardinality and attribute-use metadata",
+                      report["summary"]["schema_shape_contract"]["preserves"])
         self.assertEqual(rows["current_state"]["deprecated_members"][0]["scope"], "nested")
         self.assertIsNone(rows["current_state"]["deprecated_members"][0]["value"])
         self.assertEqual(report["summary"]["official_deprecation_annotations"], 2)
+
+    def test_schema_shape_preserves_defaults_cardinality_and_base_relationships(self):
+        xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+              targetNamespace=\"urn:test\">
+          <xs:complexType name=\"derived_state\"><xs:complexContent>
+            <xs:extension base=\"base_state\"><xs:sequence>
+              <xs:element name=\"value\" type=\"xs:string\" minOccurs=\"0\" maxOccurs=\"unbounded\" default=\"x\"/>
+            </xs:sequence><xs:attribute name=\"mode\" use=\"required\" default=\"strict\"/>
+            </xs:extension></xs:complexContent></xs:complexType>
+        </xs:schema>""".encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "test-definitions-schema.xsd").write_bytes(xsd)
+            row = next(row for row in crosswalk.oval_inventory(root)["declarations"]
+                       if row["name"] == "derived_state")
+        extension = row["schema_shape"]["children"][0]["children"][0]
+        self.assertEqual(extension["kind"], "extension")
+        self.assertEqual(extension["attributes"]["base"], "base_state")
+        sequence = extension["children"][0]
+        value = sequence["children"][0]
+        self.assertEqual(value["attributes"]["maxOccurs"], "unbounded")
+        self.assertEqual(value["attributes"]["default"], "x")
+        attribute = extension["children"][1]
+        self.assertEqual(attribute["attributes"]["use"], "required")
+        self.assertEqual(attribute["attributes"]["default"], "strict")
 
     def test_pinned_oval_deprecation_inventory_is_environment_gated(self):
         source = __import__("os").environ.get("SCAP_NG_OVAL_SCHEMA_ROOT")

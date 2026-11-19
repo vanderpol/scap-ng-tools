@@ -231,6 +231,48 @@ def archive_record(path: Path) -> dict:
     }
 
 
+def _schema_shape(node: ET.Element) -> dict:
+    """Return a deterministic, lossless structural witness for one XSD node.
+
+    The declaration inventory previously recorded only names and deprecation
+    annotations.  That is insufficient for a schema-first crosswalk: a
+    converter obligation can be carried by a base/ref, a default, a
+    cardinality, an attribute use, or an extension/restriction child.  Keep
+    the XML source external, but retain every authored attribute and the
+    ordered structural children needed to review those contracts.  Text is
+    intentionally omitted because XSD documentation is prose evidence, not
+    executable grammar; the declaration identity digest still commits to it.
+    """
+    return {
+        "kind": local_name(node.tag),
+        "attributes": dict(sorted(node.attrib.items())),
+        "children": [_schema_shape(child) for child in node],
+    }
+
+
+def _schema_shape_digest(shape: dict) -> str:
+    return digest(json.dumps(shape, sort_keys=True, ensure_ascii=False,
+                             separators=(",", ":")).encode("utf-8"))
+
+
+def _shape_summary(shape: dict) -> dict:
+    """Compact counts for review without inferring native support."""
+    counts = Counter()
+    attributes = Counter()
+
+    def visit(node):
+        counts[node["kind"]] += 1
+        attributes.update(node["attributes"].keys())
+        for child in node["children"]:
+            visit(child)
+
+    visit(shape)
+    return {
+        "node_kinds": dict(sorted(counts.items())),
+        "attribute_names": dict(sorted(attributes.items())),
+    }
+
+
 def _deprecated_info(node: ET.Element) -> list[dict]:
     """Read official OVAL deprecation annotations under one XSD node.
 
@@ -283,12 +325,16 @@ def oval_inventory(root: Path) -> dict:
             if not name:
                 continue
             direct, nested = _nested_deprecation_records(child)
+            shape = _schema_shape(child)
             row = {
                 "schema_file": path.name,
                 "schema_sha256": digest(raw),
                 "namespace": namespace,
                 "declaration_kind": child.tag.rsplit("}", 1)[-1],
                 "name": name,
+                "schema_shape": shape,
+                "schema_shape_sha256": _schema_shape_digest(shape),
+                "schema_shape_summary": _shape_summary(shape),
                 "native_mapping_status": "deprecated" if direct else "unclassified",
                 "classification_reason": (
                     "Official OVAL oval:deprecated_info marks this declaration deprecated; "
@@ -317,6 +363,20 @@ def oval_inventory(root: Path) -> dict:
                 len(row.get("deprecation", [])) + len(row.get("deprecated_members", []))
                 for row in rows
             ),
+            "schema_shape_contract": {
+                "status": "structural source witness only",
+                "preserves": [
+                    "declaration attributes and defaults",
+                    "ordered child particles",
+                    "base/ref/extension/restriction relationships",
+                    "cardinality and attribute-use metadata",
+                ],
+                "does_not_infer": [
+                    "native representability",
+                    "converter support",
+                    "runtime equivalence",
+                ],
+            },
         },
     }
 
@@ -608,7 +668,7 @@ def markdown(report: dict) -> str:
     lines.extend([
         "## Holds",
         "",
-        "- The OVAL XSD declaration inventory (when supplied) is intentionally `unclassified`; XSD declaration names are not native support proof.",
+        "- The OVAL XSD declaration inventory (when supplied) is intentionally `unclassified`; XSD declaration names are not native support proof. Each declaration now carries a deterministic structural witness of authored attributes, defaults, cardinalities, ordered particles and base/ref relationships; imported/inherited resolution remains a separate hold.",
         "- Canonical schema changes are out of scope for this Tools increment; any missing native representation is a canonical-language decision for `scap-ng` #80.",
         "- Native conversion output and RI execution are separate qualification stages.",
     ])
