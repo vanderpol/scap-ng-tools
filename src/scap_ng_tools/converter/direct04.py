@@ -46,6 +46,10 @@ def load_runtime():
     # result-type adaptation is installed in memory at this boundary.
     from .native041_variable_result_type import install
     install(engine)
+    # Map deprecated OVAL rpmverifyfile digest spelling via the reviewed
+    # canonical crosswalk, retaining exact original source provenance.
+    from .native041_rpm_digest_alias import install as install_rpm_digest_alias
+    install_rpm_digest_alias(engine)
     return engine
 
 
