@@ -91,7 +91,10 @@
     "ios.snmpcommunity",
     "ios.snmpgroup",
     "ios.snmphost",
-    "ios.snmpuser"
+    "ios.snmpuser",
+    "ios.bgpneighbor",
+    "ios.routingprotocolauthintf",
+    "ios.section"
   ],
   "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages.",
   "deprecated_source_tests": [
