@@ -82,6 +82,15 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         fields, raw = crosswalk.parse_disa_description(element)
         self.assertEqual(fields, {})
         self.assertEqual(raw, "ordinary text")
+        diagnostic = crosswalk.diagnose_disa_description("literal <unclosed>")
+        self.assertEqual(diagnostic["category"], "unrecognized_publisher_payload")
+
+    def test_malformed_disa_payload_requires_a_recognized_marker(self):
+        diagnostic = crosswalk.diagnose_disa_description(
+            "<VulnDiscussion>literal <tag></VulnDiscussion>")
+        self.assertEqual(diagnostic["category"], "source_embedded_publisher_payload_malformed")
+        diagnostic = crosswalk.diagnose_disa_description("<Host><Context>")
+        self.assertEqual(diagnostic["category"], "unrecognized_publisher_payload")
 
     def test_corpus_audit_is_explicitly_environment_gated(self):
         source = __import__("os").environ.get("SCAP_NG_FULL65_SOURCE_ROOT")

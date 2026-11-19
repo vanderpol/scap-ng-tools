@@ -453,7 +453,7 @@
     "script": "scripts/build_issue83_audit_receipt.py",
     "script_sha256": "ba62a273397ad754208c7a0ae63d76ac53c82ce7654051169571a6d423bb50f4",
     "source_crosswalk_script": "scripts/build_issue83_source_crosswalk.py",
-    "source_crosswalk_script_sha256": "431d300a19c758606dd1b701eeea7ecc632b81e7a436855c19a4de88260b305e"
+    "source_crosswalk_script_sha256": "06214d426d9b5ba8dcf2808fc575e9e095c5434f322bf23386d5ea2a90a29ffd"
   },
   "oval_schema_inventory": {
     "canonical_mapping_rows": 391,

@@ -102,11 +102,28 @@ def parse_disa_description(description: ET.Element | None) -> tuple[dict[str, st
     return fields, text
 
 
+def _has_disa_marker(raw_text: str) -> bool:
+    """Return whether decoded text contains a recognized DISA field opening tag.
+
+    The embedded publisher payload is a second XML layer carried as XCCDF
+    text.  A malformed ordinary HTML/XML fragment must not be promoted to a
+    DISA source defect merely because the text starts with ``<``.  Marker
+    detection is intentionally lexical and bounded: it only gates the
+    diagnostic category; it never repairs or extracts malformed content.
+    """
+    decoded = html.unescape(raw_text)
+    fields = "|".join(re.escape(field) for field in DISA_FIELDS)
+    return re.search(rf"<(?:{fields})(?:\s[^>]*)?>", decoded) is not None
+
+
 def diagnose_disa_description(raw_text: str) -> dict[str, str]:
     """Classify publisher-looking description text without exposing its body."""
     try:
         root = ET.fromstring(f"<disa-wrapper>{html.unescape(raw_text)}</disa-wrapper>")
     except ET.ParseError as error:
+        if not _has_disa_marker(raw_text):
+            return {"category": "unrecognized_publisher_payload",
+                    "error": "no recognized DISA field element"}
         return {"category": "source_embedded_publisher_payload_malformed",
                 "scope": "literal DISA fields inside a valid XCCDF description",
                 "error": str(error)}
