@@ -1786,9 +1786,11 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
     assessment.update(tests=converter.tests, evaluate=expression)
     documents[f'authoring/direct-slice/assessments/{assessment_id}.json'] = {'assessment': assessment}
     # This is a compilation fixture, not a full Rule-policy renderer.
-    from v04_source_metadata import source_description_text, source_relationships, validate_relationship_targets
+    from v04_source_metadata import (source_description_text, source_relationships,
+                                     source_standard_metadata, validate_relationship_targets)
     relationships = source_relationships(rule)
     validate_relationship_targets(relationships, source.nodes[source.benchmark_component])
+    source_metadata = source_standard_metadata(rule)
     native_rule = {'id': rule_id, 'version': rule.findtext(f'{{{XCCDF}}}version', ''), 'title': title,
         'severity': rule.get('severity', 'unknown'), 'role': 'full', 'weight': float(rule.get('weight', '1')),
         'discussion': source_description_text(rule), 'rationale': None,
@@ -1840,6 +1842,11 @@ def convert_rule(source, source_id, mappings, *, human_compact=True, native_reco
         'source_applicability': source.applicability_context(rule)}
     if manual_alternatives:
         binding['manual_alternatives'] = manual_alternatives
+    if source_metadata:
+        # Keep standard XCCDF metadata source-linked until canonical generic
+        # Rule metadata/remediation semantics are approved; never flatten or
+        # silently drop authored order, attributes, duplicates or text.
+        binding['source_standard_metadata'] = source_metadata
     source_test_controls = []
     for identifier, used in sorted(converter.used.items()):
         if used.get('kind') != 'test':

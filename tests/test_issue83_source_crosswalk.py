@@ -496,6 +496,10 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
             f'<Rule xmlns="{crosswalk.XCCDF}" id="rule-a"><version>1</version>'
             '<title>Production relationship witness</title>'
             '<description>before<em>middle</em>after</description>'
+            '<ident system="cce">CCE-123</ident>'
+            '<reference href="https://example.invalid/ref">Reference text</reference>'
+            '<fix system="bash" reboot="false">echo fix</fix>'
+            '<fixtext fixref="fix-1">Fix text <em>with markup</em></fixtext>'
             '<requires idref="rule-b rule-c"/><conflicts idref="rule-d"/>'
             f'<check system="{runtime.OVAL}"><check-content-ref href="#oval" name="definition-a"/></check>'
             '</Rule>')
@@ -546,6 +550,38 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         self.assertEqual(native['requires'], [{'any_of': ['rule-b', 'rule-c']}])
         self.assertEqual(native['conflicts'], ['rule-d'])
         self.assertEqual(native['discussion'], 'beforemiddleafter')
+        metadata = _binding['source_standard_metadata']
+        self.assertEqual([row['kind'] for row in metadata],
+                         ['ident', 'reference', 'fix', 'fixtext'])
+        self.assertEqual([row['ordinal'] for row in metadata], [4, 5, 6, 7])
+        self.assertEqual(metadata[0]['attributes'], {'system': 'cce'})
+        self.assertEqual(metadata[0]['text'], 'CCE-123')
+        self.assertEqual(metadata[3]['text'], 'Fix text with markup')
+        for row in metadata:
+            self.assertRegex(row['source_xml_sha256'], r'^[0-9a-f]{64}$')
+        self.assertNotIn('source_standard_metadata', native)
+
+    def test_standard_xccdf_metadata_helper_preserves_order_duplicates_and_absence(self):
+        from v04_source_metadata import source_standard_metadata
+        rule = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}"><title>metadata</title>'
+            '<ident system="cce">one</ident><ident system="cce">two</ident>'
+            '<reference href="ref">reference</reference>'
+            '<fix system="shell" reboot="true">apply</fix>'
+            '<fixtext fixref="f">explain</fixtext></Rule>')
+        rows = source_standard_metadata(rule)
+        self.assertEqual([row['kind'] for row in rows],
+                         ['ident', 'ident', 'reference', 'fix', 'fixtext'])
+        self.assertEqual([row['ordinal'] for row in rows], [2, 3, 4, 5, 6])
+        self.assertEqual([row['text'] for row in rows],
+                         ['one', 'two', 'reference', 'apply', 'explain'])
+        self.assertEqual(rows[0]['attributes'], {'system': 'cce'})
+        self.assertEqual(rows[2]['attributes'], {'href': 'ref'})
+        self.assertEqual(rows[4]['attributes'], {'fixref': 'f'})
+        for row in rows:
+            self.assertRegex(row['source_xml_sha256'], r'^[0-9a-f]{64}$')
+        self.assertEqual(source_standard_metadata(ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}"><title>none</title></Rule>')), [])
 
     def test_manual_rule_renderer_emits_the_same_relationship_contract(self):
         from v04_direct_scap_source import OCIL

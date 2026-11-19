@@ -7,7 +7,9 @@ approved.  This module is deliberately independent of the native evaluator.
 """
 from __future__ import annotations
 
+import hashlib
 import html
+import json
 import xml.etree.ElementTree as ET
 
 XCCDF = 'http://checklists.nist.gov/xccdf/1.2'
@@ -80,6 +82,47 @@ def validate_relationship_targets(relationships: dict[str, list], nodes: dict[st
                 raise ValueError(f'XCCDF {kind} target is unresolved: {identifier}')
             if target.tag.rsplit('}', 1)[-1] not in ('Rule', 'Group'):
                 raise ValueError(f'XCCDF {kind} target is not a Rule or Group: {identifier}')
+
+
+def _xml_identity(element: ET.Element):
+    """Return the stable source-node shape used by converter provenance."""
+    return [
+        element.tag,
+        sorted(element.attrib.items()),
+        element.text if not len(element) else None,
+        [_xml_identity(child) for child in element],
+    ]
+
+
+def _identity_digest(element: ET.Element) -> str:
+    raw = json.dumps(_xml_identity(element), sort_keys=True,
+                     ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
+
+
+def source_standard_metadata(item: ET.Element) -> list[dict]:
+    """Capture ordered standard XCCDF Rule metadata without native projection.
+
+    ``ident``, ``reference``, ``fix`` and ``fixtext`` are policy/source
+    metadata.  The active 0.4.1 Rule contract has no approved generic mapping
+    for all of their attributes and semantics, so the converter preserves an
+    exact, source-identity-linked ledger in the provenance binding only.
+    Child order and duplicate elements are intentional and must not be
+    collapsed into a dictionary.
+    """
+    records = []
+    for ordinal, child in enumerate(item, 1):
+        kind = child.tag.rsplit("}", 1)[-1]
+        if kind not in {"ident", "reference", "fix", "fixtext"}:
+            continue
+        records.append({
+            "ordinal": ordinal,
+            "kind": kind,
+            "attributes": dict(child.attrib),
+            "text": "".join(child.itertext()),
+            "source_xml_sha256": _identity_digest(child),
+        })
+    return records
 
 
 def source_description_text(item: ET.Element) -> str:

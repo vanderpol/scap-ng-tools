@@ -8,13 +8,13 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '602fe4cc190424c0dd19ca307ac7d0f1bfa7e168d683b4712c57f13faee79ccb'
+CURRENT_RUNTIME_SHA256 = 'c61e9a5f6480317c19c2f9954fc219d23a432c6f0e05a2c6b1394a4d91a71118'
 UNCHANGED_SOURCE_SHA256 = 'e50b51edb503793ca20c8046a04b15412eeda34e3fc3da537375fecbde1ca26e'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping, compiler-derived Input discovery, and
     # source-OVAL unique lexical projection adaptations.
     'v04_direct_authoring_contract.py': '5fa26ee62c5a636144ee182596e6faf972bfba364160de8c1a03208058aba98e',
-    'v04_direct_converter.py': '3908b1bca3b48b90b211ea9b8433c05c57be37bb3611cd51cf3b3ca0790fd8de',
+    'v04_direct_converter.py': '5655da7ead363bffda5eacd375d34995bc8887e121090811486b5514d239e03b',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
@@ -27,7 +27,7 @@ AUDITED_ADAPTATIONS = {
     # New source-fidelity helper; it is reviewed code, not a copied visitor.
     # The direct runtime registry also records pinned OVAL 5.12.3 platform
     # deprecations; its changed digest is intentionally allowlisted below.
-    'v04_source_metadata.py': '74f2e5e3d8dcb3faa9e5b50d71e76c678cafaaff62de8346bfaf11464de09c48',
+    'v04_source_metadata.py': 'fe86d9742940e27ccc37cf7e78dd280e48560ab3774a0d4b0d762354e169b4d8',
     'v04_direct_capabilities.json': 'e8b8e8db22107e274ed23689838e4ee726f6268664ded06888cdf3f5926cfd3b',
 }
 SEMANTIC_PORT = {
