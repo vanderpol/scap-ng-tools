@@ -1,0 +1,42 @@
+{
+  "format": "scap-ng-tools/issue83-source-correction-focused/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "pull_request": 16,
+    "path": "SCAP_1.4/OVAL_Test_Content/unix/ind-def_textfilecontent54_test_unix.xml",
+    "definition_id": "oval:org.mitre.oval.test:def:48",
+    "removed_test_id": "oval:org.mitre.oval.test:tst:466",
+    "removed_object_id": "oval:org.mitre.oval.test:obj:577",
+    "removed_state_id": "oval:org.mitre.oval.test:ste:697",
+    "base_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "base_sha256": "876dbcd2a5bebfd5e0479f7bd0715736e53ab8b3553ced06832f95a61138b086",
+    "corrected_commit": "799e8d6dbc43fe68044996c9cf2628f13c17a320",
+    "corrected_sha256": "41e5e9db72584a0cd1925744822168d4f524ce177b69114be6e8f2b61ce9c626",
+    "source_commit_blob_verified": true,
+    "classification": "deprecated_source_construct",
+    "defect": "The baseline authors recurse_direction=up, which OVAL 5.12.3 deprecates.",
+    "correction": "PR #16 removes only the deprecated Test/Object/State and its Definition criterion; valid downward recursion witnesses remain in the file."
+  },
+  "conversion": {
+    "converter": "scap_ng_tools.converter.direct04",
+    "converter_commit": "35f47240dab47931e3d77818b1a8f80b2cc26c91",
+    "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "flat_schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "base_status": "blocked",
+    "base_diagnostic": "unsupported/deprecated recursion direction",
+    "corrected_status": "CONVERTED_UNVERIFIED",
+    "corrected_schema_validated": true,
+    "corrected_assessment_sha256": "3cc302f3a9b0c16fa4f2cc16fe1b86db9ed6fc37d1b487df9b0aec3d106043f2",
+    "downward_recursion_preserved": true,
+    "upward_recursion_enabled": false,
+    "independent_runtime_equivalence": "not_proved",
+    "host_qualification": "not_run"
+  },
+  "reproduction": {
+    "evidence_root": "<fresh-external-temp-directory>",
+    "generated_evidence_commit": "not committed; compact hashes only",
+    "source_fetch_template": "git show <source-commit>:SCAP_1.4/OVAL_Test_Content/unix/ind-def_textfilecontent54_test_unix.xml",
+    "converter_command_template": "PYTHONPATH=src python -m scap_ng_tools.converter.direct04 --schema-root <canonical-0.4.1-schema> --source <source-file> --sha256 <source-sha256> --oval-definition oval:org.mitre.oval.test:def:48 --source-commit <source-commit> --source-path SCAP_1.4/OVAL_Test_Content/unix/ind-def_textfilecontent54_test_unix.xml --output <new-output-directory>"
+  }
+}
