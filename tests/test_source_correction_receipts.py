@@ -32,6 +32,11 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertTrue(conversion["native_assessment_bytes_identical"])
         self.assertTrue(conversion["source_trace_differs_as_expected"])
         self.assertEqual(conversion["independent_runtime_equivalence"], "not_proved")
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["converter_commit"],
+                         "94156d57614159c767ed26717c496207c6d048ce")
+        self.assertRegex(conversion["base_source_trace_sha256"], HEX64)
+        self.assertRegex(conversion["corrected_source_trace_sha256"], HEX64)
 
         for key in ("base_sha256", "corrected_sha256"):
             self.assertRegex(source[key], HEX64)
