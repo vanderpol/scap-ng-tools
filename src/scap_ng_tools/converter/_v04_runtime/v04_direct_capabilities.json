@@ -85,7 +85,8 @@
     "iosxe.interface",
     "ios.interface",
     "ios.global",
-    "ios.line"
+    "ios.line",
+    "iosxe.section"
   ],
   "admission": "Only source-proved constructs; unproved/unsupported closures are not accepted packages.",
   "deprecated_source_tests": [
