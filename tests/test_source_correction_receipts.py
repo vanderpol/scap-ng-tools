@@ -268,6 +268,11 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertTrue(source["source_commit_blob_verified"])
         self.assertEqual(conversion["base_assessment_test_count"], 3)
         self.assertEqual(conversion["corrected_assessment_test_count"], 4)
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["converter_commit"],
+                         "d9addb9a9fe9699e8dea33d1bf60ecb891ccb94e")
+        self.assertRegex(conversion["base_source_trace_sha256"], HEX64)
+        self.assertRegex(conversion["corrected_source_trace_sha256"], HEX64)
         self.assertTrue(conversion["base_schema_validated"])
         self.assertTrue(conversion["corrected_schema_validated"])
         self.assertRegex(conversion["corrected_assessment_sha256"], HEX64)
