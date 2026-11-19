@@ -22,6 +22,9 @@ Pins:
 - `agnostic/oval_existence_enumeration.xml`: 12/12 converted
   - Receipt: `/tmp/tools-issue83-current-conversion-existence2-1795106996/receipt.json`
   - SHA-256: `90ceca81f5e4f521c810e0de1e1bb1688e99e1c8babbe66291be251262c714c0`
+- `agnostic/oval-def_time_difference_function.xml`: **30/30 converted**
+  - Receipt: `/tmp/tools-issue83-current-conversion-time-difference-1795107056/receipt.json`
+  - SHA-256: `a872b08f2fa0a0418c33e2363b7fafb14b495eba477b0ceedd65ffe5979937a6`
 
 All output retains source Test IDs/hashes, witness hashes, source traces and
 conversion-scope hashes. Runtime evaluation and independent OVAL equivalence
