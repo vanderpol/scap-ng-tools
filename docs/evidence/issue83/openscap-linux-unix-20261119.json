@@ -1,0 +1,674 @@
+{
+  "engine": {
+    "executable": "oscap",
+    "reported_oval_version": "engine-dependent",
+    "validation": "skipped (--skip-valid)",
+    "version": "OpenSCAP command line tool (oscap) 1.3.9"
+  },
+  "external_evidence": {
+    "ledger_csv_sha256": "68206ecf1281c3d649a16bbe4b01ebf86732b7fe6738021e72a639a73c64b9e7",
+    "ledger_sha256": "623d1403abe60655a3575594d9e855a769dbc4e38804aef3408c3be5af8cca44",
+    "output_root": "/tmp/issue83-openscap-linux-unix-run.JgElhW/results",
+    "raw_results_retained_external": true
+  },
+  "files": [
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:org.mitre.oval.test:def:354",
+          "result": "error"
+        }
+      ],
+      "diagnostic": "proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied. E: oscap: Can't open \"<proc-entry> errno=13, Permission denied.",
+      "duration_seconds": 0.203,
+      "family": "linux",
+      "outcomes": {
+        "error": 1
+      },
+      "result_bytes": 290649,
+      "result_sha256": "8103d80f42bff84873f2fc4f615c5b999da7bc2ee7eed0db03b33c11163df9e1",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/ind-def_environmentvariable58_test_linux.xml",
+      "source_sha256": "c6ac03ec0d2745e3545d16cb3fba38e8b7486cbbbb39c03edf5fa27960d49c73",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:com.jovalcm.test:def:967",
+          "result": "unknown"
+        }
+      ],
+      "diagnostic": "Definition oval:com.jovalcm.test:def:967: unknown Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {
+        "unknown": 1
+      },
+      "result_bytes": 8306,
+      "result_sha256": "4ea8b13276c313efd5d3f15b63fed9e5023a1d8e2be0194207e5d9a1683d3bd9",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_apparmorstatus_test.xml",
+      "source_sha256": "1e9b6d6bab5a40226db960cebf08c8124282b86e8b0c52316027d48b2c97a5d6",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:683",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:683: false Evaluation done.",
+      "duration_seconds": 0.302,
+      "family": "linux",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 14295,
+      "result_sha256": "d48de3d8eb91cbde65f3ca049b8603896cf64cfd63a40e431f0d5836b6e74e36",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_dpkginfo_test.xml",
+      "source_sha256": "4e35f1adb03485170451f80932e8bba2950ad86a176a7584f96d98ed5ed5d762",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:789",
+          "result": "true"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:789: true Evaluation done.",
+      "duration_seconds": 0.101,
+      "family": "linux",
+      "outcomes": {
+        "true": 1
+      },
+      "result_bytes": 50474,
+      "result_sha256": "47b0caa3e8fcda6a031fda690efdbabe4946f360b649a60c5028cb71007b62bd",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_inetlisteningservers_test.xml",
+      "source_sha256": "e84eebb297f602d5b89a4025a1cd43bb74e4d61aa04634a5b2ff2fbb8a0f99b6",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:org.cisecurity.test:def:1",
+          "result": "unknown"
+        }
+      ],
+      "diagnostic": "Definition oval:org.cisecurity.test:def:1: unknown Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {
+        "unknown": 1
+      },
+      "result_bytes": 10824,
+      "result_sha256": "0a18f929f329bc75167c2f982a63a1c5087c08c5ad1d2fbe54acbbfa85136457",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_kernelmodule_test.xml",
+      "source_sha256": "b64529cebac9dab4760b2114f4b30edfcc891b4af0c94d8464795aebf0a8bbf5",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:org.mitre.oval.test:def:445",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "E: oscap: Can't statvfs /run/user/<uid>/doc: errno=1, Operation not permitted.",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 73103,
+      "result_sha256": "1cdebab45b8b8189ac8fe9ef3b18b0f67ce55a67e89380d230de4150bd5f7abc",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_partition_test.xml",
+      "source_sha256": "a5d1f874433020c994969f484d57ec0ff6027f1277d370c67de83bf57f876b8d",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:121",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "te - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in E: oscap: RPM: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file error: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file E: oscap: RPM: cannot open Packages index using sqlite - Operation not permitted (1) error: cannot open Packages index using sqlite - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in E: oscap: RPM: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file error: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file E: oscap: RPM: cannot open Packages index using sqlite - Operation not permitted (1) error: cannot open Packages index using sqlite - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 12616,
+      "result_sha256": "4e49b3e731d430cfa8e1c8ea75ac0fc241db838907d168a00be769b79b234393",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_rpminfo_test.xml",
+      "source_sha256": "08b522c1d2d921cfcb53f1c1d80241d3bfc8d47929fef463672dcb0c32ab27aa",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "te - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in E: oscap: RPM: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file error: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file E: oscap: RPM: cannot open Packages index using sqlite - Operation not permitted (1) error: cannot open Packages index using sqlite - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in E: oscap: RPM: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file error: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file E: oscap: RPM: cannot open Packages index using sqlite - Operation not permitted (1) error: cannot open Packages index using sqlite - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 16919,
+      "result_sha256": "0f93fd077e7efdbc21bd34171a1eb6fe5cbab3e2912706b1252347495baf672a",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_rpmverifyfile_test.xml",
+      "source_sha256": "bb8c520b76172b42e78bd2e2801114b0e87fbec5b757fd1e01519ef34dc8653e",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:121",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "te - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in E: oscap: RPM: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file error: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file E: oscap: RPM: cannot open Packages index using sqlite - Operation not permitted (1) error: cannot open Packages index using sqlite - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in E: oscap: RPM: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file error: Unable to open sqlite database /var/lib/rpm/<database> unable to open database file E: oscap: RPM: cannot open Packages index using sqlite - Operation not permitted (1) error: cannot open Packages index using sqlite - Operation not permitted (1) E: oscap: RPM: cannot open Packages database in error: cannot open Packages database in",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 17612,
+      "result_sha256": "1cdecb154818b53b93b509d79fc90d21821dac613c4fd897ed84d2ae1818066d",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_rpmverifypackage_test.xml",
+      "source_sha256": "b621e869fabd11225adaee015ffd3e6aa189caeb4e18f40f214e954429d26a39",
+      "status": "completed"
+    },
+    {
+      "definition_count": 0,
+      "definitions": [],
+      "diagnostic": "ached. W: oscap: Can't receive message: 125, Operation canceled. E: oscap: Recv: retry limit (0) reached. W: oscap: Can't receive message: 125, Operation canceled. E: oscap: Recv: retry limit (0) reached. OpenSCAP Error: Probe at sd=1 (selinuxboolean) reported an error: Invalid type, value or format [./src/OVAL/oval_probe_ext.c:383] Unable to receive a message from probe [./src/OVAL/oval_probe_ext.c:572] Invalid oval result type: -1. [./src/OVAL/results/oval_resultTest.c:181] Probe at sd=1 (selinuxboolean) reported an error: Invalid type, value or format [./src/OVAL/oval_probe_ext.c:383] Unable to receive a message from probe [./src/OVAL/oval_probe_ext.c:572] Invalid oval result type: -1. [./src/OVAL/results/oval_resultTest.c:181] Probe at sd=1 (selinuxboolean) reported an error: Invalid type, value or format [./src/OVAL/oval_probe_ext.c:383] Unable to receive a message from probe [./src/OVAL/oval_probe_ext.c:572] Invalid oval result type: -1. [./src/OVAL/results/oval_resultTest.c:181]",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {},
+      "result_bytes": 0,
+      "result_sha256": null,
+      "returncode": 1,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_selinuxboolean_test.xml",
+      "source_sha256": "9847326f4cdd47a003e28a2efb820c395179645f447d5f12d6a3c329e10a9efc",
+      "status": "execution_error"
+    },
+    {
+      "definition_count": 0,
+      "definitions": [],
+      "diagnostic": "",
+      "duration_seconds": 1.155,
+      "family": "linux",
+      "outcomes": {},
+      "result_bytes": 0,
+      "result_sha256": null,
+      "returncode": -11,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_selinuxsecuritycontext_test.xml",
+      "source_sha256": "60e5a044c9049eeab61479621b341ac66437a61b292061c39cccb7a880f0987f",
+      "status": "execution_error"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:org.cisecurity.test:def:1",
+          "result": "unknown"
+        }
+      ],
+      "diagnostic": "Definition oval:org.cisecurity.test:def:1: unknown Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {
+        "unknown": 1
+      },
+      "result_bytes": 9949,
+      "result_sha256": "1afbb56b553bbcb4d9eba686479c77c893a8b2cf1509b155095d6c6b22f87f27",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_sestatus_test.xml",
+      "source_sha256": "3a81ce58742438c97a738cbcfa8eef6d686168b0a22086c270f50d9c1e131104",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:1: false Evaluation done.",
+      "duration_seconds": 6.374,
+      "family": "linux",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 238802,
+      "result_sha256": "766ad02e1ac9a8c4856ebb3ce4addd9395bca1241f791ac9935e23479b780fd6",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_systemdunitproperty_test.xml",
+      "source_sha256": "77a1e2125cb24bf6c29ca2c0e94f515fcea80802354a40620c4994659f2984be",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+          "result": "unknown"
+        }
+      ],
+      "diagnostic": "W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:1') not found in item (id: '13549732'). W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:4') not found in item (id: '13549733'). W: oscap: Entity name 'dependency' from state (id: 'oval:navy.navwar.niwcatlantic.scc.test:ste:1') not found in item (id: '13549732').",
+      "duration_seconds": 1.958,
+      "family": "linux",
+      "outcomes": {
+        "unknown": 1
+      },
+      "result_bytes": 15786,
+      "result_sha256": "3e95dd59a79fc570f4de482a45abed9f6cde1873795868630e4aebd44d2b1b55",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/linux-def_sytemunitdependancy_test.xml",
+      "source_sha256": "7e10470fb59f85177a22746992efe77d2c4d0164157a13dfdd733b830781f435",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:90",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:90: false Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "linux",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 22335,
+      "result_sha256": "e7d1d6c1325f130e81e2ae0861a05eadb4e1c7f9ea78bd1a8d1c7f75d765ab58",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/unix-def_interface_test.xml",
+      "source_sha256": "f27ce16dc8f7b066fbb7c2275d22a62e315ec02a62bb56453923f5091afb1882",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.unix.test:def:1",
+          "result": "error"
+        }
+      ],
+      "diagnostic": "ry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied E: oscap: Can't read sysctl value from \"<proc-entry> 13, Permission denied",
+      "duration_seconds": 1.158,
+      "family": "linux",
+      "outcomes": {
+        "error": 1
+      },
+      "result_bytes": 636224,
+      "result_sha256": "58758f2ef2ef9ce1dcb5c390199aa2685ba5ef87349528a40d5a4fd02b8c1c31",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "linux/unix-def_sysctl_test.xml",
+      "source_sha256": "1c868b153c91a7667d1f51a4783bee5d8ef4204549f69fd3eaaf255aadc6588d",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:org.mitre.oval.test:def:566",
+          "result": "true"
+        }
+      ],
+      "diagnostic": "Definition oval:org.mitre.oval.test:def:566: true Evaluation done.",
+      "duration_seconds": 0.151,
+      "family": "unix",
+      "outcomes": {
+        "true": 1
+      },
+      "result_bytes": 18768,
+      "result_sha256": "b64a4325b77790a33aefaaad48f9e6b321b5bd1fdcfb902703aa8cf6d59777d5",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/ind-def_filehash58_test_unix.xml",
+      "source_sha256": "fee16d02756928ee1606921370d244fdb4d8c700db2c706443583e86cb7d38cf",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.rhel7:def:1",
+          "result": "unknown"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.rhel7:def:1: unknown Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "unknown": 1
+      },
+      "result_bytes": 16749,
+      "result_sha256": "15c012603ce109f3dbb06adacbeafa79f5f7c1479d7f1a4bb99336190ba7f442",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/ind-def_shellcommand_unix_test.xml",
+      "source_sha256": "004756aa7d05bd145702d1a3d4fd7d74437d0c2827b628db007d0dabc1915069",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:org.mitre.oval.test:def:48",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "Definition oval:org.mitre.oval.test:def:48: false Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 59276,
+      "result_sha256": "c807d32ba5ac5138425469bb3d69f2ea7a4f5d5462fb522b50cb723ec9731a52",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/ind-def_textfilecontent54_test_unix.xml",
+      "source_sha256": "876dbcd2a5bebfd5e0479f7bd0715736e53ab8b3553ced06832f95a61138b086",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc:def:1",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc:def:1: false Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 34598,
+      "result_sha256": "04e48880cfd1add9bbce7e3090faefcabe98850c066efe781ed155cbd2b1c203",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/ind-def_xmlfilecontent_test_unix.xml",
+      "source_sha256": "0f3ffab0e7047f73fddf0526777ee7c0f2e0ac4e81cbf7051d076dd36d525a78",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:org.mitre.oval.test:def:276",
+          "result": "true"
+        }
+      ],
+      "diagnostic": "Definition oval:org.mitre.oval.test:def:276: true Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "true": 1
+      },
+      "result_bytes": 28073,
+      "result_sha256": "4c1048e344f4dddb23c5b5286420f37ebddbb598c50be98a3ef9081eb5a951fc",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/oval-def_set-unix.xml",
+      "source_sha256": "ca472ba6709eb0290284287897bd7a976c8634f9107de7e29fd1eae21001e808",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+          "result": "true"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:1: true Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "true": 1
+      },
+      "result_bytes": 44963,
+      "result_sha256": "ad56bdd922c68334fb10b6e1dca40a65c4ecc148a21bbaf76e7de8257816ef26",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/unix-def_file_test.xml",
+      "source_sha256": "8d0b0a33aa53815498f0adb501fb7177ec7e887dff243f07afc7866659dced7f",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:904",
+          "result": "true"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:904: true Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "true": 1
+      },
+      "result_bytes": 71607,
+      "result_sha256": "3daeabbb21eb8181c90ce167129defd5955f5cbe76ad95caa751b00f27b485b7",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/unix-def_password_test.xml",
+      "source_sha256": "b09a04f5b562cee3d84ac41b2b99dbd6326f48aa50b8a037dcd7163449827472",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:307",
+          "result": "true"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:307: true Evaluation done.",
+      "duration_seconds": 0.503,
+      "family": "unix",
+      "outcomes": {
+        "true": 1
+      },
+      "result_bytes": 402457,
+      "result_sha256": "c61edf35532ec0b3d3d5d5d95ac17f4341befb3e37f898f5d12357a5252a179a",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/unix-def_process58_test.xml",
+      "source_sha256": "a75037bfabd721b0f6a8a64a4eb4079a8b3feeb63c09776390e8fa9eb4d2f720",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:334",
+          "result": "false"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:334: false Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "false": 1
+      },
+      "result_bytes": 11914,
+      "result_sha256": "813dbf0e7d75d998b4c913ae037e9e3010eae698b5ac50257187282b2e51558a",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/unix-def_shadow_test.xml",
+      "source_sha256": "6c0416594df195f08eaddaa987e8ad95b2a98cca9ce8b8875fa03e19d8f69e4b",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:org.mitre.oval.test:def:963",
+          "result": "unknown"
+        }
+      ],
+      "diagnostic": "Definition oval:org.mitre.oval.test:def:963: unknown Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "unknown": 1
+      },
+      "result_bytes": 13299,
+      "result_sha256": "ecf1500c14ac982bd2e5287d6403c3bce84da08bb1cc334595fa431969cbe2d3",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/unix-def_sshd_test.xml",
+      "source_sha256": "a39e832aec71f537ff18eeaac3b181c7f63d6dbe5c311a8d7221ce86258ec8f0",
+      "status": "completed"
+    },
+    {
+      "definition_count": 2,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.unix.test:def:2",
+          "result": "error"
+        },
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.unix.test:def:1",
+          "result": "true"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.unix.test:def:2: error Definition oval:navy.navwar.niwcatlantic.scc.unix.test:def:1: true Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "error": 1,
+        "true": 1
+      },
+      "result_bytes": 19488,
+      "result_sha256": "a3e5b454b789c4f33015e8fb8ba752c21aa0e0d2c39a2bfb43415a926dd8ad99",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/unix-def_symlink_test.xml",
+      "source_sha256": "48a100f193c0052757b63f50f438183e967a7c9450554911ef23b5b000be3415",
+      "status": "completed"
+    },
+    {
+      "definition_count": 1,
+      "definitions": [
+        {
+          "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:932",
+          "result": "true"
+        }
+      ],
+      "diagnostic": "Definition oval:navy.navwar.niwcatlantic.scc.test:def:932: true Evaluation done.",
+      "duration_seconds": 0.051,
+      "family": "unix",
+      "outcomes": {
+        "true": 1
+      },
+      "result_bytes": 10133,
+      "result_sha256": "83e262690063ee8eaa254e40ff137ba3866b98839a820b7bb6ee272603a64ddd",
+      "returncode": 0,
+      "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "source_path": "unix/unix-def_uname_test.xml",
+      "source_sha256": "3c175c94a1a43a17049d39002f95d8e3ed9143eb943c76c47047f1f535c7c070",
+      "status": "completed"
+    }
+  ],
+  "format": "scap-ng-tools/issue83/openscap-linux-unix-source-ledger/1",
+  "limits": {
+    "max_result_bytes": 67108864,
+    "timeout_seconds": 60
+  },
+  "qualification": "independent legacy OpenSCAP source execution; not SCAP-NG/OVAL 5.12.3 equivalence",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "source_scope": [
+    "linux",
+    "unix"
+  ],
+  "summary": {
+    "families": {
+      "linux": {
+        "files": 16,
+        "outcomes": {
+          "error": 2,
+          "false": 7,
+          "true": 1,
+          "unknown": 4
+        },
+        "statuses": {
+          "completed": 14,
+          "execution_error": 2
+        }
+      },
+      "unix": {
+        "files": 12,
+        "outcomes": {
+          "error": 1,
+          "false": 3,
+          "true": 7,
+          "unknown": 2
+        },
+        "statuses": {
+          "completed": 12
+        }
+      }
+    },
+    "files": 28,
+    "outcomes": {
+      "error": 3,
+      "false": 10,
+      "true": 8,
+      "unknown": 6
+    },
+    "statuses": {
+      "completed": 26,
+      "execution_error": 2
+    }
+  }
+}
