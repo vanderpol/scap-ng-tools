@@ -8,7 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '2cfed2bb1f52749fd698b8b3495b6cc9da42394d6d4253ad612738359eaf92b7'
+CURRENT_RUNTIME_SHA256 = '41e0c91bb37e664d4dd94f1cd5c9305fe746d299fb57c5d0fa22938dcb58c323'
 UNCHANGED_SOURCE_SHA256 = 'e50b51edb503793ca20c8046a04b15412eeda34e3fc3da537375fecbde1ca26e'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping, compiler-derived Input discovery, and
@@ -25,7 +25,7 @@ AUDITED_ADAPTATIONS = {
     'v04_variable_function_migration.py': 'ab08c49569bde0458c4e7a567f131a7965cf35a78a050aa6a5a639eb6ecc3d44',
     'v04_direct_enum_variables.py': '6f8cdab49cbcfb4474b997e9a95421f26e4a11c64c77bf05ef19556b2c443101',
     # New source-fidelity helper; it is reviewed code, not a copied visitor.
-    'v04_source_metadata.py': 'c8ab17fdbb17383eb4c600403212669873209004909ad50388fbdeaffc4045cd',
+    'v04_source_metadata.py': '74f2e5e3d8dcb3faa9e5b50d71e76c678cafaaff62de8346bfaf11464de09c48',
     'v04_direct_capabilities.json': 'c0438f2a61e9c44a991f99e49f80c718a6e4435ca609b7ccf88d7f497427d34b',
 }
 SEMANTIC_PORT = {

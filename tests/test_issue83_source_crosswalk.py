@@ -621,6 +621,17 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "canonical non-flattening mapping: group-a"):
             load_runtime().native_group(source, group, {"rule-a": "native-rule-a"})
 
+    def test_disa_source_metadata_parser_preserves_mixed_content(self):
+        from v04_source_metadata import parse_disa_description
+        element = ET.fromstring(
+            f'<description xmlns="{crosswalk.XCCDF}">'
+            '&lt;VulnDiscussion&gt;before&lt;/VulnDiscussion&gt;'
+            '<em>middle</em>&lt;Documentable&gt;false&lt;/Documentable&gt;'
+            '</description>')
+        parsed = parse_disa_description(element)
+        self.assertEqual(parsed["raw"], '<VulnDiscussion>before</VulnDiscussion>middle<Documentable>false</Documentable>')
+        self.assertEqual(parsed["fields"]["Documentable"], "false")
+
     def test_disa_parser_retains_empty_values_and_explicit_false(self):
         from v04_source_metadata import parse_disa_description
         element = ET.fromstring(

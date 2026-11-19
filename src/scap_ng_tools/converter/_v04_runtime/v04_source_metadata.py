@@ -103,7 +103,8 @@ def parse_disa_description(description: ET.Element | None) -> dict:
     for a future approved extension mapping; it must not be used to silently
     replace or discard ordinary/malformed source descriptions.
     """
-    raw = '' if description is None else (description.text or '')
+    # Preserve mixed-content text before parsing escaped publisher XML.
+    raw = '' if description is None else ''.join(description.itertext())
     if not raw.strip():
         return {'raw': raw, 'fields': {}, 'parsed': False}
     try:
