@@ -174,6 +174,25 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
             self.assertRegex(case["corrected_assessment_sha256"], HEX64)
         self.assertEqual(conversion["independent_runtime_equivalence"], "not_proved")
 
+    def test_full_parity_receipt_retains_source_invalid_variable_evidence(self):
+        receipt = self.load("converter-full-parity-20261119.json")
+        audit = receipt["audit"]
+        self.assertEqual(audit["commit"], "33c1c08")
+        self.assertEqual(audit["source_invalid_definition_count"], 8)
+        self.assertEqual(audit["problem_types"].get("source_invalid"), 8)
+        rows = audit["source_invalid_rows"]
+        self.assertEqual(len(rows), 8)
+        definitions = {row["definition_id"] for row in rows}
+        self.assertIn("oval:org.mitre.oval.test:def:580", definitions)
+        self.assertIn("oval:navy.navwar.niwcatlantic.scc:def:38", definitions)
+        for row in rows:
+            self.assertRegex(row["source_xml_sha256"], HEX64)
+            self.assertTrue(row["affected_test_ids"])
+            self.assertEqual(row["disposition"], "source_invalid_non_equivalence")
+            for variable in row["variables"]:
+                self.assertRegex(variable["source_variable_xml_sha256"], HEX64)
+                self.assertIn("declared_datatype", variable)
+
     def test_committed_receipt_is_compact_and_does_not_embed_source_or_host_data(self):
         path = ROOT / "docs" / "evidence" / "issue83" / "nvram-pr19-focused-qualification.json"
         receipt = self.load("nvram-pr19-focused-qualification.json")

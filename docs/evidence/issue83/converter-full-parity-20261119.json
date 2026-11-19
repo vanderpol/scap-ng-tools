@@ -1,72 +1,916 @@
 {
   "audit": {
-    "commit": "efaf2a8",
+    "commit": "33c1c08",
     "complete": false,
     "converted_definitions": 152,
     "ledger_tests": 803,
     "problem_count": 8,
     "problem_types": {
+      "converted_parity_failure": 3,
       "source_invalid": 8
     },
     "problems": [
       {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:17",
+          "oval:org.mitre.oval.test:tst:178",
+          "oval:org.mitre.oval.test:tst:211",
+          "oval:org.mitre.oval.test:tst:229",
+          "oval:org.mitre.oval.test:tst:51",
+          "oval:org.mitre.oval.test:tst:644",
+          "oval:org.mitre.oval.test:tst:674",
+          "oval:org.mitre.oval.test:tst:74",
+          "oval:org.mitre.oval.test:tst:774",
+          "oval:org.mitre.oval.test:tst:970"
+        ],
         "definition": "oval:org.mitre.oval.test:def:895",
+        "definition_id": "oval:org.mitre.oval.test:def:895",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [],
         "reason": "source-invalid Variable datatype declaration: oval:org.mitre.oval.test:var:589",
         "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_arithmetic_function.xml",
-        "type": "source_invalid"
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_arithmetic_function.xml",
+        "source_xml_sha256": "573351f7b8e8a685ec90596ba7d0d5f8842988c42fbd6e1a34cdc73dc38ec1f8",
+        "type": "source_invalid",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:589"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "float",
+            "expression_result_datatype": "integer",
+            "expression_tag": "arithmetic",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:932"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "292475ebe578c6ce3337cc5577bcda1e64bec9b245558c2cdbffeef718b05f3e",
+            "variable_id": "oval:org.mitre.oval.test:var:589"
+          }
+        ]
       },
       {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:78",
+          "oval:org.mitre.oval.test:tst:84"
+        ],
         "definition": "oval:org.mitre.oval.test:def:67",
+        "definition_id": "oval:org.mitre.oval.test:def:67",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "9d61a4436e68c4f40d88a7ab143fac20e1bd4ca50f9d0e4187cc6788af0c6182",
+            "original_node_sha256": "340c7b394dd72fe14e0b370fcb07509010dd0f627eea3ab35cabffa1990d8715",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:524"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "62f76f92abc7cdc13b45057f60fa0e92ca7700a680f9890856e1ffcf5033411f",
+            "original_node_sha256": "797a6b14b5e3f0a03798e10a40f3147f67cb1c8792c9ce6e474b743a53c630a5",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:712"
+          }
+        ],
         "reason": "source-invalid Variable datatype normalization: oval:org.mitre.oval.test:var:524, oval:org.mitre.oval.test:var:712",
         "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_criterion.xml",
-        "type": "source_invalid"
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_criterion.xml",
+        "source_xml_sha256": "943136ebe4c6a9fd014a6dda43d1be126c801130dc1e7867165e56434d232f38",
+        "type": "source_invalid",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:524",
+          "oval:org.mitre.oval.test:var:712"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:1001"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "d7398f7acf2cca3a5373250eb66935bed8aaddaaea699f52a5a351ae010db868",
+            "variable_id": "oval:org.mitre.oval.test:var:524"
+          },
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:25"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "383d09255eb14bb844876181532f12044f8170e7c6b9b37cd775bb49c55f9d1c",
+            "variable_id": "oval:org.mitre.oval.test:var:712"
+          }
+        ]
       },
       {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:833"
+        ],
         "definition": "oval:org.mitre.oval.test:def:620",
+        "definition_id": "oval:org.mitre.oval.test:def:620",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "ee1cbe7d01af907b70973463a85e1633dd64ee427d743efb328b653bfa3e1996",
+            "original_node_sha256": "c1f9ffa626b2ebcb0331bf9ea1883182c0aaae8a16c516603e994cef7254443a",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:945"
+          }
+        ],
         "reason": "source-invalid Variable datatype normalization: oval:org.mitre.oval.test:var:945",
         "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
-        "type": "source_invalid"
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+        "source_xml_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+        "type": "source_invalid",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:945"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:841"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "af37c1c0425f44a2f3e687ddc5287390d077958a0293f2d2acea567f06db27dd",
+            "variable_id": "oval:org.mitre.oval.test:var:945"
+          }
+        ]
       },
       {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:833"
+        ],
         "definition": "oval:org.mitre.oval.test:def:997",
+        "definition_id": "oval:org.mitre.oval.test:def:997",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "ee1cbe7d01af907b70973463a85e1633dd64ee427d743efb328b653bfa3e1996",
+            "original_node_sha256": "c1f9ffa626b2ebcb0331bf9ea1883182c0aaae8a16c516603e994cef7254443a",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:945"
+          }
+        ],
         "reason": "source-invalid Variable datatype normalization: oval:org.mitre.oval.test:var:945",
         "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
-        "type": "source_invalid"
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+        "source_xml_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+        "type": "source_invalid",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:945"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:841"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "af37c1c0425f44a2f3e687ddc5287390d077958a0293f2d2acea567f06db27dd",
+            "variable_id": "oval:org.mitre.oval.test:var:945"
+          }
+        ]
       },
       {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:833"
+        ],
         "definition": "oval:org.mitre.oval.test:def:117",
+        "definition_id": "oval:org.mitre.oval.test:def:117",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "ee1cbe7d01af907b70973463a85e1633dd64ee427d743efb328b653bfa3e1996",
+            "original_node_sha256": "c1f9ffa626b2ebcb0331bf9ea1883182c0aaae8a16c516603e994cef7254443a",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:945"
+          }
+        ],
         "reason": "source-invalid Variable datatype normalization: oval:org.mitre.oval.test:var:945",
         "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
-        "type": "source_invalid"
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+        "source_xml_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+        "type": "source_invalid",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:945"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:841"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "af37c1c0425f44a2f3e687ddc5287390d077958a0293f2d2acea567f06db27dd",
+            "variable_id": "oval:org.mitre.oval.test:var:945"
+          }
+        ]
       },
       {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:833"
+        ],
         "definition": "oval:org.mitre.oval.test:def:97",
+        "definition_id": "oval:org.mitre.oval.test:def:97",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "ee1cbe7d01af907b70973463a85e1633dd64ee427d743efb328b653bfa3e1996",
+            "original_node_sha256": "c1f9ffa626b2ebcb0331bf9ea1883182c0aaae8a16c516603e994cef7254443a",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:945"
+          }
+        ],
         "reason": "source-invalid Variable datatype normalization: oval:org.mitre.oval.test:var:945",
         "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
-        "type": "source_invalid"
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+        "source_xml_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+        "type": "source_invalid",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:945"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:841"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "af37c1c0425f44a2f3e687ddc5287390d077958a0293f2d2acea567f06db27dd",
+            "variable_id": "oval:org.mitre.oval.test:var:945"
+          }
+        ]
       },
       {
+        "affected_test_ids": [
+          "oval:navy.navwar.niwcatlantic.scc:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc:tst:4"
+        ],
         "definition": "oval:navy.navwar.niwcatlantic.scc:def:38",
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc:def:38",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "d184ca7a98865980ab748b82549374729a06d4c2a159a811752c1a6a26e3f994",
+            "original_node_sha256": "2d7a1914c1819119495e087f6f7c344c97d935ffa709981befea3edf72ee1812",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:1"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "2051d65c8e977a580eeaf6ea3fae869a5a4a6f2741b0fa2d91d1c8f9395990c1",
+            "original_node_sha256": "90f00fbecc76cfbf55925b7cff02a5da05e56c37afe762a633051b788a79ebd9",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:101"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "315dbd76769007d44bad946afdeccd59509546fa0467e108b239a2bc2ed90253",
+            "original_node_sha256": "855170f4e91749508bcbe4d42c0976ed33b613da7480ebaa1a728300c0d81ebd",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:2"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "1a31e289b68600d8d3eaa939b7db0c3c75e9d9286e2b85d78fa00d27b2a4c867",
+            "original_node_sha256": "5c4fbe73a57653aaf53bd699d299f928cac520194db92bc06ca0b6e600b705fa",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:3"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "a1f0d0262cf6e2e0c703d9a174fcbf4c2fe506c48e5c4c7c15dba13968e5d4ca",
+            "original_node_sha256": "5700191a434d154fc62c686945a41c3f965bef943ddcb09e46e892bff8d06dab",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:4"
+          }
+        ],
         "reason": "source-invalid Variable datatype normalization: oval:navy.navwar.niwcatlantic.scc:var:1, oval:navy.navwar.niwcatlantic.scc:var:101, oval:navy.navwar.niwcatlantic.scc:var:2, oval:navy.navwar.niwcatlantic.scc:var:3, oval:navy.navwar.niwcatlantic.scc:var:4",
         "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
-        "type": "source_invalid"
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+        "source_xml_sha256": "e9cf10371c2d41a3c92087a93f62f597043828d0914a21c5ab4314f03fd8a6ef",
+        "type": "source_invalid",
+        "variable_ids": [
+          "oval:navy.navwar.niwcatlantic.scc:var:1",
+          "oval:navy.navwar.niwcatlantic.scc:var:101",
+          "oval:navy.navwar.niwcatlantic.scc:var:2",
+          "oval:navy.navwar.niwcatlantic.scc:var:3",
+          "oval:navy.navwar.niwcatlantic.scc:var:4"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": "string",
+            "expression_tag": "merge",
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:1"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "24df06ed804000a0e840018033a74496c4b10c8d7e4c2598db30af5a7ab7c039",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:1"
+          },
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": null,
+            "expression_tag": null,
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:101"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "02394b96ed27d5c8309060242f38ad68550f56c2f46b1ff7ce6d6abd1f9198d8",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:101"
+          },
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": "string",
+            "expression_tag": "merge",
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:2"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "d2b549deffd2ef1ab684ad5937492694ae3c11de00397bdf6b990824225407f1",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:2"
+          },
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": "string",
+            "expression_tag": "merge",
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:3"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "46c4aea1a5cb8f5ef457a495d8d7cdbb5ea24d5f1d964243801a16f824d72a4e",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:3"
+          },
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": "string",
+            "expression_tag": "merge",
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:4"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "9324d4dce6ff1c8741594a0a9b692edd6819d72c29f5a8fe1c6c1d5333a1ed3c",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:4"
+          }
+        ]
       },
       {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:1015",
+          "oval:org.mitre.oval.test:tst:1016",
+          "oval:org.mitre.oval.test:tst:1021",
+          "oval:org.mitre.oval.test:tst:1040",
+          "oval:org.mitre.oval.test:tst:1049",
+          "oval:org.mitre.oval.test:tst:1059",
+          "oval:org.mitre.oval.test:tst:1066",
+          "oval:org.mitre.oval.test:tst:1072",
+          "oval:org.mitre.oval.test:tst:1078",
+          "oval:org.mitre.oval.test:tst:1085",
+          "oval:org.mitre.oval.test:tst:1087",
+          "oval:org.mitre.oval.test:tst:1095",
+          "oval:org.mitre.oval.test:tst:1134",
+          "oval:org.mitre.oval.test:tst:1139",
+          "oval:org.mitre.oval.test:tst:1155",
+          "oval:org.mitre.oval.test:tst:1168",
+          "oval:org.mitre.oval.test:tst:1178",
+          "oval:org.mitre.oval.test:tst:1183",
+          "oval:org.mitre.oval.test:tst:146",
+          "oval:org.mitre.oval.test:tst:161",
+          "oval:org.mitre.oval.test:tst:187",
+          "oval:org.mitre.oval.test:tst:191",
+          "oval:org.mitre.oval.test:tst:370",
+          "oval:org.mitre.oval.test:tst:402",
+          "oval:org.mitre.oval.test:tst:427",
+          "oval:org.mitre.oval.test:tst:434",
+          "oval:org.mitre.oval.test:tst:570",
+          "oval:org.mitre.oval.test:tst:682",
+          "oval:org.mitre.oval.test:tst:817",
+          "oval:org.mitre.oval.test:tst:845"
+        ],
         "definition": "oval:org.mitre.oval.test:def:580",
+        "definition_id": "oval:org.mitre.oval.test:def:580",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [],
         "reason": "source-invalid Variable datatype declaration: oval:org.mitre.oval.test:var:561",
         "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
-        "type": "source_invalid"
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+        "source_xml_sha256": "c7e974a0a14ba4c7b72807e46e8052527b34a6da3672ca916dd57e5b4c2fd056",
+        "type": "source_invalid",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:561"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "string",
+            "expression_result_datatype": "integer",
+            "expression_tag": "time_difference",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:405"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "80cb237424e72337b00c9ccbd86b18cfb69f03bd03f6a78bb10ded451651dfef",
+            "variable_id": "oval:org.mitre.oval.test:var:561"
+          }
+        ]
       }
     ],
-    "report_sha256": "c1ec51e922861dcb700c56cd6d9426ce43f13a54583d91f72fe75994cd8d8ce9",
+    "report_sha256": "44881adf5a3e0f261045482b52d5db210ebc9b490604aee3f05740b661dc0571",
     "repository": "vanderpol/scap-ng-tools",
     "scope_complete": false,
     "script": "scripts/audit_self_assertion_parity.py",
     "source_accounted": true,
-    "source_checkout_pin_note": "staged source checkout lacked .git; package manifest and every source XML SHA-256 remain pinned",
+    "source_checkout_pin_note": "baseline source archive was staged without .git; package manifest and every source XML SHA-256 remain pinned",
     "source_checkout_pin_verified": false,
-    "structural_parity_definitions": 144,
-    "structural_parity_tests": 658,
+    "source_invalid_definition_count": 8,
+    "source_invalid_rows": [
+      {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:17",
+          "oval:org.mitre.oval.test:tst:178",
+          "oval:org.mitre.oval.test:tst:211",
+          "oval:org.mitre.oval.test:tst:229",
+          "oval:org.mitre.oval.test:tst:51",
+          "oval:org.mitre.oval.test:tst:644",
+          "oval:org.mitre.oval.test:tst:674",
+          "oval:org.mitre.oval.test:tst:74",
+          "oval:org.mitre.oval.test:tst:774",
+          "oval:org.mitre.oval.test:tst:970"
+        ],
+        "definition_id": "oval:org.mitre.oval.test:def:895",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_arithmetic_function.xml",
+        "source_xml_sha256": "573351f7b8e8a685ec90596ba7d0d5f8842988c42fbd6e1a34cdc73dc38ec1f8",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:589"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "float",
+            "expression_result_datatype": "integer",
+            "expression_tag": "arithmetic",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:932"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "292475ebe578c6ce3337cc5577bcda1e64bec9b245558c2cdbffeef718b05f3e",
+            "variable_id": "oval:org.mitre.oval.test:var:589"
+          }
+        ]
+      },
+      {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:78",
+          "oval:org.mitre.oval.test:tst:84"
+        ],
+        "definition_id": "oval:org.mitre.oval.test:def:67",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "9d61a4436e68c4f40d88a7ab143fac20e1bd4ca50f9d0e4187cc6788af0c6182",
+            "original_node_sha256": "340c7b394dd72fe14e0b370fcb07509010dd0f627eea3ab35cabffa1990d8715",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:524"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "62f76f92abc7cdc13b45057f60fa0e92ca7700a680f9890856e1ffcf5033411f",
+            "original_node_sha256": "797a6b14b5e3f0a03798e10a40f3147f67cb1c8792c9ce6e474b743a53c630a5",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:712"
+          }
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_criterion.xml",
+        "source_xml_sha256": "943136ebe4c6a9fd014a6dda43d1be126c801130dc1e7867165e56434d232f38",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:524",
+          "oval:org.mitre.oval.test:var:712"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:1001"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "d7398f7acf2cca3a5373250eb66935bed8aaddaaea699f52a5a351ae010db868",
+            "variable_id": "oval:org.mitre.oval.test:var:524"
+          },
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:25"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "383d09255eb14bb844876181532f12044f8170e7c6b9b37cd775bb49c55f9d1c",
+            "variable_id": "oval:org.mitre.oval.test:var:712"
+          }
+        ]
+      },
+      {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:833"
+        ],
+        "definition_id": "oval:org.mitre.oval.test:def:620",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "ee1cbe7d01af907b70973463a85e1633dd64ee427d743efb328b653bfa3e1996",
+            "original_node_sha256": "c1f9ffa626b2ebcb0331bf9ea1883182c0aaae8a16c516603e994cef7254443a",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:945"
+          }
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+        "source_xml_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:945"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:841"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "af37c1c0425f44a2f3e687ddc5287390d077958a0293f2d2acea567f06db27dd",
+            "variable_id": "oval:org.mitre.oval.test:var:945"
+          }
+        ]
+      },
+      {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:833"
+        ],
+        "definition_id": "oval:org.mitre.oval.test:def:997",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "ee1cbe7d01af907b70973463a85e1633dd64ee427d743efb328b653bfa3e1996",
+            "original_node_sha256": "c1f9ffa626b2ebcb0331bf9ea1883182c0aaae8a16c516603e994cef7254443a",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:945"
+          }
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+        "source_xml_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:945"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:841"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "af37c1c0425f44a2f3e687ddc5287390d077958a0293f2d2acea567f06db27dd",
+            "variable_id": "oval:org.mitre.oval.test:var:945"
+          }
+        ]
+      },
+      {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:833"
+        ],
+        "definition_id": "oval:org.mitre.oval.test:def:117",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "ee1cbe7d01af907b70973463a85e1633dd64ee427d743efb328b653bfa3e1996",
+            "original_node_sha256": "c1f9ffa626b2ebcb0331bf9ea1883182c0aaae8a16c516603e994cef7254443a",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:945"
+          }
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+        "source_xml_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:945"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:841"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "af37c1c0425f44a2f3e687ddc5287390d077958a0293f2d2acea567f06db27dd",
+            "variable_id": "oval:org.mitre.oval.test:var:945"
+          }
+        ]
+      },
+      {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:833"
+        ],
+        "definition_id": "oval:org.mitre.oval.test:def:97",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "binary",
+            "native_result_datatype": "boolean",
+            "normalized_visitor_node_sha256": "ee1cbe7d01af907b70973463a85e1633dd64ee427d743efb328b653bfa3e1996",
+            "original_node_sha256": "c1f9ffa626b2ebcb0331bf9ea1883182c0aaae8a16c516603e994cef7254443a",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:org.mitre.oval.test:var:945"
+          }
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_extend_definition.xml",
+        "source_xml_sha256": "ed488025fedd372fbfc0bf0930139e6ab50cd0343dc04d016b0a185fba6c42be",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:945"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "binary",
+            "expression_result_datatype": null,
+            "expression_tag": "value",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:841"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "af37c1c0425f44a2f3e687ddc5287390d077958a0293f2d2acea567f06db27dd",
+            "variable_id": "oval:org.mitre.oval.test:var:945"
+          }
+        ]
+      },
+      {
+        "affected_test_ids": [
+          "oval:navy.navwar.niwcatlantic.scc:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc:tst:4"
+        ],
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc:def:38",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "d184ca7a98865980ab748b82549374729a06d4c2a159a811752c1a6a26e3f994",
+            "original_node_sha256": "2d7a1914c1819119495e087f6f7c344c97d935ffa709981befea3edf72ee1812",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:1"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "2051d65c8e977a580eeaf6ea3fae869a5a4a6f2741b0fa2d91d1c8f9395990c1",
+            "original_node_sha256": "90f00fbecc76cfbf55925b7cff02a5da05e56c37afe762a633051b788a79ebd9",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:101"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "315dbd76769007d44bad946afdeccd59509546fa0467e108b239a2bc2ed90253",
+            "original_node_sha256": "855170f4e91749508bcbe4d42c0976ed33b613da7480ebaa1a728300c0d81ebd",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:2"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "1a31e289b68600d8d3eaa939b7db0c3c75e9d9286e2b85d78fa00d27b2a4c867",
+            "original_node_sha256": "5c4fbe73a57653aaf53bd699d299f928cac520194db92bc06ca0b6e600b705fa",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:3"
+          },
+          {
+            "code": "pinned_source_variable_datatype_normalized",
+            "declared_datatype": "int",
+            "native_result_datatype": "string",
+            "normalized_visitor_node_sha256": "a1f0d0262cf6e2e0c703d9a174fcbf4c2fe506c48e5c4c7c15dba13968e5d4ca",
+            "original_node_sha256": "5700191a434d154fc62c686945a41c3f965bef943ddcb09e46e892bff8d06dab",
+            "qualification": "OWNER_ACCEPTED_SOURCE_COMPATIBILITY_NOT_ORIGINAL_OVAL_EQUIVALENCE",
+            "source_variable": "oval:navy.navwar.niwcatlantic.scc:var:4"
+          }
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+        "source_xml_sha256": "e9cf10371c2d41a3c92087a93f62f597043828d0914a21c5ab4314f03fd8a6ef",
+        "variable_ids": [
+          "oval:navy.navwar.niwcatlantic.scc:var:1",
+          "oval:navy.navwar.niwcatlantic.scc:var:101",
+          "oval:navy.navwar.niwcatlantic.scc:var:2",
+          "oval:navy.navwar.niwcatlantic.scc:var:3",
+          "oval:navy.navwar.niwcatlantic.scc:var:4"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": "string",
+            "expression_tag": "merge",
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:1"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "24df06ed804000a0e840018033a74496c4b10c8d7e4c2598db30af5a7ab7c039",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:1"
+          },
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": null,
+            "expression_tag": null,
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:101"
+            ],
+            "source_variable_kind": "constant_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "02394b96ed27d5c8309060242f38ad68550f56c2f46b1ff7ce6d6abd1f9198d8",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:101"
+          },
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": "string",
+            "expression_tag": "merge",
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:2"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "d2b549deffd2ef1ab684ad5937492694ae3c11de00397bdf6b990824225407f1",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:2"
+          },
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": "string",
+            "expression_tag": "merge",
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:3"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "46c4aea1a5cb8f5ef457a495d8d7cdbb5ea24d5f1d964243801a16f824d72a4e",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:3"
+          },
+          {
+            "declared_datatype": "int",
+            "expression_result_datatype": "string",
+            "expression_tag": "merge",
+            "referenced_source_node_ids": [
+              "oval:navy.navwar.niwcatlantic.scc:obj:4"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "9324d4dce6ff1c8741594a0a9b692edd6819d72c29f5a8fe1c6c1d5333a1ed3c",
+            "variable_id": "oval:navy.navwar.niwcatlantic.scc:var:4"
+          }
+        ]
+      },
+      {
+        "affected_test_ids": [
+          "oval:org.mitre.oval.test:tst:1015",
+          "oval:org.mitre.oval.test:tst:1016",
+          "oval:org.mitre.oval.test:tst:1021",
+          "oval:org.mitre.oval.test:tst:1040",
+          "oval:org.mitre.oval.test:tst:1049",
+          "oval:org.mitre.oval.test:tst:1059",
+          "oval:org.mitre.oval.test:tst:1066",
+          "oval:org.mitre.oval.test:tst:1072",
+          "oval:org.mitre.oval.test:tst:1078",
+          "oval:org.mitre.oval.test:tst:1085",
+          "oval:org.mitre.oval.test:tst:1087",
+          "oval:org.mitre.oval.test:tst:1095",
+          "oval:org.mitre.oval.test:tst:1134",
+          "oval:org.mitre.oval.test:tst:1139",
+          "oval:org.mitre.oval.test:tst:1155",
+          "oval:org.mitre.oval.test:tst:1168",
+          "oval:org.mitre.oval.test:tst:1178",
+          "oval:org.mitre.oval.test:tst:1183",
+          "oval:org.mitre.oval.test:tst:146",
+          "oval:org.mitre.oval.test:tst:161",
+          "oval:org.mitre.oval.test:tst:187",
+          "oval:org.mitre.oval.test:tst:191",
+          "oval:org.mitre.oval.test:tst:370",
+          "oval:org.mitre.oval.test:tst:402",
+          "oval:org.mitre.oval.test:tst:427",
+          "oval:org.mitre.oval.test:tst:434",
+          "oval:org.mitre.oval.test:tst:570",
+          "oval:org.mitre.oval.test:tst:682",
+          "oval:org.mitre.oval.test:tst:817",
+          "oval:org.mitre.oval.test:tst:845"
+        ],
+        "definition_id": "oval:org.mitre.oval.test:def:580",
+        "disposition": "source_invalid_non_equivalence",
+        "native_type_normalizations": [],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+        "source_xml_sha256": "c7e974a0a14ba4c7b72807e46e8052527b34a6da3672ca916dd57e5b4c2fd056",
+        "variable_ids": [
+          "oval:org.mitre.oval.test:var:561"
+        ],
+        "variables": [
+          {
+            "declared_datatype": "string",
+            "expression_result_datatype": "integer",
+            "expression_tag": "time_difference",
+            "referenced_source_node_ids": [
+              "oval:org.mitre.oval.test:obj:405"
+            ],
+            "source_variable_kind": "local_variable",
+            "source_variable_present": true,
+            "source_variable_xml_sha256": "80cb237424e72337b00c9ccbd86b18cfb69f03bd03f6a78bb10ded451651dfef",
+            "variable_id": "oval:org.mitre.oval.test:var:561"
+          }
+        ]
+      }
+    ],
+    "structural_parity_definitions": 141,
+    "structural_parity_tests": 647,
     "undispositioned_definitions": 0,
     "undispositioned_tests": 0
   },
