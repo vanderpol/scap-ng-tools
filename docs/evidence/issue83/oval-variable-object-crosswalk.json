@@ -45,10 +45,10 @@
     {
       "source_variant": "variable_object/set over constant variable_objects",
       "source_semantics": "UNION, INTERSECTION, or COMPLEMENT combines Object item populations; result is unique and typed.",
-      "native_status": "not generally representable",
-      "converter_status": "bounded_native_recovery_only",
+      "native_status": "bounded_static_representability",
+      "converter_status": "implemented_bounded_static",
       "converter": "v04_direct_converter.AssessmentConverter.static_variable_object",
-      "constraints": ["constant Variables only", "population <= 4096", "no Filters", "native_recovery must be enabled"],
+      "constraints": ["constant Variables only", "population <= 4096", "no Filters", "host-independent source values only"],
       "proof": "static source-shaping tests only; no runtime equivalence claim"
     },
     {

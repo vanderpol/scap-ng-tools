@@ -689,7 +689,7 @@ class AssessmentConverter:
             # finite, source-authored population as one typed native constant
             # Variable.  This does not evaluate host data or silently lower a
             # dynamic Set/Filter; non-static graphs remain held below.
-            if self.native_recovery and (element.find(f'{{{OVAL}}}set') is not None):
+            if element.find(f'{{{OVAL}}}set') is not None:
                 static = self.static_variable_object(element)
                 static['capability'] = mapping['capability']
                 return static

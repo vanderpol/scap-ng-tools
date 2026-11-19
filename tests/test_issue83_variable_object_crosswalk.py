@@ -21,7 +21,7 @@ class Issue83VariableObjectCrosswalkTests(unittest.TestCase):
         self.assertEqual(variants["variable_object/set with dynamic variable or filter"]["converter_status"],
                          "held_fail_closed")
         self.assertEqual(variants["variable_object/set over constant variable_objects"]["converter_status"],
-                         "bounded_native_recovery_only")
+                         "implemented_bounded_static")
         self.assertFalse(receipt["claims"]["converter_source_parity"])
         self.assertFalse(receipt["claims"]["runtime_equivalence"])
         self.assertFalse(receipt["claims"]["silent_loss"])
