@@ -52,6 +52,7 @@
     "file.hash",
     "independent.yamlfilecontent",
     "linux.rpmverifyfile",
+    "macos.accountinfo",
     "solaris.smf",
     "solaris.smfproperty",
     "solaris.package",
