@@ -7,7 +7,7 @@ This compact receipt is derived from an external full source crosswalk. It is a 
 - Full crosswalk SHA-256: `fefc748e283ad07b0b4aea1ac5843377073bd3e40132eaaf4e08085c734e31c7` (109092502 bytes)
 - OVAL schema: `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`
 - Canonical 0.4.1: `5ee55288b369da26f308f40813e545b78dff2753`; schema family `88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f`
-- Converter audit head: `edc0027`
+- Converter audit head: `119455c8bc2cdf462ba87be396bb822f48b9e14c`
 
 ## Reproduction
 
@@ -24,7 +24,7 @@ python3 scripts/build_issue83_source_crosswalk.py \
 python3 scripts/build_issue83_audit_receipt.py \
   --crosswalk-json /tmp/issue83-crosswalk.json \
   --candidate-receipt docs/evidence/issue83/full-self-assertion-conversion-20261119-candidate-all-fixes.json \
-  --converter-commit 1add34c \
+  --converter-commit 119455c8bc2cdf462ba87be396bb822f48b9e14c \
   --canonical-commit 5ee55288b369da26f308f40813e545b78dff2753 \
   --canonical-schema-sha256 88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f \
   --oval-commit 2f140ee5c5dd1ed9606fcd5afc301f6baeb48706 \
