@@ -26,7 +26,8 @@
           "oval:org.mitre.oval.test:tst:439",
           "oval:org.mitre.oval.test:tst:132",
           "oval:org.mitre.oval.test:tst:275"
-        ]
+        ],
+        "source_title": "Evaluate to true if the oval-def:external_variable construct is properly supported"
       },
       {
         "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
@@ -39,7 +40,8 @@
           "oval:navy.navwar.niwcatlantic.scc.ios:tst:2",
           "oval:navy.navwar.niwcatlantic.scc.ios:tst:3",
           "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
-        ]
+        ],
+        "source_title": "Evaluate to true if the Cisco IOS version55 test is properly supported"
       },
       {
         "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
@@ -68,7 +70,8 @@
           "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25",
           "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26",
           "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28"
-        ]
+        ],
+        "source_title": "Evaluate to true if the win-def:ntuser_test is properly supported."
       },
       {
         "definition_id": "oval:org.mitre.oval.test:def:38",
@@ -92,7 +95,8 @@
           "oval:navy.navwar.niwcatlantic.scc.test:tst:4000",
           "oval:navy.navwar.niwcatlantic.scc.test:tst:4010",
           "oval:navy.navwar.niwcatlantic.scc.test:tst:4020"
-        ]
+        ],
+        "source_title": "Evaluate to true if the win-def:registry_test is properly supported."
       },
       {
         "definition_id": "oval:org.mitre.oval.test:def:729",
@@ -106,7 +110,8 @@
           "oval:org.mitre.oval.test:tst:525",
           "oval:org.mitre.oval.test:tst:1006",
           "oval:org.mitre.oval.test:tst:680"
-        ]
+        ],
+        "source_title": "Evaluate to true if the win-def:regkeyeffectiverights53_test is properly supported"
       }
     ],
     "tests": [
@@ -118,6 +123,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single integer value.",
         "test_id": "oval:org.mitre.oval.test:tst:126"
       },
       {
@@ -128,6 +134,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single possible_value.",
         "test_id": "oval:org.mitre.oval.test:tst:132"
       },
       {
@@ -138,6 +145,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple string values.",
         "test_id": "oval:org.mitre.oval.test:tst:154"
       },
       {
@@ -148,6 +156,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple evr_string values.",
         "test_id": "oval:org.mitre.oval.test:tst:170"
       },
       {
@@ -158,6 +167,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple possible_values.",
         "test_id": "oval:org.mitre.oval.test:tst:275"
       },
       {
@@ -168,6 +178,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single version value.",
         "test_id": "oval:org.mitre.oval.test:tst:34"
       },
       {
@@ -178,6 +189,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single evr_string value.",
         "test_id": "oval:org.mitre.oval.test:tst:350"
       },
       {
@@ -188,6 +200,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple boolean values.",
         "test_id": "oval:org.mitre.oval.test:tst:38"
       },
       {
@@ -198,6 +211,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple possible_restrictions.",
         "test_id": "oval:org.mitre.oval.test:tst:439"
       },
       {
@@ -208,6 +222,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single binary value.",
         "test_id": "oval:org.mitre.oval.test:tst:487"
       },
       {
@@ -218,6 +233,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single possible_restriction.",
         "test_id": "oval:org.mitre.oval.test:tst:509"
       },
       {
@@ -228,6 +244,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple integer values.",
         "test_id": "oval:org.mitre.oval.test:tst:608"
       },
       {
@@ -238,6 +255,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single boolean value.",
         "test_id": "oval:org.mitre.oval.test:tst:64"
       },
       {
@@ -248,6 +266,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple version values.",
         "test_id": "oval:org.mitre.oval.test:tst:71"
       },
       {
@@ -258,6 +277,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple float values.",
         "test_id": "oval:org.mitre.oval.test:tst:851"
       },
       {
@@ -268,6 +288,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single float value.",
         "test_id": "oval:org.mitre.oval.test:tst:936"
       },
       {
@@ -278,6 +299,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for multiple binary values.",
         "test_id": "oval:org.mitre.oval.test:tst:943"
       },
       {
@@ -288,6 +310,7 @@
         "failure_class": "canonical_input_constraint_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
         "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "source_test_title": "Test that the external_variable construct is supported for a single string value.",
         "test_id": "oval:org.mitre.oval.test:tst:983"
       },
       {
@@ -298,6 +321,7 @@
         "failure_class": "canonical_capability_gap",
         "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
         "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "source_test_title": "Test ios version55 test 'version_string' with a pattern match",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:1"
       },
       {
@@ -308,6 +332,7 @@
         "failure_class": "canonical_capability_gap",
         "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
         "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "source_test_title": "Test ios version55 test 'major_version' with operation greater than 0",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:2"
       },
       {
@@ -318,6 +343,7 @@
         "failure_class": "canonical_capability_gap",
         "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
         "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "source_test_title": "Test ios version55 test 'minor_version' with operation greater than or equal to 0",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:3"
       },
       {
@@ -328,6 +354,7 @@
         "failure_class": "canonical_capability_gap",
         "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
         "source_sha256": "9cb29eaacf3d4906c81d049747a9f389c9972900828b31c199e0b827b7505d67",
+        "source_test_title": "Test ios version55 test 'train_identifier' with a pattern match",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
       },
       {
@@ -338,6 +365,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a  key is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1"
       },
       {
@@ -348,6 +376,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test that the account_type is supported",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13"
       },
       {
@@ -358,6 +387,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with the logged_in element is supported",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14"
       },
       {
@@ -368,6 +398,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with an enabled element equal to true is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16"
       },
       {
@@ -378,6 +409,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a date_modified element is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17"
       },
       {
@@ -388,6 +420,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a filepath element set to pattern match.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19"
       },
       {
@@ -398,6 +431,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a  key, and name is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2"
       },
       {
@@ -408,6 +442,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with last_time_write element is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20"
       },
       {
@@ -418,6 +453,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a type element is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22"
       },
       {
@@ -428,6 +464,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a value element is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23"
       },
       {
@@ -438,6 +475,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Filter out users who have not logged in 30 days and later days_since_last_login attribute",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24"
       },
       {
@@ -448,6 +486,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a  key, and name is supported uaing operation=case insensitive equals",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25"
       },
       {
@@ -458,6 +497,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if ntuser_object with a non-existent key creates items when the behavior is present",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26"
       },
       {
@@ -468,6 +508,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a user_has_signed_into_explorer element is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28"
       },
       {
@@ -478,6 +519,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a  key, and name pattern match is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3"
       },
       {
@@ -488,6 +530,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a  key pattern match, and name pattern match is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4"
       },
       {
@@ -498,6 +541,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object with a  key pattern match, and name is supported.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5"
       },
       {
@@ -508,6 +552,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test if a ntuser_object is supported with a empty string for a registry key name.",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6"
       },
       {
@@ -518,6 +563,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test that the max_depth behavior is supported with a limited depth of recursion",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7"
       },
       {
@@ -528,6 +574,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
         "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "source_test_title": "Test that the max_depth behavior is supported with a unlimited depth of recursion",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8"
       },
       {
@@ -538,6 +585,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test reg_expand_sz type registry key on HKLM - State has expanded_value",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3000"
       },
       {
@@ -548,6 +596,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test HKCU is supported",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3010"
       },
       {
@@ -558,6 +607,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test use of hive variable",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4000"
       },
       {
@@ -568,6 +618,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test use of key variable",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4010"
       },
       {
@@ -578,6 +629,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test use of value variable",
         "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4020"
       },
       {
@@ -588,6 +640,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test if a registry_object with a hive is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:1000"
       },
       {
@@ -598,6 +651,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test if a registry_object with a hive key is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:1010"
       },
       {
@@ -608,6 +662,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test if a registry_object with a hive, key, and name is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:1020"
       },
       {
@@ -618,6 +673,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test if a registry_object with a hive, key, and name pattern match is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:1030"
       },
       {
@@ -628,6 +684,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test if a registry_object with a hive, key pattern match, and name pattern match is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:1040"
       },
       {
@@ -638,6 +695,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test if a registry_object with a hive, key pattern match with $, and name is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:1080"
       },
       {
@@ -648,6 +706,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test if a registry_object is supported with a empty string for a registry value name.",
         "test_id": "oval:org.mitre.oval.test:tst:1090"
       },
       {
@@ -658,6 +717,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test that the max_depth behavior is supported with a limited depth of recursion.",
         "test_id": "oval:org.mitre.oval.test:tst:1100"
       },
       {
@@ -668,6 +728,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test that the max_depth behavior is supported with a unlimited depth of recursion.",
         "test_id": "oval:org.mitre.oval.test:tst:1110"
       },
       {
@@ -678,6 +739,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
         "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "source_test_title": "Test if a registry_object with a hive, key, and name is supported. All using operation=case insensitive equals",
         "test_id": "oval:org.mitre.oval.test:tst:5020"
       },
       {
@@ -688,6 +750,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
         "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "source_test_title": "Test that the max_depth behavior is supported for limited depth of recursion.",
         "test_id": "oval:org.mitre.oval.test:tst:1006"
       },
       {
@@ -698,6 +761,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
         "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "source_test_title": "Test that a regkeyeffectiverights53_object with a hive, key, and trustee_sid pattern match is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:1289"
       },
       {
@@ -708,6 +772,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
         "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "source_test_title": "Test that a regkeyeffectiverights53_object with a hive pattern match, key, and trustee_sid is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:525"
       },
       {
@@ -718,6 +783,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
         "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "source_test_title": "Test that a regkeyeffectiverights53_object with a hive, key, and trustee_sid is supported.",
         "test_id": "oval:org.mitre.oval.test:tst:664"
       },
       {
@@ -728,6 +794,7 @@
         "failure_class": "canonical_traversal_schema_hold",
         "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
         "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "source_test_title": "Test that the max_depth behavior is supported for unlimited depth of recursion.",
         "test_id": "oval:org.mitre.oval.test:tst:680"
       }
     ]

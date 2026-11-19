@@ -16,6 +16,7 @@ import json
 from pathlib import Path
 import subprocess
 from zipfile import ZipFile
+import xml.etree.ElementTree as ET
 
 
 def sha(raw: bytes) -> str:
@@ -38,6 +39,34 @@ def git_blob(repo: Path, commit: str, path: str) -> bytes:
     result = subprocess.run(["git", "-C", str(repo), "show", f"{commit}:{path}"],
                             check=True, capture_output=True)
     return result.stdout
+
+
+def source_raw(source_root: Path, source_path: str) -> bytes:
+    if "!" in source_path:
+        archive_name, member = source_path.split("!", 1)
+        with ZipFile(source_root / archive_name) as archive:
+            return archive.read(member)
+    return (source_root / source_path).read_bytes()
+
+
+def source_titles(source_root: Path, source_paths: set[str]) -> dict[str, dict[str, str]]:
+    titles: dict[str, dict[str, str]] = {}
+    for source_path in source_paths:
+        root = ET.fromstring(source_raw(source_root, source_path))
+        rows: dict[str, str] = {}
+        for node in root.iter():
+            ident = node.get("id")
+            if not ident:
+                continue
+            local = node.tag.rsplit("}", 1)[-1]
+            if local == "definition":
+                text = next((child.text or "" for child in node.iter()
+                             if child.tag.rsplit("}", 1)[-1] == "title"), "")
+                rows[ident] = text.strip()
+            elif local.endswith("_test"):
+                rows[ident] = (node.get("comment") or "").strip()
+        titles[source_path] = rows
+    return titles
 
 
 def source_verify(source_root: Path, repo: Path, commit: str) -> dict:
@@ -103,6 +132,13 @@ def build(args: argparse.Namespace) -> tuple[dict, str]:
     source = source_verify(args.source_root, args.source_repo, args.source_commit)
     blocked_definitions = [row for row in definitions if row["conversion_status"] == "blocked"]
     blocked_tests = [row for row in tests if row["conversion_status"] == "blocked"]
+    titles = source_titles(args.source_root, {row["source_path"] for row in blocked_definitions + blocked_tests})
+    blocked_definition_rows = [compact_row(row) for row in blocked_definitions]
+    blocked_test_rows = [compact_row(row, test=True) for row in blocked_tests]
+    for row in blocked_definition_rows:
+        row["source_title"] = titles[row["source_path"]].get(row["definition_id"], "")
+    for row in blocked_test_rows:
+        row["source_test_title"] = titles[row["source_path"]].get(row["test_id"], "")
     result = {
         "format": "scap-ng-tools/issue83-self-assertion-overlay-receipt/1",
         "qualification": "schema admission/conversion only; execution and independent OVAL equivalence not proved",
@@ -170,8 +206,8 @@ def build(args: argparse.Namespace) -> tuple[dict, str]:
             "tests": summarize(tests, "conversion_status"),
         },
         "blocked": {
-            "definitions": [compact_row(row) for row in blocked_definitions],
-            "tests": [compact_row(row, test=True) for row in blocked_tests],
+            "definitions": blocked_definition_rows,
+            "tests": blocked_test_rows,
         },
         "reproduction": {
             "command": "PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <overlay-root> --schema-root <schema-root> --source-commit <source-commit> --output <external-output> --python <repo>/.venv/bin/python",

@@ -94,6 +94,8 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
             "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
             "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
         })
+        self.assertTrue(all(row["source_title"] for row in receipt["blocked"]["definitions"]))
+        self.assertTrue(all(row["source_test_title"] for row in receipt["blocked"]["tests"]))
         self.assertEqual(receipt["by_platform"]["tests"]["linux"],
                          {"CONVERTED_UNVERIFIED": 62})
         self.assertEqual(receipt["by_platform"]["tests"]["unix"],
