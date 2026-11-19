@@ -25,6 +25,10 @@ Pins:
 - `agnostic/oval-def_time_difference_function.xml`: **30/30 converted**
   - Receipt: `/tmp/tools-issue83-current-conversion-time-difference-1795107056/receipt.json`
   - SHA-256: `a872b08f2fa0a0418c33e2363b7fafb14b495eba477b0ceedd65ffe5979937a6`
+- `agnostic/oval-def_regex_capture_function.xml`: **4/4 converted** (authoring
+  conversion only; runtime regex qualification remains separate)
+  - Receipt: `/tmp/tools-issue83-current-conversion-regex-1795107133/receipt.json`
+  - SHA-256: `2691057366984314171722af808de7b233a8d46b68db26240b570a72dc6c3499`
 
 All output retains source Test IDs/hashes, witness hashes, source traces and
 conversion-scope hashes. Runtime evaluation and independent OVAL equivalence
