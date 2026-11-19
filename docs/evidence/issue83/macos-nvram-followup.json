@@ -4,20 +4,25 @@
     "runtime_execution": false,
     "schema_validated": true,
     "semantic_validated": true,
+    "source_oval_schema_version": "5.12.3",
+    "source_trace_sha256": "012f045fcb8bd5a76267384482026b6aa4805f11c31676686ad9bd5f84923e1f",
     "status": "CONVERTED_UNVERIFIED"
   },
   "before": {
     "category": "source_version_hold",
+    "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+    "failure_class": "source_version_hold",
     "reason": "source declared 5.10.1 while using 5.12.3 schema locations",
+    "source_oval_schema_version": "5.10.1",
     "status": "blocked"
   },
   "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
-  "converter_commit": "198875ec96eeb4243802f2d2696878ccc8899986",
+  "converter_commit": "26fc48e13752922627c59719a53fc64db60d32ce",
   "definition_id": "oval:org.mitre.oval.test:def:448",
   "format": "scap-ng-tools/issue83-macos-nvram-followup/1",
   "output": {
     "documents": 1,
-    "external_directory": "/tmp/macos-nvram-fixed-1795112500",
+    "external_directory": "<fresh-external-temp-directory>",
     "files": {
       "assessment.json": {
         "bytes": 5681,
@@ -32,10 +37,28 @@
         "sha256": "4fa079fe003bb87a2139df6d003fecd21e462e4ab0cb350de20e2bec7b1d739c"
       },
       "source-trace.json": {
-        "bytes": 9358,
-        "sha256": "2ae0410553e497f86bf0366cc0e52cda96521f5b79ccb00d1aaf5d7ecefc7ed0"
+        "bytes": 9359,
+        "sha256": "012f045fcb8bd5a76267384482026b6aa4805f11c31676686ad9bd5f84923e1f"
       }
     }
+  },
+  "reproduction": {
+    "commands": {
+      "corrected": "PYTHONPATH=src .venv/bin/python -m scap_ng_tools.converter.direct04 --schema-root <canonical-0.4.1-schema> --source <corrected-xml> --sha256 15ab1e122b7b58d40c1b81dc71a512a9e55b01c4ce0aeaed35e85160aec0a2ef --oval-definition oval:org.mitre.oval.test:def:448 --source-commit 9d3ae629da96bf8b15730a5c6ac274cf29fcd7d5 --source-path SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml --output <fresh-output>/corrected",
+      "original": "PYTHONPATH=src .venv/bin/python -m scap_ng_tools.converter.direct04 --schema-root <canonical-0.4.1-schema> --source <original-xml> --sha256 de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd --oval-definition oval:org.mitre.oval.test:def:448 --source-commit e3538595c5083b9c34d937a81d319234df9bbfaa --source-path SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml --output <fresh-output>/original"
+    },
+    "corrected_result": {
+      "assessment_sha256": "6d08ccf4da04224ef353c4c07832df4b28607cc1f5eed65813cd965a3bbccaae",
+      "documents": 1,
+      "source_trace_sha256": "012f045fcb8bd5a76267384482026b6aa4805f11c31676686ad9bd5f84923e1f",
+      "status": "CONVERTED_UNVERIFIED"
+    },
+    "generated_evidence_commit": "not committed; compact hashes only",
+    "original_result": {
+      "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+      "status": "blocked"
+    },
+    "source_fetch": "local immutable git blobs from /tmp/oval-self-assertion-pr20; no source mutation"
   },
   "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
   "source": {

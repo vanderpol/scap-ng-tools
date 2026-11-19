@@ -51,6 +51,34 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_nvram_pr8_replay_keeps_version_hold_and_recovery_separate(self):
+        receipt = self.load("macos-nvram-followup.json")
+        self.assertEqual(receipt["format"], "scap-ng-tools/issue83-macos-nvram-followup/1")
+        self.assertEqual(receipt["converter_commit"],
+                         "26fc48e13752922627c59719a53fc64db60d32ce")
+        self.assertEqual(receipt["definition_id"], "oval:org.mitre.oval.test:def:448")
+        source = receipt["source"]
+        self.assertEqual(source["original_commit"],
+                         "e3538595c5083b9c34d937a81d319234df9bbfaa")
+        self.assertEqual(source["candidate_commit"],
+                         "9d3ae629da96bf8b15730a5c6ac274cf29fcd7d5")
+        self.assertEqual(source["original_sha256"],
+                         "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd")
+        self.assertEqual(source["candidate_sha256"],
+                         "15ab1e122b7b58d40c1b81dc71a512a9e55b01c4ce0aeaed35e85160aec0a2ef")
+        self.assertEqual(receipt["before"]["status"], "blocked")
+        self.assertEqual(receipt["before"]["failure_class"], "source_version_hold")
+        self.assertEqual(receipt["before"]["diagnostic"],
+                         "unsupported standalone source OVAL version: '5.10.1'")
+        self.assertEqual(receipt["after"]["status"], "CONVERTED_UNVERIFIED")
+        self.assertTrue(receipt["after"]["schema_validated"])
+        self.assertFalse(receipt["after"]["runtime_execution"])
+        self.assertFalse(receipt["after"]["independent_oval_equivalence"])
+        self.assertEqual(receipt["output"]["files"]["source-trace.json"]["sha256"],
+                         "012f045fcb8bd5a76267384482026b6aa4805f11c31676686ad9bd5f84923e1f")
+        self.assertEqual(receipt["reproduction"]["corrected_result"]["assessment_sha256"],
+                         receipt["output"]["files"]["assessment.json"]["sha256"])
+
     def test_exploratory_openscap_receipt_keeps_legacy_limits_explicit(self):
         receipt = self.load("openscap-exploratory-pr6-pr16.json")
         self.assertEqual(receipt["tool"]["version"], "1.3.9")
