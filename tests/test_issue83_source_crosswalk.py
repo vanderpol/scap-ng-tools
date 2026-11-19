@@ -173,6 +173,9 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(row["mapping_disposition"], "mapped_unproven")
         self.assertEqual(row["canonical_mapping_candidates"][0]["capability"], "test.foo")
         self.assertEqual(row["canonical_mapping_candidates"][0]["converter_proof"], "not_run")
+        self.assertEqual(row["canonical_mapping_candidates"][0]["field_mapping_status"],
+                         "declared_unproven")
+        self.assertIsInstance(row["canonical_mapping_candidates"][0]["source_member_names"], list)
         item_row = next(item for item in report["grammar_rows"]
                         if item["source_name"] == "foo_item")
         self.assertEqual(item_row["schema_file"], "test-system-characteristics-schema.xsd")

@@ -312,6 +312,8 @@ def _schema_grammar_rows(declaration: ET.Element, schema_file: str,
             "enumeration_values": enumerations,
             "disposition": "deprecated_migration" if direct_deprecated else "unproven",
             "deprecation": [{"scope": "node", **record} for record in direct_deprecated],
+            "source_member_names": (_shape_member_names(_schema_shape(node))
+                                    if not path else []),
         })
         for index, child in enumerate(node):
             walk(child, (*path, index))
@@ -444,12 +446,41 @@ def _canonical_mapping_inventory(mapping_root: Path) -> list[dict]:
                 "mapping_file_sha256": digest(path.read_bytes()),
                 "mapping_specification_version": mapping.get("specification_version", ""),
                 "mapping_status": "declared_unproven",
+                "native_field_names": _mapping_native_fields({"_native": mapping.get("native", {})}),
+                "source_to_native_fields": ({
+                    **mapping.get("native", {}).get("selector_map", {}),
+                    **mapping.get("native", {}).get("state_field_map", {}),
+                    **mapping.get("native", {}).get("collection_parameter_source_map", {}),
+                } if role in {"object", "state"} else {}),
                 "converter_entrypoint": f"AssessmentConverter.convert_{role}"
                     if role != "item" else "collector_item_contract",
                 "converter_proof": "not_run",
                 "runtime_equivalence": "not_proved",
             })
     return rows
+
+
+def _shape_member_names(shape: dict) -> list[str]:
+    names = []
+    for child in shape.get("children", []):
+        if child.get("kind") in {"element", "attribute"} and child.get("attributes", {}).get("name"):
+            names.append(child["attributes"]["name"])
+        names.extend(_shape_member_names(child))
+    return sorted(set(names))
+
+
+def _mapping_native_fields(candidate: dict) -> list[str]:
+    native = candidate.get("_native", {})
+    fields = set()
+    for key in ("selector_map", "state_field_map", "field_datatypes",
+                "collection_parameter_source_map"):
+        value = native.get(key, {})
+        if isinstance(value, dict):
+            fields.update(value.keys())
+            if key in {"selector_map", "state_field_map",
+                       "collection_parameter_source_map"}:
+                fields.update(value.values())
+    return sorted(str(value) for value in fields)
 
 
 def _attach_canonical_mappings(grammar_rows: list[dict], mapping_rows: list[dict]) -> None:
@@ -464,9 +495,15 @@ def _attach_canonical_mappings(grammar_rows: list[dict], mapping_rows: list[dict
             "element", "complexType", "simpleType", "group"
         } else []
         if candidates:
+            enriched = []
+            for candidate in candidates:
+                candidate = dict(candidate)
+                candidate["source_member_names"] = row.get("source_member_names", [])
+                candidate["field_mapping_status"] = "declared_unproven"
+                enriched.append(candidate)
             row["canonical_mapping_candidates"] = sorted(
-                candidates, key=lambda candidate: (candidate["capability"], candidate["source_role"],
-                                                   candidate["mapping_file"]))
+                enriched, key=lambda candidate: (candidate["capability"], candidate["source_role"],
+                                                 candidate["mapping_file"]))
             row["mapping_disposition"] = "mapped_unproven"
 
 
