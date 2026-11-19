@@ -491,6 +491,7 @@ if __name__ == "__main__":
 class Issue83ConverterRelationshipTests(unittest.TestCase):
     def test_production_rule_renderer_emits_source_relationships(self):
         from scap_ng_tools.converter.direct04 import load_runtime
+        from v04_source_metadata import source_standard_metadata
         runtime = load_runtime()
         rule = ET.fromstring(
             f'<Rule xmlns="{crosswalk.XCCDF}" id="rule-a"><version>1</version>'
@@ -559,6 +560,10 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         self.assertEqual(metadata[3]['text'], 'Fix text with markup')
         for row in metadata:
             self.assertRegex(row['source_xml_sha256'], r'^[0-9a-f]{64}$')
+        altered = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}"><fixtext>Different <em>tail</em> text</fixtext></Rule>')
+        self.assertNotEqual(metadata[3]['source_xml_sha256'],
+                            source_standard_metadata(altered)[0]['source_xml_sha256'])
         self.assertNotIn('source_standard_metadata', native)
 
     def test_standard_xccdf_metadata_helper_preserves_order_duplicates_and_absence(self):
@@ -580,6 +585,10 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         self.assertEqual(rows[4]['attributes'], {'fixref': 'f'})
         for row in rows:
             self.assertRegex(row['source_xml_sha256'], r'^[0-9a-f]{64}$')
+        foreign = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}" xmlns:v="urn:vendor">'
+            '<v:fixtext>foreign</v:fixtext><fixtext>native</fixtext></Rule>')
+        self.assertEqual([row['text'] for row in source_standard_metadata(foreign)], ['native'])
         self.assertEqual(source_standard_metadata(ET.fromstring(
             f'<Rule xmlns="{crosswalk.XCCDF}"><title>none</title></Rule>')), [])
 

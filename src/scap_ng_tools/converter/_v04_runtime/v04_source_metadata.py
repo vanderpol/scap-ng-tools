@@ -84,18 +84,24 @@ def validate_relationship_targets(relationships: dict[str, list], nodes: dict[st
                 raise ValueError(f'XCCDF {kind} target is not a Rule or Group: {identifier}')
 
 
-def _xml_identity(element: ET.Element):
-    """Return the stable source-node shape used by converter provenance."""
+def _metadata_xml_identity(element: ET.Element):
+    """Return a lossless, deterministic identity shape for one metadata node.
+
+    The older converter-wide ``xml_identity`` helper intentionally normalizes
+    mixed XML aggressively.  Metadata provenance must not do that: parent text
+    and child tails are part of authored ``fix``/``fixtext`` content and must
+    distinguish otherwise different source nodes.
+    """
     return [
         element.tag,
         sorted(element.attrib.items()),
-        element.text if not len(element) else None,
-        [_xml_identity(child) for child in element],
+        element.text,
+        [[_metadata_xml_identity(child), child.tail] for child in element],
     ]
 
 
 def _identity_digest(element: ET.Element) -> str:
-    raw = json.dumps(_xml_identity(element), sort_keys=True,
+    raw = json.dumps(_metadata_xml_identity(element), sort_keys=True,
                      ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(raw).hexdigest()
 
@@ -111,10 +117,12 @@ def source_standard_metadata(item: ET.Element) -> list[dict]:
     collapsed into a dictionary.
     """
     records = []
+    metadata_kinds = {"ident", "reference", "fix", "fixtext"}
+    metadata_qnames = {"{" + XCCDF + "}" + kind for kind in metadata_kinds}
     for ordinal, child in enumerate(item, 1):
-        kind = child.tag.rsplit("}", 1)[-1]
-        if kind not in {"ident", "reference", "fix", "fixtext"}:
+        if child.tag not in metadata_qnames:
             continue
+        kind = child.tag.rsplit("}", 1)[-1]
         records.append({
             "ordinal": ordinal,
             "kind": kind,
