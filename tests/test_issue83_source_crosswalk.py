@@ -19,12 +19,20 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         rule = f'''<xccdf:Rule xmlns:xccdf="{crosswalk.XCCDF}" id="xccdf:test_rule">
           <xccdf:requires idref="rule_a rule_b"/><xccdf:requires idref="rule_c"/><xccdf:conflicts idref="rule_d"/>
           <xccdf:title>Relationship witness</xccdf:title>
+          <xccdf:ident system="http://example.test/ident">ID-1</xccdf:ident>
+          <xccdf:reference href="https://example.test">REF-1</xccdf:reference>
+          <xccdf:fix id="fix-1">echo fix</xccdf:fix>
+          <xccdf:fixtext fixref="fix-1">Apply the fix</xccdf:fixtext>
           <xccdf:description>&lt;VulnDiscussion&gt;Keep this discussion&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;</xccdf:description>
         </xccdf:Rule>'''
         xml = f'''<ds:data-stream-collection xmlns:ds="{crosswalk.DS}" xmlns:xccdf="{crosswalk.XCCDF}" id="collection">
           <ds:component id="checklist"><xccdf:Benchmark id="benchmark" xccdf-version="1.2"><xccdf:Rule id="xccdf:test_rule">
           <xccdf:requires idref="rule_a rule_b"/><xccdf:requires idref="rule_c"/><xccdf:conflicts idref="rule_d"/>
             <xccdf:title>Relationship witness</xccdf:title>
+            <xccdf:ident system="http://example.test/ident">ID-1</xccdf:ident>
+            <xccdf:reference href="https://example.test">REF-1</xccdf:reference>
+            <xccdf:fix id="fix-1">echo fix</xccdf:fix>
+            <xccdf:fixtext fixref="fix-1">Apply the fix</xccdf:fixtext>
             <xccdf:description>&lt;VulnDiscussion&gt;Keep this discussion&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;</xccdf:description>
           </xccdf:Rule></xccdf:Benchmark></ds:component>
           <ds:data-stream id="stream" scap-version="1.4"><ds:checklists><ds:component-ref id="checklist" href="#checklist"/></ds:checklists></ds:data-stream>
@@ -46,6 +54,12 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(fields["rule_field_counts"]["FalsePositives"], 1)
         self.assertEqual(fields["nonempty_rule_field_counts"]["VulnDiscussion"], 1)
         self.assertEqual(fields["nonempty_rule_field_counts"]["Documentable"], 1)
+        metadata = record["xccdf_metadata"]
+        self.assertEqual(metadata["rule_field_counts"], {
+            "fix": 1, "fixtext": 1, "ident": 1, "reference": 1,
+        })
+        self.assertEqual(metadata["element_counts"], metadata["rule_field_counts"])
+        self.assertEqual(len(record["rules"][0]["xccdf_metadata_field_sha256"]["fixtext"]), 1)
 
     def test_malformed_or_non_publisher_description_is_not_promoted(self):
         element = ET.fromstring(f'<description xmlns="{crosswalk.XCCDF}">ordinary text</description>')

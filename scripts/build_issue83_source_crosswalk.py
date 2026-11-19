@@ -35,6 +35,10 @@ DISA_FIELDS = (
     "Mitigations", "SeverityOverrideGuidance", "PotentialImpacts",
     "ThirdPartyTools", "MitigationControl", "Responsibility", "IAControls",
 )
+# Standard XCCDF policy metadata is distinct from DISA publisher payload.
+# Inventory it without inventing a native mapping; the source Rule identity
+# and per-element digests make any later mapping auditable.
+XCCDF_RULE_METADATA_FIELDS = ("ident", "reference", "fix", "fixtext")
 OVAL_SCHEMA_FILES = re.compile(r"^[^-]+-(?:definitions|system-characteristics)-schema\.xsd$")
 XSD = "http://www.w3.org/2001/XMLSchema"
 SCHEMATRON = "http://purl.oclc.org/dsdl/schematron"
@@ -127,6 +131,8 @@ def archive_record(path: Path) -> dict:
     field_counts = Counter()
     field_nonempty = Counter()
     malformed_descriptions = []
+    xccdf_metadata_rule_counts = Counter()
+    xccdf_metadata_element_counts = Counter()
     for rule in benchmark.iter(f"{{{XCCDF}}}Rule"):
         source_id = rule.get("id")
         if not source_id:
@@ -134,6 +140,15 @@ def archive_record(path: Path) -> dict:
         fields, raw_description = parse_disa_description(
             next((child for child in rule if child.tag == f"{{{XCCDF}}}description"), None))
         field_hashes = {}
+        xccdf_metadata_hashes = {name: [] for name in XCCDF_RULE_METADATA_FIELDS}
+        for child in rule:
+            name = local_name(child.tag)
+            if name in xccdf_metadata_hashes:
+                xccdf_metadata_hashes[name].append(identity_digest(child))
+        xccdf_metadata_rule_counts.update(name for name, values in xccdf_metadata_hashes.items() if values)
+        xccdf_metadata_element_counts.update({
+            name: len(values) for name, values in xccdf_metadata_hashes.items()
+        })
         for name in DISA_FIELDS:
             if name in fields:
                 field_counts[name] += 1
@@ -165,6 +180,10 @@ def archive_record(path: Path) -> dict:
             "requires": requires,
             "conflicts": conflicts,
             "disa_description_field_sha256": dict(sorted(field_hashes.items())),
+            "xccdf_metadata_field_sha256": {
+                name: sorted(values) for name, values in xccdf_metadata_hashes.items()
+                if values
+            },
         }
         rules.append(row)
         if requires or conflicts:
@@ -228,6 +247,11 @@ def archive_record(path: Path) -> dict:
             "rule_field_counts": dict(sorted(field_counts.items())),
             "nonempty_rule_field_counts": dict(sorted(field_nonempty.items())),
             "malformed_publisher_payload_rules": sorted(malformed_descriptions),
+        },
+        "xccdf_metadata": {
+            "field_names": list(XCCDF_RULE_METADATA_FIELDS),
+            "rule_field_counts": dict(sorted(xccdf_metadata_rule_counts.items())),
+            "element_counts": dict(sorted(xccdf_metadata_element_counts.items())),
         },
     }
 
@@ -1373,10 +1397,14 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
         archive_manifest, sort_keys=True, separators=(",", ":")).encode("utf-8"))
     field_counts = Counter()
     nonempty = Counter()
+    xccdf_metadata_counts = Counter()
+    xccdf_metadata_elements = Counter()
     malformed = []
     for record in records:
         field_counts.update(record["disa_description"]["rule_field_counts"])
         nonempty.update(record["disa_description"]["nonempty_rule_field_counts"])
+        xccdf_metadata_counts.update(record["xccdf_metadata"]["rule_field_counts"])
+        xccdf_metadata_elements.update(record["xccdf_metadata"]["element_counts"])
         malformed.extend(record["disa_description"]["malformed_publisher_payload_rules"])
     result = {
         "format": "scap-ng-tools/issue83-source-crosswalk/1",
@@ -1406,6 +1434,8 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
             "disa_description_field_names": list(DISA_FIELDS),
             "disa_description_rule_field_counts": dict(sorted(field_counts.items())),
             "disa_description_nonempty_rule_field_counts": dict(sorted(nonempty.items())),
+            "xccdf_metadata_rule_field_counts": dict(sorted(xccdf_metadata_counts.items())),
+            "xccdf_metadata_element_counts": dict(sorted(xccdf_metadata_elements.items())),
             "malformed_publisher_payload_rules": sorted(malformed),
         },
         "relationships": relations,
