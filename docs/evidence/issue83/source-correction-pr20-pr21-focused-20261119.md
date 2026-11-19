@@ -32,5 +32,7 @@ source deletion and is verified from commit
 `9e079baea4432b3babff5429ca726c281872de1f`; its baseline XML hash and removed
 IDs are retained in the receipt.
 
-Canonical schema and converter holds remain explicit; no deprecated behavior
-was reintroduced.
+The current classifier uses the pinned supported mapping set to distinguish an
+absent canonical source capability from an implementation-level unsupported
+operation. Canonical schema and converter holds remain explicit; no deprecated
+behavior was reintroduced.
