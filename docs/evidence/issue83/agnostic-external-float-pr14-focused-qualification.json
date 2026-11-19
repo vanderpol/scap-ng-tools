@@ -5,7 +5,7 @@
     "base_status": "blocked",
     "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
     "converter": "scap_ng_tools.converter.direct04",
-    "converter_commit": "562896a24aca13fe47cca4ea412035404196d9c2",
+    "converter_commit": "26fc48e13752922627c59719a53fc64db60d32ce",
     "corrected_diagnostic": "unbound external Variable or unsupported possible_restriction",
     "corrected_returncode": 1,
     "corrected_status": "blocked",
@@ -14,7 +14,16 @@
     "host_qualification": "not_run",
     "independent_runtime_equivalence": "not_proved",
     "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-    "replay_note": "Direct production CLI replay at current Tools head; both exact source member hashes preserve the same external-Variable/Input hold and emit no native Assessment.",
+    "replay": {
+      "base_diagnostic": "unbound external Variable or unsupported possible_restriction",
+      "base_returncode": 1,
+      "base_source_member_sha256": "48b14ebc959d86f8911b5ca4b614ce0e0bff24f1183184cf6632f42f4945beb5",
+      "corrected_diagnostic": "unbound external Variable or unsupported possible_restriction",
+      "corrected_returncode": 1,
+      "corrected_source_member_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+      "native_output": "none"
+    },
+    "replay_note": "Direct production CLI replay at current Tools head against exact base/corrected archive members; both remain blocked by the same canonical external-Variable/Input hold and emit no native Assessment.",
     "schema_validated": false,
     "semantic_transition": "none; source comment correction does not resolve the canonical external-Variable/Input contract hold"
   },
@@ -23,7 +32,7 @@
     "conversion_note": "Extract oval-def-ext.xml without editing it, then run direct04 for def:562 with the exact member hash; both versions must retain the same explicit external-Variable hold.",
     "evidence_root": "<fresh-external-temp-directory>",
     "generated_evidence_commit": "not committed; compact hashes only",
-    "source_fetch_template": "git show <source-commit>:SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip"
+    "source_fetch_template": "Extract exact oval-def-ext.xml member from immutable git blob at <source-commit>; do not edit XML."
   },
   "source": {
     "affected_test_id": "oval:org.mitre.oval.test:tst:936",
