@@ -28,7 +28,10 @@ class Issue83VariableObjectCrosswalkTests(unittest.TestCase):
 
     def test_xsd_digests_match_retained_pinned_checkout(self):
         import hashlib
-        root = Path(os.environ.get("SCAP_NG_OVAL_SCHEMA_ROOT", ""))
+        root_value = os.environ.get("SCAP_NG_OVAL_SCHEMA_ROOT")
+        if not root_value:
+            self.skipTest("set SCAP_NG_OVAL_SCHEMA_ROOT to the pinned OVAL schema checkout")
+        root = Path(root_value)
         if not root.is_dir():
             self.skipTest("pinned OVAL schema checkout is unavailable")
         receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
