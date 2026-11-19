@@ -84,6 +84,21 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertFalse(receipt["qualification"]["runtime_execution"])
         self.assertFalse(receipt["qualification"]["independent_oval_equivalence"])
 
+    def test_existing_source_correction_batch_keeps_exact_transitions(self):
+        receipt = self.load("source-correction-batch-20261119.json")
+        self.assertEqual(receipt["summary"]["cases"], 13)
+        self.assertEqual(receipt["summary"]["corrected_converted"], 10)
+        self.assertEqual(receipt["summary"]["corrected_blocked"], 1)
+        self.assertEqual(receipt["summary"]["removed_by_correction"], 2)
+        self.assertEqual(receipt["summary"]["transitions"]["blocked->CONVERTED_UNVERIFIED"], 6)
+        for case in receipt["cases"]:
+            self.assertRegex(case["base_source_sha256"], HEX64)
+            self.assertIn(case["base_status"], {"blocked", "CONVERTED_UNVERIFIED"})
+            if case["corrected_status"] == "CONVERTED_UNVERIFIED":
+                self.assertRegex(case["corrected_source_sha256"], HEX64)
+                self.assertRegex(case["corrected_assessment_sha256"], HEX64)
+                self.assertRegex(case["corrected_trace_sha256"], HEX64)
+
     def test_windows_policy_pr5_replay_proves_source_hold_recovery(self):
         receipt = self.load("windows-policy-pr5-replay-20261119.json")
         self.assertEqual(receipt["source"]["correction_pr"], 5)
