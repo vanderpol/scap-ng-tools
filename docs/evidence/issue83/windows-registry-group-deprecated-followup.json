@@ -1,0 +1,47 @@
+{
+  "format": "scap-ng-tools/issue83/windows-registry-group-deprecated-followup/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "baseline_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "candidate_commit": "088b6e9083eca68c45196bd3c8eb7f1ba5d6c263",
+    "path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+    "baseline_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+    "candidate_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+    "definition_id": "oval:org.mitre.oval.test:def:729",
+    "removed_tests": [
+      "oval:org.mitre.oval.test:tst:1474",
+      "oval:org.mitre.oval.test:tst:1141"
+    ],
+    "removed_behaviors": ["include_group", "resolve_group"]
+  },
+  "source_schema_evidence": {
+    "schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "include_group_deprecated_since": "5.10",
+    "resolve_group_deprecated_since": "5.6",
+    "replacement": "SID objects/Variables; no direct canonical substitution"
+  },
+  "pins": {
+    "tools_commit": "17e9d07944acb58f7ecb146471a301514df8fc97",
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f"
+  },
+  "conversion": {
+    "baseline": {
+      "status": "blocked",
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "classification": "deprecated_source_construct"
+    },
+    "candidate": {
+      "status": "blocked",
+      "diagnostic": "generated authoring failed flat JSON Schema for traversal max_depth Tests tst:1006 and tst:680",
+      "classification": "canonical_traversal_schema_hold",
+      "source_deprecation_hold_resolved": true,
+      "runtime_execution": false,
+      "independent_oval_equivalence": false
+    }
+  },
+  "related": {
+    "source_pr": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/11",
+    "converter_pr": "https://github.com/vanderpol/scap-ng-tools/pull/84"
+  }
+}
