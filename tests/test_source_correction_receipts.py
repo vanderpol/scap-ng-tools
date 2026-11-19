@@ -245,6 +245,19 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertTrue(conversion["corrected_schema_validated"])
         self.assertRegex(conversion["corrected_assessment_sha256"], HEX64)
 
+    def test_password_pr18_receipt_is_replayed_at_current_head(self):
+        receipt = self.load("password-pr18-focused-qualification.json")
+        conversion = receipt["conversion"]
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["converter_commit"],
+                         "d9addb9a9fe9699e8dea33d1bf60ecb891ccb94e")
+        self.assertEqual(conversion["base_status"], "CONVERTED_UNVERIFIED")
+        self.assertEqual(conversion["corrected_status"], "CONVERTED_UNVERIFIED")
+        self.assertRegex(conversion["base_source_trace_sha256"], HEX64)
+        self.assertRegex(conversion["corrected_source_trace_sha256"], HEX64)
+        self.assertNotEqual(conversion["base_assessment_sha256"],
+                            conversion["corrected_assessment_sha256"])
+
     def test_sshd_pr17_receipt_records_recovered_source_test(self):
         receipt = self.load("sshd-pr17-focused-qualification.json")
         source = receipt["source"]
