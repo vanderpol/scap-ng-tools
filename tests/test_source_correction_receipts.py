@@ -176,6 +176,16 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
                 self.assertRegex(case["corrected_assessment_sha256"], HEX64)
                 self.assertRegex(case["corrected_trace_sha256"], HEX64)
 
+    def test_macos_pr12_replay_replaces_deprecated_environment_object(self):
+        receipt = self.load("macos-keychain-deprecated-object-followup.json")
+        conversion = receipt["conversion"]
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["base_returncode"], 1)
+        self.assertEqual(conversion["candidate_returncode"], 0)
+        self.assertRegex(conversion["candidate"]["source_trace_sha256"], HEX64)
+        self.assertEqual(conversion["candidate"]["assessment_sha256"],
+                         "d6ac8d4ac9b5c1c136fe12d5420bc4bd13ae1acb9d2c9b4185ed9a9a64cce6b3")
+
     def test_windows_policy_pr5_replay_proves_source_hold_recovery(self):
         receipt = self.load("windows-policy-pr5-replay-20261119.json")
         self.assertEqual(receipt["source"]["correction_pr"], 5)
