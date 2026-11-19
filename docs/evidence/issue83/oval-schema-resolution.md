@@ -11,7 +11,7 @@ native support, conversion success, or runtime equivalence.
   python scripts/build_issue83_source_crosswalk.py ...` or call
   `oval_inventory` for schema-only output.
 - External receipt: `/tmp/tools-issue83-inheritance-final3-1795106291/oval-schema-inheritance.json`
-- Receipt SHA-256: `796c0b3fad7af5c954398e1d5a2424ac8ef1a39f60fb7fa571c4b174bf7cc964`
+- Receipt SHA-256: `c0fd54871fb6b0828efa6bed5d8fb612a9661d58cbf0d72eb4b488a2ceb2a326`
 
 ## Measured result
 
@@ -25,7 +25,10 @@ schema set. All 79 declaration base references were either resolved locally
 or explicitly identified as XML Schema built-ins; no declaration had
 `schema_inheritance.status=incomplete`.
 
-The report records direct local base targets and external built-in bases but
-does not flatten inherited fields. Effective inherited field/cardinality
-semantics, Schematron/prose constraints, converter parity and RI execution
-remain separate qualification work.
+The report records direct local base targets and external built-in bases and
+now emits 12,390 structural effective-member rows with origin, source path,
+cardinality/default/use/type attributes and inherited/direct provenance. This
+is an auditable field inventory, not semantic field merging or override
+behavior. Effective XSD field/cardinality semantics, Schematron/prose
+constraints, converter parity and RI execution remain separate qualification
+work.

@@ -15,15 +15,17 @@
     "resolved_references": 7707,
     "external_builtin_references": 206,
     "unresolved_references": 0,
-    "declarations_with_incomplete_inheritance": 0
+    "declarations_with_incomplete_inheritance": 0,
+    "declarations_with_incomplete_effective_members": 0,
+    "effective_member_rows": 12390
   },
   "disposition": {
     "local_base_targets": "recorded without flattening",
     "xml_schema_builtins": "explicit external_builtin status",
-    "effective_inherited_fields": "not_assessed",
+    "effective_inherited_fields": "structural_inventory_only",
     "schematron_and_prose_semantics": "not_assessed",
     "converter_parity": "not_proved",
     "runtime_equivalence": "not_proved"
   },
-  "receipt_sha256": "796c0b3fad7af5c954398e1d5a2424ac8ef1a39f60fb7fa571c4b174bf7cc964"
+  "receipt_sha256": "c0fd54871fb6b0828efa6bed5d8fb612a9661d58cbf0d72eb4b488a2ceb2a326"
 }

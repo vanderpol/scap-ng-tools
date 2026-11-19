@@ -399,7 +399,7 @@ def _schema_qname(value: str, target_namespace: str, prefixes: dict[str, str]) -
     return prefixes.get("", target_namespace) or target_namespace, value
 
 
-def _schema_component_index(root: Path, schema_paths: list[Path]) -> tuple[dict[tuple[str, str], dict], dict[Path, tuple[ET.Element, dict[str, str]]]]:
+def _schema_component_index(root: Path, schema_paths: list[Path]) -> tuple[dict[tuple[str, str], dict], dict[Path, tuple[ET.Element, dict[str, str]]], dict[tuple[str, str], ET.Element]]:
     """Index named local XSD components for source-level type inheritance.
 
     Only components physically present in the pinned schema root are resolved.
@@ -409,6 +409,7 @@ def _schema_component_index(root: Path, schema_paths: list[Path]) -> tuple[dict[
     """
     documents: dict[Path, tuple[ET.Element, dict[str, str]]] = {}
     components: dict[tuple[str, str], dict] = {}
+    component_nodes: dict[tuple[str, str], ET.Element] = {}
     component_kinds = {"element", "complexType", "simpleType", "group",
                        "attribute", "attributeGroup", "key", "unique"}
     for path in schema_paths:
@@ -432,14 +433,16 @@ def _schema_component_index(root: Path, schema_paths: list[Path]) -> tuple[dict[
             # different kinds, so include kind in the index key. Identity
             # constraints are indexed too: keyref/@refer is a real XSD
             # relationship, not an unresolved native field reference.
-            components[(namespace, f"{kind}:{name}")] = {
+            key = (namespace, f"{kind}:{name}")
+            components[key] = {
                 "namespace": namespace,
                 "name": name,
                 "kind": kind,
                 "schema_file": path.relative_to(root).as_posix(),
                 "schema_sha256": digest(path.read_bytes()),
             }
-    return components, documents
+            component_nodes[key] = child
+    return components, documents, component_nodes
 
 
 def _schema_references(declaration: ET.Element, schema_file: str, namespace: str,
@@ -517,6 +520,101 @@ def _schema_inheritance(references: list[dict]) -> dict:
         "status": "resolved" if not unresolved else "incomplete",
     }
 
+
+
+def _schema_member_rows(node: ET.Element, *, origin: str, origin_component: dict) -> list[dict]:
+    """Record field particles and cardinality without applying XSD semantics."""
+    rows = []
+
+    def walk(parent: ET.Element, path: tuple[int, ...]) -> None:
+        for index, child in enumerate(parent):
+            child_path = (*path, index)
+            kind = local_name(child.tag)
+            if kind in {"element", "attribute"}:
+                attributes = {
+                    key.rsplit("}", 1)[-1]: value
+                    for key, value in sorted(child.attrib.items())
+                    if key.rsplit("}", 1)[-1] in {
+                        "name", "ref", "type", "minOccurs", "maxOccurs",
+                        "default", "fixed", "use", "form", "nillable",
+                    }
+                }
+                node_path = "/" + "/".join(str(part) for part in child_path)
+                rows.append({
+                    "kind": kind,
+                    "name": child.get("name", ""),
+                    "source_path": (
+                        f'/{origin_component["kind"]}[@name={origin_component["name"]}]'
+                        f'{node_path}'
+                    ),
+                    "node_path": node_path,
+                    "attributes": attributes,
+                    "origin": origin,
+                    "origin_schema": origin_component["schema_file"],
+                    "origin_namespace": origin_component["namespace"],
+                    "origin_component": origin_component["name"],
+                })
+            walk(child, child_path)
+
+    walk(node, ())
+    return rows
+
+
+def _schema_effective_members(node: ET.Element, component: dict,
+                              components: dict[tuple[str, str], dict],
+                              component_nodes: dict[tuple[str, str], ET.Element],
+                              documents: dict[Path, tuple[ET.Element, dict[str, str]]],
+                              root: Path) -> dict:
+    """Build an auditable base-member chain; do not merge/override fields."""
+    chain: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+    current_node, current_component = node, component
+    cycles = []
+    while True:
+        key = (current_component["namespace"],
+               f'{current_component["kind"]}:{current_component["name"]}')
+        if key in seen:
+            cycles.append({"namespace": key[0], "kind": current_component["kind"],
+                           "name": current_component["name"]})
+            break
+        seen.add(key)
+        chain.append({"namespace": current_component["namespace"],
+                      "kind": current_component["kind"],
+                      "name": current_component["name"],
+                      "schema_file": current_component["schema_file"]})
+        document, prefixes = documents[root / current_component["schema_file"]]
+        refs = _schema_references(current_node, current_component["schema_file"],
+                                   current_component["namespace"], prefixes,
+                                   components, root)
+        base = next((reference for reference in refs
+                     if reference["attribute"] == "base" and
+                     reference["status"] == "resolved"), None)
+        if base is None:
+            break
+        target = base["target"]
+        target_key = (target["namespace"], f'{target["kind"]}:{target["name"]}')
+        current_node = component_nodes[target_key]
+        current_component = target
+
+    rows = []
+    # Base fields come first for review. This is not a claim that native
+    # output may concatenate or override XSD particles.
+    direct_key = (component["namespace"],
+                  f'{component["kind"]}:{component["name"]}')
+    for inherited_component in reversed(chain):
+        component_key = (inherited_component["namespace"],
+                         f'{inherited_component["kind"]}:{inherited_component["name"]}')
+        rows.extend(_schema_member_rows(
+            component_nodes[component_key],
+            origin="direct" if component_key == direct_key else "inherited",
+            origin_component=inherited_component))
+    return {
+        "status": "incomplete" if cycles else "resolved",
+        "chain": chain,
+        "cycles": cycles,
+        "members": rows,
+        "member_count": len(rows),
+    }
 
 def _schema_dependency_inventory(root: Path, schema_paths: list[Path]) -> list[dict]:
     """Inventory XSD imports/includes without guessing external semantics.
@@ -665,7 +763,7 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
     definition_schema_paths = []
     system_characteristics_schema_paths = []
     component_paths = sorted(root.rglob("*.xsd"))
-    components, documents = _schema_component_index(root, component_paths)
+    components, documents, component_nodes = _schema_component_index(root, component_paths)
     for path in sorted(root.iterdir()):
         if not path.is_file() or not OVAL_SCHEMA_FILES.match(path.name):
             continue
@@ -688,6 +786,10 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
             grammar_rows = _schema_grammar_rows(child, path.name, namespace)
             references = _schema_references(
                 child, path.name, namespace, prefixes, components, root)
+            component_key = (namespace, f'{child.tag.rsplit("}", 1)[-1]}:{name}')
+            effective_members = _schema_effective_members(
+                child, components[component_key], components, component_nodes,
+                documents, root)
             row = {
                 "schema_file": path.name,
                 "schema_role": _schema_role(path),
@@ -700,6 +802,7 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                 "schema_shape_summary": _shape_summary(shape),
                 "schema_references": references,
                 "schema_inheritance": _schema_inheritance(references),
+                "schema_effective_members": effective_members,
                 "grammar_row_count": len(grammar_rows),
                 "native_mapping_status": "deprecated_migration" if direct else "unproven",
                 "disposition": {
@@ -786,6 +889,14 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                 row.get("schema_inheritance", {}).get("status") == "incomplete"
                 for row in rows
             ),
+            "declarations_with_incomplete_effective_members": sum(
+                row.get("schema_effective_members", {}).get("status") == "incomplete"
+                for row in rows
+            ),
+            "effective_member_rows": sum(
+                row.get("schema_effective_members", {}).get("member_count", 0)
+                for row in rows
+            ),
             "schema_shape_contract": {
                 "status": "structural source witness only",
                 "preserves": [
@@ -793,6 +904,7 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                     "ordered child particles",
                     "base/ref/extension/restriction relationships",
                     "resolved local QName references and direct base targets",
+                    "structural inherited member rows with cardinality metadata",
                     "cardinality and attribute-use metadata",
                 ],
                 "does_not_infer": [

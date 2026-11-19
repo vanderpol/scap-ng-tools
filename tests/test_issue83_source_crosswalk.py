@@ -165,6 +165,14 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(derived["schema_inheritance"]["base_chain"][0]["name"],
                          "base_state")
         self.assertEqual(derived["schema_inheritance"]["status"], "resolved")
+        members = derived["schema_effective_members"]["members"]
+        self.assertEqual([member["name"] for member in members],
+                         ["base_value", "value"])
+        self.assertEqual([member["origin"] for member in members],
+                         ["inherited", "direct"])
+        self.assertEqual(members[0]["attributes"]["type"],
+                         "xs:string")
+        self.assertEqual(derived["schema_effective_members"]["status"], "resolved")
         builtin = next(reference for reference in derived["schema_references"]
                        if reference["attribute"] == "type" and
                        reference["target_name"] == "int")
