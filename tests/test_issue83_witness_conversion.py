@@ -30,6 +30,12 @@ class Issue83WitnessConversionTests(unittest.TestCase):
         self.assertTrue(root.is_dir())
         self.assertEqual(digest, qualification.FLAT_SCHEMA_SHA256)
 
+    def test_deprecated_source_is_not_a_generic_converter_gap(self):
+        self.assertEqual(qualification.classify("unsupported/deprecated recursion direction"),
+                         "deprecated_source_construct")
+        self.assertEqual(qualification.classify("unsupported recursion direction"),
+                         "converter_unsupported_source")
+
     def test_unknown_failure_remains_converter_failure(self):
         self.assertEqual(qualification.classify("unexpected internal diagnostic"),
                          "converter_failure")

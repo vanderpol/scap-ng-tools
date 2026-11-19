@@ -37,6 +37,11 @@ def verify_schema_root(schema_root: Path, schema_commit: str) -> tuple[Path, str
 
 def classify(message: str) -> str:
     text = message.lower()
+    # Deprecated source syntax is not a generic converter gap. Keep it
+    # fail-closed, but give the qualification ledger a distinct disposition
+    # so source-valid and deprecated cases cannot be conflated.
+    if "deprecated" in text:
+        return "deprecated_source_construct"
     if "possible_restriction" in text or "external variable" in text:
         return "canonical_input_constraint_hold"
     if "invalid int literal" in text:
