@@ -653,9 +653,9 @@ def _schema_effective_members(node: ET.Element, component: dict,
         "member_count": len(rows),
     }
 
-def _schema_source_path(node: ET.Element, path: tuple[int, ...]) -> str:
+def _schema_source_path(path: tuple[tuple[str, int], ...]) -> str:
     return "/" + "/".join(
-        f"{local_name(node.tag)}[{index}]" for index in path
+        f"{kind}[{index}]" for kind, index in path
     )
 
 
@@ -665,14 +665,14 @@ def _schema_semantic_inventory(root: Path,
     schematron = []
     documentation = []
 
-    def walk(node: ET.Element, path: tuple[int, ...], schema_file: str) -> None:
+    def walk(node: ET.Element, path: tuple[tuple[str, int], ...], schema_file: str) -> None:
         kind = local_name(node.tag)
         text = "".join(node.itertext())
         namespace = node.tag.rsplit("}", 1)[0].lstrip("{") if "}" in node.tag else ""
         if namespace == SCHEMATRON:
             schematron.append({
                 "schema_file": schema_file,
-                "source_path": _schema_source_path(node, path),
+                "source_path": _schema_source_path(path),
                 "kind": kind,
                 "attributes": dict(sorted(node.attrib.items())),
                 "text_sha256": digest(text.encode("utf-8")),
@@ -682,18 +682,18 @@ def _schema_semantic_inventory(root: Path,
         elif kind in {"documentation", "evaluation_documentation", "evaluation_chart"}:
             documentation.append({
                 "schema_file": schema_file,
-                "source_path": _schema_source_path(node, path),
+                "source_path": _schema_source_path(path),
                 "kind": kind,
                 "text_sha256": digest(text.encode("utf-8")),
                 "text_bytes": len(text.encode("utf-8")),
                 "disposition": "prose_not_interpreted",
             })
         for index, child in enumerate(node):
-            walk(child, (*path, index), schema_file)
+            walk(child, (*path, (local_name(child.tag), index)), schema_file)
 
     for path in sorted(documents):
         document, _ = documents[path]
-        walk(document, (0,), path.relative_to(root).as_posix())
+        walk(document, ((local_name(document.tag), 0),), path.relative_to(root).as_posix())
     schematron.sort(key=lambda row: (row["schema_file"], row["source_path"]))
     documentation.sort(key=lambda row: (row["schema_file"], row["source_path"]))
     return {

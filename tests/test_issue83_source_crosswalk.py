@@ -207,6 +207,8 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         assertion = next(row for row in semantic["schematron"]
                          if row["kind"] == "assert")
         self.assertEqual(assertion["attributes"]["test"], "@id")
+        self.assertIn("schema[0]/pattern[1]/rule[0]/assert[0]",
+                      assertion["source_path"])
         self.assertEqual(assertion["disposition"], "not_interpreted")
         self.assertEqual(semantic["disposition"]["status"], "inventory_only")
 

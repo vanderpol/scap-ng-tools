@@ -10,8 +10,8 @@ native support, conversion success, or runtime equivalence.
 - Reproducible command: `SCAP_NG_OVAL_SCHEMA_ROOT=/path/to/oval-schemas
   python scripts/build_issue83_source_crosswalk.py ...` or call
   `oval_inventory` for schema-only output.
-- External receipt: `/tmp/tools-issue83-semantics-final-1795106505/oval-schema-inheritance.json`
-- Receipt SHA-256: `50f975d52e00ea99fadf4d5d26a939a829658b66f7309307ef3abd791f6fe06a`
+- External receipt: `/tmp/tools-issue83-semantics-path-final-1795106557/oval-schema-inheritance.json`
+- Receipt SHA-256: `4961851fbbb52f24bec167103b94722069e4385a0f77315da6860160efa35e1a`
 
 ## Measured result
 
