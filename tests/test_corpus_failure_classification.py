@@ -32,6 +32,25 @@ class CorpusFailureClassificationTests(unittest.TestCase):
             _MODULE.classify_failure('', 'policy source literal must be nonnegative'),
             'source_typed_literal_invalid')
 
+    def test_source_variable_datatype_mismatch_is_not_a_converter_gap(self):
+        raw = b"""<oval_definitions xmlns=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\">
+  <objects><environmentvariable58_object id=\"obj:1\"><pid datatype=\"int\" var_ref=\"var:1\"/></environmentvariable58_object></objects>
+  <variables><constant_variable id=\"var:1\" datatype=\"boolean\"><value>true</value></constant_variable></variables>
+</oval_definitions>"""
+        mismatches = _MODULE.source_variable_datatype_mismatches(raw)
+        self.assertEqual(mismatches, [{
+            'element': 'pid', 'element_id': '', 'variable_id': 'var:1',
+            'entity_datatype': 'int', 'variable_datatype': 'boolean',
+        }])
+        self.assertEqual(
+            _MODULE.classify_failure('', 'Variable cast outside bounded proof',
+                                     source_mismatches=mismatches),
+            'source_invalid_var_ref_datatype')
+        self.assertEqual(
+            _MODULE.classify_failure('', 'deprecated source capability',
+                                     source_mismatches=mismatches),
+            'deprecated_source_construct')
+
     def test_unknown_remains_converter_failure(self):
         self.assertEqual(_MODULE.classify_failure('', 'unexpected internal diagnostic'),
                          'converter_failure')

@@ -157,7 +157,7 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         result = self.inspect()
         self.assertFalse(result["scope_complete"])
         self.assertFalse(result["source_accounted"])
-        self.assertIn("exclusion_without_authorized_aix_policy",
+        self.assertIn("exclusion_without_owner_approval",
                       {p["type"] for p in result["problems"]})
 
     def test_unapproved_exclusion_fails_closed(self):

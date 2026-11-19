@@ -198,7 +198,36 @@ def slug(value: str) -> str:
     return value.replace(":", "_").replace("/", "_")
 
 
-def classify_failure(stderr: str, stdout: str) -> str:
+def source_variable_datatype_mismatches(raw: bytes) -> list[dict[str, str]]:
+    """Return source-declared Variable/entity type mismatches.
+
+    OVAL Schematron requires an entity's ``datatype`` to agree with the
+    referenced Variable's declared datatype.  The production converter must
+    fail closed on a mismatch; this helper adds source evidence to the ledger
+    so a valid source correction is not mislabeled as a converter gap.
+    """
+    root = ET.fromstring(raw)
+    variables = {node.get("id"): node.get("datatype")
+                 for node in root.iter()
+                 if node.get("id") and node.tag.rsplit("}", 1)[-1].endswith("_variable")}
+    mismatches = []
+    for node in root.iter():
+        reference = node.get("var_ref")
+        entity_datatype = node.get("datatype")
+        variable_datatype = variables.get(reference)
+        if (reference and entity_datatype and variable_datatype and
+                entity_datatype != variable_datatype):
+            mismatches.append({
+                "element": node.tag.rsplit("}", 1)[-1],
+                "element_id": node.get("id", ""),
+                "variable_id": reference,
+                "entity_datatype": entity_datatype,
+                "variable_datatype": variable_datatype,
+            })
+    return sorted(mismatches, key=lambda item: (item["element"], item["element_id"], item["variable_id"]))
+
+
+def classify_failure(stderr: str, stdout: str, *, source_mismatches: list[dict[str, str]] | None = None) -> str:
     """Classify a failed source conversion without hiding source holds.
 
     Diagnostics often contain both ``unsupported`` and ``deprecated``.  The
@@ -210,6 +239,8 @@ def classify_failure(stderr: str, stdout: str) -> str:
         return "deprecated_source_construct"
     if "possible_restriction" in message or "external variable" in message:
         return "canonical_input_constraint_hold"
+    if source_mismatches:
+        return "source_invalid_var_ref_datatype"
     if "invalid int literal" in message or "policy source literal must be nonnegative" in message:
         return "source_typed_literal_invalid"
     if any(token in message for token in ("unsupported", "held", "not migrated")):
@@ -306,6 +337,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     "test_defs": test_defs,
                     "definition_features": definition_features,
                     "test_features": test_features,
+                    "source_variable_datatype_mismatches": source_variable_datatype_mismatches(raw),
                 })
             definition_results = {}
             for graph in source_graph:
@@ -332,6 +364,16 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     recorded_command = (public_command(
                         command, schema_root=schema_root, source=source_text_path,
                         output=artifact_dir) if command else None)
+                    source_mismatches = graph["source_variable_datatype_mismatches"]
+                    failure_class = None if success else classify_failure(
+                        process.stderr, process.stdout, source_mismatches=source_mismatches)
+                    diagnostic = None if success else (process.stderr.strip() or process.stdout.strip())
+                    if source_mismatches and failure_class == "source_invalid_var_ref_datatype":
+                        diagnostic = (
+                            (diagnostic + "; " if diagnostic else "") +
+                            "source evidence: " + json.dumps(
+                                source_mismatches, sort_keys=True, separators=(",", ":"))
+                        )
                     row = {
                         "source_path": str(provenance_path),
                         "source_sha256": source_sha,
@@ -347,8 +389,9 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "schema_validated": False,
                         "independent_semantic_proof": False,
                         "scanner_execution": False,
-                        "failure_class": None if success else classify_failure(process.stderr, process.stdout),
-                        "diagnostic": None if success else (process.stderr.strip() or process.stdout.strip()),
+                        "failure_class": failure_class,
+                        "diagnostic": diagnostic,
+                        "source_semantic_evidence": source_mismatches,
                         "artifacts": None,
                     }
                     trace = None
@@ -379,6 +422,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "native_bindings": bindings,
                         "failure_class": row["failure_class"],
                         "diagnostic": row["diagnostic"],
+                        "source_semantic_evidence": row.get("source_semantic_evidence", []),
                     }
             for graph in source_graph:
                 provenance_path = str(graph["provenance_path"])
@@ -414,6 +458,13 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         schema_validated = False
                         failure_class = "unmapped_source_test"
                         diagnostic = "source Test is not referenced by a Definition criterion"
+                    source_semantic_evidence = []
+                    for owner in owner_ids:
+                        evidence = definition_results[(provenance_path, owner)].get(
+                            "source_semantic_evidence", [])
+                        for entry in evidence:
+                            if entry not in source_semantic_evidence:
+                                source_semantic_evidence.append(entry)
                     test_rows.append({
                         "source_path": provenance_path,
                         "source_sha256": source_sha,
@@ -439,6 +490,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "execution": "not_run",
                         "failure_class": failure_class,
                         "diagnostic": diagnostic,
+                        "source_semantic_evidence": source_semantic_evidence,
                     })
         # The XML graph yields exactly the pinned corpus denominator.
         test_rows.sort(key=lambda row: (row["source_path"], row["test_id"]))

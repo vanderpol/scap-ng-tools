@@ -22,9 +22,6 @@ from zipfile import ZipFile
 
 PREFIX = "SCAP_1.4/OVAL_Test_Content/"
 PIN = "e3538595c5083b9c34d937a81d319234df9bbfaa"
-AIX_PREFIX = PREFIX + "aix/"
-AIX_OWNER_DECISION = "issue-56:aix-excluded"
-AIX_SCOPE_CLASSIFICATION = "excluded_by_owner:aix"
 MAX_XML = 8 * 1024 * 1024
 MAX_ARCHIVE = 64 * 1024 * 1024
 CHECK = {"all": "every", "at least one": "one_or_more",
@@ -268,34 +265,26 @@ def read_test_ledger(pack):
         rows.append(row)
     return rows
 
-def aix_exclusion_authorized(path, row):
-    return (path.startswith(AIX_PREFIX) and
-            row.get("conversion_status") == "intentionally_excluded" and
-            row.get("owner_decision") == AIX_OWNER_DECISION and
-            row.get("scope_classification") == AIX_SCOPE_CLASSIFICATION)
-
 def exclusion_problem(path, ident, row, kind):
-    return {"type": "exclusion_without_authorized_aix_policy",
+    return {"type": "exclusion_without_owner_approval",
             "kind": kind, "source": path,
             ("definition" if kind == "definition" else "test"): ident,
-            "reason": "only pinned AIX owner exclusion issue-56:aix-excluded is authorized"}
+            "reason": "all pinned OVAL platform families are in authoring scope; exclusions require explicit owner approval"}
 
 def validate_exclusion_authorization(path, ident, row, kind, problems):
-    """Enforce the only Phase 1 owner exclusion policy, fail closed."""
+    """Reject exclusions unless a separately recorded owner decision exists.
+
+    Platform families are not implicitly excluded. In particular, the old AIX
+    issue-56 exception is historical and must not survive into the current
+    all-platform source-to-native ledger.
+    """
     status = row.get("conversion_status")
     owner = row.get("owner_decision")
     scope = row.get("scope_classification")
-    if path.startswith(AIX_PREFIX):
-        if not aix_exclusion_authorized(path, row):
-            problems.append(exclusion_problem(path, ident, row, kind))
-        return
-    # A non-AIX row may not smuggle in an owner decision or exclusion label.
     if (status in ("excluded", "intentionally_excluded") or owner is not None or
             (scope is not None and scope != "in_scope")):
         problems.append(exclusion_problem(path, ident, row, kind))
-        if status in ("excluded", "intentionally_excluded") and not owner:
-            problems.append({"type": "exclusion_without_owner_approval",
-                             "source": path, kind: ident})
+
 
 def slug(value):
     return value.replace(":", "_").replace("/", "_")
@@ -1226,14 +1215,12 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
             problems.append({"type": "test_definition_results_mismatch",
                              "source": path, "test": test_id})
         expected_native = []
-        owner_statuses = []
         for owner in owners:
             definition_row = definition_by_key.get((path, owner))
             item = next((item for item in results
                          if item.get("definition_id") == owner), None)
             if definition_row is None or item is None:
                 continue
-            owner_statuses.append(definition_row.get("conversion_status"))
             for field in ("conversion_status", "schema_validated", "failure_class", "diagnostic"):
                 if item.get(field) != definition_row.get(field):
                     problems.append({"type": "test_owner_result_mismatch",
@@ -1250,15 +1237,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         if observed_native != sorted(set(expected_native)):
             problems.append({"type": "test_native_bindings_mismatch",
                              "source": path, "test": test_id})
-        if path.startswith(AIX_PREFIX):
-            expected_status = "intentionally_excluded"
-        elif expected_native:
-            expected_status = "CONVERTED_UNVERIFIED"
-        elif owners and owner_statuses and all(status == "intentionally_excluded"
-                                               for status in owner_statuses):
-            expected_status = "intentionally_excluded"
-        else:
-            expected_status = "blocked"
+        expected_status = "CONVERTED_UNVERIFIED" if expected_native else "blocked"
         if row.get("conversion_status") != expected_status:
             problems.append({"type": "test_conversion_status_mismatch",
                              "source": path, "test": test_id,
@@ -1315,7 +1294,6 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                          "test_owner_result_mismatch",
                          "test_native_bindings_mismatch",
                          "test_conversion_status_mismatch",
-                         "exclusion_without_authorized_aix_policy",
                          "original_xml_file_count_mismatch",
                          "original_definition_count_mismatch",
                          "original_test_count_mismatch",
@@ -1323,10 +1301,13 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
     accounted = not any(problem["type"] in accounting_errors for problem in problems)
     complete = not problems and converted == original["definitions"]
     scope_complete = (not problems and
-                      converted + statuses["excluded"] +
-                      statuses["intentionally_excluded"] == original["definitions"] and
+                      converted + statuses["blocked"] == original["definitions"] and
                       reconciled_tests == original["tests"] and
-                      sum(test_statuses.values()) == original["tests"])
+                      sum(test_statuses.values()) == original["tests"] and
+                      not statuses["excluded"] and
+                      not statuses["intentionally_excluded"] and
+                      not test_statuses["excluded"] and
+                      not test_statuses["intentionally_excluded"])
     return {"format": "scap-ng-oval-source-parity/1", "complete": complete,
             "scope_complete": scope_complete,
             "source_accounted": accounted, "runtime_equivalence_proved": False,
@@ -1350,7 +1331,7 @@ def main():
     parser.add_argument("--require-full", action="store_true",
                         help="exit nonzero unless every original Definition is converted")
     parser.add_argument("--require-scope", action="store_true",
-                        help="allow excluded Definitions ONLY with explicit owner decision")
+                        help="require every source row to be in current authoring scope; blocked rows remain explicit holds")
     args = parser.parse_args()
     try:
         report = audit(args.source_root, args.pack,
