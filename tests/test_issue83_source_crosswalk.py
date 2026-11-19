@@ -4,6 +4,7 @@ import sys
 import tempfile
 import json
 import unittest
+from unittest.mock import patch
 import zipfile
 import xml.etree.ElementTree as ET
 
@@ -75,6 +76,62 @@ if __name__ == "__main__":
     unittest.main()
 
 class Issue83ConverterRelationshipTests(unittest.TestCase):
+    def test_production_rule_renderer_emits_source_relationships(self):
+        from scap_ng_tools.converter.direct04 import load_runtime
+        runtime = load_runtime()
+        rule = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}" id="rule-a"><version>1</version>'
+            '<title>Production relationship witness</title>'
+            '<requires idref="rule-b rule-c"/><conflicts idref="rule-d"/>'
+            f'<check system="{runtime.OVAL}"><check-content-ref href="#oval" name="definition-a"/></check>'
+            '</Rule>')
+        definition = ET.Element('{urn:oval}definition', {'class': 'compliance'})
+        source_nodes = {'rule-a': rule, 'rule-b': ET.Element(f'{{{crosswalk.XCCDF}}}Rule'),
+                        'rule-c': ET.Element(f'{{{crosswalk.XCCDF}}}Rule'),
+                        'rule-d': ET.Element(f'{{{crosswalk.XCCDF}}}Rule'),
+                        'definition-a': definition}
+
+        class Source:
+            benchmark_component = 'benchmark'
+            def __init__(self):
+                self.rules = {'rule-a': rule}
+                self.nodes = {'benchmark': source_nodes}
+            def automated_check(self, _rule):
+                return 'oval', 'definition-a', []
+            def node(self, _component, identifier, _kind):
+                return self.nodes['benchmark'][identifier]
+            def applicability_level(self, _item):
+                return None
+            def applicability_context(self, _item):
+                return []
+            def manual_checks(self, _rule):
+                return []
+
+        class FixtureAssessment:
+            def __init__(self, *_args, **_kwargs):
+                self.tests = {}
+                self.shared_objects = {}
+                self.variables = {}
+                self.inputs = {}
+                self.input_bindings = {}
+                self.policy_parameters = {}
+                self.used = {}
+                self.conversion_warnings = []
+                self.human_compaction = []
+                self.selector_equivalences = []
+                self.enum_variable_equivalences = []
+                self.native_names = {}
+                self.synthetic_variables = []
+                self.inlined_variables = []
+            def reference(self, _identifier, _kind):
+                return {'not_evaluated': {'reason': 'fixture'}}
+
+        with patch.object(runtime, 'AssessmentConverter', FixtureAssessment):
+            documents, _binding = runtime.convert_rule(Source(), 'rule-a', [])
+        native = next(value['rule'] for value in documents.values() if 'rule' in value)
+        self.assertEqual(native['requires'], [{'any_of': ['rule-b', 'rule-c']}])
+        self.assertEqual(native['conflicts'], ['rule-d'])
+
     def test_relationship_helper_preserves_order_and_empty_elements(self):
         from v04_source_metadata import source_description_text, source_relationships, validate_relationship_targets
         rule = ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}" id="r"><requires idref=" a  b "/><conflicts idref="c"/></Rule>')
