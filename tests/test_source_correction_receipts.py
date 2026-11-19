@@ -200,6 +200,11 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertEqual(conversion["candidate"]["status"], "CONVERTED_UNVERIFIED")
         self.assertTrue(conversion["candidate"]["schema_validated"])
         self.assertRegex(conversion["candidate"]["assessment_sha256"], HEX64)
+        self.assertRegex(source["candidate_sha256"], HEX64)
+        self.assertTrue(conversion["current_replay_verified"])
+        self.assertEqual(conversion["baseline"]["returncode"], 1)
+        self.assertEqual(conversion["candidate"]["returncode"], 0)
+        self.assertRegex(conversion["candidate"]["source_trace_sha256"], HEX64)
 
     def test_unix_upward_recursion_pr16_stays_deprecated(self):
         receipt = self.load("unix-upward-recursion-pr16-focused-qualification.json")
