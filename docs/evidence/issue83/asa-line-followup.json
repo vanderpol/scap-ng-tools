@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "asa.line mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:org.joval.asa.test:def:6",
+  "format": "scap-ng-tools/issue83-asa-line-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/asa-line-followup-1795113600",
+    "files": {
+      "assessment.json": {
+        "bytes": 881,
+        "sha256": "0b416755ad3c2a2334a40ce78a7b0b9124174d541b1b34c0d8de23572740e5ff"
+      },
+      "assessment.yaml": {
+        "bytes": 653,
+        "sha256": "827bdc66426ded55eecb154976924917e8e0297723401858606f8a44e7db3835"
+      },
+      "conversion-scope.json": {
+        "bytes": 560,
+        "sha256": "dc55479c32af77dd6aa1aa33816f4064a64cb80816ddfbf26ced246ed3c6f037"
+      },
+      "source-trace.json": {
+        "bytes": 2448,
+        "sha256": "a55f8360d10898321b2fc9aa956fe5f945b2d4f83a91d775ca5ccf2bd477818d"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "15d58c7ee5a3e9d5b31298cff26fa1993942d5bb",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "d4139830de6d3db20c66c302d8d5d397fac527db5b7b726f93eb0bc95856c2f9",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "asa/asa-def_line_test.xml",
+  "source_sha256": "fb52e2ffc200a42a525587a9fffc4e872319ff73fdcf1bf8915afe66ca360108",
+  "tests": 1
+}
