@@ -11,7 +11,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from audit_self_assertion_parity import (PREFIX, PIN, audit, digest, slug, sources,
     parse_oval, reachable_source_tests, normalize_source_evaluate, normalize_native_evaluate,
-    audit_source_set_filter_retention, _native_variable_types)
+    audit_source_set_filter_retention, _native_variable_types, source_invalid_disposition)
 from convert_self_assertion_corpus import definitions_and_tests
 
 SOURCE_ID = "oval:example:def:1"
@@ -106,6 +106,26 @@ class FullOriginalSourceParityTests(unittest.TestCase):
     def inspect(self):
         return audit(self.src, self.pack, expected_xml=0,
                      expected_definitions=0, expected_tests=0)
+
+    def test_source_invalid_variable_disposition_preserves_identity_and_types(self):
+        invalid_xml = XML.replace(
+            b'<constant_variable id="oval:example:var:1" datatype="string"><value>sample</value></constant_variable>',
+            b'<local_variable id="oval:example:var:1" datatype="string"><arithmetic arithmetic_operation="add"><literal_component datatype="int">1</literal_component><literal_component datatype="int">2</literal_component></arithmetic></local_variable>',
+        )
+        source = parse_oval(invalid_xml, SOURCE_PATH)
+        evidence = source_invalid_disposition(
+            source, SOURCE_ID,
+            "source-invalid Variable datatype declaration: oval:example:var:1",
+            {"source_type_normalizations": []},
+        )
+        self.assertEqual(evidence["source_path"], SOURCE_PATH)
+        self.assertEqual(evidence["source_xml_sha256"], digest(invalid_xml))
+        self.assertEqual(evidence["affected_test_ids"], [TEST_ID])
+        self.assertEqual(evidence["disposition"], "source_invalid_non_equivalence")
+        variable = evidence["variables"][0]
+        self.assertEqual(variable["declared_datatype"], "string")
+        self.assertEqual(variable["expression_result_datatype"], "integer")
+        self.assertEqual(variable["referenced_source_node_ids"], ["oval:example:obj:1"])
 
     def test_collected_field_type_comes_from_canonical_mapping(self):
         native = {

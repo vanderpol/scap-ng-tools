@@ -13,6 +13,7 @@ from collections import Counter, defaultdict
 import hashlib
 import struct
 import json
+import re
 import subprocess
 import tarfile
 from pathlib import Path
@@ -1087,6 +1088,73 @@ def compare_mapped_variables(source, native, trace, selected_tests, field_dataty
         checked += 1
     return checked
 
+_SOURCE_INVALID_VARIABLES = re.compile(
+    r"source-invalid Variable datatype (?:declaration|normalization):\s*(?P<ids>.+)$"
+)
+
+
+def source_invalid_disposition(source, definition_id, reason, trace):
+    """Return source-linked evidence for a typed Variable hold.
+
+    A converter may emit a schema-valid compatibility document while the OVAL
+    source itself declares a Variable datatype that disagrees with the
+    expression's result. Keep that distinction machine-readable instead of
+    leaving the row as an undifferentiated parity failure. XML node hashes
+    are hashes of the parsed, deterministic ElementTree serialization; the
+    complete source-document hash remains the authoritative identity.
+    """
+    match = _SOURCE_INVALID_VARIABLES.fullmatch(reason)
+    variable_ids = sorted({item.strip() for item in match.group("ids").split(",")
+                           if item.strip()}) if match else []
+    selected_tests = []
+    try:
+        selected_tests = sorted(reachable_source_tests(source, definition_id))
+    except (KeyError, TypeError, ValueError):
+        # The surrounding audit still records the primary source-invalid
+        # disposition; malformed graph diagnostics remain separate problems.
+        selected_tests = []
+    variable_rows = []
+    for variable_id in variable_ids:
+        variable = source.get("variables", {}).get(variable_id)
+        if variable is None:
+            variable_rows.append({"variable_id": variable_id,
+                                  "source_variable_present": False})
+            continue
+        children = [child for child in variable if isinstance(child.tag, str)]
+        expression_type = None
+        if tag(variable) == "local_variable" and len(children) == 1:
+            expression_type = _source_expression_type(children[0], source)
+        source_refs = sorted({node.get("id") for node in source.get("nodes", {}).values()
+                              if node.get("id") and
+                              (node.get("var_ref") == variable_id or any(
+                                  tag(child) == "var_ref" and (child.text or "").strip() == variable_id
+                                  for child in node
+                              ))})
+        variable_rows.append({
+            "variable_id": variable_id,
+            "source_variable_present": True,
+            "source_variable_kind": tag(variable),
+            "declared_datatype": variable.get("datatype"),
+            "expression_tag": tag(children[0]) if len(children) == 1 else None,
+            "expression_result_datatype": expression_type,
+            "source_variable_xml_sha256": digest(ET.tostring(variable, encoding="utf-8")),
+            "referenced_source_node_ids": source_refs,
+        })
+    normalizations = [item for item in (trace or {}).get("source_type_normalizations", [])
+                      if isinstance(item, dict) and
+                      item.get("source_variable") in variable_ids]
+    return {
+        "source_path": source.get("path"),
+        "source_xml_sha256": source.get("sha256"),
+        "definition_id": definition_id,
+        "affected_test_ids": selected_tests,
+        "variable_ids": variable_ids,
+        "variables": variable_rows,
+        "native_type_normalizations": normalizations,
+        "disposition": "source_invalid_non_equivalence",
+    }
+
+
 def audit(source_root, pack, *, require_full=False, expected_xml=144,
           expected_definitions=168, expected_tests=803,
           verify_pin=False, schema_root=None):
@@ -1119,6 +1187,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
     tested = 0
     converted = 0
     unqualified = 0
+    source_invalid_rows = []
     for row in rows:
         path, ident = row.get("source_path"), row.get("definition_id")
         key = (path, ident)
@@ -1157,6 +1226,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
             continue
         converted += 1
         dirname = pack / "definitions" / slug(path) / slug(ident)
+        trace = {}
         try:
             native_raw = (dirname / "assessment.json").read_bytes()
             trace_raw = (dirname / "source-trace.json").read_bytes()
@@ -1278,8 +1348,13 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
             reason = str(exc)[:300]
             problem_type = "source_invalid" if reason.startswith("source-invalid") else "converted_parity_failure"
-            problems.append({"type": problem_type, "source": path,
-                             "definition": ident, "reason": reason})
+            problem = {"type": problem_type, "source": path,
+                       "definition": ident, "reason": reason}
+            if problem_type == "source_invalid":
+                disposition = source_invalid_disposition(source, ident, reason, trace)
+                problem.update(disposition)
+                source_invalid_rows.append(disposition)
+            problems.append(problem)
             continue
         # Structural parity, NOT independently executed semantic equivalence.
         unqualified += 1
@@ -1387,6 +1462,8 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         "test_status_counts": dict(sorted(test_statuses.items())),
         "reconciled_tests": reconciled_tests,
         "source_tests_without_disposition": len(source_test_keys - test_seen),
+        "source_invalid_rows": source_invalid_rows,
+        "source_invalid_definition_count": len(source_invalid_rows),
     }}
     accounting_errors = {"duplicate_source_definition", "duplicate_test_id",
                          "duplicate_converter_row", "source_sha256_mismatch",
