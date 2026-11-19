@@ -1,7 +1,7 @@
-"""Lossless source Rule relationship and publisher metadata helpers.
+"""Lossless source selectable-item relationship and publisher metadata helpers.
 
 XCCDF relationships are source policy, not Assessment dependencies.  The
-converter keeps their original Rule IDs and leaves publisher-only description
+converter keeps their original Rule/Group IDs and leaves publisher-only description
 metadata in the source discussion until a canonical extension contract is
 approved.  This module is deliberately independent of the native evaluator.
 """
@@ -22,22 +22,25 @@ def _tokens(value: str | None) -> list[str]:
     return (value or '').split()
 
 
-def source_relationships(rule: ET.Element) -> dict[str, list]:
-    """Return exact XCCDF Rule relationships in authored order.
+def source_relationships(item: ET.Element) -> dict[str, list]:
+    """Return exact XCCDF selectable-item relationships in authored order.
 
-    XCCDF represents ``requires`` and ``conflicts`` as child elements. Each
-    ``requires/@idref`` is a clause: its whitespace-separated IDs are ORed;
-    separate ``requires`` children are ANDed. A conflict carries one ID.
-    The result is shaped for the canonical 0.4.1 Rule contract.
+    XCCDF represents ``requires`` and ``conflicts`` as child elements on both
+    Rules and Groups. Each ``requires/@idref`` is a clause: its
+    whitespace-separated IDs are ORed; separate ``requires`` children are
+    ANDed. A conflict carries one ID. The result is shaped for the canonical
+    0.4.1 Rule contract when ``item`` is a Rule. Group relationships are
+    intentionally audited by the same helper but remain a fail-closed hold
+    until canonical 0.4.1 defines a non-flattening Group representation.
     """
     requires = []
-    for child in rule.findall(f'{{{XCCDF}}}requires'):
+    for child in item.findall(f'{{{XCCDF}}}requires'):
         ids = _tokens(child.get('idref'))
         if not ids:
             raise ValueError('XCCDF requires element has no idref')
         requires.append(ids[0] if len(ids) == 1 else {'any_of': ids})
     conflicts = []
-    for child in rule.findall(f'{{{XCCDF}}}conflicts'):
+    for child in item.findall(f'{{{XCCDF}}}conflicts'):
         ids = _tokens(child.get('idref'))
         if len(ids) != 1:
             raise ValueError('XCCDF conflicts element requires one idref')

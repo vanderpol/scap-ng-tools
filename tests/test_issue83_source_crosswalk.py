@@ -79,6 +79,42 @@ class Issue83ConverterRelationshipTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "one idref"):
             source_relationships(ET.fromstring(f'<Rule xmlns="{crosswalk.XCCDF}"><conflicts idref="a b"/></Rule>'))
 
+    def test_group_relationships_are_inventoried_without_rule_flattening(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "group-witness.zip"
+            xml = (
+                f'<ds:data-stream-collection xmlns:ds="{crosswalk.DS}" '
+                f'xmlns:xccdf="{crosswalk.XCCDF}" id="collection">'
+                '<ds:component id="checklist"><xccdf:Benchmark id="benchmark" '
+                'xccdf-version="1.2"><xccdf:Group id="group-a">'
+                '<xccdf:requires idref="group-b group-c"/>'
+                '<xccdf:conflicts idref="group-d"/></xccdf:Group>'
+                '</xccdf:Benchmark></ds:component>'
+                '<ds:data-stream id="stream" scap-version="1.4">'
+                '<ds:checklists><ds:component-ref id="checklist" href="#checklist"/>'
+                '</ds:checklists></ds:data-stream></ds:data-stream-collection>'
+            ).encode()
+            with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as archive:
+                archive.writestr("witness.xml", xml)
+            record = crosswalk.archive_record(path)
+        self.assertEqual(record["relations"], [])
+        self.assertEqual(record["group_relation_count"], 1)
+        self.assertEqual(record["group_relations"][0]["source_group"], "group-a")
+        self.assertEqual(record["group_relations"][0]["requires"],
+                         [{"any_of": ["group-b", "group-c"]}])
+        self.assertEqual(record["group_relations"][0]["conflicts"], ["group-d"])
+
+    def test_group_relationships_fail_closed_until_canonical_mapping_exists(self):
+        from scap_ng_tools.converter.direct04 import load_runtime
+        group = ET.fromstring(
+            f'<Group xmlns="{crosswalk.XCCDF}" id="group-a">'
+            '<requires idref="group-b"/><Rule id="rule-a"/></Group>')
+        source = type("Source", (), {
+            "applicability_level": lambda self, item: None,
+        })()
+        with self.assertRaisesRegex(ValueError, "canonical non-flattening mapping: group-a"):
+            load_runtime().native_group(source, group, {"rule-a": "native-rule-a"})
+
     def test_disa_parser_retains_empty_values_and_explicit_false(self):
         from v04_source_metadata import parse_disa_description
         element = ET.fromstring(

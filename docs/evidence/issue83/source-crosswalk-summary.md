@@ -1,15 +1,40 @@
-# Issue #83 source crosswalk receipt
+# Issue #83 source crosswalk
+
+This report is generated from immutable signed SCAP 1.4 source ZIPs. It is a source inventory and converter-loss audit, not runtime or OVAL equivalence proof.
 
 - Source commit: `8c8e5dff860af6b1290ee9273a282db24278f8d5`
-- Archive-set SHA-256: `6e04353f3b1ef32b31a6ef022f75cd7c68486dadb017bd18aa9108c3864ed1ca`
-- Archives/Rules: **65 / 8892**
-- Rules containing `requires`/`conflicts`: **0**
-- OVAL schema commit: `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`; declarations inventoried: **1033**
+- Archives: **65**
+- Source Rules: **8892**
+- Rules with `requires`/`conflicts`: **0**
+- `requires` rows: **0**; `conflicts` rows: **0**
+- Groups with relationships: **0** (requires **0**, conflicts **0**)
 
-## Findings
+## Result
 
-The 65 pinned signed archives contain no non-empty XCCDF `Rule/requires` or `Rule/conflicts` children. This is a measured zero, not permission to drop relationships. The converter now preserves source child elements as canonical `requires` clauses and `conflicts` IDs; the focused fixture covers one-token, multi-token, empty and malformed boundaries.
+The pinned 65-archive corpus contains no non-empty `Rule/requires` or `Rule/conflicts` relationships, and the separately audited Group relationship ledger is also measured. These are measured zeros, not evidence that the converter may drop relationships: source relationships are preserved for Rules and Groups are failed closed until a canonical non-flattening Group mapping exists. The test fixture exercises positive and negative source relationship elements.
 
-DISA literal description fields are inventoried with per-Rule hashes. The current converter retains the complete source description in `rule.discussion`; structured publisher extensions remain a canonical/owner coordination hold.
+## DISA extended description mapping
 
-The full detailed report is reproducible outside the repository with the script and source root; this committed receipt intentionally contains compact archive identities and counts only.
+Literal publisher XML inside XCCDF `description` is retained without data loss:
+
+| Source field | Native location | Preservation |
+|---|---|---|
+| `VulnDiscussion` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `FalsePositives` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `FalseNegatives` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `Documentable` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `Mitigations` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `SeverityOverrideGuidance` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `PotentialImpacts` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `ThirdPartyTools` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `MitigationControl` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `Responsibility` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+| `IAControls` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |
+
+The source ledger has the eleven-field DISA payload on 8867 Rules; 25 Rules have publisher-looking descriptions that require source-specific review. Per-Rule field hashes are retained in JSON. `rule.discussion` retains the original description text for compatibility.
+
+## Holds
+
+- The OVAL XSD declaration inventory (when supplied) is intentionally `unclassified`; XSD declaration names are not native support proof.
+- Canonical schema changes are out of scope for this Tools increment; any missing native representation is a canonical-language decision for `scap-ng` #80.
+- Native conversion output and RI execution are separate qualification stages.

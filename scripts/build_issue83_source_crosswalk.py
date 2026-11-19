@@ -107,6 +107,7 @@ def archive_record(path: Path) -> dict:
     benchmark = find_benchmark(raw_xml)
     rules = []
     relation_rows = []
+    group_relation_rows = []
     field_counts = Counter()
     field_nonempty = Counter()
     malformed_descriptions = []
@@ -163,6 +164,40 @@ def archive_record(path: Path) -> dict:
                 "conflicts_raw": conflicts_raw,
                 "conflicts": conflicts,
             })
+    # XCCDF permits the same relationship elements on Groups.  They cannot be
+    # represented by the current canonical Group shape, so inventory them
+    # separately instead of flattening them into Rule prerequisites.
+    for group in benchmark.iter(f"{{{XCCDF}}}Group"):
+        source_id = group.get("id")
+        if not source_id:
+            raise ValueError(f"Group without id in {path.name}")
+        requires_elements = group.findall(f"{{{XCCDF}}}requires")
+        conflicts_elements = group.findall(f"{{{XCCDF}}}conflicts")
+        requires_raw = [element.get("idref", "") for element in requires_elements]
+        conflicts_raw = [element.get("idref", "") for element in conflicts_elements]
+        requires = []
+        for value in requires_raw:
+            ids = value.split()
+            if not ids:
+                raise ValueError(f"empty Group requires idref in {path.name}:{source_id}")
+            requires.append(ids[0] if len(ids) == 1 else {"any_of": ids})
+        conflicts = []
+        for value in conflicts_raw:
+            ids = value.split()
+            if len(ids) != 1:
+                raise ValueError(f"Group conflicts requires one idref in {path.name}:{source_id}")
+            conflicts.append(ids[0])
+        if requires or conflicts:
+            group_relation_rows.append({
+                "archive": path.name,
+                "xml_member": member,
+                "source_group": source_id,
+                "source_group_sha256": identity_digest(group),
+                "requires_raw": requires_raw,
+                "requires": requires,
+                "conflicts_raw": conflicts_raw,
+                "conflicts": conflicts,
+            })
     return {
         "archive": path.name,
         "archive_sha256": archive_sha,
@@ -174,6 +209,8 @@ def archive_record(path: Path) -> dict:
         "relation_count": len(relation_rows),
         "rules": rules,
         "relations": relation_rows,
+        "group_relations": group_relation_rows,
+        "group_relation_count": len(group_relation_rows),
         "disa_description": {
             "field_names": list(DISA_FIELDS),
             "rule_field_counts": dict(sorted(field_counts.items())),
@@ -226,6 +263,7 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
     records = [archive_record(path) for path in archives]
     source_rules = sum(record["rule_count"] for record in records)
     relations = [row for record in records for row in record["relations"]]
+    group_relations = [row for record in records for row in record["group_relations"]]
     archive_manifest = [{key: record[key] for key in (
         "archive", "archive_sha256", "xml_member", "xml_sha256", "benchmark_id", "rule_count")}
         for record in records]
@@ -253,22 +291,26 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
             "rules_with_requires_or_conflicts": len(relations),
             "requires_rows": sum(bool(row["requires"]) for row in relations),
             "conflicts_rows": sum(bool(row["conflicts"]) for row in relations),
+            "groups_with_requires_or_conflicts": len(group_relations),
+            "group_requires_rows": sum(bool(row["requires"]) for row in group_relations),
+            "group_conflicts_rows": sum(bool(row["conflicts"]) for row in group_relations),
             "disa_description_field_names": list(DISA_FIELDS),
             "disa_description_rule_field_counts": dict(sorted(field_counts.items())),
             "disa_description_nonempty_rule_field_counts": dict(sorted(nonempty.items())),
             "malformed_publisher_payload_rules": sorted(malformed),
         },
         "relationships": relations,
+        "group_relationships": group_relations,
         "mapping": {
             "requires": {
                 "source": "XCCDF 1.2 Rule/requires/@idref, one child per clause; IDs in one child are ORed",
                 "native": "SCAP-NG 0.4.1 rule.requires; clauses are ANDed and any_of members are ORed",
-                "status": "converter currently initializes an empty native array; loss is a converter defect",
+                "status": "implemented for Rule output; Group relationships remain a canonical mapping hold",
             },
             "conflicts": {
                 "source": "XCCDF 1.2 Rule/conflicts/@idref, one ID per child",
                 "native": "SCAP-NG 0.4.1 rule.conflicts; IDs remain source identities",
-                "status": "converter currently initializes an empty native array; loss is a converter defect",
+                "status": "implemented for Rule output; Group relationships remain a canonical mapping hold",
             },
             "disa_description": {
                 "source": "XCCDF description text containing literal publisher XML",
@@ -296,16 +338,17 @@ def markdown(report: dict) -> str:
         f"- Source Rules: **{summary['source_rules']}**",
         f"- Rules with `requires`/`conflicts`: **{summary['rules_with_requires_or_conflicts']}**",
         f"- `requires` rows: **{summary['requires_rows']}**; `conflicts` rows: **{summary['conflicts_rows']}**",
+        f"- Groups with relationships: **{summary['groups_with_requires_or_conflicts']}** (requires **{summary['group_requires_rows']}**, conflicts **{summary['group_conflicts_rows']}**)",
         "",
         "## Result",
         "",
-        "The pinned 65-archive corpus contains no non-empty `Rule/requires` or `Rule/conflicts` relationships. This is a measured zero, not evidence that the converter may drop relationships: the converter must preserve them for source streams that use them. The relationship ledger is empty for this corpus and the test fixture exercises positive and negative source relationship elements.",
+        "The pinned 65-archive corpus contains no non-empty `Rule/requires` or `Rule/conflicts` relationships, and the separately audited Group relationship ledger is also measured. These are measured zeros, not evidence that the converter may drop relationships: source relationships are preserved for Rules and Groups are failed closed until a canonical non-flattening Group mapping exists. The test fixture exercises positive and negative source relationship elements.",
         "",
         "## DISA extended description mapping",
         "",
-        "Literal publisher XML inside XCCDF `description` is mapped without data loss:",
+        "Literal publisher XML inside XCCDF `description` is retained without data loss:",
         "",
-        "| Source field | Native location | Preservation |\n|---|---|---|\n" + "\n".join(f"| `{field}` | `rule.extensions.disa.{field}` | present, empty values, and lexical value retained |" for field in DISA_FIELDS),
+        "| Source field | Native location | Preservation |\n|---|---|---|\n" + "\n".join(f"| `{field}` | `rule.discussion` | exact source text retained; structured `rule.extensions.disa` is held |" for field in DISA_FIELDS),
         "",
         f"The source ledger has the eleven-field DISA payload on {summary['disa_description_rule_field_counts'].get('VulnDiscussion', 0)} Rules; {len(summary['malformed_publisher_payload_rules'])} Rules have publisher-looking descriptions that require source-specific review. Per-Rule field hashes are retained in JSON. `rule.discussion` retains the original description text for compatibility.",
         "",

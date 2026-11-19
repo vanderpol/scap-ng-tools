@@ -20,6 +20,7 @@
   },
   "format": "scap-ng-tools/issue83-source-crosswalk-receipt/1",
   "generated_by": "scripts/build_issue83_source_crosswalk.py",
+  "group_relationships": [],
   "oval_schema": {
     "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
     "declarations": 1033,
@@ -61,6 +62,7 @@
   },
   "proof_limits": [
     "65 signed source archives and 8,892 Rules were source-inventoried; no Rule contains non-empty requires/conflicts in this corpus.",
+    "Group relationships are audited separately; the pinned 65-archive corpus contains zero non-empty Group requires/conflicts, and non-empty Group relationships remain a canonical non-flattening mapping hold.",
     "The source relationship fixture proves child-element parsing and canonical any_of shaping; it is not a corpus witness.",
     "OVAL XSD declarations are intentionally unclassified and do not imply native support.",
     "No scanner runtime or independent OVAL equivalence claim is made."
@@ -627,6 +629,9 @@
       "ThirdPartyTools": 8867,
       "VulnDiscussion": 8867
     },
+    "group_conflicts_rows": 0,
+    "group_requires_rows": 0,
+    "groups_with_requires_or_conflicts": 0,
     "malformed_publisher_payload_rules": [
       "xccdf_gov.nist_rule_SV-257214r958478_rule",
       "xccdf_gov.nist_rule_SV-257215r958478_rule",

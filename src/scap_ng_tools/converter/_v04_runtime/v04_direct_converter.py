@@ -1679,7 +1679,18 @@ def native_applicability(level):
 
 
 def native_group(source, group, rule_links):
-    """Project nested XCCDF Group structure and local platforms only."""
+    """Project nested XCCDF Group structure and local platforms only.
+
+    Canonical 0.4.1 currently defines ``requires``/``conflicts`` on Rules,
+    not Groups.  Do not silently drop authored Group relationships: retain
+    source identity in the diagnostic and fail closed until the coordinated
+    canonical mapping is approved.
+    """
+    from v04_source_metadata import source_relationships
+    relationships = source_relationships(group)
+    ensure(not relationships['requires'] and not relationships['conflicts'],
+           'XCCDF Group relationships require a canonical non-flattening mapping: '
+           + (group.get('id') or '<missing-id>'))
     level = source.applicability_level(group)
     value = {'id': native_identifier(group, 'group'),
              'groups': [native_group(source, child, rule_links)
