@@ -49,6 +49,38 @@
       "runtime_qualification": "not_run",
       "source_prefix": "agnostic/oval-def_globtoregex_test.xml",
       "tests_considered": 20
+    },
+    {
+      "blocked": 0,
+      "converted": 2,
+      "receipt": "/tmp/tools-issue83-current-conversion-variable-components-1795107212/receipt.json",
+      "receipt_sha256": "02608dc9dca2197eb02dcadbf2e428236e183427255152f401b1db9945695b38",
+      "source_prefix": "agnostic/oval-def_variable_component.xml",
+      "tests_considered": 2
+    },
+    {
+      "blocked": 0,
+      "converted": 2,
+      "receipt": "/tmp/tools-issue83-current-conversion-variable-functions-1795107212/receipt.json",
+      "receipt_sha256": "fec7fc532e6a93d2305ca1bfd78a08f57fa1e85ef74a0d49fdbc77899075ff00",
+      "source_prefix": "agnostic/oval-def_constant_variable.xml",
+      "tests_considered": 2
+    },
+    {
+      "blocked": 0,
+      "converted": 2,
+      "receipt": "/tmp/tools-issue83-current-conversion-variable-local-1795107212/receipt.json",
+      "receipt_sha256": "b4c440ebeee249eadcbc42518654f2725c10324da754c2d79b778ccbe1201835",
+      "source_prefix": "agnostic/oval-def_local_variable.xml",
+      "tests_considered": 2
+    },
+    {
+      "blocked": 0,
+      "converted": 10,
+      "receipt": "/tmp/tools-issue83-current-conversion-variable-values-1795107227/receipt.json",
+      "receipt_sha256": "980b586d5cebe8bc4d31e0c271e815a3bc620af5da194fd5a3bc59bdf39a4754",
+      "source_prefix": "agnostic/oval_check_enumeration_variable_values.xml",
+      "tests_considered": 10
     }
   ],
   "format": "scap-ng-tools/issue83-focused-converter-replay/1",

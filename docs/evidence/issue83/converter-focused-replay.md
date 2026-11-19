@@ -37,6 +37,15 @@ Pins:
   - Receipt: `/tmp/tools-issue83-current-conversion-glob-1795107159/receipt.json`
   - SHA-256: `de85685066796f2d027722631f8a0998da01f9b0915f66705ccaf1e4b6389504`
 
+- `agnostic/oval-def_variable_component.xml`: **2/2 converted**
+  - SHA-256: `02608dc9dca2197eb02dcadbf2e428236e183427255152f401b1db9945695b38`
+- `agnostic/oval-def_constant_variable.xml`: **2/2 converted**
+  - SHA-256: `fec7fc532e6a93d2305ca1bfd78a08f57fa1e85ef74a0d49fdbc77899075ff00`
+- `agnostic/oval-def_local_variable.xml`: **2/2 converted**
+  - SHA-256: `b4c440ebeee249eadcbc42518654f2725c10324da754c2d79b778ccbe1201835`
+- `agnostic/oval_check_enumeration_variable_values.xml`: **10/10 converted**
+  - SHA-256: `980b586d5cebe8bc4d31e0c271e815a3bc620af5da194fd5a3bc59bdf39a4754`
+
 All output retains source Test IDs/hashes, witness hashes, source traces and
 conversion-scope hashes. Runtime evaluation and independent OVAL equivalence
 remain unproved.
