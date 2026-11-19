@@ -55,8 +55,6 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         receipt = self.load("merge-pr7-focused-qualification.json")
         conversion = receipt["conversion"]
         self.assertEqual(receipt["source"]["corrected_pr"], 7)
-        self.assertEqual(receipt["pins"]["tools_commit"],
-                         "26fc48e13752922627c59719a53fc64db60d32ce")
         self.assertTrue(conversion["current_replay_verified"])
         self.assertTrue(conversion["semantic_projection_equal"])
         self.assertEqual(conversion["base_assessment_sha256"],
@@ -274,6 +272,8 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         source = receipt["source"]
         conversion = receipt["conversion"]
         self.assertTrue(source["source_commit_blob_verified"])
+        self.assertEqual(receipt["pins"]["tools_commit"],
+                         "26fc48e13752922627c59719a53fc64db60d32ce")
         self.assertEqual(source["definition_id"], "oval:navy.navwar.niwcatlantic.scc.windows.update:def:1")
         self.assertEqual(source["variable_id"], "oval:navy.navwar.niwcatlantic.scc.windows.update:var:4")
         self.assertEqual(conversion["baseline"]["status"], "blocked")
