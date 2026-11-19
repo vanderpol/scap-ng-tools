@@ -46,6 +46,19 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertIn("oval:org.mitre.oval.test:obj:754", source["affected_objects"])
         self.assertEqual(len(source["affected_states"]), 3)
 
+    def test_exploratory_openscap_receipt_keeps_legacy_limits_explicit(self):
+        receipt = self.load("openscap-exploratory-pr6-pr16.json")
+        self.assertEqual(receipt["tool"]["version"], "1.3.9")
+        self.assertEqual(receipt["tool"]["validation_mode"], "--skip-valid")
+        self.assertIn("not authoritative", receipt["tool"]["authority"])
+        self.assertEqual(len(receipt["cases"]), 2)
+        for case in receipt["cases"]:
+            self.assertIn(case["base_result"], {"true", "false", "unknown", "error"})
+            self.assertIn(case["corrected_result"], {"true", "false", "unknown", "error"})
+            self.assertRegex(case["base_results_sha256"], HEX64)
+            self.assertRegex(case["corrected_results_sha256"], HEX64)
+        self.assertTrue(any("expected result" in x.lower() for x in receipt["limitations"]))
+
     def test_existing_deprecated_followups_have_exact_blob_provenance(self):
         names = [
             "macos-keychain-deprecated-object-followup.json",
