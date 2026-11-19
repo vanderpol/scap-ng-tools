@@ -7,7 +7,7 @@ This compact receipt is derived from an external full source crosswalk. It is a 
 - Full crosswalk SHA-256: `3b5ddd4fd95cb0e5e2228bd0b7fced88d761cf1023f0668394f2dc2f34925f5b` (109067599 bytes)
 - OVAL schema: `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`
 - Canonical 0.4.1: `5ee55288b369da26f308f40813e545b78dff2753`; schema family `88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f`
-- Converter audit head: `8b83425`
+- Converter audit head: `696b7a5`
 
 ## Reproduction
 
