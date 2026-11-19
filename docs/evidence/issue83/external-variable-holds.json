@@ -1,0 +1,19 @@
+{
+  "format": "scap-ng-tools/issue83-external-variable-holds/1",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+  "converter_receipt_sha256": "5973ca6e8db5aabbf97b2479321b744792846365c849f779fa6b0c3a5ceddc6b",
+  "hold_audit": "/tmp/tools-issue83-external-holds-1795108835.json",
+  "hold_audit_sha256": "6148ddd722af60e8ce37be732e61b16ef4ba33e405ace762fbaf958090ae427e",
+  "summary": {
+    "blocked_tests": 18,
+    "unique_external_variables": 18,
+    "possible_restrictions": 3,
+    "failure_class": "canonical_input_constraint_hold"
+  },
+  "disposition": {
+    "source_identity": "preserved",
+    "implicit_defaults": "not_introduced",
+    "canonical_input_contract": "hold",
+    "runtime_equivalence": "not_proved"
+  }
+}
