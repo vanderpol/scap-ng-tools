@@ -37,6 +37,7 @@ DISA_FIELDS = (
 )
 OVAL_SCHEMA_FILES = re.compile(r"^[^-]+-(?:definitions|system-characteristics)-schema\.xsd$")
 XSD = "http://www.w3.org/2001/XMLSchema"
+SCHEMATRON = "http://purl.oclc.org/dsdl/schematron"
 OVAL_COMMON = "http://oval.mitre.org/XMLSchema/oval-common-5"
 OVAL_DEFINITIONS = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 
@@ -652,6 +653,74 @@ def _schema_effective_members(node: ET.Element, component: dict,
         "member_count": len(rows),
     }
 
+def _schema_source_path(node: ET.Element, path: tuple[int, ...]) -> str:
+    return "/" + "/".join(
+        f"{local_name(node.tag)}[{index}]" for index in path
+    )
+
+
+def _schema_semantic_inventory(root: Path,
+                               documents: dict[Path, tuple[ET.Element, dict[str, str]]]) -> dict:
+    """Inventory embedded Schematron and evaluation prose as unproved rules."""
+    schematron = []
+    documentation = []
+
+    def walk(node: ET.Element, path: tuple[int, ...], schema_file: str) -> None:
+        kind = local_name(node.tag)
+        text = "".join(node.itertext())
+        namespace = node.tag.rsplit("}", 1)[0].lstrip("{") if "}" in node.tag else ""
+        if namespace == SCHEMATRON:
+            schematron.append({
+                "schema_file": schema_file,
+                "source_path": _schema_source_path(node, path),
+                "kind": kind,
+                "attributes": dict(sorted(node.attrib.items())),
+                "text_sha256": digest(text.encode("utf-8")),
+                "text_bytes": len(text.encode("utf-8")),
+                "disposition": "not_interpreted",
+            })
+        elif kind in {"documentation", "evaluation_documentation", "evaluation_chart"}:
+            documentation.append({
+                "schema_file": schema_file,
+                "source_path": _schema_source_path(node, path),
+                "kind": kind,
+                "text_sha256": digest(text.encode("utf-8")),
+                "text_bytes": len(text.encode("utf-8")),
+                "disposition": "prose_not_interpreted",
+            })
+        for index, child in enumerate(node):
+            walk(child, (*path, index), schema_file)
+
+    for path in sorted(documents):
+        document, _ = documents[path]
+        walk(document, (0,), path.relative_to(root).as_posix())
+    schematron.sort(key=lambda row: (row["schema_file"], row["source_path"]))
+    documentation.sort(key=lambda row: (row["schema_file"], row["source_path"]))
+    return {
+        "schematron": schematron,
+        "documentation": documentation,
+        "summary": {
+            "schematron_rows": len(schematron),
+            "schematron_patterns": sum(row["kind"] == "pattern" for row in schematron),
+            "schematron_rules": sum(row["kind"] == "rule" for row in schematron),
+            "schematron_assertions": sum(row["kind"] == "assert" for row in schematron),
+            "schematron_reports": sum(row["kind"] == "report" for row in schematron),
+            "prose_rows": len(documentation),
+            "evaluation_documentation_rows": sum(
+                row["kind"] == "evaluation_documentation" for row in documentation),
+            "evaluation_chart_rows": sum(
+                row["kind"] == "evaluation_chart" for row in documentation),
+        },
+        "disposition": {
+            "status": "inventory_only",
+            "schematron": "not_interpreted",
+            "evaluation_prose": "prose_not_interpreted",
+            "converter_parity": "not_proved",
+            "runtime_equivalence": "not_proved",
+        },
+    }
+
+
 def _schema_dependency_inventory(root: Path, schema_paths: list[Path]) -> list[dict]:
     """Inventory XSD imports/includes without guessing external semantics.
 
@@ -800,6 +869,7 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
     system_characteristics_schema_paths = []
     component_paths = sorted(root.rglob("*.xsd"))
     components, documents, component_nodes = _schema_component_index(root, component_paths)
+    semantic_inventory = _schema_semantic_inventory(root, documents)
     for path in sorted(root.iterdir()):
         if not path.is_file() or not OVAL_SCHEMA_FILES.match(path.name):
             continue
@@ -888,6 +958,7 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
         "schema_manifest": all_xsd,
         "schema_dependencies": dependencies,
         "canonical_mappings": mapping_rows,
+        "schema_semantics": semantic_inventory,
         "declarations": rows,
         "grammar_rows": grammar_rows,
         "summary": {
@@ -942,6 +1013,12 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                 row.get("schema_derivation_contract", {}).get("facet_count", 0)
                 for row in rows
             ),
+            "schematron_rows": semantic_inventory["summary"]["schematron_rows"],
+            "schematron_assertions": semantic_inventory["summary"]["schematron_assertions"],
+            "schematron_reports": semantic_inventory["summary"]["schematron_reports"],
+            "prose_rows": semantic_inventory["summary"]["prose_rows"],
+            "evaluation_documentation_rows": semantic_inventory["summary"]["evaluation_documentation_rows"],
+            "evaluation_chart_rows": semantic_inventory["summary"]["evaluation_chart_rows"],
             "schema_shape_contract": {
                 "status": "structural source witness only",
                 "preserves": [

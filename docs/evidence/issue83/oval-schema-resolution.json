@@ -19,7 +19,13 @@
     "declarations_with_incomplete_effective_members": 0,
     "effective_member_rows": 12390,
     "schema_derivation_rows": 1599,
-    "schema_restriction_facet_rows": 4447
+    "schema_restriction_facet_rows": 4447,
+    "schematron_rows": 5912,
+    "schematron_assertions": 982,
+    "schematron_reports": 200,
+    "prose_rows": 9023,
+    "evaluation_documentation_rows": 9,
+    "evaluation_chart_rows": 21
   },
   "disposition": {
     "local_base_targets": "recorded without flattening",
@@ -30,5 +36,5 @@
     "converter_parity": "not_proved",
     "runtime_equivalence": "not_proved"
   },
-  "receipt_sha256": "7d74a8e514c9c8254fac5997cf1373716d21be94c7205d0d69d80c5b2f5fe170"
+  "receipt_sha256": "50f975d52e00ea99fadf4d5d26a939a829658b66f7309307ef3abd791f6fe06a"
 }

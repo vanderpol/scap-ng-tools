@@ -10,8 +10,8 @@ native support, conversion success, or runtime equivalence.
 - Reproducible command: `SCAP_NG_OVAL_SCHEMA_ROOT=/path/to/oval-schemas
   python scripts/build_issue83_source_crosswalk.py ...` or call
   `oval_inventory` for schema-only output.
-- External receipt: `/tmp/tools-issue83-inheritance-final3-1795106291/oval-schema-inheritance.json`
-- Receipt SHA-256: `7d74a8e514c9c8254fac5997cf1373716d21be94c7205d0d69d80c5b2f5fe170`
+- External receipt: `/tmp/tools-issue83-semantics-final-1795106505/oval-schema-inheritance.json`
+- Receipt SHA-256: `50f975d52e00ea99fadf4d5d26a939a829658b66f7309307ef3abd791f6fe06a`
 
 ## Measured result
 
@@ -31,6 +31,9 @@ cardinality/default/use/type attributes and inherited/direct provenance. This
 is an auditable field inventory, not semantic field merging or override
 behavior. The same run records 1,599 extension/restriction rows and 4,447
 facet rows as structural source evidence; restriction validity and override
-semantics remain uninterpreted. Effective XSD field/cardinality semantics,
-Schematron/prose constraints, converter parity and RI execution remain
-separate qualification work.
+semantics remain uninterpreted. The pinned schemas additionally contain
+5,912 Schematron rows (982 assertions, 200 reports), 9,023 prose rows,
+9 evaluation-documentation rows and 21 evaluation charts. These are retained
+as source-linked semantic holds, not executed rules. Effective XSD
+field/cardinality semantics, converter parity and RI execution remain separate
+qualification work.

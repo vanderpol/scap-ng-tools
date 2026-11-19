@@ -185,6 +185,31 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(report["summary"]["resolved_schema_references"], 1)
         self.assertEqual(report["summary"]["unresolved_schema_references"], 0)
 
+    def test_schema_semantics_inventory_preserves_schematron_and_prose_as_holds(self):
+        xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
+              xmlns:sch=\"http://purl.oclc.org/dsdl/schematron\"
+              targetNamespace=\"urn:test\">
+          <xs:annotation><xs:documentation>Field meaning</xs:documentation></xs:annotation>
+          <sch:pattern id=\"p1\"><sch:rule context=\"t:item\">
+            <sch:assert test=\"@id\">An id is required</sch:assert>
+          </sch:rule></sch:pattern>
+          <xs:element name=\"item\"/>
+        </xs:schema>""".encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "test-definitions-schema.xsd").write_bytes(xsd)
+            report = crosswalk.oval_inventory(root)
+        semantic = report["schema_semantics"]
+        self.assertEqual(semantic["summary"]["schematron_patterns"], 1)
+        self.assertEqual(semantic["summary"]["schematron_rules"], 1)
+        self.assertEqual(semantic["summary"]["schematron_assertions"], 1)
+        self.assertEqual(semantic["summary"]["prose_rows"], 1)
+        assertion = next(row for row in semantic["schematron"]
+                         if row["kind"] == "assert")
+        self.assertEqual(assertion["attributes"]["test"], "@id")
+        self.assertEqual(assertion["disposition"], "not_interpreted")
+        self.assertEqual(semantic["disposition"]["status"], "inventory_only")
+
     def test_schema_keyref_refer_resolves_identity_constraint(self):
         xsd = """<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"
               xmlns:t=\"urn:test\" targetNamespace=\"urn:test\">
