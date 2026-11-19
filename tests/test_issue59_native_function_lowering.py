@@ -47,6 +47,20 @@ class Active041FunctionLowering(unittest.TestCase):
         self.assertEqual(visitor.conversion_warnings[0]['independent_static_proof'], 'UNPROVED')
         self.assertFalse(visitor.conversion_warnings[0]['scanner_evaluated'])
 
+    def test_direct_source_unique_projects_typed_literals_to_text(self):
+        visitor = self.visitor()
+        source = oval(
+            '<unique xmlns="OVAL">'
+            '<literal_component datatype="int">1</literal_component>'
+            '<literal_component datatype="string">1</literal_component>'
+            '</unique>')
+        self.assertEqual(visitor.function(source), {'unique': [
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'integer', 'value': 1}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': '1'}}]},
+        ]})
+
     def test_direct_source_unique_projects_every_source_operand(self):
         class Source:
             native_recovery = True
