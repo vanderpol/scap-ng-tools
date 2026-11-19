@@ -1,0 +1,4542 @@
+{
+  "affected_declarations": [
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "interim_fix_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#aix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "aix-definitions-schema.xsd",
+      "schema_sha256": "4d5040e1d561961b426e757ba141da5c06925e27c93ca7b903e20f655d1c2389"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "no_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#aix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "aix-definitions-schema.xsd",
+      "schema_sha256": "4d5040e1d561961b426e757ba141da5c06925e27c93ca7b903e20f655d1c2389"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "oslevel_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#aix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "aix-definitions-schema.xsd",
+      "schema_sha256": "4d5040e1d561961b426e757ba141da5c06925e27c93ca7b903e20f655d1c2389"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "appmanager_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "bluetooth_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "camera_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "certificate_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "devicesettings_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "encryption_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "locationservice_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "network_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "password_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "systemdetails_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "wifi_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "wifinetwork_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "telephony_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#android",
+      "native_mapping_status": "deprecated",
+      "schema_file": "android-definitions-schema.xsd",
+      "schema_sha256": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The httpd_test does not specify how to detect instances of httpd and cannot be reasonably specified to allow for products to detect all instances of httpd across platforms, packaging systems, and typical user compiled and configured installations. Without a proper definition of how to identify instances of httpd products will not reliably produce consistent assessment results because they will naturally utilize different approaches to locating instances of httpd which will lead to differences in the set of collected instances of https.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "httpd_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#apache",
+      "native_mapping_status": "deprecated",
+      "schema_file": "apache-definitions-schema.xsd",
+      "schema_sha256": "441d5182cc377af41107c9c849f38bf11e75182de54943cb55a5c1a4bceaf571"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The httpd_object does not specify how to detect instances of httpd and cannot be reasonably specified to allow for products to detect all instances of httpd across platforms, packaging systems, and typical user compiled and configured installations. Without a proper definition of how to identify instances of httpd products will not reliably produce consistent assessment results because they will naturally utilize different approaches to locating instances of httpd which will lead to differences in the set of collected instances of https.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "httpd_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#apache",
+      "native_mapping_status": "deprecated",
+      "schema_file": "apache-definitions-schema.xsd",
+      "schema_sha256": "441d5182cc377af41107c9c849f38bf11e75182de54943cb55a5c1a4bceaf571"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The httpd_state does not specify how to detect instances of httpd and cannot be reasonably specified to allow for products to detect all instances of httpd across platforms, packaging systems, and typical user compiled and configured installations. Without a proper definition of how to identify instances of httpd products will not reliably produce consistent assessment results because they will naturally utilize different approaches to locating instances of httpd which will lead to differences in the set of collected instances of https.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "httpd_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#apache",
+      "native_mapping_status": "deprecated",
+      "schema_file": "apache-definitions-schema.xsd",
+      "schema_sha256": "441d5182cc377af41107c9c849f38bf11e75182de54943cb55a5c1a4bceaf571"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "acl_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "class_map_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "interface_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "urpf_command",
+          "reason": "This entity has been deprecated because it was replaced by the ipv4_urpf_command and ipv6_urpf_command entities.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.1:1.1"
+        }
+      ],
+      "name": "interface_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "unclassified",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "policy_map_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "service_policy_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "snmp_host_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "snmp_user_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "snmp_group_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "tcp_map_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+      "native_mapping_status": "deprecated",
+      "schema_file": "asa-definitions-schema.xsd",
+      "schema_sha256": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "line_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#catos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "catos-definitions-schema.xsd",
+      "schema_sha256": "eb857354a06618fba9c6bd5db7b351ce9d6533c501687f950425629bb0cacd48"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "module_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#catos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "catos-definitions-schema.xsd",
+      "schema_sha256": "eb857354a06618fba9c6bd5db7b351ce9d6533c501687f950425629bb0cacd48"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "version55_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#catos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "catos-definitions-schema.xsd",
+      "schema_sha256": "eb857354a06618fba9c6bd5db7b351ce9d6533c501687f950425629bb0cacd48"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        },
+        {
+          "reason": "Replaced by the version55_test. Due to the fact it's not clear on how to separate the CatOS version, it was decided that the catos_major_release, catos_individual_release, and catos_version_id entities would be combined into a new single entity catos_release. A new test was created to reflect these changes. See the version55_test.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "version_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#catos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "catos-definitions-schema.xsd",
+      "schema_sha256": "eb857354a06618fba9c6bd5db7b351ce9d6533c501687f950425629bb0cacd48"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the version55_object. Due to the fact it's not clear on how to separate the CatOS version, it was decided that the catos_major_release, catos_individual_release, and catos_version_id entities would be combined into a new single entity catos_release. A new object was created to reflect these changes. See the version55_object.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "version_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#catos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "catos-definitions-schema.xsd",
+      "schema_sha256": "eb857354a06618fba9c6bd5db7b351ce9d6533c501687f950425629bb0cacd48"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the version55_state. Due to the fact it's not clear on how to separate the CatOS version, it was decided that the catos_major_release, catos_individual_release, and catos_version_id entities would be combined into a new single entity catos_release. A new state was created to reflect these changes. See the version55_state.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "version_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#catos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "catos-definitions-schema.xsd",
+      "schema_sha256": "eb857354a06618fba9c6bd5db7b351ce9d6533c501687f950425629bb0cacd48"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "patch56_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#esx",
+      "native_mapping_status": "deprecated",
+      "schema_file": "esx-definitions-schema.xsd",
+      "schema_sha256": "d1f7c5c9e64e08274402c9cc2a408c7e3596cc56225c1720cbf3c4b63dbcb57c"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the patch56_test. The deprecated patch_test has a bug where the patch name entity is defined as a string in the object yet is defined as an int in the state.  Additional state entities have also been added to the new patch56_test.",
+          "scope": "declaration",
+          "version": "5.6"
+        }
+      ],
+      "name": "patch_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#esx",
+      "native_mapping_status": "deprecated",
+      "schema_file": "esx-definitions-schema.xsd",
+      "schema_sha256": "d1f7c5c9e64e08274402c9cc2a408c7e3596cc56225c1720cbf3c4b63dbcb57c"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the patch56_object. The deprecated patch_test has a bug where the patch name entity is defined as a string in the object yet is defined as an int in the state.  Additional state entities have also been added to the new patch56_test.",
+          "scope": "declaration",
+          "version": "5.6"
+        }
+      ],
+      "name": "patch_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#esx",
+      "native_mapping_status": "deprecated",
+      "schema_file": "esx-definitions-schema.xsd",
+      "schema_sha256": "d1f7c5c9e64e08274402c9cc2a408c7e3596cc56225c1720cbf3c4b63dbcb57c"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the patch56_state. The deprecated patch_test has a bug where the patch name entity is defined as a string in the object yet is defined as an int in the state.  Additional state entities have also been added to the new patch56_test.",
+          "scope": "declaration",
+          "version": "5.6"
+        }
+      ],
+      "name": "patch_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#esx",
+      "native_mapping_status": "deprecated",
+      "schema_file": "esx-definitions-schema.xsd",
+      "schema_sha256": "d1f7c5c9e64e08274402c9cc2a408c7e3596cc56225c1720cbf3c4b63dbcb57c"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecation": [
+        {
+          "reason": "Replaced by Patch56Behaviors. The deprecated patch_test has a bug where the patch name entity is defined as a string in the object yet is defined as an int in the state.  Additional state entities have also been added to the new patch56_test.",
+          "scope": "declaration",
+          "version": "5.6"
+        }
+      ],
+      "name": "PatchBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#esx",
+      "native_mapping_status": "deprecated",
+      "schema_file": "esx-definitions-schema.xsd",
+      "schema_sha256": "d1f7c5c9e64e08274402c9cc2a408c7e3596cc56225c1720cbf3c4b63dbcb57c"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "version_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#esx",
+      "native_mapping_status": "deprecated",
+      "schema_file": "esx-definitions-schema.xsd",
+      "schema_sha256": "d1f7c5c9e64e08274402c9cc2a408c7e3596cc56225c1720cbf3c4b63dbcb57c"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "visdkmanagedobject_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#esx",
+      "native_mapping_status": "deprecated",
+      "schema_file": "esx-definitions-schema.xsd",
+      "schema_sha256": "d1f7c5c9e64e08274402c9cc2a408c7e3596cc56225c1720cbf3c4b63dbcb57c"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "portinfo_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#freebsd",
+      "native_mapping_status": "deprecated",
+      "schema_file": "freebsd-definitions-schema.xsd",
+      "schema_sha256": "327168aacda31d373de279efb8b2bb13c894b53a8e6cd398df8ddd2b39dc11b2"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "getconf_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "hpux-definitions-schema.xsd",
+      "schema_sha256": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "ndd_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "hpux-definitions-schema.xsd",
+      "schema_sha256": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "patch53_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "hpux-definitions-schema.xsd",
+      "schema_sha256": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the patch53_test. The patch_name entity was removed from the patch_object element, and replaced with the swtype, area_patched, and patch_base entities, because the patch_name element can be constructed from the swtype, area_patched, and patch_base entities. Likewise, the patch_name entity was removed from the patch_state element for the same reason. Also, a behaviors entity was added to the patch_object to allow the object to match both the original patch and any superseding patches. A new test was created to reflect these changes. See the patch53_test.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "patch_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "hpux-definitions-schema.xsd",
+      "schema_sha256": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the patch53_object. The patch_name entity was removed from the patch_object element, and replaced with the swtype, area_patched, and patch_base entities, because the patch_name element can be constructed from the swtype, area_patched, and patch_base entities. Also, a behaviors entity was added to the patch_object to allow the object to match both the original patch and any superseding patches. A new object was created to reflect these changes. See the patch53_object.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "patch_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "hpux-definitions-schema.xsd",
+      "schema_sha256": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the patch53_state. The patch_name entity was removed from the patch_state element, and replaced with the swtype, area_patched, and patch_base entities, because the patch_name element can be constructed from the swtype, area_patched, and patch_base entities. A new state was created to reflect these changes. See the patch53_state.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "patch_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "hpux-definitions-schema.xsd",
+      "schema_sha256": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "swlist_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "hpux-definitions-schema.xsd",
+      "schema_sha256": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "trusted_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#hpux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "hpux-definitions-schema.xsd",
+      "schema_sha256": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the filehash58_test.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "filehash_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the filehash58_object.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "filehash_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the filehash58_state.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "filehash_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "filehash58_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "unclassified",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the environmentvariable58_test.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "environmentvariable_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the environmentvariable58_object.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "environmentvariable_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the environmentvariable58_state.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "environmentvariable_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "ldap_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Use the original ldap_test. The ldap57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated LdaptypeTypes. Use the original ldap_test instead.",
+          "scope": "declaration",
+          "version": "5.11.2"
+        }
+      ],
+      "name": "ldap57_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Use the original ldap_object. The ldap57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated LdaptypeTypes. Use the original ldap_test instead.",
+          "scope": "declaration",
+          "version": "5.11.2"
+        }
+      ],
+      "name": "ldap57_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Use the original ldap_state. The ldap57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated LdaptypeTypes. Use the original ldap_test instead.",
+          "scope": "declaration",
+          "version": "5.11.2"
+        }
+      ],
+      "name": "ldap57_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the sql57_test. This test allows for single fields to be selected from a database. A new test was created to allow more than one field to be selected in one statement. See the sql57_test.",
+          "scope": "declaration",
+          "version": "5.7"
+        }
+      ],
+      "name": "sql_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the sql57_object. This object allows for single fields to be selected from a database. A new object was created to allow more than one field to be selected in one statement. See the sql57_object.",
+          "scope": "declaration",
+          "version": "5.7"
+        }
+      ],
+      "name": "sql_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the sql57_state. This state allows for single fields to be selected from a database. A new state was created to allow more than one field to be selected in one statement. See the sql57_state.",
+          "scope": "declaration",
+          "version": "5.7"
+        }
+      ],
+      "name": "sql_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the sql512_test.  The sql512_test removes the connection string and replaces it with 'instance' and 'database' elements.  This allows the application to perform any necessary steps to connect, and providing a simple method for content authors to determine which database(s) to query.",
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "sql57_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "textfilecontent54_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "unclassified",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the textfilecontent54_test. Support for multi-line pattern matching and multi-instance matching was added. Therefore, a new test was created to reflect these changes. See the textfilecontent54_test.",
+          "scope": "declaration",
+          "version": "5.4"
+        }
+      ],
+      "name": "textfilecontent_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the textfilecontent54_object. Support for multi-line pattern matching and multi-instance matching was added. Therefore, a new object was created to reflect these changes. See the textfilecontent54_object.",
+          "scope": "declaration",
+          "version": "5.4"
+        }
+      ],
+      "name": "textfilecontent_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the textfilecontent54_state. Support for multi-line pattern matching and multi-instance matching was added. Therefore, a new state was created to reflect these changes. See the textfilecontent54_state.",
+          "scope": "declaration",
+          "version": "5.4"
+        }
+      ],
+      "name": "textfilecontent_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "deprecated",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "xmlfilecontent_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "unclassified",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "yamlfilecontent_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "unclassified",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The value of 'up' is being removed because it is unused in the language and adds unneeded complexity to OVAL Interpreters.",
+          "ref": null,
+          "scope": "nested",
+          "value": "up",
+          "version": "5.12.3"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "FileBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "unclassified",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "This value was accidently carried over from the win-def:EntityStateAdstypeType as it was used as a template for the ind-def:EntityStateLdaptypeType.",
+          "ref": null,
+          "scope": "nested",
+          "value": "LDAPTYPE_TIMESTAMP",
+          "version": "5.7"
+        },
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "This value was accidently carried over from the win-def:EntityStateAdstypeType as it was used as a template for the ind-def:EntityStateLdaptypeType.",
+          "ref": null,
+          "scope": "nested",
+          "value": "LDAPTYPE_EMAIL",
+          "version": "5.7"
+        }
+      ],
+      "name": "EntityStateLdaptypeType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "native_mapping_status": "unclassified",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "acl_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "deprecated",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "no_ip_directed_broadcast_command",
+          "reason": "This entity has been deprecated because the ip_directed_broadcast_command has been updated to support a boolean value and this entity can be represented with a value of 'false'.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11"
+        },
+        {
+          "declaration_kind": "element",
+          "name": "urpf_command",
+          "reason": "This entity has been deprecated because it was replaced by the ipv4_urpf_command and ipv6_urpf_command entities.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "interface_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "unclassified",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "router_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "deprecated",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "snmpview_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "deprecated",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "tclsh_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "deprecated",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the version55_test. Additional IOS version components were added to the version_state in order to support a wider range of IOS version strings. Also, the major_release and train_number entities were removed from the version_state element. A new test was created to reflect these changes. See the version55_test.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "version_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "deprecated",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the version55_object. Additional IOS version components were added to the version_state in order to support a wider range of IOS version strings.  Also, the major_release and train_number entities were removed from the version_state element. A new object was created to reflect these changes. See the version55_object.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "version_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "deprecated",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the version55_state. Additional IOS version components were added to the version_state in order to support a wider range of IOS version strings.  Also, the major_release and train_number entities were removed from this version_state element. A new state was created to reflect these changes. See the version55_state.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "version_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "deprecated",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The EntityStateSimpleBaseType check_existence attribute serves the same purpose as this enumeration value.",
+          "ref": null,
+          "scope": "nested",
+          "value": "NONE",
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "EntityStateAccessListUseType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "unclassified",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The NULL authentication area type is never declared in an interface ip ospf command context.",
+          "ref": null,
+          "scope": "nested",
+          "value": "NULL",
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "EntityStateRoutingAuthTypeStringType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "unclassified",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecation": [
+        {
+          "reason": "Additional IOS version components were added to the version_state in order to support a wider range of IOS version strings. Also, the train_number entity, which uses this enumeration, was removed from the version_state element. As a result, this enumeration is no longer needed.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "EntityStateTrainIdentifierType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "native_mapping_status": "deprecated",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "platform",
+          "reason": "This entity has been deprecated because it cannot be reliably collected.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.2:1.0"
+        },
+        {
+          "declaration_kind": "element",
+          "name": "rp",
+          "reason": "This entity has been deprecated because it cannot be reliably collected.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.2:1.0"
+        },
+        {
+          "declaration_kind": "element",
+          "name": "pkg",
+          "reason": "This entity has been deprecated because it cannot be reliably collected.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.2:1.0"
+        },
+        {
+          "declaration_kind": "element",
+          "name": "ios_release",
+          "reason": "This entity has been deprecated because it is irrelevant to the IOS-XE version.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.2:1.0"
+        },
+        {
+          "declaration_kind": "element",
+          "name": "ios_train",
+          "reason": "This entity has been deprecated because it is irrelevant to the IOS-XE version.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "version_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#iosxe",
+      "native_mapping_status": "unclassified",
+      "schema_file": "iosxe-definitions-schema.xsd",
+      "schema_sha256": "991c3f2e5a02f66cab2d0ba2e4fc848901e62d3f136b79703a6379c9473ea6a3"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "urpf_command",
+          "reason": "This entity has been deprecated because it was replaced by the ipv4_urpf_command and ipv6_urpf_command entities.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.1:1.1"
+        }
+      ],
+      "name": "interface_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#iosxe",
+      "native_mapping_status": "unclassified",
+      "schema_file": "iosxe-definitions-schema.xsd",
+      "schema_sha256": "991c3f2e5a02f66cab2d0ba2e4fc848901e62d3f136b79703a6379c9473ea6a3"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "router_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#iosxe",
+      "native_mapping_status": "deprecated",
+      "schema_file": "iosxe-definitions-schema.xsd",
+      "schema_sha256": "991c3f2e5a02f66cab2d0ba2e4fc848901e62d3f136b79703a6379c9473ea6a3"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "acl_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#iosxe",
+      "native_mapping_status": "deprecated",
+      "schema_file": "iosxe-definitions-schema.xsd",
+      "schema_sha256": "991c3f2e5a02f66cab2d0ba2e4fc848901e62d3f136b79703a6379c9473ea6a3"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "snmpview_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#iosxe",
+      "native_mapping_status": "deprecated",
+      "schema_file": "iosxe-definitions-schema.xsd",
+      "schema_sha256": "991c3f2e5a02f66cab2d0ba2e4fc848901e62d3f136b79703a6379c9473ea6a3"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The NULL authentication area type is never declared in an interface ip ospf command context.",
+          "ref": null,
+          "scope": "nested",
+          "value": "NULL",
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "EntityStateRoutingAuthTypeStringType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#iosxe",
+      "native_mapping_status": "unclassified",
+      "schema_file": "iosxe-definitions-schema.xsd",
+      "schema_sha256": "991c3f2e5a02f66cab2d0ba2e4fc848901e62d3f136b79703a6379c9473ea6a3"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The EntityStateSimpleBaseType check_existence attribute serves the same purpose as this enumeration value.",
+          "ref": null,
+          "scope": "nested",
+          "value": "NONE",
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "EntityStateAccessListUseType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#iosxe",
+      "native_mapping_status": "unclassified",
+      "schema_file": "iosxe-definitions-schema.xsd",
+      "schema_sha256": "991c3f2e5a02f66cab2d0ba2e4fc848901e62d3f136b79703a6379c9473ea6a3"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "complexType",
+          "name": null,
+          "reason": null,
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12"
+        }
+      ],
+      "name": "xml_config_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#junos",
+      "native_mapping_status": "unclassified",
+      "schema_file": "junos-definitions-schema.xsd",
+      "schema_sha256": "20cf3663546c769074133747b03c4b12f2af39564e74288a1cfb0858b83944b8"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "version_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#junos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "junos-definitions-schema.xsd",
+      "schema_sha256": "20cf3663546c769074133747b03c4b12f2af39564e74288a1cfb0858b83944b8"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "xml_show_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#junos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "junos-definitions-schema.xsd",
+      "schema_sha256": "20cf3663546c769074133747b03c4b12f2af39564e74288a1cfb0858b83944b8"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "iflisteners_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        },
+        {
+          "reason": "Replaced by the rpmverifyfile_test and the rpmverifypackage_test. The rpmverify_test was split into two tests to distinguish between the verification of the files in an rpm and the verification of an rpm as a whole. By making this distinction, content authoring is simplified and information is no longer duplicated across items. See the rpmverifyfile_test and rpmverifypackage_test.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "rpmverify_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the rpmverifyfile_object and rpmverifypackage_object. The rpmverify_test was split into two tests to distinguish between the verification of the files in an rpm and the verification of an rpm as a whole. By making this distinction, content authoring is simplified and information is no longer duplicated across items. See the rpmverifyfile_object and rpmverifypackage_object.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "rpmverify_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the rpmverifyfile_state and rpmverifypackage_state. The rpmverify_test was split into two tests to distinguish between the verification of the files in an rpm and the verification of an rpm as a whole. By making this distinction, content authoring is simplified and information is no longer duplicated across items. See the rpmverifyfile_state and rpmverifypackage_state.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "rpmverify_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecation": [
+        {
+          "reason": "Replaced by the RpmVerifyFileBehaviors and the RpmVerifyPackageBehaviors. The RpmVerifyBehaviors complex type is used by the rpmverify_test which was split into two tests to distinguish between the verification of the files in an rpm and the verification of an rpm as a whole. By making this distinction, content authoring is simplified and information is no longer duplicated across items. The new tests utilize the RpmVerifyFileBehaviors and RpmVerifyPackageBehaviors complex types, and as a result, the RpmVerifyBehaviors complex type is no longer needed.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "RpmVerifyBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "md5_differs",
+          "reason": "Replaced by the filedigest_differs entity.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.1:1.1"
+        }
+      ],
+      "name": "rpmverifyfile_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "unclassified",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "nomd5",
+          "reason": "Replaced by the nofiledigest RpmVerifyFileBehaviors option.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.1:1.1"
+        }
+      ],
+      "name": "RpmVerifyFileBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "unclassified",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "digest_check_passed",
+          "reason": "The digest_check_passed entity can not be collected as implemented, and has become irrelevant.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11"
+        },
+        {
+          "declaration_kind": "element",
+          "name": "signature_check_passed",
+          "reason": "The signature_check_passed entity can not be collected as implemented, and has become irrelevant.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11"
+        }
+      ],
+      "name": "rpmverifypackage_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "unclassified",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "nodigest",
+          "reason": "The nodigest behavior has become irrelevant since the element it impacts has been deprecated.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "nosignature",
+          "reason": "The nosignature behavior has become irrelevant since the element it impacts has been deprecated.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11"
+        }
+      ],
+      "name": "RpmVerifyPackageBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "unclassified",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "slackwarepkginfo_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#linux",
+      "native_mapping_status": "deprecated",
+      "schema_file": "linux-definitions-schema.xsd",
+      "schema_sha256": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "corestorage_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        },
+        {
+          "reason": "The diskutil_test has been deprecated. The underlying capability was rendered obsolete in MacOS X 10.11 (El Capitan), and then removed altogether from the platform in MacOS X 10.12 (Sierra).",
+          "scope": "declaration",
+          "version": "5.11.2"
+        }
+      ],
+      "name": "diskutil_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The diskutil_object has been deprecated. The underlying capability was rendered obsolete in MacOS X 10.11 (El Capitan), and then removed altogether from the platform in MacOS X 10.12 (Sierra).",
+          "scope": "declaration",
+          "version": "5.11.2"
+        }
+      ],
+      "name": "diskutil_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The diskutil_state has been deprecated. The underlying capability was rendered obsolete in MacOS X 10.11 (El Capitan), and then removed altogether from the platform in MacOS X 10.12 (Sierra).",
+          "scope": "declaration",
+          "version": "5.11.2"
+        }
+      ],
+      "name": "diskutil_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The inetlisteningservers_test has been deprecated and replaced by the inetlisteningserver510_test. The name of an application cannot be used to uniquely identify an application that is listening on the network. As a result, the inetlisteningserver510_object utilizes the protocol, local_address, and local_port entities to uniquely identify an application listening on the network. Please see the inetlisteningserver510_test for additional information.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "inetlisteningservers_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The inetlisteningservers_object has been deprecated and replaced by the inetlisteningserver510_object. The name of an application cannot be used to uniquely identify an application that is listening on the network. As a result, the inetlisteningserver510_object utilizes the protocol, local_address, and local_port entities to uniquely identify an application listening on the network. Please see the inetlisteningserver510_object for additional information.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "inetlisteningservers_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The inetlisteningservers_state has been deprecated and replaced by the inetlisteningserver510_state. The name of an application cannot be used to uniquely identify an application that is listening on the network. As a result, the inetlisteningserver510_object utilizes the protocol, local_address, and local_port entities to uniquely identify an application listening on the network. Please see the inetlisteningserver510_state for additional information.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "inetlisteningservers_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "inetlisteningserver510_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "nvram_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the plist510_test. This test references the plist_object which does not contain an instance entity. As a result, it is not possible to differentiate between two preference keys that have the same name using the plist_object. The plist510_test was added to address this deficiency. See the plist510_test.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "plist_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the plist510_object. This object does not contain an instance entity. As a result, it is not possible to differentiate between two preference keys that have the same name using this object. The plist510_object was added to address this deficiency. See the plist510_object.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "plist_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the plist510_state. This state is used in conjunction with the plist_object which does not contain an instance entity. As a result, it is not possible to differentiate between two preference keys that have the same name using the plist_object. The plist510_state was added to address this deficiency. See the plist510_state.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "plist_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the plist511_test. This test references the plist_object which cannot express the context hierarchy required to differentiate between nodes with identical names. As a result, it is not possible to address a particular node when the order of their parent nodes is indeterminate. The plist511_test was added to address this deficiency. See the plist511_test.",
+          "scope": "declaration",
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "plist510_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the plist511_object. This object cannot express the context hierarchy required to differentiate between nodes with identical names. As a result, it is not possible to address a particular node when the order of their parent nodes is indeterminate. The plist511_object was added to address this deficiency. See the plist511_object.",
+          "scope": "declaration",
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "plist510_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the plist511_state. This state is used in conjunction with the plist510_object which cannot express the context hierarchy required to differentiate between nodes with identical names. As a result, it is not possible to address a particular node when the order of their parent nodes is indeterminate. The plist511_state was added to address this deficiency. See the plist511_state.",
+          "scope": "declaration",
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "plist510_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the pwpolicy59_test. The username, userpass, and directory_node entities in the pwpolicy_object, pwpolicy_state, and pwpolicy_item were underspecified and as a result their meaning was uncertain. A new test was created to resolve this issue. See the pwpolicy59_test.",
+          "scope": "declaration",
+          "version": "5.9"
+        }
+      ],
+      "name": "pwpolicy_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the pwpolicy59_object. The username, userpass, and directory_node entities in the pwpolicy_object were underspecified and as a result their meaning was uncertain. A new object was created to resolve this issue. See the pwpolicy59_object.",
+          "scope": "declaration",
+          "version": "5.9"
+        }
+      ],
+      "name": "pwpolicy_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the pwpolicy59_state. The username, userpass, and directory_node entities in the pwpolicy_state were underspecified and as a result their meaning was uncertain. A new state was created to resolve this issue. See the pwpolicy59_state.",
+          "scope": "declaration",
+          "version": "5.9"
+        }
+      ],
+      "name": "pwpolicy_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "pwpolicy59_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "rlimit_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecation": [
+        {
+          "reason": "Used only by the deprecated plist_state and plist510_state.",
+          "scope": "declaration",
+          "version": "5.11.2:1.0"
+        }
+      ],
+      "name": "EntityStatePlistTypeType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#macos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "macos-definitions-schema.xsd",
+      "schema_sha256": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "config_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#netconf",
+      "native_mapping_status": "deprecated",
+      "schema_file": "netconf-definitions-schema.xsd",
+      "schema_sha256": "82f18730fe32fadc6d079dfb6660e9d5212840baad1fb869c8c3ad4930744cfa"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the oval:notes element.",
+          "scope": "declaration",
+          "version": "5.11.1"
+        }
+      ],
+      "name": "notes",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+      "native_mapping_status": "deprecated",
+      "schema_file": "oval-definitions-schema.xsd",
+      "schema_sha256": "06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "line_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "pixos-definitions-schema.xsd",
+      "schema_sha256": "f4f34770b0f78c531e35b1ae14fd71d500b50ad3c923615e39d59d44baf21df5"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "version_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#pixos",
+      "native_mapping_status": "deprecated",
+      "schema_file": "pixos-definitions-schema.xsd",
+      "schema_sha256": "f4f34770b0f78c531e35b1ae14fd71d500b50ad3c923615e39d59d44baf21df5"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spwebapplication_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spgroup_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spweb_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "splist_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spantivirussettings_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spsiteadministration_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spsite_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "url",
+          "reason": "The 'url' entity has been deprecated as it has been identified as redundant since the 'sitecollectionurl' is the same URL.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        }
+      ],
+      "name": "spsite_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "unclassified",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spcrawlrule_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        },
+        {
+          "reason": "Replaced by the spjobdefinition510_test. This test does not uniquely identify a single job definition. A new test was created to use displaynames, which are unique. See the spjobdefinition510_test.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "spjobdefinition_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the spjobdefinition510_object. This test does not uniquely identify a single job definition. A new object was created to use displaynames, which are unique. See the spjobdefinition510_object.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "spjobdefinition_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the spjobdefinition510_state. This state does not uniquely identify a single job definition. A new state was created to use displaynames, which are unique. See the spjobdefinition510_state.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "spjobdefinition_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spjobdefinition510_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "bestbet_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "infopolicycoll_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spdiagnosticsservice_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "spdiagnosticslevel_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "sppolicyfeature_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "sppolicy_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#sharepoint",
+      "native_mapping_status": "deprecated",
+      "schema_file": "sharepoint-definitions-schema.xsd",
+      "schema_sha256": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "facet_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "image_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "isainfo_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "ndd_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "package_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "package511_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "packageavoidlist_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "packagecheck_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "packagefreezelist_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "packagepublisher_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "patch54_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        },
+        {
+          "reason": "Replaced by the patch54_test. The new test includes additional functionality that allows the object element to match both the original patch and any superseding patches. As a result of this new functionality, the patch_object was also expanded to include behaviors and version entities. See the patch54_test.",
+          "scope": "declaration",
+          "version": "5.4"
+        }
+      ],
+      "name": "patch_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the patch54_object. Due to the additional functionality that allows the object element to match both the original patch and any superseding patches, a new object was created that includes behaviors and version entities. See the patch54_object.",
+          "scope": "declaration",
+          "version": "5.4"
+        }
+      ],
+      "name": "patch_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "variant_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "virtualizationinfo_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "native_mapping_status": "deprecated",
+      "schema_file": "solaris-definitions-schema.xsd",
+      "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "dnscache_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The values 'files', 'files and directories', and 'none' are being removed because it is not possible to recurse files and the value 'none' was intended to mean no recursion, however, this is already covered by the recurse_direction attribute.",
+          "ref": null,
+          "scope": "nested",
+          "value": "none",
+          "version": "5.4"
+        },
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The values 'files', 'files and directories', and 'none' are being removed because it is not possible to recurse files and the value 'none' was intended to mean no recursion, however, this is already covered by the recurse_direction attribute.",
+          "ref": null,
+          "scope": "nested",
+          "value": "files",
+          "version": "5.4"
+        },
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The values 'files', 'files and directories', and 'none' are being removed because it is not possible to recurse files and the value 'none' was intended to mean no recursion, however, this is already covered by the recurse_direction attribute.",
+          "ref": null,
+          "scope": "nested",
+          "value": "files and directories",
+          "version": "5.4"
+        },
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The value of 'up' is being removed because it is unused in the language and adds unneeded complexity to OVAL Interpreters.",
+          "ref": null,
+          "scope": "nested",
+          "value": "up",
+          "version": "5.12.3"
+        }
+      ],
+      "name": "FileBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "unclassified",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "fileextendedattribute_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "gconf_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "inetd_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The process_test has been deprecated and replaced by the process58_test. The command line of a process cannot be used to uniquely identify a process. As a result, the pid entity was added to the process58_object. Please see the process58_test for additional information.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "process_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The process_object has been deprecated and replaced by the process58_object. The command line of a process cannot be used to uniquely identify a process. As a result, the pid entity was added to the process58_object. Please see the process58_object for additional information.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "process_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The process_state has been deprecated and replaced by the process58_state. The command line of a process cannot be used to uniquely identify a process. As a result, the pid entity was added to the process58_object. Please see the process58_state for additional information.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "process_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "routingtable_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The runlevel_test has been deprecated because runlevel is obsolete.  The runlevel_test may be removed in a future version of the language.",
+          "scope": "declaration",
+          "version": "5.12.3"
+        }
+      ],
+      "name": "runlevel_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        },
+        {
+          "reason": "The sccs_test has been deprecated because the Source Code Control System (SCCS) is obsolete.  The sccs_test may be removed in a future version of the language.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "sccs_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The sccs_object has been deprecated because the Source Code Control System (SCCS) is obsolete.  The sccs_object may be removed in a future version of the language.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "sccs_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The sccs_state has been deprecated because the Source Code Control System (SCCS) is obsolete.  The sccs_state may be removed in a future version of the language.",
+          "scope": "declaration",
+          "version": "5.10"
+        }
+      ],
+      "name": "sccs_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The xinetd_test has been deprecated because xinetd is obsolete.  The xinetd_test may be removed in a future version of the language.",
+          "scope": "declaration",
+          "version": "5.12.3"
+        }
+      ],
+      "name": "xinetd_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#unix",
+      "native_mapping_status": "deprecated",
+      "schema_file": "unix-definitions-schema.xsd",
+      "schema_sha256": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the userright_test. This accesstoken_test suffers from scalability issues when run on a domain controller and should not be used. See the userright_test.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "accesstoken_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the userright_object. The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used. See the userright_object.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "accesstoken_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the userright_state. The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used. See the userright_state.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "accesstoken_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the userright_test. The AccesstokenBehaviors complex type is used by the accesstoken_test which suffers from scalability issues when run on a domain controller and should not be used. As a result, the AccesstokenBehaviors complex type is no longer needed. See the userright_test.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "AccesstokenBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "activedirectory_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Use the original activedirectory_test. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.",
+          "scope": "declaration",
+          "version": "5.11.1:1.2"
+        }
+      ],
+      "name": "activedirectory57_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Use the original activedirectory_object. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.",
+          "scope": "declaration",
+          "version": "5.11.1:1.2"
+        }
+      ],
+      "name": "activedirectory57_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Use the original activedirectory_state. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.",
+          "scope": "declaration",
+          "version": "5.11.1:1.2"
+        }
+      ],
+      "name": "activedirectory57_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "auditeventpolicy_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "kerberos_ticket_events",
+          "reason": "This entity does not map to any known audit event policy subcategory.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11"
+        }
+      ],
+      "name": "auditeventpolicysubcategories_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "dnscache_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "file_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The value of 'up' is being removed because it is unused in the language and adds unneeded complexity to OVAL Interpreters.",
+          "ref": null,
+          "scope": "nested",
+          "value": "up",
+          "version": "5.12.3"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "FileBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "fileauditedpermissions53_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "fileauditedpermissions53_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "name": "FileAuditPermissions53Behaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the fileauditedpermissions53_test. This test uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. See the fileauditedpermissions53_test.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "fileauditedpermissions_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the fileauditedpermissions53_object. This object uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new object was created to use trustee SIDs, which are unique. See the fileauditedpermissions53_object.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "fileauditedpermissions_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the fileauditedpermissions53_state. This state uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new state was created to use trustee SIDs, which are unique. See the fileauditedpermissions53_state.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "fileauditedpermissions_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the FileAuditPermissionsBehaviors53. The FileAuditPermissionsBehaviors complex type is used by the fileauditedpermissions_test which uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. This new test utilizes the FileAuditPermissionsBehaviors53 complex type, and as a result, the FileAuditPermissionsBehaviors complex type is no longer needed.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "FileAuditPermissionsBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "fileeffectiverights53_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "name": "FileEffectiveRights53Behaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the fileeffectiverights53_test. This test uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. See the fileeffectiverights53_test.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "fileeffectiverights_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the fileeffectiverights_object. This object uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new object was created to use trustee SIDs, which are unique. See the fileeffectiverights53_object.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "fileeffectiverights_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the fileeffectiverights53_state. This state uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new state was created to use trustee SIDs, which are unique. See the fileeffectiverights53_state.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "fileeffectiverights_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the FileEffectiveRightsBehaviors53. The FileEffectiveRightsBehaviors complex type is used by the fileeffectiverights_test which uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. This new test utilizes the FileEffectiveRightsBehaviors53 complex type, and as a result, the FileEffectiveRightsBehaviors complex type is no longer needed.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "FileEffectiveRightsBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        },
+        {
+          "reason": "Replaced by the group_sid_test. This test uses trustee names for identifying accounts on the system. Trustee names are not unique and the group_sid_test, which uses trustee SIDs which are unique, should be used instead. See the group_sid_test.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "group_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the group_sid_object. This object uses trustee names for identifying accounts on the system. Trustee names are not unique and the group_sid_object, which uses trustee SIDs which are unique, should be used instead. See the group_sid_object.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "group_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the group_sid_state. This state uses trustee names for identifying accounts on the system. Trustee names are not unique and the group_sid_state, which uses trustee SIDs which are unique, should be used instead. See the group_sid_state.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "group_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "interface_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "junction_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "junction_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "license_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "metabase_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The value of 'up' is being removed because it is unused in the language and adds unneeded complexity to OVAL Interpreters.",
+          "ref": null,
+          "scope": "nested",
+          "value": "up",
+          "version": "5.12.3"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "NTUserBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "peheader_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "peheader_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "port_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "printereffectiverights_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "name": "PrinterEffectiveRightsBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The process_test has been deprecated and replaced by the process58_test. The command line of a process cannot be used to uniquely identify a process. As a result, the pid entity was added to the process58_object. Please see the process58_test for additional information.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "process_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The process_object has been deprecated and replaced by the process58_object. The command line of a process cannot be used to uniquely identify a process. As a result, the pid entity was added to the process58_object. Please see the process58_object for additional information.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "process_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "The process_state has been deprecated and replaced by the process58_state. The command line of a process cannot be used to uniquely identify a process. As a result, the pid entity was added to the process58_object. Please see the process58_state for additional information.",
+          "scope": "declaration",
+          "version": "5.8"
+        }
+      ],
+      "name": "process_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "process58_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "registry_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "The value of 'up' is being removed because it is unused in the language and adds unneeded complexity to OVAL Interpreters.",
+          "ref": null,
+          "scope": "nested",
+          "value": "up",
+          "version": "5.12.3"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "RegistryBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "regkeyauditedpermissions53_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "standard_synchronize",
+          "reason": "This entity has been deprecated because registry keys do not support the SYNCHRONIZE standard access right.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        },
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "regkeyauditedpermissions53_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "name": "RegkeyAuditPermissions53Behaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the regkeyauditedpermissions53_test. This test uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. See the regkeyauditedpermissions53_test.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "regkeyauditedpermissions_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the regkeyauditedpermissions53_object. This object uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new object was created to use trustee SIDs, which are unique. See the regkeyauditedpermissions53_object.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "regkeyauditedpermissions_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the regkeyauditedpermissions53_state. This state uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new state was created to use trustee SIDs, which are unique. See the regkeyauditedpermissions53_state.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "regkeyauditedpermissions_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the RegkeyAuditPermissionsBehaviors53. The RegkeyAuditPermissionsBehaviors complex type is used by the regkeyauditedpermissions_test which uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. This new test utilizes the RegkeyAuditPermissionsBehaviors53 complex type, and as a result, the RegkeyAuditPermissionsBehaviors complex type is no longer needed.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "RegkeyAuditPermissionsBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "standard_synchronize",
+          "reason": "This entity has been deprecated because registry keys do not support the SYNCHRONIZE standard access right.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        },
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "name": "regkeyeffectiverights53_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "name": "RegkeyEffectiveRights53Behaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the regkeyeffectiverights53_test. This test uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. See the regkeyeffectiverights53_test.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "regkeyeffectiverights_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the regkeyeffectiverights53_object. This object uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new object was created to use trustee SIDs, which are unique. See the regkeyeffectiverights53_object.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "regkeyeffectiverights_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecated_members": [
+        {
+          "declaration_kind": "element",
+          "name": "windows_view",
+          "reason": "Unused in production content and adds unneeded complexity to OVAL interpeters.  The equivalent data can be obtained by other existing OVAL methods.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.12.3"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the regkeyeffectiverights53_state. This state uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new state was created to use trustee SIDs, which are unique. See the regkeyeffectiverights53_state.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "regkeyeffectiverights_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.6"
+        }
+      ],
+      "deprecation": [
+        {
+          "reason": "Replaced by the RegkeyEffectiveRightsBehaviors53. The RegkeyEffectiveRightsBehaviors complex type is used by the regkeyeffectiverights_test which uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. This new test utilizes the RegkeyEffectiveRightsBehaviors53 complex type, and as a result, the RegkeyEffectiveRightsBehaviors complex type is no longer needed.",
+          "scope": "declaration",
+          "version": "5.3"
+        }
+      ],
+      "name": "RegkeyEffectiveRightsBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "serviceeffectiverights_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.1:1.2"
+        },
+        {
+          "declaration_kind": "attribute",
+          "name": "resolve_group",
+          "reason": "The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.11.1:1.2"
+        }
+      ],
+      "name": "ServiceEffectiveRightsBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "sharedresource_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "sharedresourceauditedpermissions_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10.1"
+        }
+      ],
+      "name": "SharedResourceAuditedPermissionsBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "sharedresourceeffectiverights_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "attribute",
+          "name": "include_group",
+          "reason": "The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.",
+          "ref": null,
+          "scope": "nested",
+          "value": null,
+          "version": "5.10.1"
+        }
+      ],
+      "name": "SharedResourceEffectiveRightsBehaviors",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "systemmetric_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "uac_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the user_sid55_test. This test uses trustee names for identifying accounts on the system. Trustee names are not unique and the user_sid55_test, which uses trustee SIDs which are unique, should be used instead. See the user_sid55_test.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "user_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the user_sid55_object. This object uses trustee names for identifying accounts on the system. Trustee names are not unique and the user_sid55_object, which uses trustee SIDs which are unique, should be used instead. See the user_sid55_object.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "user_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the user_sid55_state. This state uses trustee names for identifying accounts on the system. Trustee names are not unique and the user_sid55_state, which uses trustee SIDs which are unique, should be used instead. See the user_sid55_state.",
+          "scope": "declaration",
+          "version": "5.11"
+        }
+      ],
+      "name": "user_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the user_sid55_test. This test uses user and group elements that are incorrectly named. A new test was created to change the element names to their correct values which are user_sid and group_sid. See the user_sid55_test.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "user_sid_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the user_sid55_object. This object uses a user element that is incorrectly named. A new object was created to change the element name to its correct value which is user_sid. See the user_sid55_object.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "user_sid_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the user_sid55_state. This state uses user and group elements that are incorrectly named. A new state was created to change the element names to their correct values which are user_sid and group_sid. See the user_sid55_state.",
+          "scope": "declaration",
+          "version": "5.5"
+        }
+      ],
+      "name": "user_sid_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": null,
+          "scope": "declaration",
+          "version": "5.12"
+        }
+      ],
+      "name": "volume_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the wmi57_test. This test only allows for single fields to be selected from WMI. A new test was created to allow more than one field to be selected in one statement. See the wmi57_test.",
+          "scope": "declaration",
+          "version": "5.7"
+        }
+      ],
+      "name": "wmi_test",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the wmi57_object. This object allows for single fields to be selected from WMI. A new object was created to allow more than one field to be selected in one statement. See the wmi57_object.",
+          "scope": "declaration",
+          "version": "5.7"
+        }
+      ],
+      "name": "wmi_object",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "element",
+      "deprecation": [
+        {
+          "reason": "Replaced by the wmi57_state. This object allows for single fields to be selected from WMI. A new state was created to allow more than one field to be selected in one statement. See the wmi57_state.",
+          "scope": "declaration",
+          "version": "5.7"
+        }
+      ],
+      "name": "wmi_state",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "deprecated",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "In version 5.11.1:1.2 of the OVAL Language windows schema, a file_attributes entity was added to the file_state, obviating the need to overload this attribute with the file-type enumeration.",
+          "ref": null,
+          "scope": "nested",
+          "value": "FILE_ATTRIBUTE_DIRECTORY",
+          "version": "5.11.1:1.2"
+        }
+      ],
+      "name": "EntityStateFileTypeType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "Defined to have same value as reg_dword.",
+          "ref": null,
+          "scope": "nested",
+          "value": "reg_dword_little_endian",
+          "version": "5.11.1:1.1"
+        },
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "Defined to have same value as reg_qword.",
+          "ref": null,
+          "scope": "nested",
+          "value": "reg_qword_little_endian",
+          "version": "5.11.1:1.1"
+        }
+      ],
+      "name": "EntityStateRegistryTypeType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    {
+      "declaration_kind": "complexType",
+      "deprecated_members": [
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "In version 5.6 of the OVAL Language, the EntityStateSharedResourceTypeType was changed to include all of the different shared resource types as specified in Microsoft's documentation of the shi2_type member of the SHARE_INFO_2 structure. As a result, the STYPE_SPECIAL value by itself is no longer valid because it would actually be equal to the value STYPE_DISKTREE_SPECIAL (0x80000000) which is STYPE_DISKTREE (0x00000000) OR'd with STYPE_SPECIAL (0x80000000).",
+          "ref": null,
+          "scope": "nested",
+          "value": "STYPE_SPECIAL",
+          "version": "5.6"
+        },
+        {
+          "declaration_kind": "enumeration",
+          "name": null,
+          "reason": "In version 5.6 of the OVAL Language, the EntityStateSharedResourceTypeType was changed to include all of the different shared resource types as specified in Microsoft's documentation of the shi2_type member of the SHARE_INFO_2 structure. As a result, the STYPE_TEMPORARY value by itself is no longer valid because it would actually be equal to the value STYPE_DISKTREE_TEMPORARY (0x40000000) which is STYPE_DISKTREE (0x00000000) OR'd with STYPE_TEMPORARY (0x40000000).",
+          "ref": null,
+          "scope": "nested",
+          "value": "STYPE_TEMPORARY",
+          "version": "5.6"
+        }
+      ],
+      "name": "EntityStateSharedResourceTypeType",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+      "native_mapping_status": "unclassified",
+      "schema_file": "windows-definitions-schema.xsd",
+      "schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    }
+  ],
+  "format": "scap-ng-tools/issue83/oval-schema-deprecation-receipt/1",
+  "inventory": {
+    "declarations": 1033,
+    "declarations_with_deprecated_members": 55,
+    "native_mapping_status": {
+      "deprecated": 215,
+      "unclassified": 818
+    },
+    "official_deprecation_annotations": 307,
+    "schema_files": 23
+  },
+  "qualification": "source-schema evidence only; native representability, converter parity and RI execution are not proved.",
+  "semantics": {
+    "conversion": "This receipt does not authorize conversion or runtime support; deprecated source constructs remain explicit holds.",
+    "direct_deprecation": "Only a declaration carrying its own oval:deprecated_info is classified deprecated.",
+    "nested_deprecation": "A deprecated member is retained as a nested source marker; its containing declaration remains unclassified."
+  },
+  "source": {
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "definition_schema_file_count": 23,
+    "repository": "OVAL-Community/OVAL",
+    "schema_directory": "oval-schemas",
+    "schema_file_count": 23,
+    "schema_files": {
+      "aix-definitions-schema.xsd": "4d5040e1d561961b426e757ba141da5c06925e27c93ca7b903e20f655d1c2389",
+      "android-definitions-schema.xsd": "7fe94677a72194e8c89f4c4fdec06bc81b124e8c210471580e529ec1d9f14124",
+      "apache-definitions-schema.xsd": "441d5182cc377af41107c9c849f38bf11e75182de54943cb55a5c1a4bceaf571",
+      "asa-definitions-schema.xsd": "96f86acd0cf0f4ecb1539e1c79ef2a6ba7525cde9afde736e29cf028d556fb14",
+      "aws-definitions-schema.xsd": "9ae1652e7117ca250041ed6f19e09049e56d616fd9e4e1eb71ae6b15de12a30a",
+      "catos-definitions-schema.xsd": "eb857354a06618fba9c6bd5db7b351ce9d6533c501687f950425629bb0cacd48",
+      "esx-definitions-schema.xsd": "d1f7c5c9e64e08274402c9cc2a408c7e3596cc56225c1720cbf3c4b63dbcb57c",
+      "freebsd-definitions-schema.xsd": "327168aacda31d373de279efb8b2bb13c894b53a8e6cd398df8ddd2b39dc11b2",
+      "hpux-definitions-schema.xsd": "360ebe4e4a2087a32aff1c2cf28f1bf808881d7cbd59731fd4959d7464ac285e",
+      "independent-definitions-schema.xsd": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953",
+      "ios-definitions-schema.xsd": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9",
+      "iosxe-definitions-schema.xsd": "991c3f2e5a02f66cab2d0ba2e4fc848901e62d3f136b79703a6379c9473ea6a3",
+      "junos-definitions-schema.xsd": "20cf3663546c769074133747b03c4b12f2af39564e74288a1cfb0858b83944b8",
+      "linux-definitions-schema.xsd": "b3415940c8c3992463caed33a87599cd6c53af5a4310b53ec24b11bfcb2191c7",
+      "macos-definitions-schema.xsd": "d5dd70c91397d0941df3be3f9e18c7bf711dfe346bdcb58938caf15999b68e66",
+      "netconf-definitions-schema.xsd": "82f18730fe32fadc6d079dfb6660e9d5212840baad1fb869c8c3ad4930744cfa",
+      "oval-definitions-schema.xsd": "06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc",
+      "panos-definitions-schema.xsd": "7e4640d863422fabfdbc179f7ffd0e525b46984617858fb84c8a2242be9a567f",
+      "pixos-definitions-schema.xsd": "f4f34770b0f78c531e35b1ae14fd71d500b50ad3c923615e39d59d44baf21df5",
+      "sharepoint-definitions-schema.xsd": "c5a902c447f648ed4ce832c846b786ba58c47e0064692c23c67b60f2ee96e957",
+      "solaris-definitions-schema.xsd": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32",
+      "unix-definitions-schema.xsd": "02932ac19f02fbfa967529e4d96006d87c42220db273db6fbb6a1701a21bbec1",
+      "windows-definitions-schema.xsd": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+    },
+    "schema_manifest_sha256": "5b71250dd5fe97dca2776e94fba2b0a3f5decea3707c672fc402836324e24721",
+    "version": "5.12.3"
+  }
+}

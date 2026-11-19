@@ -35,6 +35,8 @@ DISA_FIELDS = (
     "ThirdPartyTools", "MitigationControl", "Responsibility", "IAControls",
 )
 OVAL_DEFINITION_FILES = re.compile(r"^[^-]+-definitions-schema\.xsd$")
+XSD = "http://www.w3.org/2001/XMLSchema"
+OVAL_COMMON = "http://oval.mitre.org/XMLSchema/oval-common-5"
 
 
 def digest(raw: bytes) -> str:
@@ -227,6 +229,43 @@ def archive_record(path: Path) -> dict:
     }
 
 
+def _deprecated_info(node: ET.Element) -> list[dict]:
+    """Read official OVAL deprecation annotations under one XSD node.
+
+    ``oval:deprecated_info`` is attached to an XSD declaration or to a
+    nested member.  A nested deprecated member must not make its containing
+    capability/declaration appear deprecated, so callers retain the scope.
+    """
+    records = []
+    for annotation in node.findall(f"{{{XSD}}}annotation"):
+        for appinfo in annotation.findall(f"{{{XSD}}}appinfo"):
+            for info in appinfo.findall(f"{{{OVAL_COMMON}}}deprecated_info"):
+                records.append({
+                    "version": info.findtext(f"{{{OVAL_COMMON}}}version"),
+                    "reason": info.findtext(f"{{{OVAL_COMMON}}}reason"),
+                })
+    return records
+
+
+def _nested_deprecation_records(declaration: ET.Element) -> tuple[list[dict], list[dict]]:
+    direct, nested = _deprecated_info(declaration), []
+    for node in declaration.iter():
+        if node is declaration:
+            continue
+        records = _deprecated_info(node)
+        if not records:
+            continue
+        nested.extend({
+            "declaration_kind": node.tag.rsplit("}", 1)[-1],
+            "name": node.get("name"),
+            "ref": node.get("ref"),
+            "value": node.get("value"),
+            "scope": "nested",
+            **record,
+        } for record in records)
+    return direct, nested
+
+
 def oval_inventory(root: Path) -> dict:
     rows = []
     for path in sorted(root.iterdir()):
@@ -241,15 +280,28 @@ def oval_inventory(root: Path) -> dict:
             name = child.get("name")
             if not name:
                 continue
-            rows.append({
+            direct, nested = _nested_deprecation_records(child)
+            row = {
                 "schema_file": path.name,
                 "schema_sha256": digest(raw),
                 "namespace": namespace,
                 "declaration_kind": child.tag.rsplit("}", 1)[-1],
                 "name": name,
-                "native_mapping_status": "unclassified",
-                "classification_reason": "XSD declaration inventory is not proof of a native mapping; classify against canonical 0.4.1 and converter evidence.",
-            })
+                "native_mapping_status": "deprecated" if direct else "unclassified",
+                "classification_reason": (
+                    "Official OVAL oval:deprecated_info marks this declaration deprecated; "
+                    "do not treat it as an in-scope native conversion."
+                    if direct else
+                    "XSD declaration inventory is not proof of a native mapping; classify against canonical 0.4.1 and converter evidence."
+                ),
+            }
+            if direct:
+                row["deprecation"] = [{"scope": "declaration", **record} for record in direct]
+            if nested:
+                row["deprecated_members"] = nested
+            rows.append(row)
+    statuses = Counter(row["native_mapping_status"] for row in rows)
+    nested_count = sum(bool(row.get("deprecated_members")) for row in rows)
     return {
         "source_commit_expected": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
         "schema_files": sorted({row["schema_file"] for row in rows}),
@@ -257,7 +309,12 @@ def oval_inventory(root: Path) -> dict:
         "summary": {
             "schema_files": len({row["schema_file"] for row in rows}),
             "declarations": len(rows),
-            "native_mapping_status": {"unclassified": len(rows)},
+            "native_mapping_status": dict(sorted(statuses.items())),
+            "declarations_with_deprecated_members": nested_count,
+            "official_deprecation_annotations": sum(
+                len(row.get("deprecation", [])) + len(row.get("deprecated_members", []))
+                for row in rows
+            ),
         },
     }
 

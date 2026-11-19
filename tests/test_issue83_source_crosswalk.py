@@ -64,6 +64,69 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(report["summary"]["source_rules"], 8892)
         self.assertEqual(report["summary"]["rules_with_requires_or_conflicts"], 0)
 
+    def test_oval_inventory_distinguishes_direct_and_nested_deprecations(self):
+        xsd = """<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+              targetNamespace="urn:test">
+          <xs:element name="old_test"><xs:annotation><xs:appinfo>
+            <oval:deprecated_info><oval:version>5.12</oval:version>
+              <oval:reason>replaced</oval:reason></oval:deprecated_info>
+          </xs:appinfo></xs:annotation></xs:element>
+          <xs:complexType name="current_state"><xs:sequence><xs:element name="old_field">
+            <xs:annotation><xs:appinfo><oval:deprecated_info>
+              <oval:version>5.11.1:1.1</oval:version><oval:reason>field only</oval:reason>
+            </oval:deprecated_info></xs:appinfo></xs:annotation>
+          </xs:element></xs:sequence></xs:complexType>
+        </xs:schema>""".encode()
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "test-definitions-schema.xsd").write_bytes(xsd)
+            report = crosswalk.oval_inventory(root)
+        rows = {row["name"]: row for row in report["declarations"]}
+        self.assertEqual(report["summary"]["native_mapping_status"],
+                         {"deprecated": 1, "unclassified": 1})
+        self.assertEqual(rows["old_test"]["deprecation"][0]["version"], "5.12")
+        self.assertEqual(rows["current_state"]["native_mapping_status"], "unclassified")
+        self.assertEqual(rows["current_state"]["deprecated_members"][0]["name"], "old_field")
+        self.assertEqual(rows["current_state"]["deprecated_members"][0]["scope"], "nested")
+        self.assertIsNone(rows["current_state"]["deprecated_members"][0]["value"])
+        self.assertEqual(report["summary"]["official_deprecation_annotations"], 2)
+
+    def test_pinned_oval_deprecation_inventory_is_environment_gated(self):
+        source = __import__("os").environ.get("SCAP_NG_OVAL_SCHEMA_ROOT")
+        if not source:
+            self.skipTest("set SCAP_NG_OVAL_SCHEMA_ROOT to the pinned OVAL schema checkout")
+        report = crosswalk.oval_inventory(Path(source))
+        self.assertEqual(report["source_commit_expected"],
+                         "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706")
+        self.assertEqual(report["summary"]["schema_files"], 23)
+        self.assertGreater(report["summary"]["official_deprecation_annotations"], 0)
+        direct = next(row for row in report["declarations"]
+                      if row["name"] == "rpmverify_test")
+        self.assertEqual(direct["native_mapping_status"], "deprecated")
+        md5 = next(row for row in report["declarations"]
+                   if row["name"] == "rpmverifyfile_state")
+        member = next(row for row in md5["deprecated_members"]
+                      if row["name"] == "md5_differs")
+        self.assertEqual(member["version"], "5.11.1:1.1")
+        behaviors = next(row for row in report["declarations"]
+                         if row["name"] == "FileBehaviors")
+        upward = next(row for row in behaviors["deprecated_members"]
+                      if row["value"] == "up")
+        self.assertEqual(upward["version"], "5.12.3")
+        self.assertIn("being removed", upward["reason"])
+
+    def test_published_oval_deprecation_receipt_is_pinned(self):
+        receipt = json.loads((ROOT / "docs/evidence/issue83/oval-schema-deprecation-summary.json").read_text())
+        self.assertEqual(receipt["source"]["commit"],
+                         "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706")
+        self.assertEqual(receipt["source"]["schema_manifest_sha256"],
+                         "5b71250dd5fe97dca2776e94fba2b0a3f5decea3707c672fc402836324e24721")
+        self.assertEqual(receipt["inventory"]["declarations"], 1033)
+        self.assertEqual(receipt["inventory"]["native_mapping_status"],
+                         {"deprecated": 215, "unclassified": 818})
+        self.assertIn("does not authorize conversion", receipt["semantics"]["conversion"])
+
     def test_relationship_crosswalk_pins_official_xccdf_schema(self):
         self.assertEqual(crosswalk.XCCDF_SCHEMA_URL,
                          "https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd")
