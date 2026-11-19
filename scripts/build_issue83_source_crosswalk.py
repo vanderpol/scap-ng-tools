@@ -273,9 +273,9 @@ def build(source_root: Path, expected_archives: int, source_commit: str,
             "disa_description": {
                 "source": "XCCDF description text containing literal publisher XML",
                 "native_discussion": "rule.discussion retains the exact source description text",
-                "native_extension": "rule.extensions.disa preserves each named field, including empty strings and Documentable lexical value",
+                "native_extension": "reserved under rule.extensions.disa; no structured extension is emitted by this increment",
                 "fields": list(DISA_FIELDS),
-                "status": "structured extension mapping is implemented in the follow-up converter increment",
+                "status": "source mapping inventoried; native extension held for canonical/owner coordination",
             },
         },
     }

@@ -14,9 +14,9 @@
       "IAControls"
     ],
     "native_discussion": "rule.discussion retains the exact source description text",
-    "native_extension": "rule.extensions.disa preserves each named field, including empty strings and Documentable lexical value",
+    "native_extension": "reserved under rule.extensions.disa; no structured extension is emitted by this increment",
     "source": "XCCDF description text containing literal publisher XML",
-    "status": "structured extension mapping is implemented in the follow-up converter increment"
+    "status": "source mapping inventoried; native extension held for canonical/owner coordination"
   },
   "format": "scap-ng-tools/issue83-source-crosswalk-receipt/1",
   "generated_by": "scripts/build_issue83_source_crosswalk.py",
@@ -55,8 +55,9 @@
   },
   "pins": {
     "canonical_schema": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter": "69b4c6c953f4894179cdb3da3c05fd2a8f7aef4b",
     "oval_schema": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-    "tools_base": "df2deb1a514c"
+    "tools_base": "bacb360b9d4a688b8658b8303f439b83a91ef731"
   },
   "proof_limits": [
     "65 signed source archives and 8,892 Rules were source-inventoried; no Rule contains non-empty requires/conflicts in this corpus.",
