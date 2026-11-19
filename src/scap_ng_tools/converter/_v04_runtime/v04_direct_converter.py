@@ -663,6 +663,9 @@ class AssessmentConverter:
             # migration crosswalk; never guess an arbitrary spelling or
             # silently drop a source predicate.
             if field not in mapping['native']['state_field_map']:
+                deprecated_fields = mapping.get('migration_crosswalk', {}).get('deprecated_state_fields', {})
+                if field in deprecated_fields:
+                    ensure(False, f'deprecated source State field: {field} ({deprecated_fields[field]})')
                 deprecated = mapping.get('migration_crosswalk', {}).get('deprecated', {})
                 replacement = deprecated.get(field, '')
                 prefix = 'migration_error_replaced_by_'
