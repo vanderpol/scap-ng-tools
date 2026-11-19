@@ -80,6 +80,8 @@ class WitnessBuilder:
         for path in paths:
             raw = path.read_bytes()
             root = self._parse(raw, str(path))
+            if local(root.tag) != "oval_definitions":
+                continue
             self.documents.append(SourceDocument(
                 path.relative_to(self.source_root).as_posix(), digest(raw), digest(raw),
                 root, digest(raw)))
@@ -93,6 +95,8 @@ class WitnessBuilder:
                                      if name.lower().endswith(".xml")):
                     raw = archive.read(member)
                     root = self._parse(raw, f"{path}!{member}")
+                    if local(root.tag) != "oval_definitions":
+                        continue
                     self.documents.append(SourceDocument(
                         f"{path.relative_to(self.source_root).as_posix()}!{member}",
                         archive_sha, digest(raw), root, digest(raw)))
