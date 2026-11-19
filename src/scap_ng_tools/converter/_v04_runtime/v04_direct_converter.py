@@ -1688,9 +1688,10 @@ def native_group(source, group, rule_links):
     """
     from v04_source_metadata import source_relationships
     relationships = source_relationships(group)
+    source_identity = digest(xml_identity(group))
     ensure(not relationships['requires'] and not relationships['conflicts'],
            'XCCDF Group relationships require a canonical non-flattening mapping: '
-           + (group.get('id') or '<missing-id>'))
+           + (group.get('id') or '<missing-id>') + ' source-identity=' + source_identity)
     level = source.applicability_level(group)
     value = {'id': native_identifier(group, 'group'),
              'groups': [native_group(source, child, rule_links)
