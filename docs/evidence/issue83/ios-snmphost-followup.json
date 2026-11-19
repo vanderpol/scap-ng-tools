@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "ios.snmphost mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:org.joval.ios.test:def:1",
+  "format": "scap-ng-tools/issue83-ios-snmphost-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/ios-snmphost-followup-1795116200",
+    "files": {
+      "assessment.json": {
+        "bytes": 881,
+        "sha256": "6ec90de5e49982e5619bf2a537debc013c2cdbf95fee95e8c2dbe4cc9aa2824c"
+      },
+      "assessment.yaml": {
+        "bytes": 653,
+        "sha256": "3f15d69723b32e2476114e131369e88be612400d8a8aa3f1f256b1c677116787"
+      },
+      "conversion-scope.json": {
+        "bytes": 560,
+        "sha256": "7581973c69cbaec3cc86fbc38bd1903b2844c803cd6d062a227881086962f07e"
+      },
+      "source-trace.json": {
+        "bytes": 2460,
+        "sha256": "d41d76046bf08790051f0456c2700ea5b88912def89d11375ce13d42f85f1a88"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "0f9f084754e838439e7c45b13bcf484d54490923",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "91597f8c94d4192a77e44102ea3b24075057431219ea7ad4af0a8be451f29c0e",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "ios/ios-def_snmphost_test.xml",
+  "source_sha256": "9fd43d2aee5a0a6496f8afcb2f7804d698164d20936d2612110de42e3018978a",
+  "tests": 1
+}
