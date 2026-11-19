@@ -379,6 +379,27 @@ class StaticVariableObjectSetRecovery(unittest.TestCase):
         self.assertEqual(visitor.synthetic_variables[0]['source_variable_ids'], ['one', 'two'])
         self.assertEqual(visitor.synthetic_variables[0]['set_operator'], 'UNION')
 
+    def test_convert_object_uses_static_materialization_in_production_mode(self):
+        objects = {
+            'root': oval('<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
+                         '<object_reference>left</object_reference><object_reference>right</object_reference>'
+                         '</set></variable_object>'),
+            'left': oval('<variable_object xmlns="OVAL" id="left"><var_ref>one</var_ref></variable_object>'),
+            'right': oval('<variable_object xmlns="OVAL" id="right"><var_ref>two</var_ref></variable_object>'),
+            'one': oval('<constant_variable xmlns="OVAL" id="one"/>'),
+            'two': oval('<constant_variable xmlns="OVAL" id="two"/>'),
+        }
+        visitor = self.visitor(objects, {'one': ['a'], 'two': ['b']})
+        visitor.native_recovery = False
+        visitor.mappings = [{
+            'capability': 'variable.value',
+            'source': {'namespace': OVAL, 'object': 'variable_object'},
+            'native': {'test_source': {'kind': 'variable'}},
+        }]
+        visitor.object_uses = {'root': 1}
+        self.assertEqual(visitor.convert_object(objects['root']),
+                         {'variable': 'static-set-variable', 'capability': 'variable.value'})
+
     def test_static_set_is_admitted_without_recovery_mode(self):
         objects = {
             'root': oval('<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
