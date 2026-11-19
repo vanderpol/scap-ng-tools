@@ -6,6 +6,29 @@ from scap_ng_tools.converter.direct04 import load_runtime
 
 
 class DeprecatedOvalConstructs(unittest.TestCase):
+    def test_deprecated_platform_tests_are_classified_before_generic_mapping_hold(self):
+        engine = load_runtime()
+        cases = [
+            ('http://oval.mitre.org/XMLSchema/oval-definitions-5#ios', 'version_test'),
+            ('http://oval.mitre.org/XMLSchema/oval-definitions-5#junos', 'xml_config_test'),
+        ]
+        for namespace, local_name in cases:
+            with self.subTest(local_name=local_name):
+                element = ET.fromstring(
+                    f'<{local_name} xmlns=\"{namespace}\" id=\"test-1\"/>')
+                visitor = engine.AssessmentConverter(None, None, [], native_recovery=True)
+                with self.assertRaisesRegex(ValueError, 'deprecated source capability'):
+                    visitor.capability(element, 'test')
+
+    def test_deprecated_environment_variable_object_is_not_a_generic_gap(self):
+        engine = load_runtime()
+        namespace = 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent'
+        element = ET.fromstring(
+            f'<environmentvariable_object xmlns=\"{namespace}\" id=\"object-1\"/>')
+        visitor = engine.AssessmentConverter(None, None, [], native_recovery=True)
+        with self.assertRaisesRegex(ValueError, 'deprecated source capability: environmentvariable_object'):
+            visitor.capability(element, 'object')
+
     def test_deprecated_state_field_is_classified_before_generic_mapping_hold(self):
         engine = load_runtime()
         namespace = 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows'

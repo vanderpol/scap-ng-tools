@@ -118,6 +118,32 @@
       "reason": "OVAL 5.12.3 marks solaris:package511_test deprecated",
       "schema_file": "solaris-definitions-schema.xsd",
       "schema_sha256": "a8d68ebbb0a90babc531f9a7be6e55df72d116b2bcf186922b77b412c98d3c32"
+    },
+    {
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#ios",
+      "name": "version_test",
+      "since": "5.5",
+      "reason": "OVAL 5.12.3 marks ios:version_test deprecated; use version55_test",
+      "schema_file": "ios-definitions-schema.xsd",
+      "schema_sha256": "e15624ba8a34a30cc49dd3ecef21ac4d9b8d71099fa3cc057cc36434b62b5ac9"
+    },
+    {
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#junos",
+      "name": "xml_config_test",
+      "since": "5.12",
+      "reason": "OVAL 5.12.3 marks junos:xml_config_test deprecated due to lack of documented usage",
+      "schema_file": "junos-definitions-schema.xsd",
+      "schema_sha256": "20cf3663546c769074133747b03c4b12f2af39564e74288a1cfb0858b83944b8"
+    }
+  ],
+  "deprecated_source_objects": [
+    {
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+      "name": "environmentvariable_object",
+      "since": "5.8",
+      "reason": "OVAL 5.12.3 marks independent:environmentvariable_object deprecated; use environmentvariable58_object",
+      "schema_file": "independent-definitions-schema.xsd",
+      "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
     }
   ]
 }

@@ -27,6 +27,10 @@ DEPRECATED_SOURCE_TESTS = {
     f"{{{row['namespace']}}}{row['name']}": row
     for row in SUPPORT.get('deprecated_source_tests', [])
 }
+DEPRECATED_SOURCE_OBJECTS = {
+    f"{{{row['namespace']}}}{row['name']}": row
+    for row in SUPPORT.get('deprecated_source_objects', [])
+}
 ensure(SUPPORT['specification_version'] == '0.4.1' and len(CAPABILITIES) == len(set(CAPABILITIES)),
        'invalid direct capability activation registry')
 EXISTENCE = {'at_least_one_exists': 'one_or_more', 'none_exist': 'none',
@@ -219,7 +223,9 @@ class AssessmentConverter:
         self.bound_exports, self.inputs, self.policy_parameters, self.input_bindings = {}, {}, {}, {}
 
     def capability(self, element, kind):
-        deprecated = DEPRECATED_SOURCE_TESTS.get(element.tag) if kind == 'test' else None
+        deprecated = (DEPRECATED_SOURCE_TESTS.get(element.tag) if kind == 'test'
+                      else DEPRECATED_SOURCE_OBJECTS.get(element.tag) if kind == 'object'
+                      else None)
         if deprecated:
             raise UnsupportedSource(
                 f"deprecated source capability: {deprecated['name']} "
