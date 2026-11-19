@@ -17,6 +17,8 @@ The source declared string-valued `var:3`, `var:4`, and `var:101` as `datatype="
 
 This is classified as a **source content defect**, not a canonical-language change or converter workaround.
 
+The recorded XML hashes were independently matched against `git show` at both exact source commits.
+
 ## Focused conversion
 
 Using Tools `a150d36b0d259a74cdbcd1887a0943687e222e27`, canonical `5ee55288b369da26f308f40813e545b78dff2753`, schema-family SHA-256 `88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f`, and OVAL schema `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`:

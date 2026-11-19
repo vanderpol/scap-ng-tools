@@ -16,6 +16,8 @@ Test `oval:navy.navwar.niwcatlantic.scc.test:tst:362` is titled and referenced a
 
 Corrected source SHA-256: `7ea3fa94f473cf1000f6a9f89f8314e96fe74b93ad3536fd314276a6d1fd6a37`.
 
+The recorded XML hashes were independently matched against `git show` at both exact source commits.
+
 ## Focused conversion
 
 Using Tools `8bb2eae4f93422f6d93d35a9a8d516739d8490c`, canonical `5ee55288b369da26f308f40813e545b78dff2753`, full schema-family SHA-256 `88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f`, and assessment-execution closure SHA-256 `326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329`:

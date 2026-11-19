@@ -42,11 +42,13 @@
     "definition_id": "oval:navy.navwar.niwcatlantic.scc:def:38",
     "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
     "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_commit_blob_verified": true,
     "tests": [
       "oval:navy.navwar.niwcatlantic.scc:tst:1",
       "oval:navy.navwar.niwcatlantic.scc:tst:2",
       "oval:navy.navwar.niwcatlantic.scc:tst:3",
       "oval:navy.navwar.niwcatlantic.scc:tst:4"
-    ]
+    ],
+    "verification": "Independent git show at the exact base/corrected commit matched the recorded XML SHA-256."
   }
 }
