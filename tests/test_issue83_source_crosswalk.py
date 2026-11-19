@@ -90,6 +90,12 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(rows["current_state"]["native_mapping_status"], "unproven")
         self.assertEqual(rows["current_state"]["disposition"]["runtime_equivalence"],
                          "not_proved")
+        self.assertEqual(rows["current_state"]["disposition"]["native_schema_pointer"],
+                         "not_assessed")
+        self.assertEqual(rows["current_state"]["disposition"]["required_witnesses"]["positive"],
+                         "source-valid minimal closure")
+        self.assertEqual(rows["current_state"]["disposition"]["ri_obligation"],
+                         "not_assessed")
         self.assertEqual(rows["current_state"]["deprecated_members"][0]["name"], "old_field")
         shape = rows["current_state"]["schema_shape"]
         self.assertEqual(shape["kind"], "complexType")

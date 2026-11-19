@@ -957,8 +957,16 @@ def oval_inventory(root: Path, canonical_mapping_root: Path | None = None,
                 "disposition": {
                     "category": "deprecated_migration" if direct else "unproven",
                     "native_representability": "not_assessed",
+                    "native_schema_pointer": "not_assessed",
                     "converter_proof": "not_run",
                     "runtime_equivalence": "not_proved",
+                    "required_witnesses": {
+                        "positive": "source-valid minimal closure",
+                        "negative": "source-invalid semantic mutation",
+                        "status": "not_joined_in_this_inventory",
+                    },
+                    "ri_obligation": "not_assessed",
+                    "editor_obligation": "not_assessed",
                     "basis": (
                         "Official OVAL oval:deprecated_info is attached directly to this declaration; "
                         "the declaration is not admitted as an active native feature."
