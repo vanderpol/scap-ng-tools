@@ -70,6 +70,86 @@ def closure_variables(test: ET.Element, by_id: dict[str, ET.Element]) -> set[str
     return variables
 
 
+def _fixture_key(source_file: str) -> str | None:
+    """Return the companion OVAL Variables member for a zipped source.
+
+    The companion document is qualification evidence only. OVAL external
+    Variables are supplied by the caller; these values must never become
+    authored native Input defaults.
+    """
+    if "!" not in source_file:
+        return None
+    archive, member = source_file.split("!", 1)
+    if member != "oval-def-ext.xml":
+        return None
+    return archive + "!oval-def-ext_external-variables.xml"
+
+
+def _fixture_values(source_file: str, variable_id: str, documents) -> dict | None:
+    key = _fixture_key(source_file)
+    if key is None or key not in documents:
+        return None
+    root, archive_sha, member_sha = documents[key]
+    variable = id_index(root).get(variable_id)
+    if variable is None or local_name(variable.tag) != "variable":
+        return {
+            "source_file": key, "member_sha256": member_sha,
+            "variable_id": variable_id, "values": [],
+            "authoritative": False, "role": "qualification_fixture",
+        }
+    return {
+        "source_file": key, "member_sha256": member_sha,
+        "variable_id": variable_id,
+        "variable_sha256": identity_digest(variable),
+        "values": [(child.text or "").strip()
+                   for child in variable
+                   if local_name(child.tag) == "value"],
+        "authoritative": False,
+        "role": "qualification_fixture",
+    }
+
+
+def _variable_crosswalk(source_file: str, variable, documents) -> dict:
+    """Project only source-authored constraints; never bind fixture values."""
+    possible_values = [{
+        "value": (child.text or "").strip(),
+        "source_sha256": identity_digest(child),
+    } for child in variable if local_name(child.tag) == "possible_value"]
+    restrictions = []
+    for possible in variable:
+        if local_name(possible.tag) != "possible_restriction":
+            continue
+        restrictions.append({
+            "hint": possible.get("hint", ""),
+            "source_sha256": identity_digest(possible),
+            "constraints": [{
+                "operation": child.get("operation", ""),
+                "value": (child.text or "").strip(),
+                "source_sha256": identity_digest(child),
+            } for child in possible
+              if local_name(child.tag) == "restriction"],
+        })
+    datatype = variable.get("datatype", "")
+    if restrictions:
+        disposition = "held_source_input_constraint"
+    elif possible_values:
+        disposition = "candidate_allowed_values_nonexecutable"
+    else:
+        disposition = "held_standalone_external_binding"
+    return {
+        "source_id": variable.get("id"),
+        "datatype": datatype,
+        "comment": variable.get("comment", ""),
+        "source_element_sha256": identity_digest(variable),
+        "possible_values": possible_values,
+        "possible_restrictions": restrictions,
+        "candidate_native_input_id": variable.get("id", "") + "-input",
+        "candidate_native_input_executable": False,
+        "disposition": disposition,
+        "fixture": _fixture_values(source_file, variable.get("id"), documents),
+    }
+
+
 def audit(source_root: Path, conversion_receipt: Path) -> dict:
     receipt = json.loads(conversion_receipt.read_text(encoding="utf-8"))
     documents = source_documents(source_root)
@@ -87,21 +167,7 @@ def audit(source_root: Path, conversion_receipt: Path) -> dict:
             variable = by_id.get(variable_id)
             if variable is None or local_name(variable.tag) != "external_variable":
                 continue
-            restrictions = []
-            for possible in variable.findall(".//{*}possible_restriction"):
-                restriction = next((child for child in possible
-                                    if local_name(child.tag) == "restriction"), None)
-                restrictions.append({
-                    "hint": possible.get("hint", ""),
-                    "operation": restriction.get("operation", "") if restriction is not None else "",
-                    "value": (restriction.text or "").strip() if restriction is not None else "",
-                })
-            variables.append({
-                "source_id": variable_id,
-                "datatype": variable.get("datatype", ""),
-                "source_element_sha256": identity_digest(variable),
-                "possible_restrictions": restrictions,
-            })
+            variables.append(_variable_crosswalk(source_file, variable, documents))
         rows.append({
             "source_file": source_file,
             "source_file_sha256": file_sha,
@@ -114,19 +180,29 @@ def audit(source_root: Path, conversion_receipt: Path) -> dict:
         })
     restriction_count = sum(len(variable["possible_restrictions"])
                             for row in rows for variable in row["variables"])
+    possible_value_count = sum(len(variable["possible_values"])
+                               for row in rows for variable in row["variables"])
+    variables = [variable for row in rows for variable in row["variables"]]
     return {
-        "format": "scap-ng-tools/issue83-external-variable-holds/1",
+        "format": "scap-ng-tools/issue83-external-variable-holds/2",
         "source": {"root": "external pinned source", "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"},
         "converter_receipt_sha256": digest(conversion_receipt.read_bytes()),
         "summary": {
             "blocked_tests": len(rows),
             "unique_external_variables": len({variable["source_id"] for row in rows for variable in row["variables"]}),
             "possible_restrictions": restriction_count,
+            "possible_values": possible_value_count,
+            "datatypes": dict(sorted(Counter(variable["datatype"] for variable in variables).items())),
+            "dispositions": dict(sorted(Counter(variable["disposition"] for variable in variables).items())),
+            "fixture_values_non_authoritative": sum(
+                1 for variable in variables if variable.get("fixture") is not None),
             "failure_class": "canonical_input_constraint_hold",
         },
         "rows": rows,
         "disposition": {
             "canonical_input_contract": "hold",
+            "candidate_allowed_values": "source-preserved-only",
+            "fixture_values": "qualification-only/non-authoritative",
             "converter_runtime": "not_run",
             "independent_equivalence": "not_proved",
         },
