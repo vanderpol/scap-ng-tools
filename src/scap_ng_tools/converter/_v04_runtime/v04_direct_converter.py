@@ -1439,8 +1439,9 @@ class AssessmentConverter:
 
     def record_predicate(self, element, mapping):
         """Preserve a complete record before combining its named field results."""
-        attributes(element, {'datatype', 'operation', 'entity_check', 'check_existence'})
+        attributes(element, {'datatype', 'operation', 'mask', 'entity_check', 'check_existence'})
         ensure(element.get('operation', 'equals') == 'equals', 'unsupported record comparator')
+        ensure(element.get('mask', 'false') in ('true', 'false'), 'unsupported record mask lexical value')
         found = element.get('check_existence', 'at_least_one_exists')
         matching = element.get('entity_check', 'all')
         ensure(found in FIELD_EXISTENCE and found != 'none_exist' and matching in MATCHING,
@@ -1460,8 +1461,14 @@ class AssessmentConverter:
         # Member lookup is inside this record: missing required members remain
         # errors. Field-value cardinality does not turn lookup failure into an
         # empty successful record, or borrow a value from another record.
-        return {'record': {'records_found': FIELD_EXISTENCE[found], 'records_matching': MATCHING[matching],
-                           'fields': fields}}
+        record = {'records_found': FIELD_EXISTENCE[found], 'records_matching': MATCHING[matching],
+                  'fields': fields}
+        if element.get('mask', 'false') == 'true':
+            # OVAL mask is a report-only directive; it does not alter the
+            # comparison or collected population. The canonical record
+            # predicate uses the equivalent explicit redaction marker.
+            record['redact_result'] = True
+        return {'record': record}
 
     def predicate(self, element, mapping, selector=False, *, record_field=False):
         nil = '{http://www.w3.org/2001/XMLSchema-instance}nil'
@@ -1511,7 +1518,7 @@ class AssessmentConverter:
         if element.get('datatype') == 'record':
             ensure(not selector and not record_field, 'nested/selector record outside source grammar')
             return self.record_predicate(element, mapping)
-        attributes(element, {'datatype', 'operation', 'var_ref', 'var_check'} |
+        attributes(element, {'datatype', 'operation', 'mask', 'var_ref', 'var_check'} |
                    ({'name', 'entity_check'} if record_field else set() if selector else {'entity_check', 'check_existence'}))
         ensure(not len(element), 'record/nested entity unsupported')
         existence = element.get('check_existence', 'at_least_one_exists')
@@ -1648,6 +1655,11 @@ class AssessmentConverter:
         if not selector:
             ensure(element.get('entity_check', 'all') in MATCHING, 'unsupported entity_check')
             result.update(values_found=FIELD_EXISTENCE[existence], values_matching=MATCHING[element.get('entity_check', 'all')])
+        ensure(element.get('mask', 'false') in ('true', 'false'), 'unsupported mask lexical value')
+        if element.get('mask', 'false') == 'true':
+            # OVAL masking is presentation-only. Keep the typed comparison
+            # intact and mark only the reported evidence for redaction.
+            result['redact_result'] = True
         return result
 
 
@@ -1987,7 +1999,7 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
         documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': source.applicability_catalog()}}
     unsupported = ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
                    'other Object behaviors/traversal',
-                   'record-level Variables, nested records, record absence and masking',
+                   'record-level Variables, nested records, and record absence',
                    'other capabilities/functions']
     trace = {'format': 'direct-converter-spike/1', 'source_zip_sha256': source.zip_sha256, 'source_xml_sha256': source.xml_sha256,
         'source_member': source.member, 'source_benchmark_component': source.benchmark_component,
