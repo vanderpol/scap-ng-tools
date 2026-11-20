@@ -1444,9 +1444,24 @@ class AssessmentConverter:
         ensure(element.get('mask', 'false') in ('true', 'false'), 'unsupported record mask lexical value')
         found = element.get('check_existence', 'at_least_one_exists')
         matching = element.get('entity_check', 'all')
-        ensure(found in FIELD_EXISTENCE and found != 'none_exist' and matching in MATCHING,
+        ensure(found in FIELD_EXISTENCE and matching in MATCHING,
                'record absence/quantifier outside bounded source proof')
         ensure(len(element) and not (element.text or '').strip(), 'record requires named fields')
+        if found == 'none_exist':
+            # OVAL existence is resolved before member comparisons. The
+            # canonical record predicate represents the confirmed empty
+            # population without inventing field results; retain the authored
+            # child shape in provenance as an explicit ignored-control note.
+            self.conversion_warnings.append({
+                'code': 'oval_record_absence_fields_ignored',
+                'source_element': local_name(element),
+                'source_attributes': dict(element.attrib),
+                'source_sha256': digest(xml_identity(element)),
+                'ignored_field_count': len(element),
+                'semantic_basis': 'OVAL record check_existence none_exist takes precedence',
+                'independent_static_proof': 'OVAL_5_12_3_EXISTENCE_PRECEDENCE',
+            })
+            return {'record': {'records_found': 'none'}}
         fields, source_names = {}, set()
         for child in element:
             name = child.get('name')
@@ -1999,7 +2014,7 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
         documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': source.applicability_catalog()}}
     unsupported = ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
                    'other Object behaviors/traversal',
-                   'record-level Variables, nested records, and record absence',
+                   'record-level Variables and nested records',
                    'other capabilities/functions']
     trace = {'format': 'direct-converter-spike/1', 'source_zip_sha256': source.zip_sha256, 'source_xml_sha256': source.xml_sha256,
         'source_member': source.member, 'source_benchmark_component': source.benchmark_component,

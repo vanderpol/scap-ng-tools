@@ -70,6 +70,28 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
         self.assertEqual(predicate["redact_result"], True)
         self.assertEqual(predicate["values_found"], "one_or_more")
 
+    def test_record_none_exist_preserves_empty_population_and_ignores_fields(self):
+        from v04_direct_converter import AssessmentConverter
+        from v04_direct_scap_source import OVAL
+
+        record = ET.fromstring(
+            f'<result xmlns="{OVAL}" datatype="record" operation="equals" '
+            'entity_check="all" check_existence="none_exist">'
+            '<field name="secret" datatype="string">must-not-be-compared</field>'
+            '</result>')
+        visitor = AssessmentConverter(None, None, [], human_compact=False)
+        native = visitor.record_predicate(record, {
+            "capability": "windows.wmi.query",
+            "source": {"namespace": f"{OVAL}#windows"},
+            "native": {"state_field_map": {"field": "result"},
+                       "state_value_crosswalk": {}, "state_value_enums": {}},
+            "migration_crosswalk": {},
+        })
+        self.assertEqual(native, {"record": {"records_found": "none"}})
+        self.assertEqual(visitor.conversion_warnings[-1]["ignored_field_count"], 1)
+        self.assertEqual(visitor.conversion_warnings[-1]["code"],
+                         "oval_record_absence_fields_ignored")
+
     def test_record_mask_rejects_invalid_boolean_lexical_value(self):
         from v04_direct_converter import AssessmentConverter
         from v04_direct_scap_source import OVAL
