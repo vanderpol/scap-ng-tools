@@ -35,7 +35,7 @@ def _choice_assessment(source, rule, check, *, assessment_id, title):
     body = ''
     if inline and inline[0].text:
         body = inline[0].text.strip()
-    if not body and reference:
+    if not body and reference is not None:
         body = f'Complete the source OCIL procedure {reference.get("name")}.'
     if not body:
         body = 'Complete the source OCIL procedure and record the result.'
@@ -54,15 +54,15 @@ def _choice_assessment(source, rule, check, *, assessment_id, title):
         ], 'allow_comment': True, 'allow_evidence': True},
         'references': ([{'source_component': component,
                          'source_check_ref': reference.get('name'),
-                         'source_catalog_ref': reference.get('href')}] if reference else []),
+                         'source_catalog_ref': reference.get('href')}] if reference is not None else []),
         'evidence_guidance': 'Retain the completed source OCIL evidence and reviewer notes.'
     }}
     provenance = {
         'selection': {'system': OCIL, 'selector': check.get('selector', '')},
         'source_check_sha256': digest(xml_identity(check)),
         'source_check_identity': xml_identity(check),
-        'source_catalog_ref': reference.get('href') if reference else None,
-        'source_content_ref': reference.get('name') if reference else None,
+        'source_catalog_ref': reference.get('href') if reference is not None else None,
+        'source_content_ref': reference.get('name') if reference is not None else None,
         'source_component': component,
         'projection': 'manual_assessment',
         'automated_equivalent': False,

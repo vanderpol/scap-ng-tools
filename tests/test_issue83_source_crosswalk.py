@@ -42,6 +42,40 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
             archive.writestr("witness.xml", xml)
         return path
 
+    def test_manual_reference_projection_does_not_use_element_truthiness(self):
+        """Element truthiness is deprecated in Python 3.12 and can drop refs."""
+        import warnings
+        from v04_direct_scap_source import OCIL
+        from scap_ng_tools.converter.manual04 import manual_rule
+
+        rule = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}" id="manual-ref"><version>1</version>'
+            '<title>Manual reference witness</title>'
+            f'<check system="{OCIL}" selector="manual">'
+            '<check-content-ref href="ocil-component" name="question-1"/>'
+            '</check></Rule>')
+        component = "component-id"
+        source = type("Source", (), {
+            "nodes": {"benchmark": {"manual-ref": rule}},
+            "benchmark_component": "benchmark",
+            "catalog": {"ocil-component": "component-id"},
+            "components": {"component-id": component},
+        })()
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", DeprecationWarning)
+            documents, binding = manual_rule(
+                source, rule, title="Manual reference witness", rule_id="manual-rule",
+                assessment_id="manual-assessment")
+        assessment = documents[
+            "authoring/direct-slice/assessments/manual-assessment.json"]["assessment"]
+        self.assertIn("question-1", assessment["procedure"])
+        self.assertEqual(assessment["references"], [{
+            "source_component": component,
+            "source_check_ref": "question-1",
+            "source_catalog_ref": "ocil-component",
+        }])
+        self.assertEqual(binding["manual_provenance"]["source_content_ref"], "question-1")
+
     def test_relationships_and_disa_fields_are_source_traced(self):
         with tempfile.TemporaryDirectory() as temporary:
             path = self.make_archive(Path(temporary), requires="rule_a rule_b", conflicts="rule_c")
