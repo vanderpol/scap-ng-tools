@@ -429,9 +429,13 @@ class AssessmentConverter:
                 ensure(not len(child), 'Test reference has children')
                 if kind == 'state':
                     state_refs.append(child.get('state_ref'))
-                    # No Item can satisfy a none_exist Test. Do not execute or
-                    # require its State graph merely to lower the absence result.
-                    if found != 'none_exist' or not self.native_recovery:
+                    # No Item can satisfy a none_exist Test. OVAL resolves
+                    # existence before State matching, so do not execute or
+                    # require the State graph merely to lower the absence
+                    # result. This applies in both production and recovery
+                    # conversion; native_recovery must not change source
+                    # semantics.
+                    if found != 'none_exist':
                         self.same_family(child.get('state_ref'), 'state', mapping)
                         conditions.append(self.reference(child.get('state_ref'), 'state'))
         # Native 0.4.1's item_requirement explicitly maps OVAL all_exist to
@@ -441,7 +445,7 @@ class AssessmentConverter:
         # the approved one_or_more cardinality.  This is a representability
         # mapping, not an independent source-runtime equivalence claim.
         requirement = {'items_found': native_items_found(found)}
-        if self.native_recovery and found == 'none_exist' and state_refs:
+        if found == 'none_exist' and state_refs:
             # OVAL Test existence is evaluated before State matching. An
             # absent population has no Items on which a comparator or State
             # expression can operate, so preserve only the absence
@@ -454,7 +458,7 @@ class AssessmentConverter:
                 'source_state_operator': element.get('state_operator', 'AND'),
                 'source_state_refs': state_refs,
                 'semantic_basis': 'OVAL check_existence none_exist takes precedence',
-                'independent_static_proof': 'SOURCE_RULE_OWNER_DECISION',
+                'independent_static_proof': 'OVAL_5_12_3_EXISTENCE_PRECEDENCE',
             })
         if conditions:
             ensure(element.get('check') in MATCHING, 'unsupported Test matching/absence combination')
@@ -1527,7 +1531,7 @@ class AssessmentConverter:
                     'source_sha256': digest(xml_identity(element)),
                     'ignored_attributes': sorted(ignored),
                     'semantic_basis': 'OVAL check_existence none_exist takes precedence',
-                    'independent_static_proof': 'SOURCE_RULE_OWNER_DECISION',
+                    'independent_static_proof': 'OVAL_5_12_3_EXISTENCE_PRECEDENCE',
                 })
             return {'values_found': 'none'}
         operation = element.get('operation', 'equals')
