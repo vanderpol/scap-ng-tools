@@ -1,0 +1,68 @@
+{
+  "format": "scap-ng-tools/issue83-canonical-overlay-receipt/1",
+  "interpretation": {
+    "external_definition": "PR #79 schema support alone does not bind standalone OVAL external Variables; def:562 remains held by the converter/input binding contract.",
+    "potential_active_transition": "If PR #77 is merged, regenerated semantic pack and converter pins pass, and runtime semantics qualify, the overlay denominator would move from 160/728 to 161/743. This is not a current production result.",
+    "registry_definition": "PR #77 structurally admits windows.registry downward traversal and recovers 15 source Tests in def:38.",
+    "remaining_windows": "ntuser and regkeyeffectiverights remain held; PR #77 only changes windows.registry."
+  },
+  "pins": {
+    "canonical_base_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "canonical_pr77_head": "e96aac31c4f72ea0bc18a904c2a87a114ad0c4c6",
+    "canonical_pr79_head": "44c530408aedda0894093fcf3319fec9bd3ade86",
+    "native_selector_pr77_sha256": "b2144782e8fc2c36c182f0da3351aac5ac9c29feb1cbfa2f7abd016898627cab",
+    "source_overlay_commit": "7299504eb5c2356e85437b123e6b6ff8355325c9",
+    "tools_commit": "0311226e3f752f529d0a8ff1a3d337bb5a908590",
+    "variable_expression_pr79_sha256": "db22d3d216e44cac78015b2bc57869dec672e2f5682382ea90fede9bf092c7ce"
+  },
+  "qualification": "prospective structural conversion only; unmerged canonical schema and current semantic pack are not production-qualified",
+  "reproduction": {
+    "command": "PYTHONPATH=src .venv/bin/python scripts/qualify_canonical_schema_overlay.py --schema-root <PR77+PR79-schema-overlay> --source-root <corrected-source-overlay> --source-commit 7299504eb5c2356e85437b123e6b6ff8355325c9 --output <external-receipt>",
+    "output": "external; compact receipt only"
+  },
+  "result": {
+    "format": "scap-ng-tools/canonical-schema-overlay-qualification/1",
+    "qualification": "prospective structural conversion only; do not use as production or equivalence evidence",
+    "rows": [
+      {
+        "case": "def562",
+        "definition_id": "oval:org.mitre.oval.test:def:562",
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "semantic_validation": "skipped_unmerged_schema",
+        "source_path": "agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked"
+      },
+      {
+        "assessment_sha256": "e2b1a23487e117788ae44ef9bbb05fff123315c767c54584976abfdbbfadba51",
+        "case": "registry",
+        "definition_id": "oval:org.mitre.oval.test:def:38",
+        "semantic_validation": "skipped_unmerged_schema",
+        "source_path": "windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+        "status": "structural_converted_only",
+        "test_count": 15
+      },
+      {
+        "case": "regkey",
+        "definition_id": "oval:org.mitre.oval.test:def:729",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "semantic_validation": "skipped_unmerged_schema",
+        "source_path": "windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf",
+        "status": "blocked"
+      },
+      {
+        "case": "ntuser",
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "semantic_validation": "skipped_unmerged_schema",
+        "source_path": "windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+        "status": "blocked"
+      }
+    ],
+    "schema_root": "<external-prospective-schema-root>",
+    "source_commit": "7299504eb5c2356e85437b123e6b6ff8355325c9"
+  }
+}

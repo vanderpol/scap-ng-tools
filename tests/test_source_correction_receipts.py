@@ -66,6 +66,23 @@ class SourceCorrectionReceiptTests(unittest.TestCase):
         self.assertNotEqual(conversion["base_source_trace_sha256"],
                             conversion["corrected_source_trace_sha256"])
 
+    def test_prospective_canonical_overlay_keeps_schema_and_semantic_holds_separate(self):
+        receipt = self.load("canonical-pr77-pr79-overlay.json")
+        self.assertEqual(receipt["format"],
+                         "scap-ng-tools/issue83-canonical-overlay-receipt/1")
+        self.assertEqual(receipt["pins"]["canonical_pr77_head"],
+                         "e96aac31c4f72ea0bc18a904c2a87a114ad0c4c6")
+        self.assertEqual(receipt["pins"]["canonical_pr79_head"],
+                         "44c530408aedda0894093fcf3319fec9bd3ade86")
+        rows = {row["case"]: row for row in receipt["result"]["rows"]}
+        self.assertEqual(rows["registry"]["status"], "structural_converted_only")
+        self.assertEqual(rows["registry"]["test_count"], 15)
+        self.assertEqual(rows["def562"]["status"], "blocked")
+        self.assertIn("unbound external Variable", rows["def562"]["diagnostic"])
+        self.assertEqual(rows["regkey"]["status"], "blocked")
+        self.assertEqual(rows["ntuser"]["status"], "blocked")
+        self.assertIn("not a current production result", receipt["interpretation"]["potential_active_transition"])
+
     def test_full_overlay_receipt_accounts_for_corrected_source_corpus(self):
         path = ROOT / "docs" / "evidence" / "issue83" / "full-self-assertion-overlay-20261119.json"
         receipt = self.load("full-self-assertion-overlay-20261119.json")
