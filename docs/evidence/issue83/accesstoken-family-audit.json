@@ -1,0 +1,1814 @@
+{
+  "canonical_status": {
+    "classification": "deprecated_source_construct",
+    "converter_action": "retain explicit hold; do not add canonical support solely for these Rules",
+    "replacement_equivalence": "not_proved",
+    "runtime_execution": "not_run; no Windows target"
+  },
+  "format": "scap-ng-tools/accesstoken-family-audit/1",
+  "rows": [
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220956"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220956"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:44501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "7f5201e4f74e786273f26a8bcd34f89a7313337a01a3ed5d6829e57082b1d4df",
+        "source_rule_title": "The Access Credential Manager as a trusted caller user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220956r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220957"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220957"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:44701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "5bac96d9413df32ece9e429732dd338537f94c4a9c47d596c09f25562c9b17f9",
+        "source_rule_title": "The Access this computer from the network user right must only be assigned to the Administrators and Remote Desktop Users groups."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220957r1137691_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220958"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220958"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:44901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "2acc349425cfedabfcd66b1b840fdc99ee6e4a9846834a181daa5756dcb841c9",
+        "source_rule_title": "The Act as part of the operating system user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220958r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220959"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220959"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:45101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "60016683dcff4f95daa220e9007502c12a4117ad838d46460ccb9ea45cfffdcb",
+        "source_rule_title": "The Allow log on locally user right must only be assigned to the Administrators and Users groups."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220959r1137691_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220960"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220960"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:45301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "9c5361bda4bfdecadea424574756f984a34d4a01e3ad5dd28aba0b39070937d8",
+        "source_rule_title": "The Back up files and directories user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220960r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220961"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220961"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:45501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "4deb722ebd5f086626ebb97f3cf3129ba5e8004a102fcb8fb013a68e6ae3d1dd",
+        "source_rule_title": "The Change the system time user right must only be assigned to Administrators and Local Service and NT SERVICE\\autotimesvc."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220961r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220962"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220962"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:45701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "b977f54b577ca08e2a8edf6adf37f87cdfafd20c236666e45484e5ab7e3defb4",
+        "source_rule_title": "The Create a pagefile user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220962r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220963"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220963"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:45901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "0bc1d582953f17ac17fa716827b699698b7188714aaa8eeae73b01ac954d6a33",
+        "source_rule_title": "The Create a token object user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220963r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220964"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220964"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:46101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "950a8187eb4b72f20964083d01f543cb5db951cbbe9665aef76998ff5e72088d",
+        "source_rule_title": "The Create global objects user right must only be assigned to Administrators, Service, Local Service, and Network Service."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220964r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220965"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220965"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:46301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "309e56ccd6ed4c46c51c19b26ac24a4f3cd4995f3a6606e785ae27542c8558a4",
+        "source_rule_title": "The Create permanent shared objects user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220965r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220966"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220966"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:46501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "8205fb2c0bfd0c95f853c2050a9df8c4a79e1d68c954d6766c93507363d51375",
+        "source_rule_title": "The Create symbolic links user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220966r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220967"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220967"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:46701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "2dad04929d0172871f11b340690ea5dcebc4c852616e3860654865c7f3d610b0",
+        "source_rule_title": "The Debug programs user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220967r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220968"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220968"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:46901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "96cb40445971ac34f04ad96093053ed97517a0b576c272ec0bedd469775a8657",
+        "source_rule_title": "The Deny access to this computer from the network user right on workstations must be configured to prevent access from highly privileged domain accounts and local accounts on domain systems and unauthenticated access on all systems."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220968r1137691_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220969"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220969"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:47101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "bc01c23b58662d2e035f2938d27532a717c0b7549cf85d06d91c9525f45a8fe2",
+        "source_rule_title": "The \"Deny log on as a batch job\" user right on domain-joined workstations must be configured to prevent access from highly privileged domain accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220969r1137691_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220970"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220970"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:47301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "95b274c1938552f5b1b204957760e4a1ee8c09322a1a62f7b722211d4309c217",
+        "source_rule_title": "The Deny log on as a service user right on Windows 10 domain-joined workstations must be configured to prevent access from highly privileged domain accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220970r1137691_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220971"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220971"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:47501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "d9f6c85808ccfc9e34af08e1a57f26965257d18b01640f626738b259ea57c233",
+        "source_rule_title": "The Deny log on locally user right on workstations must be configured to prevent access from highly privileged domain accounts on domain systems and unauthenticated access on all systems."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220971r1137691_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220972"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220972"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:47701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "4d5bf0877ac767528339c88c3395dee43e6d0370bf0f2e225b81816a07ff95dd",
+        "source_rule_title": "The Deny log on through Remote Desktop Services user right on Windows 10 workstations must at a minimum be configured to prevent access from highly privileged domain accounts and local accounts on domain systems and unauthenticated access on all systems."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220972r1137691_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220973"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220973"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:47901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "c60934c3cf6200f2be440b4b87733f3f7022a349c135f3ff0e56e4c7de3b7d30",
+        "source_rule_title": "The Enable computer and user accounts to be trusted for delegation user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220973r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220974"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220974"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:48101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "02eed2208592f0c06321e2014b47cb3a81a3c20318937dc561f5a78908d6dc98",
+        "source_rule_title": "The Force shutdown from a remote system user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220974r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220975"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220975"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:48301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "5191d403a5abae948eb73d1f33c828df4adc2410383d328c946687c6096d96b3",
+        "source_rule_title": "The \"Impersonate a client after authentication\" user right must only be assigned to Administrators, Service, Local Service, and Network Service."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220975r1138519_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220976"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220976"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:48501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "4930e16015f118c1370828609a0b3a0dd18e1e264014e2a1e9234af18fd050b5",
+        "source_rule_title": "The Load and unload device drivers user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220976r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220977"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220977"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:48701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "b20b76517c3e3f21d94928293935e07f5b31f4b10581b67a0acd83b2a7ceebf9",
+        "source_rule_title": "The Lock pages in memory user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220977r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220978"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220978"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:48901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "7702729f351bf7cfd5c6fa38aa8e286a40531e20717ca054a313c1cc56b6d3c7",
+        "source_rule_title": "The Manage auditing and security log user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220978r958434_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220979"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220979"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:49101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "90603447e10f6845806a9f1c5e055f86b0b2dc46cf903b86b179966fa6443603",
+        "source_rule_title": "The Modify firmware environment values user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220979r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220980"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220980"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:49301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "13d0dfc310821c9078335809356019e80845ccab55a610d6f4ccba4f29dda20d",
+        "source_rule_title": "The Perform volume maintenance tasks user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220980r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220981"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220981"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:49501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "e873f96065f2cc55adb8db010e582549e40f40bc2261c0a794ce103639c435c8",
+        "source_rule_title": "The Profile single process user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220981r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220982"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220982"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:49701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "94022dea66055ae30f170d35c29b955eaf023a513a3a8ab35515ca36aa7030ec",
+        "source_rule_title": "The Restore files and directories user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220982r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
+        "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220983"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-oval.xml",
+            "name": "oval:mil.disa.stig.windows10:def:220983"
+          },
+          {
+            "href": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows10:questionnaire:49901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.xml",
+        "datastream_member_sha256": "0b5d63bc5a0a1cfcdb9ebb6b8c2ff84e7d91588efb3f6fbfba5b42e3af66ac63",
+        "source_rule_sha256": "b0c19197837ecf8a19d4d192dcb416ef8a2124a5f0fecc80b7d8cd16e7bb9a1e",
+        "source_rule_title": "The Take ownership of files or other objects user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-220983r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1162"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1162"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:35101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "5cad3a72d06e09f2f6dbcff484bfb67e24d83b636007fe1816788750a7948877",
+        "source_rule_title": "The Access this computer from the network user right must only be assigned to the Administrators, Authenticated Users, and Enterprise Domain Controllers groups on domain controllers."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-224997r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1163"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1163"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:35301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "d0da0417d6b46c38148da4c13afc006bbea1b190bbcada9bff34eb28633d9111",
+        "source_rule_title": "The Add workstations to domain user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-224998r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1164"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1164"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:35501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "e8e43bb68b602953199e7e0ce5203e636bede5669c1590043e7213077c2d9cbc",
+        "source_rule_title": "The Allow log on through Remote Desktop Services user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-224999r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1165"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1165"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:35701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "361ac1b76ed62e68f59afb4f6615e603be6aea29a05ba75385a479963181ce47",
+        "source_rule_title": "The Deny access to this computer from the network user right on domain controllers must be configured to prevent unauthenticated access."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225000r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1166"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1166"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:35901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "863515b5a4793f1de051e1d04c2a1b0e71d4198880496fa3e3be3d58cf3c90cd",
+        "source_rule_title": "The Deny log on as a batch job user right on domain controllers must be configured to prevent unauthenticated access."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225001r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1167"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1167"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:36101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "bfadadcee42cb9740af984a01dd3a19fe2ed12d407172b8eba2327daa7bc0e0d",
+        "source_rule_title": "The Deny log on as a service user right must be configured to include no accounts or groups (blank) on domain controllers."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225002r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1168"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1168"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:36301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "62c3670fe3fa19e797ba700e3d3b872522f2f6fac3d59444a36c0b0d8a59c1d0",
+        "source_rule_title": "The Deny log on locally user right on domain controllers must be configured to prevent unauthenticated access."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225003r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1169"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1169"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:36501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "f9e19276d15fa42f9c6e46b1bcc13ee8645f66402437149b74b3a4c35e1aabcf",
+        "source_rule_title": "The Deny log on through Remote Desktop Services user right on domain controllers must be configured to prevent unauthenticated access."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225004r958672_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1170"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1170"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:36701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "d73f300648f360579696cf423accf33f637b2585a246ede606b58cf60383620a",
+        "source_rule_title": "The Enable computer and user accounts to be trusted for delegation user right must only be assigned to the Administrators group on domain controllers."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225005r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1176"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1176"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:38501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "757fd79b05e871722ba0922f4b943383e9c0f51282196c54a01586cbff66294e",
+        "source_rule_title": "The \"Access this computer from the network\" user right must only be assigned to the Administrators and Authenticated Users groups on member servers."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225014r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1177"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1177"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:38701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "6c28f0c9ddbf43535ad7916d147ee7fab00f60c3bc7231629ec20a8e4efacf37",
+        "source_rule_title": "The \"Deny access to this computer from the network\" user right on member servers must be configured to prevent access from highly privileged domain accounts and local accounts on domain systems and from unauthenticated access on all systems."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225015r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1178"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1178"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:38901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "34fd41b05fd931228f4619f4b4857dbbdb6afddf82212b585fba0510c4682c23",
+        "source_rule_title": "The \"Deny log on as a batch job\" user right on member servers must be configured to prevent access from highly privileged domain accounts on domain systems and from unauthenticated access on all systems."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225016r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows2016:def:225017"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows2016:def:225017"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:39101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "9440afa38aef17fef841b8912e0f55a74647abc0809aa7928128453b866915fa",
+        "source_rule_title": "The \"Deny log on as a service\" user right on member servers must be configured to prevent access from highly privileged domain accounts on domain systems. No other groups or accounts must be assigned this right."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225017r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1180"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1180"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:39301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "ca323ba181a8ea43e55a94cb444379468727cec742ac7528eb4f880a2f59735f",
+        "source_rule_title": "The \"Deny log on locally\" user right on member servers must be configured to prevent access from highly privileged domain accounts on domain systems and from unauthenticated access on all systems."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225018r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1181"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1181"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:39501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "b060b9e64f46a6080aa76c7234b4549c7d387aa642fce40b64f880f550a5e5b4",
+        "source_rule_title": "The \"Deny log on through Remote Desktop Services\" user right on member servers must be configured to prevent access from highly privileged domain accounts and all local accounts on domain systems and from unauthenticated access on all systems."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225019r958672_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1182"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1182"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:39701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "43d0ade66da5334ea2ee228299321aadc7562b82c691689e3ce40571e5bbaad6",
+        "source_rule_title": "The \"Enable computer and user accounts to be trusted for delegation\" user right must not be assigned to any groups or accounts on member servers."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225020r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1236"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1236"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:49701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "f528b04c71ed0aa8d6139074a493fc09eb51adacfda8ce3a895ad30abb16f938",
+        "source_rule_title": "The Access Credential Manager as a trusted caller user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225070r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1237"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1237"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:49901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "665ed3fb091404488d78178a4c49af0d8527f19edda23c42cd2b20ae83fe6c48",
+        "source_rule_title": "The Act as part of the operating system user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225071r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1238"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1238"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:50101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "27b9b853f2f39d729ddb61f11b6bcd778e57ff00b0d6feb10e685735dc99843a",
+        "source_rule_title": "The Allow log on locally user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225072r958472_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1239"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1239"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:50301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "35260e21d06a7c74abca89283757db3d0ef9846a4accec08f5a82853ebeea0eb",
+        "source_rule_title": "The Back up files and directories user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225073r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1240"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1240"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:50501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "157c422d5ae6e327123c5a4cdf982ed7b874125600ea22279245d3dfdb81320f",
+        "source_rule_title": "The Create a pagefile user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225074r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1242"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1242"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:50701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "3314fac2833b837304fee3c6e9cf3778f5e246c71552d3d6ec5a7b503b017e19",
+        "source_rule_title": "The Create global objects user right must only be assigned to Administrators, Service, Local Service, and Network Service."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225076r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1243"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1243"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:50901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "8745d9e7f822150d27fc0c62e68c943f5bf5436ccab0124e6477db95af450dd0",
+        "source_rule_title": "The Create permanent shared objects user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225077r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1244"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1244"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:51101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "7bba72026bd34047ae3db2c646bb278bcae130d516b5796442d3cfca73f85199",
+        "source_rule_title": "The Create symbolic links user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225078r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1245"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1245"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:51301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "0a2f8ab3d4c2fa1316353540d28fbb30ecefeeaf6f318d076bb4133553e19824",
+        "source_rule_title": "The Debug programs user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225079r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1246"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1246"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:51501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "991112a0e1a5abc4257467777b553e5d75d223eca4d23d6295e82fa69b7c4de9",
+        "source_rule_title": "The Force shutdown from a remote system user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225080r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1247"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1247"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:51701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "d3ffdedb5b1ee00511ddd52b6ff5d8eb2447f6bfff19156c23287c88a49108dc",
+        "source_rule_title": "The Generate security audits user right must only be assigned to Local Service and Network Service."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225081r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1248"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1248"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:51901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "88d30d4833d1f1b2fb609257c06ae32e89551983d0e5bf5ccd74685eb2bba40d",
+        "source_rule_title": "The Impersonate a client after authentication user right must only be assigned to Administrators, Service, Local Service, and Network Service."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225082r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1249"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1249"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:52101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "15f66ccd7f93ab416a0d1adb398247322d78eb272c85aa1291302a7fd81ac416",
+        "source_rule_title": "The Increase scheduling priority user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225083r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1250"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1250"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:52301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "5f6fedecc7e53fe58316ec40d439f19daec38c2aa79e11b5f6c7bf80b54234b1",
+        "source_rule_title": "The Load and unload device drivers user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225084r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1251"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1251"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:52501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "015c808cf3dba459da54e486e8726b9c092f8fa24d52a6dd051e2c66d3f5d138",
+        "source_rule_title": "The Lock pages in memory user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225085r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1252"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1252"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:52701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "3df2e3b9d347e5ac4f395bd52ef3601ac7396a530586a04d864a3ab06fbb68f1",
+        "source_rule_title": "The Manage auditing and security log user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225086r958434_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1253"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1253"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:52901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "715e3f8871bcff2fd05bf0f52c4e0b6262638f00a778faef09a3396b6934d69e",
+        "source_rule_title": "The Modify firmware environment values user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225087r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows2016:def:225088"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows2016:def:225088"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:53101"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "ed027c3062d67a5c13addd0a46d8d0e550eca626e4e30ba8635a77541d92a23e",
+        "source_rule_title": "The Perform volume maintenance tasks user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225088r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1255"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1255"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:53301"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "d093be678b474d05aec6647fefbd88c1ab131320a810ca82ad646af5b5aec463",
+        "source_rule_title": "The Profile single process user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225089r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1241"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1241"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:53501"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "7e7c9dba6b22751b318c9598299c52b948eb5214a779b67072d70bd8aedfa5d2",
+        "source_rule_title": "The Create a token object user right must not be assigned to any groups or accounts."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225091r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1256"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1256"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:53701"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "f0d77466df276acc2b569fca371e9db7fcdf08dfb21b2750e02e6dc8fe3a62fe",
+        "source_rule_title": "The Restore files and directories user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225092r958726_rule"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "historical_conversion_disposition": "canonical_language_gap",
+      "source_rule": {
+        "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
+        "check_content_refs": [
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1257"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-oval.xml",
+            "name": "oval:mil.disa.stig.windows:def:1257"
+          },
+          {
+            "href": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-ocil.xml",
+            "name": "ocil:navy.navwar.niwcatlantic.scc.windows:questionnaire:53901"
+          }
+        ],
+        "datastream_member": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "datastream_member_sha256": "ec3c6906bf80a50aa354bf8a9ee8db17ddfcf7580351248eb47d31df58ea1557",
+        "source_rule_sha256": "81fe4bbdede1d14c7bd1383c71a04edb244a3251ea711306ef9d42ef91d63f9a",
+        "source_rule_title": "The Take ownership of files or other objects user right must only be assigned to the Administrators group."
+      },
+      "source_rule_id": "xccdf_mil.disa.stig_rule_SV-225093r958726_rule"
+    }
+  ],
+  "scope": "one deprecated OVAL capability family; source status, not replacement equivalence",
+  "source": {
+    "benchmark_source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "deprecated_since": "5.11",
+    "historical_ledger_sha256": "f24b93e3c06d65f6bc0fc08d31cb1355e804d62c4e66b6b3c3ace1235deee2f0",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "reason": "The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used.",
+    "replacement": "userright_test/userright_object/userright_state",
+    "source_test_qname": "{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test",
+    "xsd": "windows-definitions-schema.xsd",
+    "xsd_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+  },
+  "summary": {
+    "benchmarks": 2,
+    "check_references": 198,
+    "historical_native_disposition": {
+      "canonical_language_gap": 66
+    },
+    "rules": 66,
+    "unique_rules": 66
+  }
+}
