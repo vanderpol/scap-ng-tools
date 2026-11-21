@@ -41,6 +41,32 @@ def git_revision(root):
     return subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
 
 
+def verify_source_identity(source_root, expected_commit, source_archive=None,
+                           source_archive_sha256=None):
+    """Verify an existing checkout or an exact pinned archive extraction.
+
+    The original harness required a Git checkout, which made reproducible
+    archive-only qualification unnecessarily impossible. A GitHub source
+    archive is accepted only with its expected SHA-256; the commit remains a
+    provenance claim supplied by the caller, never inferred from a directory.
+    """
+    root = Path(source_root)
+    if not root.is_dir():
+        raise ValueError("source root does not exist: " + str(root))
+    if source_archive is None:
+        actual = git_revision(root)
+        if actual != expected_commit:
+            raise ValueError("source library commit does not match pinned source: " + actual)
+        return {"source_commit": actual}
+    if source_archive_sha256 is None:
+        raise ValueError("source archive SHA-256 is required for archive qualification")
+    archive = Path(source_archive)
+    actual_sha256 = hash_file(archive)
+    if actual_sha256 != source_archive_sha256:
+        raise ValueError("source archive SHA-256 mismatch: " + actual_sha256)
+    return {"source_commit": expected_commit, "source_archive_sha256": actual_sha256}
+
+
 def expected_scope(crosswalk, sql_policy):
     rows = crosswalk["benchmarks"]
     if len(rows) != 65 or len({r["filename"] for r in rows}) != 65:
@@ -181,28 +207,41 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--schema-root", type=Path, required=True)
     parser.add_argument("--source-root", type=Path, required=True)
+    parser.add_argument("--source-archive", type=Path,
+                        help="exact archive used to produce source-root; required outside a Git checkout")
+    parser.add_argument("--source-archive-sha256",
+                        help="expected SHA-256 for --source-archive")
+    parser.add_argument("--source-commit", default=SOURCE_COMMIT)
+    parser.add_argument("--canonical-schema-commit", default=CANONICAL_SCHEMA_COMMIT)
+    parser.add_argument("--schema-aggregate-sha256",
+                        help="expected active flat 0.4.1 schema aggregate SHA-256")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--enforce-nonregression", action="store_true")
     args = parser.parse_args()
     if args.output.exists():
         parser.error("output already exists; no overwrite is permitted")
-    if git_revision(args.source_root) != SOURCE_COMMIT:
-        parser.error("source library commit does not match pinned source")
+    try:
+        source_identity = verify_source_identity(
+            args.source_root, args.source_commit, args.source_archive,
+            args.source_archive_sha256)
+    except (OSError, subprocess.CalledProcessError, ValueError) as error:
+        parser.error(str(error))
     crosswalk, sql = read_json(CROSSWALK), read_json(SQL_POLICY)
     categories = expected_scope(crosswalk, sql)
     from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
     snap = Pinned041SchemaSnapshot(args.schema_root)
     schema_digest = snap.manifest()["aggregate_sha256"]
-    if schema_digest != crosswalk["new_schema_sha256"]:
-        parser.error("canonical 0.4.1 aggregate digest differs from source receipt")
+    expected_schema_digest = args.schema_aggregate_sha256 or crosswalk["new_schema_sha256"]
+    if schema_digest != expected_schema_digest:
+        parser.error("canonical 0.4.1 aggregate digest differs from supplied pin")
     with gzip.open(HISTORICAL_RULES, "rt", encoding="utf-8") as reader:
         historical = json.load(reader)
     new_rows = run_build(args.schema_root, args.source_root, crosswalk, categories, native_recovery=True)
     output = compare_rule_ids(historical["rules"], new_rows, categories)
     output.update({"format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
                    "source_repository": "niwc-atlantic/scap-content-library",
-                   "canonical_schema_commit": CANONICAL_SCHEMA_COMMIT,
-                   "source_commit": SOURCE_COMMIT,
+                   "canonical_schema_commit": args.canonical_schema_commit,
+                   **source_identity,
                    "schema_version": "0.4.1", "schema_aggregate_sha256": schema_digest,
                    "source_benchmarks": 65,
                    "owner_scope": {"active": 7990, "owner_excluded_sql": 209,

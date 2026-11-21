@@ -1,5 +1,7 @@
 """Synthetic original-source identity and scope tests for the 65-ZIP rebuild driver."""
 import copy
+import hashlib
+import tempfile
 import importlib.util
 from pathlib import Path
 import unittest
@@ -25,6 +27,30 @@ def fixtures():
     categories = {"active-benchmark.zip": "active", "sql-benchmark.zip": "owner_excluded_sql"}
     return old, new, categories
 
+
+class SourceIdentity(unittest.TestCase):
+    def test_archive_identity_replaces_git_checkout_without_dropping_commit_pin(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "extracted"
+            root.mkdir()
+            archive = Path(directory) / "source.tar.gz"
+            archive.write_bytes(b"pinned archive bytes")
+            expected = hashlib.sha256(archive.read_bytes()).hexdigest()
+            identity = m.verify_source_identity(
+                root, "source-commit", archive, expected)
+        self.assertEqual(identity, {
+            "source_commit": "source-commit",
+            "source_archive_sha256": expected,
+        })
+
+    def test_archive_identity_requires_exact_sha(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "extracted"
+            root.mkdir()
+            archive = Path(directory) / "source.tar.gz"
+            archive.write_bytes(b"pinned archive bytes")
+            with self.assertRaisesRegex(ValueError, "archive SHA-256 mismatch"):
+                m.verify_source_identity(root, "source-commit", archive, "0" * 64)
 
 class Rebuild(unittest.TestCase):
     def test_same_source_active_denominator_and_excluded_sql(self):
