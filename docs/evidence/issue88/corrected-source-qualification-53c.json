@@ -180,13 +180,13 @@
   },
   "commands": {
     "benchmarks": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/rebuild_issue59_full65.py --schema-root /tmp/codex-scap-ng-main/schema --source-root /tmp/tools-issue85-source-archive-8c8e5d --source-archive /tmp/niwc-scap-content-8c8e5d.tar.gz --source-archive-sha256 8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --canonical-schema-commit 44991ed3753944e47c42d76f157b29448b256a34 --schema-aggregate-sha256 ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260 --output /tmp/tools-issue85-full65-449-run2.json --enforce-nonregression",
-    "parity": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/audit_self_assertion_parity.py --source-root /tmp/tools-pr84-source-53c/SCAP_1.4/OVAL_Test_Content --pack /tmp/tools-issue88-converted-53c-run3 --schema-root /tmp/codex-scap-ng-main --expected-xml 143 --expected-definitions 167 --expected-tests 799 --output /tmp/tools-issue88-parity-53c.json",
-    "standalone_conversion": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus /tmp/tools-pr84-source-53c --schema-root /tmp/codex-scap-ng-main --source-commit 53c18ea31a1976209572ec8b068e1a02be588456 --output /tmp/tools-issue88-converted-53c-run3"
+    "parity": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/audit_self_assertion_parity.py --source-root /tmp/tools-pr84-source-53c/SCAP_1.4/OVAL_Test_Content --pack /tmp/tools-issue88-converted-53c-run5 --schema-root /tmp/codex-scap-ng-main --expected-xml 143 --expected-definitions 167 --expected-tests 799 --output /tmp/tools-issue88-parity-53c.json",
+    "standalone_conversion": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus /tmp/tools-pr84-source-53c --schema-root /tmp/codex-scap-ng-main --source-commit 53c18ea31a1976209572ec8b068e1a02be588456 --output /tmp/tools-issue88-converted-53c-run5"
   },
   "converter": {
-    "commit": "41f04ba",
-    "definitions_ledger_sha256": "e0bc783b6a97aa8cb2802a99b24386af64d0f8b3555e5670912027bdbf385069",
-    "package_manifest_sha256": "7f523a1ebaa96f5bb41074bc444bd1a9dcba47a9438ceb594dd231ae5ba79be8",
+    "commit": "01dedc4ac371e7388ea6a328e00d8e234a0ca449",
+    "definitions_ledger_sha256": "edb05d2f0bd8e1b7ad77967e83ecbd2088e2c40bf9c0e400364933b024633b28",
+    "package_manifest_sha256": "0b8c8c2f4f64256adff81fef705ee8923b9eb00a6f13f1b94ff72641648d259f",
     "repository": "vanderpol/scap-ng-tools",
     "tests_ledger_sha256": "f917359a585dce7d876fb3a36475b736033743e2e9fd5f64211ccfe8a529df4f"
   },
@@ -795,17 +795,12 @@
         "definition": "oval:org.joval.test:def:20002",
         "reason": "native collected-field datatype is unresolved",
         "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml"
-      },
-      {
-        "definition": "oval:org.mitre.oval.test:def:38",
-        "reason": "native Variable declarations do not match source trace",
-        "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml"
       }
     ],
     "converted_tests": 743,
     "definitions": 167,
-    "parity_receipt_sha256": "0a6e424a5c4e17b769811fcaf2279cf4e96b7d746a6be789855565853ed7baed",
-    "platform_receipt_sha256": "214cdaf7cee5f2ca9a581e538fa09ff673201c614cbd33bf6f50c51401da1d19",
+    "parity_receipt_sha256": "d758be7b33d93e9987c0f638ec6ddd4cd4d5d346dc67509be77334941e1c037a",
+    "platform_receipt_sha256": "f188355dd7edf1e366a8cdaba46b0c27ca98bc624d6e8bc3821d6e929eaf913c",
     "platforms": {
       "definitions": {
         "agnostic": {

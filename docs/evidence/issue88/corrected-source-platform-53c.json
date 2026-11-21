@@ -569,16 +569,16 @@
     "version": "0.4.1"
   },
   "converter": {
-    "commit": "41f04ba",
+    "commit": "01dedc4ac371e7388ea6a328e00d8e234a0ca449",
     "entrypoint": "scap_ng_tools.converter.direct04",
     "execution": "production package only",
     "repository": "vanderpol/scap-ng-tools"
   },
   "format": "scap-ng-tools/issue83/platform-receipt/1",
   "package": {
-    "definitions_ledger_sha256": "e0bc783b6a97aa8cb2802a99b24386af64d0f8b3555e5670912027bdbf385069",
+    "definitions_ledger_sha256": "edb05d2f0bd8e1b7ad77967e83ecbd2088e2c40bf9c0e400364933b024633b28",
     "manifest_artifacts_verified": 654,
-    "manifest_sha256": "7f523a1ebaa96f5bb41074bc444bd1a9dcba47a9438ceb594dd231ae5ba79be8",
+    "manifest_sha256": "0b8c8c2f4f64256adff81fef705ee8923b9eb00a6f13f1b94ff72641648d259f",
     "tests_ledger_sha256": "f917359a585dce7d876fb3a36475b736033743e2e9fd5f64211ccfe8a529df4f"
   },
   "platforms": {
