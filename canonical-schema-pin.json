@@ -36,8 +36,8 @@
         "sha256": "3eed84e2142ef548c36cc0a9c381bfc1d7d38ad381e145fd8833d0d47f69fc39"
       }
     },
-    "ri_commit": "dc77e33cb9cc74479622681e00ff776e2161b6ba",
-    "ri_pin_sha256": "3027f510da9f42866c1a3bb7e3bc3b60cb568758446407bd6beac4ba353a8ae8"
+    "ri_commit": "7346745d9c8607d7d22df6fbe359ed62220ebc57",
+    "ri_pin_sha256": "4c57de42ef8d9af9dfba7021ea7e711ce2aecb20a39ab4670236242a03a370b7"
   },
   "canonical_repository": "vanderpol/scap-ng",
   "canonical_sha": "5387298eee591b6e24e6527d97478c7689381d05",
