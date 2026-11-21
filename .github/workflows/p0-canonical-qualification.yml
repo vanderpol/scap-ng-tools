@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: 860d63e84d5aba12daa6d5037bdb83d78a95088a
+          ref: f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2
           path: inputs/canonical
           persist-credentials: false
       - name: Require read access to the private RI repository
