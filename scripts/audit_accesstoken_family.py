@@ -22,6 +22,36 @@ XSD_NAME = "windows-definitions-schema.xsd"
 XSD_SHA256 = "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
 QNAME = "{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}accesstoken_test"
 XCCDF = "http://checklists.nist.gov/xccdf/1.2"
+DEPRECATION_EVIDENCE = [
+    {
+        "name": "accesstoken_test",
+        "xpath": "/xs:schema/xs:element[@name=\"accesstoken_test\"]/xs:annotation/xs:appinfo/oval:deprecated_info",
+        "version": "5.11",
+        "replacement": "userright_test",
+        "reason": "This accesstoken_test suffers from scalability issues when run on a domain controller and should not be used."
+    },
+    {
+        "name": "accesstoken_object",
+        "xpath": "/xs:schema/xs:element[@name=\"accesstoken_object\"]/xs:annotation/xs:appinfo/oval:deprecated_info",
+        "version": "5.11",
+        "replacement": "userright_object",
+        "reason": "The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used."
+    },
+    {
+        "name": "accesstoken_state",
+        "xpath": "/xs:schema/xs:element[@name=\"accesstoken_state\"]/xs:annotation/xs:appinfo/oval:deprecated_info",
+        "version": "5.11",
+        "replacement": "userright_state",
+        "reason": "The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used."
+    },
+    {
+        "name": "AccesstokenBehaviors",
+        "xpath": "/xs:schema/xs:complexType[@name=\"AccesstokenBehaviors\"]/xs:annotation/xs:appinfo/oval:deprecated_info",
+        "version": "5.11",
+        "replacement": "userright_test",
+        "reason": "The AccesstokenBehaviors type is no longer needed because accesstoken_test is deprecated."
+    }
+]
 
 def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
@@ -79,6 +109,7 @@ def build(ledger_path: Path, source_root: Path, xsd_path: Path) -> dict:
             "benchmark": row["benchmark"],
             "source_rule_id": row["source_id"],
             "historical_conversion_disposition": row["disposition_class"],
+            "source_normative_classification": "deprecated_source_construct",
             "source_rule": archive_details(archive, row["source_id"]),
         })
     return {
@@ -94,6 +125,7 @@ def build(ledger_path: Path, source_root: Path, xsd_path: Path) -> dict:
             "deprecated_since": "5.11",
             "replacement": "userright_test/userright_object/userright_state",
             "reason": "The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used.",
+            "declaration_evidence": DEPRECATION_EVIDENCE,
         },
         "canonical_status": {
             "classification": "deprecated_source_construct",

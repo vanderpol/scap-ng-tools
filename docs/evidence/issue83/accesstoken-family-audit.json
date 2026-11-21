@@ -10,6 +10,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -37,6 +38,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -64,6 +66,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -91,6 +94,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -118,6 +122,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -145,6 +150,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -172,6 +178,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -199,6 +206,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -226,6 +234,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -253,6 +262,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -280,6 +290,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -307,6 +318,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -334,6 +346,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -361,6 +374,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -388,6 +402,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -415,6 +430,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -442,6 +458,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -469,6 +486,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -496,6 +514,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -523,6 +542,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -550,6 +570,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -577,6 +598,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -604,6 +626,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -631,6 +654,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -658,6 +682,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -685,6 +710,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -712,6 +738,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -739,6 +766,7 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
         "benchmark_zip_sha256": "8562a9de2792fd97a3d2bc0a4950012a7b51a05d1514bfaf180db7b99bf3baee",
@@ -766,6 +794,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -793,6 +822,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -820,6 +850,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -847,6 +878,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -874,6 +906,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -901,6 +934,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -928,6 +962,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -955,6 +990,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -982,6 +1018,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1009,6 +1046,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1036,6 +1074,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1063,6 +1102,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1090,6 +1130,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1117,6 +1158,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1144,6 +1186,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1171,6 +1214,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1198,6 +1242,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1225,6 +1270,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1252,6 +1298,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1279,6 +1326,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1306,6 +1354,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1333,6 +1382,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1360,6 +1410,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1387,6 +1438,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1414,6 +1466,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1441,6 +1494,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1468,6 +1522,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1495,6 +1550,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1522,6 +1578,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1549,6 +1606,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1576,6 +1634,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1603,6 +1662,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1630,6 +1690,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1657,6 +1718,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1684,6 +1746,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1711,6 +1774,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1738,6 +1802,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1765,6 +1830,7 @@
     {
       "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "historical_conversion_disposition": "canonical_language_gap",
+      "source_normative_classification": "deprecated_source_construct",
       "source_rule": {
         "benchmark_zip": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
         "benchmark_zip_sha256": "76cf6a14fefd077136d9a23a6ba4a30c82a0b254adc8cf2abd88592dc30776a8",
@@ -1793,6 +1859,36 @@
   "scope": "one deprecated OVAL capability family; source status, not replacement equivalence",
   "source": {
     "benchmark_source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "declaration_evidence": [
+      {
+        "name": "accesstoken_test",
+        "reason": "This accesstoken_test suffers from scalability issues when run on a domain controller and should not be used.",
+        "replacement": "userright_test",
+        "version": "5.11",
+        "xpath": "/xs:schema/xs:element[@name=\"accesstoken_test\"]/xs:annotation/xs:appinfo/oval:deprecated_info"
+      },
+      {
+        "name": "accesstoken_object",
+        "reason": "The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used.",
+        "replacement": "userright_object",
+        "version": "5.11",
+        "xpath": "/xs:schema/xs:element[@name=\"accesstoken_object\"]/xs:annotation/xs:appinfo/oval:deprecated_info"
+      },
+      {
+        "name": "accesstoken_state",
+        "reason": "The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used.",
+        "replacement": "userright_state",
+        "version": "5.11",
+        "xpath": "/xs:schema/xs:element[@name=\"accesstoken_state\"]/xs:annotation/xs:appinfo/oval:deprecated_info"
+      },
+      {
+        "name": "AccesstokenBehaviors",
+        "reason": "The AccesstokenBehaviors type is no longer needed because accesstoken_test is deprecated.",
+        "replacement": "userright_test",
+        "version": "5.11",
+        "xpath": "/xs:schema/xs:complexType[@name=\"AccesstokenBehaviors\"]/xs:annotation/xs:appinfo/oval:deprecated_info"
+      }
+    ],
     "deprecated_since": "5.11",
     "historical_ledger_sha256": "f24b93e3c06d65f6bc0fc08d31cb1355e804d62c4e66b6b3c3ace1235deee2f0",
     "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
