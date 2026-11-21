@@ -1,0 +1,96 @@
+{
+  "format": "scap-ng-tools/issue88-self-assertion-requalification/3",
+  "scope": "structural conversion and independent source-accounting parity; runtime and OVAL equivalence not proved",
+  "pins": {
+    "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_commit": "7d3e3ac2248ad667737bf49e6cf9d3e8a9790969",
+    "merged_source_prs": [33, 34],
+    "historical_source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "canonical_commit": "44991ed3753944e47c42d76f157b29448b256a34",
+    "canonical_flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
+    "assessment_closure_sha256": "1ff810407901fa3687b7820f41a1042f1105288ccbdbe25beefb764620083caf",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "tools_execution_commit": "b5e11a985d612332c00e97df16c50bebf9fe79c1",
+    "tools_merged_commit": "2ad5829b68e9c4b88a2dac1c61a3b2d68d2774b3"
+  },
+  "source_validation": {
+    "xml_files": 143,
+    "xsd_valid_files": 143,
+    "schematron_clean_files": 142,
+    "schematron_report_count": 15,
+    "schematron_hold": "solaris/sol-def_package511_test.xml inconsistent datatype between variable and associated var_ref"
+  },
+  "conversion": {
+    "definitions": 167,
+    "converted_definitions": 162,
+    "blocked_definitions": 5,
+    "tests": 799,
+    "converted_tests": 746,
+    "blocked_tests": 53,
+    "test_ledger_reconciled": true,
+    "execution": "not_run"
+  },
+  "source_corrections": [
+    {
+      "pr": 33,
+      "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_arithmetic_function.xml",
+      "variable": "oval:org.mitre.oval.test:var:589",
+      "datatype": "int"
+    },
+    {
+      "pr": 33,
+      "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+      "variables": ["oval:navy.navwar.niwcatlantic.scc:var:1", "oval:navy.navwar.niwcatlantic.scc:var:2"],
+      "datatype": "string"
+    },
+    {
+      "pr": 33,
+      "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+      "variable": "oval:org.mitre.oval.test:var:561",
+      "datatype": "int"
+    },
+    {
+      "pr": 34,
+      "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_arithmetic_function.xml",
+      "variable": "oval:org.mitre.oval.test:var:898",
+      "datatype": "int"
+    }
+  ],
+  "parity": {
+    "source_accounted": true,
+    "complete": false,
+    "problems": [
+      {
+        "type": "converted_parity_failure",
+        "definition": "oval:navy.navwar.niwcatlantic.scc:def:38",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+        "reason": "unqualified original Variable expression: merge"
+      },
+      {
+        "type": "converted_parity_failure",
+        "definition": "oval:org.mitre.oval.test:def:580",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+        "reason": "unqualified original Variable expression: time_difference"
+      },
+      {
+        "type": "converted_parity_failure",
+        "definition": "oval:org.joval.test:def:20002",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+        "reason": "native collected-field datatype is unresolved"
+      }
+    ]
+  },
+  "remaining_blocked_definitions": [
+    "oval:org.mitre.oval.test:def:562",
+    "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+    "oval:navy.navwar.niwcatlantic.scc.test:def:1 (solaris package511)",
+    "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+    "oval:org.mitre.oval.test:def:729"
+  ],
+  "evidence": {
+    "conversion_manifest_sha256": "df60a6d3eab6a869b6741cd9572682509fd28d73a14692206bc662ef83610ee8",
+    "parity_receipt_sha256": "e33a548b45484408ed7e58a6e0391e2a35601b306dcda401947a43dd9167893d",
+    "external_conversion_directory": "/tmp/tools-self-assertion-source-7d-20261121111620",
+    "external_parity_receipt": "/tmp/tools-self-assertion-parity-7d.json"
+  }
+}

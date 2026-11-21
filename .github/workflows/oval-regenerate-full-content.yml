@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: OVAL-Community/SCAP-Self-Assertion
-          ref: 678caaef655fc2dc52fbc16db8da0db4c3923afc
+          ref: 7d3e3ac2248ad667737bf49e6cf9d3e8a9790969
           path: external/source
           persist-credentials: false
       - uses: actions/checkout@v4
@@ -32,11 +32,11 @@ jobs:
       - name: Run complete pinned original-to-native production conversion
         run: |
           set -euo pipefail
-          test "$(git -C external/source rev-parse HEAD)" = 678caaef655fc2dc52fbc16db8da0db4c3923afc
+          test "$(git -C external/source rev-parse HEAD)" = 7d3e3ac2248ad667737bf49e6cf9d3e8a9790969
           python3 scripts/convert_self_assertion_corpus.py \
             --corpus external/source \
             --schema-root external/schema \
-            --source-commit 678caaef655fc2dc52fbc16db8da0db4c3923afc \
+            --source-commit 7d3e3ac2248ad667737bf49e6cf9d3e8a9790969 \
             --output generated/self-assertion-current-candidate
       - name: Print bounded converter rejection root causes
         run: |
