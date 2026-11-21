@@ -1,3 +1,9 @@
+## MANDATORY ALL-TASK CODEX SELF-AUDIT — OWNER POLICY 2026-11-21
+
+Before claiming ANY SCAP-NG engineering task complete, perform an adversarial semantic self-review and correct defects: verify normative sources and actual inputs/outputs, challenge expectations independently of generators, use negative and mutation/metamorphic tests, reconcile source pins and current-head CI, and report explicit unqualified holds. A green test suite alone is not sufficient. Read and follow the shared [standing quality gates](https://github.com/vanderpol/scap-ng/blob/main/docs/engineering/CODEX-QUALITY-GATES.md). Human independent review still follows. This adds a mandatory step without superseding existing security, single-version, or prompt-mainline merge policies.
+
+---
+
 # PERMANENT OWNER MANDATE — SCHEMA-FIRST, LOSSLESS SCAP 1.4 → SCAP-NG (2026-11-19)
 
 **This is the converter project's controlling technical objective.** It supersedes any older content-first, sample-driven, blocker-count, historical-PR or conversion-percentage tasking below. It complements the owner-directed mainline integration policy (preserve tested work promptly, but never claim a release based on unproved conversions).
