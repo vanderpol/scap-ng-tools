@@ -996,13 +996,34 @@ def compare_mapped_variables(source, native, trace, selected_tests, field_dataty
                    if key not in synthetic_ids}
     if synthetic_ids - set(native.get("variables", {})):
         raise ValueError("synthetic Variable metadata has no native declaration")
+    # Enum-domain projections are derived native Variables, not source
+    # declarations. They must carry an exact source/native identity relation;
+    # otherwise set equality below would either reject valid output or permit
+    # an untraceable extra declaration.
+    enum_equivalences = trace.get("enum_variable_equivalences", [])
+    if not isinstance(enum_equivalences, list):
+        raise ValueError("enum Variable equivalence metadata is malformed")
+    enum_native_ids = set()
+    for equivalence in enum_equivalences:
+        if not isinstance(equivalence, dict):
+            raise ValueError("enum Variable equivalence metadata is malformed")
+        source_id = equivalence.get("source_variable")
+        source_native = equivalence.get("source_native_variable")
+        native_id = equivalence.get("native_variable")
+        aliases = equivalence.get("aliases")
+        if (not isinstance(source_id, str) or not isinstance(source_native, str) or
+                not isinstance(native_id, str) or not isinstance(aliases, dict) or
+                source_to_native.get(source_id) != source_native or
+                native_id not in native_vars or native_id in enum_native_ids):
+            raise ValueError("enum Variable equivalence does not preserve source identity")
+        enum_native_ids.add(native_id)
     missing = (required_variable_declarations(source, selected_tests) -
                set(source_to_native) - materialized_source_variables)
     if missing:
         raise ValueError("required original Variable declarations omitted: " + str(sorted(missing)))
     if not set(source_to_native).issubset(source["variables"]):
         raise ValueError("fabricated original Variable declaration mapping")
-    if set(native_vars) != set(source_to_native.values()):
+    if set(native_vars) != set(source_to_native.values()) | enum_native_ids:
         raise ValueError("native Variable declarations do not match source trace")
     derived_types = _native_variable_types(
         native.get("variables", {}), field_datatypes, native)

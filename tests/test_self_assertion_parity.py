@@ -11,7 +11,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from audit_self_assertion_parity import (PREFIX, PIN, audit, digest, slug, sources,
     parse_oval, reachable_source_tests, normalize_source_evaluate, normalize_native_evaluate,
-    audit_source_set_filter_retention, _native_variable_types, source_invalid_disposition, load_field_datatypes)
+    audit_source_set_filter_retention, _native_variable_types, source_invalid_disposition, load_field_datatypes, compare_mapped_variables)
 from convert_self_assertion_corpus import definitions_and_tests
 
 SOURCE_ID = "oval:example:def:1"
@@ -140,6 +140,22 @@ class FullOriginalSourceParityTests(unittest.TestCase):
                 load_field_datatypes(root),
                 {("fixture.capability", "value"): ("string",)},
             )
+
+    def test_enum_projection_equivalence_allows_traceable_derived_variable(self):
+        source = parse_oval(XML, SOURCE_PATH)
+        native = json.loads(json.dumps(self.native["assessment"]))
+        native["variables"]["var-1-enum-projected-variable"] = {
+            "kind": "local",
+            "expression": {"literal": {"datatype": "string", "value": "sample"}},
+        }
+        trace = json.loads(json.dumps(self.trace))
+        trace["enum_variable_equivalences"] = [{
+            "source_variable": "oval:example:var:1",
+            "source_native_variable": "var-1",
+            "native_variable": "var-1-enum-projected-variable",
+            "aliases": {"sample": "sample"},
+        }]
+        compare_mapped_variables(source, native, trace, [TEST_ID], {})
 
     def test_collected_field_type_comes_from_canonical_mapping(self):
         native = {
