@@ -7,7 +7,7 @@ values, discards components, or claims scanner equivalence.
 from copy import deepcopy
 
 
-LEAVES = {"literal", "variable", "values"}
+LEAVES = {"literal", "variable", "values", "input"}
 UNARY = {"split", "substring", "begin", "end"}
 FUNCTION_NAMES = {"count", "arithmetic", *UNARY, "unique", "concat", "merge", "regex_capture"}
 
@@ -39,6 +39,10 @@ def lower_expression(node):
     operation, value = next(iter(node.items()))
     if operation in LEAVES:
         return deepcopy(node)
+    if operation == "to_integer":
+        _required(isinstance(value, dict) and len(value) == 1,
+                  "to_integer requires one expression operand")
+        return {"to_integer": lower_expression(value)}
     if operation == "function":
         _required(isinstance(value, dict) and set(value) == {"name", "arguments", "options"},
                   "legacy function envelope has unexpected members")

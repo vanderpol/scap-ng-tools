@@ -1,7 +1,7 @@
 {
   "assessment_execution": {
-    "closure_sha256": "a7c0ebe89d11358bfbe1d3bc268f7bbe77b9c03138199c3f81c1a17d61061f62",
-    "family_sha256": "326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329",
+    "closure_sha256": "1ff810407901fa3687b7820f41a1042f1105288ccbdbe25beefb764620083caf",
+    "family_sha256": "1ff810407901fa3687b7820f41a1042f1105288ccbdbe25beefb764620083caf",
     "files": {
       "assessment-language.schema.json": {
         "bytes": 741181,
@@ -32,15 +32,15 @@
         "sha256": "2e4dae1ec6ba9a409622cd709a30cc906bab951c0413c67b940ad8f52a8cf421"
       },
       "variable-expression.schema.json": {
-        "bytes": 34191,
-        "sha256": "3eed84e2142ef548c36cc0a9c381bfc1d7d38ad381e145fd8833d0d47f69fc39"
+        "bytes": 35811,
+        "sha256": "db22d3d216e44cac78015b2bc57869dec672e2f5682382ea90fede9bf092c7ce"
       }
     },
-    "ri_commit": "c1614a898a1077ac6d1f902497cf7919dfccd43a",
-    "ri_pin_sha256": "4c57de42ef8d9af9dfba7021ea7e711ce2aecb20a39ab4670236242a03a370b7"
+    "ri_commit": "26d25cdd165b04c1a3e0b31119ebaff1b29ccca1",
+    "ri_pin_sha256": "84b7b46888ba68ec76bf961ba13785c6ae7d5ad6701165960e7f61432a8d9932"
   },
   "canonical_repository": "vanderpol/scap-ng",
-  "canonical_sha": "5387298eee591b6e24e6527d97478c7689381d05",
+  "canonical_sha": "44991ed3753944e47c42d76f157b29448b256a34",
   "files": {
     "applicability.schema.json": {
       "bytes": 5288,
@@ -611,8 +611,8 @@
       "sha256": "71ff43f0476b7ce325a9d7c83db7b77878974650faf3f079fdec5d5239b01683"
     },
     "variable-expression.schema.json": {
-      "bytes": 34191,
-      "sha256": "3eed84e2142ef548c36cc0a9c381bfc1d7d38ad381e145fd8833d0d47f69fc39"
+      "bytes": 35811,
+      "sha256": "db22d3d216e44cac78015b2bc57869dec672e2f5682382ea90fede9bf092c7ce"
     },
     "variable-function-expression.schema.json": {
       "bytes": 5105,
@@ -624,8 +624,8 @@
     }
   },
   "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-  "schema_family_sha256": "a3ba4c65246fe507e4b66b862662eeed854a6aa3dfd94f7b0bb7b89ce59b61a3",
+  "schema_family_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
   "schema_version": "0.4.1",
-  "semantic_pack_sha256": "bb2702d52e1497f82e3e961ce16ba762ccda4a603c74ae987d1ac8422c7e1737",
+  "semantic_pack_sha256": "aa1d26b73245a829995823bb2b0fad90204ca92b636d09b66648e9e39269fbbb",
   "single_version": true
 }
