@@ -20,6 +20,44 @@ class DeprecatedOvalConstructs(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'deprecated source capability'):
                     visitor.capability(element, 'test')
 
+    def test_owner_scoped_solaris_reinstatement_matches_expanded_element_namespace(self):
+        engine = load_runtime()
+        namespace = 'http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris'
+        for source_name, capability in (('package_test', 'solaris.package'),
+                                        ('package511_test', 'solaris.package.ips')):
+            with self.subTest(source_name=source_name):
+                mapping = {
+                    'capability': capability,
+                    'source': {'namespace': namespace, 'test': source_name},
+                }
+                element = ET.fromstring(
+                    f'<{source_name} xmlns="{namespace}" id="test-1"/>')
+                visitor = engine.AssessmentConverter(None, None, [mapping], native_recovery=True)
+
+                self.assertIs(visitor.capability(element, 'test'), mapping)
+                self.assertEqual(visitor.conversion_warnings, [{
+                    'code': 'oval_deprecated_source_reinstated_scope',
+                    'source_capability': source_name,
+                    'source_schema_status': 'deprecated_in_5.12.3',
+                    'reinstatement': 'OVAL 6 PR #226',
+                    'reinstatement_commit': 'bdb6d94090b056b1b9b4b736326c3ca6ae0e6aca',
+                    'scope': 'owner-directed Self-Assertion witness qualification only',
+                    'scanner_evaluated': False,
+                }])
+
+    def test_unlisted_deprecated_source_still_fails_closed(self):
+        engine = load_runtime()
+        namespace = 'http://oval.mitre.org/XMLSchema/oval-definitions-5#ios'
+        element = ET.fromstring(
+            f'<version_test xmlns="{namespace}" id="test-1"/>')
+        mapping = {
+            'capability': 'ios.version',
+            'source': {'namespace': namespace, 'test': 'version_test'},
+        }
+        visitor = engine.AssessmentConverter(None, None, [mapping], native_recovery=True)
+        with self.assertRaisesRegex(ValueError, 'deprecated source capability: version_test'):
+            visitor.capability(element, 'test')
+
     def test_deprecated_environment_variable_object_is_not_a_generic_gap(self):
         engine = load_runtime()
         namespace = 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent'
