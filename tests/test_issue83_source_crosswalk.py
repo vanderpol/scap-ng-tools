@@ -109,6 +109,27 @@ class Issue83SourceCrosswalkTests(unittest.TestCase):
                 "migration_crosswalk": {},
             })
 
+    def test_manual_rule_omits_empty_rule_applicability(self):
+        """Canonical Rule applicability is an expression, not an empty list."""
+        from v04_direct_scap_source import OCIL
+        from scap_ng_tools.converter.manual04 import manual_rule
+
+        rule = ET.fromstring(
+            f'<Rule xmlns="{crosswalk.XCCDF}" id="manual-applicability"><version>1</version>'
+            '<title>Manual applicability witness</title>'
+            f'<check system="{OCIL}" selector="manual">'
+            '<check-content>Review the source procedure.</check-content></check></Rule>')
+        source = type("Source", (), {
+            "nodes": {"benchmark": {"manual-applicability": rule}},
+            "benchmark_component": "benchmark",
+            "catalog": {}, "components": {},
+        })()
+        documents, _binding = manual_rule(
+            source, rule, title="Manual applicability witness", rule_id="manual-rule",
+            assessment_id="manual-assessment")
+        native = documents["authoring/direct-slice/rules/manual-rule.json"]["rule"]
+        self.assertNotIn("applicability", native)
+
     def test_manual_reference_projection_does_not_use_element_truthiness(self):
         """Element truthiness is deprecated in Python 3.12 and can drop refs."""
         import warnings

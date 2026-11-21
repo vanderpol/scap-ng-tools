@@ -96,7 +96,7 @@ def manual_rule(source, rule, *, title, rule_id, assessment_id):
     native_rule = {'id': rule_id, 'version': rule.findtext('{' + XCCDF + '}version', ''),
         'title': title, 'severity': rule.get('severity', 'unknown'), 'role': 'full',
         'weight': float(rule.get('weight', '1')), 'discussion': source_description_text(rule),
-        'requires': relationships['requires'], 'conflicts': relationships['conflicts'], 'applicability': [], 'parameters': {},
+        'requires': relationships['requires'], 'conflicts': relationships['conflicts'], 'parameters': {},
         'remediation': {}, 'organizational_input_requirements': {},
         'assessment_choices': {'manual': {'assessment': assessment_id}},
         'default_assessment_choice': 'manual'}
