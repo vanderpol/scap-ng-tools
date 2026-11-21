@@ -183,9 +183,12 @@ def audit(source_root: Path, conversion_receipt: Path) -> dict:
     possible_value_count = sum(len(variable["possible_values"])
                                for row in rows for variable in row["variables"])
     variables = [variable for row in rows for variable in row["variables"]]
+    source_commit = receipt.get("source_commit")
+    if not isinstance(source_commit, str) or len(source_commit) != 40:
+        raise ValueError("conversion receipt must carry the exact source commit")
     return {
         "format": "scap-ng-tools/issue83-external-variable-holds/2",
-        "source": {"root": "external pinned source", "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"},
+        "source": {"root": "external pinned source", "commit": source_commit},
         "converter_receipt_sha256": digest(conversion_receipt.read_bytes()),
         "summary": {
             "blocked_tests": len(rows),

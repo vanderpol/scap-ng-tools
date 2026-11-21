@@ -22,7 +22,10 @@ import xml.etree.ElementTree as ET
 from zipfile import ZipFile
 
 PREFIX = "SCAP_1.4/OVAL_Test_Content/"
-PIN = "e3538595c5083b9c34d937a81d319234df9bbfaa"
+HISTORICAL_PIN = "e3538595c5083b9c34d937a81d319234df9bbfaa"
+# Active corrected upstream source. Historical receipts remain explicitly
+# pinned to HISTORICAL_PIN and are never relabeled by this default.
+PIN = "53c18ea31a1976209572ec8b068e1a02be588456"
 MAX_XML = 8 * 1024 * 1024
 MAX_ARCHIVE = 64 * 1024 * 1024
 CHECK = {"all": "every", "at least one": "one_or_more",
@@ -110,7 +113,7 @@ def parse_oval(raw, path):
             "test_refs": refs,
             "features": dict(sorted(features.items()))}
 
-def verify_source_checkout(source_root):
+def verify_source_checkout(source_root, expected_commit=PIN):
     # Verify the exact upstream commit AND a clean Test Content subtree.
     # The converter's declaration of source_commit is not independent proof.
     checkout = source_root.resolve().parents[1]
@@ -121,7 +124,7 @@ def verify_source_checkout(source_root):
                                 check=False, timeout=15)
         if result.returncode:
             raise ValueError("cannot verify upstream source Git checkout")
-        if args[0] == "rev-parse" and result.stdout.strip() != PIN:
+        if args[0] == "rev-parse" and result.stdout.strip() != expected_commit:
             raise ValueError("upstream source checkout is not the approved commit")
         if args[0] == "status" and result.stdout.strip():
             raise ValueError("upstream source Test Content has local modifications")
@@ -231,7 +234,7 @@ def source_tree_summary(records):
              "duplicate_definitions": duplicate_definitions},
             definition_paths, conflicts)
 
-def read_pack(pack):
+def read_pack(pack, expected_commit=PIN):
     definitions_path = pack / "definitions.json"
     if not definitions_path.is_file():
         raise ValueError(f"converter package missing definitions.json: {pack}")
@@ -239,7 +242,7 @@ def read_pack(pack):
     manifest = json.loads((pack / "manifest.json").read_text(encoding="utf-8"))
     if not isinstance(rows, list):
         raise ValueError("definitions.json must be an array")
-    if manifest.get("source_commit") != PIN:
+    if manifest.get("source_commit") != expected_commit:
         raise ValueError("converter package uses a different original source commit")
     return rows, manifest
 
@@ -1157,8 +1160,8 @@ def source_invalid_disposition(source, definition_id, reason, trace):
 
 def audit(source_root, pack, *, require_full=False, expected_xml=144,
           expected_definitions=168, expected_tests=803,
-          verify_pin=False, schema_root=None):
-    pin_verified = verify_source_checkout(source_root) if verify_pin else False
+          verify_pin=False, schema_root=None, source_commit=PIN):
+    pin_verified = verify_source_checkout(source_root, source_commit) if verify_pin else False
     field_datatypes = load_field_datatypes(schema_root)
     records, archive_inventory = sources(source_root)
     original, definition_paths, problems = source_tree_summary(records)
@@ -1180,7 +1183,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         problems.append({"type": "original_test_count_mismatch",
                          "expected": expected_tests,
                          "observed": original["tests"]})
-    rows, manifest = read_pack(pack)
+    rows, manifest = read_pack(pack, source_commit)
     test_rows = read_test_ledger(pack)
     seen = set()
     statuses = Counter()
@@ -1237,7 +1240,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                     raise ValueError("missing or incorrect artifact SHA-256 for " + filename)
             native = json.loads(native_raw)["assessment"]
             trace = json.loads(trace_raw)
-            if trace.get("source_path") != path or trace.get("source_commit") != PIN:
+            if trace.get("source_path") != path or trace.get("source_commit") != source_commit:
                 raise ValueError("source path/commit mismatch in trace")
             if trace.get("source_sha256") != source["sha256"] or trace.get("definition_id") != ident:
                 raise ValueError("source digest/Definition mismatch in trace")
@@ -1514,6 +1517,8 @@ def main():
     parser.add_argument("--expected-xml", type=int, default=144)
     parser.add_argument("--expected-definitions", type=int, default=168)
     parser.add_argument("--expected-tests", type=int, default=803)
+    parser.add_argument("--source-commit", default=PIN,
+                        help="exact upstream Self-Assertion commit (default: corrected active pin)")
     parser.add_argument("--allow-unverified-fixture-source", action="store_true",
                         help="TEST FIXTURES ONLY: skip exact Git commit verification")
     parser.add_argument("--require-full", action="store_true",
@@ -1527,6 +1532,7 @@ def main():
                        expected_definitions=args.expected_definitions,
                        expected_tests=args.expected_tests,
                        verify_pin=not args.allow_unverified_fixture_source,
+                       source_commit=args.source_commit,
                        schema_root=args.schema_root)
     except (OSError, ValueError, KeyError, ET.ParseError) as exc:
         parser.exit(2, f"source parity audit error: {exc}\n")
