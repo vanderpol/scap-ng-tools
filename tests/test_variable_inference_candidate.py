@@ -137,7 +137,7 @@ class VariableInference(unittest.TestCase):
         from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
         snapshot = Pinned041SchemaSnapshot(root)
         self.assertEqual(snapshot.manifest()['schema_version'], '0.4.1')
-        self.assertEqual(snapshot.manifest()['supported_capability_count'], 100)
+        self.assertEqual(snapshot.manifest()['supported_capability_count'], 101)
         declaration = json.loads((snapshot.schema_root / 'variable-expression.schema.json').read_text())['$defs']['declaration']
         self.assertNotIn('datatype', declaration['properties'])
         self.assertEqual(direct04.load_pinned_snapshot(root).manifest()['schema_version'], '0.4.1')

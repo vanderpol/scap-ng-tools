@@ -40,7 +40,7 @@
     "ri_pin_sha256": "0adda1cb32be69b40dfa1e037307e77427366bd4fd9494df5c05c070139e8fcd"
   },
   "canonical_repository": "vanderpol/scap-ng",
-  "canonical_sha": "860d63e84d5aba12daa6d5037bdb83d78a95088a",
+  "canonical_sha": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
   "files": {
     "applicability.schema.json": {
       "bytes": 5288,
@@ -185,6 +185,10 @@
     "capability-mappings/supported/ios.snmpuser.json": {
       "bytes": 1546,
       "sha256": "9cf6b4c8bfed083d286dff09673a7820b2a9d02892de9468f583de8b1f952526"
+    },
+    "capability-mappings/supported/ios.version55.json": {
+      "bytes": 2216,
+      "sha256": "6a1d1bee3bfc53358e983288c36c2c157cd1097e5b9c41dbab5492acc458533d"
     },
     "capability-mappings/supported/iosxe.bgpneighbor.json": {
       "bytes": 1268,
@@ -496,7 +500,7 @@
     },
     "capability-scope.json": {
       "bytes": 1139,
-      "sha256": "2e139ca9bcf37c1dbb3478378810bf840f46cca4ff0aebd0b826e219d485f185"
+      "sha256": "7e1a076fe57c93e3bad8f51817aef2ad63f72f20bc678b4e51635150cb9a54f0"
     },
     "collected-item.schema.json": {
       "bytes": 10555,
@@ -624,8 +628,8 @@
     }
   },
   "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-  "schema_family_sha256": "33c0867870c04a411f769646a8f5c8c785134673d56a26b7a1cd3c8d213a7a91",
+  "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
   "schema_version": "0.4.1",
-  "semantic_pack_sha256": "90ac112624ab0701201bd3efd3eef603216e87eeb8c3f36a0db45f810408976d",
+  "semantic_pack_sha256": "0224d0024b7233644fff9a161e789cf130918c19757343d8ba1a650d33f23786",
   "single_version": true
 }

@@ -25,7 +25,7 @@ class Active041Pins(unittest.TestCase):
         self.assertEqual(pin['semantic_pack_sha256'], PACK_HASH)
         self.assertEqual(pin['schema_version'], '0.4.1')
         self.assertIs(pin['single_version'], True)
-        self.assertEqual(len(pin['files']), 145)
+        self.assertEqual(len(pin['files']), 146)
         self.assertEqual(pin['assessment_execution']['family_sha256'], ASSESSMENT_EXECUTION_FAMILY_SHA256)
         self.assertEqual(pin['assessment_execution']['closure_sha256'], ASSESSMENT_CLOSURE_SHA256)
         self.assertEqual(len(pin['assessment_execution']['files']), 8)

@@ -39,7 +39,7 @@ class SchemaSnapshotTests(unittest.TestCase):
         snapshot = Pinned041SchemaSnapshot(root)
         self.assertEqual(snapshot.manifest()['aggregate_sha256'], FLAT_SCHEMA_SHA256)
         self.assertEqual(snapshot.manifest()['schema_version'], '0.4.1')
-        self.assertEqual(len(snapshot.supported_mappings()), 100)
+        self.assertEqual(len(snapshot.supported_mappings()), 101)
         self.assertEqual(snapshot.supported_mapping('windows.registry')['capability'], 'windows.registry')
         with self.assertRaises(SnapshotError):
             snapshot.supported_mapping('../windows.registry')
