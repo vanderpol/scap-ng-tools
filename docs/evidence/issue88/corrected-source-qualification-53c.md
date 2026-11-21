@@ -1,7 +1,7 @@
 # Corrected Self-Assertion and 65-benchmark qualification
 
 - Source: `53c18ea31a1976209572ec8b068e1a02be588456` (old baseline `e3538595c5083b9c34d937a81d319234df9bbfaa`)
-- Tools converter: `d26acce`
+- Tools converter: `41f04ba`
 - Canonical: `44991ed3753944e47c42d76f157b29448b256a34` / `ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260`
 
 ## Standalone corrected source
@@ -9,8 +9,8 @@
 | Measure | Result |
 |---|---:|
 | direct XML files | 143 |
-| Definitions | 167 (117 converted / 50 blocked) |
-| Tests | 799 (678 converted / 121 blocked) |
+| Definitions | 167 (161 converted / 6 blocked) |
+| Tests | 799 (743 converted / 56 blocked) |
 | XSD | {'valid': 143} |
 | Schematron | {'clean_files': 142, 'failed-assert': 15, 'files_with_reports': 1} |
 

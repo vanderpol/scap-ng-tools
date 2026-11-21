@@ -12,8 +12,8 @@ class CorrectedSourceQualificationReceiptTests(unittest.TestCase):
         self.assertEqual(receipt["source"]["historical_baseline"], "e3538595c5083b9c34d937a81d319234df9bbfaa")
         standalone = receipt["standalone"]
         self.assertEqual((standalone["definitions"], standalone["tests"]), (167, 799))
-        self.assertEqual((standalone["converted_definitions"], standalone["blocked_definitions"]), (117, 50))
-        self.assertEqual((standalone["converted_tests"], standalone["blocked_tests"]), (678, 121))
+        self.assertEqual((standalone["converted_definitions"], standalone["blocked_definitions"]), (161, 6))
+        self.assertEqual((standalone["converted_tests"], standalone["blocked_tests"]), (743, 56))
         self.assertTrue(standalone["source_accounted"])
         self.assertFalse(standalone["structural_complete"])
         self.assertEqual(receipt["source_validation"]["xsd"]["valid"], 143)

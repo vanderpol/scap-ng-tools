@@ -106,10 +106,10 @@
       "xml_documents": 144
     },
     "pack": {
-      "converted_definitions": 117,
+      "converted_definitions": 161,
       "definitions_in_pack": 167,
-      "manifest_sha256": "48defe9539de4198cc93d9a41b51b95e52eb681cd9c694829987bf343cf9e76c",
-      "parity_checked_definitions": 109,
+      "manifest_sha256": "7f523a1ebaa96f5bb41074bc444bd1a9dcba47a9438ceb594dd231ae5ba79be8",
+      "parity_checked_definitions": 152,
       "reconciled_tests": 799,
       "schema_family_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
       "schema_field_datatypes_loaded": 0,
@@ -241,18 +241,18 @@
           ]
         }
       ],
-      "source_mapped_tests_checked": 623,
+      "source_mapped_tests_checked": 687,
       "source_tests_without_disposition": 0,
       "status_counts": {
-        "CONVERTED_UNVERIFIED": 117,
-        "blocked": 50
+        "CONVERTED_UNVERIFIED": 161,
+        "blocked": 6
       },
       "test_status_counts": {
-        "CONVERTED_UNVERIFIED": 678,
-        "blocked": 121
+        "CONVERTED_UNVERIFIED": 743,
+        "blocked": 56
       },
       "tests_in_ledger": 799,
-      "tests_ledger_sha256": "6cd60444cd298f46dda3ff01f59bdeb07a840b95f949e75d71317a25c8cc130e"
+      "tests_ledger_sha256": "f917359a585dce7d876fb3a36475b736033743e2e9fd5f64211ccfe8a529df4f"
     },
     "source_git_pin_verified": true
   },
@@ -402,6 +402,12 @@
       "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
       "reason": "native collected-field datatype is unresolved",
       "source": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.joval.test:def:20002",
+      "reason": "native collected-field datatype is unresolved",
+      "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
       "type": "converted_parity_failure"
     },
     {
