@@ -604,7 +604,14 @@ def load_field_datatypes(schema_root):
     """
     if schema_root is None:
         return {}
-    directory = Path(schema_root) / "capability-mappings" / "supported"
+    root = Path(schema_root)
+    # Pinned041SchemaSnapshot accepts either a canonical checkout root or its
+    # flat schema directory. Keep this independent parity aid on the same
+    # path contract; otherwise every collected-field Variable appears
+    # unresolved when callers pass a canonical checkout root.
+    if not (root / "capability-mappings").is_dir() and (root / "schema").is_dir():
+        root = root / "schema"
+    directory = root / "capability-mappings" / "supported"
     result = {}
     for path in sorted(directory.glob("*.json")):
         document = json.loads(path.read_text(encoding="utf-8"))

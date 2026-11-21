@@ -109,10 +109,10 @@
       "converted_definitions": 161,
       "definitions_in_pack": 167,
       "manifest_sha256": "7f523a1ebaa96f5bb41074bc444bd1a9dcba47a9438ceb594dd231ae5ba79be8",
-      "parity_checked_definitions": 152,
+      "parity_checked_definitions": 156,
       "reconciled_tests": 799,
       "schema_family_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
-      "schema_field_datatypes_loaded": 0,
+      "schema_field_datatypes_loaded": 665,
       "schema_field_datatypes_source": "canonical capability-mappings/supported",
       "source_commit": "53c18ea31a1976209572ec8b068e1a02be588456",
       "source_definitions_without_disposition": 0,
@@ -241,7 +241,7 @@
           ]
         }
       ],
-      "source_mapped_tests_checked": 687,
+      "source_mapped_tests_checked": 701,
       "source_tests_without_disposition": 0,
       "status_counts": {
         "CONVERTED_UNVERIFIED": 161,
@@ -393,33 +393,9 @@
       ]
     },
     {
-      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:967",
-      "reason": "native collected-field datatype is unresolved",
-      "source": "SCAP_1.4/OVAL_Test_Content/linux/linux-def_selinuxboolean_test.xml",
-      "type": "converted_parity_failure"
-    },
-    {
-      "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
-      "reason": "native collected-field datatype is unresolved",
-      "source": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
-      "type": "converted_parity_failure"
-    },
-    {
       "definition": "oval:org.joval.test:def:20002",
       "reason": "native collected-field datatype is unresolved",
       "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
-      "type": "converted_parity_failure"
-    },
-    {
-      "definition": "oval:org.mitre.oval.test:def:354",
-      "reason": "native collected-field datatype is unresolved",
-      "source": "SCAP_1.4/OVAL_Test_Content/solaris/ind-def_environmentvariable58_test_solaris.xml",
-      "type": "converted_parity_failure"
-    },
-    {
-      "definition": "oval:org.mitre.oval.test:def:360",
-      "reason": "native collected-field datatype is unresolved",
-      "source": "SCAP_1.4/OVAL_Test_Content/windows/ind-def_environmentvariable58_test_windows.xml",
       "type": "converted_parity_failure"
     },
     {

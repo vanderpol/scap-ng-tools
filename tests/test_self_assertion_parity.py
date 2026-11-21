@@ -11,7 +11,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from audit_self_assertion_parity import (PREFIX, PIN, audit, digest, slug, sources,
     parse_oval, reachable_source_tests, normalize_source_evaluate, normalize_native_evaluate,
-    audit_source_set_filter_retention, _native_variable_types, source_invalid_disposition)
+    audit_source_set_filter_retention, _native_variable_types, source_invalid_disposition, load_field_datatypes)
 from convert_self_assertion_corpus import definitions_and_tests
 
 SOURCE_ID = "oval:example:def:1"
@@ -126,6 +126,20 @@ class FullOriginalSourceParityTests(unittest.TestCase):
         self.assertEqual(variable["declared_datatype"], "string")
         self.assertEqual(variable["expression_result_datatype"], "integer")
         self.assertEqual(variable["referenced_source_node_ids"], ["oval:example:obj:1"])
+
+    def test_field_datatype_loader_accepts_canonical_checkout_root(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            supported = root / "schema" / "capability-mappings" / "supported"
+            supported.mkdir(parents=True)
+            (supported / "fixture.capability.json").write_text(json.dumps({
+                "capability": "fixture.capability",
+                "native": {"field_datatypes": {"value": ["string"]}},
+            }))
+            self.assertEqual(
+                load_field_datatypes(root),
+                {("fixture.capability", "value"): ("string",)},
+            )
 
     def test_collected_field_type_comes_from_canonical_mapping(self):
         native = {
