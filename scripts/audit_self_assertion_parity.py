@@ -25,7 +25,7 @@ PREFIX = "SCAP_1.4/OVAL_Test_Content/"
 HISTORICAL_PIN = "e3538595c5083b9c34d937a81d319234df9bbfaa"
 # Active corrected upstream source. Historical receipts remain explicitly
 # pinned to HISTORICAL_PIN and are never relabeled by this default.
-PIN = "678caaef655fc2dc52fbc16db8da0db4c3923afc"
+PIN = "7d3e3ac2248ad667737bf49e6cf9d3e8a9790969"
 MAX_XML = 8 * 1024 * 1024
 MAX_ARCHIVE = 64 * 1024 * 1024
 CHECK = {"all": "every", "at least one": "one_or_more",
