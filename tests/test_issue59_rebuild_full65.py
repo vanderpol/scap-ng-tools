@@ -61,6 +61,12 @@ class Rebuild(unittest.TestCase):
         self.assertEqual(result["candidate"], {"converted": 6479, "blocked": 108, "manual_only": 1403})
         self.assertEqual(len(result["blocked_rule_ids"]), 108)
         self.assertEqual(result["blocker_category_counts"], {"semantic": 108})
+        self.assertEqual(result["benchmark_dispositions"]["active-benchmark.zip"], {
+            "category": "active", "source_rules": 7990,
+            "statuses": {"blocked": 108, "converted": 6479, "manual_only": 1403},
+        })
+        self.assertEqual(result["benchmark_dispositions"]["sql-benchmark.zip"]["category"],
+                         "owner_excluded_sql")
 
     def test_active_regression_is_hold_even_if_other_rules_recover(self):
         old, new, categories = fixtures()

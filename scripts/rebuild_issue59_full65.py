@@ -163,8 +163,23 @@ def compare_rule_ids(old_rows, new_rows, categories):
     if sum(new_counts.values()) != 7990:
         raise ValueError("new 59-benchmark active Rule IDs incomplete")
     regressions = [r for r in transitions if r["from"] == "converted" and r["to"] != "converted"]
+    benchmark_dispositions = {}
+    by_benchmark = defaultdict(Counter)
+    for row in new_rows:
+        benchmark = row["benchmark"]
+        if benchmark not in categories:
+            raise ValueError("Rule belongs to an unclassified benchmark: " + benchmark)
+        by_benchmark[benchmark][row["status"]] += 1
+    for benchmark in sorted(categories):
+        counts = by_benchmark[benchmark]
+        benchmark_dispositions[benchmark] = {
+            "category": categories[benchmark],
+            "source_rules": sum(counts.values()),
+            "statuses": dict(sorted(counts.items())),
+        }
     return {"original": dict(sorted(old_counts.items())),
             "candidate": dict(sorted(new_counts.items())),
+            "benchmark_dispositions": benchmark_dispositions,
             "transitions": transitions,
             "blocked_rule_ids": blocked_cases,
             "blocker_category_counts": dict(sorted(Counter(row["category"] for row in blocked_cases).items())),
