@@ -128,9 +128,10 @@ def _summaries(rows: list[dict[str, Any]], key: str) -> tuple[dict[str, Any], li
 
 
 def build_receipt(package: Path, *, source_root: Path | None,
-                  converter_commit: str, expected: dict[str, int] | None = None) -> dict[str, Any]:
+                  converter_commit: str, expected: dict[str, int] | None = None,
+                  source_commit: str = PIN) -> dict[str, Any]:
     manifest = json.loads((package / "manifest.json").read_text(encoding="utf-8"))
-    if manifest.get("source_commit") != PIN:
+    if manifest.get("source_commit") != source_commit:
         raise ValueError("package source pin differs from approved Self-Assertion pin")
     definitions = json.loads((package / "definitions.json").read_text(encoding="utf-8"))
     if not isinstance(definitions, list):
@@ -181,7 +182,7 @@ def build_receipt(package: Path, *, source_root: Path | None,
                 raise ValueError(f"expected {key}={value}, observed {summary.get(key)}")
     return {
         "format": "scap-ng-tools/issue83/platform-receipt/1",
-        "source": {"repository": manifest.get("source_repository"), "commit": PIN,
+        "source": {"repository": manifest.get("source_repository"), "commit": source_commit,
                    "root": "SCAP_1.4/OVAL_Test_Content", "identity": "source path + source ID + exact source XML SHA-256"},
         "converter": {"repository": "vanderpol/scap-ng-tools", "commit": converter_commit,
                       "entrypoint": manifest.get("converter"), "execution": "production package only"},
@@ -216,12 +217,20 @@ def main() -> None:
     parser.add_argument("--package", type=Path, required=True)
     parser.add_argument("--source-root", type=Path)
     parser.add_argument("--converter-commit", required=True)
+    parser.add_argument("--source-commit", default=PIN)
+    parser.add_argument("--expected-definitions", type=int)
+    parser.add_argument("--expected-tests", type=int)
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-md", type=Path)
     args = parser.parse_args()
-    expected = {"definitions": 168, "tests": 803} if args.source_root else None
+    expected = None
+    if args.expected_definitions is not None or args.expected_tests is not None:
+        if args.expected_definitions is None or args.expected_tests is None:
+            parser.error("--expected-definitions and --expected-tests must be supplied together")
+        expected = {"definitions": args.expected_definitions, "tests": args.expected_tests}
     receipt = build_receipt(args.package, source_root=args.source_root,
-                            converter_commit=args.converter_commit, expected=expected)
+                            converter_commit=args.converter_commit, expected=expected,
+                            source_commit=args.source_commit)
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
     args.output_json.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if args.output_md:
