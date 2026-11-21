@@ -78,7 +78,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
         for name, expected in SEMANTIC_PORT.items():
             self.assertEqual(sha256((directory / name).read_bytes()).hexdigest(), expected)
         pack = contracts()
-        self.assertEqual(len(pack['capabilities']), 53)
+        self.assertEqual(len(pack['capabilities']), 98)
         self.assertEqual(len(pack['behavior_attributes']), 8)
         self.assertEqual(pack['format'], 'scap-ng-portable-0.4.1-semantic-pack/1')
         self.assertEqual(pack['schema_version'], '0.4.1')
