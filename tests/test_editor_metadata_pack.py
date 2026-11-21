@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from build_v04_editor_metadata_pack import build  # noqa: E402
 
 
-SCHEMA_COMMIT = '5ee55288b369da26f308f40813e545b78dff2753'
+SCHEMA_COMMIT = '5387298eee591b6e24e6527d97478c7689381d05'
 EXPECTED_MANIFEST = '9560fcfe81efdc75560a4714d72b1974f9b2253d4b19bb48990a1776aafd2807'
 
 
