@@ -1,0 +1,240 @@
+{
+  "format": "scap-ng-tools/qualification-receipt/1",
+  "purpose": "post-canonical-Windows-traversal-qualification",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "7d3e3ac2248ad667737bf49e6cf9d3e8a9790969",
+    "xml": 143,
+    "definitions": 167,
+    "tests": 799
+  },
+  "canonical": {
+    "repository": "vanderpol/scap-ng",
+    "commit": "860d63e84d5aba12daa6d5037bdb83d78a95088a",
+    "flat_schema_sha256": "33c0867870c04a411f769646a8f5c8c785134673d56a26b7a1cd3c8d213a7a91",
+    "assessment_closure_sha256": "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b"
+  },
+  "tools_commit": "abeaf6e",
+  "conversion": {
+    "definitions": 167,
+    "converted_definitions": 164,
+    "blocked_definitions": 3,
+    "tests": 799,
+    "converted_tests": 771,
+    "blocked_tests": 28,
+    "test_ledger_reconciled": true,
+    "execution": "not_run",
+    "independent_equivalence": "not_proved",
+    "manifest_sha256": "881b9fc2561d354a11513e6f3d442541f11a6232bd172e6e606673e68913a98c",
+    "tests_ledger_sha256": "3e1d56bceaf8479ec85668181bf221d40ab74df998f479f0a419eecae34158c4",
+    "parity_sha256": "a91236763759f2da4f068a1d148085ff367c979ffa81e08b2e72cd278ee800ad"
+  },
+  "self_assertion_before_after": {
+    "before": {
+      "definitions_converted": 162,
+      "definitions_blocked": 5,
+      "tests_converted": 746,
+      "tests_blocked": 53
+    },
+    "after": {
+      "definitions_converted": 164,
+      "definitions_blocked": 3,
+      "tests_converted": 771,
+      "tests_blocked": 28
+    },
+    "recovered_definitions": [
+      "oval:navy.navwar.niwcatlantic.scc:def:38",
+      "oval:org.mitre.oval.test:def:729"
+    ]
+  },
+  "parity_holds": [
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc:def:38",
+      "reason": "unqualified original Variable expression: merge",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:580",
+      "reason": "unqualified original Variable expression: time_difference",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.joval.test:def:20002",
+      "reason": "native collected-field datatype is unresolved",
+      "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+      "type": "converted_parity_failure"
+    }
+  ],
+  "benchmarks": {
+    "source_repository": "NIWC-SCAP-Content",
+    "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+    "benchmarks": 65,
+    "before": {
+      "converted": 6479,
+      "blocked": 108,
+      "manual_only": 1403
+    },
+    "after": {
+      "blocked": 95,
+      "converted": 6492,
+      "manual_only": 1403
+    },
+    "newly_converted": 13,
+    "newly_blocked": 0,
+    "nonregression_pass": true,
+    "receipt_sha256": "0f8b1099500787a5a6641aca4f689597ffe9b29e155aaced01c93d7dd3f15669",
+    "transitions": [
+      {
+        "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
+        "source_rule_sha256": "d02f764847b1321a23973b688d12f2f2328bb883f56faa32017a0c266b4475b2",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
+        "source_rule_sha256": "cbbcf23a161a09c442266482d4701ec2d0fa5f1777ba8248400a5e9c97d283b4",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
+        "source_rule_sha256": "06eafbe544cc95e8cf018667254444fa4f24075fc44e8a3a2dfe7af791372c06",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
+        "source_rule_sha256": "58aebb5a89d703554295af45bdfb3a00f57216103e840f0bd3430fcbdfcd8772",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
+        "source_rule_sha256": "eb034ce6133aa342b8fd1c073d9dad750d346acb01dfc638a7b1d999eef23b57",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.fso_rule_SV-225223r961038_rule",
+        "source_rule_sha256": "2f1f3720206d9ee0a17f8ee6047aa1f70ec81d57ce486feacaeb3b0ceccae116",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule",
+        "source_rule_sha256": "8d8ae904d338c70248fe0618d8417fe51d5cb1182f92f85d4eeab391b34255f7",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule",
+        "source_rule_sha256": "2de069602ea229d7c2121c48361bf62442b563d689066e3e25e6e595c8308904",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214492r879887_rule",
+        "source_rule_sha256": "91be9127f66a7f5005a030a98c35cdfb278b1a669310eb57b8c1bda315d7c217",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
+        "source_rule_sha256": "badfe54a1936f44224132fa1a32aa52ebcae19ee0ed30ef1c96501efd45abec3",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
+        "source_rule_sha256": "cf79e9db4c8647f7525137f3ee94d4321410be92e4d76c4287ba2d8e7bc74da5",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-214799r991589_rule",
+        "source_rule_sha256": "379ace04940ef70dd564037f5c33d57ea1c41966888f4149a1d1e16cd30b1890",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
+        "source_rule_sha256": "a1e9f0ec19624231143a7cdded89663e4ef8c7af20313a0d1f021ed03279931f",
+        "to": "converted"
+      }
+    ]
+  },
+  "commands": {
+    "self_assertion_conversion": "PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus /tmp/oval-self-assertion-7d-worktree --schema-root /tmp/codex-scap-ng-main --source-commit 7d3e3ac2248ad667737bf49e6cf9d3e8a9790969 --output <external-output>",
+    "self_assertion_parity": "PYTHONPATH=src .venv/bin/python scripts/audit_self_assertion_parity.py --source-root /tmp/oval-self-assertion-7d-worktree/SCAP_1.4/OVAL_Test_Content --pack <external-output> --schema-root /tmp/codex-scap-ng-main --expected-xml 143 --expected-definitions 167 --expected-tests 799 --source-commit 7d3e3ac2248ad667737bf49e6cf9d3e8a9790969",
+    "benchmark": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/rebuild_issue59_full65.py --schema-root <canonical>/schema --source-root <source-root> --source-archive <archive> --source-archive-sha256 8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --canonical-schema-commit 860d63e84d5aba12daa6d5037bdb83d78a95088a --schema-aggregate-sha256 33c0867870c04a411f769646a8f5c8c785134673d56a26b7a1cd3c8d213a7a91 --output <external-output> --enforce-nonregression"
+  }
+}
