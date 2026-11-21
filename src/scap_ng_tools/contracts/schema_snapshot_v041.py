@@ -34,15 +34,15 @@ def load_json(path):
     return json.loads(path.read_bytes(), object_pairs_hook=unique,
                       parse_constant=nonfinite)
 
-CANONICAL_COMMIT = "5ee55288b369da26f308f40813e545b78dff2753"
+CANONICAL_COMMIT = "5387298eee591b6e24e6527d97478c7689381d05"
 VERSION = "0.4.1"
 PREFIX = "https://scap-ng.dev/schema/v0.4.1/"
-FLAT_SCHEMA_SHA256 = "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f"
+FLAT_SCHEMA_SHA256 = "a3ba4c65246fe507e4b66b862662eeed854a6aa3dfd94f7b0bb7b89ce59b61a3"
 # RI's execution identity covers its frozen Assessment validator closure.
 # It is distinct from the production flat-family identity above. The current
 # canonical closure must match before this execution identity may be emitted.
 ASSESSMENT_EXECUTION_FAMILY_SHA256 = "326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329"
-ASSESSMENT_CLOSURE_SHA256 = "d6e3e6fde5dbacce39eef8a75285be053c85d52806517cda05eec132fc060bfd"
+ASSESSMENT_CLOSURE_SHA256 = "a7c0ebe89d11358bfbe1d3bc268f7bbe77b9c03138199c3f81c1a17d61061f62"
 RESOURCE_COUNT = 145
 ROOT_SCHEMA_COUNT = 35
 SUPPORTED_COUNT = 100
