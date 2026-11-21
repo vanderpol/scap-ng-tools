@@ -1,0 +1,89 @@
+{
+  "format": "scap-ng-tools/issue88-self-assertion-requalification/1",
+  "scope": "structural conversion only; execution and independent OVAL equivalence are not proved",
+  "pins": {
+    "source_commit": "53c18ea31a1976209572ec8b068e1a02be588456",
+    "canonical_commit": "44991ed3753944e47c42d76f157b29448b256a34",
+    "canonical_flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
+    "assessment_closure_sha256": "1ff810407901fa3687b7820f41a1042f1105288ccbdbe25beefb764620083caf",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "tools_commit": "12bd16806a787a7890f7d3996d793ba1f48e2697",
+    "merged_tools_commit": "3e58c74c9f0635e7b4846eb4f51507675fdc5841",
+    "semantic_pack_sha256": "63a64f3227f96ad6115fefaaf21371ed91ce73e334452794364e0b8479c2332b"
+  },
+  "source": {
+    "xml_files": 143,
+    "definitions": 167,
+    "tests": 799,
+    "xsd_valid_files": 143,
+    "schematron_clean_files": 142,
+    "schematron_report_count": 15,
+    "schematron_hold": "solaris/sol-def_package511_test.xml inconsistent datatype between variable and associated var_ref"
+  },
+  "before": {
+    "converted_definitions": 161,
+    "blocked_definitions": 6,
+    "converted_tests": 743,
+    "blocked_tests": 56
+  },
+  "after": {
+    "converted_definitions": 162,
+    "blocked_definitions": 5,
+    "converted_tests": 746,
+    "blocked_tests": 53,
+    "execution": "not_run"
+  },
+  "recovered": {
+    "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+    "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+    "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+    "test_ids": [
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+    ],
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "remaining_blocked_definitions": [
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:562",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+      "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+      "classification": "canonical_input_constraint_hold",
+      "reason": "unbound external Variable or unsupported possible_restriction"
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+      "source_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+      "classification": "canonical_capability_gap",
+      "reason": "ios version55_test has no canonical 0.4.1 capability mapping"
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+      "classification": "source_invalid_var_ref_datatype",
+      "reason": "15 Schematron reports; Variable cast outside bounded proof"
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+      "classification": "canonical_traversal_schema_hold",
+      "reason": "canonical schema 44991ed does not admit traversal in the NTUSER Object schema"
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:729",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+      "classification": "canonical_traversal_schema_hold",
+      "reason": "canonical schema 44991ed does not admit traversal in the effective-rights Object schema"
+    }
+  ],
+  "evidence": {
+    "external_run_directory": "/tmp/tools-self-assertion-post-pr92-20261121094307",
+    "manifest_sha256": "ae7524f8f2d60b67190e708cb2a1eaf291ffe1c75f0654c4d595316bff20c300",
+    "reproducible_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <source-checkout> --schema-root <canonical-schema> --source-commit 53c18ea31a1976209572ec8b068e1a02be588456 --output <external-output>"
+  }
+}
