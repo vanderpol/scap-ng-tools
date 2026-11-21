@@ -18,18 +18,25 @@ def _required(condition, diagnostic):
 
 
 def _source_text_projection(operand):
-    """Make an inherited source lexical conversion visible in native authoring.
-
-    The one-element empty prefix maps each collected scalar to a string without
-    dropping duplicates, reordering values, or changing population cardinality.
-    Only collected-field projections receive this adapter; a typed literal,
-    Variable reference, or already explicit expression is never rewritten.
-    Native evaluation must still reject non-scalar evidence and propagate
-    missing/error/incomplete collection statuses.
-    """
+    """Project a collected Item population to text for unary source functions."""
     if isinstance(operand, dict) and "values" in operand:
         return {"concat": [{"literal": ""}, operand]}
     return operand
+
+
+def _source_unique_text_projection(operand):
+    """Make OVAL ``unique``'s lexical conversion explicit for every operand.
+
+    Unlike the unary string functions, OVAL unique converts typed literals and
+    Variable references as well as collected values. The empty prefix is
+    one-to-one and preserves population, multiplicity and order.
+    """
+    if isinstance(operand, dict) and "concat" in operand:
+        # The source visitor may already have emitted this exact adapter for
+        # a nested unique. Avoid stacking identity projections while lowering
+        # an enclosing canonical function envelope.
+        return operand
+    return {"concat": [{"literal": ""}, operand]}
 
 
 def lower_expression(node):
@@ -75,10 +82,10 @@ def lower_expression(node):
             _required(len(children) >= 1 and not options, "unique source arity/options invalid")
             # The source OVAL unique function returns lexical strings, while
             # native unique intentionally preserves the datatype of its input.
-            # Expose the source conversion for direct collected-field operands
-            # rather than silently guessing a type for a 12-domain Item field.
-            # Non-text literals and referenced Variables remain fail-closed.
-            source_children = [_source_text_projection(child) for child in children]
+            # Expose OVAL's lexical conversion for every source operand rather
+            # than silently preserving a native numeric or Variable domain.
+            # Record operands remain fail-closed in native concat typing.
+            source_children = [_source_unique_text_projection(child) for child in children]
             return {"unique": source_children if len(source_children) > 1 else source_children[0]}
         if name == "concat":
             _required(len(children) >= 2 and not options, "concat source arity/options invalid")

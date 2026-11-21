@@ -1,0 +1,82 @@
+{
+  "blocked": {
+    "definitions": [
+      "oval:org.mitre.oval.test:def:562"
+    ],
+    "diagnostic": "unbound external Variable or unsupported possible_restriction",
+    "failure_class": "canonical_input_constraint_hold",
+    "tests": [
+      "oval:org.mitre.oval.test:tst:126",
+      "oval:org.mitre.oval.test:tst:132",
+      "oval:org.mitre.oval.test:tst:154",
+      "oval:org.mitre.oval.test:tst:170",
+      "oval:org.mitre.oval.test:tst:275",
+      "oval:org.mitre.oval.test:tst:34",
+      "oval:org.mitre.oval.test:tst:350",
+      "oval:org.mitre.oval.test:tst:38",
+      "oval:org.mitre.oval.test:tst:439",
+      "oval:org.mitre.oval.test:tst:487",
+      "oval:org.mitre.oval.test:tst:509",
+      "oval:org.mitre.oval.test:tst:608",
+      "oval:org.mitre.oval.test:tst:64",
+      "oval:org.mitre.oval.test:tst:71",
+      "oval:org.mitre.oval.test:tst:851",
+      "oval:org.mitre.oval.test:tst:936",
+      "oval:org.mitre.oval.test:tst:943",
+      "oval:org.mitre.oval.test:tst:983"
+    ]
+  },
+  "canonical": {
+    "aggregate_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "assessment_closure_sha256": "d6e3e6fde5dbacce39eef8a75285be053c85d52806517cda05eec132fc060bfd",
+    "assessment_execution_family_sha256": "326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329",
+    "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "external_snapshot_required": true,
+    "flat_json_aggregate_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "logical_id_prefix": "https://scap-ng.dev/schema/v0.4.1/",
+    "root_schema_count": 35,
+    "schema_root": "/tmp/scap-ng-schema-5ee-1795112108",
+    "schema_version": "0.4.1",
+    "single_version": true,
+    "supported_capability_count": 100
+  },
+  "converter": {
+    "commit": "5eca912fb76fef1a999a6a9f8734fda47e511a77",
+    "entrypoint": "scap_ng_tools.converter.direct04",
+    "policy": "production CLI only; no manual native rewrites or expected outcomes"
+  },
+  "external_evidence": {
+    "blocked_sha256": "a104e4c100c669c68db7510930656ca5e4bae3309d3c1e5e38c451562c2010ab",
+    "definitions_sha256": "d8d93060200478ebac18137f42d765d5dbba5a4b77f71611288e4c3e7a0b0aa8",
+    "manifest_sha256": "f3d7599cffb437f9c8873501de4c627a54f564974d36ef22b2042b335101da22",
+    "raw_artifacts_retained_external": true,
+    "root": "/tmp/issue83-converter-agnostic-run.w373J7/results",
+    "tests_ledger_sha256": "7d70f4b8d4a572e22068f63e12af378226dd7a6243138aa6912c2471dcf49c62"
+  },
+  "format": "scap-ng-tools/issue83/current-converter-ledger/1",
+  "qualification": {
+    "independent_oval_equivalence": "not_proved",
+    "runtime_execution": "not_run",
+    "schema_validated_authoring": true
+  },
+  "source": {
+    "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "root": "SCAP_1.4/OVAL_Test_Content/agnostic",
+    "source_xml_sha256s": "preserved in external tests.jsonl/manifest",
+    "xml_and_archive_tests": 328
+  },
+  "summary": {
+    "blocked_definitions": 1,
+    "blocked_tests": 18,
+    "converted_definitions": 46,
+    "converted_tests": 310,
+    "definitions": 47,
+    "excluded_definitions": 0,
+    "excluded_tests": 0,
+    "execution": "not_run",
+    "schema_valid_yaml_documents": 46,
+    "test_ledger_reconciled": 328,
+    "tests": 328
+  }
+}

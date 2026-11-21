@@ -1,5 +1,7 @@
 """Synthetic original-source identity and scope tests for the 65-ZIP rebuild driver."""
 import copy
+import hashlib
+import tempfile
 import importlib.util
 from pathlib import Path
 import unittest
@@ -26,6 +28,30 @@ def fixtures():
     return old, new, categories
 
 
+class SourceIdentity(unittest.TestCase):
+    def test_archive_identity_replaces_git_checkout_without_dropping_commit_pin(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "extracted"
+            root.mkdir()
+            archive = Path(directory) / "source.tar.gz"
+            archive.write_bytes(b"pinned archive bytes")
+            expected = hashlib.sha256(archive.read_bytes()).hexdigest()
+            identity = m.verify_source_identity(
+                root, "source-commit", archive, expected)
+        self.assertEqual(identity, {
+            "source_commit": "source-commit",
+            "source_archive_sha256": expected,
+        })
+
+    def test_archive_identity_requires_exact_sha(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "extracted"
+            root.mkdir()
+            archive = Path(directory) / "source.tar.gz"
+            archive.write_bytes(b"pinned archive bytes")
+            with self.assertRaisesRegex(ValueError, "archive SHA-256 mismatch"):
+                m.verify_source_identity(root, "source-commit", archive, "0" * 64)
+
 class Rebuild(unittest.TestCase):
     def test_same_source_active_denominator_and_excluded_sql(self):
         old, new, categories = fixtures()
@@ -35,6 +61,12 @@ class Rebuild(unittest.TestCase):
         self.assertEqual(result["candidate"], {"converted": 6479, "blocked": 108, "manual_only": 1403})
         self.assertEqual(len(result["blocked_rule_ids"]), 108)
         self.assertEqual(result["blocker_category_counts"], {"semantic": 108})
+        self.assertEqual(result["benchmark_dispositions"]["active-benchmark.zip"], {
+            "category": "active", "source_rules": 7990,
+            "statuses": {"blocked": 108, "converted": 6479, "manual_only": 1403},
+        })
+        self.assertEqual(result["benchmark_dispositions"]["sql-benchmark.zip"]["category"],
+                         "owner_excluded_sql")
 
     def test_active_regression_is_hold_even_if_other_rules_recover(self):
         old, new, categories = fixtures()

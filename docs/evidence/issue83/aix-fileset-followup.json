@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "aix.fileset mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:org.mitre.oval.test:def:241",
+  "format": "scap-ng-tools/issue83-aix-fileset-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/aix-fileset-followup-1795114200",
+    "files": {
+      "assessment.json": {
+        "bytes": 1252,
+        "sha256": "852d20e5a08d31d793112879e82d020af7565675508fa906b1c7090a2fadeb36"
+      },
+      "assessment.yaml": {
+        "bytes": 913,
+        "sha256": "71926306674b542942899935a52d2a0c40f536836a6677df49805d0738570c85"
+      },
+      "conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "c432d880dc50f01b55a9621e747d493c3f328df5e64bcf1c0b3c62034254ab8f"
+      },
+      "source-trace.json": {
+        "bytes": 2861,
+        "sha256": "a1417d886738eefc7e4008431a1e52d01553793a9ec77c042d6af045e49451f3"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "7f130ea0d47770332bc80c9af3aa208aacaf9d44",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "8b517e5793575d6399c5487abe650c75deeb735942be1cfe6265303ff112fe69",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "aix/aix-def_fileset_test.xml",
+  "source_sha256": "7efa6222d526a5c82392f53e7a46af4e7c7ada22031ace80ce65ce1d584c3d48",
+  "tests": 1
+}

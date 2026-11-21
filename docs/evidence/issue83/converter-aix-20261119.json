@@ -1,0 +1,187 @@
+{
+  "canonical_schema": {
+    "aggregate_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "repository": "vanderpol/scap-ng",
+    "version": "0.4.1"
+  },
+  "converter": {
+    "commit": "c613280",
+    "entrypoint": "scap_ng_tools.converter.direct04",
+    "policy": "production CLI only; all platform families are authoring targets; no manual native rewrites or expected outcomes",
+    "repository": "vanderpol/scap-ng-tools"
+  },
+  "disposition": {
+    "current_status": "CONVERTED_UNVERIFIED",
+    "previous_reason": "stale issue-56 AIX policy in the replay harness",
+    "previous_status": "intentionally_excluded",
+    "reason": "owner scope now includes all OVAL platform families and canonical AIX mappings are present",
+    "runtime_hold": "No AIX runtime or independent OVAL equivalence was run"
+  },
+  "external_evidence": {
+    "artifact_manifest_sha256": "1c670ae71d1b0ad5e6cd227de6994439eea43dab2e4d6f5fc2ce2c10e9723bf8",
+    "artifacts": {
+      "NOTICES.txt": {
+        "bytes": 108,
+        "sha256": "b9c4d10a6c789f48ebd6b1f1fa42067465b0e309e35f66007d170e1060439501"
+      },
+      "README.md": {
+        "bytes": 630,
+        "sha256": "3c066111f0819c8a67acd0e5c55fa06fde8194d0a9171a162278f2dc43aa3b5b"
+      },
+      "blocked-definitions.json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "blocked-tests.jsonl": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "blocked.json": {
+        "bytes": 39,
+        "sha256": "f94fc4f7785130100321c9a388553c1b0b0bab1c4863054196207d9572853634"
+      },
+      "definitions.json": {
+        "bytes": 3853,
+        "sha256": "4f79d118211989385cb35e6514b719a17557462096acbb3d26523c137c702722"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fileset_test.xml/oval_org.mitre.oval.test_def_241/assessment.json": {
+        "bytes": 1252,
+        "sha256": "852d20e5a08d31d793112879e82d020af7565675508fa906b1c7090a2fadeb36"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fileset_test.xml/oval_org.mitre.oval.test_def_241/assessment.yaml": {
+        "bytes": 913,
+        "sha256": "71926306674b542942899935a52d2a0c40f536836a6677df49805d0738570c85"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fileset_test.xml/oval_org.mitre.oval.test_def_241/conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "c432d880dc50f01b55a9621e747d493c3f328df5e64bcf1c0b3c62034254ab8f"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fileset_test.xml/oval_org.mitre.oval.test_def_241/source-trace.json": {
+        "bytes": 2863,
+        "sha256": "8d219d468a9efd378d1b11ce171456313bd2fb8377b21de0c362fb4d61df75d2"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fix_test.xml/oval_org.mitre.oval.test_def_241/assessment.json": {
+        "bytes": 1495,
+        "sha256": "e565d29046dd276e367deb5004b5f9ceb98a1c3dbfd9cb5980c625b9af3af65c"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fix_test.xml/oval_org.mitre.oval.test_def_241/assessment.yaml": {
+        "bytes": 995,
+        "sha256": "7dbc3224b94761a8a323b3bc6b98cd7cbbb8d72a399a72cf606de95ace477477"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fix_test.xml/oval_org.mitre.oval.test_def_241/conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "86c89688844e2749312146908bfd09b115465b43bfb8c0498643e26c416baeee"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fix_test.xml/oval_org.mitre.oval.test_def_241/source-trace.json": {
+        "bytes": 3185,
+        "sha256": "a8e1ea5cfc078009ec0fdf4481ac7d805b24bae70f6a7eda24f8bfc63607f305"
+      },
+      "feature-inventory.json": {
+        "bytes": 190,
+        "sha256": "09a695e5ac431e6a79a27fa7e635d7338804b2605a265e99b9685152e9b29a11"
+      },
+      "manifest.json": {
+        "bytes": 5325,
+        "sha256": "1c670ae71d1b0ad5e6cd227de6994439eea43dab2e4d6f5fc2ce2c10e9723bf8"
+      },
+      "source-mappings.json": {
+        "bytes": 1091,
+        "sha256": "42f56f77a2141678ccaa604e6cc6dd3af82fc51acf530efc5dda5ad1869d651b"
+      },
+      "tests.jsonl": {
+        "bytes": 1788,
+        "sha256": "d819a674860c6a90b6f20923aa63d03c5b0da5a6bc05d55033b4a5c2e801ecf1"
+      },
+      "validation.json": {
+        "bytes": 718,
+        "sha256": "509c916155809fb87cdfd0c37733cd65fd411fb483c41bb41af55efa5d00e5d1"
+      }
+    },
+    "raw_artifacts_retained_external": true,
+    "raw_root": "/tmp/issue83-converter-aix-20261119-parent.cQ2ynu/results"
+  },
+  "format": "scap-ng-tools/issue83/aix-converter-replay/1",
+  "generated_at_utc": "2026-11-19",
+  "qualification": {
+    "authoring": "schema_validated",
+    "expected_outcomes_derived": false,
+    "independent_oval_equivalence": "not_proved",
+    "runtime_execution": "not_run"
+  },
+  "source": {
+    "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "definitions": [
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:241",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fileset_test.xml",
+        "source_sha256": "7efa6222d526a5c82392f53e7a46af4e7c7ada22031ace80ce65ce1d584c3d48",
+        "source_test_ids": [
+          "oval:org.mitre.oval.test:tst:1909"
+        ]
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:241",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fix_test.xml",
+        "source_sha256": "25b8852f13ec7b89deefefe2210da55cc941a910c48fe66d3ef61c449dc59c55",
+        "source_test_ids": [
+          "oval:org.mitre.oval.test:tst:1910"
+        ]
+      }
+    ],
+    "identity_basis": "(source_path, source ID, exact source XML SHA-256)",
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "root": "SCAP_1.4/OVAL_Test_Content/aix",
+    "tests": [
+      {
+        "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fileset_test.xml",
+        "source_sha256": "7efa6222d526a5c82392f53e7a46af4e7c7ada22031ace80ce65ce1d584c3d48",
+        "test_id": "oval:org.mitre.oval.test:tst:1909"
+      },
+      {
+        "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fix_test.xml",
+        "source_sha256": "25b8852f13ec7b89deefefe2210da55cc941a910c48fe66d3ef61c449dc59c55",
+        "test_id": "oval:org.mitre.oval.test:tst:1910"
+      }
+    ]
+  },
+  "source_mappings": [
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:241",
+      "native_test_ids": [
+        "test-that-fileset-object-is-set-architecture-for-machine-test"
+      ],
+      "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fileset_test.xml",
+      "source_sha256": "7efa6222d526a5c82392f53e7a46af4e7c7ada22031ace80ce65ce1d584c3d48",
+      "source_test_ids": [
+        "oval:org.mitre.oval.test:tst:1909"
+      ],
+      "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fileset_test.xml/oval_org.mitre.oval.test_def_241/source-trace.json"
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:241",
+      "native_test_ids": [
+        "test-that-fix-object-is-set-architecture-for-machine-test"
+      ],
+      "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fix_test.xml",
+      "source_sha256": "25b8852f13ec7b89deefefe2210da55cc941a910c48fe66d3ef61c449dc59c55",
+      "source_test_ids": [
+        "oval:org.mitre.oval.test:tst:1910"
+      ],
+      "source_trace": "definitions/SCAP_1.4_OVAL_Test_Content_aix_aix-def_fix_test.xml/oval_org.mitre.oval.test_def_241/source-trace.json"
+    }
+  ],
+  "summary": {
+    "blocked_definitions": 0,
+    "blocked_tests": 0,
+    "converted_definitions": 2,
+    "converted_tests": 2,
+    "definitions": 2,
+    "excluded_definitions": 0,
+    "excluded_tests": 0,
+    "execution": "not_run",
+    "schema_valid_yaml_documents": 2,
+    "test_ledger_reconciled": 2,
+    "tests": 2
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "format": "scap-ng-tools/issue83-oval-schema-resolution/1",
+  "source": {
+    "repository": "OVAL-Community/OVAL",
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "schema_files": 54,
+    "schema_manifest_sha256": "740713202daef9c24ded3b6d8a19d90eb6101067d9098f2b7cf371b2a38007de"
+  },
+  "inventory": {
+    "definition_and_system_characteristics_schema_files": 46,
+    "declarations": 1426,
+    "grammar_rows": 42567,
+    "named_components_indexed": 1572,
+    "qname_references": 7913,
+    "resolved_references": 7707,
+    "external_builtin_references": 206,
+    "unresolved_references": 0,
+    "declarations_with_incomplete_inheritance": 0,
+    "declarations_with_incomplete_effective_members": 0,
+    "effective_member_rows": 12390,
+    "schema_derivation_rows": 1599,
+    "schema_restriction_facet_rows": 4447,
+    "schematron_rows": 5912,
+    "schematron_assertions": 982,
+    "schematron_reports": 200,
+    "prose_rows": 9023,
+    "evaluation_documentation_rows": 9,
+    "evaluation_chart_rows": 21,
+    "schematron_test_feature_counts": {
+      "attribute_reference": 813,
+      "axis_navigation": 606,
+      "boolean_literal_function": 155,
+      "boolean_operator": 427,
+      "equality": 931,
+      "function_call": 588,
+      "literal_or_name_test": 1,
+      "ordering": 25,
+      "path_navigation": 748,
+      "predicate": 132,
+      "string_or_count_function": 11
+    }
+  },
+  "disposition": {
+    "local_base_targets": "recorded without flattening",
+    "xml_schema_builtins": "explicit external_builtin status",
+    "effective_inherited_fields": "structural_inventory_only",
+    "derivation_and_facets": "structural_inventory_only",
+    "schematron_and_prose_semantics": "not_assessed",
+    "converter_parity": "not_proved",
+    "runtime_equivalence": "not_proved"
+  },
+  "receipt_sha256": "93d15ea3bb3c06df4eede9f929b2ea8baaeb7b57bffcf27d8897db2403c75aae"
+}

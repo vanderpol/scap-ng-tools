@@ -171,7 +171,7 @@ def main():
             'files': expected,
         }
         args.pin_output.write_text(json.dumps(pin, indent=2, sort_keys=True) + '\n')
-    print(json.dumps({'capabilities': 53, 'bytes': len(raw.encode('utf-8')),
+    print(json.dumps({'capabilities': len(json.loads(raw)['capabilities']), 'bytes': len(raw.encode('utf-8')),
                       'source': 'official OVAL v5.12.3 + canonical flat 0.4.1'}))
 
 

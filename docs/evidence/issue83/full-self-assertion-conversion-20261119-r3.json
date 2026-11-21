@@ -1,0 +1,811 @@
+{
+  "artifacts": {
+    "blocked-definitions.json": {
+      "bytes": 30422,
+      "sha256": "e7220b61ca59b60ec815bcb6f8b37f84a90a37787ea98c1118069a3113c207d8"
+    },
+    "blocked-tests.jsonl": {
+      "bytes": 151361,
+      "sha256": "067c3d4adbc0a13c913e1cd616ec6058ec1f582060e1e1bbaadff1109ce6edb2"
+    },
+    "blocked.json": {
+      "bytes": 208724,
+      "sha256": "89cbffdf74a2773eca88926fd33897db2f5e6074ff2d82936075f145f8ad57ec"
+    },
+    "definitions.json": {
+      "bytes": 356556,
+      "sha256": "a8c4624caad7cd8c0a812fc64fbf8413d696f3a6d857166af7ed9ac13e7020b9"
+    },
+    "manifest.json": {
+      "bytes": 157253,
+      "sha256": "881df8c6b0f6ab9745949c67863bc2412fab4c6eaf27625a64c60bc47f1b6849"
+    },
+    "source-mappings.json": {
+      "bytes": 149566,
+      "sha256": "375db48e44dd3c152cc0dd7cd4e81d195b9a68b8394be94118fa7167d1412a39"
+    },
+    "tests.jsonl": {
+      "bytes": 803109,
+      "sha256": "234e4861f5e88a80577993ff630e2730efecfe1ba8ec9a2fdc454e411cbe6bce"
+    },
+    "validation.json": {
+      "bytes": 736,
+      "sha256": "5bfa00c11e277edeed698cafbc73b43fb10d76516052369d826cc929d1892624"
+    }
+  },
+  "blocked_by_source": {
+    "definitions": [
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "48b14ebc959d86f8911b5ca4b614ce0e0bff24f1183184cf6632f42f4945beb5"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#junos}xml_config_test",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.joval.junos.test:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml",
+        "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5"
+      },
+      {
+        "diagnostic": "Variable cast outside bounded proof",
+        "failure_class": "converter_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
+        "source_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16"
+      },
+      {
+        "diagnostic": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}environmentvariable_object",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.joval.test:def:20002"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+        "source_sha256": "53e1beb968074d18a1bade43e8d251a2387d44d19e12e76a720966ed5130a62b"
+      },
+      {
+        "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.mitre.oval.test:def:448"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+        "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "failure_class": "deprecated_source_construct",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706"
+      },
+      {
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "failure_class": "deprecated_source_construct",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307"
+      },
+      {
+        "diagnostic": "unsupported/deprecated recursion direction",
+        "failure_class": "deprecated_source_construct",
+        "ids": [
+          "oval:org.mitre.oval.test:def:48"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/unix/ind-def_textfilecontent54_test_unix.xml",
+        "source_sha256": "876dbcd2a5bebfd5e0479f7bd0715736e53ab8b3553ced06832f95a61138b086"
+      },
+      {
+        "diagnostic": "deprecated source State field: kerberos_ticket_events (migration_error_deprecated)",
+        "failure_class": "deprecated_source_construct",
+        "ids": [
+          "oval:org.mitre.oval.test:def:708"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_auditeventpolicysubcategories_test.xml",
+        "source_sha256": "ed2cb11222b6fc78e27696b91f87ecbd649757e3e38752c89a245d9099905363"
+      },
+      {
+        "diagnostic": "policy source literal must be nonnegative",
+        "failure_class": "source_typed_literal_invalid",
+        "ids": [
+          "oval:org.mitre.oval.test:def:705"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_lockoutpolicy_test.xml",
+        "source_sha256": "30818be7d856dde1975e451858029e8de8deeb53c370dc979581256995681ade"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92"
+      },
+      {
+        "diagnostic": "policy source literal must be nonnegative",
+        "failure_class": "source_typed_literal_invalid",
+        "ids": [
+          "oval:org.mitre.oval.test:def:998"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+        "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec"
+      },
+      {
+        "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.mitre.oval.test:def:729"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219"
+      },
+      {
+        "diagnostic": "Variable cast outside bounded proof",
+        "failure_class": "converter_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+        "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b"
+      }
+    ],
+    "tests": [
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "ids": [
+          "oval:org.mitre.oval.test:tst:126",
+          "oval:org.mitre.oval.test:tst:132",
+          "oval:org.mitre.oval.test:tst:154",
+          "oval:org.mitre.oval.test:tst:170",
+          "oval:org.mitre.oval.test:tst:275",
+          "oval:org.mitre.oval.test:tst:34",
+          "oval:org.mitre.oval.test:tst:350",
+          "oval:org.mitre.oval.test:tst:38",
+          "oval:org.mitre.oval.test:tst:439",
+          "oval:org.mitre.oval.test:tst:487",
+          "oval:org.mitre.oval.test:tst:509",
+          "oval:org.mitre.oval.test:tst:608",
+          "oval:org.mitre.oval.test:tst:64",
+          "oval:org.mitre.oval.test:tst:71",
+          "oval:org.mitre.oval.test:tst:851",
+          "oval:org.mitre.oval.test:tst:936",
+          "oval:org.mitre.oval.test:tst:943",
+          "oval:org.mitre.oval.test:tst:983"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "48b14ebc959d86f8911b5ca4b614ce0e0bff24f1183184cf6632f42f4945beb5"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#junos}xml_config_test",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.joval.junos.test:tst:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml",
+        "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5"
+      },
+      {
+        "diagnostic": "Variable cast outside bounded proof",
+        "failure_class": "converter_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
+        "source_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16"
+      },
+      {
+        "diagnostic": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}environmentvariable_object",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.joval.test:tst:20002"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+        "source_sha256": "53e1beb968074d18a1bade43e8d251a2387d44d19e12e76a720966ed5130a62b"
+      },
+      {
+        "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:com.jovalcm.macos.inventory:tst:1000001600001",
+          "oval:org.joval.oval.test:tst:865",
+          "oval:org.mitre.oval.test:tst:308",
+          "oval:org.mitre.oval.test:tst:486",
+          "oval:org.mitre.oval.test:tst:865"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+        "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "failure_class": "deprecated_source_construct",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:5",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706"
+      },
+      {
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "failure_class": "deprecated_source_construct",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307"
+      },
+      {
+        "diagnostic": "unsupported/deprecated recursion direction",
+        "failure_class": "deprecated_source_construct",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc:tst:4",
+          "oval:org.mitre.oval.test:tst:110",
+          "oval:org.mitre.oval.test:tst:23",
+          "oval:org.mitre.oval.test:tst:258",
+          "oval:org.mitre.oval.test:tst:466",
+          "oval:org.mitre.oval.test:tst:497",
+          "oval:org.mitre.oval.test:tst:688",
+          "oval:org.mitre.oval.test:tst:910",
+          "oval:org.mitre.oval.test:tst:921",
+          "oval:org.mitre.oval.test:tst:96"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/unix/ind-def_textfilecontent54_test_unix.xml",
+        "source_sha256": "876dbcd2a5bebfd5e0479f7bd0715736e53ab8b3553ced06832f95a61138b086"
+      },
+      {
+        "diagnostic": "source Test is not referenced by a Definition criterion",
+        "failure_class": "unmapped_source_test",
+        "ids": [
+          "oval:org.mitre.oval.test:tst:483"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/unix/unix-def_sshd_test.xml",
+        "source_sha256": "a39e832aec71f537ff18eeaac3b181c7f63d6dbe5c311a8d7221ce86258ec8f0"
+      },
+      {
+        "diagnostic": "deprecated source State field: kerberos_ticket_events (migration_error_deprecated)",
+        "failure_class": "deprecated_source_construct",
+        "ids": [
+          "oval:org.mitre.oval.test:tst:768"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_auditeventpolicysubcategories_test.xml",
+        "source_sha256": "ed2cb11222b6fc78e27696b91f87ecbd649757e3e38752c89a245d9099905363"
+      },
+      {
+        "diagnostic": "policy source literal must be nonnegative",
+        "failure_class": "source_typed_literal_invalid",
+        "ids": [
+          "oval:org.mitre.oval.test:tst:1268"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_lockoutpolicy_test.xml",
+        "source_sha256": "30818be7d856dde1975e451858029e8de8deeb53c370dc979581256995681ade"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92"
+      },
+      {
+        "diagnostic": "policy source literal must be nonnegative",
+        "failure_class": "source_typed_literal_invalid",
+        "ids": [
+          "oval:mil.niwc.winpassword.test:tst:10",
+          "oval:mil.niwc.winpassword.test:tst:20",
+          "oval:mil.niwc.winpassword.test:tst:30",
+          "oval:mil.niwc.winpassword.test:tst:40",
+          "oval:mil.niwc.winpassword.test:tst:50",
+          "oval:mil.niwc.winpassword.test:tst:60",
+          "oval:mil.niwc.winpassword.test:tst:70"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+        "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3000",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3010",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4000",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4010",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4020",
+          "oval:org.mitre.oval.test:tst:1000",
+          "oval:org.mitre.oval.test:tst:1010",
+          "oval:org.mitre.oval.test:tst:1020",
+          "oval:org.mitre.oval.test:tst:1030",
+          "oval:org.mitre.oval.test:tst:1040",
+          "oval:org.mitre.oval.test:tst:1080",
+          "oval:org.mitre.oval.test:tst:1090",
+          "oval:org.mitre.oval.test:tst:1100",
+          "oval:org.mitre.oval.test:tst:1110",
+          "oval:org.mitre.oval.test:tst:5020"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec"
+      },
+      {
+        "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+        "failure_class": "unsupported",
+        "ids": [
+          "oval:org.mitre.oval.test:tst:1006",
+          "oval:org.mitre.oval.test:tst:1141",
+          "oval:org.mitre.oval.test:tst:1289",
+          "oval:org.mitre.oval.test:tst:1474",
+          "oval:org.mitre.oval.test:tst:525",
+          "oval:org.mitre.oval.test:tst:664",
+          "oval:org.mitre.oval.test:tst:680"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219"
+      },
+      {
+        "diagnostic": "Variable cast outside bounded proof",
+        "failure_class": "converter_failure",
+        "ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:4",
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:5",
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:6",
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:7",
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:8",
+          "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:9"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+        "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b"
+      }
+    ]
+  },
+  "canonical_schema": {
+    "commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "version": "0.4.1"
+  },
+  "command": "PYTHONPATH=src:. .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <pinned-source-checkout> --schema-root <canonical-schema>/schema --source-commit e3538595c5083b9c34d937a81d319234df9bbfaa --output <external-evidence> --python <tools>/.venv/bin/python",
+  "converter": {
+    "commit": "40c8c9ca3c00dc546df60b186f040557c102eba4",
+    "entrypoint": "scap_ng_tools.converter.direct04"
+  },
+  "families": {
+    "definitions": {
+      "agnostic": {
+        "failure_classes": {
+          "canonical_input_constraint_hold": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 46,
+          "blocked": 1
+        },
+        "total": 47
+      },
+      "aix": {
+        "failure_classes": {
+          "owner_exclusion": 2
+        },
+        "outcomes": {
+          "intentionally_excluded": 2
+        },
+        "total": 2
+      },
+      "asa": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 2
+        },
+        "total": 2
+      },
+      "ios": {
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 10,
+          "blocked": 1
+        },
+        "total": 11
+      },
+      "iosxe": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 11
+        },
+        "total": 11
+      },
+      "junos": {
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 1,
+          "blocked": 1
+        },
+        "total": 2
+      },
+      "linux": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 16
+        },
+        "total": 16
+      },
+      "macos": {
+        "failure_classes": {
+          "converter_failure": 1,
+          "unsupported": 2
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 17,
+          "blocked": 3
+        },
+        "total": 20
+      },
+      "panos": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 2
+        },
+        "total": 2
+      },
+      "solaris": {
+        "failure_classes": {
+          "deprecated_source_construct": 2
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 4,
+          "blocked": 2
+        },
+        "total": 6
+      },
+      "unix": {
+        "failure_classes": {
+          "deprecated_source_construct": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 12,
+          "blocked": 1
+        },
+        "total": 13
+      },
+      "windows": {
+        "failure_classes": {
+          "converter_failure": 1,
+          "deprecated_source_construct": 1,
+          "schema_or_validation_failure": 2,
+          "source_typed_literal_invalid": 2,
+          "unsupported": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 29,
+          "blocked": 7
+        },
+        "total": 36
+      }
+    },
+    "tests": {
+      "agnostic": {
+        "failure_classes": {
+          "canonical_input_constraint_hold": 18
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 310,
+          "blocked": 18
+        },
+        "total": 328
+      },
+      "aix": {
+        "failure_classes": {
+          "owner_exclusion": 2
+        },
+        "outcomes": {
+          "intentionally_excluded": 2
+        },
+        "total": 2
+      },
+      "asa": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 2
+        },
+        "total": 2
+      },
+      "ios": {
+        "failure_classes": {
+          "unsupported": 4
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 12,
+          "blocked": 4
+        },
+        "total": 16
+      },
+      "iosxe": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 17
+        },
+        "total": 17
+      },
+      "junos": {
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 1,
+          "blocked": 1
+        },
+        "total": 2
+      },
+      "linux": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 62
+        },
+        "total": 62
+      },
+      "macos": {
+        "failure_classes": {
+          "converter_failure": 3,
+          "unsupported": 6
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 34,
+          "blocked": 9
+        },
+        "total": 43
+      },
+      "panos": {
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 2
+        },
+        "total": 2
+      },
+      "solaris": {
+        "failure_classes": {
+          "deprecated_source_construct": 9
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 12,
+          "blocked": 9
+        },
+        "total": 21
+      },
+      "unix": {
+        "failure_classes": {
+          "deprecated_source_construct": 11,
+          "unmapped_source_test": 1
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 60,
+          "blocked": 12
+        },
+        "total": 72
+      },
+      "windows": {
+        "failure_classes": {
+          "converter_failure": 9,
+          "deprecated_source_construct": 1,
+          "schema_or_validation_failure": 35,
+          "source_typed_literal_invalid": 8,
+          "unsupported": 7
+        },
+        "outcomes": {
+          "CONVERTED_UNVERIFIED": 176,
+          "blocked": 60
+        },
+        "total": 236
+      }
+    }
+  },
+  "format": "scap-ng-tools/issue83/full-self-assertion-conversion/3",
+  "output_root": "/tmp/issue83-full-conversion-run3-179511",
+  "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "projection_after_all_open_source_prs": {
+    "basis": "candidate source overlay da25e94d3665bfc1bb93adab56965b0a8e46b677, all open PR heads #5-#17 cherry-picked locally",
+    "definitions": {
+      "blocked_observed": 6,
+      "converted_observed": 158,
+      "owner_excluded_observed": 2,
+      "source_total_after_source_removals": 166
+    },
+    "remaining_hold_shape": [
+      "18 agnostic external Variable/Input constraint Tests (1 Definition)",
+      "40 Windows schema/canonical traversal Tests (3 Definitions)",
+      "4 iOS version55 Tests (1 Definition)",
+      "1 Junos xml_config Test (1 Definition)"
+    ],
+    "status": "replaced by observed candidate overlay replay; see full-self-assertion-conversion-20261119-candidate-all-fixes.json",
+    "tests": {
+      "blocked_observed": 63,
+      "converted_observed": 726,
+      "owner_excluded_observed": 2,
+      "source_total_after_source_removals": 791
+    }
+  },
+  "qualification": {
+    "expected_outcomes": "not derived or injected",
+    "independent_oval_equivalence": "not proved",
+    "runtime_execution": "not_run",
+    "source_conversion": "complete source ledger; schema-valid converted documents are CONVERTED_UNVERIFIED"
+  },
+  "run": "full pinned corpus replay run3",
+  "source": {
+    "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "root": "SCAP_1.4/OVAL_Test_Content"
+  },
+  "source_correction_prs": [
+    {
+      "category": "source_typed_literal_invalid",
+      "effect": "focused candidate releases 8 Tests and 2 Definitions",
+      "head": "cc3be23f51913561c96aacaf36f4838a78100cdf",
+      "pr": 5,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/5"
+    },
+    {
+      "category": "source_typed_literal_invalid",
+      "effect": "focused candidate releases 3 Tests and 1 Definition",
+      "head": "33c6ad2bb254f2c60274a19891a9f9973f985e76",
+      "pr": 6,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/6"
+    },
+    {
+      "category": "source_fidelity_correction",
+      "effect": "no current run-3 hold count change; merge witness comments/datatype corrections",
+      "head": "c06d4899af19147a12add8008859a29a1de579e4",
+      "pr": 7,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/7"
+    },
+    {
+      "category": "source_metadata_correction",
+      "effect": "focused candidate releases 5 Tests and 1 Definition",
+      "head": "9d3ae629da96bf8b15730a5c6ac274cf29fcd7d5",
+      "pr": 8,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/8"
+    },
+    {
+      "category": "deprecated_source_construct",
+      "effect": "no current run-3 hold count change; removes deprecated Object notes warning",
+      "head": "e4ebc8722501c9911fc1d6c8682917c4276a3e1b",
+      "pr": 9,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/9"
+    },
+    {
+      "category": "deprecated_source_construct",
+      "effect": "focused candidate releases 1 Test and 1 Definition",
+      "head": "8d8f1eb088f15aadf7d28cc6221d2808dc930a7f",
+      "pr": 10,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/10"
+    },
+    {
+      "category": "deprecated_source_construct",
+      "effect": "focused candidate releases 5 Tests; 2 valid traversal Tests remain a canonical hold",
+      "head": "088b6e9083eca68c45196bd3c8eb7f1ba5d6c263",
+      "pr": 11,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/11"
+    },
+    {
+      "category": "deprecated_source_construct",
+      "effect": "focused candidate releases 1 Test and 1 Definition",
+      "head": "fa62bece68f7b86bbdd71db2fa30c40fc35d7e92",
+      "pr": 12,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/12"
+    },
+    {
+      "category": "source_typed_literal_invalid",
+      "effect": "focused candidate releases 9 Tests and 1 Definition",
+      "head": "6dbdda26e56ba23f3ba0a3a8b39b2a4a1cfcce30",
+      "pr": 13,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/13"
+    },
+    {
+      "category": "source_fidelity_correction",
+      "effect": "def:562/tst:936 comments corrected float; external Input hold remains",
+      "head": "50f801e3f4bdb5d3f6583195ad2ce29a2920546d",
+      "pr": 14,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/14"
+    },
+    {
+      "category": "deprecated_source_construct",
+      "effect": "removes 9 legacy Solaris Tests and 2 Definitions from corrected corpus; not conversion success",
+      "head": "8132076d52362fe54da357da5f9a3178a1a8ff00",
+      "pr": 15,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/15"
+    },
+    {
+      "category": "deprecated_source_construct",
+      "effect": "focused candidate releases 11 Tests and 1 Definition; retains downward recursion",
+      "head": "799e8d6dbc43fe68044996c9cf2628f13c17a320",
+      "pr": 16,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/16"
+    },
+    {
+      "category": "source_content_mapping",
+      "effect": "activates valid orphan tst:483; focused candidate converts def:963",
+      "head": "d3c93ced3a7518e875d61079d945ade6669af442",
+      "pr": 17,
+      "url": "https://github.com/OVAL-Community/SCAP-Self-Assertion/pull/17"
+    }
+  ],
+  "summary": {
+    "blocked_definitions": 16,
+    "blocked_tests": 113,
+    "converted_definitions": 150,
+    "converted_tests": 688,
+    "definitions": 168,
+    "excluded_definitions": 2,
+    "excluded_tests": 2,
+    "execution": "not_run",
+    "schema_valid_yaml_documents": 150,
+    "test_ledger_reconciled": 803,
+    "tests": 803
+  }
+}

@@ -17,6 +17,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import re
 from typing import Any
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
@@ -198,8 +199,62 @@ def slug(value: str) -> str:
     return value.replace(":", "_").replace("/", "_")
 
 
-def classify_failure(stderr: str, stdout: str) -> str:
+def source_variable_datatype_mismatches(raw: bytes) -> list[dict[str, str]]:
+    """Return source-declared Variable/entity type mismatches.
+
+    OVAL Schematron requires an entity's ``datatype`` to agree with the
+    referenced Variable's declared datatype.  The production converter must
+    fail closed on a mismatch; this helper adds source evidence to the ledger
+    so a valid source correction is not mislabeled as a converter gap.
+    """
+    root = ET.fromstring(raw)
+    variables = {node.get("id"): node.get("datatype")
+                 for node in root.iter()
+                 if node.get("id") and node.tag.rsplit("}", 1)[-1].endswith("_variable")}
+    mismatches = []
+    for node in root.iter():
+        reference = node.get("var_ref")
+        entity_datatype = node.get("datatype")
+        variable_datatype = variables.get(reference)
+        if (reference and entity_datatype and variable_datatype and
+                entity_datatype != variable_datatype):
+            mismatches.append({
+                "element": node.tag.rsplit("}", 1)[-1],
+                "element_id": node.get("id", ""),
+                "variable_id": reference,
+                "entity_datatype": entity_datatype,
+                "variable_datatype": variable_datatype,
+            })
+    return sorted(mismatches, key=lambda item: (item["element"], item["element_id"], item["variable_id"]))
+
+
+def classify_failure(stderr: str, stdout: str, *,
+                     source_mismatches: list[dict[str, str]] | None = None,
+                     supported_source_capabilities: dict[str, set[str]] | None = None) -> str:
+    """Classify a failed source conversion without hiding source holds.
+
+    Diagnostics often contain both ``unsupported`` and ``deprecated``.  The
+    source disposition is more specific and must win, otherwise a deprecated
+    construct is incorrectly reported as a converter implementation gap.
+    """
     message = (stderr.strip() or stdout.strip()).lower()
+    if "deprecated" in message:
+        return "deprecated_source_construct"
+    if "possible_restriction" in message or "external variable" in message:
+        return "canonical_input_constraint_hold"
+    if source_mismatches:
+        return "source_invalid_var_ref_datatype"
+    if "invalid int literal" in message or "policy source literal must be nonnegative" in message:
+        return "source_typed_literal_invalid"
+    if "traversal" in message and ("schema" in message or "validation" in message):
+        return "canonical_traversal_schema_hold"
+    capability = re.search(
+        r"unsupported\s+(test|object|state)\s+capability:\s*\{[^}]+\}([a-z0-9_]+)",
+        message)
+    if capability and supported_source_capabilities is not None:
+        kind, source_name = capability.groups()
+        if source_name not in supported_source_capabilities.get(kind, set()):
+            return "canonical_capability_gap"
     if any(token in message for token in ("unsupported", "held", "not migrated")):
         return "unsupported"
     if "schema" in message or "validation" in message:
@@ -255,6 +310,13 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
     if output.exists():
         raise ValueError(f"refusing to overwrite existing output: {output}")
     snapshot = Pinned041SchemaSnapshot(schema_root)
+    supported_source_capabilities = {"test": set(), "object": set(), "state": set()}
+    for mapping in snapshot.supported_mappings():
+        source = mapping.get("source", {})
+        for kind in supported_source_capabilities:
+            name = source.get(kind)
+            if name:
+                supported_source_capabilities[kind].add(name)
     output.parent.mkdir(parents=True, exist_ok=True)
     temp = Path(tempfile.mkdtemp(prefix="self-assertion-conversion-", dir=output.parent))
     try:
@@ -294,6 +356,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     "test_defs": test_defs,
                     "definition_features": definition_features,
                     "test_features": test_features,
+                    "source_variable_datatype_mismatches": source_variable_datatype_mismatches(raw),
                 })
             definition_results = {}
             for graph in source_graph:
@@ -305,23 +368,32 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 definitions = graph["definitions"]
                 definition_features = graph["definition_features"]
                 for definition_id, refs in definitions.items():
-                    # AIX is explicitly outside the owner's automatic target.
-                    # Keep every source row and its immutable path/hash in the
-                    # ledger; never turn an owner exclusion into a converter
-                    # blocker or silently omit its Test graph.
-                    owner_excluded = family == "aix"
+                    # Every pinned OVAL platform family is an authoring target.
+                    # Runtime qualification remains separate, but a platform must
+                    # not be hidden as an owner exclusion when the canonical pack
+                    # already has a capability mapping. Unsupported or schema-held
+                    # AIX content must be reported through the ordinary blocker
+                    # ledger with its exact source diagnostic.
                     artifact_dir = temp / "definitions" / slug(str(source_path)) / slug(definition_id)
-                    command = process = files = None
-                    success = False
-                    if not owner_excluded:
-                        command, process, files, success = run_one(
-                            python=python, schema_root=schema_root, source=source_text_path,
-                            source_sha=source_sha, source_commit=source_commit,
-                            source_path=str(provenance_path), definition=definition_id,
-                            out=artifact_dir)
+                    command, process, files, success = run_one(
+                        python=python, schema_root=schema_root, source=source_text_path,
+                        source_sha=source_sha, source_commit=source_commit,
+                        source_path=str(provenance_path), definition=definition_id,
+                        out=artifact_dir)
                     recorded_command = (public_command(
                         command, schema_root=schema_root, source=source_text_path,
                         output=artifact_dir) if command else None)
+                    source_mismatches = graph["source_variable_datatype_mismatches"]
+                    failure_class = None if success else classify_failure(
+                        process.stderr, process.stdout, source_mismatches=source_mismatches,
+                        supported_source_capabilities=supported_source_capabilities)
+                    diagnostic = None if success else (process.stderr.strip() or process.stdout.strip())
+                    if source_mismatches and failure_class == "source_invalid_var_ref_datatype":
+                        diagnostic = (
+                            (diagnostic + "; " if diagnostic else "") +
+                            "source evidence: " + json.dumps(
+                                source_mismatches, sort_keys=True, separators=(",", ":"))
+                        )
                     row = {
                         "source_path": str(provenance_path),
                         "source_sha256": source_sha,
@@ -330,17 +402,16 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "source_test_count": len(refs),
                         "feature_categories": definition_features.get(definition_id, []),
                         "converter_command": recorded_command,
-                        "converter_returncode": None if owner_excluded else process.returncode,
-                        "conversion_status": ("intentionally_excluded" if owner_excluded else
-                                               "CONVERTED_UNVERIFIED" if success else "blocked"),
-                        "scope_classification": "excluded_by_owner:aix" if owner_excluded else "in_scope",
-                        "owner_decision": "issue-56:aix-excluded" if owner_excluded else None,
+                        "converter_returncode": process.returncode,
+                        "conversion_status": "CONVERTED_UNVERIFIED" if success else "blocked",
+                        "scope_classification": "in_scope",
+                        "owner_decision": None,
                         "schema_validated": False,
                         "independent_semantic_proof": False,
                         "scanner_execution": False,
-                        "failure_class": "owner_exclusion" if owner_excluded else (None if success else classify_failure(process.stderr, process.stdout)),
-                        "diagnostic": ("AIX is excluded by owner from the automatic-conversion target" if owner_excluded
-                                       else None if success else (process.stderr.strip() or process.stdout.strip())),
+                        "failure_class": failure_class,
+                        "diagnostic": diagnostic,
+                        "source_semantic_evidence": source_mismatches,
                         "artifacts": None,
                     }
                     trace = None
@@ -371,6 +442,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "native_bindings": bindings,
                         "failure_class": row["failure_class"],
                         "diagnostic": row["diagnostic"],
+                        "source_semantic_evidence": row.get("source_semantic_evidence", []),
                     }
             for graph in source_graph:
                 provenance_path = str(graph["provenance_path"])
@@ -386,27 +458,11 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     bindings = [result["native_bindings"].get(test_id)
                                 for result in owner_results]
                     native_ids = sorted({value for value in bindings if value})
-                    is_aix = str(provenance_path).startswith(str(CORPUS_ROOT / "aix"))
-                    if is_aix:
-                        # Every AIX Test row is governed by the same explicit
-                        # owner exclusion, including helper Tests with no
-                        # Definition owner. Never silently downgrade one to a
-                        # generic converter blocker.
-                        status = "intentionally_excluded"
-                        schema_validated = False
-                        failure_class = "owner_exclusion"
-                        diagnostic = "AIX is excluded by owner from the automatic-conversion target"
-                    elif native_ids:
+                    if native_ids:
                         status = "CONVERTED_UNVERIFIED"
                         schema_validated = True
                         failure_class = None
                         diagnostic = None
-                    elif owner_ids and all(result["status"] == "intentionally_excluded"
-                                           for result in owner_results):
-                        status = "intentionally_excluded"
-                        schema_validated = False
-                        failure_class = "owner_exclusion"
-                        diagnostic = "AIX is excluded by owner from the automatic-conversion target"
                     elif owner_ids:
                         status = "blocked"
                         schema_validated = False
@@ -422,6 +478,13 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         schema_validated = False
                         failure_class = "unmapped_source_test"
                         diagnostic = "source Test is not referenced by a Definition criterion"
+                    source_semantic_evidence = []
+                    for owner in owner_ids:
+                        evidence = definition_results[(provenance_path, owner)].get(
+                            "source_semantic_evidence", [])
+                        for entry in evidence:
+                            if entry not in source_semantic_evidence:
+                                source_semantic_evidence.append(entry)
                     test_rows.append({
                         "source_path": provenance_path,
                         "source_sha256": source_sha,
@@ -440,13 +503,14 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         "test_id": test_id,
                         "feature_categories": test_features.get(test_id, []),
                         "conversion_status": status,
-                        "scope_classification": "excluded_by_owner:aix" if status == "intentionally_excluded" else "in_scope",
-                        "owner_decision": "issue-56:aix-excluded" if status == "intentionally_excluded" else None,
+                        "scope_classification": "in_scope",
+                        "owner_decision": None,
                         "schema_validated": schema_validated,
                         "native_test_ids": native_ids,
                         "execution": "not_run",
                         "failure_class": failure_class,
                         "diagnostic": diagnostic,
+                        "source_semantic_evidence": source_semantic_evidence,
                     })
         # The XML graph yields exactly the pinned corpus denominator.
         test_rows.sort(key=lambda row: (row["source_path"], row["test_id"]))
@@ -495,8 +559,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "execution": "not_run",
             "expected_outcomes_derived": False,
             "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
-            "owner_exclusions": {"aix": sum(row.get("scope_classification") == "excluded_by_owner:aix"
-                                             for row in definition_rows)},
+            "owner_exclusions": {},
             "test_ledger_reconciliation": {
                 "source_universe": "all XML Tests, including helper/unowned Tests",
                 "complete": True,
@@ -537,9 +600,9 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "The complete ledgers preserve every source Definition and Test; blocked "
             "entries retain the exact converter diagnostic.\n\n"
             f"- Definitions: {len(definition_rows)} ({len(converted_rows)} converted, "
-            f"{blocked_definition_count} blocked, {excluded_definition_count} owner-excluded)\n"
+            f"{blocked_definition_count} blocked, {excluded_definition_count} excluded)\n"
             f"- Tests: {len(test_rows)} ({converted_test_count} converted, "
-            f"{len(blocked_tests)} blocked, {excluded_test_count} owner-excluded)\n"
+            f"{len(blocked_tests)} blocked, {excluded_test_count} excluded)\n"
             "- Generated native documents are schema-valid and remain `CONVERTED_UNVERIFIED`.\n"
             "- No expected outcomes, collected Items, or execution results are derived.\n"
             "- See `source-mappings.json`, `feature-inventory.json`, `definitions.json`, `tests.jsonl`, and the blocked ledgers.\n"
@@ -563,8 +626,7 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "feature_inventory": feature_inventory,
             "source_inventory": {
                 "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
-                "owner_exclusions": {"aix": sum(row.get("scope_classification") == "excluded_by_owner:aix"
-                                                 for row in definition_rows)},
+                "owner_exclusions": {},
                 "test_ledger_reconciliation": {
                     "source_universe": "all XML Tests, including helper/unowned Tests",
                     "complete": True,

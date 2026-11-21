@@ -1,0 +1,832 @@
+{
+  "candidate_qualification": {
+    "canonical_schema": {
+      "commit": "5ee55288b369da26f308f40813e545b78dff2753",
+      "family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+      "version": "0.4.1"
+    },
+    "converter_commit": "40c8c9ca3c00dc546df60b186f040557c102eba4",
+    "execution": "candidate overlay only; not merged source baseline",
+    "independent_equivalence": "not_proved",
+    "platform_holds": [
+      {
+        "blocked": 1,
+        "failure_classes": {
+          "canonical_input_constraint_hold": 1
+        },
+        "intentionally_excluded": 0,
+        "platform": "agnostic",
+        "record_type": "definition"
+      },
+      {
+        "blocked": 0,
+        "failure_classes": {
+          "owner_exclusion": 2
+        },
+        "intentionally_excluded": 2,
+        "platform": "aix",
+        "record_type": "definition"
+      },
+      {
+        "blocked": 1,
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "intentionally_excluded": 0,
+        "platform": "ios",
+        "record_type": "definition"
+      },
+      {
+        "blocked": 1,
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "intentionally_excluded": 0,
+        "platform": "junos",
+        "record_type": "definition"
+      },
+      {
+        "blocked": 3,
+        "failure_classes": {
+          "schema_or_validation_failure": 3
+        },
+        "intentionally_excluded": 0,
+        "platform": "windows",
+        "record_type": "definition"
+      },
+      {
+        "blocked": 18,
+        "failure_classes": {
+          "canonical_input_constraint_hold": 18
+        },
+        "intentionally_excluded": 0,
+        "platform": "agnostic",
+        "record_type": "test"
+      },
+      {
+        "blocked": 0,
+        "failure_classes": {
+          "owner_exclusion": 2
+        },
+        "intentionally_excluded": 2,
+        "platform": "aix",
+        "record_type": "test"
+      },
+      {
+        "blocked": 4,
+        "failure_classes": {
+          "unsupported": 4
+        },
+        "intentionally_excluded": 0,
+        "platform": "ios",
+        "record_type": "test"
+      },
+      {
+        "blocked": 1,
+        "failure_classes": {
+          "unsupported": 1
+        },
+        "intentionally_excluded": 0,
+        "platform": "junos",
+        "record_type": "test"
+      },
+      {
+        "blocked": 40,
+        "failure_classes": {
+          "schema_or_validation_failure": 40
+        },
+        "intentionally_excluded": 0,
+        "platform": "windows",
+        "record_type": "test"
+      }
+    ],
+    "source_commit": null,
+    "source_linked_holds": [
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "record_type": "definition",
+        "source_ids": [
+          "oval:org.mitre.oval.test:def:562"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+        "failure_class": "unsupported",
+        "record_type": "definition",
+        "source_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#junos}xml_config_test",
+        "failure_class": "unsupported",
+        "record_type": "definition",
+        "source_ids": [
+          "oval:org.joval.junos.test:def:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml",
+        "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "record_type": "definition",
+        "source_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "record_type": "definition",
+        "source_ids": [
+          "oval:org.mitre.oval.test:def:38"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "record_type": "definition",
+        "source_ids": [
+          "oval:org.mitre.oval.test:def:729"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "failure_class": "canonical_input_constraint_hold",
+        "record_type": "test",
+        "source_ids": [
+          "oval:org.mitre.oval.test:tst:126",
+          "oval:org.mitre.oval.test:tst:132",
+          "oval:org.mitre.oval.test:tst:154",
+          "oval:org.mitre.oval.test:tst:170",
+          "oval:org.mitre.oval.test:tst:275",
+          "oval:org.mitre.oval.test:tst:34",
+          "oval:org.mitre.oval.test:tst:350",
+          "oval:org.mitre.oval.test:tst:38",
+          "oval:org.mitre.oval.test:tst:439",
+          "oval:org.mitre.oval.test:tst:487",
+          "oval:org.mitre.oval.test:tst:509",
+          "oval:org.mitre.oval.test:tst:608",
+          "oval:org.mitre.oval.test:tst:64",
+          "oval:org.mitre.oval.test:tst:71",
+          "oval:org.mitre.oval.test:tst:851",
+          "oval:org.mitre.oval.test:tst:936",
+          "oval:org.mitre.oval.test:tst:943",
+          "oval:org.mitre.oval.test:tst:983"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+        "failure_class": "unsupported",
+        "record_type": "test",
+        "source_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#junos}xml_config_test",
+        "failure_class": "unsupported",
+        "record_type": "test",
+        "source_ids": [
+          "oval:org.joval.junos.test:tst:1"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml",
+        "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "record_type": "test",
+        "source_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7",
+          "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "record_type": "test",
+        "source_ids": [
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3000",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3010",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4000",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4010",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4020",
+          "oval:org.mitre.oval.test:tst:1000",
+          "oval:org.mitre.oval.test:tst:1010",
+          "oval:org.mitre.oval.test:tst:1020",
+          "oval:org.mitre.oval.test:tst:1030",
+          "oval:org.mitre.oval.test:tst:1040",
+          "oval:org.mitre.oval.test:tst:1080",
+          "oval:org.mitre.oval.test:tst:1090",
+          "oval:org.mitre.oval.test:tst:1100",
+          "oval:org.mitre.oval.test:tst:1110",
+          "oval:org.mitre.oval.test:tst:5020"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "failure_class": "schema_or_validation_failure",
+        "record_type": "test",
+        "source_ids": [
+          "oval:org.mitre.oval.test:tst:1006",
+          "oval:org.mitre.oval.test:tst:1289",
+          "oval:org.mitre.oval.test:tst:525",
+          "oval:org.mitre.oval.test:tst:664",
+          "oval:org.mitre.oval.test:tst:680"
+        ],
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "0fcea49ea2679e7d90e4dea516f52e886c00ebf917f96f960b3afa568ad66aaf"
+      }
+    ],
+    "summary": {
+      "blocked_definitions": 6,
+      "blocked_tests": 63,
+      "converted_definitions": 158,
+      "converted_tests": 726,
+      "definitions": 166,
+      "excluded_definitions": 2,
+      "excluded_tests": 2,
+      "execution": "not_run",
+      "schema_valid_yaml_documents": 158,
+      "test_ledger_reconciled": 791,
+      "tests": 791
+    }
+  },
+  "canonical_mapping_join": {
+    "exact_grammar_join_rows": 379,
+    "mapping_rows": 391,
+    "unmatched": [
+      {
+        "capability": "esx.host_account",
+        "mapping_file": "experimental/esx.host_account.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_account_object",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "object",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_account",
+        "mapping_file": "experimental/esx.host_account.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_account_state",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "state",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_account",
+        "mapping_file": "experimental/esx.host_account.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_account_test",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "test",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_advancedsetting",
+        "mapping_file": "experimental/esx.host_advancedsetting.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_advancedsetting_object",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "object",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_advancedsetting",
+        "mapping_file": "experimental/esx.host_advancedsetting.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_advancedsetting_state",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "state",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_advancedsetting",
+        "mapping_file": "experimental/esx.host_advancedsetting.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_advancedsetting_test",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "test",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_service",
+        "mapping_file": "experimental/esx.host_service.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_service_object",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "object",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_service",
+        "mapping_file": "experimental/esx.host_service.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_service_state",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "state",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_service",
+        "mapping_file": "experimental/esx.host_service.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_service_test",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "test",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_vib",
+        "mapping_file": "experimental/esx.host_vib.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_vib_object",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "object",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_vib",
+        "mapping_file": "experimental/esx.host_vib.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_vib_state",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "state",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      },
+      {
+        "capability": "esx.host_vib",
+        "mapping_file": "experimental/esx.host_vib.json",
+        "reason": "mapping_source_version_out_of_scope",
+        "source_definitions_schema": "third_party/oval-6.0-new-tests/esx-definitions-schema.xsd",
+        "source_language": "OVAL 6.0 new tests only",
+        "source_name": "host_vib_test",
+        "source_namespace": "urn:oval:v6:definitions:esx",
+        "source_role": "test",
+        "source_schema": "esx-definitions-schema.xsd",
+        "source_upstream_commit": "5afcf590fb5d334687bfdc47f98716424cdb7f3d"
+      }
+    ],
+    "unmatched_by_reason": {
+      "mapping_source_version_out_of_scope": 12
+    },
+    "unmatched_rows": 12
+  },
+  "format": "scap-ng-tools/issue83-compact-audit/1",
+  "generated_by": {
+    "script": "scripts/build_issue83_audit_receipt.py",
+    "script_sha256": "ba62a273397ad754208c7a0ae63d76ac53c82ce7654051169571a6d423bb50f4",
+    "source_crosswalk_script": "scripts/build_issue83_source_crosswalk.py",
+    "source_crosswalk_script_sha256": "06214d426d9b5ba8dcf2808fc575e9e095c5434f322bf23386d5ea2a90a29ffd"
+  },
+  "oval_schema_inventory": {
+    "canonical_mapping_rows": 391,
+    "declarations": 1426,
+    "declarations_with_deprecated_members": 85,
+    "definition_schema_files": 23,
+    "evaluation_chart_rows": 21,
+    "evaluation_documentation_rows": 9,
+    "grammar_rows": 42567,
+    "grammar_rows_with_mapping": 379,
+    "native_mapping_status": {
+      "deprecated_migration": 237,
+      "unproven": 1189
+    },
+    "official_deprecation_annotations": 374,
+    "prose_rows": 9023,
+    "resolved_schema_references": 7707,
+    "schema_dependencies": 71,
+    "schema_files": 46,
+    "schema_manifest_files": 54,
+    "schema_references": 7913,
+    "schematron_assertions": 982,
+    "schematron_reports": 200,
+    "schematron_rows": 5912,
+    "schematron_test_feature_counts": {
+      "attribute_reference": 813,
+      "axis_navigation": 606,
+      "boolean_literal_function": 155,
+      "boolean_operator": 427,
+      "equality": 931,
+      "function_call": 588,
+      "literal_or_name_test": 1,
+      "ordering": 25,
+      "path_navigation": 748,
+      "predicate": 132,
+      "string_or_count_function": 11
+    },
+    "system_characteristics_schema_files": 23,
+    "unresolved_schema_dependencies": 0,
+    "unresolved_schema_references": 0
+  },
+  "pins": {
+    "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "canonical_schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "converter_commit": "119455c8bc2cdf462ba87be396bb822f48b9e14c",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "oval_schema_commit_verified": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706"
+  },
+  "proof_limits": [
+    "Source schema and archive inventories do not prove native representability, conversion fidelity, or runtime equivalence.",
+    "Measured zero relationships in this 65-archive denominator does not authorize dropping source relationships.",
+    "Candidate Self-Assertion counts are schema-valid conversion diagnostics; execution and independent equivalence remain unproved."
+  ],
+  "ranked_gap_inventory": [
+    {
+      "action": "Build generic source-valid semantic witnesses and review converter/RI obligations before claiming parity.",
+      "class": "shared_source_semantics",
+      "disposition": "inventory_only",
+      "measured": {
+        "evaluation_prose_rows": 9023,
+        "schematron_assertions": 982,
+        "schematron_reports": 200
+      },
+      "owner": "scap-ng canonical language + Tools + RI",
+      "priority": "P0",
+      "rank": 1
+    },
+    {
+      "action": "Coordinate a lossless native mapping for ident/reference/fix/fixtext and DISA publisher fields; do not overload discussion or invent extensions.",
+      "class": "xccdf_rule_metadata",
+      "disposition": "canonical_contract_hold",
+      "measured": {
+        "fix": 8892,
+        "fixtext": 8892,
+        "ident": 21661,
+        "reference": 8892
+      },
+      "owner": "scap-ng canonical language + Tools",
+      "priority": "P0",
+      "rank": 2
+    },
+    {
+      "action": "Complete field/attribute/default/cardinality/function dispositions from pinned XSD, Schematron and prose; keep the 12 explicitly OVAL 6.0 experimental mappings outside the OVAL 5.12.3 coverage denominator.",
+      "class": "oval_shared_grammar",
+      "disposition": "source_crosswalk_incomplete_with_out_of_scope_mappings",
+      "measured": {
+        "canonical_mapping_rows": 391,
+        "declarations": 1426,
+        "exact_mapping_join_rows": 379,
+        "grammar_rows": 42567,
+        "grammar_rows_with_mapping": 379,
+        "unmatched_mapping_reasons": {
+          "mapping_source_version_out_of_scope": 12
+        },
+        "unmatched_mapping_rows": 12,
+        "unproven_declarations": 1189
+      },
+      "owner": "scap-ng canonical language + Tools",
+      "priority": "P1",
+      "rank": 3
+    },
+    {
+      "action": "Resolve only through shared canonical/converter contracts: external Variable/Input constraints, valid Windows traversal, and remaining iOS/Junos capabilities; preserve deprecated/source-invalid cases separately.",
+      "class": "platform_specific_schema_or_source_holds",
+      "disposition": "source_linked_holds",
+      "measured": {
+        "candidate_execution": "candidate overlay only; not merged source baseline",
+        "candidate_hold_rows": 12
+      },
+      "owner": "Tools + canonical language; RI for runtime after admission",
+      "priority": "P1",
+      "rank": 4
+    },
+    {
+      "action": "Retain fail-closed behavior and add a source-valid group witness when canonical mapping is approved.",
+      "class": "group_relationships",
+      "disposition": "canonical_non_flattening_mapping_hold",
+      "measured": {
+        "source_group_conflicts": 0,
+        "source_group_requires": 0,
+        "source_groups_with_relationships": 0
+      },
+      "owner": "scap-ng canonical language",
+      "priority": "P2",
+      "rank": 5
+    }
+  ],
+  "source": {
+    "archive_count": 65,
+    "archive_set_sha256": "6e04353f3b1ef32b31a6ef022f75cd7c68486dadb017bd18aa9108c3864ed1ca",
+    "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "full_crosswalk_bytes": 109092502,
+    "full_crosswalk_sha256": "fefc748e283ad07b0b4aea1ac5843377073bd3e40132eaaf4e08085c734e31c7",
+    "repository": "vanderpol/scap-content-library",
+    "source_rule_count": 8892,
+    "xccdf_schema": {
+      "conflicts_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']//xsd:element[@name='conflicts']",
+      "requires_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']//xsd:element[@name='requires']",
+      "selectable_item_type_xpath": "/xsd:schema/xsd:complexType[@name='selectableItemType']",
+      "sha256": "22c6c2eeca08e517a278a9571304cb84277651ebb6fe4934af5af46c2428424e",
+      "url": "https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd"
+    }
+  },
+  "xccdf": {
+    "conflicts_rows": 0,
+    "disa_description_nonempty_rule_field_counts": {
+      "Documentable": 8867,
+      "VulnDiscussion": 8867
+    },
+    "disa_description_rule_field_counts": {
+      "Documentable": 8867,
+      "FalseNegatives": 8867,
+      "FalsePositives": 8867,
+      "IAControls": 8867,
+      "MitigationControl": 8867,
+      "Mitigations": 8867,
+      "PotentialImpacts": 8867,
+      "Responsibility": 8867,
+      "SeverityOverrideGuidance": 8867,
+      "ThirdPartyTools": 8867,
+      "VulnDiscussion": 8867
+    },
+    "group_conflicts_rows": 0,
+    "group_requires_rows": 0,
+    "groups_with_requires_or_conflicts": 0,
+    "malformed_publisher_payload_categories": {
+      "source_embedded_publisher_payload_malformed": 25
+    },
+    "malformed_publisher_payload_diagnostics": [
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 7, column 13",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_gov.nist_rule_SV-257214r958478_rule",
+        "source_rule_sha256": "b034d289254f14d90d63dd205e4a568d1bf5c84fbbd1d0492f906db98e4e48c0"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 7, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_gov.nist_rule_SV-257215r958478_rule",
+        "source_rule_sha256": "ee8835f9fb55d24336a73dae12e01ff8898f36b0aad93f29b26a03ac22a0b659"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 10, column 34",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_gov.nist_rule_SV-259519r1117265_rule",
+        "source_rule_sha256": "94904f9795a868ef490ac4b9cc2e669e0cafb872d6bc62c418416e6bc4de795a"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 10, column 34",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_gov.nist_rule_SV-268518r1137691_rule",
+        "source_rule_sha256": "311bba1fc3f7e0bb2aa19a0a64a91f320442cd67c89de3eba2a576910398d680"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 23, column 271",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
+        "source_rule_sha256": "48a2a0aa4c6614f012f0f43e114c05a07b8faad1c685895c1c4f3f0aab063f4b"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 13, column 42",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.fso_rule_SV-225233r1117179_rule",
+        "source_rule_sha256": "a3bc96bf0c69e2e7273f2668ba89055194fcdc6b04a353dd19d821af0638d80a"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 1, column 107",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-216679r531086_rule",
+        "source_rule_sha256": "d9c4f10d99baf48a7a9031c4399d79d856efc511ef00659ec8012025d6d7a1bd"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 5, column 20",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-223291r961128_rule",
+        "source_rule_sha256": "0c119464083226e7ea95c39f34421eccf18ff962cecfd03822d4ffbcdb1b4f7a"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 5, column 20",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-223292r961128_rule",
+        "source_rule_sha256": "69c31bdcfc9e5d9032f118c7142adc24f570fcf2670e4996ffca289d43487cc3"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-230225r1184236_rule",
+        "source_rule_sha256": "165d29d2b485e3e1423c94fab8dd8a75c03a7e4094b6357ff153896244f1bc8c"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 10, column 109",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-230552r1101902_rule",
+        "source_rule_sha256": "888a2d8fb972aeb58b3892f008e2bc9794fbe0cd93e640bdd4a90fad60d9d119"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-238197r958390_rule",
+        "source_rule_sha256": "0f5764a82f2a39c8bd75a9b0586cccd85c326e3d1c1270eafd1f1c12d04688a0"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-238198r958390_rule",
+        "source_rule_sha256": "0d4ddc1bf65b05699bb823962fd7c55d4f1fae667bdb8e8a723cc1de055ec49b"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-238214r958586_rule",
+        "source_rule_sha256": "aa31528458b346d26a6209e07681d4308cc27bccb0bc4eba04463994e98fbdbb"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-248526r958390_rule",
+        "source_rule_sha256": "5341ee494e77c4cf9eb676e63aa8511d2203d36e73cea1cc2cc5e80f2b8fe4da"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 10, column 63",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-258134r1155620_rule",
+        "source_rule_sha256": "99ad205eac15f46a97671527d1d6bb673b76be179f851b23f041b349e1a26f68"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 10, column 41",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-273999r1155171_rule",
+        "source_rule_sha256": "62f56bcadb6aa3638db4715879c1b3be343970816871d97298d2c0ed4851119a"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-274065r1184021_rule",
+        "source_rule_sha256": "a273bdab06e0a15de5b5d7828a3512fe811da81666fd761d2108c2e2a054ccf5"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-274066r1120186_rule",
+        "source_rule_sha256": "704e3bb8cfc2882fe0bf26dc39e7344c273211659f8b508b7316300200aa58d6"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 3, column 193",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222930r960765_rule",
+        "source_rule_sha256": "7b7c923cceffca2c2d637aefa7d4aff28e1f4dd4b90cc15c08597e326444b8f7"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 3, column 116",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222932r1137578_rule",
+        "source_rule_sha256": "b5a46147e99712215e7ed54317cfa62465fb950d421e0c0fff7ff7269ba8dc7d"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 3, column 116",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222933r1137578_rule",
+        "source_rule_sha256": "cd30467d452c1a3a80e236a7bf3ff716917b32bfca7e34d345a67ad1248013cc"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 5, column 376",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222974r961122_rule",
+        "source_rule_sha256": "626e57e8bcab2b706f9f6c34674d5eeba6a7ae4f0c40e17a386f690b80232edf"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "mismatched tag: line 5, column 115",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-222997r1016518_rule",
+        "source_rule_sha256": "c89775e549cc72c016a2e567cee57c81244f1b8a3627c8fd46f5f883abed53da"
+      },
+      {
+        "category": "source_embedded_publisher_payload_malformed",
+        "error": "not well-formed (invalid token): line 23, column 12",
+        "scope": "literal DISA fields inside a valid XCCDF description",
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278384r1171904_rule",
+        "source_rule_sha256": "b77bc6998ea54a26572db636b58765754db91e3fd5b5b2f935a4565e903873cf"
+      }
+    ],
+    "malformed_publisher_payload_rule_count": 25,
+    "metadata_element_counts": {
+      "fix": 8892,
+      "fixtext": 8892,
+      "ident": 21661,
+      "reference": 8892
+    },
+    "metadata_rule_field_counts": {
+      "fix": 8892,
+      "fixtext": 8892,
+      "ident": 8892,
+      "reference": 8892
+    },
+    "native_disposition": {
+      "disa_structured_extension": "held pending canonical 0.4.1 extension contract",
+      "discussion": "source description text is retained by source_description_text",
+      "fix_fixtext": "source elements are inventoried; no owner-approved native remediation mapping is emitted",
+      "identifiers_references_remediation": "converter emits no populated native fields in this increment"
+    },
+    "relationship_disposition": {
+      "group": "fail-closed canonical mapping hold; do not flatten Group relationships into Rule prerequisites",
+      "rule": "native Rule mapping is covered by focused source-valid production tests"
+    },
+    "relationship_source_semantics": {
+      "conflicts": "one source ID per child",
+      "requires": "one child is one OR clause; separate children are ANDed"
+    },
+    "requires_rows": 0,
+    "rules_with_requires_or_conflicts": 0
+  }
+}

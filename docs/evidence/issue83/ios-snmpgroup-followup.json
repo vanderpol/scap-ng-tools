@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "ios.snmpgroup mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:org.joval.ios.test:def:1",
+  "format": "scap-ng-tools/issue83-ios-snmpgroup-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/ios-snmpgroup-followup-1795116200",
+    "files": {
+      "assessment.json": {
+        "bytes": 886,
+        "sha256": "4d419e1ca189f147d64cc425546edb7f109cf66ae59323b054b7bf0ea667ecc9"
+      },
+      "assessment.yaml": {
+        "bytes": 658,
+        "sha256": "25f9fbf7e62304055c4ec7dd4a705e791dea2fec7afe51ab07170c556e985141"
+      },
+      "conversion-scope.json": {
+        "bytes": 560,
+        "sha256": "cab708c354f06abf6c5562b42f976a1685e3f8685c84dfc891bd3abf56b0bb84"
+      },
+      "source-trace.json": {
+        "bytes": 2463,
+        "sha256": "a821a5be27d5543de9b1dbdf2c673398314a03a1955d2d82d6f36a48eba45454"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "0f9f084754e838439e7c45b13bcf484d54490923",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "91597f8c94d4192a77e44102ea3b24075057431219ea7ad4af0a8be451f29c0e",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "ios/ios-def_snmpgroup_test.xml",
+  "source_sha256": "242009d3ea52f6ef84f02f0de6f96dde1a88f9fc7ed17eb79b0618e6e0409133",
+  "tests": 1
+}

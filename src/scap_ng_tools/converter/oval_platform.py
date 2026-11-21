@@ -168,6 +168,22 @@ class StandalonePlatformSource:
         return counts
 
 
+def native_assessment_version(source_version, warnings, source_id):
+    """Map OVAL's legacy zero version to canonical positive Assessment version."""
+    version = int(source_version)
+    if version >= 1:
+        return version
+    warnings.append({
+        "code": "oval_assessment_version_normalized",
+        "source_version": version,
+        "native_version": 1,
+        "source_id": source_id,
+        "semantic_basis": "canonical Assessment version minimum is 1",
+        "scanner_evaluated": False,
+    })
+    return 1
+
+
 def references(node):
     result = [{"attribute": key, "id": value} for child in node.iter()
               for key, value in child.attrib.items() if key.endswith("_ref")]
@@ -246,6 +262,14 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
         assessment_class = definition.get("class")
         assessment_version = int(definition.get("version"))
         assessment_source_id = definition_id
+    # OVAL permits version="0" in older/self-assertion content, while the
+    # canonical 0.4.1 Assessment version is a positive integer. Preserve the
+    # original version through source identity/provenance and disclose this
+    # representability normalization instead of emitting schema-invalid output.
+    if assessment_version < 1:
+        assessment_version = native_assessment_version(
+            assessment_version, visitor.conversion_warnings,
+            assessment_source_id or (test_id or definition_id))
     assessment = {
         "id": native_identifier(assessment_id_source, "assessment", test_id or definition_id),
         "version": assessment_version,

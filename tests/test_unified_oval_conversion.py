@@ -108,6 +108,20 @@ class StandaloneSourceCompatibilityTests(unittest.TestCase):
         </oval:oval_definitions>"""
         return xml.replace('VERSION', version).encode('utf-8')
 
+    def test_zero_source_assessment_version_is_normalized_with_receipt(self):
+        warnings = []
+        self.assertEqual(oval_platform.native_assessment_version(0, warnings, "source-def"), 1)
+        self.assertEqual(warnings, [{
+            "code": "oval_assessment_version_normalized",
+            "source_version": 0,
+            "native_version": 1,
+            "source_id": "source-def",
+            "semantic_basis": "canonical Assessment version minimum is 1",
+            "scanner_evaluated": False,
+        }])
+        self.assertEqual(oval_platform.native_assessment_version(2, warnings, "source-def-2"), 2)
+        self.assertEqual(len(warnings), 1)
+
     def test_older_publisher_oval_versions_admitted_without_rewriting(self):
         for version in ('5.11', '5.11.1', '5.11.2', '5.12.2', '5.12.3'):
             with self.subTest(version=version):

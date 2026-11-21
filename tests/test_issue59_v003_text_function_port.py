@@ -77,9 +77,12 @@ class V003FunctionRestoration(unittest.TestCase):
             {'literal': {'datatype': 'integer', 'value': 1}},
         ], 'options': {}}}
         self.assertEqual(lower_expression(source), {'unique': [
-            {'literal': {'datatype': 'integer', 'value': 1}},
-            {'literal': {'datatype': 'string', 'value': '1'}},
-            {'literal': {'datatype': 'integer', 'value': 1}},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'integer', 'value': 1}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': '1'}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'integer', 'value': 1}}]},
         ]})
         # 0.3's static evaluator stringified unique values. That is
         # insufficient proof of mixed-datatype OVAL equality, so we do NOT

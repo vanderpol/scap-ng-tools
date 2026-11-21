@@ -1,0 +1,81 @@
+{
+  "format": "scap-ng-tools/issue83-oval-variable-object-crosswalk/1",
+  "source": {
+    "repository": "OVAL-Community/OVAL",
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "schema_version": "5.12.3",
+    "schemas": {
+      "independent-definitions-schema.xsd": {
+        "sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953",
+        "qname": "ind:variable_object",
+        "xpath": "/xsd:schema/xsd:element[@name='variable_object']/xsd:complexType//xsd:choice",
+        "productions": ["oval-def:set", "ind:var_ref followed by zero-or-more oval-def:filter"]
+      },
+      "oval-definitions-schema.xsd": {
+        "sha256": "06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc",
+        "qnames": ["oval-def:set", "oval-def:filter"],
+        "set_xpath": "/xsd:schema/xsd:element[@name='set']",
+        "filter_xpath": "/xsd:schema/xsd:element[@name='filter']",
+        "semantic_documentation": "Filters apply to each referenced Object before set_operator combines the resulting item sets."
+      }
+    },
+    "schematron": [
+      "ind-def_variable_object_verify_filter_state",
+      "ind-def_varobjvar_ref",
+      "ind-def_varobjvar_ref_exists"
+    ]
+  },
+  "native": {
+    "repository": "vanderpol/scap-ng",
+    "schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "schema_version": "0.4.1",
+    "assessment_execution_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "variable_mapping": "/schema/capability-mappings/supported/variable.value.json#/native/test_source",
+    "variable_source": "Test.variable names one native Variable; no native variable.value Object Set/Filter node exists"
+  },
+  "crosswalk": [
+    {
+      "source_variant": "variable_object/var_ref without filters",
+      "source_semantics": "One named Variable population is the Object population.",
+      "native_status": "representable",
+      "converter_status": "implemented",
+      "converter": "v04_direct_converter.AssessmentConverter.convert_object",
+      "proof": "structural only; RI execution is separate"
+    },
+    {
+      "source_variant": "variable_object/set over constant variable_objects",
+      "source_semantics": "UNION, INTERSECTION, or COMPLEMENT combines Object item populations; result is unique and typed.",
+      "native_status": "bounded_static_representability",
+      "converter_status": "implemented_bounded_static",
+      "converter": "v04_direct_converter.AssessmentConverter.static_variable_object",
+      "constraints": ["constant Variables only", "population <= 4096", "no Filters", "host-independent source values only"],
+      "proof": "static source-shaping tests only; no runtime equivalence claim"
+    },
+    {
+      "source_variant": "variable_object/set with dynamic variable or filter",
+      "source_semantics": "Each referenced Object is collected and filtered before the Set operator; filter State is variable_state.",
+      "native_status": "canonical_gap",
+      "converter_status": "held_fail_closed",
+      "converter": "v04_direct_converter.AssessmentConverter.convert_object/static_variable_object",
+      "reason": "variable.value has no approved native Object Set/Filter representation; materializing host-dependent values would change collection and status semantics",
+      "required_action": "canonical non-lossy representation and coordinated RI evaluator/collector contract"
+    },
+    {
+      "source_variant": "variable_object/var_ref with filters",
+      "source_semantics": "Filters are applied to the variable Object population before Test evaluation.",
+      "native_status": "canonical_gap",
+      "converter_status": "held_fail_closed",
+      "reason": "The native variable source boundary cannot carry source filter State identity or pre-Test population status without a reviewed language mapping",
+      "required_action": "canonical mapping plus source-valid positive/negative and incomplete-evidence vectors"
+    }
+  ],
+  "source_corpus_occurrence": {
+    "status": "not_measured_in_this_increment",
+    "reason": "The pinned Self-Assertion source checkout is not present in this Tools workspace; synthetic source-valid witnesses remain separate from corpus occurrence counts."
+  },
+  "claims": {
+    "converter_source_parity": false,
+    "runtime_equivalence": false,
+    "silent_loss": false
+  }
+}

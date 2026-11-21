@@ -8,12 +8,13 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '01fc84b0fc2f346a65437ba24e3a205f3aae0ecffd7e789fa78684297de03b52'
-UNCHANGED_SOURCE_SHA256 = '60fad2420a1208fe5e14bcd92b5fe75996796f3885faf768bfbdb3b9bfeaf350'
+CURRENT_RUNTIME_SHA256 = '900560d6490af72bf1030afcaa35ae29283fedbb936e424d68f554bbd59e5b67'
+UNCHANGED_SOURCE_SHA256 = 'e50b51edb503793ca20c8046a04b15412eeda34e3fc3da537375fecbde1ca26e'
 AUDITED_ADAPTATIONS = {
-    # Native 0.4 Item grouping and compiler-derived Input discovery adaptations.
+    # Native 0.4 Item grouping, compiler-derived Input discovery, and
+    # source-OVAL unique lexical projection adaptations.
     'v04_direct_authoring_contract.py': '5fa26ee62c5a636144ee182596e6faf972bfba364160de8c1a03208058aba98e',
-    'v04_direct_converter.py': 'a734b1e88365e8c9b6162bb33d6c1d4a75a32e8ad3567d5ca73551a666bd67b4',
+    'v04_direct_converter.py': 'dfd388e0fe1d8700c210d30c3b2e3520d779524988ed6c78e10a427904030d8b',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
@@ -23,6 +24,11 @@ AUDITED_ADAPTATIONS = {
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
     'v04_variable_function_migration.py': 'ab08c49569bde0458c4e7a567f131a7965cf35a78a050aa6a5a639eb6ecc3d44',
     'v04_direct_enum_variables.py': '6f8cdab49cbcfb4474b997e9a95421f26e4a11c64c77bf05ef19556b2c443101',
+    # New source-fidelity helper; it is reviewed code, not a copied visitor.
+    # The direct runtime registry also records pinned OVAL 5.12.3 platform
+    # deprecations; its changed digest is intentionally allowlisted below.
+    'v04_source_metadata.py': '2dc15ed1cc3e96b48004a70f8c3e9abdf831ce678c168b5d89439aeb15fd02f1',
+    'v04_direct_capabilities.json': 'e8b8e8db22107e274ed23689838e4ee726f6268664ded06888cdf3f5926cfd3b',
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',
@@ -50,7 +56,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
     def test_runtime_matches_allowlisted_inventory_path_adaptation(self):
         paths = sorted(p for p in RUNTIME.iterdir()
                        if p.suffix in ('.py', '.json') and p.name != '__init__.py')
-        self.assertEqual(len(paths), 18)
+        self.assertEqual(len(paths), 19)
         digest = sha256()
         unchanged = sha256()
         for path in paths:
@@ -72,7 +78,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
         for name, expected in SEMANTIC_PORT.items():
             self.assertEqual(sha256((directory / name).read_bytes()).hexdigest(), expected)
         pack = contracts()
-        self.assertEqual(len(pack['capabilities']), 53)
+        self.assertEqual(len(pack['capabilities']), 98)
         self.assertEqual(len(pack['behavior_attributes']), 8)
         self.assertEqual(pack['format'], 'scap-ng-portable-0.4.1-semantic-pack/1')
         self.assertEqual(pack['schema_version'], '0.4.1')

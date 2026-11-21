@@ -1,0 +1,33 @@
+{
+  "format": "scap-ng-tools/issue83/oval-unique-lexical-projection/1",
+  "source": {
+    "repository": "OVAL-Community/OVAL",
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "version": "5.12.3",
+    "schema": "oval-schemas/oval-definitions-schema.xsd",
+    "schema_sha256": "06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc",
+    "type": "UniqueFunctionType",
+    "xpath": "/xsd:schema/xsd:complexType[@name='UniqueFunctionType']",
+    "documentation_lines": "933-940",
+    "semantic_requirement": "All components are treated as strings; collection values participate in duplicate removal in source order."
+  },
+  "native_mapping": {
+    "schema_version": "0.4.1",
+    "adapter": "src/scap_ng_tools/converter/native041_function_lowering.py::_source_unique_text_projection",
+    "visitor": "src/scap_ng_tools/converter/_v04_runtime/v04_direct_converter.py::AssessmentConverter.function",
+    "projection": "concat(literal(''), operand)",
+    "preserved": ["component order", "multiplicity before unique", "collection cardinality", "source provenance"],
+    "record_operand": "fail_closed"
+  },
+  "proof": {
+    "positive": "integer 1 and string '1' lower to two explicit lexical concat operands and validate as a string result",
+    "negative": "record operand remains rejected by native scalar text typing",
+    "runtime_equivalence": false,
+    "source_execution": false
+  },
+  "remaining_holds": [
+    "Native runtime must independently prove duplicate removal and status propagation.",
+    "Dynamic Variable Object Set/Filter semantics remain a canonical-language hold.",
+    "This change does not alter authored native unique semantics; it applies only to source OVAL lowering."
+  ]
+}

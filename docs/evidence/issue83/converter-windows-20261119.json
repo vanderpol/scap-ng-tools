@@ -1,0 +1,1369 @@
+{
+  "blocked_definitions": [
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:708",
+      "diagnostic": "deprecated source State field: kerberos_ticket_events (migration_error_deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_auditeventpolicysubcategories_test.xml",
+      "source_sha256": "ed2cb11222b6fc78e27696b91f87ecbd649757e3e38752c89a245d9099905363",
+      "source_test_ids": [
+        "oval:org.mitre.oval.test:tst:768"
+      ]
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:705",
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_lockoutpolicy_test.xml",
+      "source_sha256": "30818be7d856dde1975e451858029e8de8deeb53c370dc979581256995681ade",
+      "source_test_ids": [
+        "oval:org.mitre.oval.test:tst:1268"
+      ]
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "source_test_ids": [
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26",
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28"
+      ]
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:998",
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+      "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+      "source_test_ids": [
+        "oval:mil.niwc.winpassword.test:tst:10",
+        "oval:mil.niwc.winpassword.test:tst:20",
+        "oval:mil.niwc.winpassword.test:tst:30",
+        "oval:mil.niwc.winpassword.test:tst:40",
+        "oval:mil.niwc.winpassword.test:tst:50",
+        "oval:mil.niwc.winpassword.test:tst:60",
+        "oval:mil.niwc.winpassword.test:tst:70"
+      ]
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:38",
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "source_test_ids": [
+        "oval:org.mitre.oval.test:tst:1000",
+        "oval:org.mitre.oval.test:tst:1010",
+        "oval:org.mitre.oval.test:tst:1020",
+        "oval:org.mitre.oval.test:tst:5020",
+        "oval:org.mitre.oval.test:tst:1030",
+        "oval:org.mitre.oval.test:tst:1040",
+        "oval:org.mitre.oval.test:tst:1080",
+        "oval:org.mitre.oval.test:tst:1090",
+        "oval:org.mitre.oval.test:tst:1100",
+        "oval:org.mitre.oval.test:tst:1110",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:3000",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:3010",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:4000",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:4010",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:4020"
+      ]
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:729",
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "failure_class": "unsupported",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+      "source_test_ids": [
+        "oval:org.mitre.oval.test:tst:664",
+        "oval:org.mitre.oval.test:tst:1289",
+        "oval:org.mitre.oval.test:tst:525",
+        "oval:org.mitre.oval.test:tst:1006",
+        "oval:org.mitre.oval.test:tst:680",
+        "oval:org.mitre.oval.test:tst:1474",
+        "oval:org.mitre.oval.test:tst:1141"
+      ]
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:def:1",
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "source_test_ids": [
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:1",
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:2",
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:3",
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:4",
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:5",
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:6",
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:7",
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:8",
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:9"
+      ]
+    }
+  ],
+  "blocked_tests": [
+    {
+      "diagnostic": "deprecated source State field: kerberos_ticket_events (migration_error_deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_auditeventpolicysubcategories_test.xml",
+      "source_sha256": "ed2cb11222b6fc78e27696b91f87ecbd649757e3e38752c89a245d9099905363",
+      "test_id": "oval:org.mitre.oval.test:tst:768"
+    },
+    {
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_lockoutpolicy_test.xml",
+      "source_sha256": "30818be7d856dde1975e451858029e8de8deeb53c370dc979581256995681ade",
+      "test_id": "oval:org.mitre.oval.test:tst:1268"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+      "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8"
+    },
+    {
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+      "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+      "test_id": "oval:mil.niwc.winpassword.test:tst:10"
+    },
+    {
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+      "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+      "test_id": "oval:mil.niwc.winpassword.test:tst:20"
+    },
+    {
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+      "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+      "test_id": "oval:mil.niwc.winpassword.test:tst:30"
+    },
+    {
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+      "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+      "test_id": "oval:mil.niwc.winpassword.test:tst:40"
+    },
+    {
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+      "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+      "test_id": "oval:mil.niwc.winpassword.test:tst:50"
+    },
+    {
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+      "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+      "test_id": "oval:mil.niwc.winpassword.test:tst:60"
+    },
+    {
+      "diagnostic": "policy source literal must be nonnegative",
+      "failure_class": "source_typed_literal_invalid",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+      "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f",
+      "test_id": "oval:mil.niwc.winpassword.test:tst:70"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3000"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3010"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4000"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4010"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4020"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1000"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1010"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1020"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1030"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1040"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1080"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1090"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1100"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:1110"
+    },
+    {
+      "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'current_user'}, 'key': None, 'name': None, 'traversal': {'max_depth': 2}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'Hardware'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Classes\\\\Applications'}, 'name': {'matches_regex': '.*'}, 'traversal': {'max_depth': 3}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'name': {'equals': 'CurrentVersion'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas",
+      "failure_class": "schema_or_validation_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+      "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec",
+      "test_id": "oval:org.mitre.oval.test:tst:5020"
+    },
+    {
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "failure_class": "unsupported",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+      "test_id": "oval:org.mitre.oval.test:tst:1006"
+    },
+    {
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "failure_class": "unsupported",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+      "test_id": "oval:org.mitre.oval.test:tst:1141"
+    },
+    {
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "failure_class": "unsupported",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+      "test_id": "oval:org.mitre.oval.test:tst:1289"
+    },
+    {
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "failure_class": "unsupported",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+      "test_id": "oval:org.mitre.oval.test:tst:1474"
+    },
+    {
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "failure_class": "unsupported",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+      "test_id": "oval:org.mitre.oval.test:tst:525"
+    },
+    {
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "failure_class": "unsupported",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+      "test_id": "oval:org.mitre.oval.test:tst:664"
+    },
+    {
+      "diagnostic": "behaviors: unsupported attributes ['include_group', 'resolve_group']",
+      "failure_class": "unsupported",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+      "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219",
+      "test_id": "oval:org.mitre.oval.test:tst:680"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:1"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:2"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:3"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:4"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:5"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:6"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:7"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:8"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+      "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:tst:9"
+    }
+  ],
+  "canonical_schema": {
+    "aggregate_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "assessment_closure_sha256": "d6e3e6fde5dbacce39eef8a75285be053c85d52806517cda05eec132fc060bfd",
+    "assessment_execution_family_sha256": "326f82668020a717f5d3443484330f313146978292befd75c063f55b2e4e5329",
+    "commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "repository": "vanderpol/scap-ng",
+    "version": "0.4.1"
+  },
+  "converter": {
+    "command": [
+      "PYTHONDONTWRITEBYTECODE=1",
+      "PYTHONPATH=src",
+      "./.venv/bin/python",
+      "scripts/convert_self_assertion_corpus.py",
+      "--corpus",
+      "<source-checkout>",
+      "--schema-root",
+      "<schema-root>",
+      "--source-commit",
+      "e3538595c5083b9c34d937a81d319234df9bbfaa",
+      "--output",
+      "<output>",
+      "--family",
+      "windows"
+    ],
+    "commit": "c97877027052cfe95cb8ad9a52f542da15b03366",
+    "entrypoint": "scap_ng_tools.converter.direct04",
+    "policy": "production CLI only; no manual native rewrites or expected outcomes",
+    "repository": "vanderpol/scap-ng-tools"
+  },
+  "external_evidence": {
+    "artifact_manifest_sha256": "456c61763c552b60cc0bda90aafcc3082a1202005ce726f0de3324e0fcb160e7",
+    "artifacts": {
+      "NOTICES.txt": {
+        "bytes": 108,
+        "sha256": "b9c4d10a6c789f48ebd6b1f1fa42067465b0e309e35f66007d170e1060439501"
+      },
+      "README.md": {
+        "bytes": 653,
+        "sha256": "9da633a7f8788a88adca6a69debbe821539345857dc8b3267a9355f1b7fa350a"
+      },
+      "blocked-definitions.json": {
+        "bytes": 14609,
+        "sha256": "a9293ae79f172d99aef027a1ca22dbfdad108fbc204cc28e62ba89753b427671"
+      },
+      "blocked-tests.jsonl": {
+        "bytes": 99581,
+        "sha256": "f7648137b7c4b7a85a0ad128ef9ef8ed188463b9bc24f4b9536c0ddba6334a78"
+      },
+      "blocked.json": {
+        "bytes": 128238,
+        "sha256": "80fa67930bafebad63e0e40675b9e391f4ac1f6ac4e3c1c453c5ce7c15a9e253"
+      },
+      "definitions.json": {
+        "bytes": 80460,
+        "sha256": "0045347ce3f595e3d7a5195eb1269fa9447b810318be48fc8c64c4944204d547"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_environmentvariable58_test_windows.xml/oval_org.mitre.oval.test_def_360/assessment.json": {
+        "bytes": 5917,
+        "sha256": "c84d3f9e82dc4efdeff8d67d7b6208524253658ae39e8d0547175dbc471f10a1"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_environmentvariable58_test_windows.xml/oval_org.mitre.oval.test_def_360/assessment.yaml": {
+        "bytes": 4287,
+        "sha256": "2a63ac33e893e108406f00f4fbcef400e2c4ff8141335dabdb9c1dcfcb0167e4"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_environmentvariable58_test_windows.xml/oval_org.mitre.oval.test_def_360/conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "e1bb6dbe3c980970c13a8ed091abfb7d3049e85cf8e813302a47f539e59d59b9"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_environmentvariable58_test_windows.xml/oval_org.mitre.oval.test_def_360/source-trace.json": {
+        "bytes": 12226,
+        "sha256": "d768d86b3952dc56f5ccdf3a93598ceb20f132e1256b107d39409ef24fcbc2b0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_filehash58_test_windows.xml/oval_org.mitre.oval.test_def_343/assessment.json": {
+        "bytes": 5764,
+        "sha256": "540fb51d4226d0cd35e6d1dec8ea2cdfc2716e3d9083114b4fb3e7b18b0108c0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_filehash58_test_windows.xml/oval_org.mitre.oval.test_def_343/assessment.yaml": {
+        "bytes": 3602,
+        "sha256": "a551b9090815e161c68452771734f02ee1a6dca4e4dd2fea95f8b275dba20e8b"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_filehash58_test_windows.xml/oval_org.mitre.oval.test_def_343/conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "a1ba4075e6f025e5668fcb128305fda9b0e46640367075063e70e97db827bb78"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_filehash58_test_windows.xml/oval_org.mitre.oval.test_def_343/source-trace.json": {
+        "bytes": 7212,
+        "sha256": "83fa771f9a9f5fa0f6b2449702de288c74e28c8a730576aec671b63f58f1cd12"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_shellcommand_windows_test.xml/oval_navy.navwar.niwcatlantic.scc.windows_def_1/assessment.json": {
+        "bytes": 6801,
+        "sha256": "829159d8e47ea0a312cd48fa261e435778930902b26036213471d07cb894c9f6"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_shellcommand_windows_test.xml/oval_navy.navwar.niwcatlantic.scc.windows_def_1/assessment.yaml": {
+        "bytes": 4715,
+        "sha256": "54d28ba12126d1ee93d96b4e4afe2bfa73b8313b732dde93116f737e138796f6"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_shellcommand_windows_test.xml/oval_navy.navwar.niwcatlantic.scc.windows_def_1/conversion-scope.json": {
+        "bytes": 578,
+        "sha256": "46df0aec8dbd7564e182202740dcb8e46bccf9d9493314b7b2d1e66e0cb5c0d1"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_shellcommand_windows_test.xml/oval_navy.navwar.niwcatlantic.scc.windows_def_1/source-trace.json": {
+        "bytes": 11281,
+        "sha256": "824409b61395af91d4b1044592ce88577f78e460934e9d6722ea40e9d00c7ff0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_textfilecontent54_test_windows.xml/oval_org.mitre.oval.test_def_308/assessment.json": {
+        "bytes": 19084,
+        "sha256": "f65a5e007097c4dc8a911dab5cb8dc0f850f78cd3162a8877f95103114e7226e"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_textfilecontent54_test_windows.xml/oval_org.mitre.oval.test_def_308/assessment.yaml": {
+        "bytes": 11923,
+        "sha256": "f41688c4807c759865d18540e8a15ce31674b487b4885e21faf74a3e3abb06bb"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_textfilecontent54_test_windows.xml/oval_org.mitre.oval.test_def_308/conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "fc7bd284c51e31b1ce41f007c2a49228bcea4f31ac65dc516625c92cd42ceb2d"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_textfilecontent54_test_windows.xml/oval_org.mitre.oval.test_def_308/source-trace.json": {
+        "bytes": 18983,
+        "sha256": "03698b21ac558c38f0324af0a39d0e46aa31e272d3a69cc72ffb35cf2566b074"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_xmlfilecontent_test_windows.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.json": {
+        "bytes": 12445,
+        "sha256": "e9e296f8956b5abfbefb794517feacea38c61bcf03368f21b4b6f109dd5eb9e9"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_xmlfilecontent_test_windows.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.yaml": {
+        "bytes": 7845,
+        "sha256": "99658ee46d98112b4a5d314e587c0e48c00dfcfa92705a670da3aa50afabd543"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_xmlfilecontent_test_windows.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/conversion-scope.json": {
+        "bytes": 575,
+        "sha256": "00da4be5a6dde4d44be4f55fa0d3d4e3a395635436252bc56c41b683f1499c56"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_ind-def_xmlfilecontent_test_windows.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/source-trace.json": {
+        "bytes": 11320,
+        "sha256": "76d34c115703c1c2784602ca3d8e90425b7daeafaa5055efeb188a460fffe9bc"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_oval-def_set-windows.xml/oval_org.mitre.oval.test_def_276/assessment.json": {
+        "bytes": 18333,
+        "sha256": "9e8bd67f50e7f0f4ca67c730eaf0086f9e39a40f832c9c5a14a99fc8cb999315"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_oval-def_set-windows.xml/oval_org.mitre.oval.test_def_276/assessment.yaml": {
+        "bytes": 11587,
+        "sha256": "e334ca7d70f05747f2093bf1e3f58ff408592fb17d785ce65547d81bfb0a24ac"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_oval-def_set-windows.xml/oval_org.mitre.oval.test_def_276/conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "c1e1c7e4ec824ac6162d72d9f431ef17893283cb273f658ae0b6079d9a60f473"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_oval-def_set-windows.xml/oval_org.mitre.oval.test_def_276/source-trace.json": {
+        "bytes": 17153,
+        "sha256": "e4d4de4b123ed3336f5988cabf7e837e88dddd63698769aea33fa4a418ca2965"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmd_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.json": {
+        "bytes": 14167,
+        "sha256": "c429da5551ebf9292a3fdba25416a2c75b2b4e21be3267bceef513883441398b"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmd_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.yaml": {
+        "bytes": 9761,
+        "sha256": "e30def158a1380d6b6ed8fb78ced77f7682a062d21be9463c1d0ac8718b51b8f"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmd_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/conversion-scope.json": {
+        "bytes": 575,
+        "sha256": "e1b71be685c4f58135d12d19f556c2a993e8caec1a216b1fbe0fd878c0115a65"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmd_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/source-trace.json": {
+        "bytes": 19207,
+        "sha256": "f0926c7e7ad340a3e558c4dd4bec511134fbab8042ea090a87e1221bed83fb09"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmd_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_2/assessment.json": {
+        "bytes": 2013,
+        "sha256": "9669ac2069dec172eecc6842a988b39e6bd572f2cf9df6c8cceb4fefd7209ed2"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmd_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_2/assessment.yaml": {
+        "bytes": 1463,
+        "sha256": "e44d8ce00235d14d71ed23330b7a9d551b04e531d9ad14666af60cf3fca40bf1"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmd_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_2/conversion-scope.json": {
+        "bytes": 575,
+        "sha256": "884f9e5430a639fe859c0b6a1132ee8e751790aec793482d87684669a6519c18"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmd_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_2/source-trace.json": {
+        "bytes": 5121,
+        "sha256": "d9e6fcff9763c2344763d163272f7cf6ce74e7aaf93e1b28ecced794842fa9dd"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmdlistconfig_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.json": {
+        "bytes": 17005,
+        "sha256": "9ef49bec59fd964231864e56df13c3534dc3b19a2962d9e5f35065a4e9a4e650"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmdlistconfig_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.yaml": {
+        "bytes": 11757,
+        "sha256": "fd3b73c31f354d4947ed756f5698092dff17f11def0bc5021e969ddadd1fd017"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmdlistconfig_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/conversion-scope.json": {
+        "bytes": 575,
+        "sha256": "333c269864357043aff26fa0da02ff522c266032f842ed114c8fd8edabe7efa3"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmdlistconfig_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/source-trace.json": {
+        "bytes": 21451,
+        "sha256": "18b0d0cec0220e0670db25d109162066530d27d10574b3e9b90c32fa862afbe0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmdlistconfig_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_2/assessment.json": {
+        "bytes": 3107,
+        "sha256": "417e8f47beddcb16303eab1f8c86cf1e4c6aa95ee0d65764c9c888dbf2a2acd9"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmdlistconfig_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_2/assessment.yaml": {
+        "bytes": 2238,
+        "sha256": "b093fe3494cc34296fff89b0435b85b26b00e158152c2960618342834368d15c"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmdlistconfig_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_2/conversion-scope.json": {
+        "bytes": 575,
+        "sha256": "6bfa30f6a181ce9b2559037db8d2b9185d774d5183248b502d2d507832848108"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_appcmdlistconfig_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_2/source-trace.json": {
+        "bytes": 4790,
+        "sha256": "20d87db68b9a00fa569702851d37b159051e589909875250e541434c9bfeae6c"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1222/assessment.json": {
+        "bytes": 2521,
+        "sha256": "0b9e91b0b55bd0f5c0230a86ba63ce75b91035de4513422e04de2b33d342f86f"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1222/assessment.yaml": {
+        "bytes": 1799,
+        "sha256": "8fe1933e1953516b03b5705bf2f7b5c6d3c4b24dbcaa342cd15913fd31cbea40"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1222/conversion-scope.json": {
+        "bytes": 578,
+        "sha256": "e1a19551c6e63c9f944a6e76ad8a7c53c3758635413362ae1aaeb864bb820fca"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1222/source-trace.json": {
+        "bytes": 5041,
+        "sha256": "5330dd99ff3db8f2f2a27a1197e95fcf17fc9a4892de5500e2adebad924bde34"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1223/assessment.json": {
+        "bytes": 2506,
+        "sha256": "60fc792a90d001e87e9e24edf5b534f43fd1b006aa1cfc6ec2a627c9f45b3482"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1223/assessment.yaml": {
+        "bytes": 1784,
+        "sha256": "4c9b896c99386f2224d386764d02d68954e58472fb9e09c77f35319436ac3b81"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1223/conversion-scope.json": {
+        "bytes": 578,
+        "sha256": "d0e2af68dbbea6edf7f7297ca8c1ef1a04ffb9154c08d1eaedb027da6337203e"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1223/source-trace.json": {
+        "bytes": 5044,
+        "sha256": "ed55799d50975824dec8a0c0b30a458c7809583df8aee8e40aa6951c198ba34f"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1224/assessment.json": {
+        "bytes": 2993,
+        "sha256": "4a6936b3b5ef6b74e3580cf12ffa416e9ee48273ef7672bd9d580bf84950af2c"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1224/assessment.yaml": {
+        "bytes": 2078,
+        "sha256": "41b988e4d8a7b4497b70adcea420ace9b37c4a75bd32066ae60e545ad3c34263"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1224/conversion-scope.json": {
+        "bytes": 578,
+        "sha256": "645ab11afdae501013f7882a852f3af69f93d629c69fed4712c0cb9d7d1436c7"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1224/source-trace.json": {
+        "bytes": 5843,
+        "sha256": "c195c715c039b2a331b7bf2146d27d0e036eb7e702c70e7a805b9a61461f8f8a"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_220812/assessment.json": {
+        "bytes": 2230,
+        "sha256": "40b1e76e40046d7b487d12c06b10759e5825b181b1ebb92df6098eabaef242dc"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_220812/assessment.yaml": {
+        "bytes": 1525,
+        "sha256": "9168a21d57fa238e03e1738bc859b51d9bfed859710fc1b644107f3974fec981"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_220812/conversion-scope.json": {
+        "bytes": 580,
+        "sha256": "f239aa5bab3a721b18ef1797bbea029c464a75f1099c344ada05de75576923e4"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_220812/source-trace.json": {
+        "bytes": 4298,
+        "sha256": "451c46627471f7930369daa4924b163bc3196168d82c48c7f9a79cd3028085b1"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_222/assessment.json": {
+        "bytes": 2014,
+        "sha256": "a0b3ca7282dc513bbe76f889528a8a963b646c522214086ec170c89753477478"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_222/assessment.yaml": {
+        "bytes": 1403,
+        "sha256": "ff5a86128a9d4c00d44b3455042bd998ccb3c71f2705f3ca64a64994d85b9b7f"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_222/conversion-scope.json": {
+        "bytes": 577,
+        "sha256": "4bf7cd0569f24c0f5791459e735415f33b9c6aef93c189ebc17c1430e42528c8"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_222/source-trace.json": {
+        "bytes": 4200,
+        "sha256": "66923d5fcaadeb87462545d80fa9d83c036c511f0373f2d50a04353c420f6b08"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_999/assessment.json": {
+        "bytes": 2174,
+        "sha256": "b59cf228f0a1709e463b2323e87d0348768d7e0f4d69f8f04d69bd157529d35d"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_999/assessment.yaml": {
+        "bytes": 1486,
+        "sha256": "13b7ea2ec05bb7a51e7294e8f37e51aa93ec7dfbdb8586524e6c555d3ca02add"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_999/conversion-scope.json": {
+        "bytes": 577,
+        "sha256": "ae4b8c913e7abb8a17595de745421cf2f5977abdcda91da72c9549adb41cfa0d"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_cmdlet_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_999/source-trace.json": {
+        "bytes": 4245,
+        "sha256": "fdca89bf0126884cfe33a1384b019f5a3a050b0865af3acc1c60a98457da76f4"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_file_test.xml/oval_org.mitre.oval.test_def_140/assessment.json": {
+        "bytes": 10615,
+        "sha256": "5f462c8c59c2de5ee49f271586eacec9ae1a89be0ad1f02938fda99f99a1bb04"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_file_test.xml/oval_org.mitre.oval.test_def_140/assessment.yaml": {
+        "bytes": 6847,
+        "sha256": "6f8d0d06020e75f9db0eb0a0a30b607418d9c5bf7df9a5ca67a26172c12470de"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_file_test.xml/oval_org.mitre.oval.test_def_140/conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "16005c1a0cbadf41efa9e00d2a7c8962dc6358cc492b0ea06f3236dd46760558"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_file_test.xml/oval_org.mitre.oval.test_def_140/source-trace.json": {
+        "bytes": 13851,
+        "sha256": "c8698ea1f5abf7af884d09da51fb297078cf59d61ee7aa4bf27849dbc2f163ee"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_fileeffectiverights53_test.xml/oval_org.mitre.oval.test_def_604/assessment.json": {
+        "bytes": 11468,
+        "sha256": "f08c7268333a62ef2f8845a472d052487ba08269460d3469eae5895bc6a5f0c7"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_fileeffectiverights53_test.xml/oval_org.mitre.oval.test_def_604/assessment.yaml": {
+        "bytes": 7445,
+        "sha256": "7c9d26dacea8437b5bee04e4f9a72dc059b0a693e481abd543a974e804e9f0a1"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_fileeffectiverights53_test.xml/oval_org.mitre.oval.test_def_604/conversion-scope.json": {
+        "bytes": 563,
+        "sha256": "34f698176c5cfef36b2916389eec28801dc5312a964036e41ee359051ce21d37"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_fileeffectiverights53_test.xml/oval_org.mitre.oval.test_def_604/source-trace.json": {
+        "bytes": 10867,
+        "sha256": "b9128d7a4be1f6c587d610464311f32e647a5499d9943dfd589f0e12624c7997"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_group_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_545/assessment.json": {
+        "bytes": 5607,
+        "sha256": "00ef5ebbc25381fc85fbb3c7373cc4f9a87c58b8d99ed36e007ea06ea8a6be90"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_group_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_545/assessment.yaml": {
+        "bytes": 4028,
+        "sha256": "ee666d0018f11bfed6e5d08dff21cc1019e3d26490d5c8681c9b0fbf5ff29154"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_group_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_545/conversion-scope.json": {
+        "bytes": 585,
+        "sha256": "50e7694a3c67fe42bf8d3466355a067d566f55ab92871f2671bda51895dff93b"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_group_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_545/source-trace.json": {
+        "bytes": 10238,
+        "sha256": "e0564c96dd4ff1e4ce064c228118061932ea4e0fe3011a30e95040b17c26974a"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_service_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_100/assessment.json": {
+        "bytes": 4809,
+        "sha256": "16dd5282a7e29d875bcecd28fe62aaf6537dd24e9e19574483e557a65778576e"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_service_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_100/assessment.yaml": {
+        "bytes": 3418,
+        "sha256": "1f41fc147a89a8bfc1de15564689ee2cf93632c6ec7d044f9f0697ef23a1c95e"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_service_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_100/conversion-scope.json": {
+        "bytes": 577,
+        "sha256": "8be8baba1a40e0a8e26588db8f63f9d75e9ea1719c968b6b02866031ae166a79"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_service_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_100/source-trace.json": {
+        "bytes": 8314,
+        "sha256": "1b1dcf83286a3cd51a8975e494681874d945e9cd83e650379f1c3d159ff6d3b5"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_sid_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_1/assessment.json": {
+        "bytes": 8505,
+        "sha256": "157d0ee61c5a2eb67423a5c04600d54c4cfa5bab2e29144b3d3590d7088c571e"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_sid_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_1/assessment.yaml": {
+        "bytes": 5237,
+        "sha256": "2c9179832ceea68ffea7f43453f5d06349dfd85ae64feb8a0b070d2cc7b66242"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_sid_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_1/conversion-scope.json": {
+        "bytes": 583,
+        "sha256": "6a73ad0cb0ebe2752f154e4c47e98271fdeedd2d1ae676f44c9c444b0ca505a1"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_sid_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_1/source-trace.json": {
+        "bytes": 10544,
+        "sha256": "68acce1faad0e4ab9818082e91e9f4b531629b33b9e973ac013a999eafd166cc"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_1/assessment.json": {
+        "bytes": 6770,
+        "sha256": "0e4b94092718310d41bea525a7f5a39866a56610aef30b360358f0ae837cde4c"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_1/assessment.yaml": {
+        "bytes": 4526,
+        "sha256": "b4b367fcd84904b0b2fe8ca0af860e7c222d88f6cf588e8635d4ef860aaf20bf"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_1/conversion-scope.json": {
+        "bytes": 583,
+        "sha256": "82c2d557e7cee6b0f81addbf93444e8a5d166b31ce07bd1183f98a3911318404"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_sid_test.xml/oval_navy.navwar.niwcatlantic.scc.windows.test_def_1/source-trace.json": {
+        "bytes": 10504,
+        "sha256": "ccbbbddac324d8888243eb503b03a0086ecee92367ae26cc441ce7a9064c2ef0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_user_sid55_test.xml/oval_navy.navwar.niwcatlantic.scc.windows_def_240/assessment.json": {
+        "bytes": 12398,
+        "sha256": "eb1e5c16f4e2fe9128469acb29103eab26941a21e5969e363f15b81c878a352a"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_user_sid55_test.xml/oval_navy.navwar.niwcatlantic.scc.windows_def_240/assessment.yaml": {
+        "bytes": 8533,
+        "sha256": "dcb2c819ea5750fa1f138337315aa493c55a6ae11c008246a3f44a9398ebf292"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_user_sid55_test.xml/oval_navy.navwar.niwcatlantic.scc.windows_def_240/conversion-scope.json": {
+        "bytes": 580,
+        "sha256": "c4081153c7266897a8e168df211345989f9eaf11cff4077e927f2c213aab21a1"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_user_sid55_test.xml/oval_navy.navwar.niwcatlantic.scc.windows_def_240/source-trace.json": {
+        "bytes": 21222,
+        "sha256": "7cb6718a53dbeacd0e7ee3964779a43c750fd724340d3dfca5f6b70e17b300da"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_userrights_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.json": {
+        "bytes": 40510,
+        "sha256": "6e93f0646d6ddd0bfb2f277415ef931fc3200099764f1313ae3ad0b47a0d8422"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_userrights_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/assessment.yaml": {
+        "bytes": 26511,
+        "sha256": "d68ea930c481dec9d0c50c03e06172c4a30823343ff77b601ec4e95cdfb1194a"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_userrights_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/conversion-scope.json": {
+        "bytes": 575,
+        "sha256": "8551e5ee100e9e650461f4eadc4da6688e1fc39baca3f2de32cb42e6bd821bf7"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_userrights_test.xml/oval_navy.navwar.niwcatlantic.scc.test_def_1/source-trace.json": {
+        "bytes": 60357,
+        "sha256": "34eb7fda1971fbdcf9edae65e6cc21afe833b31d90ae41375b8fe78396e7765b"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_10/assessment.json": {
+        "bytes": 2204,
+        "sha256": "75e221b045e442df40a449be0db3f9f30032ac579871e0e20286b7c626b2799d"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_10/assessment.yaml": {
+        "bytes": 1416,
+        "sha256": "74c149bd1c7dd4a1c22b7a589a102ce0dc99f61a7be46cb2ea1041c6883cb3c3"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_10/conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "1ca247214aa71c15e4b82b0746992de3d1602fb32a4f91e0bf544f24fac4c913"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_10/source-trace.json": {
+        "bytes": 3461,
+        "sha256": "e2dd156b190fe5e4efffb277c6801e9891a1ceffd43b5819fed989fc259e845f"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_20/assessment.json": {
+        "bytes": 2168,
+        "sha256": "3cab41aeb3e0e8954d0e494c8a8ba69bf2b9d1b348e06a2e32e2031afeeb57e7"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_20/assessment.yaml": {
+        "bytes": 1439,
+        "sha256": "96c38bc0956e7136f1f1ec73c2e89a3580fc198836937e0282ac71587a3c9c6d"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_20/conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "179ecad1df9d25d5171b7c36dfaa40a8f090dbcf0f860e6afd4fcb6bbc0a6bb9"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_20/source-trace.json": {
+        "bytes": 3453,
+        "sha256": "5672b995ab264dab8715c8dd5cd4645a6baf279d99534ff16ab58ac98dad7c83"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_30/assessment.json": {
+        "bytes": 2215,
+        "sha256": "0a7057d9119fa86c8882e5fb721aec599bcb7685c32db8d9b41fee135c94a8b0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_30/assessment.yaml": {
+        "bytes": 1427,
+        "sha256": "ffddbb38fe7597b5565d19ce0524598c74247a8e0406bba546cb268d3699faf0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_30/conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "0f014fd2e84c1f53673666471a3a2f88b356b48328e5796e961a6ba010552cc0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_30/source-trace.json": {
+        "bytes": 3455,
+        "sha256": "15c9bf35a4a5c2b8f6e6ddecb8a4aaa0091dda4b28a9bd6fec8256b8d5ee33f0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_70/assessment.json": {
+        "bytes": 1062,
+        "sha256": "609bd299e8cc04fcf971c50d768e824e377f59301609051b920936691febd5ea"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_70/assessment.yaml": {
+        "bytes": 852,
+        "sha256": "41444dba56c40f7eb92a68ea7e26705ca0447fb28976ffbd47d28b9d25eadf24"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_70/conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "ca6fea7779bd8a337680e61669c9f735fb0e699d0bc41b2e2867c11cf2d4a8f0"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_70/source-trace.json": {
+        "bytes": 2514,
+        "sha256": "3ba7f1c0b779090af91e65e7d01cef3422d4094449bde0ddd29777cc0a8e4267"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_80/assessment.json": {
+        "bytes": 1060,
+        "sha256": "c8008da89b37403c054fe41c98659370730ed47e850da7d08805ff9c08a0da98"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_80/assessment.yaml": {
+        "bytes": 852,
+        "sha256": "18aae00aa3a347502c416adcee6d85f912dcf92cf48b347243ec354d6ae5921f"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_80/conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "3386878fc9b6211c5a8a2c3947161cd10f130d6e2353eb2d19a21086d8e9ae01"
+      },
+      "definitions/SCAP_1.4_OVAL_Test_Content_windows_win-def_wmi57_object_test.xml/oval_org.mitre.oval.test_def_80/source-trace.json": {
+        "bytes": 2514,
+        "sha256": "6068023312d13023802aa8cdd11233a229d21dd97c2129e5fe4cff8579cf6cf9"
+      },
+      "feature-inventory.json": {
+        "bytes": 1013,
+        "sha256": "998f5765124b4a5a8d1f951020b2ce56a06c0471268b0408605e5988f941f65e"
+      },
+      "manifest.json": {
+        "bytes": 34107,
+        "sha256": "456c61763c552b60cc0bda90aafcc3082a1202005ce726f0de3324e0fcb160e7"
+      },
+      "source-mappings.json": {
+        "bytes": 34146,
+        "sha256": "facd5c6d938ac55629aca141991657d3e9bc5646a5aa4019bed6a8209f54acf9"
+      },
+      "tests.jsonl": {
+        "bytes": 264483,
+        "sha256": "5bf720931cf56eacc263d3ac615ce774a74206aba793a24f4f5b12257fdae6c8"
+      },
+      "validation.json": {
+        "bytes": 735,
+        "sha256": "a01ff0442b211c83654f5fbe8f701e439e78fdbbfa7c3b0261b78b9f7a4e0749"
+      }
+    },
+    "raw_artifacts_retained_external": true,
+    "raw_root": "/tmp/issue83-converter-windows-run.eL0yXL/results"
+  },
+  "format": "scap-ng-tools/issue83/windows-converter-replay/1",
+  "generated_at_utc": "2026-11-19",
+  "holds": [
+    {
+      "action": "upstream correction or owner-approved replacement; do not add deprecated kerberos_ticket_events to SCAP-NG",
+      "class": "deprecated_source_construct",
+      "source_ids": [
+        "oval:org.mitre.oval.test:def:708",
+        "oval:org.mitre.oval.test:tst:768"
+      ]
+    },
+    {
+      "action": "upstream negative policy literals require source correction; converter preserves typed validity and does not reinterpret them",
+      "class": "source_typed_literal_invalid",
+      "source_ids": [
+        "oval:org.mitre.oval.test:def:705",
+        "oval:org.mitre.oval.test:tst:1268",
+        "oval:org.mitre.oval.test:def:998",
+        "oval:mil.niwc.winpassword.test:tst:10",
+        "oval:mil.niwc.winpassword.test:tst:20",
+        "oval:mil.niwc.winpassword.test:tst:30",
+        "oval:mil.niwc.winpassword.test:tst:40",
+        "oval:mil.niwc.winpassword.test:tst:50",
+        "oval:mil.niwc.winpassword.test:tst:60",
+        "oval:mil.niwc.winpassword.test:tst:70"
+      ]
+    },
+    {
+      "action": "canonical Windows NTUSER/Registry traversal representation is held by canonical schema work; no local schema workaround",
+      "class": "schema_or_validation_failure",
+      "source_ids": [
+        "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+        "oval:org.mitre.oval.test:def:38"
+      ]
+    },
+    {
+      "action": "include_group/resolve_group behavior requires a canonical, security-reviewed Windows authority mapping",
+      "class": "unsupported",
+      "source_ids": [
+        "oval:org.mitre.oval.test:def:729"
+      ]
+    },
+    {
+      "action": "Variable cast requires bounded typed semantics; no silent cast or cardinality change",
+      "class": "converter_failure",
+      "source_ids": [
+        "oval:navy.navwar.niwcatlantic.scc.windows.update:def:1"
+      ]
+    }
+  ],
+  "qualification": {
+    "authoring": "schema_validated",
+    "expected_outcomes_derived": false,
+    "independent_oval_equivalence": "not_proved",
+    "native_documents": "CONVERTED_UNVERIFIED",
+    "runtime_execution": "not_run"
+  },
+  "source": {
+    "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "definition_identity_basis": "(source_path, definition_id, exact source XML SHA-256)",
+    "definition_source_identities": [
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:360",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/ind-def_environmentvariable58_test_windows.xml",
+        "source_sha256": "6740b7e585793f88689998d869b1c171338903da3123f327b547a0d0f8ea33f2"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:343",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/ind-def_filehash58_test_windows.xml",
+        "source_sha256": "ccd2569a6b5992d40ff84a5775b2f369e5134dbf9e4df583b272d34410e3e229"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows:def:1",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/ind-def_shellcommand_windows_test.xml",
+        "source_sha256": "64c460e9024d4053eb29695f0111e138363577f74ee3ac9c4b867c9689257e88"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:308",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/ind-def_textfilecontent54_test_windows.xml",
+        "source_sha256": "512f3256a4d5a8333567eba7cda3e53b48929df851a835af1a4b23254175d34f"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/ind-def_xmlfilecontent_test_windows.xml",
+        "source_sha256": "34e81e7613e85bef8f6d8d8837d8480a6767044315bfe5d1e041da4ec5649d99"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:276",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/oval-def_set-windows.xml",
+        "source_sha256": "352a0b99e0df90cc3ddf9f7e410f3d9a8b44659a6a12c38c938ab861be595262"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_appcmd_test.xml",
+        "source_sha256": "b0c8c60a85980dbf33df92b62e519dcb519add734b726a0125ac00b3c8bce1c2"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:2",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_appcmd_test.xml",
+        "source_sha256": "b0c8c60a85980dbf33df92b62e519dcb519add734b726a0125ac00b3c8bce1c2"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_appcmdlistconfig_test.xml",
+        "source_sha256": "79c777d462bd80eacc474e2a23267f41c409363d39190ab524d5965d1ed46eeb"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:2",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_appcmdlistconfig_test.xml",
+        "source_sha256": "79c777d462bd80eacc474e2a23267f41c409363d39190ab524d5965d1ed46eeb"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:708",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_auditeventpolicysubcategories_test.xml",
+        "source_sha256": "ed2cb11222b6fc78e27696b91f87ecbd649757e3e38752c89a245d9099905363"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1222",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+        "source_sha256": "cd2240c929bbd1171461035e7fd8b4336fd505ce1687c1f178af7a800fb50c33"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1223",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+        "source_sha256": "cd2240c929bbd1171461035e7fd8b4336fd505ce1687c1f178af7a800fb50c33"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1224",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+        "source_sha256": "cd2240c929bbd1171461035e7fd8b4336fd505ce1687c1f178af7a800fb50c33"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:220812",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+        "source_sha256": "cd2240c929bbd1171461035e7fd8b4336fd505ce1687c1f178af7a800fb50c33"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:222",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+        "source_sha256": "cd2240c929bbd1171461035e7fd8b4336fd505ce1687c1f178af7a800fb50c33"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:999",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_cmdlet_test.xml",
+        "source_sha256": "cd2240c929bbd1171461035e7fd8b4336fd505ce1687c1f178af7a800fb50c33"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:140",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_file_test.xml",
+        "source_sha256": "c607d861a44bf143bf7a2910372cf04f19fbce7a822309c5d8c708afc6353c74"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:604",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_fileeffectiverights53_test.xml",
+        "source_sha256": "24fa96ee59786787c95abb65882dc2a9b1ea7f4fc7e1275af0a0b9829df59032"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:545",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_group_sid_test.xml",
+        "source_sha256": "b1a8eda555eaad9cbaf7d325a4164316e5997494ce58392a2112fc2e9138c352"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:705",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_lockoutpolicy_test.xml",
+        "source_sha256": "30818be7d856dde1975e451858029e8de8deeb53c370dc979581256995681ade"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_sha256": "0a99c404acffc27b2d22b37e8dde4b9a6a90497bb708ba995ae6c1fb90505e92"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:998",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_passwordpolicy_test.xml",
+        "source_sha256": "0e0fc39654d0f875b0ee1e1e29ee1a172a6dd4eec5cd81e0bdb4d67a10f4183f"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:38",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
+        "source_sha256": "c23ce82a7a02813e2f441ccf18080eeec621dd6af0d4ffaacbb32150b34fa3ec"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:729",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_sha256": "979a31ad5cdcd249fb01340f3b4c0939eab825b7852c71636f222a00c7804219"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:100",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_service_test.xml",
+        "source_sha256": "d4130c1c406e5ca0a095d0b826d39db0d9421945170c42dd5ee07f47ecab75d1"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:1",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_sid_sid_test.xml",
+        "source_sha256": "5b146b98e9089dd8d7d7f8c392d5b8f2ffac5701ee5f0821574f62d05797b55d"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:1",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_sid_test.xml",
+        "source_sha256": "b2e21faef8bd4127e3f9d9de2ec1eeb010502f3bc7b134d091d3f5eefd403085"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows:def:240",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_user_sid55_test.xml",
+        "source_sha256": "2328e8bf15f79d90486e979e842b0029e23801a9e1782c6d6e22304b39536eb3"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_userrights_test.xml",
+        "source_sha256": "00065e6289670d2807312cfdf038a88f3fd68add7e83892f98b1f81f2adc6cba"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:10",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wmi57_object_test.xml",
+        "source_sha256": "ac9a8bc062d9a261624eefc963da7cc3e190be96519da5369054d1bde8a52cdb"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:20",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wmi57_object_test.xml",
+        "source_sha256": "ac9a8bc062d9a261624eefc963da7cc3e190be96519da5369054d1bde8a52cdb"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:30",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wmi57_object_test.xml",
+        "source_sha256": "ac9a8bc062d9a261624eefc963da7cc3e190be96519da5369054d1bde8a52cdb"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:70",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wmi57_object_test.xml",
+        "source_sha256": "ac9a8bc062d9a261624eefc963da7cc3e190be96519da5369054d1bde8a52cdb"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:80",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wmi57_object_test.xml",
+        "source_sha256": "ac9a8bc062d9a261624eefc963da7cc3e190be96519da5369054d1bde8a52cdb"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.update:def:1",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_wuaupdatesearcher_test.xml",
+        "source_sha256": "e593f5c5c2b4ec09390ec8c8c2a907084714f79707a71b15e9880f532da2f26b"
+      }
+    ],
+    "definitions": 36,
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "root": "SCAP_1.4/OVAL_Test_Content/windows",
+    "test_identity_basis": "(source_path, test_id, exact source XML SHA-256)",
+    "tests": 236
+  },
+  "summary": {
+    "blocked_definition_classes": {
+      "converter_failure": 1,
+      "deprecated_source_construct": 1,
+      "schema_or_validation_failure": 2,
+      "source_typed_literal_invalid": 2,
+      "unsupported": 1
+    },
+    "blocked_definitions": 7,
+    "blocked_test_classes": {
+      "converter_failure": 9,
+      "deprecated_source_construct": 1,
+      "schema_or_validation_failure": 35,
+      "source_typed_literal_invalid": 8,
+      "unsupported": 7
+    },
+    "blocked_tests": 60,
+    "converted_definitions": 29,
+    "converted_tests": 176,
+    "definitions": 36,
+    "embedded_archives_included": false,
+    "excluded_definitions": 0,
+    "excluded_tests": 0,
+    "schema_valid_yaml_documents": 29,
+    "test_ledger_reconciled": true,
+    "tests": 236
+  }
+}

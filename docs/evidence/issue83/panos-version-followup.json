@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "panos.version mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:org.joval.panos.test:def:1",
+  "format": "scap-ng-tools/issue83-panos-version-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/panos-version-followup-1795114000",
+    "files": {
+      "assessment.json": {
+        "bytes": 1856,
+        "sha256": "6c01895ad60da6f013c74aa2deb3c99a215377a707ccb4d571258caf3b7c6dac"
+      },
+      "assessment.yaml": {
+        "bytes": 1146,
+        "sha256": "87e92201d12372321339b5dfefeed8424c2bfb868656ff84579154f505056cc7"
+      },
+      "conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "39ff24dab0a797c212ccc0dbf8038c82f7f293cde773700ab71aa318c38d3867"
+      },
+      "source-trace.json": {
+        "bytes": 4273,
+        "sha256": "f9a6e6b3f4411e6a2c9d8d806bb5fecc5fde2c5a3fe7f0116e390aaa7652d2fb"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "cee315894324a43e7df78f93b6f6baed044cf0e9",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "bd526675fba7996e8442161f0d887f8626d68219ec9a18e963ac998d47f75ba2",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "panos/panos-def_version_test.xml",
+  "source_sha256": "ad1cfdfc9e4ea7bb6e0eb51b3b28053fff102fb9b8ae9871f45e2b0e9f20dc90",
+  "tests": 1
+}

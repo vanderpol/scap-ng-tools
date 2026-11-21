@@ -13,6 +13,7 @@ from collections import Counter, defaultdict
 import hashlib
 import struct
 import json
+import re
 import subprocess
 import tarfile
 from pathlib import Path
@@ -21,10 +22,10 @@ import xml.etree.ElementTree as ET
 from zipfile import ZipFile
 
 PREFIX = "SCAP_1.4/OVAL_Test_Content/"
-PIN = "e3538595c5083b9c34d937a81d319234df9bbfaa"
-AIX_PREFIX = PREFIX + "aix/"
-AIX_OWNER_DECISION = "issue-56:aix-excluded"
-AIX_SCOPE_CLASSIFICATION = "excluded_by_owner:aix"
+HISTORICAL_PIN = "e3538595c5083b9c34d937a81d319234df9bbfaa"
+# Active corrected upstream source. Historical receipts remain explicitly
+# pinned to HISTORICAL_PIN and are never relabeled by this default.
+PIN = "53c18ea31a1976209572ec8b068e1a02be588456"
 MAX_XML = 8 * 1024 * 1024
 MAX_ARCHIVE = 64 * 1024 * 1024
 CHECK = {"all": "every", "at least one": "one_or_more",
@@ -112,7 +113,7 @@ def parse_oval(raw, path):
             "test_refs": refs,
             "features": dict(sorted(features.items()))}
 
-def verify_source_checkout(source_root):
+def verify_source_checkout(source_root, expected_commit=PIN):
     # Verify the exact upstream commit AND a clean Test Content subtree.
     # The converter's declaration of source_commit is not independent proof.
     checkout = source_root.resolve().parents[1]
@@ -123,7 +124,7 @@ def verify_source_checkout(source_root):
                                 check=False, timeout=15)
         if result.returncode:
             raise ValueError("cannot verify upstream source Git checkout")
-        if args[0] == "rev-parse" and result.stdout.strip() != PIN:
+        if args[0] == "rev-parse" and result.stdout.strip() != expected_commit:
             raise ValueError("upstream source checkout is not the approved commit")
         if args[0] == "status" and result.stdout.strip():
             raise ValueError("upstream source Test Content has local modifications")
@@ -233,7 +234,7 @@ def source_tree_summary(records):
              "duplicate_definitions": duplicate_definitions},
             definition_paths, conflicts)
 
-def read_pack(pack):
+def read_pack(pack, expected_commit=PIN):
     definitions_path = pack / "definitions.json"
     if not definitions_path.is_file():
         raise ValueError(f"converter package missing definitions.json: {pack}")
@@ -241,7 +242,7 @@ def read_pack(pack):
     manifest = json.loads((pack / "manifest.json").read_text(encoding="utf-8"))
     if not isinstance(rows, list):
         raise ValueError("definitions.json must be an array")
-    if manifest.get("source_commit") != PIN:
+    if manifest.get("source_commit") != expected_commit:
         raise ValueError("converter package uses a different original source commit")
     return rows, manifest
 
@@ -268,34 +269,26 @@ def read_test_ledger(pack):
         rows.append(row)
     return rows
 
-def aix_exclusion_authorized(path, row):
-    return (path.startswith(AIX_PREFIX) and
-            row.get("conversion_status") == "intentionally_excluded" and
-            row.get("owner_decision") == AIX_OWNER_DECISION and
-            row.get("scope_classification") == AIX_SCOPE_CLASSIFICATION)
-
 def exclusion_problem(path, ident, row, kind):
-    return {"type": "exclusion_without_authorized_aix_policy",
+    return {"type": "exclusion_without_owner_approval",
             "kind": kind, "source": path,
             ("definition" if kind == "definition" else "test"): ident,
-            "reason": "only pinned AIX owner exclusion issue-56:aix-excluded is authorized"}
+            "reason": "all pinned OVAL platform families are in authoring scope; exclusions require explicit owner approval"}
 
 def validate_exclusion_authorization(path, ident, row, kind, problems):
-    """Enforce the only Phase 1 owner exclusion policy, fail closed."""
+    """Reject exclusions unless a separately recorded owner decision exists.
+
+    Platform families are not implicitly excluded. In particular, the old AIX
+    issue-56 exception is historical and must not survive into the current
+    all-platform source-to-native ledger.
+    """
     status = row.get("conversion_status")
     owner = row.get("owner_decision")
     scope = row.get("scope_classification")
-    if path.startswith(AIX_PREFIX):
-        if not aix_exclusion_authorized(path, row):
-            problems.append(exclusion_problem(path, ident, row, kind))
-        return
-    # A non-AIX row may not smuggle in an owner decision or exclusion label.
     if (status in ("excluded", "intentionally_excluded") or owner is not None or
             (scope is not None and scope != "in_scope")):
         problems.append(exclusion_problem(path, ident, row, kind))
-        if status in ("excluded", "intentionally_excluded") and not owner:
-            problems.append({"type": "exclusion_without_owner_approval",
-                             "source": path, kind: ident})
+
 
 def slug(value):
     return value.replace(":", "_").replace("/", "_")
@@ -400,18 +393,55 @@ def normalize_source_evaluate(source, definition_id):
         return ("not", result) if node.get("negate", "false").lower() == "true" else result
     return definition_tree(definition_id)
 
-def normalize_native_evaluate(node, native_to_source):
+def _expanded_group_source(node, expanded_native_to_source, expanded_source_checks):
+    """Return a source Test ID when *node* is one explicit Set expansion."""
+    if not isinstance(node, dict) or len(node) != 1:
+        return None
+    op, value = next(iter(node.items()))
+    if op == "test" and value in expanded_native_to_source:
+        return expanded_native_to_source[value]
+    if op == "not" and isinstance(value, dict):
+        # ``none satisfy`` is lowered as NOT(OR(child Tests)); only a NOT
+        # directly around that logical child group owns this NOT. A second
+        # nested NOT is the authored Definition criterion negate.
+        child_op = next(iter(value), None)
+        if child_op not in ("and", "or", "xor", "one"):
+            return None
+        source_id = _expanded_group_source(
+            value, expanded_native_to_source, expanded_source_checks)
+        return (source_id if source_id and
+                expanded_source_checks.get(source_id) == "none satisfy" else None)
+    if op in ("and", "or", "xor", "one") and isinstance(value, list) and len(value) > 1:
+        source_ids = {_expanded_group_source(
+            item, expanded_native_to_source, expanded_source_checks)
+                      for item in value}
+        if None not in source_ids and len(source_ids) == 1:
+            return next(iter(source_ids))
+    return None
+
+
+def normalize_native_evaluate(node, native_to_source, expanded_native_to_source=None,
+                              expanded_source_checks=None):
     if not isinstance(node, dict) or len(node) != 1:
         raise ValueError("malformed native Evaluate")
+    expanded_native_to_source = expanded_native_to_source or {}
+    expanded_source_checks = expanded_source_checks or {}
+    collapsed = _expanded_group_source(
+        node, expanded_native_to_source, expanded_source_checks)
+    if collapsed is not None:
+        return ("test", collapsed)
     op, val = next(iter(node.items()))
     if op == "test":
         if val not in native_to_source:
             raise ValueError("unmapped native Test " + str(val))
         return ("test", native_to_source[val])
     if op == "not":
-        return ("not", normalize_native_evaluate(val, native_to_source))
+        return ("not", normalize_native_evaluate(
+            val, native_to_source, expanded_native_to_source, expanded_source_checks))
     if op in ("and", "or", "xor", "one") and isinstance(val, list):
-        children = tuple(normalize_native_evaluate(v, native_to_source) for v in val)
+        children = tuple(normalize_native_evaluate(
+            v, native_to_source, expanded_native_to_source, expanded_source_checks)
+            for v in val)
         return children[0] if len(children) == 1 and op in ("and", "or") else (op, children)
     raise ValueError("unknown native Evaluate operator " + str(op))
 
@@ -439,7 +469,7 @@ def source_literal(value, datatype):
             raise ValueError("invalid original float value") from error
     raise ValueError("unqualified original Variable datatype: " + str(datatype))
 
-def audit_source_set_filter_retention(source, selected_tests, native, synthetic=()):
+def audit_source_set_filter_retention(source, selected_tests, native, synthetic=(), expanded=()):
     """Fail closed when the converter silently drops source Set/Filter logic.
 
     Restores 0.3 source-graph coverage for OVAL Object Sets and Filter States.
@@ -491,6 +521,12 @@ def audit_source_set_filter_retention(source, selected_tests, native, synthetic=
                      "COMPLEMENT": "difference"}.get(item.get("set_operator", "UNION"))
         if operation:
             observed[operation] += 1
+    # A finite Variable Object UNION may be lowered into child Tests plus an
+    # Evaluate expression instead of a native Set node. The expansion trace is
+    # the explicit retained source boundary for that representation.
+    expanded_sources = {item.get("source_test") for item in expanded
+                        if isinstance(item, dict) and item.get("source_test")}
+    observed["union"] += len(expanded_sources)
     stack = [native]
     while stack:
         item = stack.pop()
@@ -652,6 +688,8 @@ def _native_expression_type(expression, known, field_datatypes=None, native=None
         for payload in payloads:
             _native_expression_type(payload, known, field_datatypes, native)
         return "string"
+    if operation == "time_difference":
+        return "integer"
     if operation == "arithmetic":
         operands = value.get("values", []) if isinstance(value, dict) else []
         if not isinstance(operands, list) or len(operands) < 2:
@@ -705,6 +743,8 @@ def _source_expression_type(node, source):
     if operation == "object_component":
         return None
     children = [child for child in node if isinstance(child.tag, str)]
+    if operation == "time_difference":
+        return "integer"
     if operation == "arithmetic":
         types = {_source_expression_type(child, source) for child in children}
         if types <= {"integer", "float"} and types:
@@ -863,6 +903,19 @@ def _source_expression_matches(source_node, native_expression, source_to_native,
             return False
         return _source_expression_matches(children[0], payload.get("value"),
                                           source_to_native, source, inlined)
+    if operation == "time_difference":
+        if not isinstance(native_expression, dict) or set(native_expression) != {"time_difference"}:
+            return False
+        payload = native_expression["time_difference"]
+        for key in ("format_1", "format_2"):
+            if key in source_node.attrib and payload.get(key) != source_node.get(key):
+                return False
+        children = [child for child in source_node if isinstance(child.tag, str)]
+        values = payload.get("values")
+        return (isinstance(values, list) and len(values) == len(children) and
+                all(_source_expression_matches(child, value, source_to_native,
+                                               source, inlined)
+                    for child, value in zip(children, values)))
     if operation == "literal_component":
         datatype = source_node.get("datatype", "string")
         expected = source_literal(source_node.text or "", datatype)
@@ -994,7 +1047,7 @@ def compare_mapped_variables(source, native, trace, selected_tests, field_dataty
                     raise ValueError("original Variable alias is not preserved: " + srcid)
             elif tag(child) == "literal_component":
                 native_type, native_value = _native_literal_payload(expression)
-                datatype = child.get("datatype", "string")
+                datatype = child.get("datatype") or dtype
                 expected = source_literal(child.text or "", datatype)
                 expected_type = SOURCE_TO_NATIVE_TYPES.get(datatype, datatype)
                 if native_type != expected_type or native_value not in (expected, [expected]):
@@ -1038,10 +1091,77 @@ def compare_mapped_variables(source, native, trace, selected_tests, field_dataty
         checked += 1
     return checked
 
+_SOURCE_INVALID_VARIABLES = re.compile(
+    r"source-invalid Variable datatype (?:declaration|normalization):\s*(?P<ids>.+)$"
+)
+
+
+def source_invalid_disposition(source, definition_id, reason, trace):
+    """Return source-linked evidence for a typed Variable hold.
+
+    A converter may emit a schema-valid compatibility document while the OVAL
+    source itself declares a Variable datatype that disagrees with the
+    expression's result. Keep that distinction machine-readable instead of
+    leaving the row as an undifferentiated parity failure. XML node hashes
+    are hashes of the parsed, deterministic ElementTree serialization; the
+    complete source-document hash remains the authoritative identity.
+    """
+    match = _SOURCE_INVALID_VARIABLES.fullmatch(reason)
+    variable_ids = sorted({item.strip() for item in match.group("ids").split(",")
+                           if item.strip()}) if match else []
+    selected_tests = []
+    try:
+        selected_tests = sorted(reachable_source_tests(source, definition_id))
+    except (KeyError, TypeError, ValueError):
+        # The surrounding audit still records the primary source-invalid
+        # disposition; malformed graph diagnostics remain separate problems.
+        selected_tests = []
+    variable_rows = []
+    for variable_id in variable_ids:
+        variable = source.get("variables", {}).get(variable_id)
+        if variable is None:
+            variable_rows.append({"variable_id": variable_id,
+                                  "source_variable_present": False})
+            continue
+        children = [child for child in variable if isinstance(child.tag, str)]
+        expression_type = None
+        if tag(variable) == "local_variable" and len(children) == 1:
+            expression_type = _source_expression_type(children[0], source)
+        source_refs = sorted({node.get("id") for node in source.get("nodes", {}).values()
+                              if node.get("id") and
+                              (node.get("var_ref") == variable_id or any(
+                                  tag(child) == "var_ref" and (child.text or "").strip() == variable_id
+                                  for child in node
+                              ))})
+        variable_rows.append({
+            "variable_id": variable_id,
+            "source_variable_present": True,
+            "source_variable_kind": tag(variable),
+            "declared_datatype": variable.get("datatype"),
+            "expression_tag": tag(children[0]) if len(children) == 1 else None,
+            "expression_result_datatype": expression_type,
+            "source_variable_xml_sha256": digest(ET.tostring(variable, encoding="utf-8")),
+            "referenced_source_node_ids": source_refs,
+        })
+    normalizations = [item for item in (trace or {}).get("source_type_normalizations", [])
+                      if isinstance(item, dict) and
+                      item.get("source_variable") in variable_ids]
+    return {
+        "source_path": source.get("path"),
+        "source_xml_sha256": source.get("sha256"),
+        "definition_id": definition_id,
+        "affected_test_ids": selected_tests,
+        "variable_ids": variable_ids,
+        "variables": variable_rows,
+        "native_type_normalizations": normalizations,
+        "disposition": "source_invalid_non_equivalence",
+    }
+
+
 def audit(source_root, pack, *, require_full=False, expected_xml=144,
           expected_definitions=168, expected_tests=803,
-          verify_pin=False, schema_root=None):
-    pin_verified = verify_source_checkout(source_root) if verify_pin else False
+          verify_pin=False, schema_root=None, source_commit=PIN):
+    pin_verified = verify_source_checkout(source_root, source_commit) if verify_pin else False
     field_datatypes = load_field_datatypes(schema_root)
     records, archive_inventory = sources(source_root)
     original, definition_paths, problems = source_tree_summary(records)
@@ -1063,13 +1183,14 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         problems.append({"type": "original_test_count_mismatch",
                          "expected": expected_tests,
                          "observed": original["tests"]})
-    rows, manifest = read_pack(pack)
+    rows, manifest = read_pack(pack, source_commit)
     test_rows = read_test_ledger(pack)
     seen = set()
     statuses = Counter()
     tested = 0
     converted = 0
     unqualified = 0
+    source_invalid_rows = []
     for row in rows:
         path, ident = row.get("source_path"), row.get("definition_id")
         key = (path, ident)
@@ -1108,6 +1229,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
             continue
         converted += 1
         dirname = pack / "definitions" / slug(path) / slug(ident)
+        trace = {}
         try:
             native_raw = (dirname / "assessment.json").read_bytes()
             trace_raw = (dirname / "source-trace.json").read_bytes()
@@ -1118,31 +1240,48 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                     raise ValueError("missing or incorrect artifact SHA-256 for " + filename)
             native = json.loads(native_raw)["assessment"]
             trace = json.loads(trace_raw)
-            if trace.get("source_path") != path or trace.get("source_commit") != PIN:
+            if trace.get("source_path") != path or trace.get("source_commit") != source_commit:
                 raise ValueError("source path/commit mismatch in trace")
             if trace.get("source_sha256") != source["sha256"] or trace.get("definition_id") != ident:
                 raise ValueError("source digest/Definition mismatch in trace")
             if trace.get("source_oval_schema_version") != source["source_oval_schema_version"]:
                 raise ValueError("original OVAL schema version missing or altered in trace")
             mapping = trace.get("test_bindings", [])
+            expanded = {(entry.get("source_test"), entry.get("native_test"))
+                        for entry in trace.get("native_expanded_set_tests", [])
+                        if isinstance(entry, dict)}
             source_to_native = {}
+            native_to_source = {}
+            binding_by_pair = {}
             for bound in mapping:
                 a, b = bound["source_test"], bound["native_test"]
-                if a in source_to_native or b in source_to_native.values():
-                    raise ValueError("duplicate Test mapping in trace")
-                source_to_native[a] = b
+                if b in native_to_source:
+                    raise ValueError("duplicate native Test mapping in trace")
+                if a in source_to_native and (a, b) not in expanded:
+                    raise ValueError("duplicate Test mapping in trace without explicit Set expansion")
+                source_to_native.setdefault(a, []).append(b)
+                native_to_source[b] = a
+                binding_by_pair[(a, b)] = bound
             selected_tests = reachable_source_tests(source, ident)
             if set(source_to_native) != selected_tests:
                 raise ValueError("missing or extra source Test mapping")
-            if set(native.get("tests", {})) != set(source_to_native.values()):
+            if set(native.get("tests", {})) != set(native_to_source):
                 raise ValueError("native Test map differs from source trace")
-            for source_id, native_id in source_to_native.items():
+            for source_id, native_ids in source_to_native.items():
                 source_test = source["tests"].get(source_id)
                 if source_test is None:
                     raise ValueError("source Test reference undefined in source XML")
-                native_test = native["tests"][native_id]
-                compare_variable_test_binding(source, source_test, native_test, trace)
+                for native_id in native_ids:
+                    native_test = native["tests"][native_id]
+                    # A source variable Object Set is lowered to explicit
+                    # child Tests. The child Variable is the materialized
+                    # operand, not the source Object's single var_ref; the
+                    # expansion trace and Set-retention gate verify that
+                    # transformation separately.
+                    if not binding_by_pair[(source_id, native_id)].get("object_set_operand"):
+                        compare_variable_test_binding(source, source_test, native_test, trace)
                 if tag(source_test) == "unknown_test":
+                    native_test = native["tests"][native_ids[0]]
                     # OVAL unknown_test has a fixed unknown result. Its legacy
                     # cardinality attributes are ignored by specification.
                     if native_test.get("capability") != "independent.unknown":
@@ -1152,34 +1291,73 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                 expected_existence = EXISTENCE.get(original_existence)
                 if expected_existence is None:
                     raise ValueError("unqualified original existence: " + str(original_existence))
-                if (native_test.get("require", {}).get("item_requirement", {})
-                              .get("items_found") != expected_existence):
-                    raise ValueError("OVAL existence cardinality differs at " + source_id)
+                for native_id in native_ids:
+                    native_test = native["tests"][native_id]
+                    if (native_test.get("require", {}).get("item_requirement", {})
+                                  .get("items_found") != expected_existence):
+                        raise ValueError("OVAL existence cardinality differs at " + source_id)
                 has_states = any(tag(child) == "state" for child in source_test)
                 # OVAL has no State match to evaluate for a presence-only Test
                 # or when the existence boundary itself is none_exist.
-                if has_states and original_existence != "none_exist":
+                expanded_source_test = any(
+                    binding_by_pair[(source_id, native_id)].get("object_set_operand")
+                    for native_id in native_ids)
+                if (has_states and original_existence != "none_exist" and
+                        not expanded_source_test):
                     original_check = source_test.get("check", "all")
                     expected_check = CHECK.get(original_check)
                     if expected_check is None:
                         raise ValueError("unqualified original check: " + str(original_check))
-                    if (native_test.get("require", {}).get("item_requirement", {})
-                                  .get("items_satisfying") != expected_check):
-                        raise ValueError("OVAL check cardinality differs at " + source_id)
+                    for native_id in native_ids:
+                        native_test = native["tests"][native_id]
+                        requirement = native_test.get("require", {})
+                        item_requirement = requirement.get("item_requirement", {})
+                        if item_requirement.get("items_satisfying") == expected_check:
+                            continue
+                        # The canonical record evaluator applies the OVAL Test
+                        # check to a field's value population after the Item
+                        # record itself has matched. Converters disclose this
+                        # projection through field_requirement.values_matching.
+                        field_requirement = requirement.get("field_requirement", {})
+                        projected = (isinstance(requirement.get("fields"), dict) and
+                                     field_requirement.get("values_matching") == expected_check)
+                        if not (item_requirement.get("items_satisfying") == "every" and projected):
+                            raise ValueError("OVAL check cardinality differs at " + source_id)
+            normalizations = trace.get("source_type_normalizations", [])
+            if normalizations:
+                identifiers = sorted({item.get("source_variable", "")
+                                      for item in normalizations if item.get("source_variable")})
+                raise ValueError("source-invalid Variable datatype normalization: " +
+                                 ", ".join(identifiers))
             compare_mapped_variables(
                 source, native, trace, selected_tests, field_datatypes)
-            audit_source_set_filter_retention(source, selected_tests, native, trace.get("native_synthetic_variables", []))
-            native_to_source = {v: k for k, v in source_to_native.items()}
+            audit_source_set_filter_retention(
+                source, selected_tests, native, trace.get("native_synthetic_variables", []),
+                trace.get("native_expanded_set_tests", []))
             oval_tree = normalize_source_evaluate(source, ident)
-            native_tree = normalize_native_evaluate(native.get("evaluate"), native_to_source)
+            expanded_native_to_source = {
+                item.get("native_test"): item.get("source_test")
+                for item in trace.get("native_expanded_set_tests", [])
+                if isinstance(item, dict) and item.get("native_test") and item.get("source_test")}
+            expanded_source_checks = {
+                source_id: source["tests"].get(source_id, {}).get("check")
+                for source_id in set(expanded_native_to_source.values())}
+            native_tree = normalize_native_evaluate(
+                native.get("evaluate"), native_to_source, expanded_native_to_source,
+                expanded_source_checks)
             if oval_tree != native_tree:
                 raise ValueError("source/native Evaluate logic mismatch")
             tested += len(selected_tests)
         except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
             reason = str(exc)[:300]
             problem_type = "source_invalid" if reason.startswith("source-invalid") else "converted_parity_failure"
-            problems.append({"type": problem_type, "source": path,
-                             "definition": ident, "reason": reason})
+            problem = {"type": problem_type, "source": path,
+                       "definition": ident, "reason": reason}
+            if problem_type == "source_invalid":
+                disposition = source_invalid_disposition(source, ident, reason, trace)
+                problem.update(disposition)
+                source_invalid_rows.append(disposition)
+            problems.append(problem)
             continue
         # Structural parity, NOT independently executed semantic equivalence.
         unqualified += 1
@@ -1226,14 +1404,12 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
             problems.append({"type": "test_definition_results_mismatch",
                              "source": path, "test": test_id})
         expected_native = []
-        owner_statuses = []
         for owner in owners:
             definition_row = definition_by_key.get((path, owner))
             item = next((item for item in results
                          if item.get("definition_id") == owner), None)
             if definition_row is None or item is None:
                 continue
-            owner_statuses.append(definition_row.get("conversion_status"))
             for field in ("conversion_status", "schema_validated", "failure_class", "diagnostic"):
                 if item.get(field) != definition_row.get(field):
                     problems.append({"type": "test_owner_result_mismatch",
@@ -1250,15 +1426,7 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         if observed_native != sorted(set(expected_native)):
             problems.append({"type": "test_native_bindings_mismatch",
                              "source": path, "test": test_id})
-        if path.startswith(AIX_PREFIX):
-            expected_status = "intentionally_excluded"
-        elif expected_native:
-            expected_status = "CONVERTED_UNVERIFIED"
-        elif owners and owner_statuses and all(status == "intentionally_excluded"
-                                               for status in owner_statuses):
-            expected_status = "intentionally_excluded"
-        else:
-            expected_status = "blocked"
+        expected_status = "CONVERTED_UNVERIFIED" if expected_native else "blocked"
         if row.get("conversion_status") != expected_status:
             problems.append({"type": "test_conversion_status_mismatch",
                              "source": path, "test": test_id,
@@ -1297,6 +1465,8 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
         "test_status_counts": dict(sorted(test_statuses.items())),
         "reconciled_tests": reconciled_tests,
         "source_tests_without_disposition": len(source_test_keys - test_seen),
+        "source_invalid_rows": source_invalid_rows,
+        "source_invalid_definition_count": len(source_invalid_rows),
     }}
     accounting_errors = {"duplicate_source_definition", "duplicate_test_id",
                          "duplicate_converter_row", "source_sha256_mismatch",
@@ -1315,7 +1485,6 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
                          "test_owner_result_mismatch",
                          "test_native_bindings_mismatch",
                          "test_conversion_status_mismatch",
-                         "exclusion_without_authorized_aix_policy",
                          "original_xml_file_count_mismatch",
                          "original_definition_count_mismatch",
                          "original_test_count_mismatch",
@@ -1323,10 +1492,13 @@ def audit(source_root, pack, *, require_full=False, expected_xml=144,
     accounted = not any(problem["type"] in accounting_errors for problem in problems)
     complete = not problems and converted == original["definitions"]
     scope_complete = (not problems and
-                      converted + statuses["excluded"] +
-                      statuses["intentionally_excluded"] == original["definitions"] and
+                      converted + statuses["blocked"] == original["definitions"] and
                       reconciled_tests == original["tests"] and
-                      sum(test_statuses.values()) == original["tests"])
+                      sum(test_statuses.values()) == original["tests"] and
+                      not statuses["excluded"] and
+                      not statuses["intentionally_excluded"] and
+                      not test_statuses["excluded"] and
+                      not test_statuses["intentionally_excluded"])
     return {"format": "scap-ng-oval-source-parity/1", "complete": complete,
             "scope_complete": scope_complete,
             "source_accounted": accounted, "runtime_equivalence_proved": False,
@@ -1345,12 +1517,14 @@ def main():
     parser.add_argument("--expected-xml", type=int, default=144)
     parser.add_argument("--expected-definitions", type=int, default=168)
     parser.add_argument("--expected-tests", type=int, default=803)
+    parser.add_argument("--source-commit", default=PIN,
+                        help="exact upstream Self-Assertion commit (default: corrected active pin)")
     parser.add_argument("--allow-unverified-fixture-source", action="store_true",
                         help="TEST FIXTURES ONLY: skip exact Git commit verification")
     parser.add_argument("--require-full", action="store_true",
                         help="exit nonzero unless every original Definition is converted")
     parser.add_argument("--require-scope", action="store_true",
-                        help="allow excluded Definitions ONLY with explicit owner decision")
+                        help="require every source row to be in current authoring scope; blocked rows remain explicit holds")
     args = parser.parse_args()
     try:
         report = audit(args.source_root, args.pack,
@@ -1358,6 +1532,7 @@ def main():
                        expected_definitions=args.expected_definitions,
                        expected_tests=args.expected_tests,
                        verify_pin=not args.allow_unverified_fixture_source,
+                       source_commit=args.source_commit,
                        schema_root=args.schema_root)
     except (OSError, ValueError, KeyError, ET.ParseError) as exc:
         parser.exit(2, f"source parity audit error: {exc}\n")

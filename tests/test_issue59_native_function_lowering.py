@@ -36,15 +36,32 @@ class Active041FunctionLowering(unittest.TestCase):
         self.assertIn('function', original)  # immutable source visitor
         value = lower_expression(original)
         self.assertEqual(value, {'count': {'unique': [
-            {'literal': {'datatype': 'string', 'value': 'alpha'}},
-            {'literal': {'datatype': 'string', 'value': 'alpha'}},
-            {'literal': {'datatype': 'string', 'value': 'beta'}},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'alpha'}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'alpha'}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': 'beta'}}]},
         ]}})
         self.assertNotIn('function', str(value))
         self.assertEqual(visitor.conversion_warnings[0]['independent_static_proof'], 'UNPROVED')
         self.assertFalse(visitor.conversion_warnings[0]['scanner_evaluated'])
 
-    def test_direct_source_unique_projects_only_collected_item_values(self):
+    def test_direct_source_unique_projects_typed_literals_to_text(self):
+        visitor = self.visitor()
+        source = oval(
+            '<unique xmlns="OVAL">'
+            '<literal_component datatype="int">1</literal_component>'
+            '<literal_component datatype="string">1</literal_component>'
+            '</unique>')
+        self.assertEqual(visitor.function(source), {'unique': [
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'integer', 'value': 1}}]},
+            {'concat': [{'literal': ''},
+                        {'literal': {'datatype': 'string', 'value': '1'}}]},
+        ]})
+
+    def test_direct_source_unique_projects_every_source_operand(self):
         class Source:
             native_recovery = True
             def __init__(self, object_node):
@@ -362,6 +379,46 @@ class StaticVariableObjectSetRecovery(unittest.TestCase):
         self.assertEqual(visitor.synthetic_variables[0]['source_variable_ids'], ['one', 'two'])
         self.assertEqual(visitor.synthetic_variables[0]['set_operator'], 'UNION')
 
+    def test_convert_object_uses_static_materialization_in_production_mode(self):
+        objects = {
+            'root': oval('<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
+                         '<object_reference>left</object_reference><object_reference>right</object_reference>'
+                         '</set></variable_object>'),
+            'left': oval('<variable_object xmlns="OVAL" id="left"><var_ref>one</var_ref></variable_object>'),
+            'right': oval('<variable_object xmlns="OVAL" id="right"><var_ref>two</var_ref></variable_object>'),
+            'one': oval('<constant_variable xmlns="OVAL" id="one"/>'),
+            'two': oval('<constant_variable xmlns="OVAL" id="two"/>'),
+        }
+        visitor = self.visitor(objects, {'one': ['a'], 'two': ['b']})
+        visitor.native_recovery = False
+        visitor.mappings = [{
+            'capability': 'variable.value',
+            'source': {'namespace': OVAL, 'object': 'variable_object'},
+            'native': {'test_source': {'kind': 'variable'}},
+        }]
+        visitor.object_uses = {'root': 1}
+        self.assertEqual(visitor.convert_object(objects['root']),
+                         {'variable': 'static-set-variable', 'capability': 'variable.value'})
+
+    def test_static_set_is_admitted_without_recovery_mode(self):
+        objects = {
+            'root': oval('<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
+                         '<object_reference>left</object_reference><object_reference>right</object_reference>'
+                         '</set></variable_object>'),
+            'left': oval('<variable_object xmlns="OVAL" id="left"><var_ref>one</var_ref></variable_object>'),
+            'right': oval('<variable_object xmlns="OVAL" id="right"><var_ref>two</var_ref></variable_object>'),
+            'one': oval('<constant_variable xmlns="OVAL" id="one"/>'),
+            'two': oval('<constant_variable xmlns="OVAL" id="two"/>'),
+        }
+        visitor = self.visitor(objects, {'one': ['a'], 'two': ['b']})
+        visitor.native_recovery = False
+        result = visitor.static_variable_object(objects['root'])
+        self.assertEqual(result, {'variable': 'static-set-variable'})
+        self.assertEqual(visitor.variables['static-set-variable']['expression'],
+                         {'literal': {'datatype': 'string', 'value': ['a', 'b']}})
+        self.assertEqual(visitor.conversion_warnings[0]['code'],
+                         'oval_static_variable_object_set_materialized')
+
     def test_filters_and_dynamic_variables_remain_held(self):
         objects = {
             'root': oval('<variable_object xmlns="OVAL" id="root"><set><object_reference>left</object_reference>'
@@ -423,6 +480,27 @@ class StaticVariableObjectSetRecovery(unittest.TestCase):
             '</local_variable>')
         self.assertEqual(result_type(mixed, lambda identifier: {
             'float-source': float_source}[identifier]), 'float')
+
+    def test_literal_functions_are_admitted_in_production_mode(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=False)
+        escaped = oval('<escape_regex xmlns="OVAL"><literal_component datatype="string">a.b</literal_component></escape_regex>')
+        self.assertEqual(visitor.function(escaped), {
+            'literal': {'datatype': 'string', 'value': r'a\.b'}})
+        glob = oval('<glob_to_regex glob_noescape="false" xmlns="OVAL"><literal_component datatype="string">*.txt</literal_component></glob_to_regex>')
+        self.assertEqual(visitor.function(glob), {
+            'literal': {'datatype': 'string', 'value': r'^(?=[^\.])[^/]*\.txt$'}})
+        self.assertEqual([warning['source_function'] for warning in visitor.conversion_warnings],
+                         ['escape_regex', 'glob_to_regex'])
+
+    def test_literal_function_population_and_byte_limits_fail_closed(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=False)
+        source = oval('<escape_regex xmlns="OVAL"><literal_component datatype="string">x</literal_component></escape_regex>')
+        visitor.static_string_component_values = lambda _component: ['x'] * 4097
+        with self.assertRaisesRegex(ValueError, 'population exceeds bound'):
+            visitor.function(source)
+        visitor.static_string_component_values = lambda _component: ['x' * (1 << 20) + 'x']
+        with self.assertRaisesRegex(ValueError, 'source bytes exceed bound'):
+            visitor.function(source)
 
     def test_literal_escape_regex_is_materialized_without_cast(self):
         visitor = AssessmentConverter(None, None, [], native_recovery=True)

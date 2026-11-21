@@ -35,7 +35,7 @@ def _choice_assessment(source, rule, check, *, assessment_id, title):
     body = ''
     if inline and inline[0].text:
         body = inline[0].text.strip()
-    if not body and reference:
+    if not body and reference is not None:
         body = f'Complete the source OCIL procedure {reference.get("name")}.'
     if not body:
         body = 'Complete the source OCIL procedure and record the result.'
@@ -54,15 +54,15 @@ def _choice_assessment(source, rule, check, *, assessment_id, title):
         ], 'allow_comment': True, 'allow_evidence': True},
         'references': ([{'source_component': component,
                          'source_check_ref': reference.get('name'),
-                         'source_catalog_ref': reference.get('href')}] if reference else []),
+                         'source_catalog_ref': reference.get('href')}] if reference is not None else []),
         'evidence_guidance': 'Retain the completed source OCIL evidence and reviewer notes.'
     }}
     provenance = {
         'selection': {'system': OCIL, 'selector': check.get('selector', '')},
         'source_check_sha256': digest(xml_identity(check)),
         'source_check_identity': xml_identity(check),
-        'source_catalog_ref': reference.get('href') if reference else None,
-        'source_content_ref': reference.get('name') if reference else None,
+        'source_catalog_ref': reference.get('href') if reference is not None else None,
+        'source_content_ref': reference.get('name') if reference is not None else None,
         'source_component': component,
         'projection': 'manual_assessment',
         'automated_equivalent': False,
@@ -73,6 +73,8 @@ def _choice_assessment(source, rule, check, *, assessment_id, title):
 def manual_rule(source, rule, *, title, rule_id, assessment_id):
     """Return one native Rule and one manual Assessment for an OCIL Rule."""
     from v04_direct_scap_source import XCCDF, OCIL, digest, ensure, xml_identity
+    from v04_source_metadata import (source_description_text, source_relationships,
+                                     source_standard_metadata, validate_relationship_targets)
 
     checks = [check for check in rule.findall('{' + XCCDF + '}check')
               if check.get('system') == OCIL]
@@ -89,10 +91,12 @@ def manual_rule(source, rule, *, title, rule_id, assessment_id):
         assessment['assessment']['procedure'] += '\n\n' + extra['assessment']['procedure']
         assessment['assessment']['references'].extend(extra['assessment'].get('references', []))
         provenance.setdefault('additional_source_checks', []).append(extra_provenance)
+    relationships = source_relationships(rule)
+    validate_relationship_targets(relationships, source.nodes[source.benchmark_component])
     native_rule = {'id': rule_id, 'version': rule.findtext('{' + XCCDF + '}version', ''),
         'title': title, 'severity': rule.get('severity', 'unknown'), 'role': 'full',
-        'weight': float(rule.get('weight', '1')), 'discussion': rule.findtext('{' + XCCDF + '}description', ''),
-        'requires': [], 'conflicts': [], 'applicability': [], 'parameters': {},
+        'weight': float(rule.get('weight', '1')), 'discussion': source_description_text(rule),
+        'requires': relationships['requires'], 'conflicts': relationships['conflicts'], 'parameters': {},
         'remediation': {}, 'organizational_input_requirements': {},
         'assessment_choices': {'manual': {'assessment': assessment_id}},
         'default_assessment_choice': 'manual'}
@@ -102,5 +106,10 @@ def manual_rule(source, rule, *, title, rule_id, assessment_id):
         'source_rule_sha256': digest(xml_identity(rule)), 'native_rule': rule_id,
         'assessment': assessment_id, 'conversion_status': 'MANUAL_ONLY_PRESERVED',
         'manual_provenance': provenance, 'source_checks': [xml_identity(check) for check in checks]}
+    metadata = source_standard_metadata(rule)
+    if metadata:
+        # Keep the same source-fidelity contract for OCIL-only Rules; do not
+        # project unapproved metadata/remediation semantics into native Rule.
+        binding['source_standard_metadata'] = metadata
     return ({f'authoring/direct-slice/assessments/{assessment_id}.json': assessment,
              f'authoring/direct-slice/rules/{rule_id}.json': {'rule': native_rule}}, binding)

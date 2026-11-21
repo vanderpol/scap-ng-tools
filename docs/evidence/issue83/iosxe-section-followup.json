@@ -1,0 +1,48 @@
+{
+  "after": {
+    "independent_oval_equivalence": false,
+    "runtime_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "before": {
+    "category": "converter_admission_gap",
+    "reason": "iosxe.section mapping existed in canonical schema but was omitted from the Tools enabled semantic pack",
+    "status": "blocked"
+  },
+  "definition_id": "oval:org.joval.iosxe.test:def:1",
+  "format": "scap-ng-tools/issue83-iosxe-section-followup/1",
+  "output": {
+    "documents": 1,
+    "external_directory": "/tmp/iosxe-section-followup-1795115600",
+    "files": {
+      "assessment.json": {
+        "bytes": 902,
+        "sha256": "77da6719ee34f833e1f0733f81e8d2f601bd11d350b4dc2d5d16c090a62721b4"
+      },
+      "assessment.yaml": {
+        "bytes": 674,
+        "sha256": "1955c72ef0f40011e06a0eb979f9ad41aa17258bdf2a582103a7851cbadbea7e"
+      },
+      "conversion-scope.json": {
+        "bytes": 562,
+        "sha256": "9b9406a568faec1af939f6be77ac0988515710f9df8b705d4f072b554876b683"
+      },
+      "source-trace.json": {
+        "bytes": 2479,
+        "sha256": "83d7b0a41010bc524393b0fc93d3d9a2f990f787d16336cfc92d286cfeb8410b"
+      }
+    }
+  },
+  "pins": {
+    "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter_commit": "afe09bef420f57e07991ee6ebe2e1d3d8e4c669f",
+    "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "semantic_pack_sha256": "700ebca8ff420d81eab839f80c305a649ece1a6c95b718047898d0bf663103ff",
+    "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+  },
+  "source_path": "iosxe/iosxe-def_section_test.xml",
+  "source_sha256": "2338e6a3c5ab1fb79c47437d3a12bdcd1d018fa99a6b07191634b5bdddc3b60c",
+  "tests": 1
+}

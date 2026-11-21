@@ -1,0 +1,216 @@
+{
+  "canonical_schema_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+  "converter_commit": "17e9d07944acb58f7ecb146471a301514df8fc97",
+  "counts": {
+    "blocked": 3,
+    "converted": 17
+  },
+  "diagnostics": {
+    "Variable cast outside bounded proof": 1,
+    "unsupported object capability": 1,
+    "unsupported standalone source OVAL version": 1
+  },
+  "format": "scap-ng-tools/issue83/macos-focused/1",
+  "qualification": "authoring/schema validation only; runtime and independent OVAL equivalence not proved",
+  "rows": [
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "Variable cast outside bounded proof",
+      "duration_seconds": 0.169,
+      "returncode": 1,
+      "source_file": "macos/ind-def_environmentvariable58_test_mac.xml",
+      "source_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16",
+      "status": "blocked"
+    },
+    {
+      "assessment_sha256": "8cebc95e37aead64fa52b6176361e8ed769968e1f156815563eb05478d9b4133",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"f2b56bfe787abd3a8c668ddcbaf70c20ec2470a7208d37d42ac0ad2ff39144ac\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 3.295,
+      "returncode": 0,
+      "source_file": "macos/macos-def_accountinfo_test.xml",
+      "source_sha256": "f2b56bfe787abd3a8c668ddcbaf70c20ec2470a7208d37d42ac0ad2ff39144ac",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "cb8e14e695862562ad3bcc308f2839b8f4ecbdc4cf3daf55a0b8478c55983615",
+      "definition_id": "oval:org.mitre.oval.test:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"1ec0e848b6db2099b644edf51d70f5a693b4d4e5fd874ff63d0e1f947ec5d99e\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.108,
+      "returncode": 0,
+      "source_file": "macos/macos-def_authorizationdb_test.xml",
+      "source_sha256": "1ec0e848b6db2099b644edf51d70f5a693b4d4e5fd874ff63d0e1f947ec5d99e",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "c90b562558adec4fb3e7497247381159bdf903467f275d517fb297259c53e1cc",
+      "definition_id": "oval:org.joval.oval.test:def:448",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"9eecb92ed98a7f5ae46814c03d51ee9b8fc289d08d8f7feb8edef43d1d2a63ba\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.12,
+      "returncode": 0,
+      "source_file": "macos/macos-def_disabledservice_test.xml",
+      "source_sha256": "9eecb92ed98a7f5ae46814c03d51ee9b8fc289d08d8f7feb8edef43d1d2a63ba",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "3c6a0e939cc19b8b4d180da686fcf517f55217e7b393f93d9390bf2ac06c019c",
+      "definition_id": "oval:org.joval.oval:def:9620",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"b11a4b5d8eb387cd577b59712dcceaaf59c773d744d1fd54d1cef4edd4794ba9\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.031,
+      "returncode": 0,
+      "source_file": "macos/macos-def_diskinfo_test.xml",
+      "source_sha256": "b11a4b5d8eb387cd577b59712dcceaaf59c773d744d1fd54d1cef4edd4794ba9",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "5385b36558660a134ebd79b84614acada274c23f83e026143658fdf2975bfff1",
+      "definition_id": "oval:org.joval.test:def:120002",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"83a66de7e3f997cfad206ff33335e28b939717738003329d5c4be0c630e3d22d\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.355,
+      "returncode": 0,
+      "source_file": "macos/macos-def_filevault_test.xml",
+      "source_sha256": "83a66de7e3f997cfad206ff33335e28b939717738003329d5c4be0c630e3d22d",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "dc54ef7f58ce7e54d3b4e9d18e30566482f8c9b8d36bb598b6c3783070948e56",
+      "definition_id": "oval:org.joval.test:def:220002",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"200c768c7add252fb437f3d38b2bcdb839a12b119d1c7af36c82b316d6c01bd2\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 3.317,
+      "returncode": 0,
+      "source_file": "macos/macos-def_firmwarepassword_test.xml",
+      "source_sha256": "200c768c7add252fb437f3d38b2bcdb839a12b119d1c7af36c82b316d6c01bd2",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "2b03a37e822fd7d44d70bb1ebb8ee3aba80505359ecb375acb1f38bd9498e9d2",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"a76301de534a71f84fc498108c59b065551b9ec933db1b0a8e8582e835b2eebf\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.142,
+      "returncode": 0,
+      "source_file": "macos/macos-def_gatekeeper_test.xml",
+      "source_sha256": "a76301de534a71f84fc498108c59b065551b9ec933db1b0a8e8582e835b2eebf",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "3db719d200748fb12d8b98ea4a004c0aae63e8566f340924b583899c3adb8735",
+      "definition_id": "oval:com.jovalcm.macos:def:20002",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"288da3a1f6d7e158ac9613d1b7a40033512f878a9e2ab3d1bf3da9cabd9f17fe\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.046,
+      "returncode": 0,
+      "source_file": "macos/macos-def_installhistory_test.xml",
+      "source_sha256": "288da3a1f6d7e158ac9613d1b7a40033512f878a9e2ab3d1bf3da9cabd9f17fe",
+      "status": "converted"
+    },
+    {
+      "definition_id": "oval:org.joval.test:def:20002",
+      "diagnostic": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}environmentvariable_object",
+      "duration_seconds": 0.096,
+      "returncode": 1,
+      "source_file": "macos/macos-def_keychain_test.xml",
+      "source_sha256": "53e1beb968074d18a1bade43e8d251a2387d44d19e12e76a720966ed5130a62b",
+      "status": "blocked"
+    },
+    {
+      "assessment_sha256": "c6ac0881e5cb9791d843605c09a799d834122dde489b1da9efb68534e33152c8",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"4b31ad27b5a13b8ae2550415772f6ff99e62ec74af21a5d74276571f1ece2ab1\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.565,
+      "returncode": 0,
+      "source_file": "macos/macos-def_launchd_test.xml",
+      "source_sha256": "4b31ad27b5a13b8ae2550415772f6ff99e62ec74af21a5d74276571f1ece2ab1",
+      "status": "converted"
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:448",
+      "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+      "duration_seconds": 0.091,
+      "returncode": 1,
+      "source_file": "macos/macos-def_nvram512_test.xml",
+      "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd",
+      "status": "blocked"
+    },
+    {
+      "assessment_sha256": "3a0208e4412479a837e94d3701d2df4946473bfaae3ea675393e2b2afdd68bc5",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"c299d1d4145d79a28f122cd913ee214a8c1217417dbed7c477ffc0a59e0caf79\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 3.305,
+      "returncode": 0,
+      "source_file": "macos/macos-def_plist511_test.xml",
+      "source_sha256": "c299d1d4145d79a28f122cd913ee214a8c1217417dbed7c477ffc0a59e0caf79",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "e88a4891135af22424c06eab92f3d89eba5c0d68210ce840348ea9b4f89727b3",
+      "definition_id": "oval:org.joval.test:def:320002",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"21c845bb2076a939d216ca9ea8fa37c1dc783ded7d04a881e274b70df8c6abce\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 1.968,
+      "returncode": 0,
+      "source_file": "macos/macos-def_profiles_test.xml",
+      "source_sha256": "21c845bb2076a939d216ca9ea8fa37c1dc783ded7d04a881e274b70df8c6abce",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "e4f70f81f6eebd066ee911c0c79ea0bc1ef3f654cd3bba9f33c736aca3d3e201",
+      "definition_id": "oval:org.joval.oval:def:20002",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"fd7f6c29caab6c5238f97c2f97df6fcfdab1464e6ce846469391f54a381b273c\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.493,
+      "returncode": 0,
+      "source_file": "macos/macos-def_pwpolicy512_test.xml",
+      "source_sha256": "fd7f6c29caab6c5238f97c2f97df6fcfdab1464e6ce846469391f54a381b273c",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "1a91e7274839234fa2918860fd9d01e56ed1ac902be98f7b52b468d751cff097",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"77016edd47f380559b9e1f2beb4ec4998b11e410591bf67db92cad56f4b8c8a0\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 3.159,
+      "returncode": 0,
+      "source_file": "macos/macos-def_softwareupdate_test.xml",
+      "source_sha256": "77016edd47f380559b9e1f2beb4ec4998b11e410591bf67db92cad56f4b8c8a0",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "3d94e4db2831c0cb03751bb6a64ee09b56c2abb8608256d627a3968ea17b941c",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"8f118ba83cee8686af1d5a62ff8032338e7cc82c94b3317b755004bc8d57ecec\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.203,
+      "returncode": 0,
+      "source_file": "macos/macos-def_systemprofiler_test.xml",
+      "source_sha256": "8f118ba83cee8686af1d5a62ff8032338e7cc82c94b3317b755004bc8d57ecec",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "b678a64bb5c938bb33f9d3992742de43081d3cc958bf32195468cd9476862500",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"7c357cda4df4959cbf188e96bebbfcec7f70e79d41eabf88ce0936c5ec1c5077\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.154,
+      "returncode": 0,
+      "source_file": "macos/macos-def_systemsetup_test.xml",
+      "source_sha256": "7c357cda4df4959cbf188e96bebbfcec7f70e79d41eabf88ce0936c5ec1c5077",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "34ed594a5de7a2ad8c64a3acf1890d6197e27fa0f2e713409e827f3db535ba1e",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:90",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"bb2e88020c28286207f17ae18d26e4c6e4c9ef84c468d7a217ebb769f902feff\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.388,
+      "returncode": 0,
+      "source_file": "macos/unix-def_interface_test_mac.xml",
+      "source_sha256": "bb2e88020c28286207f17ae18d26e4c6e4c9ef84c468d7a217ebb769f902feff",
+      "status": "converted"
+    },
+    {
+      "assessment_sha256": "5751783667251706ab20a4275ba219aa5247708f8d60bf8b9aa03f3f8088ad96",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.unix.test:def:1",
+      "diagnostic": "{\"documents\": 1, \"source_sha256\": \"23bede24f1818acc16bb88f0635fbc18337a8b04aa63aaa5438f8168b5a7c6ce\", \"source_rules\": null, \"status\": \"CONVERTED_UNVERIFIED\", \"schema_validated\": true}",
+      "duration_seconds": 2.477,
+      "returncode": 0,
+      "source_file": "macos/unix-def_sysctl_test_mac.xml",
+      "source_sha256": "23bede24f1818acc16bb88f0635fbc18337a8b04aa63aaa5438f8168b5a7c6ce",
+      "status": "converted"
+    }
+  ],
+  "schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+  "source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa"
+}

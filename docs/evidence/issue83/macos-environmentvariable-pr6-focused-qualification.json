@@ -1,0 +1,48 @@
+{
+  "conversion": {
+    "base_diagnostic": "Variable cast outside bounded proof",
+    "base_returncode": 1,
+    "base_status": "blocked",
+    "canonical_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "converter": "scap_ng_tools.converter.direct04",
+    "converter_commit": "0148d91f827a1a6f00a62abcb7120fca34f52bbf",
+    "corrected_assessment_sha256": "f10abbe558387a3fed09a7a5d03fee7e8d71d8409961d4948768db65cfc057ac",
+    "corrected_returncode": 0,
+    "corrected_schema_validated": true,
+    "corrected_source_trace_sha256": "1c9817e11ca5e85574db19a649fd6b0ac35a5f80d05c448f5f9221a2275ba61b",
+    "corrected_status": "CONVERTED_UNVERIFIED",
+    "current_replay_verified": true,
+    "flat_schema_family_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "host_qualification": "not_run",
+    "independent_runtime_equivalence": "not_proved",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "replay_note": "Direct production CLI replay at current Tools head; invalid source Variable cast fails closed and corrected integer Variable converts schema-valid."
+  },
+  "format": "scap-ng-tools/issue83-source-correction-focused/1",
+  "reproduction": {
+    "converter_command_template": "PYTHONPATH=src python -m scap_ng_tools.converter.direct04 --schema-root <canonical-0.4.1-schema> --source <source-file> --sha256 <source-sha256> --oval-definition oval:navy.navwar.niwcatlantic.scc.test:def:1 --source-commit <source-commit> --source-path SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml --output <new-output-directory>",
+    "evidence_root": "<fresh-external-temp-directory>",
+    "generated_evidence_commit": "not committed; compact hashes only",
+    "source_fetch_template": "curl -fsSL https://raw.githubusercontent.com/OVAL-Community/SCAP-Self-Assertion/<source-commit>/SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml"
+  },
+  "source": {
+    "affected_test_ids": [
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+    ],
+    "affected_variable": "oval:navy.navwar.niwcatlantic.scc.test:var:2",
+    "base_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "base_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16",
+    "classification": "source_typed_literal_invalid",
+    "corrected_commit": "33c6ad2bb254f2c60274a19891a9f9973f985e76",
+    "corrected_sha256": "8a7d8c49cb312607f8d88cd2a1ec42f8ad8871bf31413a5e5c667cf5208e2319",
+    "correction": "PR #6 changes var:2 to datatype int, updates its comment and increments the affected Definition/Variable versions.",
+    "defect": "Variable var:2 is used as a process PID but was declared datatype boolean; its source process pid field is datatype int.",
+    "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+    "path": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
+    "pull_request": 6,
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_commit_blob_verified": true
+  }
+}

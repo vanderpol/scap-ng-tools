@@ -1,0 +1,1057 @@
+{
+  "benchmarks": {
+    "active_rules": 7990,
+    "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+    "benchmarks": 65,
+    "blocker_category_counts": {
+      "schema-semantic": 13,
+      "unsupported-capability": 78,
+      "unsupported-construct": 4
+    },
+    "candidate": {
+      "blocked": 95,
+      "converted": 6492,
+      "manual_only": 1403
+    },
+    "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "full_receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+    "historical_windows_2012_rules": 693,
+    "newly_blocked_from_converted": 0,
+    "newly_converted_from_blocked": 13,
+    "nonregression_pass": true,
+    "original": {
+      "blocked": 108,
+      "converted": 6479,
+      "manual_only": 1403
+    },
+    "owner_excluded_sql_rules": 209,
+    "recovered_rules": [
+      {
+        "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule",
+        "source_rule_sha256": "d02f764847b1321a23973b688d12f2f2328bb883f56faa32017a0c266b4475b2",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule",
+        "source_rule_sha256": "cbbcf23a161a09c442266482d4701ec2d0fa5f1777ba8248400a5e9c97d283b4",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule",
+        "source_rule_sha256": "06eafbe544cc95e8cf018667254444fa4f24075fc44e8a3a2dfe7af791372c06",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule",
+        "source_rule_sha256": "58aebb5a89d703554295af45bdfb3a00f57216103e840f0bd3430fcbdfcd8772",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule",
+        "source_rule_sha256": "eb034ce6133aa342b8fd1c073d9dad750d346acb01dfc638a7b1d999eef23b57",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.fso_rule_SV-225223r961038_rule",
+        "source_rule_sha256": "2f1f3720206d9ee0a17f8ee6047aa1f70ec81d57ce486feacaeb3b0ceccae116",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule",
+        "source_rule_sha256": "8d8ae904d338c70248fe0618d8417fe51d5cb1182f92f85d4eeab391b34255f7",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule",
+        "source_rule_sha256": "2de069602ea229d7c2121c48361bf62442b563d689066e3e25e6e595c8308904",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214492r879887_rule",
+        "source_rule_sha256": "91be9127f66a7f5005a030a98c35cdfb278b1a669310eb57b8c1bda315d7c217",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule",
+        "source_rule_sha256": "badfe54a1936f44224132fa1a32aa52ebcae19ee0ed30ef1c96501efd45abec3",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
+        "source_rule_sha256": "cf79e9db4c8647f7525137f3ee94d4321410be92e4d76c4287ba2d8e7bc74da5",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-214799r991589_rule",
+        "source_rule_sha256": "379ace04940ef70dd564037f5c33d57ea1c41966888f4149a1d1e16cd30b1890",
+        "to": "converted"
+      },
+      {
+        "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+        "blocker_category": null,
+        "from": "blocked",
+        "new_proof_level": "authoring_validated",
+        "original_proof_level": "none",
+        "primary_blocker": null,
+        "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule",
+        "source_rule_sha256": "a1e9f0ec19624231143a7cdded89663e4ef8c7af20313a0d1f021ed03279931f",
+        "to": "converted"
+      }
+    ],
+    "source_repository": "niwc-atlantic/scap-content-library"
+  },
+  "canonical": {
+    "assessment_closure_sha256": "1ff810407901fa3687b7820f41a1042f1105288ccbdbe25beefb764620083caf",
+    "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+    "repository": "vanderpol/scap-ng",
+    "schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+  },
+  "commands": {
+    "benchmarks": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/rebuild_issue59_full65.py --schema-root /tmp/codex-scap-ng-main/schema --source-root /tmp/tools-issue85-source-archive-8c8e5d --source-archive /tmp/niwc-scap-content-8c8e5d.tar.gz --source-archive-sha256 8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --canonical-schema-commit 44991ed3753944e47c42d76f157b29448b256a34 --schema-aggregate-sha256 ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260 --output /tmp/tools-issue85-full65-449-run2.json --enforce-nonregression",
+    "parity": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/audit_self_assertion_parity.py --source-root /tmp/tools-pr84-source-53c/SCAP_1.4/OVAL_Test_Content --pack /tmp/tools-issue88-converted-53c-run3 --schema-root /tmp/codex-scap-ng-main --expected-xml 143 --expected-definitions 167 --expected-tests 799 --output /tmp/tools-issue88-parity-53c.json",
+    "standalone_conversion": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus /tmp/tools-pr84-source-53c --schema-root /tmp/codex-scap-ng-main --source-commit 53c18ea31a1976209572ec8b068e1a02be588456 --output /tmp/tools-issue88-converted-53c-run3"
+  },
+  "converter": {
+    "commit": "41f04ba",
+    "definitions_ledger_sha256": "e0bc783b6a97aa8cb2802a99b24386af64d0f8b3555e5670912027bdbf385069",
+    "package_manifest_sha256": "7f523a1ebaa96f5bb41074bc444bd1a9dcba47a9438ceb594dd231ae5ba79be8",
+    "repository": "vanderpol/scap-ng-tools",
+    "tests_ledger_sha256": "f917359a585dce7d876fb3a36475b736033743e2e9fd5f64211ccfe8a529df4f"
+  },
+  "format": "scap-ng-tools/issue88-corrected-source-qualification/1",
+  "oval_schema": {
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "repository": "OVAL-Community/OVAL",
+    "schema_root": "/tmp/oval-5.12.3/oval-schemas",
+    "xsd_files": 54
+  },
+  "proof_boundaries": {
+    "aix_runtime": "not_qualified",
+    "converter_schema_admission": "proven for converted rows",
+    "independent_oval_equivalence": "not_proved",
+    "runtime_execution": "not_run",
+    "schematron_source_hold": "explicit; not suppressed"
+  },
+  "source": {
+    "commit": "53c18ea31a1976209572ec8b068e1a02be588456",
+    "historical_baseline": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_delta": "docs/evidence/issue88-source-delta-53c.json",
+    "source_delta_sha256": "fd65e2690db71cd47ada6433554c02c521767a2798c411687f27ed673fe31803"
+  },
+  "source_validation": {
+    "schematron": {
+      "clean_files": 142,
+      "failed-assert": 15,
+      "files_with_reports": 1
+    },
+    "schematron_error_files": 1,
+    "schematron_hold": "solaris/sol-def_package511_test.xml: inconsistent datatype between variable and associated var_ref (15 reports across imported Schematron views)",
+    "xsd": {
+      "valid": 143
+    },
+    "xsd_error_files": 0
+  },
+  "standalone": {
+    "blocked_definitions": 6,
+    "blocked_tests": 56,
+    "blocker_definitions": [
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:562",
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_xml_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:729",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked"
+      }
+    ],
+    "blocker_tests": [
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:126"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:132"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:154"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:170"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:275"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:34"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:350"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:38"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:439"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:487"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:509"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:608"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:64"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:71"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:851"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:936"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:943"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:983"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:1"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:2"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:3"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:5"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+      },
+      {
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_xml_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_xml_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+      },
+      {
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_xml_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:1006"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:1289"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:525"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:664"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:680"
+      }
+    ],
+    "converted_definitions": 161,
+    "converted_tests": 743,
+    "definitions": 167,
+    "parity_receipt_sha256": "3c344007257ba5d757b3d7449953197cc0d5a8ae860f783e78407c1822865cf0",
+    "platform_receipt_sha256": "214cdaf7cee5f2ca9a581e538fa09ff673201c614cbd33bf6f50c51401da1d19",
+    "platforms": {
+      "definitions": {
+        "agnostic": {
+          "blocked": 1,
+          "converted": 46,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 46,
+            "blocked": 1
+          },
+          "total": 47,
+          "unreviewed": 0
+        },
+        "aix": {
+          "blocked": 0,
+          "converted": 2,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 2
+          },
+          "total": 2,
+          "unreviewed": 0
+        },
+        "asa": {
+          "blocked": 0,
+          "converted": 2,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 2
+          },
+          "total": 2,
+          "unreviewed": 0
+        },
+        "ios": {
+          "blocked": 1,
+          "converted": 10,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 10,
+            "blocked": 1
+          },
+          "total": 11,
+          "unreviewed": 0
+        },
+        "iosxe": {
+          "blocked": 0,
+          "converted": 11,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 11
+          },
+          "total": 11,
+          "unreviewed": 0
+        },
+        "junos": {
+          "blocked": 0,
+          "converted": 1,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 1
+          },
+          "total": 1,
+          "unreviewed": 0
+        },
+        "linux": {
+          "blocked": 0,
+          "converted": 16,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 16
+          },
+          "total": 16,
+          "unreviewed": 0
+        },
+        "macos": {
+          "blocked": 0,
+          "converted": 20,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 20
+          },
+          "total": 20,
+          "unreviewed": 0
+        },
+        "panos": {
+          "blocked": 0,
+          "converted": 2,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 2
+          },
+          "total": 2,
+          "unreviewed": 0
+        },
+        "solaris": {
+          "blocked": 2,
+          "converted": 4,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 4,
+            "blocked": 2
+          },
+          "total": 6,
+          "unreviewed": 0
+        },
+        "unix": {
+          "blocked": 0,
+          "converted": 13,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 13
+          },
+          "total": 13,
+          "unreviewed": 0
+        },
+        "windows": {
+          "blocked": 2,
+          "converted": 34,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 34,
+            "blocked": 2
+          },
+          "total": 36,
+          "unreviewed": 0
+        }
+      },
+      "tests": {
+        "agnostic": {
+          "blocked": 18,
+          "converted": 310,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 310,
+            "blocked": 18
+          },
+          "total": 328,
+          "unreviewed": 0
+        },
+        "aix": {
+          "blocked": 0,
+          "converted": 2,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 2
+          },
+          "total": 2,
+          "unreviewed": 0
+        },
+        "asa": {
+          "blocked": 0,
+          "converted": 2,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 2
+          },
+          "total": 2,
+          "unreviewed": 0
+        },
+        "ios": {
+          "blocked": 4,
+          "converted": 12,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 12,
+            "blocked": 4
+          },
+          "total": 16,
+          "unreviewed": 0
+        },
+        "iosxe": {
+          "blocked": 0,
+          "converted": 17,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 17
+          },
+          "total": 17,
+          "unreviewed": 0
+        },
+        "junos": {
+          "blocked": 0,
+          "converted": 1,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 1
+          },
+          "total": 1,
+          "unreviewed": 0
+        },
+        "linux": {
+          "blocked": 0,
+          "converted": 62,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 62
+          },
+          "total": 62,
+          "unreviewed": 0
+        },
+        "macos": {
+          "blocked": 0,
+          "converted": 43,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 43
+          },
+          "total": 43,
+          "unreviewed": 0
+        },
+        "panos": {
+          "blocked": 0,
+          "converted": 2,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 2
+          },
+          "total": 2,
+          "unreviewed": 0
+        },
+        "solaris": {
+          "blocked": 9,
+          "converted": 12,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 12,
+            "blocked": 9
+          },
+          "total": 21,
+          "unreviewed": 0
+        },
+        "unix": {
+          "blocked": 0,
+          "converted": 71,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 71
+          },
+          "total": 71,
+          "unreviewed": 0
+        },
+        "windows": {
+          "blocked": 25,
+          "converted": 209,
+          "excluded": 0,
+          "status_counts": {
+            "CONVERTED_UNVERIFIED": 209,
+            "blocked": 25
+          },
+          "total": 234,
+          "unreviewed": 0
+        }
+      }
+    },
+    "source_accounted": true,
+    "source_validation_receipt_sha256": "5aca8936a4e9b8444074a790459825fff8f51008924fd323cffed49cf5cd1404",
+    "source_xml_files": 143,
+    "structural_complete": false,
+    "tests": 799
+  }
+}

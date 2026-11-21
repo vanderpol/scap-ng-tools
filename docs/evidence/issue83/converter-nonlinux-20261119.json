@@ -1,0 +1,696 @@
+{
+  "blocked_source_records": [
+    {
+      "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+      "failure_class": "unsupported",
+      "family": "ios",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+      "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:1"
+    },
+    {
+      "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+      "failure_class": "unsupported",
+      "family": "ios",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+      "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:2"
+    },
+    {
+      "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+      "failure_class": "unsupported",
+      "family": "ios",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+      "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:3"
+    },
+    {
+      "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+      "failure_class": "unsupported",
+      "family": "ios",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+      "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+      "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version_test",
+      "failure_class": "unsupported",
+      "family": "ios",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+      "source_sha256": "a7b8bd9f2b9bc375dfaedccdb34a991eb50d372aea7aceb942c8867e0ba9e897"
+    },
+    {
+      "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#junos}xml_config_test",
+      "failure_class": "unsupported",
+      "family": "junos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml",
+      "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5",
+      "test_id": "oval:org.joval.junos.test:tst:1"
+    },
+    {
+      "definition_id": "oval:org.joval.junos.test:def:1",
+      "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#junos}xml_config_test",
+      "failure_class": "unsupported",
+      "family": "junos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_xml_config_test.xml",
+      "source_sha256": "9e5f0a63627bc1a965aba6e7597af7ac677b3c186696fdd3fd4f5ac2f7c17cf5"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
+      "source_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
+      "source_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+    },
+    {
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
+      "source_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "Variable cast outside bounded proof",
+      "failure_class": "converter_failure",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/ind-def_environmentvariable58_test_mac.xml",
+      "source_sha256": "aebed7527b5717f94755c28e37ee3357debaca7d3c024814f0b3c501e387ad16"
+    },
+    {
+      "diagnostic": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}environmentvariable_object",
+      "failure_class": "unsupported",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+      "source_sha256": "53e1beb968074d18a1bade43e8d251a2387d44d19e12e76a720966ed5130a62b",
+      "test_id": "oval:org.joval.test:tst:20002"
+    },
+    {
+      "definition_id": "oval:org.joval.test:def:20002",
+      "diagnostic": "unsupported object capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}environmentvariable_object",
+      "failure_class": "unsupported",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+      "source_sha256": "53e1beb968074d18a1bade43e8d251a2387d44d19e12e76a720966ed5130a62b"
+    },
+    {
+      "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+      "failure_class": "unsupported",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+      "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd",
+      "test_id": "oval:com.jovalcm.macos.inventory:tst:1000001600001"
+    },
+    {
+      "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+      "failure_class": "unsupported",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+      "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd",
+      "test_id": "oval:org.joval.oval.test:tst:865"
+    },
+    {
+      "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+      "failure_class": "unsupported",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+      "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd",
+      "test_id": "oval:org.mitre.oval.test:tst:308"
+    },
+    {
+      "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+      "failure_class": "unsupported",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+      "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd",
+      "test_id": "oval:org.mitre.oval.test:tst:486"
+    },
+    {
+      "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+      "failure_class": "unsupported",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+      "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd",
+      "test_id": "oval:org.mitre.oval.test:tst:865"
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:448",
+      "diagnostic": "unsupported standalone source OVAL version: '5.10.1'",
+      "failure_class": "unsupported",
+      "family": "macos",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+      "source_sha256": "de4dcd4ba3e81f63916db722c462aff48e1702f414b33879c4497d8421bd70cd"
+    },
+    {
+      "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+    },
+    {
+      "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+    },
+    {
+      "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+    },
+    {
+      "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4"
+    },
+    {
+      "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:5"
+    },
+    {
+      "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706"
+    },
+    {
+      "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+      "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+    },
+    {
+      "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+      "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+    },
+    {
+      "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+      "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+      "failure_class": "deprecated_source_construct",
+      "family": "solaris",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+      "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307"
+    }
+  ],
+  "canonical_schema": {
+    "aggregate_sha256": "88fc59791f9cb5055d2a8dc27bb458bcf6699b5820061ce68af1a355bd33a84f",
+    "commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "repository": "vanderpol/scap-ng",
+    "version": "0.4.1"
+  },
+  "converter": {
+    "commit": "c97877027052cfe95cb8ad9a52f542da15b03366",
+    "entrypoint": "scap_ng_tools.converter.direct04",
+    "policy": "production CLI only; no manual native rewrites or expected outcomes",
+    "repository": "vanderpol/scap-ng-tools"
+  },
+  "external_evidence": {
+    "artifact_hashes": {
+      "aix/blocked-definitions.json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "aix/blocked-tests.jsonl": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "aix/blocked.json": {
+        "bytes": 39,
+        "sha256": "f94fc4f7785130100321c9a388553c1b0b0bab1c4863054196207d9572853634"
+      },
+      "aix/definitions.json": {
+        "bytes": 1795,
+        "sha256": "abe2ebb08fd4a088f16a4328677fed5fcde8c2b95a409790883431f187b62d0f"
+      },
+      "aix/manifest.json": {
+        "bytes": 3450,
+        "sha256": "f64f99832db722f23345412db29c5baf2cff916d885555311583d8b93f498ade"
+      },
+      "aix/source-mappings.json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "aix/tests.jsonl": {
+        "bytes": 1916,
+        "sha256": "63f6cfc2d0a3ba694ed6ba388d746a1efad1c241742bb2b0a1ac713095bb1793"
+      },
+      "aix/validation.json": {
+        "bytes": 734,
+        "sha256": "f37e2fb09b35257bd43d20d2a49b2975dcb301205350bfe31f19f674f8b532c3"
+      },
+      "asa/blocked-definitions.json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "asa/blocked-tests.jsonl": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "asa/blocked.json": {
+        "bytes": 39,
+        "sha256": "f94fc4f7785130100321c9a388553c1b0b0bab1c4863054196207d9572853634"
+      },
+      "asa/definitions.json": {
+        "bytes": 3836,
+        "sha256": "dae45fc8b216e61d737168b3e13971e429822f4079996307895e0acc83f29afd"
+      },
+      "asa/manifest.json": {
+        "bytes": 5324,
+        "sha256": "1532a2356300e926771af7522b1a85ba0ecda8ab8f3524f58057f45a69f2f5ea"
+      },
+      "asa/source-mappings.json": {
+        "bytes": 1044,
+        "sha256": "964e83581c6c16c96733ed0bdd3bd770daae4321913877b6dc84de5eb4c916b6"
+      },
+      "asa/tests.jsonl": {
+        "bytes": 1712,
+        "sha256": "7ecb16c0eda293dc30ff529035088011cdb33264aa573e0845ffcd3c2716a653"
+      },
+      "asa/validation.json": {
+        "bytes": 734,
+        "sha256": "8809d05d713c11838860a2999c3e3e9caa91d58724ffb2d5f6dea13dd9aa44cd"
+      },
+      "ios/blocked-definitions.json": {
+        "bytes": 1641,
+        "sha256": "e99c65138b0cd4eeb5d82a4fe0861e290547964d6cd42cd52c8290b767766b40"
+      },
+      "ios/blocked-tests.jsonl": {
+        "bytes": 3992,
+        "sha256": "fba6d817234fab84bbc0b201b6b6d4e77c3bb190f0989f9f6681f8d54ff4675f"
+      },
+      "ios/blocked.json": {
+        "bytes": 6647,
+        "sha256": "a4a37fb4f7b88795fdf2c5b918f886dbdeed52289340fba2660ad625b1e53da7"
+      },
+      "ios/definitions.json": {
+        "bytes": 21211,
+        "sha256": "5f6384ab07f12940a1dc7cc20729603a9df8809e8527834fe5aff5191a8379a2"
+      },
+      "ios/manifest.json": {
+        "bytes": 13317,
+        "sha256": "17bddebe623e19057763bbfd8b84c31c208be4e8985c70ce24e45e50d89ae45c"
+      },
+      "ios/source-mappings.json": {
+        "bytes": 5764,
+        "sha256": "49c579b5d50d2be233485e0e59e7f7f5d30bffb6c0e0cf68a1aef6ce36b5cf05"
+      },
+      "ios/tests.jsonl": {
+        "bytes": 14816,
+        "sha256": "e2ad01a261b5dd92d63df7a33467fee47b6d35045cf86a47978e16e7ccce7616"
+      },
+      "ios/validation.json": {
+        "bytes": 735,
+        "sha256": "02898d56e7742e8a47aa314ae42b084df616718c96ab04fb29fa614090a0b562"
+      },
+      "iosxe/blocked-definitions.json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "iosxe/blocked-tests.jsonl": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "iosxe/blocked.json": {
+        "bytes": 39,
+        "sha256": "f94fc4f7785130100321c9a388553c1b0b0bab1c4863054196207d9572853634"
+      },
+      "iosxe/definitions.json": {
+        "bytes": 21961,
+        "sha256": "958462005b0bbc759c3fd4bc5ea30a94e27f81aca6f97889998c378d3fbd2aac"
+      },
+      "iosxe/manifest.json": {
+        "bytes": 14422,
+        "sha256": "b43600d48ebab3b9b3390a599a14eccaafd472059351248ade31eeb0964335d2"
+      },
+      "iosxe/source-mappings.json": {
+        "bytes": 7002,
+        "sha256": "2b989d1a24d2849f575647a6a8f15132e6a8de6dde7d4c3519fb8b8c5d6e7015"
+      },
+      "iosxe/tests.jsonl": {
+        "bytes": 15686,
+        "sha256": "0d9ea54e413934f28898ab19d5346a9edb92f829a3b9e2686da42f165b83871a"
+      },
+      "iosxe/validation.json": {
+        "bytes": 735,
+        "sha256": "467cd219fe636d1795d876c866f6c744381e82f3a533f6c6ac60c710818826ea"
+      },
+      "junos/blocked-definitions.json": {
+        "bytes": 1469,
+        "sha256": "414057eab8f48e62fab216ce2fa382c3b1e1e5787713096bbddb7f5431cb1324"
+      },
+      "junos/blocked-tests.jsonl": {
+        "bytes": 982,
+        "sha256": "613a98287caebd5e00ca7812de18377e3104727704ac810a6adc691cbf4206bd"
+      },
+      "junos/blocked.json": {
+        "bytes": 2796,
+        "sha256": "f2cf4542fb15c339ead134ed492774b78487f3339a0df820de152efe0162bf8b"
+      },
+      "junos/definitions.json": {
+        "bytes": 3397,
+        "sha256": "b242b82aeef65be5bd871905f6346c90ae8d9cdbc6d9f7990b3c733b7a2d9916"
+      },
+      "junos/manifest.json": {
+        "bytes": 4576,
+        "sha256": "f8711df77d0dcab7bd13b669dbbe8358b61692e4ea620e0382e6204765072283"
+      },
+      "junos/source-mappings.json": {
+        "bytes": 533,
+        "sha256": "411f73f55d8ab3421e9a2379fc2f962519a90bac6292c7da3581aca57577aef8"
+      },
+      "junos/tests.jsonl": {
+        "bytes": 1844,
+        "sha256": "8b682da3652e4aeb107f7b0a1df3dce1b589d8221a4044195a03e5e8a06d4878"
+      },
+      "junos/validation.json": {
+        "bytes": 734,
+        "sha256": "18291b72f0d7097c15a71d5a98c098e3f96d7247d03d28176778e4f25dd7f293"
+      },
+      "macos/blocked-definitions.json": {
+        "bytes": 4855,
+        "sha256": "44f5e85bcb8a0a812ca865ec551a1c34ea6c68923ad811c2f9f8bcbaddea46e5"
+      },
+      "macos/blocked-tests.jsonl": {
+        "bytes": 8314,
+        "sha256": "18e6a67f5bd5057c66cce727fc878177de9021ba9f935ed60d70dbb13a0d122a"
+      },
+      "macos/blocked.json": {
+        "bytes": 15514,
+        "sha256": "c78be1251e56db4d9b92affd376757d1d302e3ede4553bedb0c55084c04823ba"
+      },
+      "macos/definitions.json": {
+        "bytes": 39362,
+        "sha256": "5d111b24bf1c98a5dc370d185c355eedc4fc3cc01987c976960851f4dd126ccb"
+      },
+      "macos/manifest.json": {
+        "bytes": 21330,
+        "sha256": "0d86c6bb8ae64b2b8bc10c2dedcd12638be45bb0346df8ee38f33dbe279e0258"
+      },
+      "macos/source-mappings.json": {
+        "bytes": 11853,
+        "sha256": "364aa3c992fcaa6931c924527f3d7ddb0976df7324717e09d15ccf18890bc697"
+      },
+      "macos/tests.jsonl": {
+        "bytes": 40040,
+        "sha256": "5dba1fb3606928cd13b4b2cfc187ba1068503a146c7baceeee5bc07d481c7322"
+      },
+      "macos/validation.json": {
+        "bytes": 735,
+        "sha256": "b20226d7b4f66aa8ceb93efe2ac13f93057760a9a315ce36b9923081100280d9"
+      },
+      "panos/blocked-definitions.json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "panos/blocked-tests.jsonl": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "panos/blocked.json": {
+        "bytes": 39,
+        "sha256": "f94fc4f7785130100321c9a388553c1b0b0bab1c4863054196207d9572853634"
+      },
+      "panos/definitions.json": {
+        "bytes": 3885,
+        "sha256": "e9b9bad787ef33a19adaeb05c570b1e3149b79b420d94cfd8cd9c4c27fdb5794"
+      },
+      "panos/manifest.json": {
+        "bytes": 5388,
+        "sha256": "8bbeab576255641ee1a6c3322d8ee35d8e1e433eba7fe77a7086054e2b1f146c"
+      },
+      "panos/source-mappings.json": {
+        "bytes": 1085,
+        "sha256": "7b6e536b295b413069d6008cc70af48209c2edc60c839daada43177d71086894"
+      },
+      "panos/tests.jsonl": {
+        "bytes": 1755,
+        "sha256": "a44bae125f607201a1c408fcb99f4822c9ea83b7ad375d980c8f856164cc742a"
+      },
+      "panos/validation.json": {
+        "bytes": 734,
+        "sha256": "8809d05d713c11838860a2999c3e3e9caa91d58724ffb2d5f6dea13dd9aa44cd"
+      },
+      "solaris/blocked-definitions.json": {
+        "bytes": 3484,
+        "sha256": "b7287072fe97ffc42caadf772b4d6876b09c5d6368b77d70e93e54cc331183e1"
+      },
+      "solaris/blocked-tests.jsonl": {
+        "bytes": 9848,
+        "sha256": "8b47ac27a450817b72db05c2dd9cf28ff7d31d4c6aaabee5d4f340f075c03ab1"
+      },
+      "solaris/blocked.json": {
+        "bytes": 15627,
+        "sha256": "0fec2ba6ebe5e40554aeb075c406cc453c036af501f11d2cb33d832c38dada73"
+      },
+      "solaris/definitions.json": {
+        "bytes": 11947,
+        "sha256": "8f938cae2c9164bcf5c5f991b6f553d828b6727b63e72816a50932cd1dcf8170"
+      },
+      "solaris/manifest.json": {
+        "bytes": 7983,
+        "sha256": "e8a7e1350d6e6a520f8b7b9e2dc4e5097214c6fe3084e8e6c099b561bdbf8567"
+      },
+      "solaris/source-mappings.json": {
+        "bytes": 3297,
+        "sha256": "7bed7295bcd67e26b463f6371208ca27117112f8134420d3683ee06b1cb9db2b"
+      },
+      "solaris/tests.jsonl": {
+        "bytes": 21197,
+        "sha256": "2efa5737b130ad56ada91ce875cc744de9df19230daf810b528806e9060893b4"
+      },
+      "solaris/validation.json": {
+        "bytes": 734,
+        "sha256": "6500e9025197129742498a57d0bef3d8f1bf767f2ddbf65a6080b3f5e27b1087"
+      }
+    },
+    "raw_artifacts_retained_external": true,
+    "raw_root": "/tmp/issue83-converter-remaining-20261119.H0lSKK"
+  },
+  "format": "scap-ng-tools/issue83/nonlinux-converter-replay/1",
+  "generated_at_utc": "2026-11-19",
+  "holds": [
+    {
+      "class": "deprecated_source_construct",
+      "details": "package_test and package511_test are deprecated in OVAL 5.12.3; no native alias emitted",
+      "family": "solaris"
+    },
+    {
+      "class": "unsupported",
+      "details": "ios:version_test not admitted by the current converter",
+      "family": "ios"
+    },
+    {
+      "class": "unsupported",
+      "details": "junos:xml_config_test not admitted by the current converter",
+      "family": "junos"
+    },
+    {
+      "class": "converter_failure",
+      "details": "bounded Variable cast hold in environmentvariable witness",
+      "family": "macos"
+    },
+    {
+      "class": "unsupported",
+      "details": "independent environmentvariable object and standalone OVAL 5.10.1 NVRAM content",
+      "family": "macos"
+    },
+    {
+      "class": "owner_exclusion",
+      "details": "source family is explicitly excluded by current policy; 2 Definitions/2 Tests are not silently counted as converted",
+      "family": "aix"
+    }
+  ],
+  "qualification": {
+    "authoring": "schema_validated_or_explicitly_excluded",
+    "expected_outcomes_derived": false,
+    "independent_oval_equivalence": "not_proved",
+    "runtime_execution": "not_run"
+  },
+  "source": {
+    "commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "families": [
+      "aix",
+      "asa",
+      "ios",
+      "iosxe",
+      "junos",
+      "macos",
+      "panos",
+      "solaris"
+    ],
+    "identity_basis": "(family, source_path, source ID, exact source XML SHA-256)",
+    "repository": "OVAL-Community/SCAP-Self-Assertion"
+  },
+  "summary": {
+    "blocked_classes": {
+      "converter_failure": 4,
+      "deprecated_source_construct": 11,
+      "unsupported": 15
+    },
+    "blocked_definitions": 7,
+    "blocked_tests": 23,
+    "converted_definitions": 47,
+    "converted_tests": 80,
+    "definitions": 56,
+    "excluded_definitions": 2,
+    "excluded_tests": 2,
+    "family_summaries": {
+      "aix": {
+        "blocked_definitions": 0,
+        "blocked_tests": 0,
+        "converted_definitions": 0,
+        "converted_tests": 0,
+        "definitions": 2,
+        "excluded_definitions": 2,
+        "excluded_tests": 2,
+        "execution": "not_run",
+        "schema_valid_yaml_documents": 0,
+        "test_ledger_reconciled": 2,
+        "tests": 2
+      },
+      "asa": {
+        "blocked_definitions": 0,
+        "blocked_tests": 0,
+        "converted_definitions": 2,
+        "converted_tests": 2,
+        "definitions": 2,
+        "excluded_definitions": 0,
+        "excluded_tests": 0,
+        "execution": "not_run",
+        "schema_valid_yaml_documents": 2,
+        "test_ledger_reconciled": 2,
+        "tests": 2
+      },
+      "ios": {
+        "blocked_definitions": 1,
+        "blocked_tests": 4,
+        "converted_definitions": 10,
+        "converted_tests": 12,
+        "definitions": 11,
+        "excluded_definitions": 0,
+        "excluded_tests": 0,
+        "execution": "not_run",
+        "schema_valid_yaml_documents": 10,
+        "test_ledger_reconciled": 16,
+        "tests": 16
+      },
+      "iosxe": {
+        "blocked_definitions": 0,
+        "blocked_tests": 0,
+        "converted_definitions": 11,
+        "converted_tests": 17,
+        "definitions": 11,
+        "excluded_definitions": 0,
+        "excluded_tests": 0,
+        "execution": "not_run",
+        "schema_valid_yaml_documents": 11,
+        "test_ledger_reconciled": 17,
+        "tests": 17
+      },
+      "junos": {
+        "blocked_definitions": 1,
+        "blocked_tests": 1,
+        "converted_definitions": 1,
+        "converted_tests": 1,
+        "definitions": 2,
+        "excluded_definitions": 0,
+        "excluded_tests": 0,
+        "execution": "not_run",
+        "schema_valid_yaml_documents": 1,
+        "test_ledger_reconciled": 2,
+        "tests": 2
+      },
+      "macos": {
+        "blocked_definitions": 3,
+        "blocked_tests": 9,
+        "converted_definitions": 17,
+        "converted_tests": 34,
+        "definitions": 20,
+        "excluded_definitions": 0,
+        "excluded_tests": 0,
+        "execution": "not_run",
+        "schema_valid_yaml_documents": 17,
+        "test_ledger_reconciled": 43,
+        "tests": 43
+      },
+      "panos": {
+        "blocked_definitions": 0,
+        "blocked_tests": 0,
+        "converted_definitions": 2,
+        "converted_tests": 2,
+        "definitions": 2,
+        "excluded_definitions": 0,
+        "excluded_tests": 0,
+        "execution": "not_run",
+        "schema_valid_yaml_documents": 2,
+        "test_ledger_reconciled": 2,
+        "tests": 2
+      },
+      "solaris": {
+        "blocked_definitions": 2,
+        "blocked_tests": 9,
+        "converted_definitions": 4,
+        "converted_tests": 12,
+        "definitions": 6,
+        "excluded_definitions": 0,
+        "excluded_tests": 0,
+        "execution": "not_run",
+        "schema_valid_yaml_documents": 4,
+        "test_ledger_reconciled": 21,
+        "tests": 21
+      }
+    },
+    "schema_valid_yaml_documents": 47,
+    "test_ledger_reconciled": true,
+    "tests": 105
+  }
+}
