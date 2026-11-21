@@ -1,0 +1,1842 @@
+{
+  "blockers": {
+    "definitions": [
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:562",
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:241",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-fileset-object-is-set-architecture-for-machine-test.object.capability: unknown native 0.4.1 capability 'aix.fileset'; Native comparison datatype: unknown native 0.4.1 capability 'aix.fileset'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fileset_test.xml",
+        "source_xml_sha256": "c0bbe67ad8359cc9a0f75bd42b3e37af83118e54eadcc9bb6b65b450905611ae",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:241",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-fix-object-is-set-architecture-for-machine-test.object.capability: unknown native 0.4.1 capability 'aix.fix'; Native comparison datatype: unknown native 0.4.1 capability 'aix.fix'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fix_test.xml",
+        "source_xml_sha256": "825bac649e638cb015e3ee498250f55b7a3bbbdfea7aca5a3a588b07d2e9d2bb",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.asa.test:def:6",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-line-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'asa.line'; Native comparison datatype: unknown native 0.4.1 capability 'asa.line'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/asa/asa-def_line_test.xml",
+        "source_xml_sha256": "51e5521c25b553e9a2461336ffb7f502271ab1d5d25cc7caea8ad217419e987e",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.asa.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'asa.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/asa/asa-def_version_test.xml",
+        "source_xml_sha256": "ef7f10d57cadebcfd4f4a82523ee86f635a9f55e241bce5edb4ed4356c987a17",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.ios.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-bgpneighbor-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.bgpneighbor'; Native comparison datatype: unknown native 0.4.1 capability 'ios.bgpneighbor'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_bgpneighbor_test.xml",
+        "source_xml_sha256": "f2394978ddb422b328ac0590dc890142889f160b6797a5a4927c21275d0a7b4a",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-data-from-the-global-test-via-string-equals-test.object.capability: unknown native 0.4.1 capability 'ios.global'; assessment.tests.test-gathering-data-from-the-global-test-via-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.global'; Native comparison datatype: unknown native 0.4.1 capability 'ios.global'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_global_test.xml",
+        "source_xml_sha256": "6015ddb9a1540fff61b7d8d6749a2bf6a1d309d823b40f53941e5ce6e488c7ec",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-data-from-interface-test-via-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.interface'; Native comparison datatype: unknown native 0.4.1 capability 'ios.interface'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_interface_test.xml",
+        "source_xml_sha256": "efdea2fbde95043f7e2fc311d65333feb0195e67a51b4e74bba7fbf19ecbfe73",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-show-running-config-with-a-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.line'; assessment.tests.test-gathering-show-interfaces-with-a-string-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.line'; Native comparison datatype: unknown native 0.4.1 capability 'ios.line'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_line_test.xml",
+        "source_xml_sha256": "9ac722055447ba16d976ae04d617e4cb2c4e942a71095b1209f919856b14ceb2",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.ios.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-routingprotocolauthintf-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.routingprotocolauthintf'; Native comparison datatype: unknown native 0.4.1 capability 'ios.routingprotocolauthintf'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_routingprotocolauthintf_test.xml",
+        "source_xml_sha256": "79171d0c0cd1ce0c82ca85c4e28e9acea3b5e2d7fa0d80ba7622f2ac2e45a79e",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.ios.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-section-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.section'; Native comparison datatype: unknown native 0.4.1 capability 'ios.section'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_section_test.xml",
+        "source_xml_sha256": "28a2ecee56a568a194537a23cd8f755565f69f8bd9d62c5267b1bb027bde0cf4",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.ios.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpcommunity-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.snmpcommunity'; Native comparison datatype: unknown native 0.4.1 capability 'ios.snmpcommunity'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_snmpcommunity_test.xml",
+        "source_xml_sha256": "d292758a2bf5b35d8e2c8f78ad3d49f898c775e6b8d8b7389f86e26c378e2baa",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.ios.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpgroup-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.snmpgroup'; Native comparison datatype: unknown native 0.4.1 capability 'ios.snmpgroup'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_snmpgroup_test.xml",
+        "source_xml_sha256": "92a6bd78b22b0c4aeea4005391d83bbed8fa17275c8225aaf2d835ea8cc7682c",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.ios.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmphost-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.snmphost'; Native comparison datatype: unknown native 0.4.1 capability 'ios.snmphost'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_snmphost_test.xml",
+        "source_xml_sha256": "09b60254d66fd529d3ad0553eb69ab12d4ac71a3a76596a5950d92bc4dee1f06",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.ios.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpuser-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.snmpuser'; Native comparison datatype: unknown native 0.4.1 capability 'ios.snmpuser'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_snmpuser_test.xml",
+        "source_xml_sha256": "2ba8cd76ff3d52136ea9b7e4bc8c38cd474b21a82385f74122a24c552c044bf3",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.iosxe.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-bgpneighbor-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.bgpneighbor'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.bgpneighbor'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_bgpneighbor_test.xml",
+        "source_xml_sha256": "1a24e3d667018646165c2220a85a98f161201bcf9c5a6ca42d0a4d4a519aea95",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-data-from-interface-test-via-pattern-match-test.object.capability: unknown native 0.4.1 capability 'iosxe.interface'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.interface'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_interface_test.xml",
+        "source_xml_sha256": "6b20819c213ce23706eea75d970c1fd8cc1cad3c84b5a327722146c5d161719d",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.iosxe.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-routingprotocolauthintf-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.routingprotocolauthintf'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.routingprotocolauthintf'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_routingprotocolauthintf_test.xml",
+        "source_xml_sha256": "ba1979ea14b38d59e81f2af0bea6008183e09745507b4e72c20a9412db71b4a7",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.iosxe.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-section-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.section'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.section'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_section_test.xml",
+        "source_xml_sha256": "05473c2be9d1d8b4792b252cb396ded41ca58022508d8a569a55969ca00a7ca7",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.iosxe.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpcommunity-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.snmpcommunity'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.snmpcommunity'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_snmpcommunity_test.xml",
+        "source_xml_sha256": "751b8a7d755c296012488b4e60f8c6a524c199aa08c4b17124c6604cc434ad5b",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.iosxe.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpgroup-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.snmpgroup'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.snmpgroup'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_snmpgroup_test.xml",
+        "source_xml_sha256": "f93e8cf05af52796e82861f039c21277fafc02e6c436249f661161dfec8dc00a",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.iosxe.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmphost-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.snmphost'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.snmphost'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_snmphost_test.xml",
+        "source_xml_sha256": "31e6e0bcd8ef8fa5f8546d833d707b1d3ce102e5901eb28b49597de84071663d",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.iosxe.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpuser-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.snmpuser'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.snmpuser'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_snmpuser_test.xml",
+        "source_xml_sha256": "b9e7c75abb09891327b94fa78f8074eb3ca740743e1d4e7e3698236d17f9bdd3",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:def:1",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'iosxe.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_version_test.xml",
+        "source_xml_sha256": "ebb65d04a2fd219ca07481b38007dca17da4b4116f3800d5786f2906fd07be88",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.junos.test:def:2",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-show-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'junos.show'; Native comparison datatype: unknown native 0.4.1 capability 'junos.show'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_show_test.xml",
+        "source_xml_sha256": "d703b8f3f42c2df8e4bf2d70d0a09e2e555df81b1c82aa531e276c277ab1a342",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-accountinfo-object-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; assessment.tests.test-that-accountinfo-object-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; assessment.tests.test-that-accountinfo-object-some-regular-expression-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; Native comparison datatype: unknown native 0.4.1 capability 'macos.accountinfo'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_accountinfo_test.xml",
+        "source_xml_sha256": "5b2dbda0abc6c2088b8b342f8c7d9935f7027670fe5edc66c3b033079e34d626",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-authorizationdb-name-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; assessment.tests.test-that-authorizationdb-name-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; assessment.tests.test-that-authorizationdb-name-entity-matching-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; Native comparison datatype: unknown native 0.4.1 capability 'macos.authorizationdb'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_authorizationdb_test.xml",
+        "source_xml_sha256": "422c1e0b5ec6386801d7ba850a63dd41153a0627d331a16e31cb32cdca2f17d0",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.oval.test:def:448",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.disabledservice'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_disabledservice_test.xml",
+        "source_xml_sha256": "101a941449877fba5bff91f4f9b9829d59df1bf3a09477c2e6beb11ece97a525",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.oval:def:9620",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.permissions-differ-for-usr-libexec-cups-test.object.capability: unknown native 0.4.1 capability 'macos.diskinfo'; Native comparison datatype: unknown native 0.4.1 capability 'macos.diskinfo'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_diskinfo_test.xml",
+        "source_xml_sha256": "9e371317f1918b314a6de8be3b34065304694d64e460dfd65ce66a15972f2bd8",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.test:def:120002",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.filevault'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_filevault_test.xml",
+        "source_xml_sha256": "83a66de7e3f997cfad206ff33335e28b939717738003329d5c4be0c630e3d22d",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.test:def:220002",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.firmwarepassword'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_firmwarepassword_test.xml",
+        "source_xml_sha256": "200c768c7add252fb437f3d38b2bcdb839a12b119d1c7af36c82b316d6c01bd2",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc:def:1",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.gatekeeper'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_gatekeeper_test.xml",
+        "source_xml_sha256": "929d23ace900a09f1c39372310005a6b2d99bec985bdedbd5b83b6b2dba035e8",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:com.jovalcm.macos:def:20002",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.verify-the-installhistory-test-implementation-test.object.capability: unknown native 0.4.1 capability 'macos.installhistory'; Native comparison datatype: unknown native 0.4.1 capability 'macos.installhistory'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_installhistory_test.xml",
+        "source_xml_sha256": "288da3a1f6d7e158ac9613d1b7a40033512f878a9e2ab3d1bf3da9cabd9f17fe",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.test:def:20002",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.check-that-the-keychain-test-is-implemented-test.object.capability: unknown native 0.4.1 capability 'macos.keychain'; Native comparison datatype: unknown native 0.4.1 capability 'macos.keychain'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+        "source_xml_sha256": "e4deffe58ffdf0c1876f08637588785476dc27231f51e56e8b5205d47684c1b3",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-launchd-object-is-label-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; assessment.tests.test-that-launchd-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; assessment.tests.test-that-launchd-object-is-entity-matching-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; Native comparison datatype: unknown native 0.4.1 capability 'macos.launchd'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_launchd_test.xml",
+        "source_xml_sha256": "364fd05cc0797b4beb41090658775096a4c5182b945dc3f86a0c69ce1f460a28",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:448",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.apple-os-version-is-10-15-x-test.object.capability: unknown native 0.4.1 capability 'macos.plist'; assessment.tests.test-that-nvram512-object-is-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-value-that-does-not-exist-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+        "source_xml_sha256": "3af5dd8eac07af064db71d6b8cbcce2dd54b001d21c03af2890f4552077a6a41",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-plist511-object-is-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.plist'; Native comparison datatype: unknown native 0.4.1 capability 'macos.plist'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_plist511_test.xml",
+        "source_xml_sha256": "c299d1d4145d79a28f122cd913ee214a8c1217417dbed7c477ffc0a59e0caf79",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.test:def:320002",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.profiles'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_profiles_test.xml",
+        "source_xml_sha256": "21c845bb2076a939d216ca9ea8fa37c1dc783ded7d04a881e274b70df8c6abce",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.oval:def:20002",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.verify-the-pwpolicy512-test-implementation-for-user-policy-test.object.capability: unknown native 0.4.1 capability 'macos.pwpolicy'; assessment.tests.verify-pwpolicy512-test-implementation-for-global-policy-test.object.capability: unknown native 0.4.1 capability 'macos.pwpolicy'; Native comparison datatype: unknown native 0.4.1 capability 'macos.pwpolicy'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_pwpolicy512_test.xml",
+        "source_xml_sha256": "fd7f6c29caab6c5238f97c2f97df6fcfdab1464e6ce846469391f54a381b273c",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.softwareupdate'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_softwareupdate_test.xml",
+        "source_xml_sha256": "77016edd47f380559b9e1f2beb4ec4998b11e410591bf67db92cad56f4b8c8a0",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-systemprofiler-datatype-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; assessment.tests.test-that-systemprofiler-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; assessment.tests.test-that-systemprofiler-matching-regular-expression-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; Native comparison datatype: unknown native 0.4.1 capability 'macos.systemprofiler'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_systemprofiler_test.xml",
+        "source_xml_sha256": "33aa86231fa730afd0a44cac64dd1777a6cc7d681dd3ee353b60b33e85cca216",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.systemsetup'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_systemsetup_test.xml",
+        "source_xml_sha256": "7c357cda4df4959cbf188e96bebbfcec7f70e79d41eabf88ce0936c5ec1c5077",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:870",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-config-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'panos.config'; Native comparison datatype: unknown native 0.4.1 capability 'panos.config'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/panos/panos-def_config_test.xml",
+        "source_xml_sha256": "962f44766341f1d0b0cd6fe1eb42ca6829c67f10467cf74748e82331eb279f23",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.joval.panos.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'panos.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/panos/panos-def_version_test.xml",
+        "source_xml_sha256": "5073dbd651de60f68d09f18a48dc686576e6fa70161beaf0a38e1d03eb95cab3",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_xml_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.unix.test:def:1",
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-smfproperty-test-property-operations-of-equals-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; assessment.tests.test-that-smfproperty-test-operations-of-pattern-match-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; assessment.tests.test-that-smfproperty-test-property-operations-o-ff115391ff-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; Native comparison datatype: unknown native 0.4.1 capability 'solaris.smfproperty'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_smfproperty_test.xml",
+        "source_xml_sha256": "b01e5c48957cb15e8cf7dd7d67e2e8c45fe9cad0d8be23aa9bcbe65583296f1f",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked"
+      },
+      {
+        "definition_id": "oval:org.mitre.oval.test:def:729",
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked"
+      }
+    ],
+    "tests": [
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:126"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:132"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:154"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:170"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:275"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:34"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:350"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:38"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:439"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:487"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:509"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:608"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:64"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:71"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:851"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:936"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:943"
+      },
+      {
+        "diagnostic": "unbound external Variable or unsupported possible_restriction",
+        "disposition": "blocked",
+        "failure_class": "canonical_input_constraint_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "source_xml_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:983"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-fileset-object-is-set-architecture-for-machine-test.object.capability: unknown native 0.4.1 capability 'aix.fileset'; Native comparison datatype: unknown native 0.4.1 capability 'aix.fileset'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fileset_test.xml",
+        "source_xml_sha256": "c0bbe67ad8359cc9a0f75bd42b3e37af83118e54eadcc9bb6b65b450905611ae",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:1909"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-fix-object-is-set-architecture-for-machine-test.object.capability: unknown native 0.4.1 capability 'aix.fix'; Native comparison datatype: unknown native 0.4.1 capability 'aix.fix'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/aix/aix-def_fix_test.xml",
+        "source_xml_sha256": "825bac649e638cb015e3ee498250f55b7a3bbbdfea7aca5a3a588b07d2e9d2bb",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:1910"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-line-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'asa.line'; Native comparison datatype: unknown native 0.4.1 capability 'asa.line'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/asa/asa-def_line_test.xml",
+        "source_xml_sha256": "51e5521c25b553e9a2461336ffb7f502271ab1d5d25cc7caea8ad217419e987e",
+        "status": "blocked",
+        "test_id": "oval:org.joval.asa.test:tst:6"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'asa.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/asa/asa-def_version_test.xml",
+        "source_xml_sha256": "ef7f10d57cadebcfd4f4a82523ee86f635a9f55e241bce5edb4ed4356c987a17",
+        "status": "blocked",
+        "test_id": "oval:org.joval.asa.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-bgpneighbor-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.bgpneighbor'; Native comparison datatype: unknown native 0.4.1 capability 'ios.bgpneighbor'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_bgpneighbor_test.xml",
+        "source_xml_sha256": "f2394978ddb422b328ac0590dc890142889f160b6797a5a4927c21275d0a7b4a",
+        "status": "blocked",
+        "test_id": "oval:org.joval.ios.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-data-from-the-global-test-via-string-equals-test.object.capability: unknown native 0.4.1 capability 'ios.global'; assessment.tests.test-gathering-data-from-the-global-test-via-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.global'; Native comparison datatype: unknown native 0.4.1 capability 'ios.global'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_global_test.xml",
+        "source_xml_sha256": "6015ddb9a1540fff61b7d8d6749a2bf6a1d309d823b40f53941e5ce6e488c7ec",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-data-from-the-global-test-via-string-equals-test.object.capability: unknown native 0.4.1 capability 'ios.global'; assessment.tests.test-gathering-data-from-the-global-test-via-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.global'; Native comparison datatype: unknown native 0.4.1 capability 'ios.global'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_global_test.xml",
+        "source_xml_sha256": "6015ddb9a1540fff61b7d8d6749a2bf6a1d309d823b40f53941e5ce6e488c7ec",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-data-from-interface-test-via-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.interface'; Native comparison datatype: unknown native 0.4.1 capability 'ios.interface'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_interface_test.xml",
+        "source_xml_sha256": "efdea2fbde95043f7e2fc311d65333feb0195e67a51b4e74bba7fbf19ecbfe73",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-show-running-config-with-a-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.line'; assessment.tests.test-gathering-show-interfaces-with-a-string-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.line'; Native comparison datatype: unknown native 0.4.1 capability 'ios.line'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_line_test.xml",
+        "source_xml_sha256": "9ac722055447ba16d976ae04d617e4cb2c4e942a71095b1209f919856b14ceb2",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-show-running-config-with-a-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.line'; assessment.tests.test-gathering-show-interfaces-with-a-string-pattern-match-test.object.capability: unknown native 0.4.1 capability 'ios.line'; Native comparison datatype: unknown native 0.4.1 capability 'ios.line'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_line_test.xml",
+        "source_xml_sha256": "9ac722055447ba16d976ae04d617e4cb2c4e942a71095b1209f919856b14ceb2",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-routingprotocolauthintf-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.routingprotocolauthintf'; Native comparison datatype: unknown native 0.4.1 capability 'ios.routingprotocolauthintf'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_routingprotocolauthintf_test.xml",
+        "source_xml_sha256": "79171d0c0cd1ce0c82ca85c4e28e9acea3b5e2d7fa0d80ba7622f2ac2e45a79e",
+        "status": "blocked",
+        "test_id": "oval:org.joval.ios.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-section-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.section'; Native comparison datatype: unknown native 0.4.1 capability 'ios.section'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_section_test.xml",
+        "source_xml_sha256": "28a2ecee56a568a194537a23cd8f755565f69f8bd9d62c5267b1bb027bde0cf4",
+        "status": "blocked",
+        "test_id": "oval:org.joval.ios.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpcommunity-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.snmpcommunity'; Native comparison datatype: unknown native 0.4.1 capability 'ios.snmpcommunity'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_snmpcommunity_test.xml",
+        "source_xml_sha256": "d292758a2bf5b35d8e2c8f78ad3d49f898c775e6b8d8b7389f86e26c378e2baa",
+        "status": "blocked",
+        "test_id": "oval:org.joval.ios.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpgroup-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.snmpgroup'; Native comparison datatype: unknown native 0.4.1 capability 'ios.snmpgroup'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_snmpgroup_test.xml",
+        "source_xml_sha256": "92a6bd78b22b0c4aeea4005391d83bbed8fa17275c8225aaf2d835ea8cc7682c",
+        "status": "blocked",
+        "test_id": "oval:org.joval.ios.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmphost-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.snmphost'; Native comparison datatype: unknown native 0.4.1 capability 'ios.snmphost'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_snmphost_test.xml",
+        "source_xml_sha256": "09b60254d66fd529d3ad0553eb69ab12d4ac71a3a76596a5950d92bc4dee1f06",
+        "status": "blocked",
+        "test_id": "oval:org.joval.ios.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpuser-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'ios.snmpuser'; Native comparison datatype: unknown native 0.4.1 capability 'ios.snmpuser'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_snmpuser_test.xml",
+        "source_xml_sha256": "2ba8cd76ff3d52136ea9b7e4bc8c38cd474b21a82385f74122a24c552c044bf3",
+        "status": "blocked",
+        "test_id": "oval:org.joval.ios.test:tst:1"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:1"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:2"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:3"
+      },
+      {
+        "diagnostic": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#ios}version55_test",
+        "disposition": "blocked",
+        "failure_class": "canonical_capability_gap",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+        "source_xml_sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-bgpneighbor-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.bgpneighbor'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.bgpneighbor'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_bgpneighbor_test.xml",
+        "source_xml_sha256": "1a24e3d667018646165c2220a85a98f161201bcf9c5a6ca42d0a4d4a519aea95",
+        "status": "blocked",
+        "test_id": "oval:org.joval.iosxe.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-gathering-data-from-interface-test-via-pattern-match-test.object.capability: unknown native 0.4.1 capability 'iosxe.interface'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.interface'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_interface_test.xml",
+        "source_xml_sha256": "6b20819c213ce23706eea75d970c1fd8cc1cad3c84b5a327722146c5d161719d",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-routingprotocolauthintf-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.routingprotocolauthintf'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.routingprotocolauthintf'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_routingprotocolauthintf_test.xml",
+        "source_xml_sha256": "ba1979ea14b38d59e81f2af0bea6008183e09745507b4e72c20a9412db71b4a7",
+        "status": "blocked",
+        "test_id": "oval:org.joval.iosxe.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-section-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.section'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.section'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_section_test.xml",
+        "source_xml_sha256": "05473c2be9d1d8b4792b252cb396ded41ca58022508d8a569a55969ca00a7ca7",
+        "status": "blocked",
+        "test_id": "oval:org.joval.iosxe.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpcommunity-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.snmpcommunity'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.snmpcommunity'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_snmpcommunity_test.xml",
+        "source_xml_sha256": "751b8a7d755c296012488b4e60f8c6a524c199aa08c4b17124c6604cc434ad5b",
+        "status": "blocked",
+        "test_id": "oval:org.joval.iosxe.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpgroup-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.snmpgroup'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.snmpgroup'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_snmpgroup_test.xml",
+        "source_xml_sha256": "f93e8cf05af52796e82861f039c21277fafc02e6c436249f661161dfec8dc00a",
+        "status": "blocked",
+        "test_id": "oval:org.joval.iosxe.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmphost-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.snmphost'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.snmphost'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_snmphost_test.xml",
+        "source_xml_sha256": "31e6e0bcd8ef8fa5f8546d833d707b1d3ce102e5901eb28b49597de84071663d",
+        "status": "blocked",
+        "test_id": "oval:org.joval.iosxe.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-snmpuser-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'iosxe.snmpuser'; Native comparison datatype: unknown native 0.4.1 capability 'iosxe.snmpuser'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_snmpuser_test.xml",
+        "source_xml_sha256": "b9e7c75abb09891327b94fa78f8074eb3ca740743e1d4e7e3698236d17f9bdd3",
+        "status": "blocked",
+        "test_id": "oval:org.joval.iosxe.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'iosxe.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_version_test.xml",
+        "source_xml_sha256": "ebb65d04a2fd219ca07481b38007dca17da4b4116f3800d5786f2906fd07be88",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'iosxe.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_version_test.xml",
+        "source_xml_sha256": "ebb65d04a2fd219ca07481b38007dca17da4b4116f3800d5786f2906fd07be88",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'iosxe.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_version_test.xml",
+        "source_xml_sha256": "ebb65d04a2fd219ca07481b38007dca17da4b4116f3800d5786f2906fd07be88",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:3"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'iosxe.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_version_test.xml",
+        "source_xml_sha256": "ebb65d04a2fd219ca07481b38007dca17da4b4116f3800d5786f2906fd07be88",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:4"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'iosxe.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/iosxe/iosxe-def_version_test.xml",
+        "source_xml_sha256": "ebb65d04a2fd219ca07481b38007dca17da4b4116f3800d5786f2906fd07be88",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.iosxe:tst:5"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-show-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'junos.show'; Native comparison datatype: unknown native 0.4.1 capability 'junos.show'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/junos/junos-def_show_test.xml",
+        "source_xml_sha256": "d703b8f3f42c2df8e4bf2d70d0a09e2e555df81b1c82aa531e276c277ab1a342",
+        "status": "blocked",
+        "test_id": "oval:org.joval.junos.test:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-accountinfo-object-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; assessment.tests.test-that-accountinfo-object-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; assessment.tests.test-that-accountinfo-object-some-regular-expression-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; Native comparison datatype: unknown native 0.4.1 capability 'macos.accountinfo'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_accountinfo_test.xml",
+        "source_xml_sha256": "5b2dbda0abc6c2088b8b342f8c7d9935f7027670fe5edc66c3b033079e34d626",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-accountinfo-object-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; assessment.tests.test-that-accountinfo-object-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; assessment.tests.test-that-accountinfo-object-some-regular-expression-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; Native comparison datatype: unknown native 0.4.1 capability 'macos.accountinfo'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_accountinfo_test.xml",
+        "source_xml_sha256": "5b2dbda0abc6c2088b8b342f8c7d9935f7027670fe5edc66c3b033079e34d626",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-accountinfo-object-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; assessment.tests.test-that-accountinfo-object-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; assessment.tests.test-that-accountinfo-object-some-regular-expression-test.object.capability: unknown native 0.4.1 capability 'macos.accountinfo'; Native comparison datatype: unknown native 0.4.1 capability 'macos.accountinfo'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_accountinfo_test.xml",
+        "source_xml_sha256": "5b2dbda0abc6c2088b8b342f8c7d9935f7027670fe5edc66c3b033079e34d626",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-authorizationdb-name-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; assessment.tests.test-that-authorizationdb-name-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; assessment.tests.test-that-authorizationdb-name-entity-matching-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; Native comparison datatype: unknown native 0.4.1 capability 'macos.authorizationdb'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_authorizationdb_test.xml",
+        "source_xml_sha256": "422c1e0b5ec6386801d7ba850a63dd41153a0627d331a16e31cb32cdca2f17d0",
+        "status": "blocked",
+        "test_id": "oval:test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-authorizationdb-name-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; assessment.tests.test-that-authorizationdb-name-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; assessment.tests.test-that-authorizationdb-name-entity-matching-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; Native comparison datatype: unknown native 0.4.1 capability 'macos.authorizationdb'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_authorizationdb_test.xml",
+        "source_xml_sha256": "422c1e0b5ec6386801d7ba850a63dd41153a0627d331a16e31cb32cdca2f17d0",
+        "status": "blocked",
+        "test_id": "oval:test:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-authorizationdb-name-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; assessment.tests.test-that-authorizationdb-name-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; assessment.tests.test-that-authorizationdb-name-entity-matching-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.authorizationdb'; Native comparison datatype: unknown native 0.4.1 capability 'macos.authorizationdb'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_authorizationdb_test.xml",
+        "source_xml_sha256": "422c1e0b5ec6386801d7ba850a63dd41153a0627d331a16e31cb32cdca2f17d0",
+        "status": "blocked",
+        "test_id": "oval:test:tst:3"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.disabledservice'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_disabledservice_test.xml",
+        "source_xml_sha256": "101a941449877fba5bff91f4f9b9829d59df1bf3a09477c2e6beb11ece97a525",
+        "status": "blocked",
+        "test_id": "oval:org.joval.oval.test:tst:865"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.permissions-differ-for-usr-libexec-cups-test.object.capability: unknown native 0.4.1 capability 'macos.diskinfo'; Native comparison datatype: unknown native 0.4.1 capability 'macos.diskinfo'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_diskinfo_test.xml",
+        "source_xml_sha256": "9e371317f1918b314a6de8be3b34065304694d64e460dfd65ce66a15972f2bd8",
+        "status": "blocked",
+        "test_id": "oval:org.joval.oval:tst:9620"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.filevault'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_filevault_test.xml",
+        "source_xml_sha256": "83a66de7e3f997cfad206ff33335e28b939717738003329d5c4be0c630e3d22d",
+        "status": "blocked",
+        "test_id": "oval:org.joval.test:tst:120002"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.firmwarepassword'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_firmwarepassword_test.xml",
+        "source_xml_sha256": "200c768c7add252fb437f3d38b2bcdb839a12b119d1c7af36c82b316d6c01bd2",
+        "status": "blocked",
+        "test_id": "oval:org.joval.test:tst:220002"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.gatekeeper'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_gatekeeper_test.xml",
+        "source_xml_sha256": "929d23ace900a09f1c39372310005a6b2d99bec985bdedbd5b83b6b2dba035e8",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.verify-the-installhistory-test-implementation-test.object.capability: unknown native 0.4.1 capability 'macos.installhistory'; Native comparison datatype: unknown native 0.4.1 capability 'macos.installhistory'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_installhistory_test.xml",
+        "source_xml_sha256": "288da3a1f6d7e158ac9613d1b7a40033512f878a9e2ab3d1bf3da9cabd9f17fe",
+        "status": "blocked",
+        "test_id": "oval:com.jovalcm.macos:tst:20002"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.check-that-the-keychain-test-is-implemented-test.object.capability: unknown native 0.4.1 capability 'macos.keychain'; Native comparison datatype: unknown native 0.4.1 capability 'macos.keychain'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+        "source_xml_sha256": "e4deffe58ffdf0c1876f08637588785476dc27231f51e56e8b5205d47684c1b3",
+        "status": "blocked",
+        "test_id": "oval:org.joval.test:tst:20002"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-launchd-object-is-label-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; assessment.tests.test-that-launchd-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; assessment.tests.test-that-launchd-object-is-entity-matching-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; Native comparison datatype: unknown native 0.4.1 capability 'macos.launchd'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_launchd_test.xml",
+        "source_xml_sha256": "364fd05cc0797b4beb41090658775096a4c5182b945dc3f86a0c69ce1f460a28",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-launchd-object-is-label-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; assessment.tests.test-that-launchd-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; assessment.tests.test-that-launchd-object-is-entity-matching-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; Native comparison datatype: unknown native 0.4.1 capability 'macos.launchd'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_launchd_test.xml",
+        "source_xml_sha256": "364fd05cc0797b4beb41090658775096a4c5182b945dc3f86a0c69ce1f460a28",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-launchd-object-is-label-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; assessment.tests.test-that-launchd-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; assessment.tests.test-that-launchd-object-is-entity-matching-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.launchd'; Native comparison datatype: unknown native 0.4.1 capability 'macos.launchd'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_launchd_test.xml",
+        "source_xml_sha256": "364fd05cc0797b4beb41090658775096a4c5182b945dc3f86a0c69ce1f460a28",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.apple-os-version-is-10-15-x-test.object.capability: unknown native 0.4.1 capability 'macos.plist'; assessment.tests.test-that-nvram512-object-is-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-value-that-does-not-exist-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+        "source_xml_sha256": "3af5dd8eac07af064db71d6b8cbcce2dd54b001d21c03af2890f4552077a6a41",
+        "status": "blocked",
+        "test_id": "oval:com.jovalcm.macos.inventory:tst:1000001600001"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.apple-os-version-is-10-15-x-test.object.capability: unknown native 0.4.1 capability 'macos.plist'; assessment.tests.test-that-nvram512-object-is-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-value-that-does-not-exist-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+        "source_xml_sha256": "3af5dd8eac07af064db71d6b8cbcce2dd54b001d21c03af2890f4552077a6a41",
+        "status": "blocked",
+        "test_id": "oval:org.joval.oval.test:tst:865"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.apple-os-version-is-10-15-x-test.object.capability: unknown native 0.4.1 capability 'macos.plist'; assessment.tests.test-that-nvram512-object-is-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-value-that-does-not-exist-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+        "source_xml_sha256": "3af5dd8eac07af064db71d6b8cbcce2dd54b001d21c03af2890f4552077a6a41",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:308"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.apple-os-version-is-10-15-x-test.object.capability: unknown native 0.4.1 capability 'macos.plist'; assessment.tests.test-that-nvram512-object-is-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-value-that-does-not-exist-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+        "source_xml_sha256": "3af5dd8eac07af064db71d6b8cbcce2dd54b001d21c03af2890f4552077a6a41",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:486"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.apple-os-version-is-10-15-x-test.object.capability: unknown native 0.4.1 capability 'macos.plist'; assessment.tests.test-that-nvram512-object-is-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-value-that-does-not-exist-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'; assessment.tests.test-that-nvram512-object-is-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.nvram'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_nvram512_test.xml",
+        "source_xml_sha256": "3af5dd8eac07af064db71d6b8cbcce2dd54b001d21c03af2890f4552077a6a41",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:865"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-plist511-object-is-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.plist'; Native comparison datatype: unknown native 0.4.1 capability 'macos.plist'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_plist511_test.xml",
+        "source_xml_sha256": "c299d1d4145d79a28f122cd913ee214a8c1217417dbed7c477ffc0a59e0caf79",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.profiles'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_profiles_test.xml",
+        "source_xml_sha256": "21c845bb2076a939d216ca9ea8fa37c1dc783ded7d04a881e274b70df8c6abce",
+        "status": "blocked",
+        "test_id": "oval:org.joval.test:tst:320002"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.verify-the-pwpolicy512-test-implementation-for-user-policy-test.object.capability: unknown native 0.4.1 capability 'macos.pwpolicy'; assessment.tests.verify-pwpolicy512-test-implementation-for-global-policy-test.object.capability: unknown native 0.4.1 capability 'macos.pwpolicy'; Native comparison datatype: unknown native 0.4.1 capability 'macos.pwpolicy'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_pwpolicy512_test.xml",
+        "source_xml_sha256": "fd7f6c29caab6c5238f97c2f97df6fcfdab1464e6ce846469391f54a381b273c",
+        "status": "blocked",
+        "test_id": "oval:org.joval.oval:tst:20002"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.verify-the-pwpolicy512-test-implementation-for-user-policy-test.object.capability: unknown native 0.4.1 capability 'macos.pwpolicy'; assessment.tests.verify-pwpolicy512-test-implementation-for-global-policy-test.object.capability: unknown native 0.4.1 capability 'macos.pwpolicy'; Native comparison datatype: unknown native 0.4.1 capability 'macos.pwpolicy'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_pwpolicy512_test.xml",
+        "source_xml_sha256": "fd7f6c29caab6c5238f97c2f97df6fcfdab1464e6ce846469391f54a381b273c",
+        "status": "blocked",
+        "test_id": "oval:org.joval.oval:tst:20003"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.softwareupdate'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_softwareupdate_test.xml",
+        "source_xml_sha256": "77016edd47f380559b9e1f2beb4ec4998b11e410591bf67db92cad56f4b8c8a0",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-systemprofiler-datatype-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; assessment.tests.test-that-systemprofiler-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; assessment.tests.test-that-systemprofiler-matching-regular-expression-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; Native comparison datatype: unknown native 0.4.1 capability 'macos.systemprofiler'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_systemprofiler_test.xml",
+        "source_xml_sha256": "33aa86231fa730afd0a44cac64dd1777a6cc7d681dd3ee353b60b33e85cca216",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-systemprofiler-datatype-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; assessment.tests.test-that-systemprofiler-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; assessment.tests.test-that-systemprofiler-matching-regular-expression-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; Native comparison datatype: unknown native 0.4.1 capability 'macos.systemprofiler'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_systemprofiler_test.xml",
+        "source_xml_sha256": "33aa86231fa730afd0a44cac64dd1777a6cc7d681dd3ee353b60b33e85cca216",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-systemprofiler-datatype-entity-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; assessment.tests.test-that-systemprofiler-entity-not-equal-some-value-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; assessment.tests.test-that-systemprofiler-matching-regular-expression-test.object.capability: unknown native 0.4.1 capability 'macos.systemprofiler'; Native comparison datatype: unknown native 0.4.1 capability 'macos.systemprofiler'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_systemprofiler_test.xml",
+        "source_xml_sha256": "33aa86231fa730afd0a44cac64dd1777a6cc7d681dd3ee353b60b33e85cca216",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'macos.systemsetup'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_systemsetup_test.xml",
+        "source_xml_sha256": "7c357cda4df4959cbf188e96bebbfcec7f70e79d41eabf88ce0936c5ec1c5077",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.oval.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-the-config-object-is-supported-test.object.capability: unknown native 0.4.1 capability 'panos.config'; Native comparison datatype: unknown native 0.4.1 capability 'panos.config'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/panos/panos-def_config_test.xml",
+        "source_xml_sha256": "962f44766341f1d0b0cd6fe1eb42ca6829c67f10467cf74748e82331eb279f23",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:621"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: Native comparison datatype: unknown native 0.4.1 capability 'panos.version'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/panos/panos-def_version_test.xml",
+        "source_xml_sha256": "5073dbd651de60f68d09f18a48dc686576e6fa70161beaf0a38e1d03eb95cab3",
+        "status": "blocked",
+        "test_id": "oval:org.joval.panos.test:tst:1"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:4"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:5"
+      },
+      {
+        "diagnostic": "deprecated source capability: package511_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package511_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "source_xml_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+      },
+      {
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_xml_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:1"
+      },
+      {
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_xml_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:2"
+      },
+      {
+        "diagnostic": "deprecated source capability: package_test (OVAL 5.12; OVAL 5.12.3 marks solaris:package_test deprecated)",
+        "disposition": "blocked",
+        "failure_class": "deprecated_source_construct",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+        "source_xml_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.test:tst:3"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-smfproperty-test-property-operations-of-equals-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; assessment.tests.test-that-smfproperty-test-operations-of-pattern-match-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; assessment.tests.test-that-smfproperty-test-property-operations-o-ff115391ff-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; Native comparison datatype: unknown native 0.4.1 capability 'solaris.smfproperty'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_smfproperty_test.xml",
+        "source_xml_sha256": "b01e5c48957cb15e8cf7dd7d67e2e8c45fe9cad0d8be23aa9bcbe65583296f1f",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.unix.test:tst:1"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-smfproperty-test-property-operations-of-equals-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; assessment.tests.test-that-smfproperty-test-operations-of-pattern-match-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; assessment.tests.test-that-smfproperty-test-property-operations-o-ff115391ff-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; Native comparison datatype: unknown native 0.4.1 capability 'solaris.smfproperty'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_smfproperty_test.xml",
+        "source_xml_sha256": "b01e5c48957cb15e8cf7dd7d67e2e8c45fe9cad0d8be23aa9bcbe65583296f1f",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.unix.test:tst:2"
+      },
+      {
+        "diagnostic": "standalone platform semantic validation failed: assessment.tests.test-that-smfproperty-test-property-operations-of-equals-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; assessment.tests.test-that-smfproperty-test-operations-of-pattern-match-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; assessment.tests.test-that-smfproperty-test-property-operations-o-ff115391ff-test.object.capability: unknown native 0.4.1 capability 'solaris.smfproperty'; Native comparison datatype: unknown native 0.4.1 capability 'solaris.smfproperty'",
+        "disposition": "blocked",
+        "failure_class": "schema_or_validation_failure",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_smfproperty_test.xml",
+        "source_xml_sha256": "b01e5c48957cb15e8cf7dd7d67e2e8c45fe9cad0d8be23aa9bcbe65583296f1f",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.unix.test:tst:3"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:1"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:13"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:14"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:16"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:17"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:19"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:2"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:20"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:22"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:23"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:24"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:25"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:26"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:28"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:3"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:4"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:5"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:6"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:7"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'ScreenSaveActive'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'key': {'equals': 'Control Panel'}, 'name': {'equals': 'TimeToWait'}, 'include_default': False, 'item_creation': 'key_and_name_exist', 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_ntuser_test.xml",
+        "source_xml_sha256": "71092a56be8860ebecc247c0eea6c28e3e8ded7513829678b48d5ffecb0f14fc",
+        "status": "blocked",
+        "test_id": "oval:navy.navwar.niwcatlantic.scc.windows.test:tst:8"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:1006"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:1289"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:525"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:664"
+      },
+      {
+        "diagnostic": "generated authoring failed flat JSON Schema: assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 1}} is not valid under any of the given schemas; assessment.json: {'hive': {'equals': 'local_machine'}, 'key': {'equals': 'SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon'}, 'trustee_sid': {'equals': 'S-1-5-32-544'}, 'traversal': {'max_depth': 'unlimited'}} is not valid under any of the given schemas",
+        "disposition": "blocked",
+        "failure_class": "canonical_traversal_schema_hold",
+        "source_path": "SCAP_1.4/OVAL_Test_Content/windows/win-def_regkeyeffectiverights53_test.xml",
+        "source_xml_sha256": "93f91ba5b3a759afe79b5c8ebf3189027fb4cb98d44b8822219e028885d60938",
+        "status": "blocked",
+        "test_id": "oval:org.mitre.oval.test:tst:680"
+      }
+    ]
+  },
+  "canonical_schema": {
+    "aggregate_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
+    "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+    "version": "0.4.1"
+  },
+  "converter": {
+    "commit": "bbe58fa",
+    "entrypoint": "scap_ng_tools.converter.direct04",
+    "execution": "production package only",
+    "repository": "vanderpol/scap-ng-tools"
+  },
+  "format": "scap-ng-tools/issue83/platform-receipt/1",
+  "package": {
+    "definitions_ledger_sha256": "84a6d44e984a336b2899652a311f5085d954f55c96b1b0371c3a1113537a9297",
+    "manifest_artifacts_verified": 478,
+    "manifest_sha256": "48defe9539de4198cc93d9a41b51b95e52eb681cd9c694829987bf343cf9e76c",
+    "tests_ledger_sha256": "6cd60444cd298f46dda3ff01f59bdeb07a840b95f949e75d71317a25c8cc130e"
+  },
+  "platforms": {
+    "definitions": {
+      "agnostic": {
+        "blocked": 1,
+        "converted": 46,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 46,
+          "blocked": 1
+        },
+        "total": 47,
+        "unreviewed": 0
+      },
+      "aix": {
+        "blocked": 2,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 2
+        },
+        "total": 2,
+        "unreviewed": 0
+      },
+      "asa": {
+        "blocked": 2,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 2
+        },
+        "total": 2,
+        "unreviewed": 0
+      },
+      "ios": {
+        "blocked": 11,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 11
+        },
+        "total": 11,
+        "unreviewed": 0
+      },
+      "iosxe": {
+        "blocked": 9,
+        "converted": 2,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 2,
+          "blocked": 9
+        },
+        "total": 11,
+        "unreviewed": 0
+      },
+      "junos": {
+        "blocked": 1,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 1
+        },
+        "total": 1,
+        "unreviewed": 0
+      },
+      "linux": {
+        "blocked": 0,
+        "converted": 16,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 16
+        },
+        "total": 16,
+        "unreviewed": 0
+      },
+      "macos": {
+        "blocked": 17,
+        "converted": 3,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 3,
+          "blocked": 17
+        },
+        "total": 20,
+        "unreviewed": 0
+      },
+      "panos": {
+        "blocked": 2,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 2
+        },
+        "total": 2,
+        "unreviewed": 0
+      },
+      "solaris": {
+        "blocked": 3,
+        "converted": 3,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 3,
+          "blocked": 3
+        },
+        "total": 6,
+        "unreviewed": 0
+      },
+      "unix": {
+        "blocked": 0,
+        "converted": 13,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 13
+        },
+        "total": 13,
+        "unreviewed": 0
+      },
+      "windows": {
+        "blocked": 2,
+        "converted": 34,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 34,
+          "blocked": 2
+        },
+        "total": 36,
+        "unreviewed": 0
+      }
+    },
+    "tests": {
+      "agnostic": {
+        "blocked": 18,
+        "converted": 310,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 310,
+          "blocked": 18
+        },
+        "total": 328,
+        "unreviewed": 0
+      },
+      "aix": {
+        "blocked": 2,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 2
+        },
+        "total": 2,
+        "unreviewed": 0
+      },
+      "asa": {
+        "blocked": 2,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 2
+        },
+        "total": 2,
+        "unreviewed": 0
+      },
+      "ios": {
+        "blocked": 16,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 16
+        },
+        "total": 16,
+        "unreviewed": 0
+      },
+      "iosxe": {
+        "blocked": 13,
+        "converted": 4,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 4,
+          "blocked": 13
+        },
+        "total": 17,
+        "unreviewed": 0
+      },
+      "junos": {
+        "blocked": 1,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 1
+        },
+        "total": 1,
+        "unreviewed": 0
+      },
+      "linux": {
+        "blocked": 0,
+        "converted": 62,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 62
+        },
+        "total": 62,
+        "unreviewed": 0
+      },
+      "macos": {
+        "blocked": 30,
+        "converted": 13,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 13,
+          "blocked": 30
+        },
+        "total": 43,
+        "unreviewed": 0
+      },
+      "panos": {
+        "blocked": 2,
+        "converted": 0,
+        "excluded": 0,
+        "status_counts": {
+          "blocked": 2
+        },
+        "total": 2,
+        "unreviewed": 0
+      },
+      "solaris": {
+        "blocked": 12,
+        "converted": 9,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 9,
+          "blocked": 12
+        },
+        "total": 21,
+        "unreviewed": 0
+      },
+      "unix": {
+        "blocked": 0,
+        "converted": 71,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 71
+        },
+        "total": 71,
+        "unreviewed": 0
+      },
+      "windows": {
+        "blocked": 25,
+        "converted": 209,
+        "excluded": 0,
+        "status_counts": {
+          "CONVERTED_UNVERIFIED": 209,
+          "blocked": 25
+        },
+        "total": 234,
+        "unreviewed": 0
+      }
+    }
+  },
+  "qualification": {
+    "independent_oval_equivalence": "not_proved",
+    "runtime_execution": "not_run",
+    "source_identity_validated": true
+  },
+  "source": {
+    "commit": "53c18ea31a1976209572ec8b068e1a02be588456",
+    "identity": "source path + source ID + exact source XML SHA-256",
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "root": "SCAP_1.4/OVAL_Test_Content"
+  },
+  "summary": {
+    "blocked_definitions": 50,
+    "blocked_tests": 121,
+    "converted_definitions": 117,
+    "converted_tests": 678,
+    "definitions": 167,
+    "excluded_definitions": 0,
+    "excluded_tests": 0,
+    "tests": 799
+  }
+}

@@ -10,6 +10,7 @@ import zipfile
 import xml.etree.ElementTree as ET
 
 from build_issue83_source_crosswalk import digest, identity_digest, local_name
+from audit_self_assertion_parity import HISTORICAL_PIN
 
 
 REF_ATTRIBUTES = {"object_ref", "state_ref", "var_ref", "variable_ref",
@@ -183,7 +184,9 @@ def audit(source_root: Path, conversion_receipt: Path) -> dict:
     possible_value_count = sum(len(variable["possible_values"])
                                for row in rows for variable in row["variables"])
     variables = [variable for row in rows for variable in row["variables"]]
-    source_commit = receipt.get("source_commit")
+    # Historical focused fixtures predate the manifest field; retain their
+    # original e353 identity rather than relabeling them as corrected-source.
+    source_commit = receipt.get("source_commit", HISTORICAL_PIN)
     if not isinstance(source_commit, str) or len(source_commit) != 40:
         raise ValueError("conversion receipt must carry the exact source commit")
     return {
