@@ -1,0 +1,93 @@
+{
+  "format": "scap-ng-tools/issue88-self-assertion-requalification/2",
+  "scope": "structural conversion and independent source-accounting parity; runtime and OVAL equivalence not proved",
+  "pins": {
+    "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_commit": "678caaef655fc2dc52fbc16db8da0db4c3923afc",
+    "historical_source_commit": "e3538595c5083b9c34d937a81d319234df9bbfaa",
+    "canonical_commit": "44991ed3753944e47c42d76f157b29448b256a34",
+    "canonical_flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
+    "assessment_closure_sha256": "1ff810407901fa3687b7820f41a1042f1105288ccbdbe25beefb764620083caf",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "tools_commit": "85b9b19d3f1acf179d1d405243560d44aaca1707"
+  },
+  "source_validation": {
+    "xml_files": 143,
+    "xsd_valid_files": 143,
+    "schematron_clean_files": 142,
+    "schematron_report_count": 15,
+    "schematron_hold": "solaris/sol-def_package511_test.xml inconsistent datatype between variable and associated var_ref"
+  },
+  "conversion": {
+    "definitions": 167,
+    "converted_definitions": 162,
+    "blocked_definitions": 5,
+    "tests": 799,
+    "converted_tests": 746,
+    "blocked_tests": 53,
+    "test_ledger_reconciled": true,
+    "execution": "not_run"
+  },
+  "source_corrections_applied_by_merged_pr33": [
+    {
+      "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_arithmetic_function.xml",
+      "variable": "oval:org.mitre.oval.test:var:589",
+      "datatype": "int",
+      "source_xml_sha256": "0e5d420b750503b4d483843f050f36d3d09e3d19db2015c536b249af95a65a9a"
+    },
+    {
+      "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+      "variables": ["oval:navy.navwar.niwcatlantic.scc:var:1", "oval:navy.navwar.niwcatlantic.scc:var:2"],
+      "datatype": "string",
+      "source_xml_sha256": "eadca8e5f333070f172fda16800ffaf948b43b99dda435e7e58f05d7ff79e7fa"
+    },
+    {
+      "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+      "variable": "oval:org.mitre.oval.test:var:561",
+      "datatype": "int",
+      "source_xml_sha256": "6cd0a42d7b3c05a7212d410f18f7aba30d0f95f1c167996e033b10298af6a68",
+      "source_pr": 33
+    }
+  ],
+  "remaining_parity_problems": [
+    {
+      "type": "source_invalid",
+      "definition": "oval:org.mitre.oval.test:def:895",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_arithmetic_function.xml",
+      "source_xml_sha256": "0e5d420b750503b4d483843f050f36d3d09e3d19db2015c536b249af95a65a9a",
+      "variable": "oval:org.mitre.oval.test:var:898",
+      "reason": "remaining multiple-value integer arithmetic expression declared float; follow-up Self-Assertion PR #34"
+    },
+    {
+      "type": "converted_parity_failure",
+      "definition": "oval:navy.navwar.niwcatlantic.scc:def:38",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+      "reason": "unqualified original Variable expression: merge"
+    },
+    {
+      "type": "converted_parity_failure",
+      "definition": "oval:org.mitre.oval.test:def:580",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+      "reason": "unqualified original Variable expression: time_difference"
+    },
+    {
+      "type": "converted_parity_failure",
+      "definition": "oval:org.joval.test:def:20002",
+      "source_path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+      "reason": "native collected-field datatype is unresolved"
+    }
+  ],
+  "remaining_blocked_definitions": [
+    "oval:org.mitre.oval.test:def:562",
+    "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+    "oval:navy.navwar.niwcatlantic.scc.test:def:1 (solaris package511)",
+    "oval:navy.navwar.niwcatlantic.scc.windows.test:def:38",
+    "oval:org.mitre.oval.test:def:729"
+  ],
+  "evidence": {
+    "conversion_manifest_sha256": "8cf4ffdf594444b79e3d1ecc69059b92337e4b1017fde288346f02dfdc1ff394",
+    "parity_receipt_sha256": "ab350f48a7f8d810e8476588538d442aee77fa03bdc35c67e026526611259e09",
+    "external_conversion_directory": "/tmp/tools-self-assertion-source-678-20261121110305",
+    "external_parity_receipt": "/tmp/tools-self-assertion-parity-678.json"
+  }
+}
