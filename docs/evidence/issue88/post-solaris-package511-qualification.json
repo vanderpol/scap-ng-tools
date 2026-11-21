@@ -1,0 +1,188 @@
+{
+  "benchmark_qualification": {
+    "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+    "canonical_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "independent_equivalence": "not_proved",
+    "result": {
+      "candidate": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "newly_blocked_from_converted": 0,
+      "newly_converted_from_blocked": 13,
+      "nonregression_pass": true,
+      "original": {
+        "blocked": 108,
+        "converted": 6479,
+        "manual_only": 1403
+      }
+    },
+    "result_sha256": "fb62770aa9d152396fd875d30c0ef8c93199c728150823f81f188f36be773b8f",
+    "runtime": "not_run",
+    "schema_aggregate_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
+  },
+  "canonical": {
+    "commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "flat_schema_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "repository": "vanderpol/scap-ng"
+  },
+  "commands": {
+    "benchmarks": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/rebuild_issue59_full65.py --schema-root <canonical>/schema --source-root <signed-source> --source-archive <signed-archive> --source-archive-sha256 8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --canonical-schema-commit f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2 --schema-aggregate-sha256 11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc --output <external> --enforce-nonregression",
+    "focused": "PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <source@d91e6ba> --schema-root <canonical> --source-commit d91e6ba33841e3202dc27d3e0d469a7abd939b16 --family solaris --output <external>",
+    "full": "PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <source@d91e6ba> --schema-root <canonical> --source-commit d91e6ba33841e3202dc27d3e0d469a7abd939b16 --output <external>",
+    "parity": "PYTHONPATH=src .venv/bin/python scripts/audit_self_assertion_parity.py --source-root <source@d91e6ba>/SCAP_1.4/OVAL_Test_Content --pack <full-output> --schema-root <canonical> --expected-xml 143 --expected-definitions 167 --expected-tests 799 --source-commit d91e6ba33841e3202dc27d3e0d469a7abd939b16 --output <external>"
+  },
+  "converter": {
+    "conversion_commit": "595d16bc7cb2355dd1c9c2c57307d07549f25fde",
+    "pin_update_commit": "3f90b0bb18cd26330d0d23e9307e8c0e7fd2cc07",
+    "production_cli": "scap_ng_tools.converter.direct04",
+    "repository": "vanderpol/scap-ng-tools"
+  },
+  "focused_conversion": {
+    "blocked_definitions": [],
+    "blocked_tests": [],
+    "common_assessment_files_compared": 5,
+    "definitions_sha256": "8bb3383a1b510fa1a9344ca8af352f2ef26c2281c13169155272c451ebde71d3",
+    "focused_after": {
+      "blocked_definitions": 0,
+      "blocked_tests": 0,
+      "converted_definitions": 6,
+      "converted_tests": 21,
+      "definitions": 6,
+      "execution": "not_run",
+      "schema_valid_yaml_documents": 6,
+      "tests": 21
+    },
+    "focused_before": {
+      "blocked_definitions": 1,
+      "blocked_tests": 6,
+      "converted_definitions": 5,
+      "converted_tests": 15,
+      "definitions": 6,
+      "execution": "not_run",
+      "schema_valid_yaml_documents": 5,
+      "tests": 21
+    },
+    "full_after": {
+      "blocked_definitions": 1,
+      "blocked_tests": 18,
+      "converted_definitions": 166,
+      "converted_tests": 781,
+      "definitions": 167,
+      "excluded_definitions": 0,
+      "excluded_tests": 0,
+      "execution": "not_run",
+      "schema_valid_yaml_documents": 166,
+      "test_ledger_reconciled": 799,
+      "tests": 799
+    },
+    "full_before": {
+      "blocked_definitions": 5,
+      "blocked_tests": 53,
+      "converted_definitions": 162,
+      "converted_tests": 746,
+      "definitions": 167,
+      "excluded_definitions": 0,
+      "excluded_tests": 0,
+      "execution": "not_run",
+      "schema_valid_yaml_documents": 162,
+      "test_ledger_reconciled": 799,
+      "tests": 799
+    },
+    "manifest_sha256": "bdd7ff632e63800dc9765105324495c18ca948c7846d0096626478614429da50",
+    "native_assessment_byte_comparison": "all five previously converted Solaris assessment.json files byte-identical; only source provenance/ledger changed",
+    "native_assessment_common_bytes_unchanged": true,
+    "source_definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+    "source_test_ids": [
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:4",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:5",
+      "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+    ],
+    "tests_sha256": "3cc0974b2442fb290b76568a7fd3327afa9f2be06fc66e9e55ebc068e62e9f74"
+  },
+  "format": "scap-ng-tools/qualification-receipt/1",
+  "full_qualification": {
+    "definitions_blocked": 1,
+    "definitions_converted": 166,
+    "parity_problems": [
+      {
+        "definition": "oval:navy.navwar.niwcatlantic.scc:def:38",
+        "reason": "unqualified original Variable expression: merge",
+        "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+        "type": "converted_parity_failure"
+      },
+      {
+        "definition": "oval:org.mitre.oval.test:def:580",
+        "reason": "unqualified original Variable expression: time_difference",
+        "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+        "type": "converted_parity_failure"
+      },
+      {
+        "definition": "oval:org.joval.test:def:20002",
+        "reason": "native collected-field datatype is unresolved",
+        "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+        "type": "converted_parity_failure"
+      },
+      {
+        "definition": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "reason": "native collected-field datatype is unresolved",
+        "source": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "type": "converted_parity_failure"
+      }
+    ],
+    "parity_sha256": "8be95c77125061e51df529892d31e4df2128e06a815757b94f4149e39cd5e1a5",
+    "remaining_definition_holds": [
+      {
+        "category": "canonical-gap",
+        "id": "oval:org.mitre.oval.test:def:562",
+        "reason": "external Variable Input binding and possible_restriction semantics"
+      },
+      {
+        "category": "converted-parity-unresolved",
+        "id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "reason": "native collected-field datatype unresolved for independent.shellcommand subexpression union; conversion is structurally valid"
+      }
+    ],
+    "source_accounted": true,
+    "source_manifest_sha256": "bdd7ff632e63800dc9765105324495c18ca948c7846d0096626478614429da50",
+    "structural_complete": false,
+    "tests_blocked": 18,
+    "tests_converted": 781
+  },
+  "proof_boundaries": {
+    "independent_oval_equivalence": "not_proved",
+    "runtime_execution": "not_run",
+    "schema_validated": true,
+    "source_validated": true,
+    "structural_conversion": "166/167 definitions, 781/799 tests"
+  },
+  "purpose": "post-solaris-package511-source-correction",
+  "source": {
+    "changed_file_count": 1,
+    "changed_files": [
+      "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml"
+    ],
+    "corrected_commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "corrected_file_sha256": "889e8d6a43139dcfb4753c91194c8914b82373f10b4b83420a3cf68d5d2bc94b",
+    "definitions": 167,
+    "diff": "Variable var:1 and var:2 datatype string -> version; no IDs, references, operations or expected outcomes changed",
+    "historical_before_commit": "7d3e3ac2248ad667737bf49e6cf9d3e8a9790969",
+    "original_file_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "tests": 799,
+    "xml_files": 143
+  },
+  "source_validation": {
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "oval_schema_repository": "OVAL-Community/OVAL",
+    "schematron_clean_files": 143,
+    "schematron_reports": 0,
+    "validation_receipt_sha256": "1dc8b5ab9acd6888baacdd0bc600474febc60eaf83cada1fb15596234a34a7ac",
+    "xsd_valid_files": 143
+  }
+}

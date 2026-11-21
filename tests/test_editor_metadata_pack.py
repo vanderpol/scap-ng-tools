@@ -1,4 +1,4 @@
-"""Exact 100-capability offline editor-pack export from the flat 0.4 schema."""
+"""Exact 101-capability offline editor-pack export from the flat 0.4 schema."""
 
 from hashlib import sha256
 import json
@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from build_v04_editor_metadata_pack import build  # noqa: E402
 
 
-SCHEMA_COMMIT = '860d63e84d5aba12daa6d5037bdb83d78a95088a'
-EXPECTED_MANIFEST = '24ecbd67cb9c4ee36c9e3ef75183980b2583e806829b0af3684cacb6abf4fff7'
+SCHEMA_COMMIT = 'f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2'
+EXPECTED_MANIFEST = '00892d9a1ea77afbc3592fc4b51910d87c298a1a9046cfdbc368e8a148b3dabd'
 
 
 class EditorPackParity(unittest.TestCase):
@@ -27,7 +27,7 @@ class EditorPackParity(unittest.TestCase):
         cls.schema = Path(schema)
         cls.oval = Path(oval)
 
-    def test_all_236_reviewed_amended_resources_match_explicit_new_pin(self):
+    def test_all_238_reviewed_amended_resources_match_explicit_new_pin(self):
         with tempfile.TemporaryDirectory(prefix='scapng-editor-pack-') as temp:
             output = Path(temp) / 'metadata'
             profile = build(self.schema, self.oval, SCHEMA_COMMIT, output)
@@ -41,7 +41,7 @@ class EditorPackParity(unittest.TestCase):
             self.assertEqual(sha256(manifest_bytes).hexdigest(), EXPECTED_MANIFEST)
             manifest = json.loads(manifest_bytes)
             self.assertEqual(manifest['source_commit'], SCHEMA_COMMIT)
-            self.assertEqual(len(manifest['resources']), 236)
+            self.assertEqual(len(manifest['resources']), 238)
             self.assertEqual(len(manifest['capabilities']), 101)
             names = set()
             for row in manifest['resources']:
@@ -50,7 +50,7 @@ class EditorPackParity(unittest.TestCase):
                 self.assertEqual(sha256((output / row['path']).read_bytes()).hexdigest(),
                                  row['sha256'])
                 self.assertEqual((output / row['path']).stat().st_size, row['bytes'])
-            self.assertEqual(len(names), 236)
+            self.assertEqual(len(names), 238)
             self.assertEqual(
                 {p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()},
                 names | {'profile.json', 'manifest.json'})
