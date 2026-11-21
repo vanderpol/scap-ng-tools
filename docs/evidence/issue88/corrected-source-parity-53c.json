@@ -108,8 +108,8 @@
     "pack": {
       "converted_definitions": 161,
       "definitions_in_pack": 167,
-      "manifest_sha256": "7f523a1ebaa96f5bb41074bc444bd1a9dcba47a9438ceb594dd231ae5ba79be8",
-      "parity_checked_definitions": 156,
+      "manifest_sha256": "0b8c8c2f4f64256adff81fef705ee8923b9eb00a6f13f1b94ff72641648d259f",
+      "parity_checked_definitions": 157,
       "reconciled_tests": 799,
       "schema_family_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
       "schema_field_datatypes_loaded": 665,
@@ -241,7 +241,7 @@
           ]
         }
       ],
-      "source_mapped_tests_checked": 701,
+      "source_mapped_tests_checked": 716,
       "source_tests_without_disposition": 0,
       "status_counts": {
         "CONVERTED_UNVERIFIED": 161,
@@ -396,12 +396,6 @@
       "definition": "oval:org.joval.test:def:20002",
       "reason": "native collected-field datatype is unresolved",
       "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
-      "type": "converted_parity_failure"
-    },
-    {
-      "definition": "oval:org.mitre.oval.test:def:38",
-      "reason": "native Variable declarations do not match source trace",
-      "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml",
       "type": "converted_parity_failure"
     }
   ],
