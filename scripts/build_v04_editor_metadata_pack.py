@@ -23,10 +23,10 @@ from generate_v04_semantic_pack import GENERATOR, OVAL_COMMIT, git_head
 
 
 # Original research exporter at d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9;
-# 236 deterministic resource descriptors, 100 capability identities, one URI.
+# 238 deterministic resource descriptors, 101 capability identities, one URI.
 # Source commit is purposely excluded from this digest.
 HISTORICAL_RESOURCES_SHA256 = 'faa1c81c01c34a212e33827e3628f9c355255c1030fa8aa8936cb9d28522c564'
-REVIEWED_RESOURCES_SHA256 = '4ec865e712ad2ef58dbbd89f9d67a6654e132bf0e2b9d0ca3f48b206e1283269'
+REVIEWED_RESOURCES_SHA256 = '6a3678f64106b1c7ea4ee18cc3b81ea3c4b2f1a96318facac41ea84131272dac'
 COMMIT = re.compile(r'^[a-f0-9]{40}$')
 
 
@@ -127,7 +127,7 @@ def build(schema_root, oval_root, source_commit, output):
                 'resources': resources, 'capabilities': capabilities,
                 'vocabulary_uri': vocabulary_uri,
             }, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()
-            if (len(resources) != 236 or len(capabilities) != 100 or
+            if (len(resources) != 238 or len(capabilities) != 101 or
                     sha256(resource_identity).hexdigest() != REVIEWED_RESOURCES_SHA256):
                 raise ValueError('generated editor metadata resource drift detected: ' +
                                  sha256(resource_identity).hexdigest())
