@@ -53,6 +53,10 @@ def load_runtime():
     install_input_semantics()
     from .native041_registry_traversal import install as install_registry_traversal
     install_registry_traversal()
+    # Deprecated rpmverifyfile spelling is admitted only through the exact
+    # source-XSD-backed alias adapter; dual spellings remain rejected.
+    from .native041_rpm_digest_alias import install as install_rpm_digest_alias
+    install_rpm_digest_alias(engine)
     return engine
 
 
