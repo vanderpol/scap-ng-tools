@@ -75,6 +75,7 @@
     "solaris.package.ips",
     "iosxe.line",
     "iosxe.global",
+    "ios.version55",
     "iosxe.version",
     "asa.version",
     "asa.line",

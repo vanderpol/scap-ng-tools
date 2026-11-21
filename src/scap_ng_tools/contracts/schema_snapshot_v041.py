@@ -34,18 +34,18 @@ def load_json(path):
     return json.loads(path.read_bytes(), object_pairs_hook=unique,
                       parse_constant=nonfinite)
 
-CANONICAL_COMMIT = "860d63e84d5aba12daa6d5037bdb83d78a95088a"
+CANONICAL_COMMIT = "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2"
 VERSION = "0.4.1"
 PREFIX = "https://scap-ng.dev/schema/v0.4.1/"
-FLAT_SCHEMA_SHA256 = "33c0867870c04a411f769646a8f5c8c785134673d56a26b7a1cd3c8d213a7a91"
+FLAT_SCHEMA_SHA256 = "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc"
 # RI's execution identity covers its frozen Assessment validator closure.
 # It is distinct from the production flat-family identity above. The current
 # canonical closure must match before this execution identity may be emitted.
 ASSESSMENT_EXECUTION_FAMILY_SHA256 = "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b"
 ASSESSMENT_CLOSURE_SHA256 = "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b"
-RESOURCE_COUNT = 145
+RESOURCE_COUNT = 146
 ROOT_SCHEMA_COUNT = 35
-SUPPORTED_COUNT = 100
+SUPPORTED_COUNT = 101
 NAME = re.compile(r"^[a-z][a-z0-9]*(?:[._][a-z0-9]+)*$")
 
 

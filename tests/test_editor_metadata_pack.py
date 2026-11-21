@@ -42,7 +42,7 @@ class EditorPackParity(unittest.TestCase):
             manifest = json.loads(manifest_bytes)
             self.assertEqual(manifest['source_commit'], SCHEMA_COMMIT)
             self.assertEqual(len(manifest['resources']), 236)
-            self.assertEqual(len(manifest['capabilities']), 100)
+            self.assertEqual(len(manifest['capabilities']), 101)
             names = set()
             for row in manifest['resources']:
                 self.assertNotIn(row['path'], names)

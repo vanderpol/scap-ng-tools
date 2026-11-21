@@ -8,7 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '856430321ff7a0f184976c7a0ac4e3cd3d62dd105a72fa523c271f74ef4413f2'
+CURRENT_RUNTIME_SHA256 = '94b2380e8d8d4950d84d6b39f20e55894eae1e9ec7a278fb29602a1ee15a6263'
 UNCHANGED_SOURCE_SHA256 = 'e50b51edb503793ca20c8046a04b15412eeda34e3fc3da537375fecbde1ca26e'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping, compiler-derived Input discovery, and
@@ -28,7 +28,7 @@ AUDITED_ADAPTATIONS = {
     # The direct runtime registry also records pinned OVAL 5.12.3 platform
     # deprecations; its changed digest is intentionally allowlisted below.
     'v04_source_metadata.py': '2dc15ed1cc3e96b48004a70f8c3e9abdf831ce678c168b5d89439aeb15fd02f1',
-    'v04_direct_capabilities.json': '9b861e18f2b82e23ca7557fb87db73895e4769f1d37dfeb1ab501b4fc8474a5f',
+    'v04_direct_capabilities.json': '0386da0646e577ce88c0525054eadaaea40dd0ceea6e929c6e60ed44c79143c1',
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',
@@ -78,11 +78,11 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
         for name, expected in SEMANTIC_PORT.items():
             self.assertEqual(sha256((directory / name).read_bytes()).hexdigest(), expected)
         pack = contracts()
-        self.assertEqual(len(pack['capabilities']), 99)
+        self.assertEqual(len(pack['capabilities']), 100)
         self.assertEqual(len(pack['behavior_attributes']), 8)
         self.assertEqual(pack['format'], 'scap-ng-portable-0.4.1-semantic-pack/1')
         self.assertEqual(pack['schema_version'], '0.4.1')
-        self.assertEqual(pack['frozen_schema_digest'], '33c0867870c04a411f769646a8f5c8c785134673d56a26b7a1cd3c8d213a7a91')
+        self.assertEqual(pack['frozen_schema_digest'], '11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc')
         self.assertEqual(pack['oval_commit'], '2f140ee5c5dd1ed9606fcd5afc301f6baeb48706')
         self.assertEqual(pack['generator_helper_sha256']['v04_capability_source.py'], 'b2e4a1cb053acc574b7677ef7d94a38905ce9acdd8a418be613840b330ca44e5')
         self.assertFalse((directory / 'contracts-0.4.0.json').exists())

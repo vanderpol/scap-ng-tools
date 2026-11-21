@@ -14,8 +14,8 @@ from pathlib import Path
 
 from scap_ng_tools.contracts.schema_snapshot_v041 import CANONICAL_COMMIT, Pinned041SchemaSnapshot
 
-PACK_HASH = '90ac112624ab0701201bd3efd3eef603216e87eeb8c3f36a0db45f810408976d'
-SCHEMA_HASH = '33c0867870c04a411f769646a8f5c8c785134673d56a26b7a1cd3c8d213a7a91'
+PACK_HASH = '0224d0024b7233644fff9a161e789cf130918c19757343d8ba1a650d33f23786'
+SCHEMA_HASH = '11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc'
 RESEARCH_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 OVAL_COMMIT = '2f140ee5c5dd1ed9606fcd5afc301f6baeb48706'
 GENERATOR_HELPER_SHA256 = {
@@ -60,7 +60,7 @@ def contracts():
             value.get('generator_helper_sha256') != GENERATOR_HELPER_SHA256 or
             value.get('frozen_schema_digest') != SCHEMA_HASH or
             value.get('research_generator_commit') != RESEARCH_COMMIT or
-            len(value.get('capabilities', {})) != 99 or
+            len(value.get('capabilities', {})) != 100 or
             not value.get('behavior_attributes')):
         raise ValueError('0.4.1 semantic pack identity mismatch')
     return value
