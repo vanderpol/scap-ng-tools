@@ -329,6 +329,11 @@ def convert_definition(*, schema_root, source, sha256_pin, definition_id,
                               if name not in {item["native_id"] for item in visitor.synthetic_variables}],
         "native_synthetic_variables": visitor.synthetic_variables,
         "native_inlined_variables": sorted(visitor.inlined_variables),
+        # Closed enum consumers may require a derived Variable whose lexical
+        # domain is projected into the capability enum. Preserve that
+        # source-linked equivalence so independent parity checks do not treat
+        # the derived native declaration as fabricated or silently drop it.
+        "enum_variable_equivalences": visitor.enum_variable_equivalences,
         "native_expanded_set_tests": visitor.expanded_set_tests,
         "conversion_warnings": visitor.conversion_warnings,
         "test_bindings": [{
