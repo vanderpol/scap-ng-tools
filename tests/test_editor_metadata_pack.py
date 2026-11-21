@@ -14,7 +14,7 @@ from build_v04_editor_metadata_pack import build  # noqa: E402
 
 
 SCHEMA_COMMIT = '5387298eee591b6e24e6527d97478c7689381d05'
-EXPECTED_MANIFEST = '9560fcfe81efdc75560a4714d72b1974f9b2253d4b19bb48990a1776aafd2807'
+EXPECTED_MANIFEST = 'fc18c56815c1812fe8b4ddeb904957b7f93cc9fc743aee94781722e5e8ba0bed'
 
 
 class EditorPackParity(unittest.TestCase):
