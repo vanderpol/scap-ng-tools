@@ -1,0 +1,90 @@
+{
+  "format": "scap-ng-tools/external-variable-restriction-proposal/1",
+  "status": "proposal_only",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "zip_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip",
+    "zip_sha256": "6ff45b5a85b77eadce11397d30adbdd011eb1d32fa3566d23b60322597ac5bdf",
+    "definition_member": "oval-def-ext.xml",
+    "definition_member_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+    "fixture_member": "oval-def-ext_external-variables.xml",
+    "fixture_member_sha256": "dc534d77edf48eb813ab0840689e0700a96f98322a1bc0d0164b1734c43b85d1",
+    "definition_id": "oval:org.mitre.oval.test:def:562",
+    "test_ids": [
+      "oval:org.mitre.oval.test:tst:509",
+      "oval:org.mitre.oval.test:tst:439",
+      "oval:org.mitre.oval.test:tst:132",
+      "oval:org.mitre.oval.test:tst:275"
+    ],
+    "variable_ids": [
+      "oval:org.mitre.oval.test:var:629",
+      "oval:org.mitre.oval.test:var:327",
+      "oval:org.mitre.oval.test:var:642",
+      "oval:org.mitre.oval.test:var:863"
+    ]
+  },
+  "normative_source": {
+    "repository": "OVAL-Community/OVAL",
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "xsd": "oval-schemas/oval-definitions-schema.xsd",
+    "types": [
+      "external_variable",
+      "PossibleValueType",
+      "PossibleRestrictionType",
+      "RestrictionType"
+    ],
+    "top_level_semantics": "possible_value and possible_restriction branches are ORed",
+    "within_restriction_semantics": "restriction children use PossibleRestrictionType/@operator, default AND"
+  },
+  "canonical_baseline": {
+    "repository": "vanderpol/scap-ng",
+    "commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "flat_schema_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "assessment_execution_closure_sha256": "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b",
+    "current_input_constraints": ["allowed"],
+    "current_missing_representation": ["typed restriction groups", "OR-of-restriction branches"]
+  },
+  "converter_baseline": {
+    "repository": "vanderpol/scap-ng-tools",
+    "commit": "07f32481c34e1b1e8acfdd4d580e8980245d7527",
+    "current_disposition": "canonical_input_constraint_hold",
+    "runtime_execution": "not_run",
+    "independent_equivalence": "not_proved"
+  },
+  "candidate_native_shape": {
+    "input_constraints": {
+      "allowed": "typed exact-value branches from possible_value",
+      "restriction_groups": {
+        "operator": ["and", "or", "one", "xor"],
+        "predicates": {
+          "operation": "typed source operation normalized by the canonical vocabulary",
+          "value": "typed literal in the declared input datatype",
+          "source_operation": "provenance-only source lexical operation"
+        }
+      },
+      "top_level": "OR across allowed branches and restriction groups"
+    },
+    "important": "candidate only; not a canonical schema amendment"
+  },
+  "vectors": [
+    {"id": "allowed-single-positive", "datatype": "integer", "cardinality": "exactly_one", "required": true, "constraints": {"allowed": [0, 1]}, "supplied": [1], "expected": "accepted"},
+    {"id": "allowed-single-negative", "datatype": "integer", "cardinality": "exactly_one", "required": true, "constraints": {"allowed": [0, 1]}, "supplied": [2], "expected": "error", "reason": "input_constraint_violation"},
+    {"id": "restriction-single-positive", "datatype": "string", "cardinality": "exactly_one", "required": true, "constraints": {"restriction_groups": [{"operator": "and", "predicates": [{"operation": "pattern_match", "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"}]}]}, "supplied": ["123-456-7890"], "expected": "accepted"},
+    {"id": "restriction-single-negative", "datatype": "string", "cardinality": "exactly_one", "required": true, "constraints": {"restriction_groups": [{"operator": "and", "predicates": [{"operation": "pattern_match", "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"}]}]}, "supplied": ["1234567890"], "expected": "error", "reason": "input_constraint_violation"},
+    {"id": "restriction-or-first", "datatype": "string", "cardinality": "exactly_one", "required": true, "constraints": {"restriction_groups": [{"operator": "and", "predicates": [{"operation": "pattern_match", "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"}]}, {"operator": "and", "predicates": [{"operation": "pattern_match", "value": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"}]}]}, "supplied": ["123-456-7890"], "expected": "accepted"},
+    {"id": "restriction-or-second", "datatype": "string", "cardinality": "exactly_one", "required": true, "constraints": {"restriction_groups": [{"operator": "and", "predicates": [{"operation": "pattern_match", "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"}]}, {"operator": "and", "predicates": [{"operation": "pattern_match", "value": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"}]}]}, "supplied": ["1-123-456-7890"], "expected": "accepted"},
+    {"id": "restriction-or-negative", "datatype": "string", "cardinality": "exactly_one", "required": true, "constraints": {"restriction_groups": [{"operator": "and", "predicates": [{"operation": "pattern_match", "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"}]}, {"operator": "and", "predicates": [{"operation": "pattern_match", "value": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"}]}]}, "supplied": ["12-3456-7890"], "expected": "error", "reason": "input_constraint_violation"},
+    {"id": "typed-numeric-positive", "datatype": "integer", "cardinality": "exactly_one", "required": true, "constraints": {"restriction_groups": [{"operator": "and", "predicates": [{"operation": "greater_than_or_equal", "value": 10}]}]}, "supplied": [10], "expected": "accepted"},
+    {"id": "typed-numeric-negative", "datatype": "integer", "cardinality": "exactly_one", "required": true, "constraints": {"restriction_groups": [{"operator": "and", "predicates": [{"operation": "greater_than_or_equal", "value": 10}]}]}, "supplied": [9], "expected": "error", "reason": "input_constraint_violation"},
+    {"id": "wrong-datatype", "datatype": "integer", "cardinality": "exactly_one", "required": true, "constraints": {"allowed": [0, 1]}, "supplied": ["1"], "expected": "error", "reason": "input_datatype_mismatch"},
+    {"id": "missing-required", "datatype": "string", "cardinality": "exactly_one", "required": true, "constraints": {}, "supplied": null, "expected": "not_evaluated", "reason": "required_input_missing"},
+    {"id": "optional-unbound-guarded", "datatype": "string", "cardinality": "zero_or_one", "required": false, "constraints": {}, "supplied": null, "consumer_guard": "input_provided", "expected": "not_evaluated", "reason": "optional_input_not_provided"},
+    {"id": "optional-unbound-unguarded", "datatype": "string", "cardinality": "zero_or_one", "required": false, "constraints": {}, "supplied": null, "consumer_guard": null, "expected": "not_evaluated", "reason": "unguarded_optional_input"},
+    {"id": "empty-exactly-one", "datatype": "string", "cardinality": "exactly_one", "required": true, "constraints": {}, "supplied": [], "expected": "error", "reason": "input_cardinality_violation"},
+    {"id": "empty-zero-or-more", "datatype": "string", "cardinality": "zero_or_more", "required": false, "constraints": {}, "supplied": [], "expected": "accepted", "note": "explicit empty differs from omitted"},
+    {"id": "multi-value-one-or-more", "datatype": "string", "cardinality": "one_or_more", "required": true, "constraints": {"allowed": ["a", "b"]}, "supplied": ["a", "b"], "expected": "accepted"},
+    {"id": "multi-value-exactly-one", "datatype": "string", "cardinality": "exactly_one", "required": true, "constraints": {"allowed": ["a", "b"]}, "supplied": ["a", "b"], "expected": "error", "reason": "input_cardinality_violation"}
+  ],
+  "fixture_policy": "The companion external-variable XML supplies qualification values only; it is never a default or binding in a converted Assessment."
+}
