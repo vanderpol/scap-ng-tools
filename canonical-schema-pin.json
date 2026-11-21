@@ -1,7 +1,7 @@
 {
   "assessment_execution": {
-    "closure_sha256": "1ff810407901fa3687b7820f41a1042f1105288ccbdbe25beefb764620083caf",
-    "family_sha256": "1ff810407901fa3687b7820f41a1042f1105288ccbdbe25beefb764620083caf",
+    "closure_sha256": "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b",
+    "family_sha256": "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b",
     "files": {
       "assessment-language.schema.json": {
         "bytes": 741181,
@@ -24,8 +24,8 @@
         "sha256": "6ad23a97c4b231b9c8ee93dce112feb9fb0213203b0d23bd2a84e706c8b80dc8"
       },
       "native-selector.schema.json": {
-        "bytes": 132376,
-        "sha256": "b2144782e8fc2c36c182f0da3351aac5ac9c29feb1cbfa2f7abd016898627cab"
+        "bytes": 135336,
+        "sha256": "9725fc638600761858a2478dfa6dc086581f14561a92fc81484fbda2cf88ab99"
       },
       "reported-elements.schema.json": {
         "bytes": 661,
@@ -36,11 +36,11 @@
         "sha256": "db22d3d216e44cac78015b2bc57869dec672e2f5682382ea90fede9bf092c7ce"
       }
     },
-    "ri_commit": "26d25cdd165b04c1a3e0b31119ebaff1b29ccca1",
-    "ri_pin_sha256": "84b7b46888ba68ec76bf961ba13785c6ae7d5ad6701165960e7f61432a8d9932"
+    "ri_commit": "4b8335b924a9aa163b8a09e9592335def59a276d",
+    "ri_pin_sha256": "0adda1cb32be69b40dfa1e037307e77427366bd4fd9494df5c05c070139e8fcd"
   },
   "canonical_repository": "vanderpol/scap-ng",
-  "canonical_sha": "44991ed3753944e47c42d76f157b29448b256a34",
+  "canonical_sha": "860d63e84d5aba12daa6d5037bdb83d78a95088a",
   "files": {
     "applicability.schema.json": {
       "bytes": 5288,
@@ -551,8 +551,8 @@
       "sha256": "c7541d9b6b1e9183042bc055adb5b8389e760b929286dfc6e9d50d675ccd1ba6"
     },
     "native-selector.schema.json": {
-      "bytes": 132376,
-      "sha256": "b2144782e8fc2c36c182f0da3351aac5ac9c29feb1cbfa2f7abd016898627cab"
+      "bytes": 135336,
+      "sha256": "9725fc638600761858a2478dfa6dc086581f14561a92fc81484fbda2cf88ab99"
     },
     "organizational-input.schema.json": {
       "bytes": 7066,
@@ -624,8 +624,8 @@
     }
   },
   "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-  "schema_family_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
+  "schema_family_sha256": "33c0867870c04a411f769646a8f5c8c785134673d56a26b7a1cd3c8d213a7a91",
   "schema_version": "0.4.1",
-  "semantic_pack_sha256": "63a64f3227f96ad6115fefaaf21371ed91ce73e334452794364e0b8479c2332b",
+  "semantic_pack_sha256": "90ac112624ab0701201bd3efd3eef603216e87eeb8c3f36a0db45f810408976d",
   "single_version": true
 }
