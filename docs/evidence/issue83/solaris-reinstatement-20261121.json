@@ -1,0 +1,67 @@
+{
+  "format": "scap-ng-tools/issue83-solaris-reinstatement/1",
+  "scope": "owner-directed Self-Assertion witness qualification only; not Solaris runtime qualification",
+  "pins": {
+    "converter_commit": "baeab17",
+    "self_assertion_commit": "53c18ea31a1976209572ec8b068e1a02be588456",
+    "canonical_schema_commit": "44991ed3753944e47c42d76f157b29448b256a34",
+    "canonical_flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "reinstatement_source": "OVAL 6 PR #226",
+    "reinstatement_commit": "bdb6d94090b056b1b9b4b736326c3ca6ae0e6aca"
+  },
+  "cases": [
+    {
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package_test.xml",
+      "source_sha256": "36c8be7fada857f6b1c191c780d58f9322a701f3c2f9c1b999c963b57eeed307",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "test_ids": [
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:4",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:5",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+      ],
+      "source_xsd_validated": true,
+      "source_schematron_reports": 0,
+      "conversion": "CONVERTED_UNVERIFIED",
+      "canonical_schema_validated": true,
+      "scanner_evaluated": false,
+      "output_sha256": {
+        "assessment.json": "7d58c61ddd982c3eda4227d9e5f0c71f7d896fbc72da327d59e94b26a896852f",
+        "assessment.yaml": "cfb5b081458733590c913f1f44788d1ec7c4301d3182ee4b83e7d2be584ec85d",
+        "source-trace.json": "84e9dc86822aee0a609eca0c73906c8abce5f430891d9662857ed38ae6080d53",
+        "conversion-scope.json": "80535a3f828b5f8c6f6fc55391ab7b6bfa26f62bdb0a1c1e67650d27fb793594"
+      }
+    },
+    {
+      "source_path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "source_sha256": "02d6916a4e900126a83d86071587eccc024df9055a33b3b5dd7526d8cf542706",
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "test_ids": [
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:4",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:5",
+        "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+      ],
+      "source_xsd_validated": true,
+      "source_schematron_reports": 15,
+      "schematron_diagnostic": "inconsistent datatype between the variable and an associated var_ref",
+      "schematron_scope": "same source-invalid variable/var_ref mismatch is reported through core, independent, and Solaris imported views",
+      "conversion": "BLOCKED_SOURCE_INVALID",
+      "converter_diagnostic": "Variable cast outside bounded proof",
+      "canonical_schema_validated": false,
+      "scanner_evaluated": false,
+      "reinstatement_does_not_suppress_source_hold": true
+    }
+  ],
+  "interpretation": {
+    "deprecated_gate": "owner-scoped only for these two source tests; unrelated deprecated source tests remain fail-closed",
+    "package_test": "structurally converted with native solaris.package mapping",
+    "package511_test": "not admitted because the pinned source has 15 Schematron reports; no source edit or converter bypass was applied",
+    "runtime_equivalence": "not_proved"
+  }
+}

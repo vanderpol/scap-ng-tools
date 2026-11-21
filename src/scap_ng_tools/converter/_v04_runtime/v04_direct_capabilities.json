@@ -72,6 +72,7 @@
     "solaris.smf",
     "solaris.smfproperty",
     "solaris.package",
+    "solaris.package.ips",
     "iosxe.line",
     "iosxe.global",
     "iosxe.version",
@@ -144,6 +145,24 @@
       "reason": "OVAL 5.12.3 marks independent:environmentvariable_object deprecated; use environmentvariable58_object",
       "schema_file": "independent-definitions-schema.xsd",
       "schema_sha256": "4b2c8b2d90c8fb4647c00f8d20a0cb031103e61e99e643463b9b87006664c953"
+    }
+  ],
+  "reinstated_source_tests": [
+    {
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "name": "package_test",
+      "source_schema_status": "deprecated_in_5.12.3",
+      "reinstatement": "OVAL 6 PR #226",
+      "reinstatement_commit": "bdb6d94090b056b1b9b4b736326c3ca6ae0e6aca",
+      "scope": "owner-directed Self-Assertion witness qualification only"
+    },
+    {
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris",
+      "name": "package511_test",
+      "source_schema_status": "deprecated_in_5.12.3",
+      "reinstatement": "OVAL 6 PR #226",
+      "reinstatement_commit": "bdb6d94090b056b1b9b4b736326c3ca6ae0e6aca",
+      "scope": "owner-directed Self-Assertion witness qualification only"
     }
   ]
 }

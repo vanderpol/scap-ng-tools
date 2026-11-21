@@ -14,7 +14,7 @@ class Issue59QualificationReceipts(unittest.TestCase):
         pack = contracts()
         self.assertEqual(pack['schema_version'], '0.4.1')
         self.assertEqual(pack['frozen_schema_digest'], SCHEMA_HASH)
-        self.assertEqual(len(pack['capabilities']), 98)
+        self.assertEqual(len(pack['capabilities']), 99)
         full = json.loads((EVIDENCE / 'full65-conversion-v041.json').read_text())
         self.assertEqual(len(full['benchmarks']), 65)
         totals = {'source': 0, 'converted': 0, 'blocked': 0, 'manual_only': 0}

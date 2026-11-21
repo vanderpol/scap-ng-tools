@@ -227,9 +227,23 @@ class AssessmentConverter:
                       else DEPRECATED_SOURCE_OBJECTS.get(element.tag) if kind == 'object'
                       else None)
         if deprecated:
-            raise UnsupportedSource(
-                f"deprecated source capability: {deprecated['name']} "
-                f"(OVAL {deprecated['since']}; {deprecated['reason']})")
+            reinstated = next((row for row in SUPPORT.get('reinstated_source_tests', [])
+                               if row.get('namespace') == element.tag[1:].split('}', 1)[0]
+                               and row.get('name') == local_name(element)), None)
+            if reinstated and kind == 'test':
+                self.conversion_warnings.append({
+                    'code': 'oval_deprecated_source_reinstated_scope',
+                    'source_capability': reinstated['name'],
+                    'source_schema_status': reinstated['source_schema_status'],
+                    'reinstatement': reinstated['reinstatement'],
+                    'reinstatement_commit': reinstated['reinstatement_commit'],
+                    'scope': reinstated['scope'],
+                    'scanner_evaluated': False,
+                })
+            else:
+                raise UnsupportedSource(
+                    f"deprecated source capability: {deprecated['name']} "
+                    f"(OVAL {deprecated['since']}; {deprecated['reason']})")
         matches = [mapping for mapping in self.mappings if element.tag ==
                    f'{{{mapping["source"]["namespace"]}}}{mapping["source"].get(kind)}']
         if not matches and self.native_recovery and element.tag == f'{{{OVAL}#windows}}wmi_{kind}':
