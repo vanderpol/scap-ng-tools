@@ -790,9 +790,21 @@
       }
     ],
     "converted_definitions": 161,
+    "converted_parity_problems": [
+      {
+        "definition": "oval:org.joval.test:def:20002",
+        "reason": "native collected-field datatype is unresolved",
+        "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml"
+      },
+      {
+        "definition": "oval:org.mitre.oval.test:def:38",
+        "reason": "native Variable declarations do not match source trace",
+        "source": "SCAP_1.4/OVAL_Test_Content/windows/win-def_registry_test.xml"
+      }
+    ],
     "converted_tests": 743,
     "definitions": 167,
-    "parity_receipt_sha256": "3c344007257ba5d757b3d7449953197cc0d5a8ae860f783e78407c1822865cf0",
+    "parity_receipt_sha256": "0a6e424a5c4e17b769811fcaf2279cf4e96b7d746a6be789855565853ed7baed",
     "platform_receipt_sha256": "214cdaf7cee5f2ca9a581e538fa09ff673201c614cbd33bf6f50c51401da1d19",
     "platforms": {
       "definitions": {
