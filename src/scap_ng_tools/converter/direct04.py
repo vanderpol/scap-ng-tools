@@ -46,6 +46,11 @@ def load_runtime():
     # result-type adaptation is installed in memory at this boundary.
     from .native041_variable_result_type import install
     install(engine)
+    # Native 0.4.1 Input/Variable composition; frozen visitor stays byte-identical.
+    from .native041_input_expression import install as install_input_expression
+    install_input_expression(engine)
+    from .native041_input_semantics import install as install_input_semantics
+    install_input_semantics()
     from .native041_registry_traversal import install as install_registry_traversal
     install_registry_traversal()
     return engine
