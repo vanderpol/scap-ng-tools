@@ -1,0 +1,119 @@
+assessment:
+  id: rhel-9-must-implement-a-fips-140-3-compliant-systemwide-cryptographic-df2599fb-assessment
+  version: 1
+  assessment_title: RHEL 9 must implement a FIPS 140-3-compliant systemwide cryptographic policy.
+  mode: automated
+  class: compliance
+  purpose: assessment
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  shared_objects:
+    retrieve-the-current-minimum-crypto-policy-configuration-fb38cd3d-object:
+      capability: independent.textfilecontent54
+      full_path: {equals: /etc/crypto-policies/state/CURRENT.pol}
+      pattern: {matches_regex: '^hash\s*=\s*.*$'}
+      instance: {greater_than_or_equal: 1, datatype: integer}
+      ignore_case: false
+      multiline: true
+      singleline: false
+      item_creation: all_object_elements_fullfilled
+      filesystem: all
+      object_title: Retrieve the current minimum crypto-policy configuration.
+  tests:
+    verify-rhel-9-is-set-to-use-a-fips-140-3-compliant-systemwide-cryptogr-e022402a-test:
+      test_title: Verify RHEL 9 is set to use a FIPS 140-3-compliant systemwide cryptographic policy.
+      capability: independent.shellcommand
+      object:
+        shell: bash
+        command: update-crypto-policies --show
+        error_if_exit_status_not_0: false
+        error_if_stderr_exists: false
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        and:
+        - fields:
+            exit_status: {equals: 0, datatype: integer, values_found: one_or_more, values_matching: every}
+        - fields:
+            stdout_line: {matches_regex: '^FIPS:*', values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    verify-the-current-minimum-crypto-policy-configuration-b73923a7-test:
+      test_title: Verify the current minimum crypto-policy configuration.
+      capability: independent.textfilecontent54
+      object: retrieve-the-current-minimum-crypto-policy-configuration-fb38cd3d-object
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          text:
+            matches_regex:
+            - SHA2-256
+            - SHA2-384
+            - SHA2-512
+            - SHA2-224
+            - SHA3-256
+            - SHA3-384
+            - SHA3-384
+            - SHA3-512
+            - SHAKE-256
+            datatype: string
+            value_match: every
+            values_found: one_or_more
+            values_matching: every
+      reported_elements: all
+    verify-no-sha1-algorithms-are-employed-addf0def-test:
+      test_title: Verify no SHA1 algorithms are employed.
+      capability: independent.textfilecontent54
+      object: retrieve-the-current-minimum-crypto-policy-configuration-fb38cd3d-object
+      require:
+        items_found: may_be_absent
+        items_satisfying: every
+        fields:
+          text: {matches_regex: 'SHA1-\d', values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    verify-minimum-hash-values-of-224-05b40c38-test:
+      test_title: Verify minimum hash values of 224.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/crypto-policies/state/CURRENT.pol}
+        pattern: {matches_regex: '^hash\s*=\s*([^#\n]+)$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: may_be_absent
+        items_satisfying: every
+        fields:
+          subexpression: {matches_regex: '\b[A-Z]+\d*-((\d{1,2}\b)|(1\d\d\b)|(21\d\b)|(22[1-3]\b))', values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    verify-minimum-rsa-size-of-2048-615974e0-test:
+      test_title: Verify minimum rsa size of 2048.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/crypto-policies/state/CURRENT.pol}
+        pattern: {matches_regex: '^\s*min_rsa_size\s*=\s*(\d+)'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          subexpression: {greater_than_or_equal: 2048, datatype: integer, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+  evaluate:
+    and:
+    - test: verify-rhel-9-is-set-to-use-a-fips-140-3-compliant-systemwide-cryptogr-e022402a-test
+    - test: verify-the-current-minimum-crypto-policy-configuration-b73923a7-test
+    - not:
+        test: verify-no-sha1-algorithms-are-employed-addf0def-test
+    - not:
+        test: verify-minimum-hash-values-of-224-05b40c38-test
+    - test: verify-minimum-rsa-size-of-2048-615974e0-test

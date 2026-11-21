@@ -1,0 +1,547 @@
+assessment:
+  id: rhel-9-must-audit-all-uses-of-the-setxattr-fsetxattr-lsetxattr-removex-37026cc9-assessment
+  version: 1
+  assessment_title: RHEL 9 must audit all uses of the setxattr, fsetxattr, lsetxattr, removexattr, fremovexattr, and lremovexattr system calls.
+  mode: automated
+  class: compliance
+  purpose: assessment
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  variables:
+    pattern-for-audit-rule-for-32-bit-invocations-of-lsetxattr-system-call-1896bc40-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - literal: {datatype: string, value: '^\s*-a\s+(?:always,exit|exit,always)'}
+        - literal: {datatype: string, value: '\s+-F\s+arch=b32'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-S\s+[,\w]*\b'}
+        - literal: {datatype: string, value: lsetxattr}
+        - literal: {datatype: string, value: '\b[,\w]*'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)'}
+        - literal: {datatype: string, value: '(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+    pattern-for-audit-rule-for-64-bit-invocations-of-lsetxattr-system-call-1e9630b7-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - literal: {datatype: string, value: '^\s*-a\s+(?:always,exit|exit,always)'}
+        - literal: {datatype: string, value: '\s+-F\s+arch=b64'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-S\s+[,\w]*\b'}
+        - literal: {datatype: string, value: lsetxattr}
+        - literal: {datatype: string, value: '\b[,\w]*'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)'}
+        - literal: {datatype: string, value: '(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+    pattern-for-audit-rule-for-32-bit-invocations-of-lsetxattr-system-call-d893cc82-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - literal: {datatype: string, value: '^\s*-a\s+(?:always,exit|exit,always)'}
+        - literal: {datatype: string, value: '\s+-F\s+arch=b32'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-S\s+[,\w]*\b'}
+        - literal: {datatype: string, value: lsetxattr}
+        - literal: {datatype: string, value: '\b[,\w]*'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-F\s+auid=0'}
+        - literal: {datatype: string, value: '(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+    pattern-for-audit-rule-for-32-bit-invocations-of-lsetxattr-system-call-6216fe58-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - literal: {datatype: string, value: '^\s*-a\s+(?:always,exit|exit,always)'}
+        - literal: {datatype: string, value: '\s+-F\s+arch=b32'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-S\s+[,\w]*\b'}
+        - literal: {datatype: string, value: lsetxattr}
+        - literal: {datatype: string, value: '\b[,\w]*'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-F\s+auid=0'}
+        - literal: {datatype: string, value: '(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+    pattern-for-audit-rule-for-32-bit-invocations-of-removexattr-system-ca-21184c08-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - literal: {datatype: string, value: '^\s*-a\s+(?:always,exit|exit,always)'}
+        - literal: {datatype: string, value: '\s+-F\s+arch=b32'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-S\s+[,\w]*\b'}
+        - literal: {datatype: string, value: removexattr}
+        - literal: {datatype: string, value: '\b[,\w]*'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)'}
+        - literal: {datatype: string, value: '(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+    pattern-for-audit-rule-for-64-bit-invocations-of-removexattr-system-ca-f7f8d530-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - literal: {datatype: string, value: '^\s*-a\s+(?:always,exit|exit,always)'}
+        - literal: {datatype: string, value: '\s+-F\s+arch=b64'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-S\s+[,\w]*\b'}
+        - literal: {datatype: string, value: removexattr}
+        - literal: {datatype: string, value: '\b[,\w]*'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-F\s+auid>=1000\s+-F\s+auid!=(?:4294967295|-1|unset)'}
+        - literal: {datatype: string, value: '(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+    pattern-for-audit-rule-for-32-bit-invocations-of-removexattr-system-ca-45a2fe25-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - literal: {datatype: string, value: '^\s*-a\s+(?:always,exit|exit,always)'}
+        - literal: {datatype: string, value: '\s+-F\s+arch=b32'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-S\s+[,\w]*\b'}
+        - literal: {datatype: string, value: removexattr}
+        - literal: {datatype: string, value: '\b[,\w]*'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-F\s+auid=0'}
+        - literal: {datatype: string, value: '(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+    pattern-for-audit-rule-for-32-bit-invocations-of-removexattr-system-ca-8bd6eb2f-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - literal: {datatype: string, value: '^\s*-a\s+(?:always,exit|exit,always)'}
+        - literal: {datatype: string, value: '\s+-F\s+arch=b32'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-S\s+[,\w]*\b'}
+        - literal: {datatype: string, value: removexattr}
+        - literal: {datatype: string, value: '\b[,\w]*'}
+        - literal: {datatype: string, value: '\s+(?:-S\s+[,\w]+\s+)*'}
+        - literal: {datatype: string, value: '-F\s+auid=0'}
+        - literal: {datatype: string, value: '(?:\s+(?:-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+  tests:
+    audit-32-bit-invocations-of-fsetxattr-syscall-auid-1000-765141bc-test:
+      test_title: Audit 32-bit invocations of fsetxattr syscall (auid>=1000)
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+fsetxattr\s+|(\s+|,)fsetxattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-fsetxattr-syscall-auid-1000-6809bce3-test:
+      test_title: Audit 64-bit invocations of fsetxattr syscall (auid>=1000)
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+fsetxattr\s+|(\s+|,)fsetxattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-fsetxattr-syscall-auid-0-0252bf7a-test:
+      test_title: Audit 32-bit invocations of fsetxattr syscall (auid=0)
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+fsetxattr\s+|(\s+|,)fsetxattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-fsetxattr-syscall-auid-0-7d89f6cd-test:
+      test_title: Audit 64-bit invocations of fsetxattr syscall (auid=0)
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+fsetxattr\s+|(\s+|,)fsetxattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-the-lsetxattr-system-call-c27ef14f-test:
+      test_title: Audit 32-bit invocations of the lsetxattr system call.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern:
+          matches_regex:
+            variable: pattern-for-audit-rule-for-32-bit-invocations-of-lsetxattr-system-call-1896bc40-variable
+          datatype: string
+          value_match: every
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-the-lsetxattr-system-call-0ac26c7e-test:
+      test_title: Audit 64-bit invocations of the lsetxattr system call.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern:
+          matches_regex:
+            variable: pattern-for-audit-rule-for-64-bit-invocations-of-lsetxattr-system-call-1e9630b7-variable
+          datatype: string
+          value_match: every
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-the-lsetxattr-system-call-by-root-user-6af24229-test:
+      test_title: Audit 32-bit invocations of the lsetxattr system call by root user.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern:
+          matches_regex:
+            variable: pattern-for-audit-rule-for-32-bit-invocations-of-lsetxattr-system-call-d893cc82-variable
+          datatype: string
+          value_match: every
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-the-lsetxattr-system-call-by-root-user-9fdb93ac-test:
+      test_title: Audit 64-bit invocations of the lsetxattr system call by root user.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern:
+          matches_regex:
+            variable: pattern-for-audit-rule-for-32-bit-invocations-of-lsetxattr-system-call-6216fe58-variable
+          datatype: string
+          value_match: every
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-fremovexattr-syscall-51efafab-test:
+      test_title: Audit 32-bit invocations of fremovexattr syscall
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+fremovexattr\s+|(\s+|,)fremovexattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-fremovexattr-syscall-d949190e-test:
+      test_title: Audit 64-bit invocations of fremovexattr syscall
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+fremovexattr\s+|(\s+|,)fremovexattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-fremovexattr-syscall-by-root-a5ead35d-test:
+      test_title: Audit 32-bit invocations of fremovexattr syscall by root
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+fremovexattr\s+|(\s+|,)fremovexattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-fremovexattr-syscall-by-root-5fa65a31-test:
+      test_title: Audit 64-bit invocations of fremovexattr syscall by root
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+fremovexattr\s+|(\s+|,)fremovexattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-lremovexattr-syscall-2fd8a36b-test:
+      test_title: Audit 32-bit invocations of lremovexattr syscall
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+lremovexattr\s+|(\s+|,)lremovexattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-lremovexattr-syscall-efa9df0e-test:
+      test_title: Audit 64-bit invocations of lremovexattr syscall
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+lremovexattr\s+|(\s+|,)lremovexattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-lremovexattr-syscall-by-root-342f7423-test:
+      test_title: Audit 32-bit invocations of lremovexattr syscall by root
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+lremovexattr\s+|(\s+|,)lremovexattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-lremovexattr-syscall-by-root-14fd3d98-test:
+      test_title: Audit 64-bit invocations of lremovexattr syscall by root
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+lremovexattr\s+|(\s+|,)lremovexattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-the-removexattr-system-call-1c686903-test:
+      test_title: Audit 32-bit invocations of the removexattr system call.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern:
+          matches_regex:
+            variable: pattern-for-audit-rule-for-32-bit-invocations-of-removexattr-system-ca-21184c08-variable
+          datatype: string
+          value_match: every
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-the-removexattr-system-call-b190518f-test:
+      test_title: Audit 64-bit invocations of the removexattr system call.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern:
+          matches_regex:
+            variable: pattern-for-audit-rule-for-64-bit-invocations-of-removexattr-system-ca-f7f8d530-variable
+          datatype: string
+          value_match: every
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-the-removexattr-system-call-by-root-user-0ad4d02e-test:
+      test_title: Audit 32-bit invocations of the removexattr system call by root user.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern:
+          matches_regex:
+            variable: pattern-for-audit-rule-for-32-bit-invocations-of-removexattr-system-ca-45a2fe25-variable
+          datatype: string
+          value_match: every
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-the-removexattr-system-call-by-root-user-7270fddf-test:
+      test_title: Audit 64-bit invocations of the removexattr system call by root user.
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern:
+          matches_regex:
+            variable: pattern-for-audit-rule-for-32-bit-invocations-of-removexattr-system-ca-8bd6eb2f-variable
+          datatype: string
+          value_match: every
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-setxattr-syscall-auid-1000-ffc79ec4-test:
+      test_title: Audit 32-bit invocations of setxattr syscall (auid>=1000)
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+setxattr\s+|(\s+|,)setxattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-setxattr-syscall-auid-1000-14214abc-test:
+      test_title: Audit 64-bit invocations of setxattr syscall (auid>=1000)
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+setxattr\s+|(\s+|,)setxattr(\s+|,))).*-F\s+auid>=1000\s+-F\s+auid!=(4294967295|-1|unset)(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-32-bit-invocations-of-setxattr-syscall-auid-0-73daa6d5-test:
+      test_title: Audit 32-bit invocations of setxattr syscall (auid=0)
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b32\s+(?:.*(-S\s+setxattr\s+|(\s+|,)setxattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    audit-64-bit-invocations-of-setxattr-syscall-auid-0-09a37828-test:
+      test_title: Audit 64-bit invocations of setxattr syscall (auid=0)
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/audit/audit.rules}
+        pattern: {matches_regex: '^\s*-a\s+(always,exit|exit,always)\s+-F\s+arch=b64\s+(?:.*(-S\s+setxattr\s+|(\s+|,)setxattr(\s+|,))).*-F\s+auid=0(\s+(-k\s+|-F\s+key=)[-\w]+)*\s*$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+      reported_elements: all
+  evaluate:
+    and:
+    - and:
+      - test: audit-32-bit-invocations-of-fsetxattr-syscall-auid-1000-765141bc-test
+      - test: audit-64-bit-invocations-of-fsetxattr-syscall-auid-1000-6809bce3-test
+      - test: audit-32-bit-invocations-of-fsetxattr-syscall-auid-0-0252bf7a-test
+      - test: audit-64-bit-invocations-of-fsetxattr-syscall-auid-0-7d89f6cd-test
+    - and:
+      - test: audit-32-bit-invocations-of-the-lsetxattr-system-call-c27ef14f-test
+      - test: audit-64-bit-invocations-of-the-lsetxattr-system-call-0ac26c7e-test
+      - test: audit-32-bit-invocations-of-the-lsetxattr-system-call-by-root-user-6af24229-test
+      - test: audit-64-bit-invocations-of-the-lsetxattr-system-call-by-root-user-9fdb93ac-test
+    - and:
+      - test: audit-32-bit-invocations-of-fremovexattr-syscall-51efafab-test
+      - test: audit-64-bit-invocations-of-fremovexattr-syscall-d949190e-test
+      - test: audit-32-bit-invocations-of-fremovexattr-syscall-by-root-a5ead35d-test
+      - test: audit-64-bit-invocations-of-fremovexattr-syscall-by-root-5fa65a31-test
+    - and:
+      - test: audit-32-bit-invocations-of-lremovexattr-syscall-2fd8a36b-test
+      - test: audit-64-bit-invocations-of-lremovexattr-syscall-efa9df0e-test
+      - test: audit-32-bit-invocations-of-lremovexattr-syscall-by-root-342f7423-test
+      - test: audit-64-bit-invocations-of-lremovexattr-syscall-by-root-14fd3d98-test
+    - and:
+      - test: audit-32-bit-invocations-of-the-removexattr-system-call-1c686903-test
+      - test: audit-64-bit-invocations-of-the-removexattr-system-call-b190518f-test
+      - test: audit-32-bit-invocations-of-the-removexattr-system-call-by-root-user-0ad4d02e-test
+      - test: audit-64-bit-invocations-of-the-removexattr-system-call-by-root-user-7270fddf-test
+    - test: audit-32-bit-invocations-of-setxattr-syscall-auid-1000-ffc79ec4-test
+    - test: audit-64-bit-invocations-of-setxattr-syscall-auid-1000-14214abc-test
+    - test: audit-32-bit-invocations-of-setxattr-syscall-auid-0-73daa6d5-test
+    - test: audit-64-bit-invocations-of-setxattr-syscall-auid-0-09a37828-test

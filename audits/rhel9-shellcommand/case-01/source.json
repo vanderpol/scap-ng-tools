@@ -1,0 +1,521 @@
+{
+  "source_rule": "xccdf_mil.disa.stig_rule_SV-257870r958804_rule",
+  "source_rule_sha256": "0b34c788b04fbde8cfaf868b4a4b941933a80cc7b913a3651bed7d9aec15038f",
+  "original_oval_nodes": {
+    "oval:mil.disa.stig.rhel9os:def:257870": {
+      "sha256": "48ff8df3421187e448aea228ba4d7a5c8942f2fa37bffc23d147f21145438f14",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+        [
+          [
+            "class",
+            "compliance"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.rhel9os:def:257870"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+                [],
+                "RHEL-09-231145 - RHEL 9 must mount /var/log with the nodev option.",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}affected",
+                [
+                  [
+                    "family",
+                    "unix"
+                  ]
+                ],
+                null,
+                [
+                  [
+                    "{http://oval.mitre.org/XMLSchema/oval-definitions-5}platform",
+                    [],
+                    "Red Hat Enterprise Linux 9",
+                    []
+                  ]
+                ]
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+                [],
+                "The \"nodev\" mount option causes the system to not interpret character or block special devices. Executing character or block special devices from untrusted file systems increases the opportunity for nonprivileged users to attain unauthorized administrative access.\n\nThe only legitimate location for device files is the \"/dev\" directory located on the root partition, with the exception of chroot jails if implemented.",
+                []
+              ]
+            ]
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}extend_definition",
+                [
+                  [
+                    "definition_ref",
+                    "oval:mil.disa.stig.defs:def:230514"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.defs:def:230514": {
+      "sha256": "de9866695c38224ede22eed6a2e621dc0934c457e326da894e79de9191d8e6c3",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+        [
+          [
+            "class",
+            "compliance"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.defs:def:230514"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+                [],
+                "The operating system must mount /var/log with the nodev option.",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+                [],
+                null,
+                []
+              ]
+            ]
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.linux:tst:23051400"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.ind:tst:23051401"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.ind:tst:23051402"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:tst:23051400": {
+      "sha256": "ba982c3a0c3b9c8223dd94452b3f6a80e02bebeb74442c9a0b45aabfca887108",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/var/log is mounted with the nodev option"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.linux:tst:23051400"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.linux:obj:23051400"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}state",
+            [
+              [
+                "state_ref",
+                "oval:mil.disa.stig.linux:ste:20000001"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:ste:20000001": {
+      "sha256": "c9733c4d97e1d74cda64ab7e65dca37bae6f8795818c93781f2e4fb677775f29",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_state",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.linux:ste:20000001"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}mount_options",
+            [
+              [
+                "entity_check",
+                "at least one"
+              ]
+            ],
+            "nodev",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:obj:23051400": {
+      "sha256": "f235c3d62e85c731ac49ec3a001cb0460e83e6a13b358ee23520934d4b3d094c",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.linux:obj:23051400"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}mount_point",
+            [],
+            "/var/log",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:tst:23051401": {
+      "sha256": "6c2a603c28aae8d0a8b43a89873d1b5c6f61482c8678275138917c85cdd85719",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/var/log is configured with the nodev option in /etc/fstab"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.ind:tst:23051401"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.ind:obj:23051401"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+            [
+              [
+                "state_ref",
+                "oval:mil.disa.stig.ind:ste:23051400"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:ste:23051400": {
+      "sha256": "5cf9043f3242d82d65bbbaf47fad4d6593eb9b4750c7217c5532fc4829186a9b",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_state",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:ste:23051400"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value",
+            [
+              [
+                "entity_check",
+                "at least one"
+              ]
+            ],
+            "nodev",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:obj:23051401": {
+      "sha256": "5793fb480c35352b934cd10b671c4ac626b2aa2bb1a9a74f00d4e8be8daf3777",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:obj:23051401"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}var_ref",
+            [],
+            "oval:mil.disa.stig.ind:var:23051400",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:var:23051400": {
+      "sha256": "90c92c96843055ba45c802a590546012622c54e941eb94cb992efbd52aa373c0",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+        [
+          [
+            "comment",
+            "Mount options for /var/log in /etc/fstab"
+          ],
+          [
+            "datatype",
+            "string"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.ind:var:23051400"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}split",
+            [
+              [
+                "delimiter",
+                ","
+              ]
+            ],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+                [
+                  [
+                    "item_field",
+                    "subexpression"
+                  ],
+                  [
+                    "object_ref",
+                    "oval:mil.disa.stig.ind:obj:23051402"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:obj:23051402": {
+      "sha256": "d74328ee86cf76e56a9471d517c57b19e425ba8814607469bf07a3a6db71b013",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:obj:23051402"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+            [],
+            "/etc/fstab",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+            [
+              [
+                "datatype",
+                "int"
+              ]
+            ],
+            "1",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:tst:23051402": {
+      "sha256": "7724dcd25954b8941ed82befe1f7a50443cc57007cbef96025ee9a8b9d584a44",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/var/log is configured in /etc/fstab"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.ind:tst:23051402"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.ind:obj:23051402"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    }
+  },
+  "source_platforms": [],
+  "disa_manual_member": "U_RHEL_9_V2R9_Manual_STIG/U_RHEL_9_STIG_V2R9_Manual-xccdf.xml",
+  "disa_manual_rule": "SV-257870r958804_rule",
+  "disa_manual_rule_sha256": "bbca4ade8f788a08ef8f012b89a8dbb5e9d950fa9019729c7b7b71cfa85e7e70",
+  "disa_check": "Verify \"/var/log\" is mounted with the \"nodev\" option:\n\n$ mount | grep /var/log\n\n/dev/mapper/rhel-var-log on /var/log type xfs (rw,nodev,nosuid,noexec,seclabel)\n\nIf the \"/var/log\" file system is mounted without the \"nodev\" option, this is a finding.",
+  "niwc_check": "Verify \"/var/log\" is mounted with the \"nodev\" option:\n\n$ mount | grep /var/log\n\n/dev/mapper/rhel-var-log on /var/log type xfs (rw,nodev,nosuid,noexec,seclabel)\n\nIf the \"/var/log\" file system is mounted without the \"nodev\" option, this is a finding.",
+  "normalized_checks_identical": true,
+  "check_comparison": "Whitespace normalization only; revision and full text retained. No fuzzy equivalence."
+}

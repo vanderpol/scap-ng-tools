@@ -1,0 +1,885 @@
+{
+  "source_rule": "xccdf_mil.disa.stig_rule_SV-258241r1184293_rule",
+  "source_rule_sha256": "1dc4a8f14439d0cba9d0d703d08eba823d9d86f4d27a7624b87ca7ae2cc34b69",
+  "original_oval_nodes": {
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:def:258241": {
+      "sha256": "40de739d891c09a4c428b7a32a26bbeb7c5bf018ed10ed3579910d23f17d8cc9",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+        [
+          [
+            "class",
+            "compliance"
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:def:258241"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+                [],
+                "RHEL 9 must implement a FIPS 140-3-compliant systemwide cryptographic policy.",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+                [],
+                "Centralized cryptographic policies simplify applying secure ciphers across an\n\t\t\toperating system and the applications that run on that operating system. Use of weak or\n\t\t\tuntested encryption algorithms undermines the purposes of using encryption to protect data.\n\n\t\t\t\tSatisfies: SRG-OS-000396-GPOS-00176, SRG-OS-000393-GPOS-00173, SRG-OS-000394-GPOS-00174",
+                []
+              ]
+            ]
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "comment",
+                    "Verify RHEL 9 is set to use a FIPS 140-3-compliant systemwide cryptographic policy."
+                  ],
+                  [
+                    "test_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824101"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "comment",
+                    "Verify the current minimum crypto-policy configuration."
+                  ],
+                  [
+                    "test_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824102"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "comment",
+                    "Verify no SHA1 algorithms are employed."
+                  ],
+                  [
+                    "negate",
+                    "true"
+                  ],
+                  [
+                    "test_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824103"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "comment",
+                    "Verify minimum hash values of 224."
+                  ],
+                  [
+                    "negate",
+                    "true"
+                  ],
+                  [
+                    "test_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824104"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "comment",
+                    "Verify minimum rsa size of 2048."
+                  ],
+                  [
+                    "test_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824105"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824101": {
+      "sha256": "4ed9ecb14d591f2cea61c544224d72e0f773652b76f6ec132e9ae1b326e2a244",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "check_existence",
+            "at_least_one_exists"
+          ],
+          [
+            "comment",
+            "Verify RHEL 9 is set to use a FIPS 140-3-compliant systemwide cryptographic policy."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824101"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824101"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+            [
+              [
+                "state_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824101"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824101": {
+      "sha256": "aecbf36e2ff3930a7fd81e7878e9c78d43c4a4235eb6bd060f28af4f45c57ef0",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_state",
+        [
+          [
+            "comment",
+            "Confirm system wide crypto policy(ies) are correct."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824101"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}exit_status",
+            [
+              [
+                "datatype",
+                "int"
+              ]
+            ],
+            "0",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}stdout_line",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^FIPS:*",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824101": {
+      "sha256": "907a286a6bbeaff41c6e51668a3bffc6dd41e9d8ef9e792bbb631a077ef71223",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shellcommand_object",
+        [
+          [
+            "comment",
+            "Retrieve system wide crypto policy(ies)."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824101"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}shell",
+            [],
+            "bash",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}command",
+            [],
+            "update-crypto-policies --show",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824102": {
+      "sha256": "f1d94f2416d7cc28cceb4a86e13503f94f324a7d59cf78da4c38cf9c1d5d8bcb",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "check_existence",
+            "at_least_one_exists"
+          ],
+          [
+            "comment",
+            "Verify the current minimum crypto-policy configuration."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824102"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824102"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+            [
+              [
+                "state_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824102"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824102": {
+      "sha256": "e29fadac15cd3bdcc0419f596b22c0bd43d2b7ac9bc6d8a1e4ea27166e36ef6d",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_state",
+        [
+          [
+            "comment",
+            "Confirm correct algorithms."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824102"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}text",
+            [
+              [
+                "operation",
+                "pattern match"
+              ],
+              [
+                "var_check",
+                "all"
+              ],
+              [
+                "var_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25824101"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25824101": {
+      "sha256": "8d10847f8176c7a4c6ff8f8a2e11a931a304712410d9eaf570fecf77b632ad09",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}constant_variable",
+        [
+          [
+            "comment",
+            "Allowed FIPS algorithms."
+          ],
+          [
+            "datatype",
+            "string"
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25824101"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHA2-256",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHA2-384",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHA2-512",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHA2-224",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHA3-256",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHA3-384",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHA3-384",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHA3-512",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}value",
+            [],
+            "SHAKE-256",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824102": {
+      "sha256": "3f40386425bc24af267a4da549ed481d0eff1604ee0f52297725e4c7cc15db91",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+        [
+          [
+            "comment",
+            "Retrieve the current minimum crypto-policy configuration."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824102"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+            [],
+            "/etc/crypto-policies/state/CURRENT.pol",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^hash\\s*=\\s*.*$",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+            [
+              [
+                "datatype",
+                "int"
+              ],
+              [
+                "operation",
+                "greater than or equal"
+              ]
+            ],
+            "1",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824103": {
+      "sha256": "9d444cab1a8fdb3fbaff04f4a6d1670f744a546e66a435f689062dc2bf4e53bc",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "check_existence",
+            "any_exist"
+          ],
+          [
+            "comment",
+            "Verify no SHA1 algorithms are employed."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824103"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824102"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+            [
+              [
+                "state_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824103"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824103": {
+      "sha256": "9a78283dace35d73ee9071ae000aedf48f1fe645b0abdb8ad0cb4870aabf28d8",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_state",
+        [
+          [
+            "comment",
+            "Check for existence of SHA1 algorithms (negated at criterion level)."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824103"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}text",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "SHA1-\\d",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824104": {
+      "sha256": "2fb8d2c115e15d4d1541c945947b5f559e0ed4bf1a41d8159f649661674a22e7",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "check_existence",
+            "any_exist"
+          ],
+          [
+            "comment",
+            "Verify minimum hash values of 224."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824104"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824103"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+            [
+              [
+                "state_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824104"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824104": {
+      "sha256": "2c4062d2aa6ef7c05974fe5b44acaf8c039e326bb6d69cb786d4821a17d8b597",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_state",
+        [
+          [
+            "comment",
+            "Confirm minimum hash values of 224."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824104"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "\\b[A-Z]+\\d*-((\\d{1,2}\\b)|(1\\d\\d\\b)|(21\\d\\b)|(22[1-3]\\b))",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824103": {
+      "sha256": "8779a69b51d9fd0097b865dc7804e1835d213568476fd75aed59b2d13d73b38b",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+        [
+          [
+            "comment",
+            "Retrieve the current minimum crypto-policy configuration with hash values subexpression."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824103"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+            [],
+            "/etc/crypto-policies/state/CURRENT.pol",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^hash\\s*=\\s*([^#\\n]+)$",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+            [
+              [
+                "datatype",
+                "int"
+              ],
+              [
+                "operation",
+                "greater than or equal"
+              ]
+            ],
+            "1",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824105": {
+      "sha256": "7170bbe072dabc848b751ad11fb23895a3c58743da5573bef0815150904ac19b",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "check_existence",
+            "at_least_one_exists"
+          ],
+          [
+            "comment",
+            "Verify minimum rsa size of 2048."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25824105"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824104"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+            [
+              [
+                "state_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824105"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824105": {
+      "sha256": "b7353e1a7bf3ad35df4f4c1e61d2cf1a5af5385cb2d8fc7872eaef4f6152247b",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_state",
+        [
+          [
+            "comment",
+            "Confirm minimum rsa size of 2048."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25824105"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}subexpression",
+            [
+              [
+                "datatype",
+                "int"
+              ],
+              [
+                "operation",
+                "greater than or equal"
+              ]
+            ],
+            "2048",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824104": {
+      "sha256": "dd2a692323caa1448c019bad1b260e4c49e6c87779e230da1195e001b688989a",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+        [
+          [
+            "comment",
+            "Retrieve the current minimum rsa size."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25824104"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+            [],
+            "/etc/crypto-policies/state/CURRENT.pol",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^\\s*min_rsa_size\\s*=\\s*(\\d+)",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+            [
+              [
+                "datatype",
+                "int"
+              ],
+              [
+                "operation",
+                "greater than or equal"
+              ]
+            ],
+            "1",
+            []
+          ]
+        ]
+      ]
+    }
+  },
+  "source_platforms": [],
+  "disa_manual_member": "U_RHEL_9_V2R9_Manual_STIG/U_RHEL_9_STIG_V2R9_Manual-xccdf.xml",
+  "disa_manual_rule": "SV-258241r1184293_rule",
+  "disa_manual_rule_sha256": "61782943b3eacb5585f63d7255fbcaa67390b32e2dadaa8b52fcc9c207ab6edc",
+  "disa_check": "Verify RHEL 9 is set to use a FIPS 140-3-compliant systemwide cryptographic policy with the following command:\n\n$ update-crypto-policies --show\n\nFIPS\n\nIf the systemwide crypto policy is not set to \"FIPS\", this is a finding.\n\nNote: If subpolicies have been configured, they could be listed in a colon-separated list starting with \"FIPS\" as follows FIPS:<SUBPOLICY-NAME>. This is not a finding.\n\nNote: Subpolicies like AD-SUPPORT must be configured according to the latest guidance from the operating system vendor.\n\nVerify the current minimum crypto-policy configuration with the following commands:\n\n$ grep -E 'rsa_size|hash' /etc/crypto-policies/state/CURRENT.pol\n\nhash = SHA2-256 SHA2-384 SHA2-512 SHA2-224 SHA3-256 SHA3-384 SHA3-512 SHAKE-256\nmin_rsa_size = 2048\n\nIf the \"hash\" values do not include at least the following FIPS 140-3-compliant algorithms \"SHA2-256 SHA2-384 SHA2-512 SHA2-224 SHA3-256 SHA3-384 SHA3-512 SHAKE-256\", this is a finding.\n\nIf there are algorithms that include \"SHA1\" or a hash value less than \"224\" this is a finding.\n\nIf the \"min_rsa_size\" is not set to a value of at least \"2048\", this is a finding.\n\nIf these commands do not return any output, this is a finding.",
+  "niwc_check": "Verify RHEL 9 is set to use a FIPS 140-3-compliant systemwide cryptographic policy with the following command:\n\n$ update-crypto-policies --show\n\nFIPS\n\nIf the systemwide crypto policy is not set to \"FIPS\", this is a finding.\n\nNote: If subpolicies have been configured, they could be listed in a colon-separated list starting with \"FIPS\" as follows FIPS:<SUBPOLICY-NAME>. This is not a finding.\n\nNote: Subpolicies like AD-SUPPORT must be configured according to the latest guidance from the operating system vendor.\n\nVerify the current minimum crypto-policy configuration with the following commands:\n\n$ grep -E 'rsa_size|hash' /etc/crypto-policies/state/CURRENT.pol\n\nhash = SHA2-256 SHA2-384 SHA2-512 SHA2-224 SHA3-256 SHA3-384 SHA3-512 SHAKE-256\nmin_rsa_size = 2048\n\nIf the \"hash\" values do not include at least the following FIPS 140-3-compliant algorithms \"SHA2-256 SHA2-384 SHA2-512 SHA2-224 SHA3-256 SHA3-384 SHA3-512 SHAKE-256\", this is a finding.\n\nIf there are algorithms that include \"SHA1\" or a hash value less than \"224\" this is a finding.\n\nIf the \"min_rsa_size\" is not set to a value of at least \"2048\", this is a finding.\n\nIf these commands do not return any output, this is a finding.",
+  "normalized_checks_identical": true,
+  "check_comparison": "Whitespace normalization only; revision and full text retained. No fuzzy equivalence."
+}

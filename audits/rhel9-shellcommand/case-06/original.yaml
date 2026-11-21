@@ -1,0 +1,82 @@
+assessment:
+  id: rhel-9-systems-using-domain-name-servers-dns-resolution-must-have-at-l-cfb05036-assessment
+  version: 1
+  assessment_title: RHEL 9 systems using Domain Name Servers (DNS) resolution must have at least two name servers configured.
+  mode: automated
+  class: compliance
+  purpose: assessment
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  shared_objects:
+    etc-resolv-conf-nameserver-entries-0f993ee3-object:
+      capability: independent.textfilecontent54
+      full_path: {equals: /etc/resolv.conf}
+      pattern: {matches_regex: '^nameserver\s+(.*)$'}
+      instance: {greater_than_or_equal: 1, datatype: integer}
+      ignore_case: false
+      multiline: true
+      singleline: false
+      item_creation: all_object_elements_fullfilled
+      filesystem: all
+      object_title: /etc/resolv.conf nameserver entries
+  variables:
+    count-of-unique-name-servers-88527939-variable:
+      kind: local
+      datatype: integer
+      expression:
+        function:
+          name: count
+          arguments:
+          - function:
+              name: unique
+              arguments:
+              - values:
+                  object: etc-resolv-conf-nameserver-entries-0f993ee3-object
+                  field: subexpression
+              options: {}
+          options: {}
+  tests:
+    the-system-is-using-dns-6b3a0c7e-test:
+      test_title: The system is using DNS
+      capability: independent.textfilecontent54
+      object:
+        full_path: {equals: /etc/nsswitch.conf}
+        pattern: {matches_regex: '^\s*hosts:\s*(.*)$'}
+        instance: {greater_than_or_equal: 1, datatype: integer}
+        ignore_case: false
+        multiline: true
+        singleline: false
+        item_creation: all_object_elements_fullfilled
+        filesystem: all
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          subexpression: {matches_regex: '(^|\s)dns(\s|$)', values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    etc-resolv-conf-contains-at-least-one-nameserver-entry-207a6ba8-test:
+      test_title: /etc/resolv.conf contains at least one nameserver entry
+      capability: independent.textfilecontent54
+      object: etc-resolv-conf-nameserver-entries-0f993ee3-object
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    etc-resolv-conf-is-configured-with-at-least-two-name-servers-1d23c26d-test:
+      test_title: /etc/resolv.conf is configured with at least two name servers
+      capability: variable.value
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          value: {greater_than_or_equal: 2, datatype: integer, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+      variable: count-of-unique-name-servers-88527939-variable
+  evaluate:
+    or:
+    - not:
+        test: the-system-is-using-dns-6b3a0c7e-test
+    - and:
+      - test: the-system-is-using-dns-6b3a0c7e-test
+      - test: etc-resolv-conf-contains-at-least-one-nameserver-entry-207a6ba8-test
+      - test: etc-resolv-conf-is-configured-with-at-least-two-name-servers-1d23c26d-test
