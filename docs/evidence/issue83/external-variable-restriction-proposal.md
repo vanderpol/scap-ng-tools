@@ -106,3 +106,15 @@ The vectors are contract-review material, not production evaluator tests. Once t
 ## Decision requested
 
 Approve or amend the candidate restriction-group shape, operation vocabulary, cardinality derivation rule, and the `not_evaluated` versus `error` binding outcomes. Until that decision, keeping `def:562` as `canonical_input_constraint_hold` is correct and the converter must remain fail-closed.
+
+## Direct schema pointers
+
+The source evidence is not inferred from the benchmark diagnostic. The relevant pinned-XSD declarations are:
+
+- `oval-definitions-schema.xsd#/xs:schema/xs:element[@name="external_variable"]` — unbounded choice of `possible_value` and `possible_restriction`, and the source statement that branches are ORed;
+- `oval-definitions-schema.xsd#/xs:schema/xs:complexType[@name="PossibleValueType"]` — one `anySimpleType` value plus required `hint`;
+- `oval-definitions-schema.xsd#/xs:schema/xs:complexType[@name="PossibleRestrictionType"]` — one or more `restriction` children, `operator` default `AND`, required `hint`;
+- `oval-definitions-schema.xsd#/xs:schema/xs:complexType[@name="RestrictionType"]` — `anySimpleType` value plus required source `operation`;
+- `oval-common-schema.xsd#/xs:schema/xs:simpleType[@name="OperatorEnumeration"]` and `OperationEnumeration` — authoritative operator/operation vocabularies.
+
+The current canonical Input pointers are `/properties/assessment/properties/inputs/additionalProperties/properties/{datatype,cardinality,required,constraints}` and `/properties/.../constraints/properties/allowed`. The last pointer is the exact present gap: it has no typed restriction-group member. No pointer under the candidate proposal is active canonical schema.
