@@ -1,0 +1,113 @@
+{
+  "format": "scap-ng-tools/qualification-receipt/1",
+  "purpose": "post-ios-version55-qualification",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "7d3e3ac2248ad667737bf49e6cf9d3e8a9790969",
+    "xml": 143,
+    "definitions": 167,
+    "tests": 799
+  },
+  "canonical": {
+    "repository": "vanderpol/scap-ng",
+    "commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "flat_schema_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc"
+  },
+  "tools_commit": "2ff5679",
+  "conversion": {
+    "definitions_converted": 165,
+    "definitions_blocked": 2,
+    "tests_converted": 775,
+    "tests_blocked": 24,
+    "ledger_tests": 799,
+    "manifest_sha256": "d6a9864bfd7f6dde2ee41c3a899aa4e15f6c1beafc684dc72c5a869ba2a92457",
+    "test_ledger_sha256": "438417e6114270726ead0cf2dbc15a529a80fef7ed76d4e674f2038639935b85",
+    "parity_sha256": "72f3dacc90793dbfabfc8f02c052a4864c16a9e0fa053e276e18e02e8ad8f1fa",
+    "execution": "not_run",
+    "independent_equivalence": "not_proved"
+  },
+  "before_after": {
+    "before_traversal": {
+      "definitions_converted": 162,
+      "definitions_blocked": 5,
+      "tests_converted": 746,
+      "tests_blocked": 53
+    },
+    "after_traversal_before_ios": {
+      "definitions_converted": 164,
+      "definitions_blocked": 3,
+      "tests_converted": 771,
+      "tests_blocked": 28
+    },
+    "after_ios": {
+      "definitions_converted": 165,
+      "definitions_blocked": 2,
+      "tests_converted": 775,
+      "tests_blocked": 24
+    }
+  },
+  "recovered": [
+    "oval:navy.navwar.niwcatlantic.scc.ios:def:1"
+  ],
+  "remaining_definition_holds": [
+    {
+      "id": "oval:org.mitre.oval.test:def:562",
+      "category": "canonical-gap",
+      "reason": "external Variable Input binding and possible_restriction semantics"
+    },
+    {
+      "id": "oval:org.mitre.oval.test:def:1",
+      "source": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+      "category": "source-invalid",
+      "reason": "15 pinned Schematron datatype reports"
+    }
+  ],
+  "parity_holds": [
+    {
+      "definition": "oval:navy.navwar.niwcatlantic.scc:def:38",
+      "reason": "unqualified original Variable expression: merge",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.mitre.oval.test:def:580",
+      "reason": "unqualified original Variable expression: time_difference",
+      "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+      "type": "converted_parity_failure"
+    },
+    {
+      "definition": "oval:org.joval.test:def:20002",
+      "reason": "native collected-field datatype is unresolved",
+      "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+      "type": "converted_parity_failure"
+    }
+  ],
+  "benchmarks": {
+    "count": 65,
+    "before": {
+      "blocked": 108,
+      "converted": 6479,
+      "manual_only": 1403
+    },
+    "after": {
+      "blocked": 95,
+      "converted": 6492,
+      "manual_only": 1403
+    },
+    "newly_converted": 13,
+    "newly_blocked": 0,
+    "nonregression_pass": true,
+    "receipt_sha256": "fb62770aa9d152396fd875d30c0ef8c93199c728150823f81f188f36be773b8f"
+  },
+  "focused_ios": {
+    "definitions": 11,
+    "tests": 16,
+    "blocked_definitions": 0,
+    "blocked_tests": 0
+  },
+  "commands": {
+    "full_conversion": "PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <self-assertion-7d> --schema-root <canonical> --source-commit 7d3e3ac2248ad667737bf49e6cf9d3e8a9790969 --output <external>",
+    "parity": "PYTHONPATH=src .venv/bin/python scripts/audit_self_assertion_parity.py --source-root <self-assertion-7d>/SCAP_1.4/OVAL_Test_Content --pack <external> --schema-root <canonical> --expected-xml 143 --expected-definitions 167 --expected-tests 799 --source-commit 7d3e3ac2248ad667737bf49e6cf9d3e8a9790969",
+    "benchmarks": "rebuild_issue59_full65.py with signed archive SHA 8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb"
+  }
+}
