@@ -34,7 +34,7 @@ def load_json(path):
     return json.loads(path.read_bytes(), object_pairs_hook=unique,
                       parse_constant=nonfinite)
 
-CANONICAL_COMMIT = "c428fd0708da0cdd574dc9e499db714a1068bd75"
+CANONICAL_COMMIT = "d1ab0283e09369c2c734d3b8f93b65007441cf07"
 VERSION = "0.4.1"
 PREFIX = "https://scap-ng.dev/schema/v0.4.1/"
 FLAT_SCHEMA_SHA256 = "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"

@@ -14,7 +14,7 @@ from pathlib import Path
 
 from scap_ng_tools.contracts.schema_snapshot_v041 import CANONICAL_COMMIT, Pinned041SchemaSnapshot
 
-PACK_HASH = '0dfc56220041df9eded84f137de991e249eb4ae4a0e29bada973ba9f160c7ea1'
+PACK_HASH = 'd9e6f911532f4c06393c4d57738034fdb1b00f1dc38697ad0d3ea493415969a6'
 SCHEMA_HASH = '1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4'
 RESEARCH_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 OVAL_COMMIT = '2f140ee5c5dd1ed9606fcd5afc301f6baeb48706'

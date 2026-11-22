@@ -36,11 +36,11 @@
         "sha256": "db22d3d216e44cac78015b2bc57869dec672e2f5682382ea90fede9bf092c7ce"
       }
     },
-    "ri_commit": "a6cb4b4e0fd141f6a31a47ce518c40a482f4e555",
-    "ri_pin_sha256": "05a5ec442020c3816ade24b0faf049c45652f30244741799771fe0c150d9060f"
+    "ri_commit": "62349522b48b2e57f3711b1c08e655d7a31e0387",
+    "ri_pin_sha256": "5f0bbfcc18d9dc84fbbba0a55d83ce752a518a469db41d163a79c7ee03ea5a01"
   },
   "canonical_repository": "vanderpol/scap-ng",
-  "canonical_sha": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+  "canonical_sha": "d1ab0283e09369c2c734d3b8f93b65007441cf07",
   "files": {
     "applicability.schema.json": {
       "bytes": 5288,
@@ -630,6 +630,6 @@
   "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
   "schema_family_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
   "schema_version": "0.4.1",
-  "semantic_pack_sha256": "0dfc56220041df9eded84f137de991e249eb4ae4a0e29bada973ba9f160c7ea1",
+  "semantic_pack_sha256": "d9e6f911532f4c06393c4d57738034fdb1b00f1dc38697ad0d3ea493415969a6",
   "single_version": true
 }
