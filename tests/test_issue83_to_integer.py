@@ -63,6 +63,18 @@ class ToIntegerSemanticVectors(unittest.TestCase):
                 self._validate({"to_integer": {"literal": {
                     "datatype": "string", "value": value}}})
 
+    def test_behavioral_mutation_that_accepts_bad_decimal_is_caught(self):
+        # Keep the dispatch branch present but mutate its lexical predicate to
+        # accept everything. The production semantic admission witness must
+        # still reject the source-invalid decimal token.
+        def expected_invalid():
+            with self.assertRaisesRegex(ValueError, "signed decimal digits"):
+                self._validate({"to_integer": {"literal": {
+                    "datatype": "string", "value": "077x"}}})
+
+        with patch.object(semantic.re, "fullmatch", return_value=object()):
+            self.assertRaises(AssertionError, expected_invalid)
+
     def test_non_string_record_numeric_and_malformed_operands_fail_closed(self):
         cases = (
             {"to_integer": {"literal": {"datatype": "integer", "value": 7}}},

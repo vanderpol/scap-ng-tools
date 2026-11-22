@@ -16,6 +16,11 @@ import re
 import sys
 
 EXPECTED_RUNTIME_HOLDS = {"input"}  # RI organizational Input binding is separate.
+TO_INTEGER_RULE_IDS = {
+    "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+}
+GAP_CLASS_FIELDS = ("category", "disposition_class", "native_conversion_disposition", "failure_class", "disposition")
+RULE_ID_FIELDS = ("source_rule", "source_rule_id", "rule_id")
 
 
 def schema_operations(schema_root: Path) -> list[str]:
@@ -46,6 +51,27 @@ def source_has_branch(path: Path, operation: str, *, token: str = "") -> bool:
     return any(re.search(pattern, text) for pattern in patterns) and (not token or token in text)
 
 
+def _rule_disposition_rows(value):
+    """Yield only rows that carry both a source Rule identity and disposition.
+
+    Ledgers contain nested summaries and unrelated Definitions/Tests. Matching
+    serialized text is unsafe: an unrelated Rule can mention both the witness
+    ID and a legitimate gap. This walk preserves row-local identity.
+    """
+    if isinstance(value, dict):
+        source_ids = {str(value[key]) for key in RULE_ID_FIELDS
+                      if isinstance(value.get(key), str)}
+        classes = {str(value[key]) for key in GAP_CLASS_FIELDS
+                   if isinstance(value.get(key), str)}
+        if source_ids and classes:
+            yield source_ids, classes, value
+        for child in value.values():
+            yield from _rule_disposition_rows(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from _rule_disposition_rows(child)
+
+
 def audit(schema_root: Path, *, ri_root: Path | None = None,
           editor_root: Path | None = None,
           editor_pack: Path | None = None,
@@ -66,7 +92,10 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
         "converter": {"semantic_missing": semantic_missing, "to_integer_lowering_missing": converter_missing},
         "runtime": {"checked": False, "missing": [], "held": sorted(EXPECTED_RUNTIME_HOLDS)},
         "editor": {"checked": False, "missing": [], "pack_checked": False, "pack_missing": [], "pack_extra": []},
-        "classification": {"to_integer_canonical_gap": False},
+        "classification": {
+            "to_integer_canonical_gap": False,
+            "gap_dispositions": {"checked": False, "status": "not_checked", "matches": []},
+        },
         "errors": [],
     }
     if ri_root:
@@ -112,11 +141,20 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
             result["errors"].append("editor metadata pack contains operations absent from the active schema")
     if blocker_receipt and blocker_receipt.is_file():
         payload = json.loads(blocker_receipt.read_text())
-        text = json.dumps(payload, sort_keys=True)
+        matches = []
+        for source_ids, classes, row in _rule_disposition_rows(payload):
+            matched_ids = sorted(source_ids & TO_INTEGER_RULE_IDS)
+            if matched_ids and "canonical_language_gap" in classes:
+                matches.append({"source_rule": matched_ids[0], "classification": "canonical_language_gap"})
+        result["classification"]["gap_dispositions"] = {
+            "checked": True,
+            "status": "fail" if matches else "pass",
+            "matches": matches,
+            "receipt": str(blocker_receipt),
+        }
         # This exact Rule is the original defect witness. It may not remain a
         # canonical-language-gap row after the canonical to_integer admission.
-        if "SV-221718" in text and "canonical_language_gap" in text:
-            result["classification"]["to_integer_canonical_gap"] = True
+        result["classification"]["to_integer_canonical_gap"] = bool(matches)
     if semantic_missing:
         result["errors"].append("semantic validator lacks an active schema operation branch")
     if converter_missing:

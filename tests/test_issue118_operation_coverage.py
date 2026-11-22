@@ -100,10 +100,29 @@ class Issue118OperationCoverage(unittest.TestCase):
             schema = {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}
             (root / "variable-expression.schema.json").write_text(json.dumps(schema))
             receipt = root / "receipt.json"
-            receipt.write_text(json.dumps({"source_rule": "SV-221718", "category": "canonical_language_gap"}))
+            receipt.write_text(json.dumps({"rules": [
+                {"source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule", "category": "canonical_language_gap"},
+                {"source_rule": "unrelated-rule", "category": "canonical_language_gap"},
+            ]}))
             result = audit(root, blocker_receipt=receipt)
         self.assertTrue(result["classification"]["to_integer_canonical_gap"])
+        self.assertEqual(result["classification"]["gap_dispositions"]["status"], "fail")
         self.assertIn("incorrectly classified", " ".join(result["errors"]))
+
+    def test_gap_guard_does_not_cross_contaminate_rule_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "variable-expression.schema.json").write_text(json.dumps(
+                {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}))
+            receipt = root / "receipt.json"
+            receipt.write_text(json.dumps({"rules": [
+                {"source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule", "category": "converted"},
+                {"source_rule": "unrelated-rule", "category": "canonical_language_gap"},
+            ]}))
+            result = audit(root, blocker_receipt=receipt)
+        self.assertFalse(result["classification"]["to_integer_canonical_gap"])
+        self.assertEqual(result["classification"]["gap_dispositions"]["status"], "pass")
+        self.assertEqual(result["errors"], [])
 
 
 if __name__ == "__main__":
