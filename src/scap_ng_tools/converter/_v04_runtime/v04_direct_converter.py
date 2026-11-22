@@ -393,6 +393,15 @@ class AssessmentConverter:
         state_refs = [child.get('state_ref') for child in element
                       if local_name(child) == 'state' and
                       child.tag == f'{{{test_namespace}}}state']
+        # OVAL existence is evaluated before State references.  In particular,
+        # ``none_exist`` deliberately need not resolve a State graph (and a
+        # source fixture may omit that unreachable node), so preserve the
+        # ordinary mapping path rather than turning an absence check into a
+        # capability-inference dependency.
+        if element.get('check_existence', 'at_least_one_exists') == 'none_exist':
+            if original is not None:
+                return original
+            raise original_error or UnsupportedSource('none_exist Test has no executable capability mapping')
         # A malformed or state-less Test must retain the ordinary mapping/error
         # path; this fallback only applies to a complete Object/State pair.
         if len(object_refs) != 1 or not state_refs or any(not ref for ref in (*object_refs, *state_refs)):
