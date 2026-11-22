@@ -5,6 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 from zipfile import ZipFile
 
 from scripts.convert_self_assertion_corpus import source_documents
@@ -69,9 +70,51 @@ class UnifiedOvalConverterTests(unittest.TestCase):
         self.assertNotIn('preserve_variable_references', signature.parameters)
 
     def test_focused_benchmark_gate_includes_shared_semantic_validation(self):
-        source = inspect.getsource(direct04.convert_focused)
-        self.assertIn('validate_native_documents(snapshot, documents, include_semantic=True)', source)
-        self.assertIn('0.4.1 semantic validation', inspect.getsource(direct04.validate_native_documents))
+        class Snapshot:
+            schema_root = Path('.')
+
+            @staticmethod
+            def supported_mappings(_capabilities):
+                return []
+
+            @staticmethod
+            def manifest():
+                return {'schema_version': '0.4.1'}
+
+        class Engine:
+            CAPABILITIES = ()
+
+            @staticmethod
+            def load_mappings():
+                return []
+
+            @staticmethod
+            def convert(_source, _rules, **_kwargs):
+                return {}, {'rules': []}
+
+        # Import the runtime once so the production module's historical
+        # top-level name is available for the patched SourceModel boundary.
+        direct04.load_runtime()
+
+        class SourceModel:
+            native_recovery = False
+            native_specification_version = None
+
+            def __init__(self, _source, _pin):
+                pass
+
+        snapshot = Snapshot()
+        with tempfile.NamedTemporaryFile() as source, \
+             patch.object(direct04, 'load_pinned_snapshot', return_value=snapshot), \
+             patch.object(direct04, 'load_runtime', return_value=Engine()), \
+             patch('v04_direct_scap_source.SourceModel', SourceModel), \
+             patch.object(direct04, 'sha256', return_value=SimpleNamespace(
+                 hexdigest=lambda: 'pin')), \
+             patch.object(direct04, 'validate_native_documents') as validate:
+            direct04.convert_focused(schema_root='schema', source=source.name,
+                                     sha256_pin='pin', rule_ids=['source-rule'],
+                                     native_recovery=True)
+        validate.assert_called_once_with(snapshot, {}, include_semantic=True)
 
     def test_standalone_adapter_has_no_capability_allowlist(self):
         source = inspect.getsource(oval_platform.convert_definition)
