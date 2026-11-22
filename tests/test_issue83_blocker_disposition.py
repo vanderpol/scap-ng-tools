@@ -43,6 +43,9 @@ class BlockerDispositionReceipt(unittest.TestCase):
         for row in concat:
             self.assertIn("wmi_object", row["rationale"])
             self.assertIn("wmi57_object", row["rationale"])
+            self.assertTrue(row["deprecated_source_objects"])
+            self.assertTrue(all(object_id.startswith("oval:")
+                                for object_id in row["deprecated_source_objects"]))
 
     def test_nondeprecated_holds_are_not_laundered(self):
         gaps = [row for row in self.rows
