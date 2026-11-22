@@ -1431,6 +1431,23 @@ class AssessmentConverter:
             ensure(element.get('item_field') in mapping['native']['state_field_map'], 'unknown object_component field')
             return {'values': {'object': self.reference(identifier, 'object'),
                                'field': mapping['native']['state_field_map'][element.get('item_field')]}}
+        if operation == 'count' and not self.native_recovery:
+            # Canonical 0.4.1 admits count as one nested expression. OVAL
+            # permits multiple components, but that population cannot be
+            # represented by the single canonical count operand without
+            # changing cardinality; retain the explicit fail-closed boundary.
+            attributes(element, set())
+            ensure(len(element) == 1,
+                   'multi-component OVAL count has no lossless native 0.4.1 mapping')
+            self.conversion_warnings.append({
+                'code': 'oval_count_lowered',
+                'source_function': 'count',
+                'source_arity': len(element),
+                'semantic_basis': 'canonical count returns the number of values from one nested expression',
+                'independent_static_proof': 'UNPROVED',
+                'scanner_evaluated': False,
+            })
+            return {'count': self.function(element[0])}
         if operation == 'time_difference':
             # OVAL 5.12.3 time_difference is a first-class active native
             # expression.  It is deliberately not lowered through the
