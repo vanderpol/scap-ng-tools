@@ -49,10 +49,11 @@ def source_has_branch(path: Path, operation: str, *, token: str = "") -> bool:
 def audit(schema_root: Path, *, ri_root: Path | None = None,
           editor_root: Path | None = None,
           editor_pack: Path | None = None,
-          blocker_receipt: Path | None = None) -> dict:
+          blocker_receipt: Path | None = None,
+          tools_root: Path | None = None) -> dict:
     operations = schema_operations(schema_root)
     semantic = schema_root.parent  # only used to make result paths explicit
-    tools_root = Path(__file__).resolve().parents[1]
+    tools_root = tools_root or Path(__file__).resolve().parents[1]
     semantic_file = tools_root / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py"
     semantic_missing = [op for op in operations if not source_has_branch(semantic_file, op)]
     converter_file = tools_root / "src/scap_ng_tools/converter/native041_input_expression.py"
@@ -126,6 +127,7 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--schema-root", type=Path, required=True)
+    parser.add_argument("--tools-root", type=Path)
     parser.add_argument("--ri-root", type=Path)
     parser.add_argument("--editor-root", type=Path)
     parser.add_argument("--editor-pack", type=Path)
@@ -133,7 +135,8 @@ def main(argv=None):
     parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
     result = audit(args.schema_root, ri_root=args.ri_root, editor_root=args.editor_root,
-                   editor_pack=args.editor_pack, blocker_receipt=args.blocker_receipt)
+                   editor_pack=args.editor_pack, blocker_receipt=args.blocker_receipt,
+                   tools_root=args.tools_root)
     raw = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.write_text(raw)

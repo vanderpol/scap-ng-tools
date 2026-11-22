@@ -36,6 +36,22 @@ class Issue118OperationCoverage(unittest.TestCase):
         self.assertFalse(result["classification"]["to_integer_canonical_gap"])
         self.assertEqual(result["errors"], [])
 
+    def test_deliberate_semantic_branch_removal_is_caught(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}
+            (root / "variable-expression.schema.json").write_text(json.dumps(schema))
+            semantic = root / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py"
+            semantic.parent.mkdir(parents=True)
+            original = (ROOT / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py").read_text()
+            semantic.write_text(original.replace("if op == 'to_integer':", "if op == 'removed_to_integer':", 1))
+            lowering = semantic.parent.parent / "native041_input_expression.py"
+            lowering.parent.mkdir(parents=True, exist_ok=True)
+            lowering.write_text((ROOT / "src/scap_ng_tools/converter/native041_input_expression.py").read_text())
+            result = audit(root, tools_root=root)
+        self.assertIn("to_integer", result["converter"]["semantic_missing"])
+        self.assertTrue(result["errors"])
+
     def test_canonical_gap_guard_rejects_old_to_integer_disposition(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
