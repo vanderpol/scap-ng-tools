@@ -1,0 +1,558 @@
+{
+  "counts": {
+    "by_classification": {
+      "deprecated": 227,
+      "mapped_unproven": 381,
+      "unmapped_source_feature": 409
+    },
+    "by_platform": {
+      "aix": {
+        "deprecated": 3,
+        "mapped_unproven": 8,
+        "unmapped_source_feature": 29
+      },
+      "android": {
+        "deprecated": 13,
+        "unmapped_source_feature": 39
+      },
+      "apache": {
+        "deprecated": 4
+      },
+      "asa": {
+        "deprecated": 9,
+        "mapped_unproven": 8,
+        "unmapped_source_feature": 27
+      },
+      "aws": {
+        "unmapped_source_feature": 20
+      },
+      "catos": {
+        "deprecated": 6,
+        "unmapped_source_feature": 9
+      },
+      "esx": {
+        "deprecated": 6,
+        "unmapped_source_feature": 9
+      },
+      "freebsd": {
+        "deprecated": 1,
+        "unmapped_source_feature": 3
+      },
+      "hpux": {
+        "deprecated": 8,
+        "unmapped_source_feature": 15
+      },
+      "independent": {
+        "deprecated": 22,
+        "mapped_unproven": 34,
+        "unmapped_source_feature": 8
+      },
+      "ios": {
+        "deprecated": 7,
+        "mapped_unproven": 44,
+        "unmapped_source_feature": 16
+      },
+      "iosxe": {
+        "deprecated": 3,
+        "mapped_unproven": 44,
+        "unmapped_source_feature": 9
+      },
+      "junos": {
+        "deprecated": 2,
+        "mapped_unproven": 4,
+        "unmapped_source_feature": 10
+      },
+      "linux": {
+        "deprecated": 6,
+        "mapped_unproven": 49,
+        "unmapped_source_feature": 9
+      },
+      "macos": {
+        "deprecated": 24,
+        "mapped_unproven": 68,
+        "unmapped_source_feature": 15
+      },
+      "netconf": {
+        "deprecated": 1,
+        "unmapped_source_feature": 3
+      },
+      "oval": {
+        "deprecated": 1,
+        "unmapped_source_feature": 13
+      },
+      "panos": {
+        "mapped_unproven": 8
+      },
+      "pixos": {
+        "deprecated": 2,
+        "unmapped_source_feature": 6
+      },
+      "sharepoint": {
+        "deprecated": 19,
+        "unmapped_source_feature": 45
+      },
+      "solaris": {
+        "deprecated": 15,
+        "mapped_unproven": 14,
+        "unmapped_source_feature": 33
+      },
+      "unix": {
+        "deprecated": 17,
+        "mapped_unproven": 32,
+        "unmapped_source_feature": 23
+      },
+      "windows": {
+        "deprecated": 58,
+        "mapped_unproven": 68,
+        "unmapped_source_feature": 68
+      }
+    },
+    "canonical_mapping_rows": 395,
+    "distinct_top_level_features": 1017,
+    "structural_declarations": 1426,
+    "structural_grammar_rows": 42567
+  },
+  "features_external": {
+    "count": 1017,
+    "sha256": "e37b242e62166abf937c4949d9d5806225ebbd9cc0222af819ce2467b4d91de0"
+  },
+  "format": "scap-ng-tools/normative-completion-matrix/1",
+  "grammar_inventory": {
+    "by_schema": {
+      "aix-definitions-schema.xsd": {
+        "deprecated": 3,
+        "mapped_unproven": 6,
+        "semantic_constraint_unproven": 90,
+        "structural_supporting_evidence": 728,
+        "unmapped_source_feature": 531
+      },
+      "aix-system-characteristics-schema.xsd": {
+        "mapped_unproven": 2,
+        "structural_supporting_evidence": 390,
+        "unmapped_source_feature": 249
+      },
+      "android-definitions-schema.xsd": {
+        "deprecated": 13,
+        "semantic_constraint_unproven": 98,
+        "structural_supporting_evidence": 517,
+        "unmapped_source_feature": 387
+      },
+      "android-system-characteristics-schema.xsd": {
+        "structural_supporting_evidence": 314,
+        "unmapped_source_feature": 229
+      },
+      "apache-definitions-schema.xsd": {
+        "deprecated": 3,
+        "semantic_constraint_unproven": 18,
+        "structural_supporting_evidence": 34,
+        "unmapped_source_feature": 20
+      },
+      "apache-system-characteristics-schema.xsd": {
+        "deprecated": 1,
+        "semantic_constraint_unproven": 4,
+        "structural_supporting_evidence": 13,
+        "unmapped_source_feature": 8
+      },
+      "asa-definitions-schema.xsd": {
+        "deprecated": 10,
+        "mapped_unproven": 6,
+        "semantic_constraint_unproven": 169,
+        "structural_supporting_evidence": 387,
+        "unmapped_source_feature": 400
+      },
+      "asa-system-characteristics-schema.xsd": {
+        "deprecated": 1,
+        "mapped_unproven": 2,
+        "semantic_constraint_unproven": 3,
+        "structural_supporting_evidence": 184,
+        "unmapped_source_feature": 203
+      },
+      "aws-definitions-schema.xsd": {
+        "semantic_constraint_unproven": 86,
+        "structural_supporting_evidence": 317,
+        "unmapped_source_feature": 757
+      },
+      "aws-system-characteristics-schema.xsd": {
+        "semantic_constraint_unproven": 3,
+        "structural_supporting_evidence": 164,
+        "unmapped_source_feature": 368
+      },
+      "catos-definitions-schema.xsd": {
+        "deprecated": 6,
+        "semantic_constraint_unproven": 56,
+        "structural_supporting_evidence": 134,
+        "unmapped_source_feature": 99
+      },
+      "catos-system-characteristics-schema.xsd": {
+        "deprecated": 3,
+        "semantic_constraint_unproven": 12,
+        "structural_supporting_evidence": 54,
+        "unmapped_source_feature": 33
+      },
+      "esx-definitions-schema.xsd": {
+        "deprecated": 7,
+        "semantic_constraint_unproven": 56,
+        "structural_supporting_evidence": 157,
+        "unmapped_source_feature": 138
+      },
+      "esx-system-characteristics-schema.xsd": {
+        "deprecated": 1,
+        "semantic_constraint_unproven": 4,
+        "structural_supporting_evidence": 57,
+        "unmapped_source_feature": 42
+      },
+      "freebsd-definitions-schema.xsd": {
+        "deprecated": 1,
+        "semantic_constraint_unproven": 16,
+        "structural_supporting_evidence": 33,
+        "unmapped_source_feature": 37
+      },
+      "freebsd-system-characteristics-schema.xsd": {
+        "structural_supporting_evidence": 14,
+        "unmapped_source_feature": 19
+      },
+      "hpux-definitions-schema.xsd": {
+        "deprecated": 8,
+        "semantic_constraint_unproven": 98,
+        "structural_supporting_evidence": 240,
+        "unmapped_source_feature": 203
+      },
+      "hpux-system-characteristics-schema.xsd": {
+        "structural_supporting_evidence": 104,
+        "unmapped_source_feature": 80
+      },
+      "independent-definitions-schema.xsd": {
+        "deprecated": 27,
+        "mapped_unproven": 28,
+        "semantic_constraint_unproven": 441,
+        "structural_supporting_evidence": 1098,
+        "unmapped_source_feature": 774
+      },
+      "independent-system-characteristics-schema.xsd": {
+        "deprecated": 13,
+        "mapped_unproven": 6,
+        "semantic_constraint_unproven": 45,
+        "structural_supporting_evidence": 518,
+        "unmapped_source_feature": 293
+      },
+      "ios-definitions-schema.xsd": {
+        "deprecated": 12,
+        "mapped_unproven": 33,
+        "semantic_constraint_unproven": 257,
+        "structural_supporting_evidence": 586,
+        "unmapped_source_feature": 604
+      },
+      "ios-system-characteristics-schema.xsd": {
+        "deprecated": 6,
+        "mapped_unproven": 11,
+        "semantic_constraint_unproven": 15,
+        "structural_supporting_evidence": 289,
+        "unmapped_source_feature": 299
+      },
+      "iosxe-definitions-schema.xsd": {
+        "deprecated": 11,
+        "mapped_unproven": 33,
+        "semantic_constraint_unproven": 228,
+        "structural_supporting_evidence": 512,
+        "unmapped_source_feature": 515
+      },
+      "iosxe-system-characteristics-schema.xsd": {
+        "deprecated": 8,
+        "mapped_unproven": 11,
+        "semantic_constraint_unproven": 18,
+        "structural_supporting_evidence": 282,
+        "unmapped_source_feature": 261
+      },
+      "junos-definitions-schema.xsd": {
+        "deprecated": 3,
+        "mapped_unproven": 3,
+        "semantic_constraint_unproven": 52,
+        "structural_supporting_evidence": 125,
+        "unmapped_source_feature": 116
+      },
+      "junos-system-characteristics-schema.xsd": {
+        "mapped_unproven": 1,
+        "structural_supporting_evidence": 56,
+        "unmapped_source_feature": 45
+      },
+      "linux-definitions-schema.xsd": {
+        "deprecated": 12,
+        "mapped_unproven": 39,
+        "semantic_constraint_unproven": 285,
+        "structural_supporting_evidence": 849,
+        "unmapped_source_feature": 786
+      },
+      "linux-system-characteristics-schema.xsd": {
+        "deprecated": 4,
+        "mapped_unproven": 10,
+        "semantic_constraint_unproven": 15,
+        "structural_supporting_evidence": 459,
+        "unmapped_source_feature": 394
+      },
+      "macos-definitions-schema.xsd": {
+        "deprecated": 21,
+        "mapped_unproven": 51,
+        "semantic_constraint_unproven": 510,
+        "structural_supporting_evidence": 986,
+        "unmapped_source_feature": 801
+      },
+      "macos-system-characteristics-schema.xsd": {
+        "deprecated": 5,
+        "mapped_unproven": 17,
+        "semantic_constraint_unproven": 16,
+        "structural_supporting_evidence": 470,
+        "unmapped_source_feature": 325
+      },
+      "netconf-definitions-schema.xsd": {
+        "deprecated": 1,
+        "semantic_constraint_unproven": 19,
+        "structural_supporting_evidence": 26,
+        "unmapped_source_feature": 26
+      },
+      "netconf-system-characteristics-schema.xsd": {
+        "structural_supporting_evidence": 6,
+        "unmapped_source_feature": 7
+      },
+      "oval-definitions-schema.xsd": {
+        "deprecated": 1,
+        "semantic_constraint_unproven": 73,
+        "structural_supporting_evidence": 391,
+        "unmapped_source_feature": 519
+      },
+      "oval-system-characteristics-schema.xsd": {
+        "structural_supporting_evidence": 155,
+        "unmapped_source_feature": 182
+      },
+      "panos-definitions-schema.xsd": {
+        "mapped_unproven": 6,
+        "semantic_constraint_unproven": 25,
+        "structural_supporting_evidence": 47,
+        "unmapped_source_feature": 44
+      },
+      "panos-system-characteristics-schema.xsd": {
+        "mapped_unproven": 2,
+        "structural_supporting_evidence": 20,
+        "unmapped_source_feature": 16
+      },
+      "pixos-definitions-schema.xsd": {
+        "deprecated": 2,
+        "semantic_constraint_unproven": 22,
+        "structural_supporting_evidence": 50,
+        "unmapped_source_feature": 45
+      },
+      "pixos-system-characteristics-schema.xsd": {
+        "structural_supporting_evidence": 16,
+        "unmapped_source_feature": 16
+      },
+      "sharepoint-definitions-schema.xsd": {
+        "deprecated": 19,
+        "semantic_constraint_unproven": 260,
+        "structural_supporting_evidence": 681,
+        "unmapped_source_feature": 568
+      },
+      "sharepoint-system-characteristics-schema.xsd": {
+        "deprecated": 1,
+        "semantic_constraint_unproven": 4,
+        "structural_supporting_evidence": 347,
+        "unmapped_source_feature": 266
+      },
+      "solaris-definitions-schema.xsd": {
+        "deprecated": 15,
+        "mapped_unproven": 10,
+        "semantic_constraint_unproven": 244,
+        "structural_supporting_evidence": 589,
+        "unmapped_source_feature": 484
+      },
+      "solaris-system-characteristics-schema.xsd": {
+        "mapped_unproven": 4,
+        "structural_supporting_evidence": 257,
+        "unmapped_source_feature": 197
+      },
+      "unix-definitions-schema.xsd": {
+        "deprecated": 17,
+        "mapped_unproven": 27,
+        "semantic_constraint_unproven": 373,
+        "structural_supporting_evidence": 954,
+        "unmapped_source_feature": 836
+      },
+      "unix-system-characteristics-schema.xsd": {
+        "deprecated": 4,
+        "mapped_unproven": 5,
+        "semantic_constraint_unproven": 22,
+        "structural_supporting_evidence": 571,
+        "unmapped_source_feature": 472
+      },
+      "windows-definitions-schema.xsd": {
+        "deprecated": 108,
+        "mapped_unproven": 57,
+        "semantic_constraint_unproven": 1008,
+        "structural_supporting_evidence": 4167,
+        "unmapped_source_feature": 2662
+      },
+      "windows-system-characteristics-schema.xsd": {
+        "deprecated": 20,
+        "mapped_unproven": 11,
+        "semantic_constraint_unproven": 59,
+        "structural_supporting_evidence": 2165,
+        "unmapped_source_feature": 1246
+      }
+    },
+    "by_source_kind": {
+      "annotation": {
+        "structural_supporting_evidence": 8118
+      },
+      "any": {
+        "unmapped_source_feature": 2
+      },
+      "appinfo": {
+        "structural_supporting_evidence": 1224
+      },
+      "assert": {
+        "semantic_constraint_unproven": 921
+      },
+      "attribute": {
+        "deprecated": 31,
+        "unmapped_source_feature": 287
+      },
+      "attributeGroup": {
+        "unmapped_source_feature": 7
+      },
+      "choice": {
+        "unmapped_source_feature": 231
+      },
+      "comment": {
+        "structural_supporting_evidence": 328
+      },
+      "complexContent": {
+        "unmapped_source_feature": 1021
+      },
+      "complexType": {
+        "deprecated": 11,
+        "unmapped_source_feature": 1492
+      },
+      "deprecated_info": {
+        "structural_supporting_evidence": 374
+      },
+      "documentation": {
+        "structural_supporting_evidence": 8518
+      },
+      "element": {
+        "deprecated": 297,
+        "mapped_unproven": 381,
+        "unmapped_source_feature": 5497
+      },
+      "element_mapping": {
+        "structural_supporting_evidence": 245
+      },
+      "enumeration": {
+        "deprecated": 28,
+        "unmapped_source_feature": 3769
+      },
+      "evaluation_chart": {
+        "structural_supporting_evidence": 8
+      },
+      "evaluation_documentation": {
+        "structural_supporting_evidence": 6
+      },
+      "extension": {
+        "unmapped_source_feature": 1033
+      },
+      "field": {
+        "structural_supporting_evidence": 35
+      },
+      "fractionDigits": {
+        "unmapped_source_feature": 6
+      },
+      "group": {
+        "unmapped_source_feature": 17
+      },
+      "item": {
+        "structural_supporting_evidence": 245
+      },
+      "key": {
+        "unmapped_source_feature": 7
+      },
+      "keyref": {
+        "unmapped_source_feature": 8
+      },
+      "let": {
+        "semantic_constraint_unproven": 1122
+      },
+      "minInclusive": {
+        "unmapped_source_feature": 6
+      },
+      "name": {
+        "structural_supporting_evidence": 14
+      },
+      "object": {
+        "structural_supporting_evidence": 245
+      },
+      "pattern": {
+        "unmapped_source_feature": 818
+      },
+      "reason": {
+        "structural_supporting_evidence": 256
+      },
+      "report": {
+        "semantic_constraint_unproven": 196
+      },
+      "restriction": {
+        "unmapped_source_feature": 566
+      },
+      "rule": {
+        "semantic_constraint_unproven": 1067
+      },
+      "selector": {
+        "structural_supporting_evidence": 33
+      },
+      "sequence": {
+        "unmapped_source_feature": 1215
+      },
+      "simpleContent": {
+        "unmapped_source_feature": 409
+      },
+      "simpleType": {
+        "unmapped_source_feature": 181
+      },
+      "state": {
+        "structural_supporting_evidence": 245
+      },
+      "test": {
+        "structural_supporting_evidence": 245
+      },
+      "union": {
+        "unmapped_source_feature": 12
+      },
+      "unique": {
+        "unmapped_source_feature": 18
+      },
+      "value-of": {
+        "semantic_constraint_unproven": 1398
+      },
+      "version": {
+        "structural_supporting_evidence": 374
+      }
+    },
+    "policy": "Supporting rows are source-grammar evidence rather than distinct features; Schematron rows are semantic constraints. Neither classification establishes native representability, converter parity or runtime semantics. Direct source declaration rows are the separate top-level feature table.",
+    "rows": 42567
+  },
+  "policy": {
+    "deprecated_meaning": "The pinned XSD/Schematron marks the declaration deprecated; source replacement and migration policy remain separate evidence.",
+    "mapped_meaning": "A canonical mapping candidate is representability evidence only; it is not converter or runtime proof.",
+    "top_level_feature_selector": "source_kind=element and source_path=/element[0]",
+    "unmapped_meaning": "No exact canonical mapping candidate was found in the supplied pinned mapping inventory; this is a review hold, not automatically a canonical gap."
+  },
+  "qualification": {
+    "converter_source_parity": "not_run",
+    "independent_equivalence": "not_proved",
+    "ri_runtime": "not_run",
+    "source_structure": "pinned and structurally inventoried"
+  },
+  "source": {
+    "canonical_mapping_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "crosswalk_path": "issue83-crosswalk/65-signed-archives-oval-5.12.3-f51ab2c5.json",
+    "crosswalk_sha256": "30abf7729a07bd1153e2ca0c77ddee72f1ba0f397d4d37c4e589971010eb38a8",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
+  }
+}
