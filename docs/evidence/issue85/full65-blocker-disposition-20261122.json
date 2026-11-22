@@ -43,6 +43,7 @@
     },
     "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
     "qualification": "XSD/Schematron admission is not semantic equivalence; these 12 source cases remain explicit source-semantic holds, not converter defects",
+    "source_identity_detail": "Nondeprecated source-semantic rows include exact source State/Variable IDs where the pinned XML exposes them; no expected outcome was used as an admission input.",
     "xsd": "oval-definitions-schema.xsd"
   },
   "blocked_rules": [
@@ -53,6 +54,11 @@
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.nginx:ste:27840004",
       "original_status": "blocked",
       "rationale": "Pinned OVAL Schematron requires each Test State reference to use the test-specific State QName; this source reference crosses capability families.",
+      "source_details": {
+        "disposition_basis": "source-invalid-semantics",
+        "semantic_rule": "OVAL 5.12.3 test-specific State reference Schematron assertion",
+        "source_state_ref": "oval:navy.navwar.niwcatlantic.scc.nginx:ste:27840004"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-278400r1172752_rule",
       "source_rule_sha256": "15383f1ef29daca5cff476da4c91deb8872fdf0286d518150fca22e4f3edcda4"
     },
@@ -163,6 +169,18 @@
       "message": "Variable cast outside bounded proof",
       "original_status": "blocked",
       "rationale": "Source declares an integer result for a string-producing textual function (concat/substring) without a normative cast; OVAL 5.12.3 function semantics require string output.",
+      "source_details": {
+        "semantic_rule": "OVAL 5.12.3 ConcatFunctionType and regex_capture produce string values",
+        "source_test": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:tst:21881401",
+        "source_variables": [
+          {
+            "declared_datatype": "int",
+            "expression": "concat containing regex_capture",
+            "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:var:21881401",
+            "result_semantics": "string"
+          }
+        ]
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218814r1067589_rule",
       "source_rule_sha256": "f3fafec5699dfdb9b879b0e24cfa92b8d69e1459b1850ffbd5dd409858571394"
     },
@@ -173,6 +191,11 @@
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874102",
       "original_status": "blocked",
       "rationale": "Pinned OVAL Schematron requires each Test State reference to use the test-specific State QName; this source reference crosses capability families.",
+      "source_details": {
+        "disposition_basis": "source-invalid-semantics",
+        "semantic_rule": "OVAL 5.12.3 test-specific State reference Schematron assertion",
+        "source_state_ref": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874102"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218741r1022677_rule",
       "source_rule_sha256": "4533b81ee7317fb924cf91695aee23cc38878b48c471c64a121ec43fd9c2b89f"
     },
@@ -183,6 +206,11 @@
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874205",
       "original_status": "blocked",
       "rationale": "Pinned OVAL Schematron requires each Test State reference to use the test-specific State QName; this source reference crosses capability families.",
+      "source_details": {
+        "disposition_basis": "source-invalid-semantics",
+        "semantic_rule": "OVAL 5.12.3 test-specific State reference Schematron assertion",
+        "source_state_ref": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21874205"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218742r1022679_rule",
       "source_rule_sha256": "eeb2e1e177f2ed2c2527e59a4ce337dc1ac3ce2ab8dd7e8367e5d4634bb00970"
     },
@@ -193,6 +221,10 @@
       "message": "dynamic Variable Object Set is not a static population",
       "original_status": "blocked",
       "rationale": "Source construct is nondeprecated, but the active canonical 0.4.1 language has no faithful dynamic Variable Object Set or to_integer Input/function representation.",
+      "source_details": {
+        "disposition_basis": "canonical dynamic population contract absent; no static-set substitution",
+        "semantic_rule": "OVAL 5.12.3 variable_object Set/Filter graph"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
       "source_rule_sha256": "182b966caaefa5ad91852697e4a424ec4598605481757eded4403edad1303d7c"
     },
@@ -203,6 +235,24 @@
       "message": "Variable cast outside bounded proof",
       "original_status": "blocked",
       "rationale": "Source declares an integer result for a string-producing textual function (concat/substring) without a normative cast; OVAL 5.12.3 function semantics require string output.",
+      "source_details": {
+        "semantic_rule": "OVAL 5.12.3 CountFunctionType returns integer",
+        "source_test": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:tst:21877101",
+        "source_variables": [
+          {
+            "declared_datatype": "string",
+            "expression": "count(unique(object_component))",
+            "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877101",
+            "result_semantics": "integer"
+          },
+          {
+            "declared_datatype": "string",
+            "expression": "count(object_component)",
+            "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877102",
+            "result_semantics": "integer"
+          }
+        ]
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
       "source_rule_sha256": "a536a9288375e9dd718ce0c64c0cf7cb00ba3592c2c8129d9a87c28ff7015e06"
     },
@@ -213,6 +263,11 @@
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101",
       "original_status": "blocked",
       "rationale": "Pinned OVAL Schematron requires each Test State reference to use the test-specific State QName; this source reference crosses capability families.",
+      "source_details": {
+        "disposition_basis": "source-invalid-semantics",
+        "semantic_rule": "OVAL 5.12.3 test-specific State reference Schematron assertion",
+        "source_state_ref": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21878101"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218781r1022700_rule",
       "source_rule_sha256": "57d8764bc1ca6139f29b6c044ea758187045306b781195068efccf52ced27d4c"
     },
@@ -236,6 +291,11 @@
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:80",
       "original_status": "blocked",
       "rationale": "Pinned OVAL Schematron requires each Test State reference to use the test-specific State QName; this source reference crosses capability families.",
+      "source_details": {
+        "disposition_basis": "source-invalid-semantics",
+        "semantic_rule": "OVAL 5.12.3 test-specific State reference Schematron assertion",
+        "source_state_ref": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:80"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214451r879567_rule",
       "source_rule_sha256": "c0f5bba981aade212f3fa4470870385e66389b07fa3b2168c4f8535078a969f4"
     },
@@ -246,6 +306,11 @@
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:93",
       "original_status": "blocked",
       "rationale": "Pinned OVAL Schematron requires each Test State reference to use the test-specific State QName; this source reference crosses capability families.",
+      "source_details": {
+        "disposition_basis": "source-invalid-semantics",
+        "semantic_rule": "OVAL 5.12.3 test-specific State reference Schematron assertion",
+        "source_state_ref": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:93"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214452r879568_rule",
       "source_rule_sha256": "d0211789b88faff4b73a0e441eebe3d29449c8268c7ec2880168c40e463a8add"
     },
@@ -256,6 +321,10 @@
       "message": "dynamic Variable Object Set is not a static population",
       "original_status": "blocked",
       "rationale": "Source construct is nondeprecated, but the active canonical 0.4.1 language has no faithful dynamic Variable Object Set or to_integer Input/function representation.",
+      "source_details": {
+        "disposition_basis": "canonical dynamic population contract absent; no static-set substitution",
+        "semantic_rule": "OVAL 5.12.3 variable_object Set/Filter graph"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
       "source_rule_sha256": "a7b8f34d70b90e6b5b8fc83d33538439c0ab15bf218d9ab18683624b4f0db658"
     },
@@ -266,6 +335,11 @@
       "message": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180",
       "original_status": "blocked",
       "rationale": "Pinned OVAL Schematron requires each Test State reference to use the test-specific State QName; this source reference crosses capability families.",
+      "source_details": {
+        "disposition_basis": "source-invalid-semantics",
+        "semantic_rule": "OVAL 5.12.3 test-specific State reference Schematron assertion",
+        "source_state_ref": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180"
+      },
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214495r879587_rule",
       "source_rule_sha256": "78fa4933955815f1d6d1345b5a90af3f0a245dfa55d9e969e89d9be16a7ebd38"
     },
@@ -1038,6 +1112,10 @@
       "message": "authoring/direct-slice/assessments/oracle-linux-operating-their-own-files-sv-221718-assessment.json: Native comparison datatype: unsupported native Variable expression: to_integer",
       "original_status": "blocked",
       "rationale": "Source construct is nondeprecated, but the active canonical 0.4.1 language has no faithful dynamic Variable Object Set or to_integer Input/function representation.",
+      "source_details": {
+        "disposition_basis": "canonical-language-gap",
+        "semantic_rule": "OVAL 5.12.3 source graph requires typed string-to-integer composition; active canonical 0.4.1 has no faithful generic expression"
+      },
       "source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
       "source_rule_sha256": "a82d77b5ca397a7c244fdde0027b481f23837471df055971791707d1a2c05b03"
     }
