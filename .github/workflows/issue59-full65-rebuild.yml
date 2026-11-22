@@ -9,6 +9,7 @@ on:
       - '.github/workflows/issue59-full65-rebuild.yml'
       - 'scripts/rebuild_issue59_full65.py'
       - 'tests/test_issue59_rebuild_full65.py'
+      - 'tests/test_issue59_active_pin_alignment.py'
       - 'src/scap_ng_tools/converter/native041_function_lowering.py'
       - 'src/scap_ng_tools/converter/native041_input_relation.py'
       - 'tests/test_issue59_input_relation.py'
@@ -80,7 +81,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: aece827964c785be77b088c3c61255a2d07fd9a9
+          ref: d1ab0283e09369c2c734d3b8f93b65007441cf07
           path: canonical-schema
           persist-credentials: false
 
@@ -107,6 +108,8 @@ jobs:
           python scripts/rebuild_issue59_full65.py
           --schema-root canonical-schema/schema
           --source-root source-library
+          --canonical-schema-commit d1ab0283e09369c2c734d3b8f93b65007441cf07
+          --schema-aggregate-sha256 1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4
           --output generated/issue59-full65-source-rule-rebuild.json
 
       - name: Qualify fail-closed Rule-ID triage helper
@@ -133,6 +136,7 @@ jobs:
           --source-root source-library
           --schema-root canonical-schema/schema
           --crosswalk docs/evidence/issue59/full65-crosswalk.json
+          --schema-aggregate-sha256 1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4
           --output generated/issue59-datatype-recovery.json
 
       - name: Generate textfilecontent pattern review

@@ -11,8 +11,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-SCHEMA_COMMIT = "aece827964c785be77b088c3c61255a2d07fd9a9"
-SCHEMA_DIGEST = "578315d1e00bd39449ed597ed3d39555384276bd36198a54ca0b1e3c17e72829"
+SCHEMA_COMMIT = "d1ab0283e09369c2c734d3b8f93b65007441cf07"
+SCHEMA_DIGEST = "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
 OVAL_COMMIT = "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706"
 
 def local(node): return node.tag.rsplit("}", 1)[-1]
