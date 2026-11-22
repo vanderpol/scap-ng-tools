@@ -1,15 +1,15 @@
 {
   "assessment_execution": {
-    "closure_sha256": "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b",
-    "family_sha256": "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b",
+    "closure_sha256": "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6",
+    "family_sha256": "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6",
     "files": {
       "assessment-language.schema.json": {
-        "bytes": 741181,
-        "sha256": "8d97a85ac66052c95040490c8315c8a26e4505f7d181815c75c54c979d2a80ee"
+        "bytes": 778230,
+        "sha256": "98ead1ac1cb469603843bc61904fe0278ee2bdad0da15253771f6fb6896f4219"
       },
       "assessment.schema.json": {
-        "bytes": 15514,
-        "sha256": "4ab2c711565471247c20f7c0a030242ddbb09553b2958f7e37571706bac9c0fd"
+        "bytes": 16053,
+        "sha256": "81387666dde0479b6c31e4d312373a2ac74d462466470691b04affd9f0d08b26"
       },
       "capability-common.schema.json": {
         "bytes": 35478,
@@ -36,19 +36,19 @@
         "sha256": "db22d3d216e44cac78015b2bc57869dec672e2f5682382ea90fede9bf092c7ce"
       }
     },
-    "ri_commit": "109ed657202bd4fd129c4161bd84e0589b2e0d9a",
-    "ri_pin_sha256": "0adda1cb32be69b40dfa1e037307e77427366bd4fd9494df5c05c070139e8fcd"
+    "ri_commit": "a6cb4b4e0fd141f6a31a47ce518c40a482f4e555",
+    "ri_pin_sha256": "05a5ec442020c3816ade24b0faf049c45652f30244741799771fe0c150d9060f"
   },
   "canonical_repository": "vanderpol/scap-ng",
-  "canonical_sha": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+  "canonical_sha": "c428fd0708da0cdd574dc9e499db714a1068bd75",
   "files": {
     "applicability.schema.json": {
       "bytes": 5288,
       "sha256": "8b4a5cf7aeb4ba562af1ceb478a65b1170a870bcd58c1a0b28c3baea64e5e53a"
     },
     "assessment-language.schema.json": {
-      "bytes": 741181,
-      "sha256": "8d97a85ac66052c95040490c8315c8a26e4505f7d181815c75c54c979d2a80ee"
+      "bytes": 778230,
+      "sha256": "98ead1ac1cb469603843bc61904fe0278ee2bdad0da15253771f6fb6896f4219"
     },
     "assessment-result-set.schema.json": {
       "bytes": 872,
@@ -59,8 +59,8 @@
       "sha256": "7c22fe945c15cf353a92ace66a6115b38240c92f362bb1d7f47ef24464151944"
     },
     "assessment.schema.json": {
-      "bytes": 15514,
-      "sha256": "4ab2c711565471247c20f7c0a030242ddbb09553b2958f7e37571706bac9c0fd"
+      "bytes": 16053,
+      "sha256": "81387666dde0479b6c31e4d312373a2ac74d462466470691b04affd9f0d08b26"
     },
     "authoring-vocabulary.en.json": {
       "bytes": 11138,
@@ -628,8 +628,8 @@
     }
   },
   "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-  "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+  "schema_family_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
   "schema_version": "0.4.1",
-  "semantic_pack_sha256": "0224d0024b7233644fff9a161e789cf130918c19757343d8ba1a650d33f23786",
+  "semantic_pack_sha256": "0dfc56220041df9eded84f137de991e249eb4ae4a0e29bada973ba9f160c7ea1",
   "single_version": true
 }

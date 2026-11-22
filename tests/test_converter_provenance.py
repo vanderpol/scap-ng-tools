@@ -8,18 +8,18 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '94b2380e8d8d4950d84d6b39f20e55894eae1e9ec7a278fb29602a1ee15a6263'
+CURRENT_RUNTIME_SHA256 = '2af21546e507e078c37e73300b921229f5ddae0adc58ddd5953aeab60a1c6af0'
 UNCHANGED_SOURCE_SHA256 = 'e50b51edb503793ca20c8046a04b15412eeda34e3fc3da537375fecbde1ca26e'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping, compiler-derived Input discovery, and
     # source-OVAL unique lexical projection adaptations.
     'v04_direct_authoring_contract.py': '5fa26ee62c5a636144ee182596e6faf972bfba364160de8c1a03208058aba98e',
-    'v04_direct_converter.py': '8de272c0ce4f28d4dae18c778ad8be86f902e4abe9dc50b3294609e8f7f6ce78',
+    'v04_direct_converter.py': 'de41d791192ff350cbde0307a402a9e28c090abd8ab1af58e6903676d897ed85',
     'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
     'v04_direct_scap_source.py': '1d297d3a510d5aa8cf52f15a61c71cc40e468ca7f3fd38265d6acc6a47aa5fe9',
-    'v04_draft_inputs.py': '6373bc9a7208f7ad2b2b3cbcd4674c2683d3ecf971c7380d1e3566b7d1367f07',
+    'v04_draft_inputs.py': '4a5b9e6ee5ac4efcaf7e910803b3011915a14a36e77c47c2257a3876dc0c6777',
     'v04_direct_inventory.py': 'd275992ce013a75945456da73678ebb29649a9e031e113af4c35b953c962a0b8',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
     'v04_variable_function_migration.py': 'ab08c49569bde0458c4e7a567f131a7965cf35a78a050aa6a5a639eb6ecc3d44',
@@ -32,9 +32,9 @@ AUDITED_ADAPTATIONS = {
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',
-    'v04_input_presence.py': '32fec8715cb69ba56453984b84becc7b43e53e5a2f896680e0752996e011d49e',
+    'v04_input_presence.py': '22ced824b0d7a037ae70b2f87720edf254b987a6862b6562c47ad46b92908ea4',
     'v04_object_contract.py': 'a63dfc5a3af0d77964853c2b1041a90361ae37881e1c82c7b01daa510d23994f',
-    'v04_variable_expressions.py': 'ffad432f24bbe308a1355ed6c8e6f6bea66073931ad860e244afce377916eef8',
+    'v04_variable_expressions.py': '6cdb93df241f86cdb2c701b02a5269546fde5b9482fe80dcc4ded01229f75f94',
 }
 SOURCE_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 PINNED_GENERATOR_HELPERS = {
@@ -82,7 +82,7 @@ class DirectConverterSourceCopyTests(unittest.TestCase):
         self.assertEqual(len(pack['behavior_attributes']), 8)
         self.assertEqual(pack['format'], 'scap-ng-portable-0.4.1-semantic-pack/1')
         self.assertEqual(pack['schema_version'], '0.4.1')
-        self.assertEqual(pack['frozen_schema_digest'], '11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc')
+        self.assertEqual(pack['frozen_schema_digest'], '1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4')
         self.assertEqual(pack['oval_commit'], '2f140ee5c5dd1ed9606fcd5afc301f6baeb48706')
         self.assertEqual(pack['generator_helper_sha256']['v04_capability_source.py'], 'b2e4a1cb053acc574b7677ef7d94a38905ce9acdd8a418be613840b330ca44e5')
         self.assertFalse((directory / 'contracts-0.4.0.json').exists())
