@@ -27,7 +27,7 @@
     "semantic_gate": "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py::assessment_variable_expressions"
   },
   "implementation": {
-    "commit": "40fba708c1fb6a79fb03caa04b616482f23e0396",
+    "commit": "9e1f6f8358da2acfcab0b289fa55465ee3f3f98c",
     "change": "allow source-valid collected scalar populations, including mixed Item datatypes, through the shared textual boundary for concat and textual unary functions",
     "preservation": [
       "no source XML changes",
