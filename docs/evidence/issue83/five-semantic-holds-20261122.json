@@ -1,0 +1,226 @@
+{
+  "format": "scap-ng-tools/issue83-five-semantic-holds/2",
+  "generated_at": "2026-11-22",
+  "scope": "Reconciled completion status for the five historical Self-Assertion parity holds; no converter behavior is changed.",
+  "pins": {
+    "source_repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "oval_schema_repository": "OVAL-Community/OVAL",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "canonical_repository": "vanderpol/scap-ng",
+    "canonical_commit": "2d983fcbd7b2367d567ca8ccc689a378d08905e4",
+    "canonical_schema_version": "0.4.1",
+    "canonical_schema_aggregate_sha256": "dc650646a24e727e68de242027cca3058683accc531f07bf6ace217609755b24",
+    "tools_repository": "vanderpol/scap-ng-tools",
+    "tools_main_commit": "d3f54f72e8358dcf433aa567b4f1c3192b4dff58",
+    "ri_repository": "vanderpol/scap-ng-ri",
+    "ri_execution_commit": "93abaa8ead670d969357fdcb0de3b99e6030548f"
+  },
+  "structural_conversion": {
+    "production_entrypoint": "scap_ng_tools.converter.direct04",
+    "source_xml_documents": 143,
+    "definitions": 167,
+    "tests": 799,
+    "converted_definitions": 167,
+    "converted_tests": 799,
+    "blocked_definitions": 0,
+    "blocked_tests": 0,
+    "schema_valid_yaml_documents": 167,
+    "execution": "not_run",
+    "manifest_sha256": "26ce4466e693c0bdba6c42d951ecf3836ca516fae13e9f3d4e9fda0d2262ca65",
+    "definitions_ledger_sha256": "0a8dc5c97ac286265f97ad335973c5f2030407701e014e12c170bfb6fc3db1e2",
+    "tests_ledger_sha256": "12b62b4bb4db74cffec4ce97ac4c6b5e1143aea82c6f0a216694a18dce8f97f0",
+    "validation_sha256": "159911501c04d3461a05a2495f54eb0c52d086618443ed36addb898417b7d1d",
+    "external_receipt_directory": "/tmp/tools-main-self-assertion-current-20261122-1311941/output"
+  },
+  "benchmark_requalification": {
+    "source_repository": "niwc-atlantic/scap-content-library",
+    "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "source_archive_sha256": "a780f91a487ceca1d03d23c0155e7fe612d55db44e27014f9de4e3adc6ce0097",
+    "benchmark_count": 65,
+    "candidate": {"converted": 6493, "blocked": 94, "manual_only": 1403},
+    "original": {"converted": 6479, "blocked": 108, "manual_only": 1403},
+    "newly_converted_from_blocked": 14,
+    "newly_blocked_from_converted": 0,
+    "nonregression_pass": true,
+    "receipt_sha256": "043a3b5ce0cf988b3f6ab5ffd049813e39857199469a99886031d69d56546592",
+    "external_receipt": "/tmp/tools-full65-vm-1795372844/full65-source-rule-rebuild.json",
+    "qualification": "structural conversion only; scanner runtime and independent OVAL equivalence are not claimed"
+  },
+  "source_validation": {
+    "source_commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "xsd_valid_files": 143,
+    "schematron_clean_files": 143,
+    "schematron_reports": 0,
+    "receipt_sha256": "1dc8b5ab9acd6888baacdd0bc600474febc60eaf83cada1fb15596234a34a7ac",
+    "receipt": "docs/evidence/issue88/post-solaris-package511-qualification.json"
+  },
+  "ri_native_subset": {
+    "receipt_directory": "/tmp/ri201-vm-p0-1795371636",
+    "definition_results_sha256": "581a4348a976887509b34fc1685569313549ccb90e1c28ca36613ff71f8238f2",
+    "validation_pins_sha256": "not separately retained; see validation-pins.json in receipt directory",
+    "worktree_clean": false,
+    "policy": "source compatibility/native execution evidence, not independent OVAL equivalence"
+  },
+  "holds": [
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc:def:38",
+      "source": {
+        "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml",
+        "sha256": "eadca8e5f333070f172fda16800ffaf948b43b99dda435e7e58f05d7ff79e7fa",
+        "tests": [
+          "oval:navy.navwar.niwcatlantic.scc:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc:tst:4"
+        ],
+        "validity": "source-valid at d91e6ba; PR #7 corrected string-valued merge Variables previously declared integer"
+      },
+      "conversion": {
+        "status": "CONVERTED_UNVERIFIED",
+        "schema_validated": true,
+        "assessment_json_sha256": "61f7ba3a487e3a2f4dd45a8d60bebd8f23d628eb643d15c0f9b82cc430413957",
+        "assessment_yaml_sha256": "d629c40e687b4555556b27e629777d10a1fc0db3b785561b3a53a9084d3a79f9"
+      },
+      "native_execution": {
+        "status": "executed",
+        "outcome": "true",
+        "evidence": "RI VM P0 definition-results.csv at the receipt directory",
+        "ri_commit": "93abaa8ead670d969357fdcb0de3b99e6030548f"
+      },
+      "independent_oval_equivalence": "not_proved",
+      "disposition": "independent_equivalence_unproved",
+      "converter_defect": false,
+      "next_owner": "independent parity qualification"
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:580",
+      "source": {
+        "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+        "sha256": "6cd0a42d7b3c05a7212d410f18f7aba30d0f95f1c167996e033b10298af6a68c",
+        "test_count": 30,
+        "validity": "source-valid at d91e6ba; reviewed integer result datatype is retained"
+      },
+      "conversion": {
+        "status": "CONVERTED_UNVERIFIED",
+        "schema_validated": true,
+        "assessment_json_sha256": "75f3198f132e12c4233fc93007ec3ee0b222472c18308185da03ea9921ad48d0",
+        "assessment_yaml_sha256": "d284dc582ff34ad185316fb72bfe994939e85860d6ce67697043d4dfd8247189"
+      },
+      "native_execution": {
+        "status": "executed",
+        "outcome": "true",
+        "evidence": "RI VM P0 definition-results.csv at the receipt directory",
+        "ri_commit": "93abaa8ead670d969357fdcb0de3b99e6030548f"
+      },
+      "independent_oval_equivalence": "not_proved",
+      "disposition": "independent_equivalence_unproved",
+      "converter_defect": false,
+      "next_owner": "independent parity qualification"
+    },
+    {
+      "definition_id": "oval:org.mitre.oval.test:def:562",
+      "source": {
+        "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+        "sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+        "test_count": 18,
+        "validity": "source-valid at d91e6ba"
+      },
+      "conversion": {
+        "status": "CONVERTED_UNVERIFIED",
+        "schema_validated": true,
+        "assessment_json_sha256": "58f8e645ba1297894f0233957f7fa5f0880e8c4a61dc8018621226d6bd37ecdb",
+        "assessment_yaml_sha256": "16d8b231cf76339c86c90f63881674508e696b017b748240bd46959468cea795",
+        "tests": 18,
+        "restricted_inputs": 4,
+        "unrestricted_inputs": 14,
+        "all_consumer_cardinality": "one_or_more",
+        "implicit_fixture_or_default": false
+      },
+      "native_execution": {
+        "status": "not_run",
+        "reason": "explicit external binding/runtime qualification remains an RI responsibility"
+      },
+      "independent_oval_equivalence": "not_proved",
+      "disposition": "ri_runtime_binding_pending",
+      "converter_defect": false,
+      "next_owner": "RI external Input binding qualification"
+    },
+    {
+      "definition_id": "oval:org.joval.test:def:20002",
+      "source": {
+        "path": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml",
+        "sha256": "e4deffe58ffdf0c1876f08637588785476dc27231f51e56e8b5205d47684c1b3",
+        "test": "oval:org.joval.test:tst:20002",
+        "entity": "keychain_object/filepath",
+        "source_datatype": "OVAL EntityObjectStringType"
+      },
+      "conversion": {
+        "status": "CONVERTED_UNVERIFIED",
+        "schema_validated": true,
+        "capability": "macos.keychain",
+        "native_field": "filepath",
+        "native_datatypes": ["string"],
+        "assessment_json_sha256": "d6ac8d4ac9b5c1c136fe12d5420bc4bd13ae1acb9d2c9b4185ed9a9a64cce6b3",
+        "canonical_mapping": "schema/capability-mappings/supported/macos.keychain.json"
+      },
+      "native_execution": {
+        "status": "not_run",
+        "reason": "no qualified macOS runtime/collector evidence"
+      },
+      "independent_oval_equivalence": "not_proved",
+      "prior_checker_message": "native collected-field datatype is unresolved",
+      "interpretation": "No source-to-native datatype mismatch is demonstrated: the OVAL entity is string and the canonical field map is string. The remaining parity checker message is an execution/equivalence-boundary hold.",
+      "disposition": "runtime_unverified",
+      "converter_defect": false,
+      "next_owner": "macOS runtime and independent parity qualification"
+    },
+    {
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+      "source": {
+        "path": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml",
+        "sha256": "889e8d6a43139dcfb4753c91194c8914b82373f10b4b83420a3cf68d5d2bc94b",
+        "tests": [
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:1",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:2",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:3",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:4",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:5",
+          "oval:navy.navwar.niwcatlantic.scc.test:tst:6"
+        ],
+        "validity": "XSD valid and Schematron clean at d91e6ba; restored package511 is not deprecated",
+        "correction": "PR #35 changed var:1 and var:2 datatype string -> version; IDs, references, operations and expected outcomes unchanged"
+      },
+      "conversion": {
+        "status": "CONVERTED_UNVERIFIED",
+        "schema_validated": true,
+        "capability": "solaris.package.ips",
+        "native_field_datatypes": {
+          "publisher": "string",
+          "name": "string",
+          "version": "version",
+          "timestamp": "string"
+        },
+        "assessment_json_sha256": "ec782ccb7424fa6cdcccbf1573d6276f314b8ff31251bc8d0a0ab2315076a142",
+        "canonical_mapping": "schema/capability-mappings/supported/solaris.package.ips.json"
+      },
+      "native_execution": {
+        "status": "not_run",
+        "reason": "no qualified Solaris runtime/collector evidence"
+      },
+      "independent_oval_equivalence": "not_proved",
+      "prior_checker_message": "native collected-field datatype is unresolved",
+      "interpretation": "The historical 15 Schematron reports belong to the pre-d91 source; current d91 source validation is 143/143 XSD-valid and Schematron-clean. The remaining hold is runtime/equivalence, not deprecation or a converter defect.",
+      "disposition": "runtime_unverified",
+      "converter_defect": false,
+      "next_owner": "Solaris runtime and independent parity qualification"
+    }
+  ],
+  "conclusion": {
+    "converter_defects_in_these_five": 0,
+    "structural_conversion_complete_for_pinned_self_assertion": true,
+    "native_runtime_complete": false,
+    "independent_oval_equivalence_complete": false,
+    "converter_feature_complete_0_4_1": "not_yet_release_declared; source corpus is structurally complete, but runtime/equivalence proof remains separate"
+  }
+}
