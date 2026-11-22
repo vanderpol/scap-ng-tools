@@ -1,0 +1,49 @@
+{
+  "artifact": {
+    "external_manifest_bytes": 172505,
+    "external_manifest_sha256": "76ec3af9e7b59f81fe47c779c3cb7e7a03495be39adbe9a83c203fed2a986c89",
+    "external_output": "/tmp/tools-full-self-assertion-d91-a1c6"
+  },
+  "canonical": {
+    "assessment_closure_sha256": "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6",
+    "commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+    "repository": "vanderpol/scap-ng"
+  },
+  "converter": {
+    "commit": "a1c6f731de0799a86123408bdb96bb38283b16b0",
+    "production_module": "scap_ng_tools.converter.direct04"
+  },
+  "format": "scap-ng-tools/self-assertion-ledger-receipt/1",
+  "oval_schema": {
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "repository": "OVAL-Community/OVAL"
+  },
+  "proof": "source structural conversion and schema validation only; execution and independent equivalence not run",
+  "reproduction": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <SCAP-Self-Assertion@d91e6ba> --schema-root <scap-ng@c428fd0>/schema --source-commit d91e6ba33841e3202dc27d3e0d469a7abd939b16 --output <external-output> --python .venv/bin/python"
+  },
+  "source": {
+    "archive": "agnostic/oval-def-ext.zip",
+    "archive_sha256": "6ff45b5a85b77eadce11397d30adbdd011eb1d32fa3566d23b60322597ac5bdf",
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "root": "SCAP_1.4/OVAL_Test_Content"
+  },
+  "summary": {
+    "blocked_definitions": 0,
+    "blocked_tests": 0,
+    "converted_definitions": 166,
+    "converted_tests": 769,
+    "definitions": 167,
+    "excluded_definitions": 0,
+    "excluded_tests": 0,
+    "execution": "not_run",
+    "schema_valid_yaml_documents": 166,
+    "source_invalid_definitions": 1,
+    "source_invalid_schema_valid_yaml_documents": 1,
+    "source_invalid_tests": 30,
+    "test_ledger_reconciled": 799,
+    "tests": 799
+  }
+}
