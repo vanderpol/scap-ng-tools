@@ -5,6 +5,7 @@ does not execute values: cardinality, Cartesian products, ordering and status
 propagation are runtime contracts covered by the independent OVAL oracle.
 """
 from functools import lru_cache
+import re
 import json
 from pathlib import Path
 
@@ -114,6 +115,27 @@ def assessment_variable_expressions(assessment):
             return literal(value, declared)
         if op == 'variable':
             return {variable(value)}
+        if op == 'to_integer':
+            if not isinstance(value, dict) or len(value) != 1:
+                raise ValueError('to_integer requires one expression operand')
+            domain = expression(value)
+            # Canonical 0.4.1 defines an explicit elementwise decimal parse,
+            # not a consumer-directed cast.  Dynamic/mixed collected domains,
+            # numeric operands and records therefore fail closed.
+            if domain != {'string'}:
+                raise ValueError('to_integer requires a string operand')
+            operand, operand_value = next(iter(value.items()))
+            if operand == 'literal':
+                payload = operand_value
+                datatype = payload.get('datatype') if isinstance(payload, dict) else 'string'
+                raw = payload.get('value') if isinstance(payload, dict) else payload
+                if datatype == 'string':
+                    values = raw if isinstance(raw, list) else [raw]
+                    if any(not isinstance(item, str) or
+                           re.fullmatch(r'[+-]?[0-9]+', item) is None
+                           for item in values):
+                        raise ValueError('to_integer literal must contain signed decimal digits')
+            return {'integer'}
         if op == 'time_difference':
             if not isinstance(value, dict) or set(value) - {'values', 'format_1', 'format_2'} or 'values' not in value:
                 raise ValueError('time_difference requires values and known options')
