@@ -1,0 +1,52 @@
+{
+  "cases": [
+    {
+      "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "declared_datatype": "int",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:def:218814",
+      "function": "concat",
+      "function_result_datatype": "string",
+      "self_assertion_correction_applies": false,
+      "semantic_basis": "Concat forms a single string (or string collection); the local declaration says int.",
+      "source_content_is_distributed_disa_benchmark": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218814r1067589_rule",
+      "source_xml_member": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.xml",
+      "source_xml_sha256": "bdee161e7f794fa58ef4020ee9fda2a0cae26aa352f7109690507a900b375d99",
+      "source_zip_sha256": "8bfa016748ea4c6478655a6777dc2aab9d601581b0429388e4d1ba0e3696ca1b",
+      "variable_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.0.server:var:21881401",
+      "variable_xml_identity_sha256": "19da76dddb7a04b69647fdce1b52da6d347dd503ae8a24434a8046e53e566ec7"
+    },
+    {
+      "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "definition": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:218771",
+      "self_assertion_correction_applies": false,
+      "semantic_basis": "Both count expressions return integer values; the source local declarations say string.",
+      "source_content_is_distributed_disa_benchmark": true,
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
+      "source_xml_member": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+      "source_xml_sha256": "0c68654fd568ff589f2e2eb135e674e5e2a800a0f77c587cea07bcb4ee5ad2d4",
+      "source_zip_sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae",
+      "variables": [
+        {
+          "declared_datatype": "string",
+          "function": "count",
+          "function_result_datatype": "int",
+          "variable_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877102",
+          "variable_xml_identity_sha256": "25c9815900c2c29d4eee443678f471cffc2375ae4af24ed4f54c6662c90daedd"
+        },
+        {
+          "declared_datatype": "string",
+          "function": "count",
+          "function_result_datatype": "int",
+          "variable_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877101",
+          "variable_xml_identity_sha256": "34d1504a59f0f6b9790d440a21d2bef15d9e0ffb3f1d65a2182df9e4bf3cfa9e"
+        }
+      ]
+    }
+  ],
+  "converter_disposition": "source-invalid; no implicit cast or expected-outcome change",
+  "format": "scap-ng-tools/issue83-variable-result-datatype-source-evidence/1",
+  "source_archive_aggregate_sha256": "a780f91a487ceca1d03d23c0155e7fe612d55db44e27014f9de4e3adc6ce0097",
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "source_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706"
+}
