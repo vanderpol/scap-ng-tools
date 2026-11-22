@@ -1,0 +1,80 @@
+{
+  "classification": {
+    "to_integer_canonical_gap": false
+  },
+  "converter": {
+    "semantic_missing": [],
+    "to_integer_lowering_missing": []
+  },
+  "editor": {
+    "checked": true,
+    "missing": [],
+    "pack_checked": true,
+    "pack_missing": [],
+    "pack_operations": [
+      "literal",
+      "variable",
+      "input",
+      "values",
+      "to_integer",
+      "time_difference",
+      "concat",
+      "regex_capture",
+      "unique",
+      "count",
+      "split",
+      "substring",
+      "arithmetic",
+      "begin",
+      "end",
+      "merge"
+    ],
+    "pack_source_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2"
+  },
+  "errors": [],
+  "format": "scap-ng/issue118-operation-coverage/1",
+  "pins": {
+    "canonical_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "canonical_schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "editor_commit": "466e5cf",
+    "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "ri_commit": "56ede26",
+    "tools_commit": "ed723db3b6a93c1c4e2ee93f8c0a4be83f9b4f4f"
+  },
+  "proof": {
+    "canonical_gap_classification": "pass",
+    "editor_source_and_pack": "pass",
+    "independent_scanner_equivalence": "not_proved",
+    "runtime_input_binding": "held_explicitly",
+    "runtime_to_integer": "pass",
+    "structural_dispatch": "pass"
+  },
+  "runtime": {
+    "checked": true,
+    "held": [
+      "input"
+    ],
+    "missing": []
+  },
+  "schema": {
+    "operations": [
+      "literal",
+      "variable",
+      "input",
+      "values",
+      "to_integer",
+      "time_difference",
+      "concat",
+      "regex_capture",
+      "unique",
+      "count",
+      "split",
+      "substring",
+      "arithmetic",
+      "begin",
+      "end",
+      "merge"
+    ],
+    "root": "pinned canonical schema checkout"
+  }
+}
