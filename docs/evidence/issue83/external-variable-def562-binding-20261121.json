@@ -12,7 +12,7 @@
     "version": "0.4.1",
     "flat_schema_sha256": "1755c893712ef3034dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
   },
-  "converter_commit": "946d607",
+  "converter_commit": "946d607d1e1ff328c1e0883822c664428aae4aae",
   "assessment_json_sha256": "58f8e645ba1297894f0233957f7fa5f088e8c4a61dc8018621226d6bd37ecdb",
   "binding_engine_sha256": "37f000f8bfa9cde0157667e61cfcf9704a0f404de8622a351facc8a322257669",
   "result": {
