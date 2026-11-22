@@ -14,16 +14,68 @@ OVAL_COMPARISONS = {
     'bitwise and': 'bitwise_and', 'bitwise or': 'bitwise_or',
 }
 RESTRICTION_OPERATORS = {'AND': 'and', 'OR': 'or', 'ONE': 'one', 'XOR': 'xor'}
+# XCCDF 1.2 Value/@type is a policy-layer type, not an OVAL datatype.
+# Check-export compatibility is therefore a source-language crosswalk, not
+# string equality: number supplies OVAL int/float and string supplies OVAL
+# string/binary lexical values. Unknown XCCDF types remain fail-closed.
+XCCDF_VALUE_DATATYPES = {
+    'boolean': frozenset({'boolean'}),
+    'number': frozenset({'int', 'float'}),
+    'string': frozenset({'string', 'binary'}),
+}
 MAX_CONSTRAINT_DEPTH = 32
 MAX_CONSTRAINT_NODES = 256
 
 
+def _external_variable_consumers(nodes, selected_tests, identifier):
+    """Find selected Test consumers through the complete source reference graph.
+
+    An external Variable is often referenced by a State entity (for example a
+    registry value), not by a ``variable_object`` selector. Walking only the
+    latter silently turns valid XCCDF check-export content into a cardinality
+    hold. This bounded graph walk follows explicit ``*_ref`` attributes and
+    ``var_ref`` child values from each selected Test, without interpreting
+    values or acquiring host data.
+    """
+    by_id = {node.get('id'): node for node in nodes if node.get('id')}
+    uses = []
+    for test_id in sorted(selected_tests):
+        test = by_id.get(test_id)
+        if test is None or not local_name(test).endswith('_test'):
+            continue
+        pending, visited = [test], set()
+        found = False
+        while pending:
+            node = pending.pop()
+            node_id = node.get('id')
+            if node_id and node_id in visited:
+                continue
+            if node_id:
+                visited.add(node_id)
+            if node_id == identifier:
+                found = True
+                break
+            refs = []
+            for child in node.iter():
+                for name, value in child.attrib.items():
+                    if name.endswith('_ref') and value:
+                        refs.append(value)
+                if local_name(child) == 'var_ref' and (child.text or '').strip():
+                    refs.append(child.text.strip())
+            for reference in refs:
+                target = by_id.get(reference)
+                if target is not None and reference not in visited:
+                    pending.append(target)
+        if found:
+            uses.append({'source_test': test_id,
+                         'check_existence': test.get('check_existence', 'at_least_one_exists')})
+    return uses
+
+
 def _external_cardinality(visitor, identifier):
     nodes = visitor.source.nodes.get(visitor.component_id, {})
-    objects = {node.get('id'): node for node in nodes.values()
-               if local_name(node).endswith('_object')}
     # Only consumers in the selected Definition/Test closure can determine
-    # this Input's cardinality.  Sibling Tests in the same standalone XML are
+    # this Input's cardinality. Sibling Tests in the same standalone XML are
     # independent source documents for conversion purposes and must not make a
     # valid selected closure fail with a spurious cardinality conflict.
     selected_tests = {source_id for source_id, used in visitor.used.items()
@@ -31,26 +83,11 @@ def _external_cardinality(visitor, identifier):
     selected_tests.update(identifier for kind, identifier in visitor.active
                           if kind == 'test')
     ensure(selected_tests, 'external Variable has no selected Test consumer')
-    uses = []
-    for test in nodes.values():
-        if test.get('id') not in selected_tests or not local_name(test).endswith('_test'):
-            continue
-        for child in test:
-            if local_name(child) != 'object' or not child.get('object_ref'):
-                continue
-            obj = objects.get(child.get('object_ref'))
-            if obj is None or local_name(obj) != 'variable_object':
-                continue
-            refs = [node.text.strip() for node in obj
-                    if local_name(node) == 'var_ref' and (node.text or '').strip()]
-            if identifier in refs:
-                uses.append({'source_test': test.get('id'),
-                             'check_existence': test.get('check_existence', 'at_least_one_exists')})
-    ensure(uses, 'external Variable has no supported consumer-derived cardinality')
+    uses = _external_variable_consumers(nodes.values(), selected_tests, identifier)
     cards = {'at_least_one_exists': 'one_or_more', 'only_one_exists': 'exactly_one',
              'any_exist': 'zero_or_more', 'none_exist': 'zero_or_more'}
     result = {cards.get(row['check_existence']) for row in uses}
-    ensure(None not in result and len(result) == 1,
+    ensure(uses and None not in result and len(result) == 1,
            'external Variable consumers require conflicting/unsupported cardinality')
     return result.pop(), uses
 
@@ -207,7 +244,7 @@ def external_input(visitor, element):
     if standalone:
         ensure(datatype in SOURCE_TYPES, 'unsupported external Variable datatype')
     else:
-        ensure(source_type == {'string': 'string', 'boolean': 'boolean', 'int': 'int', 'float': 'float'}.get(datatype),
+        ensure(datatype in XCCDF_VALUE_DATATYPES.get(source_type, ()),
                'check-export source/Variable datatype mismatch')
     cardinality, consumers = _external_cardinality(visitor, ident)
     defaults = ([node for node in value.findall('{' + XCCDF + '}value') if not node.get('selector')]
