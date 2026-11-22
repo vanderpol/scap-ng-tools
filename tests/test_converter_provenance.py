@@ -8,18 +8,18 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME = ROOT / 'src/scap_ng_tools/converter/_v04_runtime'
 INITIAL_SOURCE_COPY_SHA256 = '893ca2bef18245d636b662d6d1536bfa1c2aa5643a62ab60d88dad986fb7c46d'
-CURRENT_RUNTIME_SHA256 = '2af21546e507e078c37e73300b921229f5ddae0adc58ddd5953aeab60a1c6af0'
+CURRENT_RUNTIME_SHA256 = '83f5bece6f8d9e5bc6365703e999f9d742ddfffee396bd9ee6850201a86f2661'
 UNCHANGED_SOURCE_SHA256 = 'e50b51edb503793ca20c8046a04b15412eeda34e3fc3da537375fecbde1ca26e'
 AUDITED_ADAPTATIONS = {
     # Native 0.4 Item grouping, compiler-derived Input discovery, and
     # source-OVAL unique lexical projection adaptations.
     'v04_direct_authoring_contract.py': '5fa26ee62c5a636144ee182596e6faf972bfba364160de8c1a03208058aba98e',
     'v04_direct_converter.py': 'de41d791192ff350cbde0307a402a9e28c090abd8ab1af58e6903676d897ed85',
-    'v04_direct_datatypes.py': '43200abf10f419f2a26ad88959c8a517f619fbf168326c1d96ba7a2d157ff32a',
+    'v04_direct_datatypes.py': '61acd5be0b70b1b4936215af6c5cb947f3e26276abbc39fee6091173c68c1f34',
     'v04_direct_cmdlet_inputs.py': 'e830fbef8889123b81d059b87f2ef575440fb9559b4773ce2f26bc78473936ef',
     'v04_direct_file_behaviors.py': '28c8544e8e7043757cd0577c413cfd398bead40245cf1d6ff36e3af3e83d3ed7',
     'v04_direct_scap_source.py': '1d297d3a510d5aa8cf52f15a61c71cc40e468ca7f3fd38265d6acc6a47aa5fe9',
-    'v04_draft_inputs.py': '4a5b9e6ee5ac4efcaf7e910803b3011915a14a36e77c47c2257a3876dc0c6777',
+    'v04_draft_inputs.py': '685f749da0a41d8c30b3038b07495d6aeeeba50d235f1cec8713f36e513f1cea',
     'v04_direct_inventory.py': 'd275992ce013a75945456da73678ebb29649a9e031e113af4c35b953c962a0b8',
     'v04_direct_scalar_behaviors.py': '158b9a8547d47af723a52df9af3ebb072f82f281ad2b7eb575b948f33e143d48',
     'v04_variable_function_migration.py': 'ab08c49569bde0458c4e7a567f131a7965cf35a78a050aa6a5a639eb6ecc3d44',
@@ -32,7 +32,7 @@ AUDITED_ADAPTATIONS = {
 }
 SEMANTIC_PORT = {
     'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',
-    'v04_input_presence.py': '22ced824b0d7a037ae70b2f87720edf254b987a6862b6562c47ad46b92908ea4',
+    'v04_input_presence.py': '37f000f8bfa9cde0157667e61cfcf9704a0f404de8622a351facc8a322257669',
     'v04_object_contract.py': 'a63dfc5a3af0d77964853c2b1041a90361ae37881e1c82c7b01daa510d23994f',
     'v04_variable_expressions.py': '6cdb93df241f86cdb2c701b02a5269546fde5b9482fe80dcc4ded01229f75f94',
 }

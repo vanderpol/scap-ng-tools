@@ -25,6 +25,53 @@ class NativeInputDiscovery(unittest.TestCase):
         self.assertTrue(row['required']);self.assertEqual(len(row['uses']),2)
         self.assertEqual(derive_choice(a,{'first-input':'parameter','second-input':'parameter-two'}, {'parameter':{'resolution':'publisher'}, 'parameter-two':{'resolution':'publisher'}}),[])
 
+    def test_constraint_datatype_operation_matrix_rejects_invalid_source_operations(self):
+        from scap_ng_tools.converter._v04_semantic.v04_input_presence import input_contracts
+        invalid = [
+            ('string', {'greater_than': 'x'}),
+            ('boolean', {'bitwise_and': True}),
+            ('integer', {'subset_of': 1}),
+        ]
+        for datatype, predicate in invalid:
+            with self.subTest(datatype=datatype):
+                with self.assertRaises(ValueError):
+                    input_contracts({'inputs': {
+                        'value-input': {'datatype': datatype, 'cardinality': 'exactly_one',
+                                        'required': True, 'constraints': {'predicate': predicate}}}})
+
+    def test_production_source_comparison_rejects_invalid_datatype_operations(self):
+        import sys
+        from pathlib import Path
+        runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
+        sys.path.insert(0, str(runtime))
+        try:
+            from v04_direct_datatypes import comparison
+            with self.assertRaises(ValueError):
+                comparison('string', 'greater than', 'greater_than')
+            with self.assertRaises(ValueError):
+                comparison('boolean', 'bitwise and', 'bitwise_and')
+            with self.assertRaises(ValueError):
+                comparison('int', 'subset of', 'subset_of')
+            self.assertEqual(comparison('int', 'bitwise and', 'bitwise_and'), 'bitwise_and')
+        finally:
+            sys.path.remove(str(runtime))
+
+    def test_publisher_default_uses_shared_typed_constraint_evaluator(self):
+        import sys
+        from pathlib import Path
+        runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
+        sys.path.insert(0, str(runtime))
+        try:
+            from v04_draft_inputs import _value_satisfies_constraints
+            self.assertTrue(_value_satisfies_constraints(
+                '1.2.3', {'predicate': {'version_greater_than': '1.2.0'}}))
+            self.assertTrue(_value_satisfies_constraints(
+                '00FF', {'predicate': {'binary_equals': '00ff'}}))
+            self.assertFalse(_value_satisfies_constraints(
+                '1.2.3', {'predicate': {'version_less_than': '1.2.0'}}))
+        finally:
+            sys.path.remove(str(runtime))
+
 
 if __name__=='__main__':unittest.main()
 
@@ -147,6 +194,11 @@ class NativeInputPresenceSemantics(unittest.TestCase):
             snapshot = bind_inputs(contract, {'value-input': entry}, invocation_id=state)
             states[state] = snapshot.state('value-input') if state != 'pending' else None
         self.assertEqual(states, {'omitted': 'false', 'unknown': 'unknown', 'error': 'error', 'pending': None})
+        required = bind_inputs(
+            {'required-input': {'datatype': 'string', 'cardinality': 'exactly_one', 'required': True}},
+            {'required-input': {'state': 'omitted', 'source': 'test'}},
+            invocation_id='required-omitted')
+        self.assertEqual(required.state('required-input'), 'not_evaluated')
         provided = bind_inputs(contract, {'value-input': {'state': 'provided', 'source': 'test', 'values': []}}, invocation_id='empty')
         self.assertEqual(provided.state('value-input'), 'true')
         with self.assertRaises(PendingInputBinding):

@@ -106,27 +106,12 @@ def _external_constraints(visitor, element, source_type):
 
 
 def _value_satisfies_constraints(value, constraints):
-    def expr(node):
-        if 'and' in node: return all(expr(child) for child in node['and'])
-        if 'or' in node: return any(expr(child) for child in node['or'])
-        if 'one' in node: return sum(expr(child) for child in node['one']) == 1
-        if 'xor' in node: return sum(expr(child) for child in node['xor']) % 2 == 1
-        operation, bound = next((key, value) for key, value in node.items() if key != 'datatype')
-        if operation == 'equals': return value == bound
-        if operation == 'not_equal': return value != bound
-        if operation == 'case_insensitive_equals': return isinstance(value, str) and value.casefold() == str(bound).casefold()
-        if operation == 'case_insensitive_not_equal': return isinstance(value, str) and value.casefold() != str(bound).casefold()
-        if operation == 'matches_regex':
-            import re
-            return isinstance(value, str) and isinstance(bound, str) and re.fullmatch(bound, value) is not None
-        if operation in {'greater_than', 'greater_than_or_equal', 'less_than', 'less_than_or_equal'}:
-            return {'greater_than': value > bound, 'greater_than_or_equal': value >= bound,
-                    'less_than': value < bound, 'less_than_or_equal': value <= bound}[operation]
-        raise ValueError('unsupported Input restriction operation at binding time: ' + operation)
-    alternatives = [value == allowed for allowed in constraints.get('allowed', [])]
-    if 'predicate' in constraints:
-        alternatives.append(expr(constraints['predicate']))
-    return not alternatives or any(alternatives)
+    # Keep publisher-default validation on the same typed evaluator as
+    # invocation binding.  A second generic evaluator silently rejected or
+    # mis-evaluated native version/address/binary operators.
+    from scap_ng_tools.converter._v04_semantic.v04_input_presence import (
+        _input_constraints_valid)
+    return _input_constraints_valid(value, constraints)
 
 
 XCCDF_RELATIONS = {
@@ -238,7 +223,7 @@ def external_input(visitor, element):
     contract['constraints'] = constraints
     visitor.inputs[input_id] = contract
     if value is not None:
-        parameter = {'id': parameter_id, 'datatype': native_datatype(datatype), 'cardinality': 'one',
+        parameter = {'id': parameter_id, 'datatype': native_datatype(datatype), 'cardinality': cardinality,
                      'required': True, 'resolution': 'publisher' if defaults else 'organization',
                      'title': value.findtext('{' + XCCDF + '}title', ''), 'description': contract['description'],
                      'constraints': constraints}
