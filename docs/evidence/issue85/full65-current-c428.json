@@ -18,7 +18,7 @@
     "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
   },
   "converter": {
-    "commit": "bc980cc",
+    "commit": "bc980cc94c8adac7d7297936c21b045e45db0dac",
     "script": "scripts/rebuild_issue59_full65.py",
     "proof": "CONVERTED_UNVERIFIED; no scanner runtime evidence"
   },
