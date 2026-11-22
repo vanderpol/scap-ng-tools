@@ -17,9 +17,191 @@ def canonical_json(value):
 PRESENCE_VERSION = 1
 CARDS = {'exactly_one', 'zero_or_one', 'one_or_more', 'zero_or_more'}
 RELATION_OPERATORS = {'less_than', 'less_than_or_equal', 'greater_than', 'greater_than_or_equal'}
+CONSTRAINT_OPERATORS = {'equals', 'not_equal', 'case_insensitive_equals', 'case_insensitive_not_equal',
+                        'greater_than', 'greater_than_or_equal', 'less_than', 'less_than_or_equal',
+                        'matches_regex', 'subset_of', 'superset_of', 'bitwise_and', 'bitwise_or',
+                        'float_equals', 'float_not_equal', 'float_greater_than', 'float_greater_than_or_equal',
+                        'float_less_than', 'float_less_than_or_equal', 'binary_equals', 'binary_not_equal',
+                        'ipv4_equals', 'ipv4_not_equal', 'ipv4_greater_than', 'ipv4_greater_than_or_equal',
+                        'ipv4_less_than', 'ipv4_less_than_or_equal', 'ipv4_subset_of', 'ipv4_superset_of',
+                        'ipv6_equals', 'ipv6_not_equal', 'ipv6_greater_than', 'ipv6_greater_than_or_equal',
+                        'ipv6_less_than', 'ipv6_less_than_or_equal', 'ipv6_subset_of', 'ipv6_superset_of',
+                        'version_equals', 'version_not_equal', 'version_greater_than', 'version_greater_than_or_equal',
+                        'version_less_than', 'version_less_than_or_equal', 'rpm_evr_equals', 'rpm_evr_not_equal',
+                        'rpm_evr_greater_than', 'rpm_evr_greater_than_or_equal', 'rpm_evr_less_than',
+                        'rpm_evr_less_than_or_equal', 'debian_evr_equals', 'debian_evr_not_equal',
+                        'debian_evr_greater_than', 'debian_evr_greater_than_or_equal', 'debian_evr_less_than',
+                        'debian_evr_less_than_or_equal', 'fileset_revision_equals', 'fileset_revision_not_equal',
+                        'fileset_revision_greater_than', 'fileset_revision_greater_than_or_equal',
+                        'fileset_revision_less_than', 'fileset_revision_less_than_or_equal', 'ios_version_equals',
+                        'ios_version_not_equal', 'ios_version_greater_than', 'ios_version_greater_than_or_equal',
+                        'ios_version_less_than', 'ios_version_less_than_or_equal'}
+CONSTRAINT_BOOLEAN = {'and', 'or', 'one', 'xor'}
+MAX_CONSTRAINT_DEPTH = 32
+MAX_CONSTRAINT_NODES = 256
 DOMAINS = {'string', 'integer', 'boolean', 'float', 'binary', 'version', 'ipv4',
            'ipv6', 'rpm_evr', 'debian_evr', 'fileset_revision', 'ios_version', 'record'}
 
+
+def _constraint_domain(operation):
+    # Longest prefixes must win: ``rpm_evr_equals`` is an rpm_evr
+    # comparison, not an (invalid) ``rpm`` domain.
+    for domain in ('rpm_evr', 'debian_evr', 'fileset_revision', 'ios_version',
+                   'ipv4', 'ipv6', 'float', 'binary', 'version'):
+        if operation.startswith(domain + '_'):
+            return domain
+    return None
+
+
+def _validate_constraint_expression(node, datatype, *, depth=1, counter=None):
+    counter = counter if counter is not None else [0]
+    if depth > MAX_CONSTRAINT_DEPTH:
+        raise ValueError('Input predicate exceeds expression depth limit')
+    counter[0] += 1
+    if counter[0] > MAX_CONSTRAINT_NODES:
+        raise ValueError('Input predicate exceeds expression node limit')
+    if not isinstance(node, dict) or not node:
+        raise ValueError('Input predicate must be an object')
+
+    # A comparison leaf is valid with or without the optional explicit
+    # datatype annotation.  The previous implementation only recognized a
+    # leaf when it had more than one property, so a normal one-property
+    # ``matches_regex``/``equals`` leaf fell through to the Boolean-operator
+    # branch and was rejected despite being admitted by the canonical schema.
+    operations = set(node) & CONSTRAINT_OPERATORS
+    if len(operations) == 1 and set(node) - operations <= {'datatype'}:
+        operation = next(iter(operations))
+        explicit = node.get('datatype')
+        if explicit is not None and explicit != datatype:
+            raise ValueError('Input predicate datatype conflicts with enclosing Input')
+        bound = node[operation]
+        if operation in {'matches_regex', 'case_insensitive_equals', 'case_insensitive_not_equal'}:
+            if not isinstance(bound, str) or len(bound) > 4096:
+                raise ValueError('Input predicate requires bounded string comparison literal')
+            if operation == 'matches_regex':
+                try:
+                    re.compile(bound)
+                except re.error as exc:
+                    raise ValueError('Input predicate has malformed regex') from exc
+        elif not _value_valid(bound, datatype if _constraint_domain(operation) is None
+                              else _constraint_domain(operation)):
+            raise ValueError('Input predicate literal conflicts with enclosing Input datatype')
+        return
+
+    if len(node) != 1:
+        raise ValueError('Input predicate must contain exactly one comparison or Boolean operator')
+    operation, value = next(iter(node.items()))
+    if operation in CONSTRAINT_BOOLEAN:
+        if not isinstance(value, list) or not value or len(value) > 64:
+            raise ValueError('Input predicate Boolean branch count is outside bounds')
+        for child in value:
+            _validate_constraint_expression(child, datatype, depth=depth + 1, counter=counter)
+        return
+    raise ValueError('unsupported Input predicate operation: ' + str(operation))
+
+
+def _natural_compare(left, right):
+    """Bounded OVAL-compatible fallback ordering for string version domains.
+
+    Native typed comparison tags remain explicit in the emitted contract. This
+    helper is only the invocation binding gate; it never rewrites source text.
+    Numeric runs compare numerically and other runs lexically, preserving the
+    source's separator-independent version structure for the generic domains.
+    """
+    def key(value):
+        return [(0, int(part)) if part.isdigit() else (1, part.lower())
+                for part in re.findall(r'[0-9]+|[^0-9]+', value)]
+    a, b = key(left), key(right)
+    for x, y in zip(a, b):
+        if x != y:
+            return -1 if x < y else 1
+    return (len(a) > len(b)) - (len(a) < len(b))
+
+
+def _version_compare(left, right):
+    # OVAL version values are hierarchical non-negative integer components;
+    # missing trailing components are padded with zero.
+    a = [int(part) for part in re.findall(r'[0-9]+', left)]
+    b = [int(part) for part in re.findall(r'[0-9]+', right)]
+    size = max(len(a), len(b))
+    a.extend([0] * (size - len(a)))
+    b.extend([0] * (size - len(b)))
+    return (a > b) - (a < b)
+
+
+def _typed_compare(domain, operation, value, bound):
+    base = operation[len(domain) + 1:]
+    if domain == 'binary':
+        try:
+            value, bound = bytes.fromhex(value), bytes.fromhex(bound)
+        except (TypeError, ValueError):
+            return False
+    elif domain in {'ipv4', 'ipv6'}:
+        from ipaddress import ip_network
+        try:
+            value, bound = ip_network(value, strict=False), ip_network(bound, strict=False)
+        except ValueError:
+            return False
+        if value.version != (4 if domain == 'ipv4' else 6) or bound.version != value.version:
+            return False
+        if base in {'subset_of', 'superset_of'}:
+            return (value.subnet_of(bound) if base == 'subset_of'
+                    else value.supernet_of(bound))
+        if value.network.prefixlen != bound.network.prefixlen:
+            return False
+        value, bound = int(value.network.network_address), int(bound.network.network_address)
+    elif domain == 'float':
+        try:
+            value, bound = float(value), float(bound)
+        except (TypeError, ValueError):
+            return False
+    elif domain == 'version':
+        comparison = _version_compare(value, bound)
+        return {'equals': comparison == 0, 'not_equal': comparison != 0,
+                'greater_than': comparison > 0, 'greater_than_or_equal': comparison >= 0,
+                'less_than': comparison < 0, 'less_than_or_equal': comparison <= 0}[base]
+    elif domain in {'rpm_evr', 'debian_evr', 'fileset_revision', 'ios_version'}:
+        comparison = _natural_compare(value, bound)
+        return {'equals': comparison == 0, 'not_equal': comparison != 0,
+                'greater_than': comparison > 0, 'greater_than_or_equal': comparison >= 0,
+                'less_than': comparison < 0, 'less_than_or_equal': comparison <= 0}[base]
+    if base == 'equals': return value == bound
+    if base == 'not_equal': return value != bound
+    if base == 'greater_than': return value > bound
+    if base == 'greater_than_or_equal': return value >= bound
+    if base == 'less_than': return value < bound
+    if base == 'less_than_or_equal': return value <= bound
+    return False
+
+
+def _constraint_matches(value, node):
+    if 'and' in node: return all(_constraint_matches(value, child) for child in node['and'])
+    if 'or' in node: return any(_constraint_matches(value, child) for child in node['or'])
+    if 'one' in node: return sum(_constraint_matches(value, child) for child in node['one']) == 1
+    if 'xor' in node: return sum(_constraint_matches(value, child) for child in node['xor']) % 2 == 1
+    operation = next(key for key in node if key != 'datatype')
+    bound = node[operation]
+    domain = _constraint_domain(operation)
+    if domain:
+        return _typed_compare(domain, operation, value, bound)
+    if operation == 'equals': return value == bound
+    if operation == 'not_equal': return value != bound
+    if operation == 'case_insensitive_equals': return isinstance(value, str) and value.casefold() == bound.casefold()
+    if operation == 'case_insensitive_not_equal': return isinstance(value, str) and value.casefold() != bound.casefold()
+    if operation == 'matches_regex': return isinstance(value, str) and re.fullmatch(bound, value) is not None
+    if operation in {'greater_than','greater_than_or_equal','less_than','less_than_or_equal'}:
+        return {'greater_than': value > bound, 'greater_than_or_equal': value >= bound,
+                'less_than': value < bound, 'less_than_or_equal': value <= bound}[operation]
+    if operation == 'bitwise_and': return type(value) is int and type(bound) is int and (value & bound) == bound
+    if operation == 'bitwise_or': return type(value) is int and type(bound) is int and (value | bound) == bound
+    raise ValueError('Input predicate operation is not executable: ' + operation)
+
+
+def _input_constraints_valid(value, constraints):
+    alternatives = [canonical_json(value) == canonical_json(item) for item in constraints.get('allowed', [])]
+    if 'predicate' in constraints:
+        alternatives.append(_constraint_matches(value, constraints['predicate']))
+    return not alternatives or any(alternatives)
 
 def input_contracts(assessment):
     inputs = assessment.get('inputs', {})
@@ -35,11 +217,13 @@ def input_contracts(assessment):
         if set(decl)-{'datatype','cardinality','required','description','constraints'}:
             raise ValueError('unsupported Input declaration control; no implicit default: ' + name)
         constraints = decl.get('constraints', {})
-        if not isinstance(constraints,dict) or set(constraints)-{'allowed', 'relation'}:
+        if not isinstance(constraints,dict) or set(constraints)-{'allowed', 'predicate', 'relation'}:
             raise ValueError('unsupported Input constraints: ' + name)
         if 'allowed' in constraints and (not isinstance(constraints['allowed'],list) or
                 any(not _value_valid(v,decl['datatype']) for v in constraints['allowed'])):
             raise ValueError('invalid typed Input allowed-value constraints: ' + name)
+        if 'predicate' in constraints:
+            _validate_constraint_expression(constraints['predicate'], decl['datatype'])
         if 'relation' in constraints:
             relation = constraints['relation']
             if (not isinstance(relation, dict) or set(relation) != {'operator', 'value'} or
@@ -259,11 +443,10 @@ def bind_inputs(contracts, bindings, *, invocation_id):
                 elif any(not _value_valid(v, contract['datatype']) for v in values):
                     reason = 'provided Input violates datatype'
                 constraints = contract.get('constraints', {})
-                if not isinstance(constraints, dict) or set(constraints) - {'allowed', 'relation'}:
+                if not isinstance(constraints, dict) or set(constraints) - {'allowed', 'predicate', 'relation'}:
                     reason = 'unsupported Input constraints; binding cannot be validated'
-                elif 'allowed' in constraints and (not isinstance(constraints['allowed'],list) or
-                        any(not any(canonical_json(v) == canonical_json(a) for a in constraints['allowed']) for v in values)):
-                    reason = 'provided Input violates allowed values'
+                elif any(not _input_constraints_valid(v, constraints) for v in values):
+                    reason = 'provided Input violates allowed/restriction constraints'
                 elif 'relation' in constraints:
                     relation = constraints['relation']
                     if (not isinstance(relation, dict) or set(relation) != {'operator', 'value'} or
