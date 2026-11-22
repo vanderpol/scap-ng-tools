@@ -39,9 +39,46 @@ class CorpusFailureClassificationTests(unittest.TestCase):
 </oval_definitions>"""
         mismatches = _MODULE.source_variable_datatype_mismatches(raw)
         self.assertEqual(mismatches, [{
-            'element': 'pid', 'element_id': '', 'variable_id': 'var:1',
-            'entity_datatype': 'int', 'variable_datatype': 'boolean',
+            'kind': 'entity_variable_reference', 'element': 'pid',
+            'element_id': '', 'variable_id': 'var:1',
+            'entity_datatype': 'int', 'declared_datatype': 'boolean',
+            'variable_datatype': 'boolean',
         }])
+
+    def test_expression_result_mismatch_is_source_invalid_evidence(self):
+        raw = b"""<oval_definitions xmlns=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\">
+  <definitions><definition id=\"def:1\"><criteria><criterion test_ref=\"tst:1\"/></criteria></definition></definitions>
+  <tests><variable_test id=\"tst:1\"><object object_ref=\"obj:1\"/><state state_ref=\"ste:1\"/></variable_test></tests>
+  <objects><variable_object id=\"obj:1\"><var_ref>var:1</var_ref></variable_object></objects>
+  <states><variable_state id=\"ste:1\"><value>3</value></variable_state></states>
+  <variables><local_variable id=\"var:1\" datatype=\"string\"><time_difference format_2=\"seconds_since_epoch\"><literal_component>1</literal_component></time_difference></local_variable></variables>
+</oval_definitions>"""
+        mismatches = _MODULE.source_variable_datatype_mismatches(raw)
+        self.assertEqual(len(mismatches), 1)
+        self.assertEqual(mismatches[0]["kind"], "variable_expression_result")
+        self.assertEqual(mismatches[0]["declared_datatype"], "string")
+        self.assertEqual(mismatches[0]["expression_result_datatype"], "int")
+
+    def test_definition_scope_does_not_inherit_unrelated_file_mismatch(self):
+        raw = b"""<oval_definitions xmlns=\"http://oval.mitre.org/XMLSchema/oval-definitions-5\">
+  <definitions>
+    <definition id=\"def:good\"><criteria><criterion test_ref=\"tst:good\"/></criteria></definition>
+    <definition id=\"def:bad\"><criteria><criterion test_ref=\"tst:bad\"/></criteria></definition>
+  </definitions>
+  <tests><variable_test id=\"tst:good\"><object object_ref=\"obj:good\"/></variable_test><variable_test id=\"tst:bad\"><object object_ref=\"obj:bad\"/></variable_test></tests>
+  <objects><variable_object id=\"obj:good\"><var_ref>var:good</var_ref></variable_object><variable_object id=\"obj:bad\"><var_ref>var:bad</var_ref></variable_object></objects>
+  <variables><local_variable id=\"var:good\" datatype=\"int\"><literal_component datatype=\"int\">1</literal_component></local_variable><local_variable id=\"var:bad\" datatype=\"string\"><time_difference format_2=\"seconds_since_epoch\"><literal_component>1</literal_component></time_difference></local_variable></variables>
+</oval_definitions>"""
+        mismatches = _MODULE.source_variable_datatype_mismatches(raw)
+        self.assertEqual(len(mismatches), 1)
+        self.assertEqual(
+            {row["variable_id"] for row in mismatches
+             if row["variable_id"] in _MODULE.source_definition_variable_ids(raw, "def:good")},
+            set())
+        self.assertEqual(
+            {row["variable_id"] for row in mismatches
+             if row["variable_id"] in _MODULE.source_definition_variable_ids(raw, "def:bad")},
+            {"var:bad"})
         self.assertEqual(
             _MODULE.classify_failure('', 'Variable cast outside bounded proof',
                                      source_mismatches=mismatches),

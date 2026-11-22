@@ -26,6 +26,7 @@ import yaml
 
 from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
 from scap_ng_tools.converter.direct04 import validate_native_documents
+from scap_ng_tools.converter.native041_variable_result_type import result_type
 
 CORPUS_ROOT = Path("SCAP_1.4/OVAL_Test_Content")
 FAMILIES = ("agnostic", "aix", "asa", "ios", "iosxe", "junos", "linux", "macos", "panos", "solaris", "unix", "windows")
@@ -200,32 +201,112 @@ def slug(value: str) -> str:
 
 
 def source_variable_datatype_mismatches(raw: bytes) -> list[dict[str, str]]:
-    """Return source-declared Variable/entity type mismatches.
+    """Return source-declared Variable type mismatches with source evidence.
 
-    OVAL Schematron requires an entity's ``datatype`` to agree with the
-    referenced Variable's declared datatype.  The production converter must
-    fail closed on a mismatch; this helper adds source evidence to the ledger
-    so a valid source correction is not mislabeled as a converter gap.
+    OVAL 5.12.3 requires a Variable declaration to agree with the result type
+    of its expression, and requires an entity using ``var_ref`` to agree with
+    the referenced Variable declaration.  The production converter has a
+    bounded compatibility adapter for the former so it can preserve an
+    otherwise useful artifact, but the source disposition must remain
+    ``source_invalid`` until the XML is corrected.  This helper deliberately
+    does not normalize or rewrite source XML.
     """
     root = ET.fromstring(raw)
-    variables = {node.get("id"): node.get("datatype")
-                 for node in root.iter()
-                 if node.get("id") and node.tag.rsplit("}", 1)[-1].endswith("_variable")}
-    mismatches = []
+    variables = {
+        node.get("id"): node
+        for node in root.iter()
+        if node.get("id") and node.tag.rsplit("}", 1)[-1].endswith("_variable")
+    }
+    mismatches: list[dict[str, str]] = []
+
+    # Check the declaration against the expression's statically derived type.
+    # The same shared type function used by production conversion is used only
+    # as a read-only source audit; no host values are acquired here.
+    def resolve(identifier: str):
+        return variables.get(identifier)
+
+    for identifier, variable in variables.items():
+        declared = variable.get("datatype")
+        if not declared or variable.tag.rsplit("}", 1)[-1] not in {
+                "local_variable", "constant_variable"}:
+            continue
+        try:
+            expression_type = result_type(variable, resolve)
+        except (KeyError, TypeError, ValueError):
+            # An independently reported converter/source hold is more useful
+            # than inventing a type mismatch from an unresolved graph.
+            continue
+        if expression_type and expression_type != declared:
+            mismatches.append({
+                "kind": "variable_expression_result",
+                "element": variable.tag.rsplit("}", 1)[-1],
+                "element_id": identifier,
+                "variable_id": identifier,
+                "declared_datatype": declared,
+                "expression_result_datatype": expression_type,
+            })
+
+    # Check every source entity that references a Variable.  This remains a
+    # separate witness because it is an entity/Variable boundary violation,
+    # not the same defect as a Variable expression result mismatch.
     for node in root.iter():
         reference = node.get("var_ref")
         entity_datatype = node.get("datatype")
-        variable_datatype = variables.get(reference)
+        variable = variables.get(reference)
+        variable_datatype = variable.get("datatype") if variable is not None else None
         if (reference and entity_datatype and variable_datatype and
                 entity_datatype != variable_datatype):
             mismatches.append({
+                "kind": "entity_variable_reference",
                 "element": node.tag.rsplit("}", 1)[-1],
                 "element_id": node.get("id", ""),
                 "variable_id": reference,
-                "entity_datatype": entity_datatype,
+                "declared_datatype": variable_datatype,
                 "variable_datatype": variable_datatype,
+                "entity_datatype": entity_datatype,
             })
-    return sorted(mismatches, key=lambda item: (item["element"], item["element_id"], item["variable_id"]))
+    return sorted(mismatches, key=lambda item: (
+        item["kind"], item.get("element", ""), item.get("element_id", ""),
+        item["variable_id"]))
+
+
+def source_definition_variable_ids(raw: bytes, definition_id: str) -> set[str]:
+    """Return Variables reachable from one Definition's source reference graph.
+
+    Source files commonly contain several Definitions and shared Variables.
+    A file-level mismatch must not poison unrelated Definitions.  Traverse
+    only explicit OVAL references from the selected Definition, including
+    nested ``var_ref`` child elements and ``*_ref`` attributes.
+    """
+    root = ET.fromstring(raw)
+    by_id = {node.get("id"): node for node in root.iter() if node.get("id")}
+    start = by_id.get(definition_id)
+    if start is None:
+        return set()
+    pending = [start]
+    visited: set[str] = set()
+    variables: set[str] = set()
+    while pending:
+        node = pending.pop()
+        identity = node.get("id")
+        if identity and identity in visited:
+            continue
+        if identity:
+            visited.add(identity)
+            if node.tag.rsplit("}", 1)[-1].endswith("_variable"):
+                variables.add(identity)
+        refs: list[str] = []
+        for child in node.iter():
+            for name, value in child.attrib.items():
+                if name.endswith("_ref") and value:
+                    refs.append(value)
+            if child.tag.rsplit("}", 1)[-1] == "var_ref" and child.text:
+                refs.append(child.text.strip())
+        for reference in refs:
+            target = by_id.get(reference)
+            if target is not None and reference not in visited:
+                pending.append(target)
+    return variables
 
 
 def classify_failure(stderr: str, stdout: str, *,
@@ -383,7 +464,11 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     recorded_command = (public_command(
                         command, schema_root=schema_root, source=source_text_path,
                         output=artifact_dir) if command else None)
-                    source_mismatches = graph["source_variable_datatype_mismatches"]
+                    reachable_variables = source_definition_variable_ids(graph["raw"], definition_id)
+                    source_mismatches = [
+                        mismatch for mismatch in graph["source_variable_datatype_mismatches"]
+                        if mismatch["variable_id"] in reachable_variables
+                    ]
                     failure_class = None if success else classify_failure(
                         process.stderr, process.stdout, source_mismatches=source_mismatches,
                         supported_source_capabilities=supported_source_capabilities)
@@ -434,7 +519,17 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                         else:
                             row["schema_validated"] = True
                             row["artifacts"] = artifacts
-                            converted_rows.append(row)
+                            # Preserve generated artifacts for forensic comparison,
+                            # but source-invalid XML is not a source-parity success.
+                            if source_mismatches:
+                                row["conversion_status"] = "source_invalid"
+                                row["failure_class"] = "source_invalid_var_ref_datatype"
+                                row["diagnostic"] = (
+                                    "source evidence: " + json.dumps(
+                                        source_mismatches, sort_keys=True,
+                                        separators=(",", ":")))
+                            else:
+                                converted_rows.append(row)
                     definition_rows.append(row)
                     definition_results[(str(provenance_path), definition_id)] = {
                         "status": row["conversion_status"],
@@ -458,7 +553,16 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                     bindings = [result["native_bindings"].get(test_id)
                                 for result in owner_results]
                     native_ids = sorted({value for value in bindings if value})
-                    if native_ids:
+                    invalid_results = [result for result in owner_results
+                                       if result["status"] == "source_invalid"]
+                    if invalid_results:
+                        status = "source_invalid"
+                        schema_validated = all(result["schema_validated"] for result in invalid_results)
+                        failure_class = "source_invalid_var_ref_datatype"
+                        diagnostic = next((result["diagnostic"] for result in invalid_results
+                                           if result["diagnostic"]),
+                                          "source Variable/entity datatype mismatch")
+                    elif native_ids:
                         status = "CONVERTED_UNVERIFIED"
                         schema_validated = True
                         failure_class = None
@@ -532,6 +636,16 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             for row in blocked_tests:
                 stream.write(json.dumps(row, sort_keys=True) + "\n")
 
+        source_invalid_definitions = [row for row in definition_rows
+                                      if row["conversion_status"] == "source_invalid"]
+        source_invalid_tests = [row for row in test_rows
+                                if row["conversion_status"] == "source_invalid"]
+        (temp / "source-invalid-definitions.json").write_text(
+            json.dumps(source_invalid_definitions, indent=2) + "\n")
+        with (temp / "source-invalid-tests.jsonl").open("w") as stream:
+            for row in source_invalid_tests:
+                stream.write(json.dumps(row, sort_keys=True) + "\n")
+
         source_mappings = []
         for row in converted_rows:
             relative = Path("definitions") / slug(row["source_path"]) / slug(row["definition_id"])
@@ -556,6 +670,9 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 row["schema_validated"] for row in converted_rows),
             "schema_valid_yaml_documents": len(converted_rows),
             "blocked_artifacts": len(blocked_definitions),
+            "source_invalid_artifacts": len(source_invalid_definitions),
+            "source_invalid_schema_valid_yaml_documents": sum(
+                row["schema_validated"] for row in source_invalid_definitions),
             "execution": "not_run",
             "expected_outcomes_derived": False,
             "embedded_archives_included": any("!" in str(row["source_path"]) for row in source_graph),
@@ -576,6 +693,12 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "blocked_test_feature_counts": dict(sorted(Counter(
                 feature for row in blocked_tests for feature in row["feature_categories"]
             ).items())),
+            "source_invalid_definition_feature_counts": dict(sorted(Counter(
+                feature for row in source_invalid_definitions for feature in row["feature_categories"]
+            ).items())),
+            "source_invalid_test_feature_counts": dict(sorted(Counter(
+                feature for row in source_invalid_tests for feature in row["feature_categories"]
+            ).items())),
         }
         (temp / "feature-inventory.json").write_text(
             json.dumps(feature_inventory, indent=2) + "\n")
@@ -588,6 +711,8 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 "original XML is unchanged.\n")
         converted_test_count = sum(row["conversion_status"] == "CONVERTED_UNVERIFIED"
                                   for row in test_rows)
+        source_invalid_definition_count = len(source_invalid_definitions)
+        source_invalid_test_count = len(source_invalid_tests)
         blocked_definition_count = sum(row["conversion_status"] == "blocked"
                                       for row in definition_rows)
         excluded_definition_count = sum(row["conversion_status"] == "intentionally_excluded"
@@ -600,12 +725,14 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
             "The complete ledgers preserve every source Definition and Test; blocked "
             "entries retain the exact converter diagnostic.\n\n"
             f"- Definitions: {len(definition_rows)} ({len(converted_rows)} converted, "
-            f"{blocked_definition_count} blocked, {excluded_definition_count} excluded)\n"
+            f"{source_invalid_definition_count} source-invalid, {blocked_definition_count} blocked, "
+            f"{excluded_definition_count} excluded)\n"
             f"- Tests: {len(test_rows)} ({converted_test_count} converted, "
-            f"{len(blocked_tests)} blocked, {excluded_test_count} excluded)\n"
-            "- Generated native documents are schema-valid and remain `CONVERTED_UNVERIFIED`.\n"
+            f"{source_invalid_test_count} source-invalid, {len(blocked_tests)} blocked, "
+            f"{excluded_test_count} excluded)\n"
+            "- Generated native documents are schema-valid; source-invalid rows remain explicit and are not source-parity successes.\n"
             "- No expected outcomes, collected Items, or execution results are derived.\n"
-            "- See `source-mappings.json`, `feature-inventory.json`, `definitions.json`, `tests.jsonl`, and the blocked ledgers.\n"
+            "- See `source-mappings.json`, `feature-inventory.json`, `definitions.json`, `tests.jsonl`, and the blocked/source-invalid ledgers.\n"
         )
         (temp / "definitions.json").write_text(json.dumps(definition_rows, indent=2) + "\n")
         with (temp / "tests.jsonl").open("w") as stream:
@@ -639,10 +766,14 @@ def convert(*, corpus: Path, schema_root: Path, source_commit: str,
                 "tests": len(test_rows),
                 "converted_definitions": len(converted_rows),
                 "blocked_definitions": blocked_definition_count,
+                "source_invalid_definitions": source_invalid_definition_count,
                 "excluded_definitions": excluded_definition_count,
                 "schema_valid_yaml_documents": len(converted_rows),
+                "source_invalid_schema_valid_yaml_documents": sum(
+                    row["schema_validated"] for row in source_invalid_definitions),
                 "converted_tests": converted_test_count,
                 "blocked_tests": len(blocked_tests),
+                "source_invalid_tests": source_invalid_test_count,
                 "excluded_tests": excluded_test_count,
                 "test_ledger_reconciled": len(test_rows),
                 "execution": "not_run",
