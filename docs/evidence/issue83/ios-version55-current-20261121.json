@@ -1,0 +1,39 @@
+{
+  "format": "scap-ng-tools/issue83/source-witness-conversion/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "7d3e3ac2248ad667737bf49e6cf9d3e8a9790969",
+    "path": "SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml",
+    "sha256": "76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652",
+    "definition": "oval:navy.navwar.niwcatlantic.scc.ios:def:1",
+    "tests": [
+      "oval:navy.navwar.niwcatlantic.scc.ios:tst:1",
+      "oval:navy.navwar.niwcatlantic.scc.ios:tst:2",
+      "oval:navy.navwar.niwcatlantic.scc.ios:tst:3",
+      "oval:navy.navwar.niwcatlantic.scc.ios:tst:5"
+    ]
+  },
+  "pins": {
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "canonical_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "canonical_schema_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "converter_commit": "dd9b19ba20828a3eb37f186bbdb5f5e0a2f321d9"
+  },
+  "result": {
+    "conversion_status": "CONVERTED_UNVERIFIED",
+    "schema_validated": true,
+    "independent_semantic_proof": false,
+    "scanner_execution": false,
+    "compile_and_verify_modes": "not_migrated",
+    "outputs": {
+      "assessment.json": {"bytes": 4023, "sha256": "8e64244b5935bf7e89a3e8485cad901acc7179e18ed63e8548823d23b1285e20"},
+      "assessment.yaml": {"bytes": 2714, "sha256": "479ae9012dc6e2e4b467a14cf5fcce04cae468d215e1d003875a6cf00f46dd7f"},
+      "conversion-scope.json": {"bytes": 574, "sha256": "f4e3c9af04fc217e28cb7e98670ea1d55abdb16fc9f3e33dcb296aa1d617fa6d"},
+      "source-trace.json": {"bytes": 8876, "sha256": "8d6ff9a851b76b77864b1c3fca893fb4b2cd9c637981bd5ef7444227d45cf11d"}
+    }
+  },
+  "reproduction": {
+    "command": "PYTHONPATH=src python -m scap_ng_tools.converter.direct04 --schema-root <canonical-checkout>/schema --source <source-path> --sha256 76400146db7b8898932cc5fa761f4c182295025798d78068e4343febcb2ac652 --oval-definition oval:navy.navwar.niwcatlantic.scc.ios:def:1 --source-commit 7d3e3ac2248ad667737bf49e6cf9d3e8a9790969 --source-path SCAP_1.4/OVAL_Test_Content/ios/ios-def_version55_test.xml --output <external-output>",
+    "evidence_policy": "Generated documents remain outside Git; this compact receipt preserves their hashes."
+  }
+}
