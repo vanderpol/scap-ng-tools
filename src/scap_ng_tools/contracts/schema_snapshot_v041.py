@@ -61,6 +61,16 @@ def fingerprint(paths, root):
 class Pinned041SchemaSnapshot:
     """Load ONLY the flat 0.4.1 resource family, not a legacy fallback."""
 
+    canonical_commit = CANONICAL_COMMIT
+    flat_schema_sha256 = FLAT_SCHEMA_SHA256
+    assessment_execution_family_sha256 = ASSESSMENT_EXECUTION_FAMILY_SHA256
+    assessment_closure_sha256 = ASSESSMENT_CLOSURE_SHA256
+    resource_count = RESOURCE_COUNT
+    root_schema_count = ROOT_SCHEMA_COUNT
+    supported_count = SUPPORTED_COUNT
+    version = VERSION
+    prefix = PREFIX
+
     def __init__(self, root):
         raw = Path(root)
         if (raw / "schema").is_dir():
@@ -68,14 +78,14 @@ class Pinned041SchemaSnapshot:
         if raw.is_symlink() or not raw.is_dir():
             raise SnapshotError("expected a flat, explicit 0.4.1 schema directory")
         self.schema_root = raw.resolve(strict=True)
-        self.schema_version = VERSION
+        self.schema_version = self.version
         if any(self.schema_root.glob("v0.*")):
             raise SnapshotError("parallel historical schema directories are unsupported")
         paths = sorted((
             *self.schema_root.glob("*.json"),
             *(self.schema_root / "capability-mappings").rglob("*.json"),
         ))
-        if len(paths) != RESOURCE_COUNT:
+        if len(paths) != self.resource_count:
             raise SnapshotError("unexpected 0.4.1 schema resource count")
         digest = sha256()
         for path in paths:
@@ -83,16 +93,16 @@ class Pinned041SchemaSnapshot:
                 raise SnapshotError("missing or symlinked 0.4.1 schema resource")
             digest.update(path.relative_to(self.schema_root).as_posix().encode() + b"\0")
             digest.update(path.read_bytes())
-        if digest.hexdigest() != FLAT_SCHEMA_SHA256:
+        if digest.hexdigest() != self.flat_schema_sha256:
             raise SnapshotError("schema family does not match the exact approved 0.4.1 digest")
 
         roots = sorted(self.schema_root.glob("*.schema.json"))
-        if len(roots) != ROOT_SCHEMA_COUNT:
+        if len(roots) != self.root_schema_count:
             raise SnapshotError("unexpected root 0.4.1 JSON Schema count")
         for path in roots:
             doc = load_json(path)
-            if (doc.get("$id") != PREFIX + path.name
-                    or doc.get("x-scap-ng-version") != VERSION
+            if (doc.get("$id") != self.prefix + path.name
+                    or doc.get("x-scap-ng-version") != self.version
                     or doc.get("$schema") != "https://json-schema.org/draft/2020-12/schema"):
                 raise SnapshotError("invalid 0.4.1 schema identity: " + path.name)
         variable = load_json(self.schema_root / "variable-expression.schema.json")
@@ -110,7 +120,7 @@ class Pinned041SchemaSnapshot:
         for path in supported:
             record = load_json(path)
             if (record.get("capability") != path.stem
-                    or record.get("specification_version") != VERSION):
+                    or record.get("specification_version") != self.version):
                 raise SnapshotError("0.4.1 capability mapping is not version-pinned: " + path.name)
             self._supported_paths[path.stem] = path
 
@@ -133,7 +143,7 @@ class Pinned041SchemaSnapshot:
                     for key, child in value.items():
                         if key == '$ref':
                             ref = urlsplit(child)
-                            if ref.scheme and not child.startswith(PREFIX):
+                            if ref.scheme and not child.startswith(self.prefix):
                                 raise SnapshotError('foreign Assessment schema reference')
                             if ref.path:
                                 pending.append(ref.path.rsplit('/', 1)[-1])
@@ -146,7 +156,7 @@ class Pinned041SchemaSnapshot:
         for name, raw in sorted(files.items()):
             checksum.update(name.encode() + b'\0')
             checksum.update(raw)
-        if len(files) != 8 or checksum.hexdigest() != ASSESSMENT_CLOSURE_SHA256:
+        if len(files) != 8 or checksum.hexdigest() != self.assessment_closure_sha256:
             raise SnapshotError('Assessment closure does not match the RI execution pin')
         return files
 
@@ -168,16 +178,16 @@ class Pinned041SchemaSnapshot:
     def manifest(self):
         self.assessment_closure()
         return {
-            "assessment_execution_family_sha256": ASSESSMENT_EXECUTION_FAMILY_SHA256,
-            "assessment_closure_sha256": ASSESSMENT_CLOSURE_SHA256,
-            "canonical_commit": CANONICAL_COMMIT,
-            "schema_version": VERSION,
-            "logical_id_prefix": PREFIX,
-            "flat_json_aggregate_sha256": FLAT_SCHEMA_SHA256,
-            "aggregate_sha256": FLAT_SCHEMA_SHA256,
+            "assessment_execution_family_sha256": self.assessment_execution_family_sha256,
+            "assessment_closure_sha256": self.assessment_closure_sha256,
+            "canonical_commit": self.canonical_commit,
+            "schema_version": self.version,
+            "logical_id_prefix": self.prefix,
+            "flat_json_aggregate_sha256": self.flat_schema_sha256,
+            "aggregate_sha256": self.flat_schema_sha256,
             "schema_root": self.schema_root.as_posix(),
-            "root_schema_count": ROOT_SCHEMA_COUNT,
-            "supported_capability_count": SUPPORTED_COUNT,
+            "root_schema_count": self.root_schema_count,
+            "supported_capability_count": self.supported_count,
             "single_version": True,
             "external_snapshot_required": True,
         }

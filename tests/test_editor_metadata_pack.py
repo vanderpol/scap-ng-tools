@@ -1,4 +1,4 @@
-"""Exact 101-capability offline editor-pack export from the flat 0.4 schema."""
+"""Exact 101-active-capability offline editor-pack export from the canonical 0.4.1 flat schema."""
 
 from hashlib import sha256
 import json
@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from build_v04_editor_metadata_pack import build  # noqa: E402
 
 
-SCHEMA_COMMIT = 'f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2'
-EXPECTED_MANIFEST = '00892d9a1ea77afbc3592fc4b51910d87c298a1a9046cfdbc368e8a148b3dabd'
+SCHEMA_COMMIT = 'd1ab0283e09369c2c734d3b8f93b65007441cf07'
+EXPECTED_MANIFEST = '9a531bcaaf6555b50689f4ceee06fb604c7013b3ee0b544b3af9e6b9dc7ac6e1'
 
 
 class EditorPackParity(unittest.TestCase):
