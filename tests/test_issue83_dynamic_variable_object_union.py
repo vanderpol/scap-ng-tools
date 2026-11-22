@@ -15,7 +15,9 @@ from v04_direct_scap_source import OVAL  # noqa: E402
 
 
 def oval(source):
-    return ET.fromstring(source.replace("xmlns=\"OVAL\"", f'xmlns="{OVAL}"'))
+    return ET.fromstring(source.replace(
+        'xmlns="OVAL#independent"', f'xmlns="{OVAL}#independent"'
+    ).replace('xmlns="OVAL"', f'xmlns="{OVAL}"'))
 
 
 class DynamicVariableObjectUnion(unittest.TestCase):
@@ -62,6 +64,56 @@ class DynamicVariableObjectUnion(unittest.TestCase):
         self.assertEqual(warning["code"], "oval_dynamic_variable_object_union_lowered")
         self.assertEqual(warning["source_set_operator"], "UNION")
         self.assertFalse(warning["scanner_evaluated"])
+
+    def test_none_satisfy_remains_a_value_quantifier_not_a_boolean_group(self):
+        nodes = {
+            "root": oval(
+                '<variable_object xmlns="OVAL#independent" id="root"><set xmlns="OVAL" set_operator="UNION">'
+                '<object_reference>left</object_reference><object_reference>right</object_reference>'
+                '</set></variable_object>'
+            ),
+            "left": oval('<variable_object xmlns="OVAL#independent" id="left"><var_ref>one</var_ref></variable_object>'),
+            "right": oval('<variable_object xmlns="OVAL#independent" id="right"><var_ref>two</var_ref></variable_object>'),
+            "one": oval('<local_variable xmlns="OVAL" id="one" datatype="string"><literal_component>safe</literal_component></local_variable>'),
+            "two": oval('<local_variable xmlns="OVAL" id="two" datatype="string"><literal_component>safe</literal_component></local_variable>'),
+            "state": oval('<variable_state xmlns="OVAL#independent" id="state"><value operation="equals">bad</value></variable_state>'),
+        }
+
+        class Source:
+            native_recovery = True
+            standalone_oval = True
+            preserve_source_variables = True
+
+            def node(self, _component, identifier, _kind):
+                return nodes[identifier]
+
+            def object_uses(self, _component, _identifier, _kind):
+                return {"root": 1, "left": 1, "right": 1}
+
+        mapping = {
+            "capability": "variable.value",
+            "source": {
+                "namespace": OVAL + "#independent",
+                "test": "variable_test",
+                "object": "variable_object",
+                "state": "variable_state",
+            },
+            "native": {
+                "test_source": {"kind": "variable"},
+                "state_field_map": {"value": "value"},
+                "field_datatypes": {"value": ["string"]},
+            },
+        }
+        visitor = AssessmentConverter(Source(), "component", [mapping], native_recovery=True)
+        result = visitor.convert_test(oval(
+            '<variable_test xmlns="OVAL#independent" id="test" check="none satisfy" '
+            'check_existence="at_least_one_exists"><object object_ref="root"/>'
+            '<state state_ref="state"/></variable_test>'))
+        self.assertEqual(result, {"test": "variable-test-test"})
+        native = visitor.tests["variable-test-test"]
+        self.assertEqual(native["require"]["field_requirement"]["values_matching"], "none")
+        self.assertEqual(native["require"]["fields"]["value"]["equals"], "bad")
+        self.assertIn("variable", native)
 
     def test_static_and_dynamic_operands_keep_named_variable_identity(self):
         nodes = {
