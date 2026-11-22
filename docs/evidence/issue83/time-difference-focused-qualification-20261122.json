@@ -10,7 +10,9 @@
     "definition_id": "oval:org.mitre.oval.test:def:580",
     "tests_converted": 30,
     "time_difference_variables": 29,
-    "source_variable_type_corrections": "source pin d91e6ba already contains the reviewed datatype corrections; no source XML was modified"
+    "source_variable_type_corrections": "source pin d91e6ba already contains the reviewed datatype corrections; no source XML was modified",
+    "source_commit_blob_verified": false,
+    "source_commit_blob_note": "The retained local XML was joined by exact SHA-256; a Git blob checkout was not available in this session."
   },
   "converter": {
     "commit": "f660f7e5f96566a84a395d7cac1390e755a06170",
