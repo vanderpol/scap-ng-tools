@@ -1,0 +1,114 @@
+{
+  "format": "scap-ng-tools/ftp-applicability-truth-oracle/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "zip": "SCAP_1.4/SCAP_Test_Content/R700/U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "zip_sha256": "54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1",
+    "xml_member_sha256": "9a0a5a76b3a1c6efd4867809d7c4fa5834e2cb441d1513ed7bfa634b9a540fb3",
+    "cpe_platform": "xccdf_navy.navwar.niwcatlantic.scc_platform_FTP",
+    "cpe_operator": "AND",
+    "cpe_negate": true,
+    "definition": "oval:navy.navwar.niwcatlantic.scc.windows:def:301",
+    "test": "oval:navy.navwar.niwcatlantic.scc.windows:tst:301",
+    "check_existence": "at_least_one_exists",
+    "check": "all",
+    "state_predicate": "InstallState != Installed"
+  },
+  "oracle": [
+    {
+      "case": "Installed",
+      "items": [
+        "Installed"
+      ],
+      "fact_outcome": "false",
+      "cpe_not_outcome": "true",
+      "interpretation": "source says platform condition true"
+    },
+    {
+      "case": "Available",
+      "items": [
+        "Available"
+      ],
+      "fact_outcome": "true",
+      "cpe_not_outcome": "false",
+      "interpretation": "source says platform condition false"
+    },
+    {
+      "case": "Removed",
+      "items": [
+        "Removed"
+      ],
+      "fact_outcome": "true",
+      "cpe_not_outcome": "false",
+      "interpretation": "source says platform condition false"
+    },
+    {
+      "case": "empty evidence",
+      "items": [],
+      "fact_outcome": "false",
+      "cpe_not_outcome": "true",
+      "interpretation": "upstream source safety concern; lossless conversion preserves it"
+    },
+    {
+      "case": "no selected record",
+      "items": [],
+      "fact_outcome": "false",
+      "cpe_not_outcome": "true",
+      "interpretation": "same at_least_one_exists source behavior"
+    },
+    {
+      "case": "contradictory Items",
+      "items": [
+        "Installed",
+        "Available"
+      ],
+      "fact_outcome": "false",
+      "cpe_not_outcome": "true",
+      "interpretation": "check=all fails because one Item is Installed"
+    },
+    {
+      "case": "missing InstallState",
+      "items": [
+        "<missing>"
+      ],
+      "fact_outcome": "error",
+      "cpe_not_outcome": "error",
+      "interpretation": "missing field is not positive evidence"
+    },
+    {
+      "case": "permission denied",
+      "acquisition": "denied",
+      "fact_outcome": "error",
+      "cpe_not_outcome": "error",
+      "interpretation": "acquisition failure preserved"
+    },
+    {
+      "case": "cmdlet unsupported",
+      "acquisition": "unsupported",
+      "fact_outcome": "error",
+      "cpe_not_outcome": "error",
+      "interpretation": "unsupported collector preserved"
+    },
+    {
+      "case": "evaluation ERROR",
+      "acquisition": "error",
+      "fact_outcome": "error",
+      "cpe_not_outcome": "error",
+      "interpretation": "CPE source does not negate ERROR"
+    },
+    {
+      "case": "evaluation UNKNOWN",
+      "acquisition": "unknown",
+      "fact_outcome": "unknown",
+      "cpe_not_outcome": "unknown",
+      "interpretation": "native unknown remains unknown"
+    }
+  ],
+  "proof_boundary": {
+    "converter": "source expression is structurally lowered without synthetic Boolean Assessment",
+    "oracle": "independent source truth model only",
+    "ri_runtime": "unverified; requires RI #201/owner runtime lane",
+    "rule_effective_applicability": "Benchmark direct CPE URI is a separate unresolved ERROR hold in the current FTP package"
+  },
+  "source_finding": "The empty-population inversion is a potential upstream content safety defect, not a converter defect. Do not change source expected outcomes or rewrite the NOT without a normative decision."
+}
