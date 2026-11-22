@@ -1,0 +1,129 @@
+{
+  "canonical": {
+    "commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+    "source_contract": "windows.wmi.query result is record-valued; canonical semantic validator forbids record-to-text flattening"
+  },
+  "converter": {
+    "commit": "a1c6f731de0799a86123408bdb96bb38283b16b0",
+    "focused_prior_receipt": "docs/evidence/issue83/oval-concat-focused-qualification-20261121.json",
+    "full_replay": "docs/evidence/issue85/full65-current-c428-a1c6.json"
+  },
+  "format": "scap-ng-tools/issue83-concat-replay-audit/1",
+  "method": {
+    "correction": "convert_focused now invokes the same shared 0.4.1 Assessment semantic gate as benchmark admission",
+    "focused_after": "the 12 rows fail closed with the same concat diagnostic as full replay",
+    "focused_before": "convert_focused plus structural JSON Schema validation only",
+    "full_before": "convert_benchmark plus structural and shared semantic validation"
+  },
+  "result": {
+    "canonical_gap": true,
+    "focused_status_after": "blocked",
+    "full_status": "blocked",
+    "reclassified_as_converter_defect": false,
+    "rows": 12,
+    "runtime_equivalence": "not proved"
+  },
+  "rows": [
+    {
+      "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/net-clr-use-fips-approved-modules-sv-225230-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_mil.disa.fso_rule_SV-225230r1117185_rule",
+      "source_rule_sha256": "48a2a0aa4c6614f012f0f43e114c05a07b8faad1c685895c1c4f3f0aab063f4b"
+    },
+    {
+      "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/net-applications-that-of-net-stig-guidance-sv-225232-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_mil.disa.fso_rule_SV-225232r1050651_rule",
+      "source_rule_sha256": "c997124b42a5d98c74ab0faf185618635c4bb50ee74d08c7511c427e41c36993"
+    },
+    {
+      "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/net-default-proxy-reviewed-and-approved-sv-225234-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_mil.disa.fso_rule_SV-225234r1188289_rule",
+      "source_rule_sha256": "f87f6fb1b4946ef84c20b1e68f9610b8d3192d420050fc68085fb0e29efcdb03"
+    },
+    {
+      "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/event-tracing-for-windows-events-enabled-sv-225235-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_mil.disa.fso_rule_SV-225235r960891_rule",
+      "source_rule_sha256": "a564a5bfc75a81cf2643a4b7419bbb182423f2725e9b72a785ec80f86fa12c98"
+    },
+    {
+      "benchmark": "U_MS_Exchange_2019_Edge_Server_V2R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/exchange-software-partition-from-os-sv-259637-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259637r961608_rule",
+      "source_rule_sha256": "d1a36b855b38a29f4ade95182dd1af7008383668d20d695be220c266114cc943"
+    },
+    {
+      "benchmark": "U_MS_Exchange_2019_Mailbox_Server_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/exchange-email-with-another-application-sv-259704-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms_rule_SV-259704r961608_rule",
+      "source_rule_sha256": "468330a606a7b20fb50913cc504332eb11d4891be4b7af16499d73091e66c686"
+    },
+    {
+      "benchmark": "U_MS_IIS_10-0_Server_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/all-iis-10-0-web-server-iis-10-0-server-sv-218795-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218795r960963_rule",
+      "source_rule_sha256": "ee764e3e24adadd8ab10f444267c1e1092d33b4aaa3cad073205f3a77e3115e6"
+    },
+    {
+      "benchmark": "U_MS_IIS_8-5_Server_V2R7_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/java-software-installed-virtual-machine-sv-214416-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214416r879627_rule",
+      "source_rule_sha256": "3f1c90049296b7b341e42f605107178f5634a124909149ca6e23ca22fe6defcf"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2016_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/data-files-owned-by-users-data-files-sv-224975-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-224975r958524_rule",
+      "source_rule_sha256": "c559a538af76ba24e7e36d01a65a28b101ea4f63db34437b2855caadd333e0b6"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/windows-server-2019-data-server-data-files-sv-205723-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-205723r1137695_rule",
+      "source_rule_sha256": "cf9411467006771d573ed19e4bc9182785d58fc332ec0e92566428941a84e31b"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/windows-server-2022-data-server-data-files-sv-254396-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-254396r1137695_rule",
+      "source_rule_sha256": "65f1842761eb898a88ecdf378391b6bcc6671af86c013cad8752783f7217d2d2"
+    },
+    {
+      "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "diagnostic": "authoring/direct-slice/assessments/windows-server-2025-data-server-data-files-sv-278143-assessment.json: Native comparison datatype: concat requires a scalar text operand",
+      "required_action": "canonical record-to-text semantics decision or retain explicit hold",
+      "source_operand": "windows.wmi.query.result record",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-278143r1182092_rule",
+      "source_rule_sha256": "3780d3a89b51c95964b7aa000eedcbf98798ad27079f94dc5da513bb60ed14ca"
+    }
+  ],
+  "source": {
+    "rule_source_hashes": "from historical active-candidate ledger; exact XML identity is retained per row",
+    "signed_benchmark_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
+  }
+}
