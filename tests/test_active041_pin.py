@@ -64,10 +64,10 @@ class Active041Pins(unittest.TestCase):
     def test_p0_workflow_uses_current_source_and_assessment_closure_pins(self):
         workflow = (ROOT / '.github/workflows/p0-canonical-qualification.yml').read_text()
         self.assertIn('ref: 2d983fcbd7b2367d567ca8ccc689a378d08905e4', workflow)
-        self.assertIn('ref: 62349522b48b2e57f3711b1c08e655d7a31e0387', workflow)
+        self.assertIn('ref: cf99102f13f703b0e5890fd3fd6aab4096eec0cf', workflow)
         self.assertIn('ref: d91e6ba33841e3202dc27d3e0d469a7abd939b16', workflow)
         lane = (ROOT / 'scripts/qualify_p0_041.sh').read_text()
-        self.assertIn('62349522b48b2e57f3711b1c08e655d7a31e0387', lane)
+        self.assertIn('cf99102f13f703b0e5890fd3fd6aab4096eec0cf', lane)
 
     def test_generator_rebuilds_without_reading_previous_semantic_pack(self):
         schema = os.environ.get('SCAP_NG_SCHEMA_ROOT')
