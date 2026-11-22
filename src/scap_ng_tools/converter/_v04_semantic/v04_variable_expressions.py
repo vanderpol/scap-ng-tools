@@ -81,6 +81,23 @@ def assessment_variable_expressions(assessment):
 
     def expression(node, declared=None):
         op, value = next(iter(node.items()))
+        if op == 'input':
+            if not isinstance(value, str):
+                raise ValueError('Input expression requires a named Input')
+            declaration = assessment.get('inputs', {}).get(value)
+            if not isinstance(declaration, dict):
+                raise ValueError('unresolved Input reference: ' + value)
+            datatype = declaration.get('datatype')
+            if datatype not in {'string', 'integer', 'boolean', 'float', 'binary',
+                                'version', 'ipv4', 'ipv6', 'rpm_evr', 'debian_evr',
+                                'fileset_revision', 'ios_version', 'record'}:
+                raise ValueError('Input expression has unsupported datatype: ' + str(datatype))
+            if declaration.get('cardinality') not in {'exactly_one', 'zero_or_one',
+                                                       'one_or_more', 'zero_or_more'}:
+                raise ValueError('Input expression has invalid cardinality')
+            if declaration.get('required') is not True:
+                raise ValueError('Input expression requires an explicit required Input')
+            return {datatype}
         if op == 'literal':
             return literal(value, declared)
         if op == 'variable':
