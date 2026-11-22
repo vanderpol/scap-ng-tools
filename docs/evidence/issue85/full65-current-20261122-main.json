@@ -1,0 +1,112 @@
+{
+  "baseline": {
+    "blocked": 108,
+    "converted": 6479,
+    "manual_only": 1403
+  },
+  "candidate": {
+    "blocked": 94,
+    "converted": 6493,
+    "manual_only": 1403
+  },
+  "canonical": {
+    "commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "flat_schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "repository": "vanderpol/scap-ng",
+    "schema_version": "0.4.1"
+  },
+  "converter": {
+    "commit": "0b7c0ba99dfc659d7da17e41a31dd954a3e2aaf0",
+    "production_mode": "native_recovery=True source-authoring qualification",
+    "repository": "vanderpol/scap-ng-tools"
+  },
+  "external_artifact": {
+    "bytes": 59645,
+    "path": "/tmp/tools-full65-current.imGc6m/ledger.json",
+    "sha256": "40830d3fc795412cc21935e6ff3444471d86862964d0ee24944333791fc124f3"
+  },
+  "format": "scap-ng-tools/issue83-full65-qualification-receipt/1",
+  "qualification": "structural/source authoring conversion only; RI/runtime and independent OVAL equivalence not proved",
+  "raw_blocker_categories": {
+    "schema-semantic": 12,
+    "unsupported-capability": 80,
+    "unsupported-construct": 2
+  },
+  "recovered_rule_ids": [
+    {
+      "benchmark": "U_Amazon_Linux_2023_V1R2_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-274067r1120653_rule"
+    },
+    {
+      "benchmark": "U_Cisco_IOS-XE_Router_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
+      "source_rule": "xccdf_mil.disa.stig.cisco_rule_SV-215833r961068_rule"
+    },
+    {
+      "benchmark": "U_Cisco_IOS-XE_Switch_NDM_V3R5_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220544r961068_rule"
+    },
+    {
+      "benchmark": "U_Cisco_IOS_Router_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-215688r961068_rule"
+    },
+    {
+      "benchmark": "U_Cisco_IOS_Switch_NDM_V3R6_STIG_SCAP_1-4_Benchmark-enhancedV6-signed.zip",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.dns_rule_SV-220596r961068_rule"
+    },
+    {
+      "benchmark": "U_MS_DotNet_Framework_4-0_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV15-signed.zip",
+      "source_rule": "xccdf_mil.disa.fso_rule_SV-225223r961038_rule"
+    },
+    {
+      "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218762r1192782_rule"
+    },
+    {
+      "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218778r961863_rule"
+    },
+    {
+      "benchmark": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214492r879887_rule"
+    },
+    {
+      "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-221653r1015161_rule"
+    },
+    {
+      "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
+    },
+    {
+      "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule"
+    },
+    {
+      "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-214799r991589_rule"
+    },
+    {
+      "benchmark": "U_RHEL_9_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258155r1045300_rule"
+    }
+  ],
+  "reproduction": {
+    "command": "PYTHONPATH=src python scripts/rebuild_issue59_full65.py --schema-root <canonical-f51-schema>/schema --source-root <65-source-zips> --source-archive <scap-content-library-8c8e5d.tar.gz> --source-archive-sha256 a780f91a487ceca1d03d23c0155e7fe612d55db44e27014f9de4e3adc6ce0097 --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --canonical-schema-commit f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2 --schema-aggregate-sha256 11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc --output <new-output> --enforce-nonregression"
+  },
+  "source": {
+    "archive_sha256": "a780f91a487ceca1d03d23c0155e7fe612d55db44e27014f9de4e3adc6ce0097",
+    "benchmarks": 65,
+    "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "owner_scope": {
+      "active": 7990,
+      "historical_windows_2012": 693,
+      "owner_excluded_sql": 209
+    },
+    "repository": "niwc-atlantic/scap-content-library"
+  },
+  "transitions": {
+    "newly_blocked_from_converted": 0,
+    "newly_converted_from_blocked": 14,
+    "nonregression_pass": true
+  }
+}
