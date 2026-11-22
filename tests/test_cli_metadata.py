@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tomllib
 import unittest
 
 
@@ -29,6 +30,11 @@ class ConverterCliMetadata(unittest.TestCase):
                       'assessment_closure_sha256', 'semantic_pack_sha256'):
             self.assertRegex(payload[field], r'^[0-9a-f]{40,64}$')
         self.assertIn('required for conversion', payload['offline_schema_argument'])
+
+    def test_project_metadata_is_buildable_under_current_pep621_rules(self):
+        project = tomllib.loads((ROOT / 'pyproject.toml').read_text())['project']
+        self.assertEqual(project['license'], {'text': 'Apache-2.0'})
+        self.assertEqual(project['requires-python'], '>=3.11')
 
     def test_conversion_arguments_remain_required_without_version(self):
         result = self.run_cli()

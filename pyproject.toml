@@ -7,7 +7,7 @@ name = "scap-ng-tools"
 version = "0.0.0"
 description = "Development-stage tools shared by SCAP-NG converters and editors"
 requires-python = ">=3.11"
-license = "Apache-2.0"
+license = {text = "Apache-2.0"}
 dependencies = ["PyYAML>=6.0,<7", "jsonschema>=4.24,<5"]
 
 [project.scripts]
