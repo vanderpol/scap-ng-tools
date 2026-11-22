@@ -14,6 +14,7 @@
     "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
     "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
   ],
+  "authoritative_evidence_status": "newest_committed_receipt_only; runtime_and_hosted_qualification_unproved",
   "authoritative_to_integer_blocked": false,
   "branch_count": 5,
   "branches": [

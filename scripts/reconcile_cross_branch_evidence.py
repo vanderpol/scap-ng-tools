@@ -124,6 +124,7 @@ def reconcile_documents(documents: list[dict[str, Any]]) -> dict[str, Any]:
         "format": "scap-ng-tools/cross-branch-evidence-reconciliation/1",
         "branch_count": len(documents),
         "authoritative_branch": latest["branch"],
+        "authoritative_evidence_status": "newest_committed_receipt_only; runtime_and_hosted_qualification_unproved",
         "source_identity_agrees": len({json.dumps(row["source"], sort_keys=True) for row in documents}) == 1,
         "canonical_pins": sorted(source_keys),
         "authoritative_counts": latest_counts,
