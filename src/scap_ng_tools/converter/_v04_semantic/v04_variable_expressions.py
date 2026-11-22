@@ -107,9 +107,11 @@ def assessment_variable_expressions(assessment):
                 raise ValueError('to_integer requires one expression operand')
             domain = expression(value)
             # Canonical 0.4.1 defines an explicit elementwise decimal parse,
-            # not a consumer-directed cast.  Dynamic/mixed collected domains,
-            # numeric operands and records therefore fail closed.
-            if domain != {'string'}:
+            # not a consumer-directed cast. A polymorphic collected Item field
+            # is admitted only as a runtime-qualified string boundary: the RI
+            # must bind complete evidence and reject every non-string datum
+            # before parsing. Numeric operands and records remain held here.
+            if domain not in ({'string'}, {DYNAMIC_COLLECTED}):
                 raise ValueError('to_integer requires a string operand')
             operand, operand_value = next(iter(value.items()))
             if operand == 'literal':

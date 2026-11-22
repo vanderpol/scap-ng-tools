@@ -34,7 +34,7 @@ SEMANTIC_PORT = {
     'v04_comparison_types.py': 'edb810aa1508ef15b5538a7cf0efc15cff3125646a4144a823200e3a4cdef3aa',
     'v04_input_presence.py': '37f000f8bfa9cde0157667e61cfcf9704a0f404de8622a351facc8a322257669',
     'v04_object_contract.py': 'a63dfc5a3af0d77964853c2b1041a90361ae37881e1c82c7b01daa510d23994f',
-    'v04_variable_expressions.py': 'caa06d79c5615e7c8b4ce6ceb50a03b39e81d48a3306c4c79c6bf29645e8b18b',
+    'v04_variable_expressions.py': '4520fb224e4ecb347a338b2bf39ef4a2b7b9622b3e8e5f21081e17d0d163e32b',
 }
 SOURCE_COMMIT = 'd12a644f4607cdc9c9ada50e3a96d4fd0060c6d9'
 PINNED_GENERATOR_HELPERS = {
