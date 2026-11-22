@@ -1,19 +1,8 @@
 name: OVAL Test Content full-tree parity audit
+# Full OVAL tree parity is a VM qualification gate, not a PR-triggered job.
+# Keep an explicit hosted replay for funded independent verification.
 on:
-  pull_request:
-    paths:
-      - scripts/audit_self_assertion_parity.py
-      - tests/test_self_assertion_parity.py
-      - tests/test_unified_oval_conversion.py
-      - tests/test_v003_oval_source_truth.py
-      - tests/reference_v003/oval_result_truth_tables.py
-      - src/scap_ng_tools/converter/conversion_budget.py
-      - scripts/export_v003_oval_source_truth.py
-      - docs/qualification/full-oval-test-content-parity.md
-      - .github/workflows/oval-full-tree-parity.yml
-  push:
-    branches:
-      - audit/full-oval-test-content-parity-20261113
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:

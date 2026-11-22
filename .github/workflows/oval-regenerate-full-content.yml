@@ -1,7 +1,7 @@
 name: P0 regenerate entire OVAL Test Content into current 0.4
+# Full OVAL regeneration is a VM qualification gate.
+# Keep an explicit hosted replay for funded independent verification.
 on:
-  push:
-    branches: [audit/full-oval-test-content-parity-20261113]
   workflow_dispatch:
 permissions:
   contents: read
