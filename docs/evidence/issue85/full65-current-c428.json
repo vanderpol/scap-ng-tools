@@ -1,5 +1,5 @@
 {
-  "format": "scap-ng-tools/issue85-full65-canonical-requalification/1",
+  "format": "scap-ng-tools/issue85-full65-canonical-requalification/2",
   "source": {
     "repository": "niwc-atlantic/scap-content-library",
     "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
@@ -18,7 +18,7 @@
     "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
   },
   "converter": {
-    "commit": "80e7d0e156a144602c0172dad5594dad9afb5f72",
+    "commit": "bc980cc",
     "script": "scripts/rebuild_issue59_full65.py",
     "proof": "CONVERTED_UNVERIFIED; no scanner runtime evidence"
   },
@@ -28,8 +28,8 @@
     "manual_only": 1403
   },
   "candidate": {
-    "blocked": 103,
-    "converted": 6484,
+    "blocked": 95,
+    "converted": 6492,
     "manual_only": 1403
   },
   "transitions": [
@@ -144,39 +144,6 @@
       "to": "converted"
     },
     {
-      "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-      "blocker_category": "unsupported-construct",
-      "from": "converted",
-      "new_proof_level": "none",
-      "original_proof_level": "authoring_validated",
-      "primary_blocker": "external Variable consumers require conflicting/unsupported cardinality",
-      "source_rule": "xccdf_mil.disa.stig_rule_SV-221660r958402_rule",
-      "source_rule_sha256": "405d82aeabf895fb220cddd8044850297ee4c9019c9219d50f484e371f85f6d4",
-      "to": "blocked"
-    },
-    {
-      "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-      "blocker_category": "unsupported-construct",
-      "from": "converted",
-      "new_proof_level": "none",
-      "original_proof_level": "authoring_validated",
-      "primary_blocker": "external Variable consumers require conflicting/unsupported cardinality",
-      "source_rule": "xccdf_mil.disa.stig_rule_SV-221849r970703_rule",
-      "source_rule_sha256": "9980f9bbccb79c2040836c4bfd4433b9edb3d40fc01483cfc9400870eaf87ee3",
-      "to": "blocked"
-    },
-    {
-      "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-      "blocker_category": "unsupported-construct",
-      "from": "converted",
-      "new_proof_level": "none",
-      "original_proof_level": "authoring_validated",
-      "primary_blocker": "external Variable consumers require conflicting/unsupported cardinality",
-      "source_rule": "xccdf_mil.disa.stig_rule_SV-221894r991589_rule",
-      "source_rule_sha256": "6442184674e732735fa83eefcc897eedce755a94e886caf13674985087421220",
-      "to": "blocked"
-    },
-    {
       "benchmark": "U_Oracle_Linux_9_V1R4_STIG_SCAP_1-4_Benchmark-enhancedV5-signed.zip",
       "blocker_category": null,
       "from": "blocked",
@@ -186,61 +153,6 @@
       "source_rule": "xccdf_mil.disa.stig_rule_SV-271596r1091500_rule",
       "source_rule_sha256": "cf79e9db4c8647f7525137f3ee94d4321410be92e4d76c4287ba2d8e7bc74da5",
       "to": "converted"
-    },
-    {
-      "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-      "blocker_category": "unsupported-construct",
-      "from": "converted",
-      "new_proof_level": "none",
-      "original_proof_level": "authoring_validated",
-      "primary_blocker": "external Variable consumers require conflicting/unsupported cardinality",
-      "source_rule": "xccdf_mil.disa.stig_rule_SV-204398r958402_rule",
-      "source_rule_sha256": "ec98d4ecc09df3fd8296516e1e9b21cbd8bb27d0ec6e12cf6814f3208bd53960",
-      "to": "blocked"
-    },
-    {
-      "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-      "blocker_category": "unsupported-construct",
-      "from": "converted",
-      "new_proof_level": "none",
-      "original_proof_level": "authoring_validated",
-      "primary_blocker": "external Variable consumers require conflicting/unsupported cardinality",
-      "source_rule": "xccdf_mil.disa.stig_rule_SV-204422r982201_rule",
-      "source_rule_sha256": "e155cabc86a4c2a595900a4951438f93f5160270e93255648e2f62b511c60867",
-      "to": "blocked"
-    },
-    {
-      "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-      "blocker_category": "unsupported-construct",
-      "from": "converted",
-      "new_proof_level": "none",
-      "original_proof_level": "authoring_validated",
-      "primary_blocker": "external Variable consumers require conflicting/unsupported cardinality",
-      "source_rule": "xccdf_mil.disa.stig_rule_SV-204587r970703_rule",
-      "source_rule_sha256": "eb7764678ed565d1002d3b0025165fec71032fc30d2d31d4e68eeb3f01e2b894",
-      "to": "blocked"
-    },
-    {
-      "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-      "blocker_category": "unsupported-construct",
-      "from": "converted",
-      "new_proof_level": "none",
-      "original_proof_level": "authoring_validated",
-      "primary_blocker": "external Variable consumers require conflicting/unsupported cardinality",
-      "source_rule": "xccdf_mil.disa.stig_rule_SV-204613r991589_rule",
-      "source_rule_sha256": "a785676006f0e2b18c0e4c268d7e64371e13b3a1a09b5bc852013817ec6246f2",
-      "to": "blocked"
-    },
-    {
-      "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-      "blocker_category": "unsupported-construct",
-      "from": "converted",
-      "new_proof_level": "none",
-      "original_proof_level": "authoring_validated",
-      "primary_blocker": "external Variable consumers require conflicting/unsupported cardinality",
-      "source_rule": "xccdf_mil.disa.stig_rule_SV-204630r991589_rule",
-      "source_rule_sha256": "f33a42f172f46bd4b27565c993bcc4440ccd38b932a4bf45d231819a5b11f4ab",
-      "to": "blocked"
     },
     {
       "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
@@ -266,18 +178,18 @@
     }
   ],
   "counts": {
-    "newly_blocked_from_converted": 8,
+    "newly_blocked_from_converted": 0,
     "newly_converted_from_blocked": 13,
-    "nonregression_pass": false,
+    "nonregression_pass": true,
     "blocker_category_counts": {
       "schema-semantic": 13,
       "unsupported-capability": 78,
-      "unsupported-construct": 12
+      "unsupported-construct": 4
     }
   },
   "remaining": {
-    "converted": 6484,
-    "blocked": 103,
+    "converted": 6492,
+    "blocked": 95,
     "manual_only": 1403,
     "blocked_rule_ids": [
       {
@@ -940,72 +852,30 @@
       },
       {
         "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-        "category": "unsupported-construct",
-        "message": "external Variable consumers require conflicting/unsupported cardinality",
-        "original_status": "converted",
-        "source_rule": "xccdf_mil.disa.stig_rule_SV-221660r958402_rule"
-      },
-      {
-        "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
         "category": "schema-semantic",
         "message": "authoring/direct-slice/assessments/oracle-linux-operating-their-own-files-sv-221718-assessment.json: Native comparison datatype: unsupported native Variable expression: to_integer",
         "original_status": "blocked",
         "source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
-      },
-      {
-        "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-        "category": "unsupported-construct",
-        "message": "external Variable consumers require conflicting/unsupported cardinality",
-        "original_status": "converted",
-        "source_rule": "xccdf_mil.disa.stig_rule_SV-221849r970703_rule"
-      },
-      {
-        "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
-        "category": "unsupported-construct",
-        "message": "external Variable consumers require conflicting/unsupported cardinality",
-        "original_status": "converted",
-        "source_rule": "xccdf_mil.disa.stig_rule_SV-221894r991589_rule"
-      },
-      {
-        "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-        "category": "unsupported-construct",
-        "message": "external Variable consumers require conflicting/unsupported cardinality",
-        "original_status": "converted",
-        "source_rule": "xccdf_mil.disa.stig_rule_SV-204398r958402_rule"
-      },
-      {
-        "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-        "category": "unsupported-construct",
-        "message": "external Variable consumers require conflicting/unsupported cardinality",
-        "original_status": "converted",
-        "source_rule": "xccdf_mil.disa.stig_rule_SV-204422r982201_rule"
-      },
-      {
-        "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-        "category": "unsupported-construct",
-        "message": "external Variable consumers require conflicting/unsupported cardinality",
-        "original_status": "converted",
-        "source_rule": "xccdf_mil.disa.stig_rule_SV-204587r970703_rule"
-      },
-      {
-        "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-        "category": "unsupported-construct",
-        "message": "external Variable consumers require conflicting/unsupported cardinality",
-        "original_status": "converted",
-        "source_rule": "xccdf_mil.disa.stig_rule_SV-204613r991589_rule"
-      },
-      {
-        "benchmark": "U_RHEL_7_V3R15_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-        "category": "unsupported-construct",
-        "message": "external Variable consumers require conflicting/unsupported cardinality",
-        "original_status": "converted",
-        "source_rule": "xccdf_mil.disa.stig_rule_SV-204630r991589_rule"
       }
     ]
   },
-  "receipt_sha256": "f9fec53d88e7c1f2bfdf1e7b22cbf33e788da57ccf02a878dd7a0887aab2afa4",
-  "external_output": "/tmp/tools-issue99-full65-c428-80e7d0e.json",
+  "receipt_sha256": "c2b04738df54894604d9c9af29c92cdae717774aa694bec1c2cdface6a381da7",
+  "external_output": "/tmp/tools-issue99-full65-c428-bc980cc.json",
   "reproduction": {
-    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/rebuild_issue59_full65.py --schema-root <scap-ng@c428fd0>/schema --source-root <scap-content-library@8c8e5d> --source-archive <source-archive> --source-archive-sha256 8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --canonical-schema-commit c428fd0708da0cdd574dc9e499db714a1068bd75 --schema-aggregate-sha256 1755c893712ef30363dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4 --output <external-output>"
-  }
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/rebuild_issue59_full65.py --schema-root <scap-ng@c428fd0>/schema --source-root <scap-content-library@8c8e5d> --source-archive <source-archive> --source-archive-sha256 8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --canonical-schema-commit c428fd0708da0cdd574dc9e499db714a1068bd75 --schema-aggregate-sha256 1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4 --output <external-output>"
+  },
+  "generic_fixes_qualified": [
+    {
+      "feature": "XCCDF Value/@type to OVAL external Variable datatype",
+      "mapping": "number\u2192int/float; string\u2192string/binary; boolean\u2192boolean"
+    },
+    {
+      "feature": "external Variable consumer graph",
+      "mapping": "bounded selected-Test traversal of *_ref attributes and var_ref child elements"
+    },
+    {
+      "feature": "all_exist consumer cardinality",
+      "mapping": "all_exist\u2192one_or_more"
+    }
+  ]
 }
