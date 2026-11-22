@@ -9,6 +9,7 @@ import argparse
 from hashlib import sha256
 import importlib
 import json
+from importlib.metadata import PackageNotFoundError, version as installed_version
 from pathlib import Path, PurePosixPath
 import sys
 
@@ -333,17 +334,43 @@ def safe_relative_filename(root, relative):
     return target
 
 
+def _version_payload():
+    try:
+        package_version = installed_version('scap-ng-tools')
+    except PackageNotFoundError:
+        package_version = '0.0.0'
+    from scap_ng_tools.converter._v04_semantic import PACK_HASH, OVAL_COMMIT
+    from scap_ng_tools.contracts.schema_snapshot_v041 import (
+        ASSESSMENT_CLOSURE_SHA256, ASSESSMENT_EXECUTION_FAMILY_SHA256,
+        CANONICAL_COMMIT, FLAT_SCHEMA_SHA256, VERSION)
+    return {
+        'package': 'scap-ng-tools',
+        'package_version': package_version,
+        'converter_interface': 'scap-ng-convert-v04/1',
+        'schema_version': VERSION,
+        'canonical_commit': CANONICAL_COMMIT,
+        'oval_schema_commit': OVAL_COMMIT,
+        'flat_schema_family_sha256': FLAT_SCHEMA_SHA256,
+        'assessment_execution_family_sha256': ASSESSMENT_EXECUTION_FAMILY_SHA256,
+        'assessment_closure_sha256': ASSESSMENT_CLOSURE_SHA256,
+        'semantic_pack_sha256': PACK_HASH,
+        'offline_schema_argument': 'required for conversion; --version needs no external files',
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--schema-root', type=Path, required=True,
+    parser.add_argument('--version', action='store_true',
+                        help='print converter and pinned 0.4.1 contract identity, then exit')
+    parser.add_argument('--schema-root', type=Path,
                         help='exact offline SCAP-NG 0.4 checkout or flat schema/ directory')
     parser.add_argument('source', nargs='?', type=Path,
                         help='original source ZIP or standalone OVAL XML')
     parser.add_argument('--source', dest='source_option', type=Path,
                         help='equivalent explicit source path')
-    parser.add_argument('--sha256', required=True, help='exact SHA-256 of original source ZIP')
+    parser.add_argument('--sha256', help='exact SHA-256 of original source ZIP')
     parser.add_argument('--rule', action='append', help='selected source Rule ID; repeatable')
-    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--output', type=Path)
     parser.add_argument('--human-compact', action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument('--oval-definition', help='original OVAL Definition ID in standalone source XML')
     parser.add_argument('--oval-test', help='convert exactly one original OVAL Test and its reachable graph')
@@ -354,6 +381,12 @@ def main():
     for option in ('--verify', '--compile', '--all-rules', '--inventory-only', '--draft'):
         parser.add_argument(option, action='store_true')
     arguments = parser.parse_args()
+    if arguments.version:
+        print(json.dumps(_version_payload(), sort_keys=True))
+        return
+    for option in ('schema_root', 'sha256', 'output'):
+        if getattr(arguments, option) is None:
+            parser.error(f'--{option.replace("_", "-")} is required unless --version is used')
     if (arguments.source is None) == (arguments.source_option is None):
         parser.error('supply exactly one source ZIP (positional or --source)')
     selected_source = arguments.source or arguments.source_option
