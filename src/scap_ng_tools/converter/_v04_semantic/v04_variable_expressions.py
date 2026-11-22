@@ -136,8 +136,19 @@ def assessment_variable_expressions(assessment):
             formats = {'year_month_day', 'month_day_year', 'day_month_year', 'seconds_since_epoch', 'win_filetime'}
             if any(value.get(key) not in formats for key in ('format_1', 'format_2') if key in value):
                 raise ValueError('time_difference has unsupported format')
-            for operand in operands:
-                expression(operand)
+            operand_domains = [expression(operand) for operand in operands]
+            # OVAL 5.12.3 (oval-definitions-schema.xsd,
+            # TimeDifferenceFunctionType, lines 894-900) restricts every
+            # explicit component to source datatype string or int.  Keep the
+            # derived domain rather than accepting the nested expression and
+            # discarding its type: a boolean, float, record, empty, mixed, or
+            # dynamically collected population cannot be proven to satisfy
+            # that source contract.  This is a validation boundary, not a
+            # cast; the time_difference result remains integer.
+            if any(domain not in ({'string'}, {'integer'})
+                   for domain in operand_domains):
+                raise ValueError(
+                    'time_difference operands require exactly string or integer domains')
             return {'integer'}
         if op == 'values':
             obj = value['object']

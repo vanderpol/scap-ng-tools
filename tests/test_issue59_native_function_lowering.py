@@ -5,6 +5,8 @@ Multi-component count is deliberately blocked until a lossless mapping exists.
 """
 import unittest
 import xml.etree.ElementTree as ET
+from pathlib import Path
+from types import SimpleNamespace
 
 from scap_ng_tools.converter.direct04 import load_runtime
 from scap_ng_tools.converter.native041_function_lowering import lower_expression, lower_assessment_inplace
@@ -177,6 +179,105 @@ class Active041FunctionLowering(unittest.TestCase):
                 return iter(())
         with patch.object(semantic, 'declaration_validator', return_value=CandidateSchema()):
             semantic.assessment_variable_expressions(assessment)
+
+    def test_time_difference_semantic_validation_rejects_non_source_operand_domains(self):
+        # The source Schematron only permits string/int components.  These
+        # cases exercise the semantic validator rather than the lowering
+        # helper so a nested invalid domain cannot be erased by recursion.
+        invalid = [
+            ('boolean', {'literal': {'datatype': 'boolean', 'value': True}}),
+            ('float', {'literal': {'datatype': 'float', 'value': 1.5}}),
+            ('record', {'literal': {'datatype': 'record', 'value': {}}}),
+            ('empty', {'literal': []}),
+        ]
+        for label, operand in invalid:
+            with self.subTest(label=label):
+                assessment = {
+                    'variables': {
+                        'candidate': {
+                            'kind': 'local',
+                            'expression': {'time_difference': {
+                                'values': [operand],
+                            }},
+                        },
+                    },
+                    'shared_objects': {},
+                }
+                from scap_ng_tools.converter._v04_semantic import (
+                    v04_variable_expressions as semantic)
+                class CandidateSchema:
+                    def iter_errors(self, declaration):
+                        return iter(())
+                with patch.object(semantic, 'declaration_validator',
+                                  return_value=CandidateSchema()):
+                    with self.assertRaisesRegex(
+                            ValueError,
+                            'time_difference operands require exactly string or integer domains'):
+                        semantic.assessment_variable_expressions(assessment)
+
+    def test_time_difference_semantic_validation_rejects_mixed_collected_domain(self):
+        # A collected Item whose field can be either string or integer has no
+        # single source datatype proof.  It must not be accepted merely because
+        # both members are individually allowed OVAL scalar types.
+        assessment = {
+            'variables': {
+                'candidate': {
+                    'kind': 'local',
+                    'expression': {'time_difference': {
+                        'values': [{
+                            'values': {
+                                'object': {'capability': 'independent.shellcommand',
+                                           'command': 'printf x'},
+                                'field': 'subexpression',
+                            },
+                        }],
+                    }},
+                },
+            },
+            'shared_objects': {},
+        }
+        from scap_ng_tools.converter._v04_semantic import (
+            v04_variable_expressions as semantic)
+        class CandidateSchema:
+            def iter_errors(self, declaration):
+                return iter(())
+        with patch.object(semantic, 'declaration_validator',
+                          return_value=CandidateSchema()), \
+             patch.object(semantic, 'snapshot',
+                          return_value=SimpleNamespace(schema_root=Path('.'))), \
+             patch('scap_ng_tools.converter._v04_semantic.v04_object_contract.object_validator',
+                   return_value=SimpleNamespace(iter_errors=lambda _: iter(()))), \
+             patch.object(semantic, 'contract',
+                          return_value=({'subexpression': ['string', 'integer']}, set(), {}, {})), \
+             patch.object(semantic, 'capability_contract',
+                          return_value=({'native': {'field_datatypes': {
+                              'subexpression': ['string', 'integer']}}}, {})):
+            with self.assertRaisesRegex(
+                    ValueError,
+                    'time_difference operands require exactly string or integer domains'):
+                semantic.assessment_variable_expressions(assessment)
+
+    def test_time_difference_semantic_validation_accepts_each_allowed_component_domain(self):
+        from scap_ng_tools.converter._v04_semantic import (
+            v04_variable_expressions as semantic)
+        class CandidateSchema:
+            def iter_errors(self, declaration):
+                return iter(())
+        for values in (
+                [{'literal': {'datatype': 'string', 'value': '2009-02-04'}}],
+                [{'literal': {'datatype': 'integer', 'value': 1238506200}}],
+                [{'literal': {'datatype': 'string', 'value': '2009-02-04'}},
+                 {'literal': {'datatype': 'integer', 'value': 1238506200}}]):
+            with self.subTest(values=values):
+                assessment = {'variables': {'candidate': {
+                    'kind': 'local',
+                    'expression': {'time_difference': {'values': values}},
+                }}, 'shared_objects': {}}
+                with patch.object(semantic, 'declaration_validator',
+                                  return_value=CandidateSchema()):
+                    self.assertEqual(
+                        semantic.assessment_variable_expressions(assessment),
+                        {'candidate': 'integer'})
 
     def test_time_difference_keeps_nested_graphs_and_rejects_invalid_shape(self):
         nested = {
