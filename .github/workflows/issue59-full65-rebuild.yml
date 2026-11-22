@@ -9,6 +9,7 @@ on:
       - '.github/workflows/issue59-full65-rebuild.yml'
       - 'scripts/rebuild_issue59_full65.py'
       - 'tests/test_issue59_rebuild_full65.py'
+      - 'tests/test_issue59_active_pin_alignment.py'
       - 'src/scap_ng_tools/converter/native041_function_lowering.py'
       - 'src/scap_ng_tools/converter/native041_input_relation.py'
       - 'tests/test_issue59_input_relation.py'
