@@ -36,10 +36,10 @@
   "pins": {
     "canonical_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
     "canonical_schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
-    "editor_commit": "466e5cf",
+    "editor_commit": "466e5cfca598c9bb2018e89947e0fdc85e79eafd",
     "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-    "ri_commit": "56ede26",
-    "tools_commit": "ed723db3b6a93c1c4e2ee93f8c0a4be83f9b4f4f"
+    "ri_commit": "78355c4349d6189f5af22477dc4c98751d7b2ddd",
+    "tools_commit": "ed723db91547010890f54e2b069e7555235c0a4f"
   },
   "proof": {
     "canonical_gap_classification": "pass",
