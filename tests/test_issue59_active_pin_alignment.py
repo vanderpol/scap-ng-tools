@@ -32,6 +32,7 @@ class ActiveIssue59Pins(unittest.TestCase):
         patterns = load_script("build_issue59_textfilecontent_patterns.py")
         remaining = load_script("build_issue59_remaining_collected_audit.py")
         self.assertEqual(rebuild.CANONICAL_SCHEMA_COMMIT, CANONICAL_COMMIT)
+        self.assertEqual(rebuild.CANONICAL_SCHEMA_DIGEST, SCHEMA_DIGEST)
         self.assertEqual(datatype.CANONICAL_SCHEMA_COMMIT, CANONICAL_COMMIT)
         self.assertEqual(datatype.CANONICAL_SCHEMA_DIGEST, SCHEMA_DIGEST)
         self.assertEqual(patterns.SCHEMA_COMMIT, CANONICAL_COMMIT)

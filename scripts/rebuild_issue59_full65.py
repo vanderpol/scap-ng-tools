@@ -18,6 +18,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_COMMIT = "8c8e5dff860af6b1290ee9273a282db24278f8d5"
 CANONICAL_SCHEMA_COMMIT = "d1ab0283e09369c2c734d3b8f93b65007441cf07"
+CANONICAL_SCHEMA_DIGEST = "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
 CROSSWALK = ROOT / "docs/evidence/issue59/full65-crosswalk.json"
 HISTORICAL_RULES = ROOT / "docs/evidence/issue28/ACTIVE-CANDIDATE-RULES.json.gz"
 SQL_POLICY = ROOT / "docs/evidence/issue28/SQL-EXCLUSIONS.json"
@@ -246,7 +247,7 @@ def main():
     from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
     snap = Pinned041SchemaSnapshot(args.schema_root)
     schema_digest = snap.manifest()["aggregate_sha256"]
-    expected_schema_digest = args.schema_aggregate_sha256 or crosswalk["new_schema_sha256"]
+    expected_schema_digest = args.schema_aggregate_sha256 or CANONICAL_SCHEMA_DIGEST
     if schema_digest != expected_schema_digest:
         parser.error("canonical 0.4.1 aggregate digest differs from supplied pin")
     with gzip.open(HISTORICAL_RULES, "rt", encoding="utf-8") as reader:
