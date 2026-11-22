@@ -39,7 +39,7 @@ def source_has_branch(path: Path, operation: str, *, token: str = "") -> bool:
     # therefore fails this gate even if the operation remains documented.
     patterns = (
         rf"\bif\s+(?:op|operation)\s*==\s*['\"]{re.escape(operation)}['\"]",
-        rf"\bcase\s+['\"]{re.escape(operation)}['\"]",
+        rf"\bcase\s+[^:\n]*['\"]{re.escape(operation)}['\"]", 
         rf"['\"]{re.escape(operation)}['\"]\s*:\s*",
         rf"\b(?:op|operation)\s+in\s+[^\n)]*['\"]{re.escape(operation)}['\"]",
     )
