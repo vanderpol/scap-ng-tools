@@ -20,7 +20,7 @@ EXPECTED_MANIFEST = '9a531bcaaf6555b50689f4ceee06fb604c7013b3ee0b544b3af9e6b9dc7
 class EditorPackParity(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        schema = os.environ.get('SCAP_NG_SCHEMA_ROOT')
+        schema = os.environ.get('SCAP_NG_EDITOR_SCHEMA_ROOT')
         oval = os.environ.get('SCAP_NG_OVAL_ROOT')
         if not schema or not oval:
             raise unittest.SkipTest('Pinned flat schema and official OVAL checkout required')
