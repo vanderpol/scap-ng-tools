@@ -53,6 +53,29 @@ def _constraint_domain(operation):
     return None
 
 
+def _constraint_operation_allowed(datatype, operation):
+    """Enforce the OVAL datatype/operation crosswalk for Input predicates."""
+    domain = _constraint_domain(operation)
+    if domain is not None:
+        return domain == datatype
+    if datatype == 'string':
+        return operation in {'equals', 'not_equal', 'case_insensitive_equals',
+                             'case_insensitive_not_equal', 'matches_regex'}
+    if datatype == 'boolean':
+        return operation in {'equals', 'not_equal'}
+    if datatype == 'integer':
+        return operation in {'equals', 'not_equal', 'greater_than',
+                             'greater_than_or_equal', 'less_than',
+                             'less_than_or_equal', 'bitwise_and', 'bitwise_or'}
+    # Generic numeric order operators are retained for a native float Input;
+    # source converters emit the explicit float_* keys.
+    if datatype == 'float':
+        return operation in {'equals', 'not_equal', 'greater_than',
+                             'greater_than_or_equal', 'less_than',
+                             'less_than_or_equal'}
+    return False
+
+
 def _validate_constraint_expression(node, datatype, *, depth=1, counter=None):
     counter = counter if counter is not None else [0]
     if depth > MAX_CONSTRAINT_DEPTH:
@@ -74,6 +97,8 @@ def _validate_constraint_expression(node, datatype, *, depth=1, counter=None):
         explicit = node.get('datatype')
         if explicit is not None and explicit != datatype:
             raise ValueError('Input predicate datatype conflicts with enclosing Input')
+        if not _constraint_operation_allowed(datatype, operation):
+            raise ValueError('Input predicate operation is incompatible with datatype')
         bound = node[operation]
         if operation in {'matches_regex', 'case_insensitive_equals', 'case_insensitive_not_equal'}:
             if not isinstance(bound, str) or len(bound) > 4096:
@@ -373,7 +398,12 @@ class InputBindingSnapshot:
         entry = doc['bindings'][name]
         if entry['state'] == 'pending':
             raise PendingInputBinding(entry['reason'])
-        return {'provided': 'true', 'omitted': 'false', 'error': 'error', 'unknown': 'unknown'}[entry['state']]
+        if entry['state'] == 'omitted':
+            # Canonical 0.4.1 treats a missing required Input as not evaluated;
+            # an explicitly omitted optional Input remains a false presence
+            # guard.  Do not collapse either case into acquisition error.
+            return 'not_evaluated' if doc['contracts'][name]['required'] else 'false'
+        return {'provided': 'true', 'error': 'error', 'unknown': 'unknown'}[entry['state']]
 
 
 def _value_valid(value, datatype):
@@ -455,7 +485,12 @@ def bind_inputs(contracts, bindings, *, invocation_id):
                     elif any(not _relation_valid(v, relation['operator'], relation['value']) for v in values):
                         reason = 'provided Input violates relational constraint'
         if reason:
-            # Preserve attempted values/source as evidence, never substitute a value.
-            entry['state'], entry['reason'] = 'error', reason
+            # Preserve attempted values/source as evidence, never substitute a
+            # value. Required omission is a canonical not_evaluated state, not
+            # an acquisition error; all other invalid attempts are errors.
+            if state == 'omitted' and contract['required']:
+                entry['reason'] = reason
+            else:
+                entry['state'], entry['reason'] = 'error', reason
     return InputBindingSnapshot(canonical_json({'version': PRESENCE_VERSION, 'invocation_id': invocation_id,
                                                'contracts': contracts, 'bindings': entries}), _token=_SNAPSHOT_TOKEN)

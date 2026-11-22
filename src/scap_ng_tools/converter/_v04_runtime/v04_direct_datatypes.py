@@ -24,6 +24,10 @@ SPECIAL_TYPES = {key: value for key, value in SOURCE_TYPES.items()
                  if key not in ('string', 'int', 'boolean')}
 ORDERED = frozenset({'equals', 'not equal', 'greater than', 'greater than or equal',
                      'less than', 'less than or equal'})
+STRING_OPERATIONS = frozenset({'equals', 'not equal', 'pattern match',
+                               'case insensitive equals', 'case insensitive not equal'})
+BOOLEAN_OPERATIONS = frozenset({'equals', 'not equal'})
+INTEGER_OPERATIONS = ORDERED | frozenset({'bitwise and', 'bitwise or'})
 SPECIAL_OPERATIONS = {name: ORDERED for name in SPECIAL_TYPES}
 SPECIAL_OPERATIONS.update(binary=frozenset({'equals', 'not equal'}),
     ipv4_address=ORDERED | {'subset of', 'superset of'},
@@ -130,12 +134,25 @@ def literal(source_type, text, *, binary32=False):
 
 
 def comparison(source_type, operation, generic):
-    """Keep the source algorithm as a self-describing native typed operator."""
-    if source_type not in SPECIAL_TYPES:
-        ensure(operation not in ('subset of', 'superset of'), 'address operation requires address datatype')
-        ensure(operation not in ('bitwise and', 'bitwise or') or source_type == 'int',
-               'bitwise operation requires integer datatype')
+    """Keep the source algorithm as a self-describing native typed operator.
+
+    OVAL's comparison operation is datatype-specific.  A generic native
+    comparison key must not make an invalid source operation (for example
+    string ``greater than`` or boolean ``bitwise and``) appear representable.
+    """
+    if source_type == 'string':
+        ensure(operation in STRING_OPERATIONS,
+               f'unsupported typed comparison: {source_type} {operation}')
         return generic
+    if source_type == 'boolean':
+        ensure(operation in BOOLEAN_OPERATIONS,
+               f'unsupported typed comparison: {source_type} {operation}')
+        return generic
+    if source_type == 'int':
+        ensure(operation in INTEGER_OPERATIONS,
+               f'unsupported typed comparison: {source_type} {operation}')
+        return generic
+    ensure(source_type in SPECIAL_TYPES, f'unsupported Variable datatype: {source_type}')
     ensure(operation in SPECIAL_OPERATIONS[source_type],
            f'unsupported typed comparison: {source_type} {operation}')
     return SPECIAL_TYPES[source_type] + '_' + generic
