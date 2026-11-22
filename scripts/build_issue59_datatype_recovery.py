@@ -19,6 +19,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 OVAL = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+CANONICAL_SCHEMA_COMMIT = "d1ab0283e09369c2c734d3b8f93b65007441cf07"
+CANONICAL_SCHEMA_DIGEST = "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
 
 
 def local(element):
@@ -187,14 +189,17 @@ def main():
     parser.add_argument("--source-root", type=Path, required=True)
     parser.add_argument("--schema-root", type=Path, required=True)
     parser.add_argument("--crosswalk", type=Path, required=True)
+    parser.add_argument("--schema-aggregate-sha256", default=CANONICAL_SCHEMA_DIGEST)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     receipt = json.loads(args.receipt.read_text(encoding="utf-8"))
     original = json.loads(args.original_receipt.read_text(encoding="utf-8"))
     crosswalk = json.loads(args.crosswalk.read_text(encoding="utf-8"))
-    if receipt.get("canonical_schema_commit") != "aece827964c785be77b088c3c61255a2d07fd9a9":
-        raise SystemExit("canonical schema commit is not the reviewed 0.4.1 pin")
-    if receipt.get("schema_aggregate_sha256") != crosswalk.get("new_schema_sha256"):
+    if receipt.get("canonical_schema_commit") != CANONICAL_SCHEMA_COMMIT:
+        raise SystemExit("canonical schema commit is not the active reviewed 0.4.1 pin")
+    if args.schema_aggregate_sha256 != CANONICAL_SCHEMA_DIGEST:
+        raise SystemExit("schema digest argument is not the active reviewed 0.4.1 pin")
+    if receipt.get("schema_aggregate_sha256") != args.schema_aggregate_sha256:
         raise SystemExit("schema digest mismatch")
     pins = {row["filename"]: row["source_sha256"] for row in crosswalk["benchmarks"]}
     index = mappings(args.schema_root)
@@ -215,7 +220,7 @@ def main():
     families = Counter("unique" if row["source_expression"] == "unique" else "collected_field" for row in rows)
     result = {
         "format": "scap-ng-0.4.1-issue59-datatype-recovery/1",
-        "canonical_schema_commit": "aece827964c785be77b088c3c61255a2d07fd9a9",
+        "canonical_schema_commit": CANONICAL_SCHEMA_COMMIT,
         "schema_aggregate_sha256": receipt["schema_aggregate_sha256"],
         "source_repository": receipt["source_repository"],
         "source_commit": receipt["source_commit"],

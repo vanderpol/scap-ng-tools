@@ -17,7 +17,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_COMMIT = "8c8e5dff860af6b1290ee9273a282db24278f8d5"
-CANONICAL_SCHEMA_COMMIT = "aece827964c785be77b088c3c61255a2d07fd9a9"
+CANONICAL_SCHEMA_COMMIT = "d1ab0283e09369c2c734d3b8f93b65007441cf07"
 CROSSWALK = ROOT / "docs/evidence/issue59/full65-crosswalk.json"
 HISTORICAL_RULES = ROOT / "docs/evidence/issue28/ACTIVE-CANDIDATE-RULES.json.gz"
 SQL_POLICY = ROOT / "docs/evidence/issue28/SQL-EXCLUSIONS.json"
