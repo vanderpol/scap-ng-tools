@@ -1,0 +1,34 @@
+{
+  "format": "scap-ng-tools/external-variable-def562-binding/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "member_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+    "definition_id": "oval:org.mitre.oval.test:def:562"
+  },
+  "canonical": {
+    "repository": "vanderpol/scap-ng",
+    "commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "version": "0.4.1",
+    "flat_schema_sha256": "1755c893712ef3034dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
+  },
+  "converter_commit": "946d607",
+  "assessment_json_sha256": "58f8e645ba1297894f0233957f7fa5f088e8c4a61dc8018621226d6bd37ecdb",
+  "binding_engine_sha256": "37f000f8bfa9cde0157667e61cfcf9704a0f404de8622a351facc8a322257669",
+  "result": {
+    "inputs": 18,
+    "explicit_values_supplied": 18,
+    "valid_binding_states": {
+      "true": 18
+    },
+    "invalid_predicate_state": "error",
+    "invalid_cardinality_state": "error",
+    "fixture_defaults_used": false,
+    "scanner_execution": false,
+    "oval_equivalence": false
+  },
+  "reproduction": {
+    "command": "PYTHONPATH=src .venv/bin/python - <<'PY' ... bind_inputs(assessment[\"inputs\"], explicit_values, invocation_id=...) ... PY",
+    "note": "The focused command supplies typed values only to the shared binding validator; it does not execute the RI scanner or claim source-equivalence."
+  }
+}
