@@ -48,6 +48,7 @@ def source_has_branch(path: Path, operation: str, *, token: str = "") -> bool:
 
 def audit(schema_root: Path, *, ri_root: Path | None = None,
           editor_root: Path | None = None,
+          editor_pack: Path | None = None,
           blocker_receipt: Path | None = None) -> dict:
     operations = schema_operations(schema_root)
     semantic = schema_root.parent  # only used to make result paths explicit
@@ -61,7 +62,7 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
         "schema": {"root": str(schema_root), "operations": operations},
         "converter": {"semantic_missing": semantic_missing, "to_integer_lowering_missing": converter_missing},
         "runtime": {"checked": False, "missing": [], "held": sorted(EXPECTED_RUNTIME_HOLDS)},
-        "editor": {"checked": False, "missing": []},
+        "editor": {"checked": False, "missing": [], "pack_checked": False, "pack_missing": []},
         "classification": {"to_integer_canonical_gap": False},
         "errors": [],
     }
@@ -88,6 +89,20 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
         for op, files in checks.items():
             if op in operations and not all(path.is_file() and op in path.read_text() for path in files):
                 result["editor"]["missing"].append(op)
+    if editor_pack:
+        result["editor"]["pack_checked"] = True
+        manifest_path = editor_pack / "manifest.json"
+        schema_path = editor_pack / "schemas/variable-expression.schema.json"
+        try:
+            manifest = json.loads(manifest_path.read_text())
+            packed = schema_operations(editor_pack / "schemas")
+            result["editor"]["pack_source_commit"] = manifest.get("source_commit")
+            result["editor"]["pack_operations"] = packed
+            result["editor"]["pack_missing"] = sorted(set(operations) - set(packed))
+        except (OSError, KeyError, TypeError, ValueError) as error:
+            result["editor"]["pack_missing"] = ["editor-pack-invalid: " + str(error)]
+        if result["editor"]["pack_missing"]:
+            result["errors"].append("editor metadata pack omits active schema operations")
     if blocker_receipt and blocker_receipt.is_file():
         payload = json.loads(blocker_receipt.read_text())
         text = json.dumps(payload, sort_keys=True)
@@ -113,11 +128,12 @@ def main(argv=None):
     parser.add_argument("--schema-root", type=Path, required=True)
     parser.add_argument("--ri-root", type=Path)
     parser.add_argument("--editor-root", type=Path)
+    parser.add_argument("--editor-pack", type=Path)
     parser.add_argument("--blocker-receipt", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
     result = audit(args.schema_root, ri_root=args.ri_root, editor_root=args.editor_root,
-                   blocker_receipt=args.blocker_receipt)
+                   editor_pack=args.editor_pack, blocker_receipt=args.blocker_receipt)
     raw = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.write_text(raw)
