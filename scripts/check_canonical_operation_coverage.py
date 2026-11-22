@@ -56,14 +56,16 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
     tools_root = tools_root or Path(__file__).resolve().parents[1]
     semantic_file = tools_root / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py"
     semantic_missing = [op for op in operations if not source_has_branch(semantic_file, op)]
-    converter_file = tools_root / "src/scap_ng_tools/converter/native041_input_expression.py"
+    # Check the generic production lowerer, not the source-specific adapter
+    # that happens to mention the operation while preserving Input witnesses.
+    converter_file = tools_root / "src/scap_ng_tools/converter/native041_function_lowering.py"
     converter_missing = ["to_integer"] if "to_integer" in operations and not source_has_branch(converter_file, "to_integer") else []
     result = {
         "format": "scap-ng/issue118-operation-coverage/1",
         "schema": {"root": str(schema_root), "operations": operations},
         "converter": {"semantic_missing": semantic_missing, "to_integer_lowering_missing": converter_missing},
         "runtime": {"checked": False, "missing": [], "held": sorted(EXPECTED_RUNTIME_HOLDS)},
-        "editor": {"checked": False, "missing": [], "pack_checked": False, "pack_missing": []},
+        "editor": {"checked": False, "missing": [], "pack_checked": False, "pack_missing": [], "pack_extra": []},
         "classification": {"to_integer_canonical_gap": False},
         "errors": [],
     }
@@ -82,13 +84,13 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
                 result["runtime"]["missing"].append(op)
     if editor_root:
         result["editor"]["checked"] = True
-        checks = {
-            "to_integer": [editor_root / "src/expression-contract.ts",
-                           editor_root / "src/graphical.ts",
-                           editor_root / "src/extension.ts"],
-        }
-        for op, files in checks.items():
-            if op in operations and not all(path.is_file() and op in path.read_text() for path in files):
+        # Every schema-admitted operation must have a concrete template
+        # dispatch in the host authoring path. The graphical planner and
+        # schema-driven operation list are checked separately by editor CI;
+        # this avoids mistaking a displayed menu item for a serializable edit.
+        template_file = editor_root / "src/extension.ts"
+        for op in operations:
+            if not template_file.is_file() or not source_has_branch(template_file, op):
                 result["editor"]["missing"].append(op)
     if editor_pack:
         result["editor"]["pack_checked"] = True
@@ -100,10 +102,14 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
             result["editor"]["pack_source_commit"] = manifest.get("source_commit")
             result["editor"]["pack_operations"] = packed
             result["editor"]["pack_missing"] = sorted(set(operations) - set(packed))
+            result["editor"]["pack_extra"] = sorted(set(packed) - set(operations))
         except (OSError, KeyError, TypeError, ValueError) as error:
             result["editor"]["pack_missing"] = ["editor-pack-invalid: " + str(error)]
+            result["editor"]["pack_extra"] = []
         if result["editor"]["pack_missing"]:
             result["errors"].append("editor metadata pack omits active schema operations")
+        if result["editor"]["pack_extra"]:
+            result["errors"].append("editor metadata pack contains operations absent from the active schema")
     if blocker_receipt and blocker_receipt.is_file():
         payload = json.loads(blocker_receipt.read_text())
         text = json.dumps(payload, sort_keys=True)

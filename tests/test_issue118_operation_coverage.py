@@ -45,9 +45,9 @@ class Issue118OperationCoverage(unittest.TestCase):
             semantic.parent.mkdir(parents=True)
             original = (ROOT / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py").read_text()
             semantic.write_text(original.replace("if op == 'to_integer':", "if op == 'removed_to_integer':", 1))
-            lowering = semantic.parent.parent / "native041_input_expression.py"
+            lowering = semantic.parent.parent / "native041_function_lowering.py"
             lowering.parent.mkdir(parents=True, exist_ok=True)
-            lowering.write_text((ROOT / "src/scap_ng_tools/converter/native041_input_expression.py").read_text())
+            lowering.write_text("if operation == 'to_integer': return {}\n")
             result = audit(root, tools_root=root)
         self.assertIn("to_integer", result["converter"]["semantic_missing"])
         self.assertTrue(result["errors"])
@@ -73,6 +73,25 @@ class Issue118OperationCoverage(unittest.TestCase):
             )
             result = audit(schema, ri_root=root / "ri", tools_root=ROOT)
         self.assertIn("to_integer", result["runtime"]["missing"])
+        self.assertTrue(result["errors"])
+
+    def test_deliberate_lowering_branch_removal_is_caught(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = root / "schema"
+            schema.mkdir()
+            (schema / "variable-expression.schema.json").write_text(json.dumps({
+                "$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}
+            }))
+            tools = root / "tools"
+            lowering = tools / "src/scap_ng_tools/converter/native041_function_lowering.py"
+            lowering.parent.mkdir(parents=True)
+            lowering.write_text("if operation == 'removed_to_integer': return {}\n")
+            semantic = tools / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py"
+            semantic.parent.mkdir(parents=True)
+            semantic.write_text("if op == 'to_integer': return {'integer'}\n")
+            result = audit(schema, tools_root=tools)
+        self.assertIn("to_integer", result["converter"]["to_integer_lowering_missing"])
         self.assertTrue(result["errors"])
 
     def test_canonical_gap_guard_rejects_old_to_integer_disposition(self):
