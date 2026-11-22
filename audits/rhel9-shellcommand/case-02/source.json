@@ -1,0 +1,521 @@
+{
+  "source_rule": "xccdf_mil.disa.stig_rule_SV-257866r958804_rule",
+  "source_rule_sha256": "17198c8ccadd7c3fa58284c4f8d46059f7e4a99a8cd40b4e21edddacee26fb9b",
+  "original_oval_nodes": {
+    "oval:mil.disa.stig.rhel9os:def:257866": {
+      "sha256": "2679010ad2aacf5ec78779d037fda28dda521c0dc31c7784f941c416d09c102b",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+        [
+          [
+            "class",
+            "compliance"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.rhel9os:def:257866"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+                [],
+                "RHEL-09-231125 - RHEL 9 must mount /tmp with the nodev option.",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}affected",
+                [
+                  [
+                    "family",
+                    "unix"
+                  ]
+                ],
+                null,
+                [
+                  [
+                    "{http://oval.mitre.org/XMLSchema/oval-definitions-5}platform",
+                    [],
+                    "Red Hat Enterprise Linux 9",
+                    []
+                  ]
+                ]
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+                [],
+                "The \"nodev\" mount option causes the system to not interpret character or block special devices. Executing character or block special devices from untrusted file systems increases the opportunity for nonprivileged users to attain unauthorized administrative access.\n\nThe only legitimate location for device files is the \"/dev\" directory located on the root partition, with the exception of chroot jails if implemented.",
+                []
+              ]
+            ]
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}extend_definition",
+                [
+                  [
+                    "definition_ref",
+                    "oval:mil.disa.stig.defs:def:230511"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.defs:def:230511": {
+      "sha256": "de81d93d855e83004bcb76a4de1559cce23e39951d77fc896e7eafc01530484c",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+        [
+          [
+            "class",
+            "compliance"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.defs:def:230511"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+                [],
+                "The operating system must mount /tmp with the nodev option.",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+                [],
+                null,
+                []
+              ]
+            ]
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.linux:tst:23051100"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.ind:tst:23051101"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "test_ref",
+                    "oval:mil.disa.stig.ind:tst:23051102"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:tst:23051100": {
+      "sha256": "6b64953ceeb03c6b44f5e32a249f1f35c72d3aabf32ba63951533c07834edc51",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/tmp is mounted with the nodev option"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.linux:tst:23051100"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.linux:obj:23051100"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}state",
+            [
+              [
+                "state_ref",
+                "oval:mil.disa.stig.linux:ste:20000001"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:ste:20000001": {
+      "sha256": "c9733c4d97e1d74cda64ab7e65dca37bae6f8795818c93781f2e4fb677775f29",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_state",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.linux:ste:20000001"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}mount_options",
+            [
+              [
+                "entity_check",
+                "at least one"
+              ]
+            ],
+            "nodev",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:obj:23051100": {
+      "sha256": "8f206a1532868dd5bf728ff709f235453631194b58595510e80c62038c59c9f8",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}partition_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.linux:obj:23051100"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}mount_point",
+            [],
+            "/tmp",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:tst:23051101": {
+      "sha256": "ccc4bb80a9e2f1d075779f1a09ecc434139231c83a99ceebf4d76e65b36ae108",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/tmp is configured with the nodev option in /etc/fstab"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.ind:tst:23051101"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.ind:obj:23051101"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state",
+            [
+              [
+                "state_ref",
+                "oval:mil.disa.stig.ind:ste:23051100"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:ste:23051100": {
+      "sha256": "94a94e8110abf006404786abef8394211ae613513f39ecfaf97576c3c72cebd6",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_state",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:ste:23051100"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value",
+            [
+              [
+                "entity_check",
+                "at least one"
+              ]
+            ],
+            "nodev",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:obj:23051101": {
+      "sha256": "4104221b740605ceb7edf369f3d0959e7b97f9eedd3a0ef4e12a7c393586a5cb",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}variable_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:obj:23051101"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}var_ref",
+            [],
+            "oval:mil.disa.stig.linux:var:23051100",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.linux:var:23051100": {
+      "sha256": "5a6069f7d68b5d1f595432f43f48e4d8dda03bf03f90d620164276baaff397e7",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+        [
+          [
+            "comment",
+            "Mount options for /tmp in /etc/fstab"
+          ],
+          [
+            "datatype",
+            "string"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.linux:var:23051100"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}split",
+            [
+              [
+                "delimiter",
+                ","
+              ]
+            ],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+                [
+                  [
+                    "item_field",
+                    "subexpression"
+                  ],
+                  [
+                    "object_ref",
+                    "oval:mil.disa.stig.ind:obj:23051102"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:obj:23051102": {
+      "sha256": "6faaad4bfd3a11da3bfd8db67fa372d4bd0bc86d41b80ce97c3136e8f960129e",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+        [
+          [
+            "id",
+            "oval:mil.disa.stig.ind:obj:23051102"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+            [],
+            "/etc/fstab",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+            [
+              [
+                "datatype",
+                "int"
+              ]
+            ],
+            "1",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:mil.disa.stig.ind:tst:23051102": {
+      "sha256": "ce273107a5e8e91b17732ed395404da547e7f1e59df13f1735d9fab204d586b1",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "comment",
+            "/tmp is configured in /etc/fstab"
+          ],
+          [
+            "id",
+            "oval:mil.disa.stig.ind:tst:23051102"
+          ],
+          [
+            "version",
+            "1"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object",
+            [
+              [
+                "object_ref",
+                "oval:mil.disa.stig.ind:obj:23051102"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    }
+  },
+  "source_platforms": [],
+  "disa_manual_member": "U_RHEL_9_V2R9_Manual_STIG/U_RHEL_9_STIG_V2R9_Manual-xccdf.xml",
+  "disa_manual_rule": "SV-257866r958804_rule",
+  "disa_manual_rule_sha256": "b7aed4e1c9a8a0cec218e636a053185b6e605612d6339e9e0e4aacf2d1e69675",
+  "disa_check": "Verify \"/tmp\" is mounted with the \"nodev\" option:\n\n$ mount | grep /tmp\n\n/dev/mapper/rhel-tmp on /tmp type xfs (rw,nodev,nosuid,noexec,seclabel)\n\nIf the \"/tmp\" file system is mounted without the \"nodev\" option, this is a finding.",
+  "niwc_check": "Verify \"/tmp\" is mounted with the \"nodev\" option:\n\n$ mount | grep /tmp\n\n/dev/mapper/rhel-tmp on /tmp type xfs (rw,nodev,nosuid,noexec,seclabel)\n\nIf the \"/tmp\" file system is mounted without the \"nodev\" option, this is a finding.",
+  "normalized_checks_identical": true,
+  "check_comparison": "Whitespace normalization only; revision and full text retained. No fuzzy equivalence."
+}

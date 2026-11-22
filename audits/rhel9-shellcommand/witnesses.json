@@ -1,0 +1,2034 @@
+{
+  "format": "rhel9-shellcommand-component-witnesses/1",
+  "host_os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+  "findmnt_version": {
+    "argv": [
+      "/usr/bin/findmnt",
+      "--version"
+    ],
+    "exit": 0,
+    "stdout": "findmnt from util-linux 2.41.5\n",
+    "stderr": "",
+    "privilege": "current_uid"
+  },
+  "utility_availability": {
+    "findmnt": "/usr/bin/findmnt",
+    "sshd": "/usr/sbin/sshd",
+    "oscap": null,
+    "update-crypto-policies": null,
+    "rpm": null,
+    "auditctl": null
+  },
+  "concrete_fixture_cases": 42,
+  "abstract_cases": 28,
+  "scanner_runtime_equivalence": false,
+  "cases": [
+    {
+      "rank": 1,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257870r958804_rule",
+      "kind": "mount",
+      "cases": [
+        {
+          "case": "positive",
+          "fixture_text": "/dev/test /var/log xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,nodev 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "negative",
+          "fixture_text": "/dev/test /var/log xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw"
+          ],
+          "source_component_model": "false",
+          "proposed_component_model": "false",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "missing",
+          "fixture_text": null,
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "error",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: No such file or directory\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "malformed",
+          "fixture_text": "/dev/test /var/log xfs rw,nodev\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "true",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "duplicate",
+          "fixture_text": "/dev/test /var/log xfs rw,nodev 0 0\n/dev/test /var/log xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev",
+            "rw,nodev"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,nodev 0 0\n/dev/test /var/log xfs rw,nodev 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "conflicting",
+          "fixture_text": "/dev/test /var/log xfs rw,nodev 0 0\n/dev/other /var/log xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev",
+            "rw"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,nodev 0 0\n/dev/other /var/log xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "permission-denied",
+          "fixture_text": "/dev/test /var/log xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "error",
+          "proposed_component_model": "error",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: Permission denied\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 2,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257866r958804_rule",
+      "kind": "mount",
+      "cases": [
+        {
+          "case": "positive",
+          "fixture_text": "/dev/test /tmp xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/tmp",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /tmp xfs rw,nodev 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "negative",
+          "fixture_text": "/dev/test /tmp xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw"
+          ],
+          "source_component_model": "false",
+          "proposed_component_model": "false",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/tmp",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /tmp xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "missing",
+          "fixture_text": null,
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "error",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/tmp",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: No such file or directory\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "malformed",
+          "fixture_text": "/dev/test /tmp xfs rw,nodev\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "true",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/tmp",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "duplicate",
+          "fixture_text": "/dev/test /tmp xfs rw,nodev 0 0\n/dev/test /tmp xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev",
+            "rw,nodev"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/tmp",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /tmp xfs rw,nodev 0 0\n/dev/test /tmp xfs rw,nodev 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "conflicting",
+          "fixture_text": "/dev/test /tmp xfs rw,nodev 0 0\n/dev/other /tmp xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev",
+            "rw"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/tmp",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /tmp xfs rw,nodev 0 0\n/dev/other /tmp xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "permission-denied",
+          "fixture_text": "/dev/test /tmp xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/tmp\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "error",
+          "proposed_component_model": "error",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/tmp",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: Permission denied\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 3,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257871r958804_rule",
+      "kind": "mount",
+      "cases": [
+        {
+          "case": "positive",
+          "fixture_text": "/dev/test /var/log xfs rw,noexec 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,noexec"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,noexec\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,noexec 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "negative",
+          "fixture_text": "/dev/test /var/log xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw"
+          ],
+          "source_component_model": "false",
+          "proposed_component_model": "false",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "missing",
+          "fixture_text": null,
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "error",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: No such file or directory\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "malformed",
+          "fixture_text": "/dev/test /var/log xfs rw,noexec\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "true",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,noexec\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "duplicate",
+          "fixture_text": "/dev/test /var/log xfs rw,noexec 0 0\n/dev/test /var/log xfs rw,noexec 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,noexec",
+            "rw,noexec"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,noexec\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,noexec 0 0\n/dev/test /var/log xfs rw,noexec 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "conflicting",
+          "fixture_text": "/dev/test /var/log xfs rw,noexec 0 0\n/dev/other /var/log xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,noexec",
+            "rw"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,noexec\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,noexec 0 0\n/dev/other /var/log xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "permission-denied",
+          "fixture_text": "/dev/test /var/log xfs rw,noexec 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "error",
+          "proposed_component_model": "error",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: Permission denied\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 4,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257872r958804_rule",
+      "kind": "mount",
+      "cases": [
+        {
+          "case": "positive",
+          "fixture_text": "/dev/test /var/log xfs rw,nosuid 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nosuid"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nosuid\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,nosuid 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "negative",
+          "fixture_text": "/dev/test /var/log xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw"
+          ],
+          "source_component_model": "false",
+          "proposed_component_model": "false",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "missing",
+          "fixture_text": null,
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "error",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: No such file or directory\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "malformed",
+          "fixture_text": "/dev/test /var/log xfs rw,nosuid\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "true",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nosuid\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "duplicate",
+          "fixture_text": "/dev/test /var/log xfs rw,nosuid 0 0\n/dev/test /var/log xfs rw,nosuid 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nosuid",
+            "rw,nosuid"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nosuid\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,nosuid 0 0\n/dev/test /var/log xfs rw,nosuid 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "conflicting",
+          "fixture_text": "/dev/test /var/log xfs rw,nosuid 0 0\n/dev/other /var/log xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nosuid",
+            "rw"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nosuid\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log xfs rw,nosuid 0 0\n/dev/other /var/log xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "permission-denied",
+          "fixture_text": "/dev/test /var/log xfs rw,nosuid 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "error",
+          "proposed_component_model": "error",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: Permission denied\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 5,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257873r958804_rule",
+      "kind": "mount",
+      "cases": [
+        {
+          "case": "positive",
+          "fixture_text": "/dev/test /var/log/audit xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log/audit",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log/audit xfs rw,nodev 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "negative",
+          "fixture_text": "/dev/test /var/log/audit xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw"
+          ],
+          "source_component_model": "false",
+          "proposed_component_model": "false",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log/audit",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log/audit xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "missing",
+          "fixture_text": null,
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "error",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log/audit",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: No such file or directory\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "malformed",
+          "fixture_text": "/dev/test /var/log/audit xfs rw,nodev\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "true",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log/audit",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "duplicate",
+          "fixture_text": "/dev/test /var/log/audit xfs rw,nodev 0 0\n/dev/test /var/log/audit xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev",
+            "rw,nodev"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log/audit",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log/audit xfs rw,nodev 0 0\n/dev/test /var/log/audit xfs rw,nodev 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "conflicting",
+          "fixture_text": "/dev/test /var/log/audit xfs rw,nodev 0 0\n/dev/other /var/log/audit xfs rw 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [
+            "rw,nodev",
+            "rw"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log/audit",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 0,
+            "stdout": "rw,nodev\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "/dev/test /var/log/audit xfs rw,nodev 0 0\n/dev/other /var/log/audit xfs rw 0 0\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "permission-denied",
+          "fixture_text": "/dev/test /var/log/audit xfs rw,nodev 0 0\n",
+          "source_regex_verbatim": "^\\s*[^#\\s]+\\s+/var/log/audit\\s+\\S+\\s+(\\S+)\\s+\\S+\\s+\\S+\\s*$",
+          "source_capture_values": [],
+          "source_component_model": "error",
+          "proposed_component_model": "error",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/usr/bin/findmnt",
+              "--fstab",
+              "--tab-file",
+              "<temporary-fixture-directory>/input",
+              "--first-only",
+              "--mountpoint",
+              "/var/log/audit",
+              "--noheadings",
+              "--raw",
+              "--output",
+              "OPTIONS"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "findmnt: can't read <temporary-fixture-directory>/input: Permission denied\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 6,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-257948r1045004_rule",
+      "kind": "dns",
+      "cases": [
+        {
+          "case": "positive",
+          "fixture_text": "nameserver 192.0.2.1\nnameserver 192.0.2.2\n",
+          "source_regex_verbatim": "^nameserver\\s+(.*)$",
+          "source_capture_values": [
+            "192.0.2.1",
+            "192.0.2.2"
+          ],
+          "source_component_model": "true",
+          "proposed_component_model": "true",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/bin/bash",
+              "-c",
+              "set -o pipefail; LC_ALL=C /usr/bin/grep '^nameserver' '<temporary-fixture-directory>/input' | LC_ALL=C /usr/bin/sort -u | /usr/bin/wc -l"
+            ],
+            "exit": 0,
+            "stdout": "2\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^nameserver\\s+(.*)$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "nameserver 192.0.2.1\nnameserver 192.0.2.2\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "negative",
+          "fixture_text": "nameserver 192.0.2.1\n",
+          "source_regex_verbatim": "^nameserver\\s+(.*)$",
+          "source_capture_values": [
+            "192.0.2.1"
+          ],
+          "source_component_model": "false",
+          "proposed_component_model": "false",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/bin/bash",
+              "-c",
+              "set -o pipefail; LC_ALL=C /usr/bin/grep '^nameserver' '<temporary-fixture-directory>/input' | LC_ALL=C /usr/bin/sort -u | /usr/bin/wc -l"
+            ],
+            "exit": 0,
+            "stdout": "1\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^nameserver\\s+(.*)$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "nameserver 192.0.2.1\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "missing",
+          "fixture_text": null,
+          "source_regex_verbatim": "^nameserver\\s+(.*)$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "error",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/bin/bash",
+              "-c",
+              "set -o pipefail; LC_ALL=C /usr/bin/grep '^nameserver' '<temporary-fixture-directory>/input' | LC_ALL=C /usr/bin/sort -u | /usr/bin/wc -l"
+            ],
+            "exit": 2,
+            "stdout": "0\n",
+            "stderr": "/usr/bin/grep: <temporary-fixture-directory>/input: No such file or directory\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "malformed",
+          "fixture_text": "nameserverBROKEN one\nnameserverBROKEN two\n",
+          "source_regex_verbatim": "^nameserver\\s+(.*)$",
+          "source_capture_values": [],
+          "source_component_model": "false",
+          "proposed_component_model": "true",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/bin/bash",
+              "-c",
+              "set -o pipefail; LC_ALL=C /usr/bin/grep '^nameserver' '<temporary-fixture-directory>/input' | LC_ALL=C /usr/bin/sort -u | /usr/bin/wc -l"
+            ],
+            "exit": 0,
+            "stdout": "2\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^nameserver\\s+(.*)$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 1,
+            "stdout": "",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "duplicate",
+          "fixture_text": "nameserver 192.0.2.1\nnameserver 192.0.2.1\n",
+          "source_regex_verbatim": "^nameserver\\s+(.*)$",
+          "source_capture_values": [
+            "192.0.2.1",
+            "192.0.2.1"
+          ],
+          "source_component_model": "false",
+          "proposed_component_model": "false",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/bin/bash",
+              "-c",
+              "set -o pipefail; LC_ALL=C /usr/bin/grep '^nameserver' '<temporary-fixture-directory>/input' | LC_ALL=C /usr/bin/sort -u | /usr/bin/wc -l"
+            ],
+            "exit": 0,
+            "stdout": "1\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^nameserver\\s+(.*)$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "nameserver 192.0.2.1\nnameserver 192.0.2.1\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "conflicting",
+          "fixture_text": "nameserver 192.0.2.1\nnameserver\t192.0.2.1\n",
+          "source_regex_verbatim": "^nameserver\\s+(.*)$",
+          "source_capture_values": [
+            "192.0.2.1",
+            "192.0.2.1"
+          ],
+          "source_component_model": "false",
+          "proposed_component_model": "true",
+          "same": false,
+          "execution": {
+            "argv": [
+              "/bin/bash",
+              "-c",
+              "set -o pipefail; LC_ALL=C /usr/bin/grep '^nameserver' '<temporary-fixture-directory>/input' | LC_ALL=C /usr/bin/sort -u | /usr/bin/wc -l"
+            ],
+            "exit": 0,
+            "stdout": "2\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": {
+            "argv": [
+              "/usr/bin/grep",
+              "-P",
+              "^nameserver\\s+(.*)$",
+              "<temporary-fixture-directory>/input"
+            ],
+            "exit": 0,
+            "stdout": "nameserver 192.0.2.1\nnameserver\t192.0.2.1\n",
+            "stderr": "",
+            "privilege": "current_uid"
+          },
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        },
+        {
+          "case": "permission-denied",
+          "fixture_text": "nameserver 192.0.2.1\nnameserver 192.0.2.2\n",
+          "source_regex_verbatim": "^nameserver\\s+(.*)$",
+          "source_capture_values": [],
+          "source_component_model": "error",
+          "proposed_component_model": "error",
+          "same": true,
+          "execution": {
+            "argv": [
+              "/bin/bash",
+              "-c",
+              "set -o pipefail; LC_ALL=C /usr/bin/grep '^nameserver' '<temporary-fixture-directory>/input' | LC_ALL=C /usr/bin/sort -u | /usr/bin/wc -l"
+            ],
+            "exit": 2,
+            "stdout": "0\n",
+            "stderr": "/usr/bin/grep: <temporary-fixture-directory>/input: Permission denied\n",
+            "privilege": "current_uid"
+          },
+          "independent_PCRE": null,
+          "source_model_scope": "Pinned scalar regex/instance1/split or unique-count component; other source conditions assumed true, not a full OVAL evaluator.",
+          "execution_scope": "Real Debian utility on synthetic bounded file. Not RHEL9 or SCAP collector/native scanner differential."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 7,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258241r1184293_rule",
+      "kind": "fips",
+      "cases": [
+        {
+          "case": "positive",
+          "source_expected": "true",
+          "proposed_expected": "true",
+          "same": true,
+          "omitted_obligation": "minimum RSA/hash/negative algorithm constraints",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "negative",
+          "source_expected": "false",
+          "proposed_expected": "false",
+          "same": true,
+          "omitted_obligation": "minimum RSA/hash/negative algorithm constraints",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "missing",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "minimum RSA/hash/negative algorithm constraints",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "malformed",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "minimum RSA/hash/negative algorithm constraints",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "duplicate",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "minimum RSA/hash/negative algorithm constraints",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "conflicting",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "minimum RSA/hash/negative algorithm constraints",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "permission-denied",
+          "source_expected": "error",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "minimum RSA/hash/negative algorithm constraints",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 8,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258236r1101920_rule",
+      "kind": "crypto",
+      "cases": [
+        {
+          "case": "positive",
+          "source_expected": "true",
+          "proposed_expected": "true",
+          "same": true,
+          "omitted_obligation": "exact FIPS backend targets and NSS regular-file type",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "negative",
+          "source_expected": "false",
+          "proposed_expected": "false",
+          "same": true,
+          "omitted_obligation": "exact FIPS backend targets and NSS regular-file type",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "missing",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "exact FIPS backend targets and NSS regular-file type",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "malformed",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "exact FIPS backend targets and NSS regular-file type",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "duplicate",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "exact FIPS backend targets and NSS regular-file type",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "conflicting",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "exact FIPS backend targets and NSS regular-file type",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "permission-denied",
+          "source_expected": "error",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "exact FIPS backend targets and NSS regular-file type",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 9,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258134r1155620_rule",
+      "kind": "aide",
+      "cases": [
+        {
+          "case": "positive",
+          "source_expected": "true",
+          "proposed_expected": "true",
+          "same": true,
+          "omitted_obligation": "configured working database existence via discovered aide.conf",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "negative",
+          "source_expected": "false",
+          "proposed_expected": "false",
+          "same": true,
+          "omitted_obligation": "configured working database existence via discovered aide.conf",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "missing",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "configured working database existence via discovered aide.conf",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "malformed",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "configured working database existence via discovered aide.conf",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "duplicate",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "configured working database existence via discovered aide.conf",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "conflicting",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "configured working database existence via discovered aide.conf",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "permission-denied",
+          "source_expected": "error",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "configured working database existence via discovered aide.conf",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    },
+    {
+      "rank": 10,
+      "source_rule": "xccdf_mil.disa.stig_rule_SV-258179r1155601_rule",
+      "kind": "audit",
+      "cases": [
+        {
+          "case": "positive",
+          "source_expected": "true",
+          "proposed_expected": "true",
+          "same": true,
+          "omitted_obligation": "all architecture/UID/syscall persistent-rule conditions",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "negative",
+          "source_expected": "false",
+          "proposed_expected": "false",
+          "same": true,
+          "omitted_obligation": "all architecture/UID/syscall persistent-rule conditions",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "missing",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "all architecture/UID/syscall persistent-rule conditions",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "malformed",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "all architecture/UID/syscall persistent-rule conditions",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "duplicate",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "all architecture/UID/syscall persistent-rule conditions",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "conflicting",
+          "source_expected": "false",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "all architecture/UID/syscall persistent-rule conditions",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        },
+        {
+          "case": "permission-denied",
+          "source_expected": "error",
+          "proposed_expected": "true",
+          "same": false,
+          "omitted_obligation": "all architecture/UID/syscall persistent-rule conditions",
+          "utility_status_assumption": "0, relevant positive output; negative case supplies negative/no matching output",
+          "witness_type": "Abstract independent conjunction/omitted-obligation countermodel, NOT executed utility/evaluator evidence",
+          "realization_required": "Instantiate exact source fixtures and utility behavior on pinned RHEL9 before any runtime claim."
+        }
+      ],
+      "not_collected_unknown": "NOT simulated by empty stdout. Collector completeness/unknown propagation remains unproved.",
+      "full_original_OVAL_native_scanner_equivalence": false
+    }
+  ]
+}

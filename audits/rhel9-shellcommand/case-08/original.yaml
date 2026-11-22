@@ -1,0 +1,158 @@
+assessment:
+  id: rhel-9-cryptographic-policy-must-not-be-overridden-4af53d2d-assessment
+  version: 1
+  assessment_title: RHEL 9 cryptographic policy must not be overridden.
+  mode: automated
+  class: compliance
+  purpose: assessment
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  tests:
+    bind-1e3d3439-test:
+      test_title: bind
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/bind.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/bind.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    gnutls-4772fc31-test:
+      test_title: gnutls
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/gnutls.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/gnutls.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    java-3b6f0c08-test:
+      test_title: java
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/java.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/java.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    javasystem-e42fbd63-test:
+      test_title: javasystem
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/javasystem.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/javasystem.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    krb5-3f16fa9e-test:
+      test_title: krb5
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/krb5.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/krb5.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    libreswan-df44ea09-test:
+      test_title: libreswan
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/libreswan.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/libreswan.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    libssh-2921a4bf-test:
+      test_title: libssh
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/libssh.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/libssh.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    nss-5ab70e92-test:
+      test_title: nss
+      capability: unix.file
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/nss.config}
+        filesystem: all
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          type: {equals: regular, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    openssh-0771a549-test:
+      test_title: openssh
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/openssh.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/openssh.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    opensshserver-82e9091b-test:
+      test_title: opensshserver
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/opensshserver.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/opensshserver.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    opensslcnf-687c4e42-test:
+      test_title: opensslcnf
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/opensslcnf.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/opensslcnf.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+    openssl-e3f28a29-test:
+      test_title: openssl
+      capability: unix.symlink
+      object:
+        full_path: {equals: /etc/crypto-policies/back-ends/openssl.config}
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          canonical_path: {equals: /usr/share/crypto-policies/FIPS/openssl.txt, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+  evaluate:
+    and:
+    - test: bind-1e3d3439-test
+    - test: gnutls-4772fc31-test
+    - test: java-3b6f0c08-test
+    - test: javasystem-e42fbd63-test
+    - test: krb5-3f16fa9e-test
+    - test: libreswan-df44ea09-test
+    - test: libssh-2921a4bf-test
+    - test: nss-5ab70e92-test
+    - test: openssh-0771a549-test
+    - test: opensshserver-82e9091b-test
+    - test: opensslcnf-687c4e42-test
+    - test: openssl-e3f28a29-test

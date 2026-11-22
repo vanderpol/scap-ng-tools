@@ -1,0 +1,107 @@
+{
+  "format": "rhel9-command-crosswalk-validation/1",
+  "parent_analysis_commit": "14fd21039c026a4ef744c17cccc1f305040f42bb",
+  "new_code_sha256": {
+    "scripts/cross_reference_rhel9_commands.py": "69d9554a277f15eef7cd4a75a78830897c2c3e5f2b0d655d804a58957f90ec3c",
+    "scripts/review_rhel9_audit_patterns.py": "95246fa3f4bbcd6482e4a60cc3debe694b635fb880a9878fb386de429fa1eb25",
+    "tests/test_rhel9_command_crosswalk.py": "02077dcfffd57f32b6d677c0ee7866dd600010b7207d550a487aa442403a8142"
+  },
+  "new_evidence_sha256": {
+    "README.md": "edd3ef4fba14a58fb6b35e5f661ac4199ad86665ac3e7d55b2cf9e3e8571c246",
+    "auditctl.csv": "069e4cc10e680ab6e98bef4d5cfdbb9fa039065fda943eb1ed1cd418824c8c91",
+    "crosswalk.csv": "860e72c8555a45d5d41f7f4250f5f256bd127e6fe86ce543c818a9f4e9e7cd92",
+    "crosswalk.json": "2a415c458a5f8392728f646c6522f655bbf50a9c1d682c571d1922a410f5dcaf",
+    "pattern-review/case-runtime-shell/proposed-UNAPPROVED.yaml": "4a7a198633b30d170b8ebac0439669b3db67f0ef2cf77937a0fc0495a72b37bc",
+    "pattern-review/case-same-file-native/proposed-UNAPPROVED.yaml": "028d0c8dab6b4d752c62d8e6f0da82f136c0af4925363fadd38a2b35dace6685",
+    "pattern-review/pattern-review.json": "8b80769da3fba484d00fbb73f98f5e7e8a397e9927a46ae29d22318a61ae4ff3",
+    "structural-validation.json": "b5af73c554ab5ad8e4b04ffa308f039f0cbd03430588c29d6996ac2e85ea4f55"
+  },
+  "previous_analysis_code_and_evidence_hashes_still_match": true,
+  "protected_paths_unchanged": [
+    "src",
+    ".github",
+    "pyproject.toml",
+    "audits/rhel9-shellcommand",
+    "scripts/audit_rhel9_complexity.py",
+    "scripts/review_rhel9_shellcommands.py",
+    "scripts/witness_rhel9_shellcommands.py",
+    "scripts/validate_rhel9_audit_sketches.py",
+    "tests/test_rhel9_audit.py"
+  ],
+  "all445_official_and_NIWC_raw_check_text_digests_identical": true,
+  "summary": {
+    "all_official_checks_cross_referenced": 445,
+    "native_automated": 415,
+    "manual_only_excluded": 27,
+    "automated_without_native": 3,
+    "prompt_records": 490,
+    "recognized_utility_prompts": 486,
+    "unclassified_prompts": 3,
+    "all_normalized_manual_checks_identical": true,
+    "auditctl_mentions": 54,
+    "auditctl_invocation_checks": 50,
+    "auditctl_persistent_file_targets": 49,
+    "auditctl_already_shellcommand": 1,
+    "auditctl_native_test_count": 134,
+    "auditctl_persistent_target_test_count": 133,
+    "native_assessments_with_shellcommand": 21,
+    "native_shellcommand_collection_sites": 27,
+    "tag_counts": {
+      "ALREADY_ONE_NATIVE_TEST": 286,
+      "AUDITCTL_ALREADY_SHELLCOMMAND": 1,
+      "AUDITCTL_LOADED_RULES_VS_PERSISTENT_FILE": 49,
+      "AUDITD_CONF_FIXED_FILE": 20,
+      "AUTOMATED_NO_NATIVE_CONTENT": 3,
+      "HAS_EXISTING_SHELLCOMMAND": 21,
+      "MANUAL_COMMAND_SHAPE_CONFLICTS_WITH_PRIOR_REPLACEMENT_LIMITS": 135,
+      "MANUAL_ONLY_EXCLUDED": 27,
+      "SSHD_EFFECTIVE_QUERY_VS_CONFIG_TEXT": 19
+    }
+  },
+  "local_portable_tests": {
+    "tests": 51,
+    "skips": 0,
+    "status": "PASS",
+    "schema_commit": "f7e5e845d21e3a38ec5dc5ec04228b763acd9c5b",
+    "log_sha256": "0c6edd0f4fc14e70e29c4150be9fa58d1cc55a01b7eca55c704d388452fa2d54"
+  },
+  "final_focused_tests": {
+    "tests": 7,
+    "status": "PASS",
+    "log_sha256": "65da94ff30c818480701727b6181b4429016684f2659aba005888407f4983947"
+  },
+  "regex_component_screen": {
+    "source_pattern_tests_checked": 133,
+    "rules_checked": 49,
+    "all_printed_example_patterns_match": true,
+    "full_scanner_equivalence_proofs": 0
+  },
+  "controlled_complete_snapshot_cases": 6,
+  "observed_OS_error_cases": [
+    {
+      "case": "missing-file",
+      "observed_os_errno": 2,
+      "privilege": "current uid",
+      "native_collector_and_scanner_executed": false,
+      "qualification": "Real OS input failure only. Native status/require propagation remains a required differential proof."
+    },
+    {
+      "case": "permission-denied",
+      "observed_os_errno": 13,
+      "privilege": "current uid",
+      "native_collector_and_scanner_executed": false,
+      "qualification": "Real OS input failure only. Native status/require propagation remains a required differential proof."
+    }
+  ],
+  "component_environment": {
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+    "python": "3.12.14",
+    "grep_version": "grep (GNU grep) 3.11"
+  },
+  "structurally_valid_unproved_sketches": 2,
+  "native_scanner_equivalence_proofs": 0,
+  "check_text_commands_executed": 0,
+  "production_assessment_schema_compiler_workflow_changes": 0,
+  "corpus_regenerations": 0,
+  "qualification": "Regex and OS-input components only. Native missing/error/unknown/completeness and actual RHEL9 execution remain unproved. Exact pushed-head hosted CI is linked in the PR."
+}

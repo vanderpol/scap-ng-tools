@@ -1,0 +1,93 @@
+assessment:
+  id: rhel-9-must-have-the-aide-package-installed-9ec0db4f-assessment
+  version: 1
+  assessment_title: RHEL 9 must have the AIDE package installed.
+  mode: automated
+  class: compliance
+  purpose: assessment
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  variables:
+    retrieve-location-of-the-aide-conf-file-32654635-variable:
+      kind: local
+      datatype: string
+      expression:
+        values:
+          object:
+            capability: unix.file
+            directory: {equals: /}
+            name: {equals: aide.conf}
+            filesystem: local
+            traversal:
+              max_depth: null
+              recurse: directories
+          field: full_path
+    retrieve-location-of-the-working-aide-database-file-ac8f6110-variable:
+      kind: local
+      datatype: string
+      expression:
+        concat:
+        - values:
+            object:
+              capability: independent.textfilecontent54
+              full_path:
+                equals:
+                  variable: retrieve-location-of-the-aide-conf-file-32654635-variable
+                datatype: string
+                value_match: every
+              pattern: {matches_regex: '^\@\@define\s+DBDIR\s+(\S+)'}
+              instance: {equals: 1, datatype: integer}
+              ignore_case: false
+              multiline: true
+              singleline: false
+              item_creation: all_object_elements_fullfilled
+              filesystem: all
+            field: subexpression
+        - literal: {datatype: string, value: /}
+        - values:
+            object:
+              capability: independent.textfilecontent54
+              full_path:
+                equals:
+                  variable: retrieve-location-of-the-aide-conf-file-32654635-variable
+                datatype: string
+                value_match: every
+              pattern: {matches_regex: '^database=file:\@\@\{DBDIR\}/(\S+)'}
+              instance: {equals: 1, datatype: integer}
+              ignore_case: false
+              multiline: true
+              singleline: false
+              item_creation: all_object_elements_fullfilled
+              filesystem: all
+            field: subexpression
+  tests:
+    confirm-the-aide-file-integrity-tool-package-is-installed-a0517a61-test:
+      test_title: Confirm the aide file integrity tool package is installed.
+      capability: linux.rpminfo
+      object:
+        package_name: {equals: aide}
+        include_file_paths: false
+      require:
+        items_found: one_or_more
+      reported_elements: all
+    verify-the-working-db-file-configured-in-the-aide-conf-file-exists-5667af56-test:
+      test_title: Verify the working DB file configured in the 'aide.conf file' exists.
+      capability: unix.file
+      object:
+        full_path:
+          equals:
+            variable: retrieve-location-of-the-working-aide-database-file-ac8f6110-variable
+          datatype: string
+          value_match: every
+        filesystem: all
+      require:
+        items_found: one_or_more
+        items_satisfying: every
+        fields:
+          full_path: {matches_regex: .*, values_found: one_or_more, values_matching: every}
+      reported_elements: all
+  evaluate:
+    and:
+    - test: confirm-the-aide-file-integrity-tool-package-is-installed-a0517a61-test
+    - test: verify-the-working-db-file-configured-in-the-aide-conf-file-exists-5667af56-test

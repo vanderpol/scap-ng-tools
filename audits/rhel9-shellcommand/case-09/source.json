@@ -1,0 +1,572 @@
+{
+  "source_rule": "xccdf_mil.disa.stig_rule_SV-258134r1155620_rule",
+  "source_rule_sha256": "99ad205eac15f46a97671527d1d6bb673b76be179f851b23f041b349e1a26f68",
+  "original_oval_nodes": {
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:def:258134": {
+      "sha256": "36e50d3c7a1e7811d75b297943158626ae8371222fdbb24e2b322b459035b45c",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition",
+        [
+          [
+            "class",
+            "compliance"
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:def:258134"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}title",
+                [],
+                "RHEL 9 must have the AIDE package installed.",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}description",
+                [],
+                "Without verification of the security functions, security functions may not operate correctly, and the failure may go unnoticed. Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters. Selection lines in the aide.conf file determine which files and directories AIDE will monitor for changes. They follow this format: <path> <rules> The <path> specifies a file, directory or wildcard pattern to monitor. The <rules> define which attributes (hashes, permissions, timestamps, etc.) to check. Satisfies: SRG-OS-000363-GPOS-00150,\n\t\t\t\tSRG-OS-000445-GPOS-00199",
+                []
+              ]
+            ]
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "comment",
+                    "Verify the AIDE file integrity tool package is installed."
+                  ],
+                  [
+                    "test_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25813401"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion",
+                [
+                  [
+                    "comment",
+                    "Confirm the working DB file exists."
+                  ],
+                  [
+                    "test_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25813403"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25813401": {
+      "sha256": "b57879b9899587663fad5ba5b64ad5cf04aae6268f71f6dfffe43779723d9158",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}rpminfo_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "check_existence",
+            "at_least_one_exists"
+          ],
+          [
+            "comment",
+            "Confirm the aide file integrity tool package is installed."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25813401"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}object",
+            [
+              [
+                "object_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813401"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813401": {
+      "sha256": "3a803676eb4e74206fb3ac20b9d095a9bf6becc2b35dc18d3d7bc08d29333a11",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}rpminfo_object",
+        [
+          [
+            "comment",
+            "Confirm the aide file integrity tool package is installed."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813401"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}name",
+            [],
+            "aide",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25813403": {
+      "sha256": "439615d83acde231f7b82e8f8c971ae37439637556a967fe71b15c1a5ede079a",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}file_test",
+        [
+          [
+            "check",
+            "all"
+          ],
+          [
+            "check_existence",
+            "at_least_one_exists"
+          ],
+          [
+            "comment",
+            "Verify the working DB file configured in the 'aide.conf file' exists."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:tst:25813403"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}object",
+            [
+              [
+                "object_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813403"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}state",
+            [
+              [
+                "state_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25813403"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25813403": {
+      "sha256": "465eef0c41e2843186f1f291d62fe0d2be61ecf36c5185c4186cbed53ed1ca9f",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}file_state",
+        [
+          [
+            "comment",
+            "Confirm existence of DB file."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:ste:25813403"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}filepath",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            ".*",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813403": {
+      "sha256": "e6653788b108dff1b5cbda8c0c0b53d6fd88b6666a0027ed1435ff6eb5b45003",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}file_object",
+        [
+          [
+            "comment",
+            "Retrieve details of the working DB file."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813403"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}filepath",
+            [
+              [
+                "var_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25813402"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25813402": {
+      "sha256": "ea646668b9a370faafe4b60d9d8930c551316db1004f8695a62480334e6b7839",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+        [
+          [
+            "comment",
+            "Retrieve location of the working aide database file."
+          ],
+          [
+            "datatype",
+            "string"
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25813402"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat",
+            [],
+            null,
+            [
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+                [
+                  [
+                    "item_field",
+                    "subexpression"
+                  ],
+                  [
+                    "object_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813404"
+                  ]
+                ],
+                null,
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component",
+                [
+                  [
+                    "datatype",
+                    "string"
+                  ]
+                ],
+                "/",
+                []
+              ],
+              [
+                "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+                [
+                  [
+                    "item_field",
+                    "subexpression"
+                  ],
+                  [
+                    "object_ref",
+                    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813405"
+                  ]
+                ],
+                null,
+                []
+              ]
+            ]
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813404": {
+      "sha256": "417c68de4ced803f5d7de42da6badd5442b630f71428fb4423d7ca9470394ee9",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+        [
+          [
+            "comment",
+            "Retrieve path to the working DB file."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813404"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+            [
+              [
+                "var_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25813401"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^\\@\\@define\\s+DBDIR\\s+(\\S+)",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+            [
+              [
+                "datatype",
+                "int"
+              ]
+            ],
+            "1",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25813401": {
+      "sha256": "960a67456467d22bec7adc42963af7e3660b6bdd77bf8693cbaef67bf9d71f42",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable",
+        [
+          [
+            "comment",
+            "Retrieve location of the aide.conf file."
+          ],
+          [
+            "datatype",
+            "string"
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25813401"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component",
+            [
+              [
+                "item_field",
+                "filepath"
+              ],
+              [
+                "object_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813402"
+              ]
+            ],
+            null,
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813402": {
+      "sha256": "a0acdaf6b5ed3cd93fbfb93b3a9c88d6fd65e721eb10633b91e863e792fd0577",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}file_object",
+        [
+          [
+            "comment",
+            "Find the aide.conf file."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813402"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}behaviors",
+            [
+              [
+                "max_depth",
+                "-1"
+              ],
+              [
+                "recurse",
+                "directories"
+              ],
+              [
+                "recurse_direction",
+                "down"
+              ],
+              [
+                "recurse_file_system",
+                "local"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}path",
+            [],
+            "/",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#unix}filename",
+            [],
+            "aide.conf",
+            []
+          ]
+        ]
+      ]
+    },
+    "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813405": {
+      "sha256": "b51cdd25a6da511535054e8adbb55730f043cff4169b811d33b41cc0c8f40213",
+      "xml_identity": [
+        "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}textfilecontent54_object",
+        [
+          [
+            "comment",
+            "Retrieve filename of the working DB file."
+          ],
+          [
+            "id",
+            "oval:navy.navwar.niwcatlantic.scc.rhel9os:obj:25813405"
+          ],
+          [
+            "version",
+            "13"
+          ]
+        ],
+        null,
+        [
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath",
+            [
+              [
+                "var_ref",
+                "oval:navy.navwar.niwcatlantic.scc.rhel9os:var:25813401"
+              ]
+            ],
+            null,
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pattern",
+            [
+              [
+                "operation",
+                "pattern match"
+              ]
+            ],
+            "^database=file:\\@\\@\\{DBDIR\\}/(\\S+)",
+            []
+          ],
+          [
+            "{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}instance",
+            [
+              [
+                "datatype",
+                "int"
+              ]
+            ],
+            "1",
+            []
+          ]
+        ]
+      ]
+    }
+  },
+  "source_platforms": [],
+  "disa_manual_member": "U_RHEL_9_V2R9_Manual_STIG/U_RHEL_9_STIG_V2R9_Manual-xccdf.xml",
+  "disa_manual_rule": "SV-258134r1155620_rule",
+  "disa_manual_rule_sha256": "55ce8d50558383e30d7d2dd661e1fc040b442e4e729e742134f7f1117e036f6b",
+  "disa_check": "Verify the file integrity tool is configured to verify ACLs.\n\nNote: AIDE is highly configurable at install time. This requirement assumes the \"aide.conf\" file is under the \"/etc\" directory.\n\nVerify AIDE is installed with the following command:\n\n$ sudo dnf list installed aide\n\nUpdating Subscription Management repositories.\nInstalled Packages\naide.x86_64                                0.16-103.el9                                @rhel-9-for-x86_64-appstream-rpms\n\nUse the following command to determine if the file is in a location other than \"/etc/aide/aide.conf\":\n\n$ sudo find / -name aide.conf\n\nIf AIDE is not installed, ask the system administrator (SA) how file integrity checks are performed on the system.",
+  "niwc_check": "Verify the file integrity tool is configured to verify ACLs.\n\nNote: AIDE is highly configurable at install time. This requirement assumes the \"aide.conf\" file is under the \"/etc\" directory.\n\nVerify AIDE is installed with the following command:\n\n$ sudo dnf list installed aide\n\nUpdating Subscription Management repositories.\nInstalled Packages\naide.x86_64                                0.16-103.el9                                @rhel-9-for-x86_64-appstream-rpms\n\nUse the following command to determine if the file is in a location other than \"/etc/aide/aide.conf\":\n\n$ sudo find / -name aide.conf\n\nIf AIDE is not installed, ask the system administrator (SA) how file integrity checks are performed on the system.",
+  "normalized_checks_identical": true,
+  "check_comparison": "Whitespace normalization only; revision and full text retained. No fuzzy equivalence."
+}

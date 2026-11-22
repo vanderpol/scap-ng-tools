@@ -1,0 +1,34 @@
+assessment:
+  version: 1
+  assessment_title: RHEL 9 cryptographic policy must not be overridden.
+  mode: automated
+  class: compliance
+  specification:
+    id: scap-ng.pre-alpha.assessment
+    version: 0.4.0
+  id: rhel9-shellcommand-audit-08-assessment
+  tests:
+    bounded-evidence-test:
+      test_title: 'Audit sketch: bounded evidence collection, equivalence NOT established'
+      capability: independent.shellcommand
+      object:
+        shell: bash
+        command: LC_ALL=C /usr/bin/update-crypto-policies --check
+        error_if_exit_status_not_0: true
+        error_if_stderr_exists: true
+      require:
+        item_requirement:
+          items_found: one_or_more
+          items_satisfying: every
+        field_requirement:
+          values_found: one_or_more
+          values_matching: every
+        fields:
+          exit_status:
+            values_found: one_or_more
+            values_matching: every
+            equals: 0
+            datatype: integer
+      reported_elements: all
+  evaluate:
+    test: bounded-evidence-test

@@ -1,0 +1,88 @@
+{
+  "qualification": "JSON Schema structure only; no semantic, compiler or scanner-equivalence claim",
+  "schema_sha256": {
+    "applicability.schema.json": "f3d52f65b0e2a3033609f637e7d21640870950c50be298ba3a5025bf9f68a637",
+    "assessment-language.schema.json": "f6bb95ee6b9fe51128d0a9d018aa2cc9f089df9917897486bf3ecd0f0cdb5986",
+    "assessment-result-set.schema.json": "d4e5744e1156873617b2427ad9f220a7199b45b5763b8b391e1958ee049176a9",
+    "assessment-result.schema.json": "c68ae358abca8dc40631186d9109048a31ee147ea1bffc16d4b0095ca1012ba3",
+    "assessment.schema.json": "8ba38bc6a9f19718c0247b4d6872040ecda959056764050ab7142c9b232fc600",
+    "authoring-vocabulary.en.json": "d82fc467afac805f8d88350fcd9a4150791c179d94f171e7e8136ffb70468771",
+    "benchmark-result.schema.json": "504a84ac8047dd8ffa16d94b868aa46fd1195abff9cd8e742f65b0e9126fbda0",
+    "benchmark.schema.json": "c9f345337da8483e68ef2acc4325d4b5305c142bef4a04dff9be5d93c81f2e23",
+    "capability-common.schema.json": "1f7a73b559945c4d4e1ed7df2133118896863f0f9c485babf6a6ef9121e9762c",
+    "capability-scope.json": "39b3124bad6b9e446a2bae4c2873b48e1cb5c954d226bcd7cb21a7544fa7b82c",
+    "collected-item.schema.json": "c16a7549acbde6020007ee4bcbc4a8095d2cc615b67bd65c3ec6b92d5b9c5630",
+    "collection-result.schema.json": "f97f82a8e3e0900ecf80dd9154c400108732c28466063849a19ca033286138b5",
+    "editor-default-policy.json": "84ea79fba6ab098ca10ee68b3cd664d60ee902366fca85b8075e3b549cc70e42",
+    "entity-result.schema.json": "d8d509efcb18fdf45fa10b0a70c18449f37d0f0527609b13e8d9357b90d55648",
+    "expression-invocation.schema.json": "7fbd46ec0f289bbfa4bc71d4f06a4f7d5af9a0858ed23040ce67a337d382b6fb",
+    "expression-result.schema.json": "c47faafd5c0978c61778d7ba21a5eac76851b4de728c2c00025ea0941a8ef547",
+    "expression.schema.json": "ad21f779f786409ceeaa14c07688806d4a0e1e18ef882a244271725f05be4752",
+    "field-result.schema.json": "13181c0a578d342dfd5b090de599c47f707b4acffcf0dce1b15ca77ea0c9bd53",
+    "item-materialization.schema.json": "57ee177eab0c35b744e81e8d7682569377c4ac07dbb96d6b6d7f2d79c665748d",
+    "item-report.schema.json": "59e6fc8c8099967941cf305a4d252ea61cb9c47f7a5bef23463bb09dba37debd",
+    "manual-assessment-result.schema.json": "a03df388df846ec2419244f34fb2e5a47a12d5b5db9806d6bc3eb5049464fe55",
+    "manual-assessment.schema.json": "3be4b012fe130ef309cd14eaacdc28125c9d8bc946b41b2766f2f217580105cb",
+    "native-selector-contracts.json": "1de05276044afacb020433ef92effb20fa5e6a3885a86c7d55a9b1bad2d9812b",
+    "native-selector.schema.json": "304565a0917d90df92c4070a68dd28c0bffb56b3d6f217f0af344c7171fbb329",
+    "organizational-input.schema.json": "7b1c6f0c67f7c9494151f3b1e4f4ac29909f5468c91cf01e41d80eb89b79f434",
+    "package-manifest.schema.json": "0f82d626651af47a47f8aae46805519911d662adb01dc44c10d5ddaa09fb47ae",
+    "reported-elements.schema.json": "b6205bd0a35f3bbc764f09b8697b8007a9728def7a45b3d077180e0dec9d0941",
+    "require-result.schema.json": "a497fb451358d7009a5427db21379aef25f2eeeee8fc852e477e5df367405973",
+    "result-field-extensions.json": "d2938d65324dd180cad67926d071b7b389cb1e6738712d3fbd4757a2e3d88f79",
+    "result-package-manifest.schema.json": "451c7e9796c1b061b5de006af233a209ce6335c207a353e0bc758038a0f365c1",
+    "result-types.schema.json": "259eb551f04cefaa95f579dd5720bbe938834b1274e39bd31765b23d279cbf9a",
+    "rule-result.schema.json": "77d24cde35fbc8c9406cad81c16e199c8543c96bb776fb6d3b4465589bc55bba",
+    "rule.schema.json": "67e789432b98e313edd823b7d4c8e2fc5ebad59b012b3b212f14a5a4ca94a6cd",
+    "scan-result.schema.json": "10aedf997eb0dceea62a93920ca817d4053c7bf1d9b0b9934fd5f9043ee406bb",
+    "selector-api-contracts.json": "9c37c2ea18619744c20bb8e567117888cccc0d8a2db7df4d5d046d0c36cd5802",
+    "state-result.schema.json": "68d8d85aa89c209dd6af63b0888b8af0af5025204246c3a22fc889ea0700b6c4",
+    "tailoring.schema.json": "4c869a00f31b655307d1f3eb071bc9f518ea449836bc690bb5c02948843d6d32",
+    "test-result.schema.json": "412a743690459187a6fece064d5fbef7c01421d9bf1be206f8511beaf1510702",
+    "variable-expression.schema.json": "f642b2a6acfb5ba5db9c598f139bc63d468beb4ff21805c178961f8a28a737f4",
+    "variable-function-expression.schema.json": "b09c930b2e2c9192340bc232cdcd5cf62aeb22f6b7e6e285c1fca51bf00a82ba",
+    "variable-result.schema.json": "debeae231b55015cc4aa9ab298f59b38c92c3a2e1db0bfa54b44e40230b4145e"
+  },
+  "results": [
+    {
+      "case": "case-01",
+      "errors": []
+    },
+    {
+      "case": "case-02",
+      "errors": []
+    },
+    {
+      "case": "case-03",
+      "errors": []
+    },
+    {
+      "case": "case-04",
+      "errors": []
+    },
+    {
+      "case": "case-05",
+      "errors": []
+    },
+    {
+      "case": "case-06",
+      "errors": []
+    },
+    {
+      "case": "case-07",
+      "errors": []
+    },
+    {
+      "case": "case-08",
+      "errors": []
+    },
+    {
+      "case": "case-09",
+      "errors": []
+    },
+    {
+      "case": "case-10",
+      "errors": []
+    }
+  ]
+}
