@@ -81,7 +81,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: d1ab0283e09369c2c734d3b8f93b65007441cf07
+          ref: 2d983fcbd7b2367d567ca8ccc689a378d08905e4
           path: canonical-schema
           persist-credentials: false
 
@@ -108,8 +108,8 @@ jobs:
           python scripts/rebuild_issue59_full65.py
           --schema-root canonical-schema/schema
           --source-root source-library
-          --canonical-schema-commit d1ab0283e09369c2c734d3b8f93b65007441cf07
-          --schema-aggregate-sha256 1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4
+          --canonical-schema-commit 2d983fcbd7b2367d567ca8ccc689a378d08905e4
+          --schema-aggregate-sha256 dc650646a24e727e68de242027cca3058683accc531f07bf6ace217609755b24
           --output generated/issue59-full65-source-rule-rebuild.json
 
       - name: Qualify fail-closed Rule-ID triage helper
@@ -136,7 +136,7 @@ jobs:
           --source-root source-library
           --schema-root canonical-schema/schema
           --crosswalk docs/evidence/issue59/full65-crosswalk.json
-          --schema-aggregate-sha256 1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4
+          --schema-aggregate-sha256 dc650646a24e727e68de242027cca3058683accc531f07bf6ace217609755b24
           --output generated/issue59-datatype-recovery.json
 
       - name: Generate textfilecontent pattern review

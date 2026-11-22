@@ -1,7 +1,7 @@
 """One active SCAP-NG 0.4.1 schema snapshot. No older schema mode.
 
 The canonical repository publishes a flat schema/ tree. A snapshot is usable
-only when its exact reviewed 146-resource aggregate SHA-256 matches the
+only when its exact reviewed 147-resource aggregate SHA-256 matches the
 canonical release candidate. This proves bytes/authoring grammar, not runtime
 equivalence to source OVAL checks or RI/SCC scanners.
 """
@@ -34,17 +34,17 @@ def load_json(path):
     return json.loads(path.read_bytes(), object_pairs_hook=unique,
                       parse_constant=nonfinite)
 
-CANONICAL_COMMIT = "d1ab0283e09369c2c734d3b8f93b65007441cf07"
+CANONICAL_COMMIT = "2d983fcbd7b2367d567ca8ccc689a378d08905e4"
 VERSION = "0.4.1"
 PREFIX = "https://scap-ng.dev/schema/v0.4.1/"
-FLAT_SCHEMA_SHA256 = "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
+FLAT_SCHEMA_SHA256 = "dc650646a24e727e68de242027cca3058683accc531f07bf6ace217609755b24"
 # RI's execution identity covers its frozen Assessment validator closure.
 # It is distinct from the production flat-family identity above. The current
 # canonical closure must match before this execution identity may be emitted.
 ASSESSMENT_EXECUTION_FAMILY_SHA256 = "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6"
 ASSESSMENT_CLOSURE_SHA256 = "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6"
-RESOURCE_COUNT = 146
-ROOT_SCHEMA_COUNT = 35
+RESOURCE_COUNT = 147
+ROOT_SCHEMA_COUNT = 36
 SUPPORTED_COUNT = 101
 NAME = re.compile(r"^[a-z][a-z0-9]*(?:[._][a-z0-9]+)*$")
 

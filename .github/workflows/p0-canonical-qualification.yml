@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: vanderpol/scap-ng
-          ref: d1ab0283e09369c2c734d3b8f93b65007441cf07
+          ref: 2d983fcbd7b2367d567ca8ccc689a378d08905e4
           path: inputs/canonical
           persist-credentials: false
       - name: Require read access to the private RI repository
@@ -49,7 +49,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: OVAL-Community/SCAP-Self-Assertion
-          ref: e3538595c5083b9c34d937a81d319234df9bbfaa
+          ref: d91e6ba33841e3202dc27d3e0d469a7abd939b16
           path: inputs/source
           sparse-checkout-cone-mode: false
           sparse-checkout: |

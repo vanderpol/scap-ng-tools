@@ -25,7 +25,7 @@ class Active041Pins(unittest.TestCase):
         self.assertEqual(pin['semantic_pack_sha256'], PACK_HASH)
         self.assertEqual(pin['schema_version'], '0.4.1')
         self.assertIs(pin['single_version'], True)
-        self.assertEqual(len(pin['files']), 146)
+        self.assertEqual(len(pin['files']), 147)
         self.assertEqual(pin['assessment_execution']['family_sha256'], ASSESSMENT_EXECUTION_FAMILY_SHA256)
         self.assertEqual(pin['assessment_execution']['closure_sha256'], ASSESSMENT_CLOSURE_SHA256)
         self.assertEqual(len(pin['assessment_execution']['files']), 8)
@@ -60,6 +60,14 @@ class Active041Pins(unittest.TestCase):
         self.assertFalse(list(validator.iter_errors(profiles)))
         profiles[1]['extends'] = 'baseline'
         self.assertTrue(list(validator.iter_errors(profiles)))
+
+    def test_p0_workflow_uses_current_source_and_assessment_closure_pins(self):
+        workflow = (ROOT / '.github/workflows/p0-canonical-qualification.yml').read_text()
+        self.assertIn('ref: 2d983fcbd7b2367d567ca8ccc689a378d08905e4', workflow)
+        self.assertIn('ref: 62349522b48b2e57f3711b1c08e655d7a31e0387', workflow)
+        self.assertIn('ref: d91e6ba33841e3202dc27d3e0d469a7abd939b16', workflow)
+        lane = (ROOT / 'scripts/qualify_p0_041.sh').read_text()
+        self.assertIn('62349522b48b2e57f3711b1c08e655d7a31e0387', lane)
 
     def test_generator_rebuilds_without_reading_previous_semantic_pack(self):
         schema = os.environ.get('SCAP_NG_SCHEMA_ROOT')

@@ -30,7 +30,7 @@ class OfflineBundleTests(unittest.TestCase):
             self.assertEqual(manifest['format'], 'scap-ng-tools/offline-bundle/1')
             self.assertFalse(manifest['self_contained_runtime'])
             self.assertEqual(manifest['schema']['flat_schema_family_sha256'],
-                             '1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4')
+                             'dc650646a24e727e68de242027cca3058683accc531f07bf6ace217609755b24')
             self.assertTrue((bundle / manifest['entrypoint']).is_file())
             verify = subprocess.run([
                 sys.executable, 'scripts/build_offline_bundle.py',

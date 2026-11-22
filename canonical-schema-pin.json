@@ -40,7 +40,7 @@
     "ri_pin_sha256": "5f0bbfcc18d9dc84fbbba0a55d83ce752a518a469db41d163a79c7ee03ea5a01"
   },
   "canonical_repository": "vanderpol/scap-ng",
-  "canonical_sha": "d1ab0283e09369c2c734d3b8f93b65007441cf07",
+  "canonical_sha": "2d983fcbd7b2367d567ca8ccc689a378d08905e4",
   "files": {
     "applicability.schema.json": {
       "bytes": 5288,
@@ -67,12 +67,12 @@
       "sha256": "16f007f7da1804e84785118ffb422d12472fffef08fc7304cfd55b86530138c7"
     },
     "benchmark-result.schema.json": {
-      "bytes": 7717,
-      "sha256": "10e6deea5ab822ebce00acf4915420dcfcfcb146249f3956c8d7d6e5b14dcf49"
+      "bytes": 8093,
+      "sha256": "930acc9807e2fd5034ef4dc6f94c7a67c8914e89baeee22d0be5afeadaf0f8cf"
     },
     "benchmark.schema.json": {
-      "bytes": 8445,
-      "sha256": "30b6af1e35132a08a629d9c17e726e2151ac28f2fb103a037a7a3382689b65ba"
+      "bytes": 8802,
+      "sha256": "c979148999df2c9f14ba893362064b2b122b3ebd74bbc011abfc9560a937e58b"
     },
     "capability-common.schema.json": {
       "bytes": 35478,
@@ -510,6 +510,10 @@
       "bytes": 3350,
       "sha256": "1fc2736dd055fba6d4a68cb97a2b0d1122c11b4ebc6a112350161beab02e34cb"
     },
+    "cpe-identity.schema.json": {
+      "bytes": 2052,
+      "sha256": "6d1202fdc61140cbfbfb642875eff5eb690ead7d862282630ead360b990ee7bb"
+    },
     "editor-default-policy.json": {
       "bytes": 590298,
       "sha256": "642b54e051673723f7fbda118fc72bf552e1cb663186f86aaa8f7c09c20b0905"
@@ -628,8 +632,8 @@
     }
   },
   "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-  "schema_family_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+  "schema_family_sha256": "dc650646a24e727e68de242027cca3058683accc531f07bf6ace217609755b24",
   "schema_version": "0.4.1",
-  "semantic_pack_sha256": "d9e6f911532f4c06393c4d57738034fdb1b00f1dc38697ad0d3ea493415969a6",
+  "semantic_pack_sha256": "b6416656cf511d52b1badb174894fa86fb7836557ab802c038bacd74b7ec6b16",
   "single_version": true
 }

@@ -41,6 +41,19 @@ def _bool(value, default=False):
     return str(value).lower() == 'true'
 
 
+def _cpe_binding(value):
+    """Identify a source CPE naming binding without parsing or matching it.
+
+    The converter preserves the exact source spelling. Syntax validation and
+    attribute-level matching remain outside this metadata-only lowering.
+    """
+    if value.startswith('cpe:/'):
+        return 'cpe_uri_2_2'
+    if value.startswith('cpe:2.3:'):
+        return 'cpe_formatted_string_2_3'
+    return None
+
+
 def _logical_record(element, *, depth=0, budget=None):
     """Preserve a CPE logical-test tree and source operand order.
 
@@ -506,7 +519,18 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
     benchmark_refs = [child.get('idref') for child in
                       source.benchmark.findall(f'{{{XCCDF}}}platform')]
     benchmark_refs = [ref for ref in benchmark_refs if ref]
-    benchmark_conditions = refs_conditions(benchmark_refs)
+    # A direct CPE naming binding on the Benchmark is declarative platform
+    # metadata under the approved 0.4.1 contract.  It must not become a scan
+    # gate or an unresolved applicability ERROR.  CPE platform definitions
+    # (``#id``) and non-CPE references still flow through the executable
+    # applicability path below, preserving genuine source conditions.
+    benchmark_condition_refs = [ref for ref in benchmark_refs
+                                if _cpe_binding(ref) is None]
+    benchmark_conditions = refs_conditions(benchmark_condition_refs)
+    # Keep this initialized even when a caller is converting a partial
+    # document graph without the generated Benchmark wrapper.  The trace is
+    # still useful in that mode and must not depend on wrapper presence.
+    expected_cpe_identities = []
     benchmark_path = 'authoring/direct-slice/benchmark.json'
     if benchmark_path in documents:
         wrapper = documents[benchmark_path]['benchmark']
@@ -517,6 +541,24 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             wrapper['platform']['applicability'] = _scope_expression(benchmark_conditions)
         else:
             wrapper['platform'].pop('applicability', None)
+
+        # Direct Benchmark CPE names are declarative metadata only.  Preserve
+        # their exact source spelling and provenance; do not create an
+        # Assessment, perform matching, or turn this field into a scan gate.
+        expected_cpe_identities = []
+        for ref in benchmark_refs:
+            binding = _cpe_binding(ref)
+            if binding is None:
+                continue
+            expected_cpe_identities.append({
+                'value': ref,
+                'binding': binding,
+                'source': source_provenance(ref),
+            })
+        if expected_cpe_identities:
+            wrapper['platform']['expected_cpe_identities'] = expected_cpe_identities
+        else:
+            wrapper['platform'].pop('expected_cpe_identities', None)
 
     # Replace the source-model's simple condition IDs on nested native Groups
     # with the exact CPE expression at the same source scope.  No Rule-level
@@ -610,6 +652,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         'catalog_condition_count': len(conditions),
         'shared_assessment_count': len(shared),
         'source_identity_preserved': True,
+        'declared_benchmark_cpe_identities': expected_cpe_identities,
         'independent_semantic_proof': False,
         'scanner_runtime': False,
     }

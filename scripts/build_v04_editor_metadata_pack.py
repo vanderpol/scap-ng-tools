@@ -23,10 +23,12 @@ from generate_v04_semantic_pack import GENERATOR, OVAL_COMMIT, git_head
 
 
 # Original research exporter at d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9;
-# 238 deterministic resource descriptors, 101 active capability identities, one URI.
+# 239 deterministic resource descriptors, 101 active capability identities, one URI.
 # Source commit is purposely excluded from this digest.
 HISTORICAL_RESOURCES_SHA256 = 'faa1c81c01c34a212e33827e3628f9c355255c1030fa8aa8936cb9d28522c564'
-REVIEWED_RESOURCES_SHA256 = '0dec67789229634cbd426229f899bf68876882eaa7ebc881f275f7731b649bc5'
+# Canonical 0.4.1 CPE metadata adds one maintained schema resource and
+# therefore changes this complete editor resource identity.
+REVIEWED_RESOURCES_SHA256 = 'ca00d6ea05749956ed393154693c21a6189993bcbe52dd9b32b6b71f9270cdc1'
 COMMIT = re.compile(r'^[a-f0-9]{40}$')
 
 
@@ -127,7 +129,7 @@ def build(schema_root, oval_root, source_commit, output):
                 'resources': resources, 'capabilities': capabilities,
                 'vocabulary_uri': vocabulary_uri,
             }, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()
-            if (len(resources) != 238 or len(capabilities) != 101 or
+            if (len(resources) != 239 or len(capabilities) != 101 or
                     sha256(resource_identity).hexdigest() != REVIEWED_RESOURCES_SHA256):
                 raise ValueError('generated editor metadata resource drift detected: ' +
                                  sha256(resource_identity).hexdigest())
