@@ -63,7 +63,8 @@ class NativeInputDiscovery(unittest.TestCase):
         runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
         sys.path.insert(0, str(runtime))
         try:
-            from v04_draft_inputs import _external_variable_consumers
+            from v04_draft_inputs import (
+                _external_variable_consumers, EXTERNAL_CONSUMER_CARDINALITY)
             oval = 'urn:oval'
             test = ET.fromstring(
                 f'<registry_test xmlns="{oval}" id="tst" check_existence="at_least_one_exists">'
@@ -74,6 +75,7 @@ class NativeInputDiscovery(unittest.TestCase):
             variable = ET.fromstring(f'<external_variable xmlns="{oval}" id="var" datatype="int"/>')
             uses = _external_variable_consumers([test, obj, state, variable], {'tst'}, 'var')
             self.assertEqual(uses, [{'source_test': 'tst', 'check_existence': 'at_least_one_exists'}])
+            self.assertEqual(EXTERNAL_CONSUMER_CARDINALITY['all_exist'], 'one_or_more')
         finally:
             sys.path.remove(str(runtime))
 

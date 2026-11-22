@@ -25,6 +25,13 @@ XCCDF_VALUE_DATATYPES = {
 }
 MAX_CONSTRAINT_DEPTH = 32
 MAX_CONSTRAINT_NODES = 256
+EXTERNAL_CONSUMER_CARDINALITY = {
+    'at_least_one_exists': 'one_or_more',
+    'all_exist': 'one_or_more',
+    'only_one_exists': 'exactly_one',
+    'any_exist': 'zero_or_more',
+    'none_exist': 'zero_or_more',
+}
 
 
 def _external_variable_consumers(nodes, selected_tests, identifier):
@@ -84,9 +91,8 @@ def _external_cardinality(visitor, identifier):
                           if kind == 'test')
     ensure(selected_tests, 'external Variable has no selected Test consumer')
     uses = _external_variable_consumers(nodes.values(), selected_tests, identifier)
-    cards = {'at_least_one_exists': 'one_or_more', 'only_one_exists': 'exactly_one',
-             'any_exist': 'zero_or_more', 'none_exist': 'zero_or_more'}
-    result = {cards.get(row['check_existence']) for row in uses}
+    result = {EXTERNAL_CONSUMER_CARDINALITY.get(row['check_existence'])
+             for row in uses}
     ensure(uses and None not in result and len(result) == 1,
            'external Variable consumers require conflicting/unsupported cardinality')
     return result.pop(), uses
