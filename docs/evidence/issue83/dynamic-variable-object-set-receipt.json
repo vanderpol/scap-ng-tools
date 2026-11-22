@@ -2,7 +2,7 @@
   "canonical": {
     "active_foreach_authoring": false,
     "foreach_binding_refs": [],
-    "schema_family_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+    "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
     "schema_root": "SCAP_NG_SCHEMA_ROOT/schema",
     "selector_set_refs": [
       "/$defs/linux_dpkginfo_object/oneOf/1/properties/set",
@@ -24,10 +24,12 @@
     "set_expression_present": true,
     "set_operand_accepts_variable_population": false,
     "unique_multi_population_present": true,
-    "values_expression_present": true
+    "values_expression_present": true,
+    "schema_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "variable_expression_schema_sha256": "db22d3d216e44cac78015b2bc57869dec672e2f5682382ea90fede9bf092c7ce"
   },
-  "canonical_repository_head": "d67394f0d5df425da6febf6bc5959540cb7f540f",
-  "canonical_schema_commit": "d1ab0283e09369c2c734d3b8f93b65007441cf07",
+  "canonical_repository_head": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+  "canonical_schema_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
   "cases": [
     {
       "attempts": {
@@ -538,5 +540,34 @@
     "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc"
   },
   "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
-  "windows_definitions_schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff"
+  "windows_definitions_schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff",
+  "generic_witnesses": {
+    "typed_variable_reference_operands": {
+      "status": "covered",
+      "test": "test_typed_variable_reference_operands_keep_one_derived_datatype",
+      "proof": "named homogeneous integer Variables remain ordered unique operands and derive one integer domain"
+    },
+    "singleton_statically_typed_collected_field": {
+      "status": "covered_when_exact_schema_root_is_available",
+      "test": "test_singleton_typed_collected_field_derives_item_datatype",
+      "object_capability": "unix.file",
+      "field": "size",
+      "derived_datatype": "integer"
+    },
+    "duplicate_order": {
+      "status": "covered_structurally",
+      "test": "test_duplicate_operands_preserve_source_order_for_runtime_unique",
+      "contract": "source order and duplicate operands remain in unique; runtime unique performs first-occurrence deduplication"
+    },
+    "empty_multivalue": {
+      "status": "covered_as_nonmaterialization_boundary",
+      "test": "test_empty_and_multivalue_operands_remain_runtime_references",
+      "runtime_execution": "not_run"
+    },
+    "status_error_boundary": {
+      "status": "not_run",
+      "proof": "not_run_runtime_preserved_as_explicit_hold",
+      "contract": "unknown/error/incomplete collection status must remain attached to named runtime Variables; converter emits no host values or status claims"
+    }
+  }
 }

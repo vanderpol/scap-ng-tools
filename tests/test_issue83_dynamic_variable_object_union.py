@@ -6,6 +6,7 @@ remain subject to their complete OVAL closure and Schematron validity.
 """
 import unittest
 import xml.etree.ElementTree as ET
+from unittest.mock import patch
 
 from scap_ng_tools.converter.direct04 import load_runtime
 
@@ -64,6 +65,126 @@ class DynamicVariableObjectUnion(unittest.TestCase):
         self.assertEqual(warning["code"], "oval_dynamic_variable_object_union_lowered")
         self.assertEqual(warning["source_set_operator"], "UNION")
         self.assertFalse(warning["scanner_evaluated"])
+
+    def test_typed_variable_reference_operands_keep_one_derived_datatype(self):
+        """Named typed Variables remain runtime operands, not source literals."""
+        nodes = {
+            "root": oval(
+                '<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
+                '<object_reference>left</object_reference><object_reference>right</object_reference>'
+                '</set></variable_object>'
+            ),
+            "left": oval('<variable_object xmlns="OVAL" id="left"><var_ref>one</var_ref></variable_object>'),
+            "right": oval('<variable_object xmlns="OVAL" id="right"><var_ref>two</var_ref></variable_object>'),
+            "one": oval('<local_variable xmlns="OVAL" id="one" datatype="int"><literal_component datatype="int">7</literal_component></local_variable>'),
+            "two": oval('<local_variable xmlns="OVAL" id="two" datatype="int"><literal_component datatype="int">9</literal_component></local_variable>'),
+        }
+        references = {
+            "one": {"variable": "one-variable"},
+            "two": {"variable": "two-variable"},
+        }
+        visitor = self.visitor(nodes, references)
+        result = visitor.dynamic_variable_object_set(nodes["root"])
+        self.assertEqual(visitor.variables[result["variable"]]["expression"], {
+            "unique": [
+                {"variable": "one-variable"},
+                {"variable": "two-variable"},
+            ],
+        })
+        self.assertEqual(visitor.conversion_warnings[0]["source_variable_datatypes"], ["int"])
+
+        # This is the shared type gate, not value execution.  It proves that
+        # the same native expression derives one scalar datatype when the
+        # named operands are typed Variables.
+        from scap_ng_tools.converter._v04_semantic import v04_variable_expressions as semantic
+        class CandidateSchema:
+            def iter_errors(self, declaration):
+                return iter(())
+        assessment = {"variables": {
+            "one-variable": {"kind": "local", "expression": {
+                "literal": {"datatype": "integer", "value": 7}}},
+            "two-variable": {"kind": "local", "expression": {
+                "literal": {"datatype": "integer", "value": 9}}},
+            "union-variable": {"kind": "local", "expression": {
+                "unique": [{"variable": "one-variable"},
+                            {"variable": "two-variable"}]}},
+        }}
+        with patch.object(semantic, "declaration_validator", return_value=CandidateSchema()):
+            derived = semantic.assessment_variable_expressions(assessment)
+        self.assertEqual(derived["union-variable"], "integer")
+
+    def test_duplicate_operands_preserve_source_order_for_runtime_unique(self):
+        """Conversion preserves operand order; native unique owns deduplication."""
+        nodes = {
+            "root": oval(
+                '<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
+                '<object_reference>left</object_reference><object_reference>right</object_reference>'
+                '<object_reference>left</object_reference></set></variable_object>'
+            ),
+            "left": oval('<variable_object xmlns="OVAL" id="left"><var_ref>one</var_ref></variable_object>'),
+            "right": oval('<variable_object xmlns="OVAL" id="right"><var_ref>two</var_ref></variable_object>'),
+            "one": oval('<local_variable xmlns="OVAL" id="one" datatype="string"><literal_component>left</literal_component></local_variable>'),
+            "two": oval('<local_variable xmlns="OVAL" id="two" datatype="string"><literal_component>right</literal_component></local_variable>'),
+        }
+        visitor = self.visitor(nodes, {
+            "one": {"variable": "one-variable"},
+            "two": {"variable": "two-variable"},
+        })
+        result = visitor.dynamic_variable_object_set(nodes["root"])
+        self.assertEqual(visitor.variables[result["variable"]]["expression"], {
+            "unique": [
+                {"variable": "one-variable"},
+                {"variable": "two-variable"},
+                {"variable": "one-variable"},
+            ],
+        })
+        self.assertEqual(visitor.conversion_warnings[0]["source_variable_ids"],
+                         ["one", "two"])
+
+    def test_empty_and_multivalue_operands_remain_runtime_references(self):
+        """Empty/multivalue populations are not collapsed during conversion."""
+        nodes = {
+            "root": oval(
+                '<variable_object xmlns="OVAL" id="root"><set set_operator="UNION">'
+                '<object_reference>empty</object_reference><object_reference>many</object_reference>'
+                '</set></variable_object>'
+            ),
+            "empty": oval('<variable_object xmlns="OVAL" id="empty"><var_ref>empty-source</var_ref></variable_object>'),
+            "many": oval('<variable_object xmlns="OVAL" id="many"><var_ref>many-source</var_ref></variable_object>'),
+            "empty-source": oval('<local_variable xmlns="OVAL" id="empty-source" datatype="string"><literal_component>unused</literal_component></local_variable>'),
+            "many-source": oval('<local_variable xmlns="OVAL" id="many-source" datatype="string"><literal_component>unused</literal_component></local_variable>'),
+        }
+        visitor = self.visitor(nodes, {
+            "empty-source": {"variable": "empty-source-variable"},
+            "many-source": {"variable": "many-source-variable"},
+        })
+        result = visitor.dynamic_variable_object_set(nodes["root"])
+        expression = visitor.variables[result["variable"]]["expression"]
+        self.assertEqual(expression, {"unique": [
+            {"variable": "empty-source-variable"},
+            {"variable": "many-source-variable"},
+        ]})
+        self.assertNotIn("literal", str(expression))
+        self.assertFalse(visitor.conversion_warnings[0]["scanner_evaluated"])
+
+        # Typed empty and multivalue domains remain one scalar type at the
+        # semantic boundary; their actual cardinality is a runtime concern.
+        from scap_ng_tools.converter._v04_semantic import v04_variable_expressions as semantic
+        class CandidateSchema:
+            def iter_errors(self, declaration):
+                return iter(())
+        assessment = {"variables": {
+            "empty-variable": {"kind": "local", "expression": {
+                "literal": {"datatype": "string", "value": []}}},
+            "many-variable": {"kind": "local", "expression": {
+                "literal": {"datatype": "string", "value": ["a", "b", "a"]}}},
+            "population-variable": {"kind": "local", "expression": {
+                "unique": [{"variable": "empty-variable"},
+                            {"variable": "many-variable"}]}},
+        }}
+        with patch.object(semantic, "declaration_validator", return_value=CandidateSchema()):
+            derived = semantic.assessment_variable_expressions(assessment)
+        self.assertEqual(derived["population-variable"], "string")
 
     def test_none_satisfy_remains_a_value_quantifier_not_a_boolean_group(self):
         nodes = {
@@ -183,8 +304,22 @@ class DynamicVariableObjectReceipt(unittest.TestCase):
         receipt = json.loads((Path(__file__).parents[1] / "docs/evidence/issue83/dynamic-variable-object-set-receipt.json").read_text())
         self.assertEqual(receipt["source_commit"], "8c8e5dff860af6b1290ee9273a282db24278f8d5")
         self.assertEqual(receipt["oval_schema_commit"], "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706")
+        self.assertEqual(receipt["canonical_schema_commit"],
+                         "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2")
+        self.assertEqual(receipt["canonical"]["schema_commit"],
+                         "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2")
         self.assertEqual(receipt["canonical"]["schema_family_sha256"],
-                         "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4")
+                         "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc")
+        self.assertEqual(receipt["converter_schema_pin"], {
+            "commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+            "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+        })
+        self.assertEqual(receipt["canonical_repository_head"],
+                         "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2")
+        self.assertEqual(receipt["production_replay"]["schema_commit"],
+                         "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2")
+        self.assertEqual(receipt["production_replay"]["schema_family_sha256"],
+                         "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc")
         self.assertFalse(receipt["canonical"]["active_foreach_authoring"])
         self.assertEqual(len(receipt["cases"]), 2)
         for case in receipt["cases"]:
@@ -192,6 +327,10 @@ class DynamicVariableObjectReceipt(unittest.TestCase):
             self.assertEqual(case["attempts"]["unique_expression"]["status"], "candidate_generic_lowering")
             self.assertEqual(case["source"]["xml_member_sha256"].__len__(), 64)
             self.assertNotIn("values", json.dumps(case["graph"]))
+        self.assertEqual(receipt["generic_witnesses"]["status_error_boundary"]["proof"],
+                         "not_run_runtime_preserved_as_explicit_hold")
+        self.assertEqual(receipt["conclusion"]["original_source_disposition"],
+                         "source_schematron_hold_pending_upstream_correction_or_explicit_reclassification")
 
     def test_lowered_expression_is_admitted_by_pinned_native_schema(self):
         import json
@@ -220,8 +359,42 @@ class DynamicVariableObjectReceipt(unittest.TestCase):
         registry = Registry().with_resources(resources.items())
         schema = json.loads(variable_path.read_text(encoding="utf-8"))
         validator = Draft202012Validator(schema, registry=registry)
-        instance = {"kind": "local", "expression": {"unique": [
+        instances = [{"kind": "local", "expression": {"unique": [
             {"variable": "translated-paths-variable"},
             {"values": {"object": {"object_ref": "direct-paths-object"}, "field": "result"}},
-        ]}}
-        self.assertEqual(list(validator.iter_errors(instance)), [])
+        ]}}, {
+            "kind": "local", "expression": {"unique": {
+                "values": {"object": {"object_ref": "typed-file-object"}, "field": "size"}
+            }}
+        }, {
+            "kind": "local", "expression": {"unique": [{
+                "literal": {"datatype": "string", "value": ["b", "a", "b"]}
+            }, {"variable": "ordered-variable"}]}
+        }]
+        for instance in instances:
+            with self.subTest(instance=instance):
+                self.assertEqual(list(validator.iter_errors(instance)), [])
+
+    def test_singleton_typed_collected_field_derives_item_datatype(self):
+        """A singleton values projection uses the mapped Item field type."""
+        import os
+        from pathlib import Path
+        from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+        from scap_ng_tools.converter._v04_semantic import selected_schema
+        from scap_ng_tools.converter._v04_semantic import v04_variable_expressions as semantic
+        root = os.environ.get("SCAP_NG_SCHEMA_ROOT")
+        if not root:
+            self.skipTest("set SCAP_NG_SCHEMA_ROOT to the exact canonical 0.4.1 schema")
+        snapshot = Pinned041SchemaSnapshot(Path(root))
+        assessment = {"variables": {
+            "file-size-variable": {"kind": "local", "expression": {
+                "unique": {"values": {
+                    "object": {"capability": "unix.file",
+                                "filepath": {"equals": "/tmp/typed-file"}},
+                    "field": "size",
+                }},
+            }},
+        }}
+        with selected_schema(snapshot):
+            derived = semantic.assessment_variable_expressions(assessment)
+        self.assertEqual(derived["file-size-variable"], "integer")
