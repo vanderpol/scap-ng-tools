@@ -1,8 +1,9 @@
 """Lower source XCCDF/CPE applicability into native SCAP-NG 0.4 documents.
 
 This module intentionally does *not* invent executable CPE checks.  A CPE
-identity without an OVAL fact closure is represented by a native
-``not_evaluated`` Assessment and retained in the trace.  OVAL-backed facts use
+identity without an OVAL fact closure is retained as a provenance-bearing
+catalog condition with no Assessment; the RI reports that hold as an
+applicability error rather than treating it as false. OVAL-backed facts use
 the same AssessmentConverter as compliance Rules, so their unknown/error
 expressions and Boolean structure are not collapsed into Not Applicable.
 """
@@ -16,6 +17,11 @@ import re
 CPE = 'http://cpe.mitre.org/language/2.0'
 XCCDF = 'http://checklists.nist.gov/xccdf/1.2'
 OVAL = 'http://oval.mitre.org/XMLSchema/oval-definitions-5'
+
+# CPE is package input. Bound recursion and output fan-out before lowering so
+# malformed or adversarial content cannot consume unbounded converter memory.
+MAX_CPE_LOGICAL_DEPTH = 64
+MAX_CPE_LOGICAL_NODES = 4096
 
 
 def _slug(value: str, prefix: str, suffix: str) -> str:
@@ -35,23 +41,37 @@ def _bool(value, default=False):
     return str(value).lower() == 'true'
 
 
-def _logical_record(element):
-    """Preserve a CPE logical-test tree, including nested tests."""
-    facts, children = [], []
+def _logical_record(element, *, depth=0, budget=None):
+    """Preserve a CPE logical-test tree and source operand order.
+
+    ``facts`` and ``children`` remain in the trace for compatibility with
+    existing receipts, while ``operands`` is the source-order lowering input.
+    """
+    if depth > MAX_CPE_LOGICAL_DEPTH:
+        raise ValueError(f'CPE logical-test nesting exceeds {MAX_CPE_LOGICAL_DEPTH} levels')
+    budget = budget if budget is not None else [0]
+    budget[0] += 1
+    if budget[0] > MAX_CPE_LOGICAL_NODES:
+        raise ValueError(f'CPE logical-test contains more than {MAX_CPE_LOGICAL_NODES} nodes')
+    facts, children, operands = [], [], []
     for child in element:
         if child.tag == f'{{{CPE}}}check-fact-ref':
-            facts.append({
+            budget[0] += 1
+            if budget[0] > MAX_CPE_LOGICAL_NODES:
+                raise ValueError(f'CPE logical-test contains more than {MAX_CPE_LOGICAL_NODES} nodes')
+            fact = {
                 'id_ref': child.get('id-ref'), 'system': child.get('system'),
-                'href': child.get('href'),
-                'source_xml_sha256': _xml_digest(child),
-            })
+                'href': child.get('href'), 'source_xml_sha256': _xml_digest(child),
+            }
+            facts.append(fact)
+            operands.append(fact)
         elif child.tag == f'{{{CPE}}}logical-test':
-            children.append(_logical_record(child))
+            nested = _logical_record(child, depth=depth + 1, budget=budget)
+            children.append(nested)
+            operands.append(nested)
     return {
-        'operator': element.get('operator', 'AND'),
-        'negate': element.get('negate', 'false'),
-        'facts': facts,
-        'children': children,
+        'operator': element.get('operator', 'AND'), 'negate': element.get('negate', 'false'),
+        'facts': facts, 'children': children, 'operands': operands,
         'source_xml_sha256': _xml_digest(element),
     }
 
@@ -141,55 +161,6 @@ def _assessment_document(source, component, definition_id, assessment_id, title,
     return {'assessment': assessment}, trace
 
 
-def _make_composite(title, source_key, child_ids, operator, negate, shared, traces):
-    """Build a native Boolean wrapper over shared Assessment references."""
-    op = str(operator).upper()
-    if op not in ('AND', 'OR', 'ONE', 'XOR'):
-        raise ValueError(f'unsupported applicability logical-test operator: {operator}')
-    if not child_ids:
-        raise ValueError('empty applicability logical-test')
-    children = [{'assessment': item} for item in child_ids]
-    expression = children[0] if len(children) == 1 and op in ('AND', 'OR') else {
-        op.lower(): children}
-    if _bool(negate):
-        expression = {'not': expression}
-    # A positive single-fact condition can directly reference the fact
-    # Assessment; no redundant wrapper is emitted.
-    if len(child_ids) == 1 and not _bool(negate) and op in ('AND', 'OR'):
-        return child_ids[0]
-    semantic = {
-        'source_identity': source_key, 'operator': op,
-        'negate': _bool(negate), 'children': list(child_ids),
-    }
-    fingerprint = hashlib.sha256(_canonical(semantic).encode()).hexdigest()
-    assessment_id = _slug(f'{source_key}-{fingerprint}', 'platform-', '-assessment')
-    dependencies = {
-        f'condition-{i}': {
-            'assessment': child, 'expected_version': 1,
-            'purpose': 'applicability',
-        } for i, child in enumerate(child_ids)
-    }
-    document = {'assessment': {
-        'id': assessment_id, 'version': 1,
-        'assessment_title': f'Applicability: {title}',
-        'mode': 'automated', 'class': 'compliance',
-        'specification': {'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'},
-        'tests': {}, 'dependencies': dependencies, 'evaluate': expression,
-    }}
-    existing = shared.get(assessment_id)
-    if existing is not None and _canonical(existing) != _canonical(document):
-        raise ValueError(f'conflicting generated Assessment identity: {assessment_id}')
-    if existing is None:
-        shared[assessment_id] = document
-        traces[assessment_id] = {
-            'assessment': assessment_id, 'source_identity': source_key,
-            'semantic': semantic,
-            'semantic_fingerprint': fingerprint,
-            'conversion_status': 'APPLICABILITY_COMPOSITION_UNVERIFIED',
-        }
-    return assessment_id
-
-
 def build_applicability(source, documents, coverage, mappings, *, human_compact=True,
                         native_recovery=False, rule_ids=None):
     """Attach source applicability to one converted benchmark document set."""
@@ -215,6 +186,9 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         platform_key_groups.setdefault(base, set()).add(node.get('idref'))
     unsupported, attached_rule_ids = [], set()
     fact_cache = {}
+    fact_condition_cache = {}
+    platform_expressions = OrderedDict()
+    group_level_records = {}
 
     def add_shared(assessment_id, document, trace):
         existing = shared.get(assessment_id)
@@ -348,18 +322,66 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             fact_cache[identity] = (None, None)
             return fact_cache[identity]
 
+    def fact_condition(fact):
+        """Return a catalog condition for one reusable fact Assessment.
+
+        An unqualified fact still gets a condition without ``assessment``.
+        That is an explicit RI applicability ERROR leaf, so a supported
+        sibling in an OR/AND tree remains visible and can be decisive under
+        the canonical four-state evaluator instead of collapsing the tree.
+        """
+        href = fact.get('href') or ''
+        source_id = fact.get('id_ref') or ''
+        if not href or not source_id:
+            raise ValueError('source applicability fact requires href and id-ref')
+        assessment_id, _ = fact_assessment(fact)
+        key = (href, source_id, fact.get('source_xml_sha256'))
+        if key in fact_condition_cache:
+            return fact_condition_cache[key]
+        condition_id = _slug(
+            f'applicability-fact:{href}:{source_id}:{fact.get("source_xml_sha256", "")}',
+            'platform-', '-condition')
+        source = {
+            'kind': 'converter_derived', 'id': source_id, 'idref': source_id,
+            'href': href, 'sha256': fact.get('source_xml_sha256'),
+        }
+        value = {'source': source}
+        if assessment_id is not None:
+            value['assessment'] = assessment_id
+        add_condition(condition_id, value)
+        fact_condition_cache[key] = condition_id
+        return condition_id
+
     def lower_logical(spec_id, logical, title):
-        child_ids = [fact_assessment(fact)[0] for fact in logical['facts']]
-        child_ids.extend(lower_logical(spec_id, child, title)
-                          for child in logical.get('children', []))
-        # A single unqualified fact prevents the entire source CPE Boolean
-        # expression from being executable.  Keep its platform condition as
-        # a provenance-bearing hold rather than manufacturing a false leaf.
-        if any(child_id is None for child_id in child_ids):
-            return None
-        return _make_composite(title, f'{spec_id}:{logical["source_xml_sha256"]}',
-                               child_ids, logical['operator'], logical['negate'],
-                               shared, shared_traces)
+        """Lower source CPE Boolean logic to a native applicability expression.
+
+        Only canonical recursive operators are lowered here. A logical-test
+        is not an Assessment: its fact Definitions remain reusable evidence
+        Assessments and this function returns the Boolean expression consumed
+        at the original Benchmark/Group/Rule level.
+        """
+        children = []
+        operands = logical.get('operands')
+        if operands is None:  # tolerate old in-memory records from callers
+            operands = list(logical.get('facts', [])) + list(logical.get('children', []))
+        for operand in operands:
+            if 'id_ref' in operand:
+                condition_id = fact_condition(operand)
+                if condition_id is None:
+                    raise ValueError('unqualified source applicability fact')
+                children.append({'condition': condition_id})
+            else:
+                children.append(lower_logical(spec_id, operand, title))
+        if not children:
+            raise ValueError('empty applicability logical-test')
+        operator = str(logical.get('operator', 'AND')).upper()
+        if operator not in ('AND', 'OR'):
+            raise ValueError(f'source logical-test operator {operator} has no lossless canonical applicability expression')
+        expression = children[0] if len(children) == 1 else {
+            'all_of' if operator == 'AND' else 'any_of': children}
+        if _bool(logical.get('negate')):
+            expression = {'not': expression}
+        return expression
 
     def condition_for_ref(ref):
         if ref.startswith('#'):
@@ -371,42 +393,38 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                 condition_id = unsupported_condition(platform_id, 'Unsupported CPE platform specification', reason,
                                                      condition_key(ref))
                 add_condition(condition_id, {'source': source_provenance(ref)})
-                return condition_id
+                return {'condition': condition_id}
             semantic = _canonical(spec)
-            # Do not use only the CPE tree as the cache key: two distinct
-            # platform ids may intentionally carry identical trees, and their
-            # source identities must remain independently addressable.
             semantic_cache_key = ('platform', platform_id, semantic)
             if semantic_cache_key in condition_cache:
                 return condition_cache[semantic_cache_key]
+            condition_id = condition_key(ref)
             try:
-                logical_ids = [lower_logical(platform_id, logical, spec['title'])
-                               for logical in spec['logical_tests']]
-                if not logical_ids:
-                    raise ValueError('CPE platform specification has no logical tests')
-                condition = ((logical_ids[0] if len(logical_ids) == 1 else
-                              _make_composite(spec['title'], platform_id, logical_ids,
-                                              'AND', 'false', shared, shared_traces))
-                             if all(logical_ids) else None)
+                logical_expressions = [lower_logical(platform_id, logical, spec['title'])
+                                       for logical in spec['logical_tests']]
+                if not logical_expressions or any(expr is None for expr in logical_expressions):
+                    raise ValueError('unqualified CPE platform applicability')
+                expression = (logical_expressions[0] if len(logical_expressions) == 1 else
+                              {'all_of': logical_expressions})
+                platform_expressions[condition_id] = {
+                    'source': source_provenance(ref, spec),
+                    'expression': expression,
+                }
+                condition_cache[semantic_cache_key] = expression
+                return expression
             except ValueError as error:
                 reason = f'unsupported CPE platform specification {platform_id}: {error}'
                 unsupported.append({'kind': 'platform', 'identity': platform_id, 'reason': reason})
-                condition = None
-            condition_id = condition_key(ref)
-            condition_value = {'source': source_provenance(ref, spec)}
-            if condition is not None:
-                condition_value['assessment'] = condition
-            else:
-                unsupported_condition(platform_id, spec['title'],
-                                      'unqualified CPE platform applicability')
-            add_condition(condition_id, condition_value)
-            condition_cache[semantic_cache_key] = condition_id
-            return condition_id
+                # A failed CPE expression is a provenance-bearing applicability
+                # ERROR condition, not a synthetic zero-Test Assessment.
+                add_condition(condition_id, {'source': source_provenance(ref, spec)})
+                condition_cache[semantic_cache_key] = {'condition': condition_id}
+                return condition_cache[semantic_cache_key]
         reason = 'CPE identity has no established executable SCAP-NG applicability mapping: ' + ref
         unsupported.append({'kind': 'cpe_identity', 'identity': ref, 'reason': reason})
         condition_id = unsupported_condition(ref, 'Unsupported CPE identity', reason, condition_key(ref))
         add_condition(condition_id, {'source': source_provenance(ref)})
-        return condition_id
+        return {'condition': condition_id}
 
     def refs_conditions(refs):
         result = []
@@ -415,6 +433,28 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             if cid not in result:
                 result.append(cid)
         return result
+
+    def _scope_expression(expressions):
+        if not expressions:
+            return None
+        if len(expressions) == 1:
+            return expressions[0]
+        return {'any_of': expressions}
+
+    # Resolve every source Group independently of Rule admission. A Group
+    # restriction is source content in its own right; blocked or filtered
+    # children must not make it disappear from the serialized Benchmark.
+    for source_group in source.benchmark.findall('.//' + f'{{{XCCDF}}}Group'):
+        level = (source.applicability_level(source_group)
+                 if hasattr(source, 'applicability_level') else None)
+        if not level:
+            continue
+        refs = [condition.get('source_idref') for condition in level.get('conditions', [])]
+        refs = [ref for ref in refs if ref]
+        group_level_records[source_group.get('id')] = {
+            'kind': level.get('kind'), 'source_id': level.get('id'),
+            'conditions': refs_conditions(refs), 'source_platform_refs': refs,
+        }
 
     for row in coverage.get('rules', []):
         if row.get('status') not in ('converted', 'manual_only'):
@@ -432,9 +472,12 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         for level in context.get('levels', []):
             refs = [condition.get('source_idref') for condition in level.get('conditions', [])]
             refs = [ref for ref in refs if ref]
-            condition_ids = refs_conditions(refs)
-            record = {'kind': level.get('kind'), 'source_id': level.get('id'),
-                      'conditions': condition_ids, 'source_platform_refs': refs}
+            record = (group_level_records.get(level.get('id'))
+                      if level.get('kind') == 'group' else None)
+            if record is None:
+                expressions = refs_conditions(refs)
+                record = {'kind': level.get('kind'), 'source_id': level.get('id'),
+                          'conditions': expressions, 'source_platform_refs': refs}
             levels.append(record)
             if level.get('kind') == 'rule':
                 rule_level = record
@@ -445,9 +488,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                           if '/rules/' in path and path in documents), None)
         if rule_path:
             if rule_level and rule_level['conditions']:
-                documents[rule_path]['rule']['applicability'] = {
-                    'any_of': [{'condition': condition_id}
-                               for condition_id in rule_level['conditions']]}
+                documents[rule_path]['rule']['applicability'] = _scope_expression(rule_level['conditions'])
             else:
                 documents[rule_path]['rule'].pop('applicability', None)
             row['applicability'] = {
@@ -473,11 +514,37 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         wrapper['platform']['title'] = (
             'Source platform applicability; unresolved identities remain an explicit hold')
         if benchmark_conditions:
-            wrapper['platform']['applicability'] = {
-                'any_of': [{'condition': condition_id}
-                           for condition_id in benchmark_conditions]}
+            wrapper['platform']['applicability'] = _scope_expression(benchmark_conditions)
         else:
             wrapper['platform'].pop('applicability', None)
+
+    # Replace the source-model's simple condition IDs on nested native Groups
+    # with the exact CPE expression at the same source scope.  No Rule-level
+    # duplication is needed for inherited Group applicability.
+    benchmark_document = documents.get(benchmark_path, {}).get('benchmark', {})
+    native_groups = benchmark_document.get('groups', [])
+
+    def find_native_group(groups, identifier):
+        for group in groups:
+            if group.get('id') == identifier:
+                return group
+            found = find_native_group(group.get('groups', []), identifier)
+            if found is not None:
+                return found
+        return None
+
+    from ._v04_runtime.v04_direct_scap_source import native_identifier
+    for source_group in source.benchmark.findall('.//' + f'{{{XCCDF}}}Group'):
+        record = group_level_records.get(source_group.get('id'))
+        if not record or not record['conditions']:
+            continue
+        native_group = find_native_group(native_groups,
+                                          native_identifier(source_group, 'group'))
+        if native_group is None:
+            unsupported.append({'kind': 'group', 'identity': source_group.get('id'),
+                                'reason': 'source Group applicability has no serialized native Group target'})
+        else:
+            native_group['applicability'] = _scope_expression(record['conditions'])
 
     catalog_path = 'authoring/direct-slice/applicability.json'
     documents[catalog_path] = {'applicability': {
@@ -527,6 +594,8 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         'format': 'scap-ng-applicability/1', 'catalog': catalog_path,
         'catalog_id': 'direct-slice-applicability',
         'conditions': [{'id': key, **value} for key, value in conditions.items()],
+        'platform_expressions': [{'id': key, **value}
+                               for key, value in platform_expressions.items()],
         'shared_assessments': list(shared_traces.values()),
         'unsupported': unsupported,
         'source_platform_specifications': list(specifications.values()),
