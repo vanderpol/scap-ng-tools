@@ -42,6 +42,20 @@ class OVALFunctionCrosswalk(unittest.TestCase):
         self.assertEqual(self.receipt["source"]["commit"],
                          "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706")
 
+    def test_dynamic_literal_function_requirement_is_minimal_and_fail_closed(self):
+        requirement = self.receipt["canonical_requirements"]
+        self.assertEqual(requirement["schema_location"],
+                         "variable-expression.schema.json#/$defs/expression")
+        for name in ("escape_regex", "glob_to_regex"):
+            with self.subTest(name=name):
+                row = requirement[name]
+                self.assertTrue(row["positive_witness"])
+                self.assertGreaterEqual(len(row["negative_witnesses"]), 2)
+                self.assertTrue(row["semantics"])
+        self.assertIn("canonical schema requirement is approved",
+                      requirement["converter_obligation"])
+        self.assertGreaterEqual(len(requirement["ri_obligations"]), 4)
+
 
 if __name__ == "__main__":
     unittest.main()
