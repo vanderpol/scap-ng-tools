@@ -1,0 +1,52 @@
+{
+  "canonical": {
+    "commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "repository": "vanderpol/scap-ng",
+    "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc"
+  },
+  "external_artifacts": {
+    "json_bytes": 109112966,
+    "json_path": "/tmp/tools-crosswalk-current.eL9pRZ/crosswalk.json",
+    "json_sha256": "30abf7729a07bd1153e2ca0c77ddee72f1ba0f397d4d37c4e589971010eb38a8",
+    "markdown_bytes": 3678,
+    "markdown_path": "/tmp/tools-crosswalk-current.eL9pRZ/crosswalk.md",
+    "markdown_sha256": "8f0d2cee3d97db58c6e2ce5c44ffc480323354debdeb257798b62e4c6f29909a"
+  },
+  "format": "scap-ng-tools/issue83-source-crosswalk-receipt/2",
+  "oval": {
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "declarations": 1426,
+    "grammar_rows": 42567,
+    "grammar_rows_with_mapping": 383,
+    "native_mapping_status": {
+      "deprecated_migration": 237,
+      "unproven": 1189
+    },
+    "repository": "OVAL-Community/OVAL",
+    "schema_files": 46,
+    "schema_manifest_files": 54,
+    "schematron_assertions": 982,
+    "schematron_reports": 200,
+    "unclassified_declarations": 0,
+    "unresolved_schema_dependencies": 0,
+    "unresolved_schema_references": 0
+  },
+  "proof": "schema/XCCDF inventory and source identity only; no structural conversion, RI execution, or independent OVAL equivalence claim",
+  "reproduction": {
+    "command": "PYTHONPATH=src python scripts/build_issue83_source_crosswalk.py --source-root <65-source-zips> --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --expected-archives 65 --oval-schema-root <OVAL-5.12.3>/oval-schemas --canonical-mapping-root <SCAP-NG-f51>/schema/capability-mappings --canonical-mapping-commit f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2 --output-json <external>/crosswalk.json --output-md <external>/crosswalk.md"
+  },
+  "source": {
+    "archive_set_sha256": "6e04353f3b1ef32b31a6ef022f75cd7c68486dadb017bd18aa9108c3864ed1ca",
+    "archives": 65,
+    "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "expected_archives": 65,
+    "repository": "scap-content-library",
+    "rules": 8892
+  },
+  "xccdf": {
+    "conflicts_rows": 0,
+    "malformed_publisher_payload_rules": 25,
+    "requires_rows": 0,
+    "rules_with_requires_or_conflicts": 0
+  }
+}
