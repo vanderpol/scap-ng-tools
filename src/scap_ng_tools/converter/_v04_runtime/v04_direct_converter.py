@@ -1424,8 +1424,10 @@ class AssessmentConverter:
             # OVAL 5.12.3 time_difference is a first-class active native
             # expression.  It is deliberately not lowered through the
             # inactive generic function envelope: the active schema and RI
-            # evaluator own its typed UTC/format semantics.
-            ensure(self.native_recovery, 'time_difference requires native recovery')
+            # evaluator own its typed UTC/format semantics.  Unlike the
+            # still-held migration envelope below, time_difference is an
+            # approved production 0.4.1 operation and must not depend on
+            # native-recovery mode.
             attributes(element, {'format_1', 'format_2'})
             ensure(1 <= len(element) <= 2, 'time_difference requires one or two components')
             formats = {key: element.get(key) for key in ('format_1', 'format_2') if key in element.attrib}

@@ -154,6 +154,25 @@ class Active041FunctionLowering(unittest.TestCase):
             },
         })
 
+    def test_time_difference_is_active_in_normal_converter_mode(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=False)
+        source = oval(
+            '<time_difference xmlns="OVAL" format_1="year_month_day" '
+            'format_2="seconds_since_epoch">'
+            '<literal_component datatype="string">2009-02-04</literal_component>'
+            '<literal_component datatype="int">1238506200</literal_component>'
+            '</time_difference>')
+        self.assertEqual(visitor.function(source), {
+            'time_difference': {
+                'format_1': 'year_month_day',
+                'format_2': 'seconds_since_epoch',
+                'values': [
+                    {'literal': {'datatype': 'string', 'value': '2009-02-04'}},
+                    {'literal': {'datatype': 'integer', 'value': 1238506200}},
+                ],
+            },
+        })
+
     def test_time_difference_semantic_validation_accepts_unary_current_format(self):
         # The active canonical contract intentionally keeps format_1 on the
         # unary form: it governs the implicit current UTC operand. This must
