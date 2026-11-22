@@ -1,0 +1,68 @@
+{
+  "format": "scap-ng-tools/issue99-full-self-assertion-conversion/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "root": "SCAP_1.4/OVAL_Test_Content",
+    "definition_and_test_denominator": {
+      "definitions": 167,
+      "tests": 799,
+      "converted_definitions": 167,
+      "blocked_definitions": 0,
+      "excluded_definitions": 0,
+      "schema_valid_yaml_documents": 167,
+      "converted_tests": 799,
+      "blocked_tests": 0,
+      "excluded_tests": 0,
+      "test_ledger_reconciled": 799,
+      "execution": "not_run"
+    }
+  },
+  "canonical": {
+    "commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "version": "0.4.1",
+    "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+    "assessment_closure_sha256": "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6",
+    "semantic_pack_sha256": "0dfc56220041df9eded84f137de991e249eb4ae4a0e29bada973ba9f160c7ea1"
+  },
+  "converter": {
+    "commit": "c30f4afca36715d905333dbd48a1d8d17278acd8",
+    "production_module": "scap_ng_tools.converter.direct04",
+    "policy": "production CLI only; no manual native rewrites or expected outcomes"
+  },
+  "summary": {
+    "definitions": 167,
+    "tests": 799,
+    "converted_definitions": 167,
+    "blocked_definitions": 0,
+    "excluded_definitions": 0,
+    "schema_valid_yaml_documents": 167,
+    "converted_tests": 799,
+    "blocked_tests": 0,
+    "excluded_tests": 0,
+    "test_ledger_reconciled": 799,
+    "execution": "not_run"
+  },
+  "artifact_directory": "external:/tmp/tools-issue99-full-d91-c30f4af",
+  "manifest_sha256": "2675f0520afc3b65d9bff75f15bd9b8630e80a9a9e610074354791b24ea78f1c",
+  "artifact_count": 678,
+  "def562": {
+    "source_path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+    "source_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+    "definition_id": "oval:org.mitre.oval.test:def:562",
+    "tests": 18,
+    "status": "CONVERTED_UNVERIFIED"
+  },
+  "qualification": {
+    "schema_validated": true,
+    "runtime_execution": false,
+    "independent_equivalence": false,
+    "expected_outcomes_used_as_inputs": false,
+    "source_xml_modified": false,
+    "source_validation": "OpenSCAP 1.3.9 source validation passed for def:562 member; full corpus conversion is authoring/schema qualification only."
+  },
+  "reproduction": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/convert_self_assertion_corpus.py --corpus <SCAP-Self-Assertion@d91e6ba> --schema-root <scap-ng@c428fd0>/schema --source-commit d91e6ba33841e3202dc27d3e0d469a7abd939b16 --output <external-output> --python .venv/bin/python",
+    "integrity": "manifest.json hashes every generated artifact except itself; output directory is external and reproducible."
+  }
+}

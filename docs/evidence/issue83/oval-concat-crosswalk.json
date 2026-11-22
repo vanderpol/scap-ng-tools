@@ -1,0 +1,55 @@
+{
+  "format": "scap-ng-tools/oval-concat-crosswalk/1",
+  "source": {
+    "repository": "OVAL-Community/OVAL",
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "schema": "oval-definitions-schema.xsd",
+    "schema_sha256": "06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc",
+    "construct": "oval-def:ConcatFunctionType",
+    "xsd_evidence": {
+      "component_group_lines": "636-646",
+      "function_group_lines": "708-728",
+      "concat_contract_lines": "770-802",
+      "semantics": [
+        "two or more ordered components",
+        "each component is cast to string when required",
+        "collection-valued components produce an ordered Cartesian product",
+        "a missing component retains the source non-success status"
+      ]
+    }
+  },
+  "native": {
+    "canonical_commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "schema_pointer": "variable-expression.schema.json#/$defs/expression/oneOf/4",
+    "expression": "concat: [expression, expression, ...]",
+    "semantics": "ordered components, explicit textual boundary, collection/status dimensions retained",
+    "converter": "src/scap_ng_tools/converter/native041_function_lowering.py::lower_expression",
+    "semantic_gate": "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py::assessment_variable_expressions"
+  },
+  "implementation": {
+    "commit": "9e1f6f8358da2acfcab0b289fa55465ee3f3f98c",
+    "change": "allow source-valid collected scalar populations, including mixed Item datatypes, through the shared textual boundary for concat and textual unary functions",
+    "preservation": [
+      "no source XML changes",
+      "no selected datatype or implicit value rewrite",
+      "record populations remain rejected",
+      "untyped empty domains remain fail-closed"
+    ]
+  },
+  "tests": {
+    "file": "tests/test_issue83_concat_crosswalk.py",
+    "vectors": [
+      "mixed typed collected population accepted by concat",
+      "split/substring/begin/end/regex_capture share the same collection cast boundary",
+      "record population rejected",
+      "untyped empty population rejected"
+    ],
+    "runtime_equivalence": false
+  },
+  "qualification": {
+    "structural_conversion": "implemented and focused-tested",
+    "source_semantic_parity": "source grammar mapped; collection/status runtime proof pending",
+    "ri_runtime": "not run",
+    "independent_oval_equivalence": "not proved"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "candidate": {
+    "blocked": 95,
+    "converted": 6492,
+    "manual_only": 1403
+  },
+  "canonical_schema_commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+  "converter_commit": "a1c6f731de0799a86123408bdb96bb38283b16b0",
+  "external_ledger_bytes": 59579,
+  "external_ledger_sha256": "c2b04738df54894604d9c9af29c92cdae717774aa694bec1c2cdface6a381da7",
+  "external_output": "/tmp/tools-full65-d91-a1c6.json",
+  "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+  "newly_blocked_from_converted": 0,
+  "newly_converted_from_blocked": 13,
+  "nonregression_pass": true,
+  "original": {
+    "blocked": 108,
+    "converted": 6479,
+    "manual_only": 1403
+  },
+  "owner_scope": {
+    "active": 7990,
+    "historical_windows_2012": 693,
+    "owner_excluded_sql": 209
+  },
+  "qualification": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+  "reproduction": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python scripts/rebuild_issue59_full65.py --schema-root <scap-ng@c428fd0>/schema --source-root <scap-content-library@8c8e5d> --source-archive <source-archive> --source-archive-sha256 8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb --source-commit 8c8e5dff860af6b1290ee9273a282db24278f8d5 --canonical-schema-commit c428fd0708da0cdd574dc9e499db714a1068bd75 --schema-aggregate-sha256 1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4 --output <external-output> --enforce-nonregression"
+  },
+  "schema_aggregate_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+  "source_archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+  "source_benchmarks": 65,
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
+}

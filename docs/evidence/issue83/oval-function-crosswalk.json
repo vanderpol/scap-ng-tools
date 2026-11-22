@@ -1,0 +1,214 @@
+{
+  "format": "scap-ng-tools/oval-function-crosswalk/1",
+  "source": {
+    "repository": "OVAL-Community/OVAL",
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "schema": "oval-definitions-schema.xsd",
+    "schema_sha256": "06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc",
+    "function_group": "oval-definitions-schema.xsd:708-728",
+    "declarations": [
+      "arithmetic",
+      "begin",
+      "concat",
+      "end",
+      "escape_regex",
+      "split",
+      "substring",
+      "time_difference",
+      "regex_capture",
+      "unique",
+      "count",
+      "merge",
+      "glob_to_regex"
+    ]
+  },
+  "native": {
+    "canonical_commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "schema": "variable-expression.schema.json",
+    "expression_pointer_by_name": {
+      "arithmetic": "#/$defs/expression/oneOf/10",
+      "begin": "#/$defs/expression/oneOf/11",
+      "concat": "#/$defs/expression/oneOf/4",
+      "end": "#/$defs/expression/oneOf/12",
+      "regex_capture": "#/$defs/expression/oneOf/5",
+      "unique": "#/$defs/expression/oneOf/6",
+      "count": "#/$defs/expression/oneOf/7",
+      "split": "#/$defs/expression/oneOf/8",
+      "substring": "#/$defs/expression/oneOf/9",
+      "time_difference": "#/$defs/expression/oneOf/3",
+      "merge": "#/$defs/expression/oneOf/13",
+      "escape_regex": null,
+      "glob_to_regex": null
+    }
+  },
+  "crosswalk": [
+    {
+      "name": "arithmetic",
+      "source_xsd_line": 729,
+      "source_semantics": "two or more numeric components; Cartesian collection expansion",
+      "native_status": "representable",
+      "converter_status": "implemented_bounded_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "begin",
+      "source_xsd_line": 750,
+      "source_semantics": "text boundary applied per component value",
+      "native_status": "representable",
+      "converter_status": "implemented_bounded_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "concat",
+      "source_xsd_line": 770,
+      "source_semantics": "ordered textual components; lexical cast; Cartesian collection expansion; missing status retained",
+      "native_status": "representable",
+      "converter_status": "implemented_generic_collection_text_boundary",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "end",
+      "source_xsd_line": 803,
+      "source_semantics": "text boundary applied per component value",
+      "native_status": "representable",
+      "converter_status": "implemented_bounded_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "escape_regex",
+      "source_xsd_line": 823,
+      "source_semantics": "escape regex metacharacters per component value",
+      "native_status": "canonical_gap_for_dynamic_expression",
+      "converter_status": "implemented_static_literal_only",
+      "runtime_status": "not_reached"
+    },
+    {
+      "name": "split",
+      "source_xsd_line": 843,
+      "source_semantics": "split each text component; preserve empty parts and collection expansion",
+      "native_status": "representable",
+      "converter_status": "implemented_bounded_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "substring",
+      "source_xsd_line": 864,
+      "source_semantics": "one-based slice; out-of-range error; per-value collection expansion",
+      "native_status": "representable",
+      "converter_status": "implemented_bounded_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "time_difference",
+      "source_xsd_line": 886,
+      "source_semantics": "UTC difference; one/two operands; format defaults; Cartesian expansion",
+      "native_status": "representable",
+      "converter_status": "implemented_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "regex_capture",
+      "source_xsd_line": 910,
+      "source_semantics": "first capture per text component; no match contract retained",
+      "native_status": "representable",
+      "converter_status": "implemented_bounded_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "unique",
+      "source_xsd_line": 933,
+      "source_semantics": "ordered first-occurrence lexical deduplication",
+      "native_status": "representable",
+      "converter_status": "implemented_explicit_lexical_projection",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "count",
+      "source_xsd_line": 953,
+      "source_semantics": "count produced values including duplicates; statuses retained",
+      "native_status": "representable",
+      "converter_status": "implemented_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "merge",
+      "source_xsd_line": 942,
+      "source_semantics": "ordered population merge with delimiter/sort/order",
+      "native_status": "representable",
+      "converter_status": "implemented_native_lowering",
+      "runtime_status": "unproved"
+    },
+    {
+      "name": "glob_to_regex",
+      "source_xsd_line": 961,
+      "source_semantics": "glob-to-regex conversion per component value",
+      "native_status": "canonical_gap_for_dynamic_expression",
+      "converter_status": "implemented_static_literal_only",
+      "runtime_status": "not_reached"
+    }
+  ],
+  "holds": [
+    {
+      "name": "escape_regex/glob_to_regex dynamic operands",
+      "category": "canonical_gap",
+      "evidence": "OVAL 5.12.3 FunctionGroup admits object/Variable components, but the active 0.4.1 variable-expression schema has no corresponding expression variant.",
+      "required_action": "Owner-reviewed canonical 0.4.1 representation before production conversion; do not encode a converter-private function envelope or silently materialize dynamic values."
+    }
+  ],
+  "proof_limits": [
+    "This is a grammar crosswalk, not scanner qualification.",
+    "Runtime collection/status behavior remains unproved even for representable operations.",
+    "No source content was edited and no deprecated operation was enabled."
+  ],
+  "canonical_requirements": {
+    "scope": "minimal dynamic escape_regex and glob_to_regex additions to canonical SCAP-NG 0.4.1 variable-expression grammar",
+    "schema_location": "variable-expression.schema.json#/$defs/expression",
+    "escape_regex": {
+      "required_shape": {
+        "escape_regex": {
+          "value": "<expression>"
+        }
+      },
+      "source_xsd": "oval-definitions-schema.xsd:823-842 / EscapeRegexFunctionType",
+      "semantics": [
+        "evaluate one operand per produced value",
+        "escape OVAL Perl-compatible regex metacharacters without changing source order or multiplicity",
+        "propagate missing/error/unknown/incomplete/not-collected/not-applicable status; never stringify diagnostic status"
+      ],
+      "positive_witness": "<escape_regex><object_component object_ref=\"obj\" item_field=\"value\"/></escape_regex>",
+      "negative_witnesses": [
+        "<escape_regex/> (missing required ComponentGroup member)",
+        "native record-valued operand (must fail closed rather than flatten)"
+      ]
+    },
+    "glob_to_regex": {
+      "required_shape": {
+        "glob_to_regex": {
+          "glob_noescape": "<boolean default false>",
+          "value": "<expression>"
+        }
+      },
+      "source_xsd": "oval-definitions-schema.xsd:961-1088 / GlobToRegexFunctionType",
+      "semantics": [
+        "evaluate one operand per produced value",
+        "preserve glob_noescape default and exact OVAL glob-to-regex lexical behavior",
+        "bound output bytes and population before materialization",
+        "propagate diagnostic statuses and report malformed glob as error",
+        "preserve OVAL slash separator, dotfile, dot-directory, case, brace and tilde behavior"
+      ],
+      "positive_witness": "<glob_to_regex glob_noescape=\"false\"><variable_component var_ref=\"string-variable\"/></glob_to_regex>",
+      "negative_witnesses": [
+        "<glob_to_regex glob_noescape=\"maybe\">...</glob_to_regex> (invalid xsd:boolean)",
+        "<glob_to_regex>...</glob_to_regex> (missing required component)"
+      ]
+    },
+    "converter_obligation": "Do not emit either dynamic form until the canonical schema requirement is approved and pinned. Keep current bounded static-literal conversion and explicit source disposition.",
+    "ri_obligations": [
+      "execute each operation over collected values with bounded item/byte/resource budgets",
+      "preserve source ordering, multiplicity and collection status in canonical Results",
+      "use a trusted, profile-approved regex implementation; no shell fallback or unbounded helper",
+      "record source function identity, pattern/glob provenance, timing, truncation and decisive error reason",
+      "add positive, negative, empty, malformed, diagnostic-status and resource-limit runtime tests before qualification"
+    ]
+  }
+}

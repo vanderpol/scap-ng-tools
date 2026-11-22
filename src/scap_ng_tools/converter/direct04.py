@@ -60,8 +60,13 @@ def load_runtime():
     return engine
 
 
-def validate_native_documents(snapshot, documents):
-    """Draft 2020-12 structural validation; not independent semantic proof."""
+def validate_native_documents(snapshot, documents, *, include_semantic=False):
+    """Validate native documents against 0.4.1 structure and optional semantics.
+
+    Focused and benchmark conversion must use the same Assessment semantic
+    admission gate.  The flag is explicit because callers that only round-trip
+    an already-produced document may intentionally request structural checks.
+    """
     try:
         from jsonschema import Draft202012Validator
         from referencing import Registry, Resource
@@ -96,6 +101,20 @@ def validate_native_documents(snapshot, documents):
         # across converter subprocesses and deterministic ledger rebuilds.
         findings = sorted(findings)
         raise QualifiedConversionError('generated authoring failed flat JSON Schema: ' + '; '.join(findings[:8]))
+    if include_semantic:
+        from ._v04_semantic.validation import document_errors
+        semantic_findings = []
+        for filename, document in sorted(documents.items()):
+            for kind in document:
+                if kind == 'assessment':
+                    semantic_findings.extend(
+                        f'{filename}: {error.message}'
+                        for error in document_errors(snapshot, kind, document))
+        if semantic_findings:
+            semantic_findings = sorted(semantic_findings)
+            raise QualifiedConversionError(
+                'generated authoring failed 0.4.1 semantic validation: ' +
+                '; '.join(semantic_findings[:8]))
 
 
 def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
@@ -143,7 +162,7 @@ def convert_focused(*, schema_root, source, sha256_pin, rule_ids,
     except ValueError as error:
         raise QualifiedConversionError('0.4.1 native authoring lowering failed: ' +
                                        str(error)) from error
-    validate_native_documents(snapshot, documents)
+    validate_native_documents(snapshot, documents, include_semantic=True)
     return documents, trace
 
 

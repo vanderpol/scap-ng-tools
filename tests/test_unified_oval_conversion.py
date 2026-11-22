@@ -68,6 +68,11 @@ class UnifiedOvalConverterTests(unittest.TestCase):
         self.assertFalse(signature.parameters['native_recovery'].default)
         self.assertNotIn('preserve_variable_references', signature.parameters)
 
+    def test_focused_benchmark_gate_includes_shared_semantic_validation(self):
+        source = inspect.getsource(direct04.convert_focused)
+        self.assertIn('validate_native_documents(snapshot, documents, include_semantic=True)', source)
+        self.assertIn('0.4.1 semantic validation', inspect.getsource(direct04.validate_native_documents))
+
     def test_standalone_adapter_has_no_capability_allowlist(self):
         source = inspect.getsource(oval_platform.convert_definition)
         self.assertIn('engine.AssessmentConverter(', source)

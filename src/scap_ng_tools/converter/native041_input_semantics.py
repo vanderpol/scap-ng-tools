@@ -38,17 +38,26 @@ def project_assessment(assessment):
             if not isinstance(value, str) or value not in inputs:
                 raise InputExpressionContractError("Input expression references undeclared Input")
             contract = inputs[value]
-            if not isinstance(contract, dict) or contract.get("required") is not True or (
-                    contract.get("cardinality") != "exactly_one"):
+            if (not isinstance(contract, dict) or contract.get("required") is not True or
+                    contract.get("cardinality") not in {"exactly_one", "zero_or_one",
+                                                        "one_or_more", "zero_or_more"}):
                 raise InputExpressionContractError(
-                    "Only required, exactly_one Input function operands currently qualify")
+                    "Input expression requires a required Input with a valid cardinality")
             datatype = contract.get("datatype")
-            literal = {"string": "0", "integer": 0, "float": 0.0, "boolean": False}.get(datatype)
-            if literal is None:
+            # This is a validation-only typed witness, never a default or
+            # execution value.  Text-backed OVAL domains retain lexical data;
+            # record Inputs cannot be used as scalar Variable operands.
+            literals = {
+                "string": "0", "integer": 0, "float": 0.0,
+                "boolean": False, "binary": "00", "version": "0",
+                "ipv4": "0.0.0.0", "ipv6": "::", "rpm_evr": "0:0-0",
+                "debian_evr": "0-0", "fileset_revision": "0", "ios_version": "0",
+            }
+            if datatype not in literals:
                 raise InputExpressionContractError(
                     "Input datatype lacks an approved scalar expression projection")
             seen.add("input")
-            return {"literal": {"datatype": datatype, "value": literal}}
+            return {"literal": {"datatype": datatype, "value": literals[datatype]}}
         if operator == "to_integer":
             if not isinstance(value, dict):
                 raise InputExpressionContractError("to_integer requires one expression")

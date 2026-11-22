@@ -164,11 +164,13 @@ class NativeFunctionContractSemantics(unittest.TestCase):
             self._validate({'kind': 'local', 'datatype': 'string', 'expression': mixed_unique})
 
 
-    def test_owner_function_subset_rejects_implicit_casts_and_bad_options(self):
+    def test_source_text_function_casts_numeric_component(self):
+        # OVAL 5.12.3 FunctionGroup explicitly attempts a lexical cast for
+        # textual functions. The cast is source-defined, not a converter-wide
+        # datatype coercion; collection/status boundaries remain explicit.
         numeric_split = {'split': {'delimiter': ',', 'value': self._literal('integer', 2)}}
-        with self.assertRaisesRegex(ValueError, 'requires string input'):
-            self._validate({'kind': 'local', 'datatype': 'string',
-                            'expression': numeric_split})
+        self.assertEqual(self._validate({'kind': 'local', 'datatype': 'string',
+                                         'expression': numeric_split})['result-variable'], 'string')
 
 
 class AbsencePrecedence(unittest.TestCase):
