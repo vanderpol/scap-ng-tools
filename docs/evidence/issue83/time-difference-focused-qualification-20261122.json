@@ -1,0 +1,40 @@
+{
+  "format": "scap-ng-tools/issue83-time-difference-focused-qualification/1",
+  "qualification": "source-linked structural and semantic conversion; RI/runtime and independent OVAL equivalence not proved",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "path": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml",
+    "path_in_replay": "agnostic/oval-def_time_difference_function.xml",
+    "xml_sha256": "c7e974a0a14ba4c7b72807e46e8052527b34a6da3672ca916dd57e5b4c2fd056",
+    "definition_id": "oval:org.mitre.oval.test:def:580",
+    "tests_converted": 30,
+    "time_difference_variables": 29,
+    "source_variable_type_corrections": "source pin d91e6ba already contains the reviewed datatype corrections; no source XML was modified"
+  },
+  "converter": {
+    "commit": "f660f7e5f96566a84a395d7cac1390e755a06170",
+    "source_tree_sha256": "a427ea6ec6400bc0d74ba5cfe6c369e33b33fc6c2dfcc1922e36fa308e7c5eb",
+    "production_entrypoint": "scap_ng_tools.converter.direct04"
+  },
+  "canonical": {
+    "repository": "vanderpol/scap-ng",
+    "commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "schema_version": "0.4.1",
+    "flat_schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "assessment_execution_family_sha256": "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b",
+    "assessment_closure_sha256": "9873247ae54f5d9b7ba77f487f8e33f96b791f30c181c8e15f3931a2afcfdf4b"
+  },
+  "observed": {
+    "schema_validated": true,
+    "semantic_validated": true,
+    "native_assessment_tests": 30,
+    "native_variables": 31,
+    "native_time_difference_expressions": 29,
+    "scanner_execution": false,
+    "independent_oval_equivalence": "not_proved"
+  },
+  "reproduction": {
+    "command": "PYTHONPATH=src python -m scap_ng_tools.converter.direct04 --schema-root <canonical-f51-schema>/schema --source <source>/agnostic/oval-def_time_difference_function.xml --sha256 c7e974a0a14ba4c7b72807e46e8052527b34a6da3672ca916dd57e5b4c2fd056 --oval-definition oval:org.mitre.oval.test:def:580 --source-commit d91e6ba33841e3202dc27d3e0d469a7abd939b16 --source-path agnostic/oval-def_time_difference_function.xml --output <new-output>"
+  }
+}
