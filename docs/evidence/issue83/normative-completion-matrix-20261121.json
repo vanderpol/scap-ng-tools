@@ -1,0 +1,139 @@
+{
+  "counts": {
+    "by_classification": {
+      "deprecated": 227,
+      "mapped_unproven": 377,
+      "unmapped_source_feature": 413
+    },
+    "by_platform": {
+      "aix": {
+        "deprecated": 3,
+        "mapped_unproven": 8,
+        "unmapped_source_feature": 29
+      },
+      "android": {
+        "deprecated": 13,
+        "unmapped_source_feature": 39
+      },
+      "apache": {
+        "deprecated": 4
+      },
+      "asa": {
+        "deprecated": 9,
+        "mapped_unproven": 8,
+        "unmapped_source_feature": 27
+      },
+      "aws": {
+        "unmapped_source_feature": 20
+      },
+      "catos": {
+        "deprecated": 6,
+        "unmapped_source_feature": 9
+      },
+      "esx": {
+        "deprecated": 6,
+        "unmapped_source_feature": 9
+      },
+      "freebsd": {
+        "deprecated": 1,
+        "unmapped_source_feature": 3
+      },
+      "hpux": {
+        "deprecated": 8,
+        "unmapped_source_feature": 15
+      },
+      "independent": {
+        "deprecated": 22,
+        "mapped_unproven": 34,
+        "unmapped_source_feature": 8
+      },
+      "ios": {
+        "deprecated": 7,
+        "mapped_unproven": 40,
+        "unmapped_source_feature": 20
+      },
+      "iosxe": {
+        "deprecated": 3,
+        "mapped_unproven": 44,
+        "unmapped_source_feature": 9
+      },
+      "junos": {
+        "deprecated": 2,
+        "mapped_unproven": 4,
+        "unmapped_source_feature": 10
+      },
+      "linux": {
+        "deprecated": 6,
+        "mapped_unproven": 49,
+        "unmapped_source_feature": 9
+      },
+      "macos": {
+        "deprecated": 24,
+        "mapped_unproven": 68,
+        "unmapped_source_feature": 15
+      },
+      "netconf": {
+        "deprecated": 1,
+        "unmapped_source_feature": 3
+      },
+      "oval": {
+        "deprecated": 1,
+        "unmapped_source_feature": 13
+      },
+      "panos": {
+        "mapped_unproven": 8
+      },
+      "pixos": {
+        "deprecated": 2,
+        "unmapped_source_feature": 6
+      },
+      "sharepoint": {
+        "deprecated": 19,
+        "unmapped_source_feature": 45
+      },
+      "solaris": {
+        "deprecated": 15,
+        "mapped_unproven": 14,
+        "unmapped_source_feature": 33
+      },
+      "unix": {
+        "deprecated": 17,
+        "mapped_unproven": 32,
+        "unmapped_source_feature": 23
+      },
+      "windows": {
+        "deprecated": 58,
+        "mapped_unproven": 68,
+        "unmapped_source_feature": 68
+      }
+    },
+    "canonical_mapping_rows": 391,
+    "distinct_top_level_features": 1017,
+    "structural_declarations": 1426,
+    "structural_grammar_rows": 42567
+  },
+  "features_external": {
+    "count": 1017,
+    "sha256": "4b7efded284ac9c0e56138ed83b9f6565befacb539e42bd6107dd535c0feaa17"
+  },
+  "format": "scap-ng-tools/normative-completion-matrix/1",
+  "policy": {
+    "deprecated_meaning": "The pinned XSD/Schematron marks the declaration deprecated; source replacement and migration policy remain separate evidence.",
+    "mapped_meaning": "A canonical mapping candidate is representability evidence only; it is not converter or runtime proof.",
+    "top_level_feature_selector": "source_kind=element and source_path=/element[0]",
+    "unmapped_meaning": "No exact canonical mapping candidate was found in the supplied pinned mapping inventory; this is a review hold, not automatically a canonical gap."
+  },
+  "qualification": {
+    "converter_source_parity": "not_run",
+    "independent_equivalence": "not_proved",
+    "ri_runtime": "not_run",
+    "source_structure": "pinned and structurally inventoried"
+  },
+  "source": {
+    "canonical_mapping_commit": "5ee55288b369da26f308f40813e545b78dff2753",
+    "crosswalk_path": "/tmp/issue83-crosswalk-main.json",
+    "crosswalk_sha256": "fefc748e283ad07b0b4aea1ac5843377073bd3e40132eaaf4e08085c734e31c7",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
+  }
+}
