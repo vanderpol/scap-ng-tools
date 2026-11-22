@@ -48,8 +48,17 @@ def assessment_variable_expressions(assessment):
         # unknown/empty domains are not silently flattened, while scalar
         # integer/float/boolean values are stringified by the runtime contract.
         scalar_domains = TEXT_TYPES | {'integer', 'float', 'boolean'}
-        if actual == {DYNAMIC_COLLECTED}:
-            return actual
+        # A collected Item may expose more than one source datatype (for
+        # example windows.registry.value).  The source FunctionGroup permits
+        # the function to cast each scalar member to lexical text and applies
+        # the operation over the resulting Cartesian population.  The marker
+        # is intentionally retained instead of choosing one datatype; a
+        # union with a known scalar is likewise safe because the function's
+        # explicit text boundary handles both populations independently.
+        if DYNAMIC_COLLECTED in actual:
+            remainder = actual - {DYNAMIC_COLLECTED}
+            if remainder <= scalar_domains:
+                return actual
         if not actual or 'record' in actual or not actual <= scalar_domains:
             raise ValueError(f'{where} requires a scalar text operand')
         return actual
@@ -160,8 +169,12 @@ def assessment_variable_expressions(assessment):
             if not isinstance(payload, dict) or 'value' not in payload:
                 raise ValueError(op + ' requires a value expression')
             domain = expression(payload['value'])
-            if domain != {'string'}:
-                raise ValueError(op + ' requires string input; no implicit cast')
+            # OVAL 5.12.3 applies these textual functions independently to
+            # every component value and attempts the documented lexical cast
+            # for scalar non-string values.  A collected field therefore has
+            # to pass through the same text boundary as concat/regex_capture;
+            # rejecting it here loses valid collection semantics.
+            text_operand(domain, op)
             return {'string'}
         if op == 'arithmetic':
             domains = [expression(arg) for arg in value['values']]

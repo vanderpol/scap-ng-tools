@@ -118,11 +118,11 @@
     {
       "category": "Function",
       "feature": "concat",
-      "schema": "legacy/native migration form",
-      "compiler": "partial",
-      "converter": "implemented for nested scalar forms",
-      "runtime": "datatype and empty collection proof incomplete",
-      "proof": "inventory only",
+      "schema": "canonical variable-expression.schema.json#/$defs/expression/oneOf/4",
+      "compiler": "typed collection-aware text boundary; records and untyped empty domains fail closed",
+      "converter": "generic native lowering preserves ordered components and source Cartesian population",
+      "runtime": "OVAL collection/status equivalence remains independently unproved",
+      "proof": "source-XSD witness plus positive/negative collection/type vectors; no runtime claim",
       "status": "partially_implemented"
     },
     {
@@ -637,11 +637,11 @@
     {
       "name": "concat",
       "category": "Function",
-      "schema": "legacy/native migration form",
-      "compiler": "partial",
-      "converter": "implemented for nested scalar forms",
-      "runtime": "datatype and empty collection proof incomplete",
-      "proof": "inventory only",
+      "schema": "canonical variable-expression.schema.json#/$defs/expression/oneOf/4",
+      "compiler": "typed collection-aware text boundary; records and untyped empty domains fail closed",
+      "converter": "generic native lowering preserves ordered components and source Cartesian population",
+      "runtime": "OVAL collection/status equivalence remains independently unproved",
+      "proof": "source-XSD witness plus positive/negative collection/type vectors; no runtime claim",
       "status": "partially_implemented"
     },
     {
