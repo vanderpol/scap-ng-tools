@@ -32,7 +32,11 @@ class Active041Pins(unittest.TestCase):
         # This independent expected ledger is not regenerated from RI results.
         manifest = ROOT / 'docs/qualification/agnostic-self-assertion/expected-definitions.json'
         self.assertEqual(sha256(manifest.read_bytes()).hexdigest(),
-                         '9a9961fc8bcdf30d2d01e9178c0b59befc5e871724c48d6fe38fd9443906ce7c')
+                         'bef07de863d4e8947dc2b2caab87debdc70bd8699fa03f0198a4454fc708412f')
+        expected = json.loads(manifest.read_text())
+        self.assertEqual(expected['source_commit'],
+                         'd91e6ba33841e3202dc27d3e0d469a7abd939b16')
+        self.assertEqual(expected['expected_counts'], {'true': 44, 'false': 1, 'unknown': 1})
 
     def test_current_canonical_resource_bytes_and_profile_contract(self):
         schema_root = os.environ.get('SCAP_NG_SCHEMA_ROOT')
