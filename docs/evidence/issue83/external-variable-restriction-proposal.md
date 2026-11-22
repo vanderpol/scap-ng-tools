@@ -38,20 +38,17 @@ inputs:
     required: true
     constraints:
       allowed: ["fixed-value"]      # possible_value branches, each exact typed equality
-      restriction_groups:             # possible_restriction branches
-        - operator: and              # source default when @operator is absent
-          predicates:
-            - operation: pattern_match
-              value: "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              source_operation: "pattern match"
+      predicate:                       # generic value predicate expression
+        or:                             # alternatives are explicitly ORed
+          - matches_regex: "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
 ```
 
 The candidate semantics are:
 
 1. Each `allowed` member is one `possible_value` branch and is compared as an exact value in the declared datatype. It is not a default.
-2. Each `restriction_groups` member is one `possible_restriction` branch. Each predicate is typed in the declared datatype and retains the source operation and lexical value in provenance. The group operator is `and`, `or`, `one`, or `xor`, matching the pinned OVAL operator vocabulary; omitted source operator means `and`.
+2. Each `predicate` expression branch is one `possible_restriction` branch. Each comparison leaf is typed in the declared datatype and retains the source operation and lexical value in provenance. The group operator is `and`, `or`, `one`, or `xor`, matching the pinned OVAL operator vocabulary; omitted source operator means `and`.
 3. The complete constraint is the OR of every `allowed` branch and every restriction-group result. A declaration with no branches accepts values only after datatype validation, as OVAL specifies.
-4. The representation is generic and applies to all supported OVAL datatypes and operation combinations admitted by the source schema. It must not special-case telephone-number regexes or `def:562`.
+4. The representation is generic and applies to all supported OVAL datatypes and operation combinations admitted by the source schema. The four Boolean nodes are the existing generic `and`, `or`, `one`, and `xor` expression forms; there is no OVAL-specific restriction-group runtime type. It must not special-case telephone-number regexes or `def:562`.
 5. No regex engine or comparison operation is implicitly enabled by a source `hint`; the operation is required and the canonical evaluator owns its typed semantics and limits.
 6. Source operations that the canonical language does not admit remain an explicit conversion hold. The converter must never emit an unconstrained Input after dropping a restriction.
 
@@ -63,7 +60,7 @@ The candidate semantics are:
 |---|---|
 | Invocation supplies a value | Bind it explicitly to the declared Input and record binding source/provenance. Validate datatype, cardinality, then all branches. |
 | Invocation omits a required Input | Do not use a source fixture, XCCDF default, or empty list. Produce `not_evaluated` with a stable missing-required-input reason; no collection or compliance verdict is produced. |
-| Invocation omits an optional Input | Omission is distinct from an explicitly supplied empty value. It is allowed only on a path dominated by the existing `input_provided` guard; an unguarded consumer is invalid/not-evaluated, never defaulted. |
+| Invocation omits an optional Input | Omission is distinct from an explicitly supplied empty value. It is allowed only on a path dominated by the existing `input_provided` guard; an unguarded consumer is an authoring error, never defaulted. |
 | Supplied value has the wrong datatype or invalid lexical form | Reject the binding without coercion; produce `error` with a typed-input diagnostic. |
 | Supplied value violates all allowed/restriction branches | Reject the binding with `error` and an input-constraint-violation reason. Do not turn a bad policy input into a host FAIL or PASS. |
 | Supplied value count violates `cardinality` | Reject the binding with `error`; cardinality validation is independent of branch validity. |
@@ -89,7 +86,7 @@ The source tests use `check_existence="at_least_one_exists"` and `check="all"`. 
 
 ## Required conformance vectors before implementation
 
-The machine-readable companion `external-variable-restriction-proposal.json` contains vectors for:
+The machine-readable companion `external-variable-restriction-proposal.json` contains 24 vectors for:
 
 - allowed-only positive `0`/`1` and negative `2`;
 - one string regex group positive and negative;
@@ -99,6 +96,9 @@ The machine-readable companion `external-variable-restriction-proposal.json` con
 - missing required binding;
 - optional unbound with and without an `input_provided` guard;
 - empty and multivalue cardinality cases;
+- all four Boolean operators (`and`, `or`, `one`, `xor`);
+- optional guarded and unguarded Input use;
+- malformed expressions and bounded branch/pattern resource limits;
 - source fixture values marked non-authoritative.
 
 The vectors are contract-review material, not production evaluator tests. Once the owner accepts the contract, the same vectors should be implemented in canonical schema tests, Tools conversion tests, RI binding/evaluator tests, and editor validation tests. Each implementation must add malformed/unsupported-operation negatives and bounded regex/resource tests.
