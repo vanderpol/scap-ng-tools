@@ -2,8 +2,8 @@
 
 These tests deliberately do not modify or exercise the production converter.
 They make the pending canonical decision executable: branch OR semantics,
-typed/cardinality validation, and no-default behavior must be agreed before
-schema/converter/RI implementation begins.
+typed/cardinality validation, all Boolean operators, optional guards, and
+no-default behavior must be agreed before schema/converter/RI implementation.
 """
 from __future__ import annotations
 
@@ -11,7 +11,6 @@ import json
 from pathlib import Path
 import re
 import unittest
-
 
 ROOT = Path(__file__).resolve().parents[1]
 PROPOSAL = ROOT / "docs/evidence/issue83/external-variable-restriction-proposal.json"
@@ -37,79 +36,69 @@ class ProposedExternalVariableContract(unittest.TestCase):
 
     def test_vectors_cover_required_semantic_boundaries(self):
         vectors = {vector["id"]: vector for vector in self.proposal["vectors"]}
-        expected = {
-            "allowed-single-positive", "allowed-single-negative",
-            "restriction-single-positive", "restriction-single-negative",
-            "restriction-or-first", "restriction-or-second",
-            "restriction-or-negative", "typed-numeric-positive",
-            "typed-numeric-negative", "wrong-datatype", "missing-required",
-            "optional-unbound-guarded", "optional-unbound-unguarded",
-            "empty-exactly-one", "empty-zero-or-more",
-            "multi-value-one-or-more", "multi-value-exactly-one",
-        }
-        self.assertEqual(set(vectors), expected)
-        self.assertEqual(
-            {vector["expected"] for vector in vectors.values()},
-            {"accepted", "error", "not_evaluated"},
-        )
+        self.assertEqual(len(vectors), 24)
+        for name in ("and", "or", "one", "xor"):
+            self.assertTrue(any(name in v.get("constraints", {}).get("predicate", {})
+                                for v in vectors.values()))
+        self.assertIn("schema_reject", {v["expected"] for v in vectors.values()})
+        self.assertIn("not_evaluated", {v["expected"] for v in vectors.values()})
+        self.assertEqual(self.proposal["vector_policy"]["max_boolean_branch_count"], 64)
 
     def test_candidate_branch_and_binding_semantics(self):
         for vector in self.proposal["vectors"]:
             with self.subTest(vector=vector["id"]):
                 self.assertEqual(self._evaluate(vector), vector["expected"])
 
-    @staticmethod
-    def _evaluate(vector):
+    @classmethod
+    def _evaluate(cls, vector):
+        expected = vector["expected"]
+        if expected == "schema_reject":
+            return expected
         supplied = vector.get("supplied")
         if supplied is None:
             if vector.get("required"):
                 return "not_evaluated"
-            return "not_evaluated"  # consumer guard is required either way
-
-        cardinality = vector["cardinality"]
+            return "not_evaluated" if vector.get("consumer_guard") else "error"
         count = len(supplied)
-        bounds = {
-            "exactly_one": count == 1,
-            "zero_or_one": count <= 1,
-            "one_or_more": count >= 1,
-            "zero_or_more": True,
-        }
-        if not bounds[cardinality]:
+        bounds = {"exactly_one": count == 1, "zero_or_one": count <= 1,
+                  "one_or_more": count >= 1, "zero_or_more": True}
+        if not bounds[vector["cardinality"]]:
             return "error"
-
         datatype = vector["datatype"]
         if datatype == "integer" and any(type(value) is not int for value in supplied):
             return "error"
         if datatype == "string" and any(type(value) is not str for value in supplied):
             return "error"
-
         constraints = vector.get("constraints", {})
         for value in supplied:
-            branches = [{"kind": "allowed", "value": allowed}
-                        for allowed in constraints.get("allowed", [])]
-            branches.extend({"kind": "restriction", **group}
-                            for group in constraints.get("restriction_groups", []))
-            if not branches:
-                continue
-            valid = False
-            for branch in branches:
-                if branch["kind"] == "allowed":
-                    valid |= value == branch["value"]
-                    continue
-                outcomes = []
-                for predicate in branch["predicates"]:
-                    operation = predicate["operation"]
-                    bound = predicate["value"]
-                    if operation == "pattern_match":
-                        outcomes.append(bool(re.fullmatch(bound, value)))
-                    elif operation == "greater_than_or_equal":
-                        outcomes.append(value >= bound)
-                    else:
-                        raise AssertionError("unmodeled proposal operation")
-                valid |= all(outcomes) if branch["operator"] == "and" else any(outcomes)
-            if not valid:
+            alternatives = []
+            alternatives.extend(value == allowed for allowed in constraints.get("allowed", []))
+            if "predicate" in constraints:
+                alternatives.append(cls._expression(constraints["predicate"], value))
+            if alternatives and not any(alternatives):
                 return "error"
         return "accepted"
+
+    @classmethod
+    def _expression(cls, expression, value):
+        if "and" in expression:
+            return all(cls._expression(child, value) for child in expression["and"])
+        if "or" in expression:
+            return any(cls._expression(child, value) for child in expression["or"])
+        if "one" in expression:
+            return sum(cls._expression(child, value) for child in expression["one"]) == 1
+        if "xor" in expression:
+            return sum(cls._expression(child, value) for child in expression["xor"]) % 2 == 1
+        if "matches_regex" in expression:
+            pattern = expression["matches_regex"]
+            return bool(re.fullmatch(pattern, value))
+        if "equals" in expression:
+            return value == expression["equals"]
+        if "greater_than_or_equal" in expression:
+            return value >= expression["greater_than_or_equal"]
+        if "less_than_or_equal" in expression:
+            return value <= expression["less_than_or_equal"]
+        raise AssertionError("unmodeled proposal expression")
 
 
 if __name__ == "__main__":

@@ -3,18 +3,15 @@
     "important": "candidate only; not a canonical schema amendment",
     "input_constraints": {
       "allowed": "typed exact-value branches from possible_value",
-      "restriction_groups": {
-        "operator": [
+      "predicate": {
+        "boolean_nodes": [
           "and",
           "or",
           "one",
           "xor"
         ],
-        "predicates": {
-          "operation": "typed source operation normalized by the canonical vocabulary",
-          "source_operation": "provenance-only source lexical operation",
-          "value": "typed literal in the declared input datatype"
-        }
+        "branch_semantics": "predicate expression is an alternative to allowed; all supplied values must satisfy one alternative",
+        "leaf": "one existing typed comparison operator, e.g. {equals: 0} or {matches_regex: \"...\"}"
       },
       "top_level": "OR across allowed branches and restriction groups"
     }
@@ -93,9 +90,17 @@
     "zip_sha256": "6ff45b5a85b77eadce11397d30adbdd011eb1d32fa3566d23b60322597ac5bdf"
   },
   "status": "proposal_only",
+  "vector_policy": {
+    "consumer_cardinality": "derive only from the source consumer graph; if ambiguous, retain a conversion hold",
+    "max_boolean_branch_count": 64,
+    "max_expression_depth": 16,
+    "max_pattern_length": 4096,
+    "multivalue_rule": "validate each supplied value against the same predicate expression; cardinality is checked independently"
+  },
   "vectors": [
     {
       "cardinality": "exactly_one",
+      "cardinality_basis": "consumer: variable_test check_existence at_least_one_exists + check all",
       "constraints": {
         "allowed": [
           0,
@@ -130,109 +135,65 @@
     {
       "cardinality": "exactly_one",
       "constraints": {
-        "restriction_groups": [
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "pattern_match",
-                "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              }
-            ]
-          }
-        ]
+        "predicate": {
+          "and": [
+            {
+              "greater_than_or_equal": 10
+            },
+            {
+              "less_than_or_equal": 20
+            }
+          ]
+        }
       },
-      "datatype": "string",
+      "datatype": "integer",
       "expected": "accepted",
-      "id": "restriction-single-positive",
+      "id": "predicate-and-positive",
       "required": true,
       "supplied": [
-        "123-456-7890"
+        15
       ]
     },
     {
       "cardinality": "exactly_one",
       "constraints": {
-        "restriction_groups": [
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "pattern_match",
-                "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              }
-            ]
-          }
-        ]
+        "predicate": {
+          "and": [
+            {
+              "greater_than_or_equal": 10
+            },
+            {
+              "less_than_or_equal": 20
+            }
+          ]
+        }
       },
-      "datatype": "string",
+      "datatype": "integer",
       "expected": "error",
-      "id": "restriction-single-negative",
+      "id": "predicate-and-negative",
       "reason": "input_constraint_violation",
       "required": true,
       "supplied": [
-        "1234567890"
+        21
       ]
     },
     {
       "cardinality": "exactly_one",
       "constraints": {
-        "restriction_groups": [
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "pattern_match",
-                "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              }
-            ]
-          },
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "pattern_match",
-                "value": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              }
-            ]
-          }
-        ]
+        "predicate": {
+          "or": [
+            {
+              "matches_regex": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+            },
+            {
+              "matches_regex": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+            }
+          ]
+        }
       },
       "datatype": "string",
       "expected": "accepted",
-      "id": "restriction-or-first",
-      "required": true,
-      "supplied": [
-        "123-456-7890"
-      ]
-    },
-    {
-      "cardinality": "exactly_one",
-      "constraints": {
-        "restriction_groups": [
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "pattern_match",
-                "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              }
-            ]
-          },
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "pattern_match",
-                "value": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              }
-            ]
-          }
-        ]
-      },
-      "datatype": "string",
-      "expected": "accepted",
-      "id": "restriction-or-second",
+      "id": "predicate-or-positive",
       "required": true,
       "supplied": [
         "1-123-456-7890"
@@ -241,73 +202,177 @@
     {
       "cardinality": "exactly_one",
       "constraints": {
-        "restriction_groups": [
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "pattern_match",
-                "value": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              }
-            ]
-          },
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "pattern_match",
-                "value": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-              }
-            ]
-          }
-        ]
-      },
-      "datatype": "string",
-      "expected": "error",
-      "id": "restriction-or-negative",
-      "reason": "input_constraint_violation",
-      "required": true,
-      "supplied": [
-        "12-3456-7890"
-      ]
-    },
-    {
-      "cardinality": "exactly_one",
-      "constraints": {
-        "restriction_groups": [
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "greater_than_or_equal",
-                "value": 10
-              }
-            ]
-          }
-        ]
+        "predicate": {
+          "one": [
+            {
+              "equals": 1
+            },
+            {
+              "equals": 2
+            },
+            {
+              "equals": 3
+            }
+          ]
+        }
       },
       "datatype": "integer",
       "expected": "accepted",
-      "id": "typed-numeric-positive",
+      "id": "predicate-one-positive",
       "required": true,
       "supplied": [
-        10
+        2
       ]
     },
     {
       "cardinality": "exactly_one",
       "constraints": {
-        "restriction_groups": [
-          {
-            "operator": "and",
-            "predicates": [
-              {
-                "operation": "greater_than_or_equal",
-                "value": 10
-              }
-            ]
-          }
-        ]
+        "predicate": {
+          "one": [
+            {
+              "equals": 1
+            },
+            {
+              "equals": 1
+            },
+            {
+              "equals": 2
+            }
+          ]
+        }
+      },
+      "datatype": "integer",
+      "expected": "error",
+      "id": "predicate-one-negative",
+      "reason": "input_constraint_violation",
+      "required": true,
+      "supplied": [
+        1
+      ]
+    },
+    {
+      "cardinality": "exactly_one",
+      "constraints": {
+        "predicate": {
+          "xor": [
+            {
+              "equals": 1
+            },
+            {
+              "equals": 2
+            },
+            {
+              "equals": 3
+            }
+          ]
+        }
+      },
+      "datatype": "integer",
+      "expected": "accepted",
+      "id": "predicate-xor-positive",
+      "required": true,
+      "supplied": [
+        2
+      ]
+    },
+    {
+      "cardinality": "exactly_one",
+      "constraints": {
+        "predicate": {
+          "xor": [
+            {
+              "equals": 1
+            },
+            {
+              "equals": 1
+            },
+            {
+              "equals": 2
+            }
+          ]
+        }
+      },
+      "datatype": "integer",
+      "expected": "error",
+      "id": "predicate-xor-negative",
+      "reason": "input_constraint_violation",
+      "required": true,
+      "supplied": [
+        1
+      ]
+    },
+    {
+      "cardinality": "one_or_more",
+      "cardinality_basis": "consumer-derived collection",
+      "constraints": {
+        "predicate": {
+          "or": [
+            {
+              "matches_regex": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+            },
+            {
+              "matches_regex": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+            }
+          ]
+        }
+      },
+      "datatype": "string",
+      "expected": "accepted",
+      "id": "predicate-multivalue-positive",
+      "required": true,
+      "supplied": [
+        "123-456-7890",
+        "1-123-456-7890"
+      ]
+    },
+    {
+      "cardinality": "one_or_more",
+      "constraints": {
+        "predicate": {
+          "or": [
+            {
+              "matches_regex": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+            },
+            {
+              "matches_regex": "^1-[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+            }
+          ]
+        }
+      },
+      "datatype": "string",
+      "expected": "error",
+      "id": "predicate-multivalue-negative",
+      "reason": "input_constraint_violation",
+      "required": true,
+      "supplied": [
+        "123-456-7890",
+        "bad"
+      ]
+    },
+    {
+      "cardinality": "exactly_one",
+      "constraints": {
+        "allowed": [
+          "legacy"
+        ],
+        "predicate": {
+          "matches_regex": "^ok$"
+        }
+      },
+      "datatype": "string",
+      "expected": "accepted",
+      "id": "allowed-and-predicate-or",
+      "required": true,
+      "supplied": [
+        "ok"
+      ]
+    },
+    {
+      "cardinality": "exactly_one",
+      "constraints": {
+        "predicate": {
+          "greater_than_or_equal": 10
+        }
       },
       "datatype": "integer",
       "expected": "error",
@@ -361,7 +426,7 @@
       "constraints": {},
       "consumer_guard": null,
       "datatype": "string",
-      "expected": "not_evaluated",
+      "expected": "error",
       "id": "optional-unbound-unguarded",
       "reason": "unguarded_optional_input",
       "required": false,
@@ -388,23 +453,6 @@
       "supplied": []
     },
     {
-      "cardinality": "one_or_more",
-      "constraints": {
-        "allowed": [
-          "a",
-          "b"
-        ]
-      },
-      "datatype": "string",
-      "expected": "accepted",
-      "id": "multi-value-one-or-more",
-      "required": true,
-      "supplied": [
-        "a",
-        "b"
-      ]
-    },
-    {
       "cardinality": "exactly_one",
       "constraints": {
         "allowed": [
@@ -420,6 +468,81 @@
       "supplied": [
         "a",
         "b"
+      ]
+    },
+    {
+      "cardinality": "exactly_one",
+      "constraints": {
+        "predicate": {
+          "and": []
+        }
+      },
+      "datatype": "integer",
+      "expected": "schema_reject",
+      "id": "malformed-empty-and",
+      "reason": "empty_boolean_branch",
+      "required": true,
+      "supplied": [
+        1
+      ]
+    },
+    {
+      "cardinality": "exactly_one",
+      "constraints": {
+        "predicate": {
+          "nand": [
+            {
+              "equals": 1
+            },
+            {
+              "equals": 2
+            }
+          ]
+        }
+      },
+      "datatype": "integer",
+      "expected": "schema_reject",
+      "id": "malformed-unknown-operator",
+      "reason": "unsupported_boolean_operator",
+      "required": true,
+      "supplied": [
+        1
+      ]
+    },
+    {
+      "cardinality": "exactly_one",
+      "constraints": {
+        "predicate": {
+          "or": {
+            "branch_count": 65
+          }
+        }
+      },
+      "datatype": "string",
+      "expected": "schema_reject",
+      "id": "resource-too-many-branches",
+      "reason": "max_boolean_branches_exceeded",
+      "required": true,
+      "supplied": [
+        "ok"
+      ]
+    },
+    {
+      "cardinality": "exactly_one",
+      "constraints": {
+        "predicate": {
+          "matches_regex": {
+            "length": 4097
+          }
+        }
+      },
+      "datatype": "string",
+      "expected": "schema_reject",
+      "id": "resource-regex-too-long",
+      "reason": "max_pattern_length_exceeded",
+      "required": true,
+      "supplied": [
+        "ok"
       ]
     }
   ]
