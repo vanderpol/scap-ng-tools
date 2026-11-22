@@ -35,7 +35,7 @@ class Active041FunctionLowering(unittest.TestCase):
             '<literal_component datatype="string">beta</literal_component>'
             '</unique></count>')
         original = visitor.function(source)
-        self.assertIn('function', original)  # immutable source visitor
+        self.assertIn('function', original)  # recovery mode keeps the immutable envelope
         value = lower_expression(original)
         self.assertEqual(value, {'count': {'unique': [
             {'concat': [{'literal': ''},
@@ -153,6 +153,21 @@ class Active041FunctionLowering(unittest.TestCase):
                 'values': [{'literal': {'datatype': 'string', 'value': '2009-02-04'}}],
             },
         })
+
+    def test_single_component_count_is_active_in_normal_converter_mode(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=False)
+        source = oval(
+            '<count xmlns="OVAL"><literal_component datatype="string">one</literal_component></count>')
+        self.assertEqual(visitor.function(source), {
+            'count': {'literal': {'datatype': 'string', 'value': 'one'}}})
+
+    def test_multi_component_count_remains_fail_closed_in_normal_mode(self):
+        visitor = AssessmentConverter(None, None, [], native_recovery=False)
+        source = oval(
+            '<count xmlns="OVAL"><literal_component>one</literal_component>'
+            '<literal_component>two</literal_component></count>')
+        with self.assertRaisesRegex(ValueError, 'multi-component OVAL count'):
+            visitor.function(source)
 
     def test_time_difference_is_active_in_normal_converter_mode(self):
         visitor = AssessmentConverter(None, None, [], native_recovery=False)
@@ -476,8 +491,8 @@ class Active041FunctionLowering(unittest.TestCase):
             self.visitor().function(source)
         source = oval(
             '<count xmlns="OVAL"><literal_component datatype="string">x</literal_component></count>')
-        with self.assertRaisesRegex(ValueError, 'unsupported function: count'):
-            self.visitor(recovery=False).function(source)
+        self.assertEqual(self.visitor(recovery=False).function(source),
+                         {'count': {'literal': {'datatype': 'string', 'value': 'x'}}})
 
 
 class VariableObjectSetGrouping(unittest.TestCase):
