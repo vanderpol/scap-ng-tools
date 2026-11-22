@@ -729,6 +729,16 @@ class AssessmentConverter:
             # Variable.  This does not evaluate host data or silently lower a
             # dynamic Set/Filter; non-static graphs remain held below.
             if element.find(f'{{{OVAL}}}set') is not None:
+                # A dynamic UNION of Variable Objects can remain a native
+                # Variable population when every operand is itself a Variable
+                # expression.  This is deliberately separate from static
+                # literal materialization: no host values are evaluated at
+                # conversion time and no source Object/Filter graph is
+                # flattened into a guessed literal.
+                if self._dynamic_variable_union_candidate(element):
+                    dynamic = self.dynamic_variable_object_set(element)
+                    dynamic['capability'] = mapping['capability']
+                    return dynamic
                 static = self.static_variable_object(element)
                 static['capability'] = mapping['capability']
                 return static
@@ -890,6 +900,163 @@ class AssessmentConverter:
             self.shared_objects[identifier] = acquisition
             return identifier
         return acquisition
+
+    def _dynamic_variable_union_candidate(self, element):
+        """Return whether a Variable Object graph is a native value UNION.
+
+        The active 0.4.1 Variable expression grammar can flatten multiple
+        ordered scalar populations with ``unique``.  That is a candidate only
+        for an unfiltered UNION whose leaves are Variable Objects containing a
+        single ``var_ref``.  Variable-Object filters and non-UNION operators
+        have different OVAL population semantics and remain fail-closed.
+        """
+        dynamic_seen = False
+
+        def set_ok(set_node, active):
+            if set_node.get('set_operator', 'UNION') != 'UNION':
+                return False
+            operands = list(set_node)
+            if not operands or len(operands) > 4096:
+                return False
+            for operand in operands:
+                if local_name(operand) == 'object_reference':
+                    identifier = (operand.text or '').strip()
+                    if not identifier or identifier in active:
+                        return False
+                    source = self.source.node(self.component_id, identifier, 'object')
+                    if not variable_object_ok(source, active):
+                        return False
+                elif local_name(operand) == 'set':
+                    if not set_ok(operand, active):
+                        return False
+                else:
+                    return False
+            return True
+
+        def variable_object_ok(node, active):
+            if local_name(node) != 'variable_object' or node.get('id') in active:
+                return False
+            children = list(node)
+            var_refs = [child for child in children if local_name(child) == 'var_ref']
+            sets = [child for child in children if local_name(child) == 'set']
+            filters = [child for child in children if local_name(child) == 'filter']
+            if filters or len(children) not in (1,):
+                return False
+            if var_refs:
+                nonlocal dynamic_seen
+                if not (len(var_refs) == 1 and not len(var_refs[0]) and bool((var_refs[0].text or '').strip())):
+                    return False
+                variable = self.source.node(self.component_id, (var_refs[0].text or '').strip(), 'variable')
+                dynamic_seen |= local_name(variable) != 'constant_variable'
+                return True
+            return len(sets) == 1 and set_ok(sets[0], active | {node.get('id')})
+
+        sets = [child for child in element if local_name(child) == 'set']
+        return len(sets) == 1 and variable_object_ok(element, set()) and dynamic_seen
+
+    def dynamic_variable_object_set(self, element):
+        """Lower an unfiltered UNION of dynamic Variable populations.
+
+        OVAL variable_object Set UNION returns the unique scalar values from
+        each operand after its referenced Variable has been evaluated.  The
+        native ``unique`` expression has the same source-order flattening,
+        duplicate elimination and status-preserving contract.  Each operand
+        remains a named Variable expression, so collected ``values``,
+        ``concat`` and ``regex_capture`` graphs are evaluated at scan time.
+        """
+        source_variables = []
+        source_datatypes = set()
+
+        def operand_expression(identifier, active):
+            ensure(identifier and identifier not in active,
+                   'cyclic dynamic Variable Object Set: ' + str(identifier))
+            active = set(active)
+            active.add(identifier)
+            node = self.source.node(self.component_id, identifier, 'object')
+            children = list(node)
+            refs = [child for child in children if local_name(child) == 'object_reference']
+            sets = [child for child in children if local_name(child) == 'set']
+            filters = [child for child in children if local_name(child) == 'filter']
+            ensure(not filters and not (refs and sets),
+                   'dynamic Variable Object Set filters/mixed operands are not representable')
+            if sets:
+                ensure(len(sets) == 1 and len(node) == 1 and
+                       sets[0].get('set_operator', 'UNION') == 'UNION',
+                       'dynamic Variable Object Set requires UNION-only nested sets')
+                values = [operand_expression((child.text or '').strip(), active)
+                          for child in sets[0] if local_name(child) == 'object_reference']
+                nested = [nested_expression(child, active) for child in sets[0]
+                          if local_name(child) == 'set']
+                values.extend(nested)
+                ensure(values, 'dynamic Variable Object Set has no operands')
+                return {'unique': values if len(values) > 1 else values[0]}
+            ensure(local_name(node) == 'variable_object' and len(refs) == 0 and
+                   len(children) == 1,
+                   'dynamic Variable Object Set leaf is not a single var_ref')
+            var_refs = [child for child in children if local_name(child) == 'var_ref']
+            ensure(len(var_refs) == 1 and not len(var_refs[0]),
+                   'dynamic Variable Object Set leaf is not a single var_ref')
+            variable_id = (var_refs[0].text or '').strip()
+            ensure(variable_id, 'dynamic Variable Object Set leaf has an empty var_ref')
+            source_variables.append(variable_id)
+            variable_source = self.source.node(self.component_id, variable_id, 'variable')
+            source_datatypes.add(variable_source.get('datatype', 'string'))
+            ensure(len(source_datatypes) == 1,
+                   'dynamic Variable Object Set mixes source Variable datatypes')
+            value = self.reference(variable_id, 'variable')
+            if isinstance(value, list):
+                # A mixed static/dynamic UNION is still represented as a
+                # runtime Variable reference, preserving declaration identity
+                # and duplicate/cardinality semantics rather than inlining it.
+                return {'variable': self.named_variable(variable_id)}
+            ensure(isinstance(value, dict) and set(value) == {'variable'},
+                   'dynamic Variable Object Set leaf Variable is not native')
+            return value
+
+        def nested_expression(set_node, active):
+            ensure(set_node.get('set_operator', 'UNION') == 'UNION',
+                   'dynamic Variable Object Set requires UNION-only nested sets')
+            values = []
+            for child in set_node:
+                if local_name(child) == 'object_reference':
+                    values.append(operand_expression((child.text or '').strip(), active))
+                elif local_name(child) == 'set':
+                    values.append(nested_expression(child, active))
+                else:
+                    ensure(False, 'dynamic Variable Object Set has unsupported Set child')
+            ensure(values, 'dynamic Variable Object Set has no nested operands')
+            return {'unique': values if len(values) > 1 else values[0]}
+
+        root_set = next(child for child in element if local_name(child) == 'set')
+        ensure(root_set.get('set_operator', 'UNION') == 'UNION',
+               'dynamic Variable Object Set requires UNION')
+        expressions = []
+        for child in root_set:
+            if local_name(child) == 'object_reference':
+                expressions.append(operand_expression((child.text or '').strip(), {element.get('id')}))
+            elif local_name(child) == 'set':
+                expressions.append(nested_expression(child, {element.get('id')}))
+            else:
+                ensure(False, 'dynamic Variable Object Set has unsupported Set child')
+        ensure(expressions, 'dynamic Variable Object Set has no operands')
+        identifier = self.native_name(element, 'variable', title=element.get('comment'))
+        self.variables[identifier] = {
+            'kind': 'local',
+            'expression': {'unique': expressions if len(expressions) > 1 else expressions[0]},
+        }
+        self.conversion_warnings.append({
+            'code': 'oval_dynamic_variable_object_union_lowered',
+            'source_object': element.get('id'),
+            'source_object_sha256': digest(xml_identity(element)),
+            'source_variable_ids': sorted(set(source_variables)),
+            'source_variable_datatypes': sorted(source_datatypes),
+            'source_set_operator': 'UNION',
+            'native_expression': 'unique',
+            'semantic_basis': 'OVAL Variable Object UNION over runtime scalar populations maps to native unique flattening',
+            'independent_static_proof': 'SOURCE_XSD_SET_UNION_PLUS_NATIVE_UNIQUE_CONTRACT',
+            'scanner_evaluated': False,
+        })
+        return {'variable': identifier}
 
     def static_variable_object(self, element):
         """Materialize a finite constant Variable Object Set safely.

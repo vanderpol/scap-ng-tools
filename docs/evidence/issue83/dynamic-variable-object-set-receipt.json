@@ -1,0 +1,573 @@
+{
+  "canonical": {
+    "active_foreach_authoring": false,
+    "foreach_binding_refs": [],
+    "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "schema_root": "SCAP_NG_SCHEMA_ROOT/schema",
+    "selector_set_refs": [
+      "/$defs/linux_dpkginfo_object/oneOf/1/properties/set",
+      "/$defs/linux_partition_object/oneOf/1/properties/set",
+      "/$defs/linux_selinuxboolean_object/oneOf/1/properties/set",
+      "/$defs/linux_systemdunitdependency_object/oneOf/1/properties/set",
+      "/$defs/linux_systemdunitproperty_object/oneOf/1/properties/set",
+      "/$defs/unix_file_object/oneOf/1/properties/set",
+      "/$defs/unix_interface_object/oneOf/1/properties/set",
+      "/$defs/unix_password_object/oneOf/1/properties/set",
+      "/$defs/unix_shadow_object/oneOf/1/properties/set",
+      "/$defs/windows_file_object/oneOf/1/properties/set",
+      "/$defs/windows_fileeffectiverights_object/oneOf/1/properties/set",
+      "/$defs/windows_ntuser_object/oneOf/1/properties/set",
+      "/$defs/windows_registry_object/oneOf/1/properties/set",
+      "/$defs/windows_regkeyeffectiverights_object/oneOf/1/properties/set",
+      "/$defs/windows_service_object/oneOf/1/properties/set"
+    ],
+    "set_expression_present": true,
+    "set_operand_accepts_variable_population": false,
+    "unique_multi_population_present": true,
+    "values_expression_present": true,
+    "schema_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "variable_expression_schema_sha256": "db22d3d216e44cac78015b2bc57869dec672e2f5682382ea90fede9bf092c7ce"
+  },
+  "canonical_repository_head": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+  "canonical_schema_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+  "cases": [
+    {
+      "attempts": {
+        "for_each": {
+          "reason": "foreach_binding is a shared helper with no active Assessment authoring reference",
+          "status": "not_active"
+        },
+        "set_filter": {
+          "reason": "native Set operands are Object uses with homogeneous capability/filter semantics; they cannot union a transformed Variable population across appcmd and environmentvariable",
+          "status": "insufficient"
+        },
+        "unique_expression": {
+          "reason": "native unique accepts ordered expression populations and preserves runtime expression identity; production visitor now lowers unfiltered UNION leaves to this form",
+          "status": "candidate_generic_lowering"
+        },
+        "values": {
+          "reason": "values reads one field from one collected Object; it cannot apply the two-branch transformed UNION as one Object population",
+          "status": "insufficient"
+        }
+      },
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:218752",
+      "graph": [
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875201",
+          "local_name": "variable_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+          "references": [
+            {
+              "action": null,
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875202",
+              "kind": "object_reference"
+            },
+            {
+              "action": null,
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875203",
+              "kind": "object_reference"
+            }
+          ],
+          "sha256": "901a192dd98fd7f327675a9eefc088160af6673b58dfb4dccfc092d0163448c2"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875202",
+          "local_name": "variable_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+          "references": [
+            {
+              "action": null,
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875201",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "dc079b8776b859082f60c0417636366090c6a8c9f19e6afe7144868a30f0b989"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875203",
+          "local_name": "variable_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+          "references": [
+            {
+              "action": null,
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875204",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "8c700ebc8f05153d9b0d7d66a4307e83a624f7acca4ee3a87386ec49ee5445ed"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875204",
+          "local_name": "environmentvariable58_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875205",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "71b8a63ff3aab55011e2b590a8cc16361731f87933318f56ac0c716acf4d433a"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875205",
+          "local_name": "appcmd_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+          "references": [
+            {
+              "action": "include",
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875201",
+              "kind": "filter"
+            }
+          ],
+          "sha256": "961135013f7de2f3df26d234327363fd200d28a1f15814e2c068e6689b56a0b5"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875206",
+          "local_name": "appcmd_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+          "references": [
+            {
+              "action": "include",
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875202",
+              "kind": "filter"
+            }
+          ],
+          "sha256": "2951c5849d42cfe2cd4035547823e63cee6a04ee5cde38f9e1fb5758cb5e1209"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875201",
+          "local_name": "appcmdlistconfig_state",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+          "references": [],
+          "sha256": "2d52b4c48bf5fc5b17c564fa7ff8966639cb26c166ecc86eda0c14cf49845f42"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875202",
+          "local_name": "appcmdlistconfig_state",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+          "references": [],
+          "sha256": "1b7eb11db6d476540a5490de8c92f090c0d70d24950f579a19f2b9fc8ce86d7d"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875201",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875204",
+              "kind": "object_ref"
+            },
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875202",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "56c9ed79df32c7d91cdefcb06aa53aa34f648b62807a1db505efe76f9ba9523e"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875202",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875203",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "464c51f61090ec1f9cbc39a2e97ec2b3f4d11e5a5eb091beee6c905762ca3328"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875203",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875206",
+              "kind": "object_ref"
+            }
+          ],
+          "sha256": "62540ac1692bf9694f3a7225d12e8aff6a6e534e357388e4dacff1524b48ceec"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875204",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875205",
+              "kind": "object_ref"
+            }
+          ],
+          "sha256": "cbb45df7961dcc826d2534e3990cd21b63e9ba75c6e4a64095fa9988db5d7f56"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875205",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21875203",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "39d8176af60862efa0488d64144ddcab2b9d127ea4a9660e629634f1438875e4"
+        }
+      ],
+      "root_object_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875201",
+      "rule_id": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule",
+      "schematron": {
+        "cross_capability_filter_findings": [
+          {
+            "actual_state_kind": "appcmdlistconfig_state",
+            "filter_state_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875201",
+            "object_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875205",
+            "object_kind": "appcmd_object",
+            "required_state_kind": "appcmd_state",
+            "schematron_rule": "appcmd_object//oval-def:filter"
+          },
+          {
+            "actual_state_kind": "appcmdlistconfig_state",
+            "filter_state_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875202",
+            "object_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:obj:21875206",
+            "object_kind": "appcmd_object",
+            "required_state_kind": "appcmd_state",
+            "schematron_rule": "appcmd_object//oval-def:filter"
+          }
+        ],
+        "rules_used": {
+          "appcmd_object": {
+            "pattern_id": "win-def_appcmd_object_verify_filter_state",
+            "required_state_kind": "appcmd_state",
+            "schema_file": "windows-definitions-schema.xsd",
+            "schema_lines": [
+              8777,
+              8785
+            ],
+            "schema_xpath": "/xsd:schema/xsd:element[@name='appcmd_object']/xsd:annotation/xsd:appinfo/sch:pattern[@id='win-def_appcmd_object_verify_filter_state']"
+          },
+          "appcmdlistconfig_object": {
+            "pattern_id": "win-def_appcmdlistconfig_object_verify_filter_state",
+            "required_state_kind": "appcmdlistconfig_state",
+            "schema_file": "windows-definitions-schema.xsd",
+            "schema_lines": [
+              8893,
+              8901
+            ],
+            "schema_xpath": "/xsd:schema/xsd:element[@name='appcmdlistconfig_object']/xsd:annotation/xsd:appinfo/sch:pattern[@id='win-def_appcmdlistconfig_object_verify_filter_state']"
+          }
+        }
+      },
+      "source": {
+        "definition_sha256": "b99d04de644b5233ae8edc79694b2059277d91f186de23348d23bf99dc9951df",
+        "root_object_sha256": "901a192dd98fd7f327675a9eefc088160af6673b58dfb4dccfc092d0163448c2",
+        "test_sha256": "e0fbdb51e2d96f7f4208b8979bd25e17588d1968195196b1daa34947238887fe",
+        "xml_member": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
+        "xml_member_sha256": "0c68654fd568ff589f2e2eb135e674e5e2a800a0f77c587cea07bcb4ee5ad2d4",
+        "zip": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+        "zip_sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae"
+      },
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:tst:21875201"
+    },
+    {
+      "attempts": {
+        "for_each": {
+          "reason": "foreach_binding is a shared helper with no active Assessment authoring reference",
+          "status": "not_active"
+        },
+        "set_filter": {
+          "reason": "native Set operands are Object uses with homogeneous capability/filter semantics; they cannot union a transformed Variable population across appcmd and environmentvariable",
+          "status": "insufficient"
+        },
+        "unique_expression": {
+          "reason": "native unique accepts ordered expression populations and preserves runtime expression identity; production visitor now lowers unfiltered UNION leaves to this form",
+          "status": "candidate_generic_lowering"
+        },
+        "values": {
+          "reason": "values reads one field from one collected Object; it cannot apply the two-branch transformed UNION as one Object population",
+          "status": "insufficient"
+        }
+      },
+      "definition_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:def:180",
+      "graph": [
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:180",
+          "local_name": "variable_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+          "references": [
+            {
+              "action": null,
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:181",
+              "kind": "object_reference"
+            },
+            {
+              "action": null,
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:182",
+              "kind": "object_reference"
+            }
+          ],
+          "sha256": "ef3c6fa474f7a910e05919029a553bdf5d82fb266b9a7a797cbec8b60be33aa0"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:181",
+          "local_name": "variable_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+          "references": [
+            {
+              "action": null,
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:1",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "06fb1a99f051860c281abb8e888c107a95c6a32d6046ff2ee5aa2315f0dafef9"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:182",
+          "local_name": "variable_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+          "references": [
+            {
+              "action": null,
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:4",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "9ad24cd0fc3bd7495a510e009e420987bb35cee92d08737762d4dfc39ed67529"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:183",
+          "local_name": "environmentvariable58_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:5",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "29e6f048b673ce705a1338b86d743c98f3ad8db1ba4e70f933313a94f4e46ca0"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:184",
+          "local_name": "appcmd_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+          "references": [
+            {
+              "action": "include",
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180",
+              "kind": "filter"
+            }
+          ],
+          "sha256": "77b40fe46cf72d9d57482150d4981884fb2ea5bc9cac0b7deb7d45d93440632e"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:185",
+          "local_name": "appcmd_object",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+          "references": [
+            {
+              "action": "include",
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:181",
+              "kind": "filter"
+            }
+          ],
+          "sha256": "cf34d0559e700bcc90f93517ab32e99f99838103713433531d841a0ef381685e"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180",
+          "local_name": "appcmdlistconfig_state",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+          "references": [],
+          "sha256": "4d55ac63115d78a5240fcaab4219bd3225340086f7747284222a7e96a41ba4c9"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:181",
+          "local_name": "appcmdlistconfig_state",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#windows",
+          "references": [],
+          "sha256": "25c7018b4ce609e43ad39449298a7f6bea7c7d8630d68ac0fba41f28c944e928"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:1",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:183",
+              "kind": "object_ref"
+            },
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:2",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "84700cbad56b31bc8d667390f86deb77357a05d87a8c7d78fefdf1f37ce0e4a4"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:2",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:3",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "bccecb3968c20a8f43d39791b3766f4ea95e7b010201b2d31e9f6a398637ea66"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:3",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:185",
+              "kind": "object_ref"
+            }
+          ],
+          "sha256": "2d7f4aa92ac1e1eff6060e7278aaca3683c19bb95a447326bb93c4bcff063bb1"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:4",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:184",
+              "kind": "object_ref"
+            }
+          ],
+          "sha256": "d71bf1a84d8f2e995d25c76ba42bd217c91a4f09df5f99b0d367734b3575efa4"
+        },
+        {
+          "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:5",
+          "local_name": "local_variable",
+          "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5",
+          "references": [
+            {
+              "id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:var:3",
+              "kind": "var_ref"
+            }
+          ],
+          "sha256": "5d0034334ddffbcecee263f76c07c1d393cfa3b46a4070addac9c6d291ec5260"
+        }
+      ],
+      "root_object_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:180",
+      "rule_id": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+      "schematron": {
+        "cross_capability_filter_findings": [
+          {
+            "actual_state_kind": "appcmdlistconfig_state",
+            "filter_state_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:180",
+            "object_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:184",
+            "object_kind": "appcmd_object",
+            "required_state_kind": "appcmd_state",
+            "schematron_rule": "appcmd_object//oval-def:filter"
+          },
+          {
+            "actual_state_kind": "appcmdlistconfig_state",
+            "filter_state_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:181",
+            "object_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:obj:185",
+            "object_kind": "appcmd_object",
+            "required_state_kind": "appcmd_state",
+            "schematron_rule": "appcmd_object//oval-def:filter"
+          }
+        ],
+        "rules_used": {
+          "appcmd_object": {
+            "pattern_id": "win-def_appcmd_object_verify_filter_state",
+            "required_state_kind": "appcmd_state",
+            "schema_file": "windows-definitions-schema.xsd",
+            "schema_lines": [
+              8777,
+              8785
+            ],
+            "schema_xpath": "/xsd:schema/xsd:element[@name='appcmd_object']/xsd:annotation/xsd:appinfo/sch:pattern[@id='win-def_appcmd_object_verify_filter_state']"
+          },
+          "appcmdlistconfig_object": {
+            "pattern_id": "win-def_appcmdlistconfig_object_verify_filter_state",
+            "required_state_kind": "appcmdlistconfig_state",
+            "schema_file": "windows-definitions-schema.xsd",
+            "schema_lines": [
+              8893,
+              8901
+            ],
+            "schema_xpath": "/xsd:schema/xsd:element[@name='appcmdlistconfig_object']/xsd:annotation/xsd:appinfo/sch:pattern[@id='win-def_appcmdlistconfig_object_verify_filter_state']"
+          }
+        }
+      },
+      "source": {
+        "definition_sha256": "b4f072599a3995feec65774bc8d1f2ac5c0a3acfe60c0e677dd6bf36b80570fe",
+        "root_object_sha256": "ef3c6fa474f7a910e05919029a553bdf5d82fb266b9a7a797cbec8b60be33aa0",
+        "test_sha256": "fe55a384503693267260292a638ea4e6d645f64da907c6c121f59a53b78015a8",
+        "xml_member": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.xml",
+        "xml_member_sha256": "4a7f864f865bb449c522d4466f78791019d83c05de8f60623cbd1e90eb1ea92a",
+        "zip": "U_MS_IIS_8-5_Site_V2R9_STIG_SCAP_1-4_Benchmark-enhancedV13-signed.zip",
+        "zip_sha256": "21f5e5e7809b14e8bfb21b4571f156bb150a3db0afe449d2fdb0da9d06add27f"
+      },
+      "test_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:tst:180"
+    }
+  ],
+  "conclusion": {
+    "dynamic_union_generic_lowering": "implemented_in_converter_for_unfiltered_union_of_variable_leaves",
+    "host_execution": false,
+    "original_source_disposition": "source_schematron_hold_pending_upstream_correction_or_explicit_reclassification",
+    "runtime_equivalence": false,
+    "source_closure_validity": "requires_source_schematron_repair_or_reclassification",
+    "source_values_materialized": false
+  },
+  "converter_commit": "8f0e562",
+  "converter_main_base": "85d7016811e6f804d55436e8ce60db1502a00506",
+  "converter_schema_pin": {
+    "commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc"
+  },
+  "format": "scap-ng-tools/issue83-dynamic-variable-object-set/1",
+  "oval_definitions_schema_sha256": "06b79e8683d6b9dcaad3ab074a456588ed82c4edd2e8fff209def10aa0a366cc",
+  "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "production_replay": {
+    "SV-214463": {
+      "diagnostic": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.8.5.site:ste:181",
+      "dynamic_union_root_lowering": "reached before downstream source closure failure",
+      "exit_code": 1
+    },
+    "SV-218752": {
+      "diagnostic": "state capability mismatch: oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:ste:21875202",
+      "dynamic_union_root_lowering": "reached before downstream source closure failure",
+      "exit_code": 1
+    },
+    "command_mode": "scapng-convert-v04 --recover-native --rule",
+    "interpretation": "The unchanged original source closures remain blocked by their Schematron cross-capability filter violations; this is not a converted or runtime-equivalent result.",
+    "schema_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc"
+  },
+  "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+  "windows_definitions_schema_sha256": "b66f1547bfd0bb8ea6cf58a0eec9f8de417aad6642f741d0ed0ad7b6462314ff",
+  "generic_witnesses": {
+    "typed_variable_reference_operands": {
+      "status": "covered",
+      "test": "test_typed_variable_reference_operands_keep_one_derived_datatype",
+      "proof": "named homogeneous integer Variables remain ordered unique operands and derive one integer domain"
+    },
+    "singleton_statically_typed_collected_field": {
+      "status": "covered_when_exact_schema_root_is_available",
+      "test": "test_singleton_typed_collected_field_derives_item_datatype",
+      "object_capability": "unix.file",
+      "field": "size",
+      "derived_datatype": "integer"
+    },
+    "duplicate_order": {
+      "status": "covered_structurally",
+      "test": "test_duplicate_operands_preserve_source_order_for_runtime_unique",
+      "contract": "source order and duplicate operands remain in unique; runtime unique performs first-occurrence deduplication"
+    },
+    "empty_multivalue": {
+      "status": "covered_as_nonmaterialization_boundary",
+      "test": "test_empty_and_multivalue_operands_remain_runtime_references",
+      "runtime_execution": "not_run"
+    },
+    "status_error_boundary": {
+      "status": "not_run",
+      "proof": "not_run_runtime_preserved_as_explicit_hold",
+      "contract": "unknown/error/incomplete collection status must remain attached to named runtime Variables; converter emits no host values or status claims"
+    }
+  }
+}
