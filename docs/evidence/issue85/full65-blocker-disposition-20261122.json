@@ -239,10 +239,10 @@
     {
       "benchmark": "U_MS_Windows_10_V3R7_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
       "category": "unsupported-capability",
-      "disposition": "canonical_language_gap",
+      "disposition": "deprecated_source_construct",
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
       "original_status": "blocked",
-      "rationale": "Source-valid nondeprecated platform capability/state has no admitted matching canonical capability mapping.",
+      "rationale": "OVAL 5.12.3 windows:user_test is deprecated since 5.11 and replaced by user_sid55_test because trustee names are not unique; no deprecated alias is activated.",
       "source_rule": "xccdf_mil.disa.stig_rule_SV-220952r1051038_rule",
       "source_rule_sha256": "6726110afa78a2e7bc111d8d73f170854e1184d762e0971fc04bdb6cdfe2e7df"
     },
@@ -529,10 +529,10 @@
     {
       "benchmark": "U_MS_Windows_11_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV18-signed.zip",
       "category": "unsupported-capability",
-      "disposition": "canonical_language_gap",
+      "disposition": "deprecated_source_construct",
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
       "original_status": "blocked",
-      "rationale": "Source-valid nondeprecated platform capability/state has no admitted matching canonical capability mapping.",
+      "rationale": "OVAL 5.12.3 windows:user_test is deprecated since 5.11 and replaced by user_sid55_test because trustee names are not unique; no deprecated alias is activated.",
       "source_rule": "xccdf_mil.disa.stig_rule_SV-253476r1210304_rule",
       "source_rule_sha256": "ea0adf68060d3aff8e370ed2f9518c457b51ea69fa844a37958eb85bfe342d17"
     },
@@ -929,10 +929,10 @@
     {
       "benchmark": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "category": "unsupported-capability",
-      "disposition": "canonical_language_gap",
+      "disposition": "deprecated_source_construct",
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
       "original_status": "blocked",
-      "rationale": "Source-valid nondeprecated platform capability/state has no admitted matching canonical capability mapping.",
+      "rationale": "OVAL 5.12.3 windows:user_test is deprecated since 5.11 and replaced by user_sid55_test because trustee names are not unique; no deprecated alias is activated.",
       "source_rule": "xccdf_mil.disa.stig_rule_SV-205657r1153431_rule",
       "source_rule_sha256": "0c0ed3d99d3952c7cacfe46105f18ae2a847a49504624686d05d78292548c7eb"
     },
@@ -949,10 +949,10 @@
     {
       "benchmark": "U_MS_Windows_Server_2022_V2R10_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
       "category": "unsupported-capability",
-      "disposition": "canonical_language_gap",
+      "disposition": "deprecated_source_construct",
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
       "original_status": "blocked",
-      "rationale": "Source-valid nondeprecated platform capability/state has no admitted matching canonical capability mapping.",
+      "rationale": "OVAL 5.12.3 windows:user_test is deprecated since 5.11 and replaced by user_sid55_test because trustee names are not unique; no deprecated alias is activated.",
       "source_rule": "xccdf_mil.disa.stig_rule_SV-254239r1153440_rule",
       "source_rule_sha256": "5a4aa1870956c454dead7c44a770a5b06e0b2aaff9a1a98a53163df54ac392d2"
     },
@@ -969,10 +969,10 @@
     {
       "benchmark": "U_MS_Windows_Server_2025_V1R1_STIG_SCAP_1-4_Benchmark-enhancedV1-signed.zip",
       "category": "unsupported-capability",
-      "disposition": "canonical_language_gap",
+      "disposition": "deprecated_source_construct",
       "message": "unsupported test capability: {http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_test",
       "original_status": "blocked",
-      "rationale": "Source-valid nondeprecated platform capability/state has no admitted matching canonical capability mapping.",
+      "rationale": "OVAL 5.12.3 windows:user_test is deprecated since 5.11 and replaced by user_sid55_test because trustee names are not unique; no deprecated alias is activated.",
       "source_rule": "xccdf_mil.disa.stig_rule_SV-277986r1182007_rule",
       "source_rule_sha256": "acff983baf477848f0b02d6e760cac5934234b99c89fe0931a905482c1cbaaae"
     },
