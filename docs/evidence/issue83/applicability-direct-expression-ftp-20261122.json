@@ -1,0 +1,176 @@
+{
+  "format": "scap-ng-tools/applicability-direct-expression/1",
+  "generated_at": "2026-11-22",
+  "owner_requirement": "No synthetic zero-Test Assessment for supported CPE Boolean NOT/AND/OR; preserve reusable fact Assessments and apply expression at source consumer scope.",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_archive": "SCAP_1.4/SCAP_Test_Content/R700/U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
+    "zip_sha256": "54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1",
+    "benchmark_xml_sha256": "9a0a5a76b3a1c6efd4867809d7c4fa5834e2cb441d1513ed7bfa634b9a540fb3",
+    "rule_id": "xccdf_mil.disa.stig_rule_SV-205853r991589_rule",
+    "platform_id": "xccdf_navy.navwar.niwcatlantic.scc_platform_FTP",
+    "platform_title": "FTP is Installed",
+    "platform_logical_test": {
+      "operator": "AND",
+      "negate": true,
+      "fact_definition": "oval:navy.navwar.niwcatlantic.scc.windows:def:301",
+      "fact_test": "oval:navy.navwar.niwcatlantic.scc.windows:tst:301",
+      "fact_href": "U_MS_Windows_Server_2019_V3R9_STIG_SCAP_1-4_Benchmark-enhancedV19-oval2.xml"
+    },
+    "source_hashes": {
+      "cpe_platform_xml_sha256": "b44a6dc66b6d4f6bb4f449376c647e973f762d5ad60774e9846ea94c59ae8e08",
+      "cpe_logical_test_xml_sha256": "3ce6b6e21b511e655ebb30bb9449e0bb922608e1ccc59a613f5db85b0e6657ad",
+      "check_fact_ref_xml_sha256": "a2303bb845e22930e59ab8b3986ed1fc27be485d77f73fd402eac504ef72ae03",
+      "fact_definition_xml_sha256": "09fd8db0632b57a8883517716eb26d080935244eb11955f2c1ec791a6019814d",
+      "fact_test_xml_sha256": "168e1cccc9537e4b817a61d00d939767ee3d793cfab2e2435c7173030198da74",
+      "fact_object_xml_sha256": "7099dac08d8f7b4cc81da1d04dbdf370f02d995ddc2d44963e4f983a902e4375",
+      "fact_state_xml_sha256": "24b0ded50c54e5471562a6be86cb2c8c25f08abf886007591556203b394ca764"
+    }
+  },
+  "pins": {
+    "tools_base": "e52c728",
+    "canonical_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "canonical_flat_schema_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706"
+  },
+  "before": {
+    "implementation": "origin/main at e52c728",
+    "candidate_generation": "captured with pre-change converter and validation bypassed only to inspect the rejected candidate; normal validation failed: unresolved assessment reference from synthetic wrapper",
+    "yaml": {
+      "benchmark_platform": {
+        "id": "fixture-platform",
+        "title": "Source platform applicability; unresolved identities remain an explicit hold",
+        "applicability": {
+          "any_of": [
+            {
+              "condition": "platform-cpe-o-microsoft-windows-server-2019-condition"
+            }
+          ]
+        }
+      },
+      "rule": {
+        "id": "windows-server-2019-ftp-prevent-anonymous-logons-sv-205853-rule",
+        "applicability": {
+          "any_of": [
+            {
+              "condition": "platform-xccdf-navy-navwar-niwcatlantic-s-b5b140e25733-condition"
+            }
+          ]
+        }
+      },
+      "fact_assessment_ids": [
+        "platform-scap-navy-navwar-niwcatlantic-scc-f93e0988-assessment",
+        "platform-xccdf-navy-navwar-niwcatlantic-scc-d3a0744b-assessment"
+      ],
+      "fact_assessment_has_tests": false
+    },
+    "synthetic_wrapper": {
+      "id": "platform-xccdf-navy-navwar-niwcatlantic-scc-d3a0744b-assessment",
+      "tests": {},
+      "evaluate": {
+        "not": {
+          "assessment": "platform-scap-navy-navwar-niwcatlantic-scc-f93e0988-assessment"
+        }
+      }
+    }
+  },
+  "after": {
+    "implementation": "codex/applicability-direct-expressions working tree after focused/full65 qualification",
+    "command": "PYTHONPATH=src .venv/bin/python -m scap_ng_tools.converter.direct04 --schema-root <pinned f51 schema> --source <pinned ZIP> --sha256 54113f747a0a256f66b8c8db34763daebee3dc2c769041ec5f043ec7ed5948a1 --rule xccdf_mil.disa.stig_rule_SV-205853r991589_rule --recover-native --include-applicability",
+    "yaml": {
+      "benchmark_platform": {
+        "id": "fixture-platform",
+        "title": "Source platform applicability; unresolved identities remain an explicit hold",
+        "applicability": {
+          "condition": "platform-cpe-o-microsoft-windows-server-2019-condition"
+        }
+      },
+      "rule": {
+        "id": "windows-server-2019-ftp-prevent-anonymous-logons-sv-205853-rule",
+        "applicability": {
+          "not": {
+            "condition": "platform-applicability-fact-u-ms-windows-ser-192d258d-condition"
+          }
+        }
+      },
+      "fact_assessment_ids": [
+        "platform-scap-navy-navwar-niwcatlantic-scc-f93e0988-assessment"
+      ],
+      "fact_assessment_has_tests": true
+    },
+    "synthetic_wrapper_emitted": false,
+    "document_count": 6,
+    "schema_validated": true,
+    "source_identity_preserved": true,
+    "independent_semantic_proof": false,
+    "ri_runtime_qualification": false,
+    "source_trace_sha256": "8aad2686458e047233517e2717e1ca4e5c2f7baae93191a4eee34c12eab66029",
+    "generated_output_sha256": {
+      "authoring/direct-slice/applicability.yaml": "c7d31e645d69a982ed7c1ae670fb21b02e715b1ed53a87712db819969232ec1c",
+      "authoring/direct-slice/assessments/platform-scap-navy-navwar-niwcatlantic-scc-f93e0988-assessment.yaml": "54afe2ff7783a3223a9d465afa394804e64610c712fe13999dc79fca4acb33c6",
+      "authoring/direct-slice/assessments/windows-server-2019-ftp-anonymous-logons-sv-205853-assessment.yaml": "d395a15ceda88f8492edcde7938a95ac4d1f558250b7ad0713840ad95451fb1a",
+      "authoring/direct-slice/assessments/windows-server-2019-ftp-logons-sv-205853-manual-0-assessment.yaml": "151ab03380838336a7f708020f278d11a5d548d6d18c062291113ddedbdfad72",
+      "authoring/direct-slice/benchmark.yaml": "0eb273d4420ed25dec060cb2c48780cf523dae9bb39ea233ef7ecf7b8303709d",
+      "authoring/direct-slice/rules/windows-server-2019-ftp-prevent-anonymous-logons-sv-205853-rule.yaml": "8fd7ed85e6f8911e8621500fa0cc4547832767dc37ad400497068f1b7e836e44"
+    }
+  },
+  "focused_tests": {
+    "pytest": "18 passed (focused applicability tests)",
+    "mutation_test": "intentional lower_logical direct-expression mutation: 7 failed, 2 passed; restored and focused suite passed",
+    "coverage": "direct expressions; nested AND/OR/NOT; ONE/XOR explicit hold; reusable shared fact; supported+unsupported sibling preservation; failed fact error hold; inherited Group scope; source operand order; bounded nesting"
+  },
+  "full65_existing_receipt": {
+    "ledger_path": "/tmp/tools-full65-external.pJkQ/ledger.json",
+    "ledger_sha256": "eca59890bfb6416e2cff3a9febcb885ee6e39eb6a563bedf1bea3500e5765777",
+    "source_archive_sha256": "a780f91a487ceca1d03d23c0155e7fe612d55db44e27014f9de4e3adc6ce0097",
+    "candidate_counts": {
+      "blocked": 94,
+      "converted": 6493,
+      "manual_only": 1403
+    },
+    "original_counts": {
+      "blocked": 108,
+      "converted": 6479,
+      "manual_only": 1403
+    },
+    "nonregression_pass": true,
+    "qualification": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+    "pin_reconciliation": {
+      "prior_external_ledger_canonical_schema_commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+      "prior_external_ledger_schema_aggregate_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+      "current_tools_pin_used_for_qualification": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+      "current_tools_schema_aggregate_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+      "status": "superseded_by_current_tools_pin"
+    }
+  },
+  "holds": [
+    "CPE URI cpe:/o:microsoft:windows_server_2019:- has no executable fact closure and remains an explicit applicability ERROR hold.",
+    "FTP installed/available/removed, empty evidence, UNKNOWN/ERROR and host runtime outcomes require RI qualification; converter proves structure only.",
+    "ONE/XOR CPE operators remain explicit unsupported applicability holds because canonical applicability expression admits all_of/any_of/not, not one/xor.",
+    "Full65 structural conversion remains authoring-only; RI #201/runtime and independent OVAL equivalence are unverified. The prior c428/1755 ledger was superseded by the current f51/11b qualification recorded here."
+  ],
+  "full65_current_receipt": {
+    "ledger_path": "/tmp/tools-full65-applicability-f51.1225412.json",
+    "ledger_sha256": "40830d3fc795412cc21935e6ff3444471d86862964d0ee24944333791fc124f3",
+    "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "source_archive_sha256": "a780f91a487ceca1d03d23c0155e7fe612d55db44e27014f9de4e3adc6ce0097",
+    "canonical_schema_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "schema_aggregate_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
+    "source_benchmarks": 65,
+    "original_counts": {
+      "blocked": 108,
+      "converted": 6479,
+      "manual_only": 1403
+    },
+    "candidate_counts": {
+      "blocked": 94,
+      "converted": 6493,
+      "manual_only": 1403
+    },
+    "newly_converted_from_blocked": 14,
+    "newly_blocked_from_converted": 0,
+    "nonregression_pass": true,
+    "qualification": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+    "scanner_equivalent": false
+  }
+}

@@ -1,7 +1,4 @@
-import hashlib
-import json
 from pathlib import Path
-import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 from types import SimpleNamespace
@@ -9,7 +6,7 @@ from unittest.mock import patch
 
 from scripts.publish_issue28_assessments import verify_published_inventory
 from scap_ng_tools.converter.applicability import (
-    _make_composite, build_applicability, extract_platform_specifications, inherited_platform_refs,
+    build_applicability, extract_platform_specifications, inherited_platform_refs,
 )
 from scap_ng_tools.converter.direct04 import load_runtime
 from scap_ng_tools.converter._v04_runtime.v04_direct_scap_source import SourceModel
@@ -37,35 +34,11 @@ class ApplicabilityConversionTests(unittest.TestCase):
                 self.assertEqual(logical['children'][0]['operator'], 'OR')
             self.assertTrue(logical['facts'][0]['source_xml_sha256'])
 
-    def test_boolean_wrapper_is_deduplicated_and_retains_negation(self):
-        shared, traces = {}, {}
-        first = _make_composite('Linux', 'fixture-linux-platform', ['fact-a', 'fact-b'], 'OR', 'true', shared, traces)
-        second = _make_composite('Linux', 'fixture-linux-platform', ['fact-a', 'fact-b'], 'OR', 'true', shared, traces)
-        self.assertEqual(first, second)
-        self.assertEqual(len(shared), 1)
-        expression = next(iter(shared.values()))['assessment']['evaluate']
-        self.assertEqual(expression, {'not': {'or': [{'assessment': 'fact-a'}, {'assessment': 'fact-b'}]}})
-        self.assertEqual(shared[first]['assessment']['dependencies']['condition-0']['purpose'], 'applicability')
-
-
-    def test_boolean_states_and_all_native_operators_are_retained_structurally(self):
-        # These labels stand for independently produced PASS, FAIL, ERROR,
-        # UNKNOWN, and NOT_EVALUATED Assessments. This test deliberately does
-        # not execute them or assert scanner/runtime equivalence.
-        state_ids = ['pass-assessment', 'fail-assessment', 'error-assessment',
-                     'unknown-assessment', 'not-evaluated-assessment']
-        for operator in ('AND', 'OR', 'ONE', 'XOR'):
-            shared, traces = {}, {}
-            aid = _make_composite('state vector', 'fixture-state-vector',
-                                  state_ids[:3], operator, 'false', shared, traces)
-            expression = shared[aid]['assessment']['evaluate']
-            self.assertIn(operator.lower(), expression)
-            self.assertEqual([x['assessment'] for x in expression[operator.lower()]], state_ids[:3])
-        shared, traces = {}, {}
-        inner = _make_composite('inner', 'fixture-inner', state_ids[:2], 'AND', 'false', shared, traces)
-        outer = _make_composite('outer', 'fixture-outer', [inner, state_ids[4]], 'OR', 'true', shared, traces)
-        self.assertEqual(shared[outer]['assessment']['evaluate'], {
-            'not': {'or': [{'assessment': inner}, {'assessment': state_ids[4]}]}})
+    def test_source_boolean_lowering_never_creates_composite_assessment(self):
+        # Boolean CPE layers are now native applicability expressions.  Only
+        # reusable fact Assessments may be emitted by build_applicability.
+        self.assertNotIn('_make_composite', __import__(
+            'scap_ng_tools.converter.applicability', fromlist=['__name__']).__dict__)
 
     def test_xccdf_inheritance_preserves_rule_group_benchmark_order(self):
         benchmark = ET.Element(f'{{{XCCDF}}}Benchmark')
@@ -85,11 +58,6 @@ class ApplicabilityConversionTests(unittest.TestCase):
         root = ET.Element('root'); root.extend([first, second])
         with self.assertRaisesRegex(ValueError, 'conflicting duplicate CPE platform ID'):
             extract_platform_specifications(SimpleNamespace(root=root))
-        shared, traces = {}, {}
-        with patch('scap_ng_tools.converter.applicability._slug', return_value='platform-collision-assessment'):
-            _make_composite('one', 'identity-one', ['a', 'b'], 'AND', 'false', shared, traces)
-            with self.assertRaisesRegex(ValueError, 'conflicting generated Assessment identity'):
-                _make_composite('two', 'identity-two', ['a', 'c'], 'OR', 'false', shared, traces)
 
 
     def test_publication_graph_rejects_unresolved_dependencies_and_cycles(self):
@@ -242,15 +210,20 @@ class ApplicabilityConversionTests(unittest.TestCase):
         with patch('scap_ng_tools.converter.applicability._assessment_document', fake_assessment):
             documents, trace = build_applicability(source, docs, coverage, mappings=[])
         self.assertEqual(trace['source_rule_count_attached'], 1)
-        self.assertEqual(trace['shared_assessment_count'], 5)  # 3 facts + OR + AND platform
+        self.assertEqual(trace['shared_assessment_count'], 3)  # only reusable fact Assessments; CPE Boolean layers are native expressions
         catalog = documents['authoring/direct-slice/applicability.json']['applicability']
-        self.assertEqual(len(catalog['conditions']), 1)
+        self.assertEqual(len(catalog['conditions']), 3)
         rule_expression = documents['authoring/direct-slice/rules/fixture-rule.json']['rule']['applicability']
-        self.assertEqual([item['condition'] for item in rule_expression['any_of']],
-                         ['platform-fixture-linux-platform-condition'])
+        self.assertEqual(set(rule_expression), {'all_of'})
+        self.assertTrue(any(set(item) == {'any_of'} for item in rule_expression['all_of']))
         benchmark_expression = documents['authoring/direct-slice/benchmark.json']['benchmark']['platform']['applicability']
-        self.assertEqual([item['condition'] for item in benchmark_expression['any_of']],
-                         ['platform-fixture-linux-platform-condition'])
+        self.assertEqual(benchmark_expression, rule_expression)
+        self.assertEqual(len(trace['platform_expressions']), 1)
+        self.assertEqual(trace['platform_expressions'][0]['source']['idref'], '#fixture-linux-platform')
+        # No synthetic Boolean Assessment is emitted; only the three fact
+        # Assessments are shared and each CPE operator is in the consumer
+        # applicability expression.
+        self.assertEqual(sum(1 for path in documents if '/assessments/' in path), 3)
         levels = coverage['rules'][0]['applicability']['levels']
         self.assertEqual([level['kind'] for level in levels], ['benchmark', 'group', 'rule'])
         self.assertTrue(all('source' in value for value in catalog['conditions'].values()))
