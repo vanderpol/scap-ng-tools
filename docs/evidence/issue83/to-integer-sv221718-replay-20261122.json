@@ -1,0 +1,75 @@
+{
+  "before_after": {
+    "after": {
+      "blocked": 94,
+      "converted": 6493,
+      "manual_only": 1403,
+      "to_integer_rule": "converted"
+    },
+    "before": {
+      "blocked": 95,
+      "converted": 6492,
+      "manual_only": 1403,
+      "to_integer_rule": "blocked"
+    },
+    "converted_to_blocked": 0,
+    "newly_converted_from_blocked": 14
+  },
+  "canonical": {
+    "commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "contract": "schema/variable-expression.schema.json#/$defs/expression/oneOf/4/properties/to_integer",
+    "schema_aggregate_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
+  },
+  "converter": {
+    "branch": "codex/external-variable-contract-proposal",
+    "commit": "df12cd30fb37e56fcc78d741a7460671b624a169",
+    "semantic_file": "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py"
+  },
+  "focused_replay": {
+    "documents": 5,
+    "semantic_validation": "passed",
+    "source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+    "status": "converted"
+  },
+  "focused_tests": {
+    "command": "SCAP_NG_TO_INTEGER_SOURCE=<pinned-Oracle-zip> SCAP_NG_SCHEMA_ROOT=<c428-schema> .venv/bin/python -m pytest -q tests/test_issue83_to_integer.py",
+    "result": "7 passed, 13 subtests",
+    "vectors": [
+      "signed decimal",
+      "leading zeros",
+      "multivalue",
+      "required Input",
+      "empty population",
+      "invalid lexical literal",
+      "numeric/record/malformed operands",
+      "production focused and benchmark replay"
+    ]
+  },
+  "format": "scap-ng-tools/issue83-to-integer-replay/1",
+  "full_benchmark_replay": {
+    "full_65_output_sha256": "032835f6afa81c1fb23c96c0c127da9e9a5e3c33f4cdd7b8023c33f80073cf96",
+    "rule_status": "converted",
+    "source_rules": 7990,
+    "status": "converted"
+  },
+  "proof_limits": [
+    "authoring/schema semantic conversion only",
+    "Input bindings are not RI runtime execution",
+    "independent OVAL equivalence not proved"
+  ],
+  "source": {
+    "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+    "benchmark": "U_Oracle_Linux_7_V3R3_STIG_SCAP_1-4_Benchmark-enhancedV16-signed.zip",
+    "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+    "oval_definition": "oval:mil.disa.stig.ol7:def:518",
+    "rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+    "rule_sha256": "a82d77b5ca397a7c244fdde0027b481f23837471df055971791707d1a2c05b03",
+    "source_input": "oval:mil.disa.stig.ol7:var:4211",
+    "source_variants": [
+      "077",
+      "027",
+      "022",
+      "007"
+    ]
+  }
+}

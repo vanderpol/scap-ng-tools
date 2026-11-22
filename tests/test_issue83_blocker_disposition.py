@@ -15,17 +15,17 @@ class BlockerDispositionReceipt(unittest.TestCase):
         cls.rows = cls.receipt["blocked_rules"]
 
     def test_exact_scope_and_disposition_counts(self):
-        self.assertEqual(len(self.rows), 95)
+        self.assertEqual(len(self.rows), 94)
         self.assertEqual(self.receipt["scope"], {
-            "blocked": 95,
-            "converted": 6492,
+            "blocked": 94,
+            "converted": 6493,
             "converted_to_blocked": 0,
             "manual_only": 1403,
-            "newly_converted_from_blocked": 13,
+            "newly_converted_from_blocked": 14,
             "source_rules": 7990,
         })
         self.assertEqual(self.receipt["categories"], {
-            "canonical_language_gap": 3,
+            "bounded_converter_gap": 2,
             "deprecated_source_construct": 83,
             "source-invalid-semantics": 9,
         })
@@ -50,10 +50,12 @@ class BlockerDispositionReceipt(unittest.TestCase):
     def test_nondeprecated_holds_are_not_laundered(self):
         gaps = [row for row in self.rows
                 if row["disposition"] == "canonical_language_gap"]
-        self.assertEqual(len(gaps), 3)
-        self.assertEqual(sum("dynamic Variable Object Set" in row["message"]
-                             for row in gaps), 2)
-        self.assertEqual(sum("to_integer" in row["message"] for row in gaps), 1)
+        self.assertEqual(len(gaps), 0)
+        gaps = [row for row in self.rows
+                if row["disposition"] == "bounded_converter_gap"]
+        self.assertEqual(len(gaps), 2)
+        self.assertTrue(all("dynamic Variable Object Set" in row["message"]
+                            for row in gaps))
         invalid = [row for row in self.rows
                    if row["disposition"] == "source-invalid-semantics"]
         self.assertEqual(len(invalid), 9)
