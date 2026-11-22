@@ -33,18 +33,26 @@
   },
   "errors": [],
   "format": "scap-ng/issue118-operation-coverage/1",
+  "holds": [
+    "RI main 109ed657 used by Tools hosted P0 predates to_integer/time_difference; rerun after RI #201/#203 integration.",
+    "RI hosted qualification for 06cd4a8 was not started because GitHub billing/spending-limit infrastructure blocked all jobs.",
+    "Live canonical main 8ac9b468 includes later schema changes than focused f51 pin; coordinated repin remains required.",
+    "Organizational Input value binding and independent OVAL equivalence remain unproved."
+  ],
   "pins": {
     "canonical_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
     "canonical_schema_family_sha256": "11b5ae735dd0a7a1db496b421e0d12f757c027f734da688c2b1d96940f4c47dc",
-    "editor_commit": "466e5cfca598c9bb2018e89947e0fdc85e79eafd",
+    "editor_commit": "1e1b77c946265c0f374f78d665233c7ff4fbf6ca",
     "oval_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
-    "ri_commit": "78355c4349d6189f5af22477dc4c98751d7b2ddd",
-    "tools_commit": "ed723db91547010890f54e2b069e7555235c0a4f"
+    "ri_commit": "06cd4a8920071f6ab5d623aa6cd92aa59a279353",
+    "tools_commit": "9b9c682401d0227103d78a0938b23b1f0ee516d1"
   },
   "proof": {
     "canonical_gap_classification": "pass",
-    "editor_source_and_pack": "pass",
+    "cross_consumer_gate": "pass_locally; hosted_tools_runtime_dependency_hold_explicit",
+    "editor_source_and_pack": "pass_hosted_at_7d7f8be_merged_1e1b77c",
     "independent_scanner_equivalence": "not_proved",
+    "ri_end_to_end_to_integer": "pass_local_evaluate_test_and_focused_race",
     "runtime_input_binding": "held_explicitly",
     "runtime_to_integer": "pass",
     "structural_dispatch": "pass"
