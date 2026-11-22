@@ -57,6 +57,32 @@ class NormativeCompletionMatrixTests(unittest.TestCase):
         self.assertEqual(matrix["features"][0]["ri_runtime"], "not_run")
         self.assertEqual(matrix["source"]["oval_schema_commit"], "oval-pin")
 
+    def test_dispositions_cover_non_top_level_grammar_rows(self):
+        crosswalk = self.crosswalk()
+        crosswalk["oval_schema_inventory"]["grammar_rows"].extend([
+            {"source_kind": "attribute", "source_path": "/element[0]/attribute[0]",
+             "source_schema": "windows-definitions-schema.xsd",
+             "source_qname": "{urn:test}mapped-attribute",
+             "canonical_mapping_candidates": [{"capability": "windows.test"}]},
+            {"source_kind": "assert", "source_path": "/element[0]/assert[0]",
+             "source_schema": "windows-definitions-schema.xsd",
+             "source_qname": "{urn:test}unmapped-assert"},
+            {"source_kind": "enumeration", "source_path": "/element[0]/enum[0]",
+             "source_schema": "windows-definitions-schema.xsd",
+             "source_qname": "{urn:test}deprecated-enum",
+             "deprecation": [{"version": "5.12"}]},
+        ])
+        matrix = build(crosswalk, source_sha256="hash", source_path="crosswalk")
+        grammar = matrix["grammar_inventory"]
+        self.assertEqual(grammar["rows"], 7)
+        self.assertEqual(grammar["by_source_kind"]["attribute"],
+                         {"mapped_unproven": 1})
+        self.assertEqual(grammar["by_source_kind"]["assert"],
+                         {"semantic_constraint_unproven": 1})
+        self.assertEqual(grammar["by_source_kind"]["enumeration"],
+                         {"deprecated": 1})
+        self.assertIn("Schematron rows are semantic constraints", grammar["policy"])
+
     def test_markdown_reports_holds_not_conversion_success(self):
         text = markdown(build(self.crosswalk(), source_sha256="hash",
                               source_path="crosswalk"))

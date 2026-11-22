@@ -52,6 +52,65 @@ def _classify(row: dict[str, Any]) -> str:
     return "unmapped_source_feature"
 
 
+# These rows are evidence needed to reconstruct the source grammar, not
+# independently authored source features. They must not inflate an
+# ``unmapped_source_feature`` count.
+_SUPPORTING_ROWS = frozenset({
+    "annotation", "appinfo", "comment", "documentation",
+    "deprecated_info", "evaluation_chart", "evaluation_documentation",
+    "element_mapping", "field", "item", "name", "object", "reason",
+    "selector", "state", "test", "version",
+})
+_SCHEMATRON_ROWS = frozenset({"assert", "let", "report", "rule", "value-of"})
+
+
+def _grammar_classify(row: dict[str, Any]) -> str:
+    direct = _classify(row)
+    if direct != "unmapped_source_feature":
+        return direct
+    kind = row.get("source_kind")
+    if kind in _SUPPORTING_ROWS:
+        return "structural_supporting_evidence"
+    if kind in _SCHEMATRON_ROWS:
+        return "semantic_constraint_unproven"
+    return direct
+
+
+def _grammar_inventory(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Summarize every structural row without treating grammar as proof.
+
+    The feature matrix intentionally has one row per top-level source
+    declaration. ``rows`` also contains inherited members, particles,
+    Schematron expressions and documentation records. Keeping their
+    dispositions as counts prevents the compact report from implying that
+    the top-level table is an exhaustive field/attribute crosswalk.
+    """
+    by_kind: dict[str, Counter[str]] = defaultdict(Counter)
+    by_schema: dict[str, Counter[str]] = defaultdict(Counter)
+    for row in rows:
+        classification = _grammar_classify(row)
+        by_kind[row.get("source_kind", "unknown")][classification] += 1
+        by_schema[row.get("schema_file", "unknown")][classification] += 1
+    return {
+        "rows": len(rows),
+        "by_source_kind": {
+            kind: dict(sorted(counts.items()))
+            for kind, counts in sorted(by_kind.items())
+        },
+        "by_schema": {
+            schema: dict(sorted(counts.items()))
+            for schema, counts in sorted(by_schema.items())
+        },
+        "policy": (
+            "Supporting rows are source-grammar evidence rather than distinct "
+            "features; Schematron rows are semantic constraints. Neither "
+            "classification establishes native representability, converter parity "
+            "or runtime semantics. Direct source declaration rows are the "
+            "separate top-level feature table."
+        ),
+    }
+
+
 def build(crosswalk: dict[str, Any], *, source_sha256: str,
           source_path: str) -> dict[str, Any]:
     if crosswalk.get("format") != "scap-ng-tools/issue83-source-crosswalk/1":
@@ -120,6 +179,7 @@ def build(crosswalk: dict[str, Any], *, source_sha256: str,
             "structural_declarations": inventory["summary"].get("declarations"),
             "canonical_mapping_rows": inventory["summary"].get("canonical_mapping_rows"),
         },
+        "grammar_inventory": _grammar_inventory(rows),
         "features": features,
         "qualification": {
             "source_structure": "pinned and structurally inventoried",
@@ -157,6 +217,7 @@ def markdown(matrix: dict[str, Any]) -> str:
         f"- Canonical mapping commit: `{matrix['source']['canonical_mapping_commit']}`",
         f"- Input crosswalk SHA-256: `{matrix['source']['crosswalk_sha256']}`",
         f"- Distinct top-level features: **{counts['distinct_top_level_features']}**",
+        f"- Structural grammar rows dispositioned: **{matrix['grammar_inventory']['rows']}**",
         "",
         "## Classification",
         "",
@@ -174,6 +235,19 @@ def markdown(matrix: dict[str, Any]) -> str:
     for platform, data in counts["by_platform"].items():
         lines.append(f"| `{platform}` | {data.get('deprecated', 0)} | {data.get('mapped_unproven', 0)} | {data.get('unmapped_source_feature', 0)} |")
     lines.extend([
+        "",
+        "## Structural grammar evidence",
+        "",
+        "The source crosswalk contains inherited members, particles, attributes, "
+        "Schematron expressions and documentation in addition to top-level "
+        "declarations. Their disposition counts are retained in the machine "
+        "matrix under `grammar_inventory`; a row with no mapping is a review "
+        "hold, not an automatic canonical gap.",
+        "",
+        "Supporting grammar rows are not distinct source features; Schematron "
+        "rows remain semantic constraints requiring separate proof. The compact "
+        "JSON retains these dimensions so they cannot be mistaken for 413 "
+        "top-level converter blockers.",
         "",
         "## Proof boundaries",
         "",
