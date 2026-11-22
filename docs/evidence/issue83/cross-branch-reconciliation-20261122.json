@@ -39,6 +39,7 @@
         "converted": 6492,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 13,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -81,6 +82,7 @@
         "converted": 6493,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 14,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -101,7 +103,9 @@
       },
       "superseded_evidence": [
         {
+          "blocked_delta_to_preferred": -1,
           "blocked_rule_count": 95,
+          "converted_delta_to_preferred": 1,
           "counts": {
             "blocked": 95,
             "converted": 6492,
@@ -111,7 +115,9 @@
           "to_integer_blocked": true
         },
         {
+          "blocked_delta_to_preferred": -1,
           "blocked_rule_count": 95,
+          "converted_delta_to_preferred": 1,
           "counts": {
             "blocked": 95,
             "converted": 6492,
@@ -145,6 +151,7 @@
         "converted": 6492,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 13,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -185,6 +192,7 @@
         "converted": 6492,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 13,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -225,6 +233,7 @@
         "converted": 6492,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 13,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -283,6 +292,7 @@
         "converted": 6492,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 13,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -325,6 +335,7 @@
         "converted": 6493,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 14,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -345,7 +356,9 @@
       },
       "superseded_evidence": [
         {
+          "blocked_delta_to_preferred": -1,
           "blocked_rule_count": 95,
+          "converted_delta_to_preferred": 1,
           "counts": {
             "blocked": 95,
             "converted": 6492,
@@ -355,7 +368,9 @@
           "to_integer_blocked": true
         },
         {
+          "blocked_delta_to_preferred": -1,
           "blocked_rule_count": 95,
+          "converted_delta_to_preferred": 1,
           "counts": {
             "blocked": 95,
             "converted": 6492,
@@ -389,6 +404,7 @@
         "converted": 6492,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 13,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -429,6 +445,7 @@
         "converted": 6492,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 13,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
@@ -469,6 +486,7 @@
         "converted": 6492,
         "manual_only": 1403
       },
+      "cumulative_recovery_count": 13,
       "dynamic_variable_object_set_rule_ids": [
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
         "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"

@@ -163,9 +163,15 @@ def audit(repo: Path, refs: list[tuple[str, str]]) -> dict[str, Any]:
                 "counts": row["counts"],
                 "to_integer_blocked": row["to_integer_blocked"],
                 "blocked_rule_count": row["blocked_rule_count"],
+                "converted_delta_to_preferred": (
+                    preferred["counts"].get("converted", 0) - row["counts"].get("converted", 0)),
+                "blocked_delta_to_preferred": (
+                    preferred["counts"].get("blocked", 0) - row["counts"].get("blocked", 0)),
             }
             for row in prior
         ]
+        preferred["cumulative_recovery_count"] = (
+            preferred["counts"].get("converted", 0) - 6479)
         rows.append(preferred)
     usable = [row for row in rows if row.get("status") != "no_full65_evidence"]
     result = reconcile_documents(usable)
