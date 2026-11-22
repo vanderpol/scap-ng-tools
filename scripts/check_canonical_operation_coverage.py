@@ -14,13 +14,15 @@ import json
 from pathlib import Path
 import re
 import sys
+import tokenize
+from io import StringIO
 
 EXPECTED_RUNTIME_HOLDS = {"input"}  # RI organizational Input binding is separate.
 TO_INTEGER_RULE_IDS = {
     "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
 }
-GAP_CLASS_FIELDS = ("category", "disposition_class", "native_conversion_disposition", "failure_class", "disposition")
-RULE_ID_FIELDS = ("source_rule", "source_rule_id", "rule_id")
+GAP_CLASS_FIELDS = ("disposition_class",)
+RULE_ID_FIELDS = ("source_id", "source_rule", "source_rule_id", "rule_id")
 
 
 def schema_operations(schema_root: Path) -> list[str]:
@@ -39,13 +41,23 @@ def schema_operations(schema_root: Path) -> list[str]:
 
 def source_has_branch(path: Path, operation: str, *, token: str = "") -> bool:
     text = path.read_text()
+    if path.suffix == ".py":
+        # Do not let a commented-out Python branch satisfy a structural check.
+        tokens = tokenize.generate_tokens(StringIO(text).readline)
+        text = tokenize.untokenize(
+            (tok.type, " " * len(tok.string) if tok.type == tokenize.COMMENT else tok.string)
+            for tok in tokens
+        )
+    else:
+        # Go/TypeScript dispatches are checked structurally below. Strip full
+        # line comments so stale commented branches cannot pass the gate.
+        text = re.sub(r"(?m)^[ \t]*(?:#|//).*$", "", text)
     # Branch checks intentionally look for executable dispatch syntax rather
     # than a comment or a documentation mention. A deliberate branch removal
     # therefore fails this gate even if the operation remains documented.
     patterns = (
         rf"\bif\s+(?:op|operation)\s*==\s*['\"]{re.escape(operation)}['\"]",
         rf"\bcase\s+[^:\n]*['\"]{re.escape(operation)}['\"]", 
-        rf"['\"]{re.escape(operation)}['\"]\s*:\s*",
         rf"\b(?:op|operation)\s+in\s+[^\n)]*['\"]{re.escape(operation)}['\"]",
     )
     return any(re.search(pattern, text) for pattern in patterns) and (not token or token in text)
@@ -63,7 +75,9 @@ def _rule_disposition_rows(value):
                       if isinstance(value.get(key), str)}
         classes = {str(value[key]) for key in GAP_CLASS_FIELDS
                    if isinstance(value.get(key), str)}
-        if source_ids and classes:
+        if source_ids:
+            # A row with an identity but no authoritative disposition is still
+            # yielded so callers can fail closed on malformed receipts.
             yield source_ids, classes, value
         for child in value.values():
             yield from _rule_disposition_rows(child)
@@ -141,15 +155,34 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
             result["errors"].append("editor metadata pack contains operations absent from the active schema")
     if blocker_receipt and blocker_receipt.is_file():
         payload = json.loads(blocker_receipt.read_text())
-        matches = []
+        rows = []
+        malformed = []
         for source_ids, classes, row in _rule_disposition_rows(payload):
             matched_ids = sorted(source_ids & TO_INTEGER_RULE_IDS)
-            if matched_ids and "canonical_language_gap" in classes:
-                matches.append({"source_rule": matched_ids[0], "classification": "canonical_language_gap"})
+            if matched_ids:
+                rows.append((matched_ids[0], classes, row))
+        matches = [
+            {"source_rule": source_id, "classification": "canonical_language_gap"}
+            for source_id, classes, _row in rows
+            if "canonical_language_gap" in classes
+        ]
+        if len(rows) == 0:
+            status = "not_found"
+            result["errors"].append("required to_integer Rule disposition row is absent")
+        elif len(rows) > 1:
+            status = "ambiguous"
+            result["errors"].append("required to_integer Rule has multiple disposition rows")
+        elif not rows[0][1]:
+            status = "invalid"
+            malformed.append(rows[0][0])
+            result["errors"].append("required to_integer Rule disposition row has no authoritative disposition_class")
+        else:
+            status = "fail" if matches else "pass"
         result["classification"]["gap_dispositions"] = {
             "checked": True,
-            "status": "fail" if matches else "pass",
+            "status": status,
             "matches": matches,
+            "malformed": malformed,
             "receipt": str(blocker_receipt),
         }
         # This exact Rule is the original defect witness. It may not remain a

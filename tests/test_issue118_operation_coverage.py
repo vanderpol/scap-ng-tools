@@ -100,10 +100,13 @@ class Issue118OperationCoverage(unittest.TestCase):
             schema = {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}
             (root / "variable-expression.schema.json").write_text(json.dumps(schema))
             receipt = root / "receipt.json"
-            receipt.write_text(json.dumps({"rules": [
-                {"source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule", "category": "canonical_language_gap"},
-                {"source_rule": "unrelated-rule", "category": "canonical_language_gap"},
-            ]}))
+            receipt.write_text(json.dumps({"benchmark": [{
+                "source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+                "disposition_class": "canonical_language_gap",
+            }, {
+                "source_id": "unrelated-rule",
+                "disposition_class": "canonical_language_gap",
+            }]}))
             result = audit(root, blocker_receipt=receipt)
         self.assertTrue(result["classification"]["to_integer_canonical_gap"])
         self.assertEqual(result["classification"]["gap_dispositions"]["status"], "fail")
@@ -115,14 +118,64 @@ class Issue118OperationCoverage(unittest.TestCase):
             (root / "variable-expression.schema.json").write_text(json.dumps(
                 {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}))
             receipt = root / "receipt.json"
-            receipt.write_text(json.dumps({"rules": [
-                {"source_rule": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule", "category": "converted"},
-                {"source_rule": "unrelated-rule", "category": "canonical_language_gap"},
-            ]}))
+            receipt.write_text(json.dumps({"benchmark": [{
+                "source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+                "disposition_class": "converted",
+            }, {
+                "source_id": "unrelated-rule",
+                "disposition_class": "canonical_language_gap",
+            }]}))
             result = audit(root, blocker_receipt=receipt)
         self.assertFalse(result["classification"]["to_integer_canonical_gap"])
         self.assertEqual(result["classification"]["gap_dispositions"]["status"], "pass")
         self.assertEqual(result["errors"], [])
+
+    def test_gap_guard_fails_closed_when_target_row_is_missing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "variable-expression.schema.json").write_text(json.dumps(
+                {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}))
+            receipt = root / "receipt.json"
+            receipt.write_text(json.dumps({"benchmark": [{
+                "source_id": "unrelated-rule",
+                "disposition_class": "converted",
+            }]}))
+            result = audit(root, blocker_receipt=receipt)
+        self.assertEqual(result["classification"]["gap_dispositions"]["status"], "not_found")
+        self.assertTrue(result["errors"])
+
+    def test_gap_guard_rejects_ambiguous_or_malformed_target_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "variable-expression.schema.json").write_text(json.dumps(
+                {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}))
+            duplicate = root / "duplicate.json"
+            duplicate.write_text(json.dumps({"benchmark": [
+                {"source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+                 "disposition_class": "converted"},
+                {"source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+                 "disposition_class": "canonical_language_gap"},
+            ]}))
+            result = audit(root, blocker_receipt=duplicate)
+            malformed = root / "malformed.json"
+            malformed.write_text(json.dumps({"benchmark": [{
+                "source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+            }]}))
+            malformed_result = audit(root, blocker_receipt=malformed)
+        self.assertEqual(result["classification"]["gap_dispositions"]["status"], "ambiguous")
+        self.assertTrue(result["errors"])
+        self.assertEqual(malformed_result["classification"]["gap_dispositions"]["status"], "invalid")
+        self.assertTrue(malformed_result["errors"])
+
+    def test_branch_guard_does_not_accept_comment_or_data_literal(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            comment = Path(tmp) / "comment.py"
+            comment.write_text("# if op == 'to_integer':\n")
+            literal = Path(tmp) / "literal.py"
+            literal.write_text("value = {'to_integer': None}\n")
+            from scripts.check_canonical_operation_coverage import source_has_branch
+            self.assertFalse(source_has_branch(comment, "to_integer"))
+            self.assertFalse(source_has_branch(literal, "to_integer"))
 
 
 if __name__ == "__main__":
