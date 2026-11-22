@@ -11,7 +11,7 @@ Use fresh output directories outside all checkouts and never overwrite an
 existing receipt. Pin these inputs for the current #116 lane:
 
 - canonical SCAP-NG: `2d983fcbd7b2367d567ca8ccc689a378d08905e4`
-- RI candidate: `57ede7f5f9f84a434a1c419908d281b6a7e088aa`
+- RI candidate: `51f56101d4454120f036001df093d91ab411e54d`
 - OVAL 5.12.3: `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`
 - corrected Self-Assertion: `d91e6ba33841e3202dc27d3e0d469a7abd939b16`
 

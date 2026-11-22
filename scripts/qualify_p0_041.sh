@@ -14,7 +14,7 @@ tools_root=$(cd "$(dirname "$0")/.." && pwd)
 cd "$tools_root"
 [[ ! -e "$output" ]] || { echo 'output exists' >&2; exit 2; }
 case "$output/" in "$tools_root/"*) echo 'output must be outside Tools' >&2; exit 2;; esac
-[[ $(git -C "$ri" rev-parse HEAD) == 57ede7f5f9f84a434a1c419908d281b6a7e088aa ]] || { echo 'RI must be the exact reviewed Input-closure commit' >&2; exit 2; }
+[[ $(git -C "$ri" rev-parse HEAD) == 51f56101d4454120f036001df093d91ab411e54d ]] || { echo 'RI must be the exact reviewed Input-closure commit' >&2; exit 2; }
 mkdir -p "$output"
 export SCAP_NG_SCHEMA_ROOT="$canonical/schema" SCAP_NG_OVAL_ROOT="$oval"
 for iteration in one two; do
