@@ -4,8 +4,8 @@ from pathlib import Path
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-CANONICAL_COMMIT = "d1ab0283e09369c2c734d3b8f93b65007441cf07"
-SCHEMA_DIGEST = "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
+CANONICAL_COMMIT = "2d983fcbd7b2367d567ca8ccc689a378d08905e4"
+SCHEMA_DIGEST = "dc650646a24e727e68de242027cca3058683accc531f07bf6ace217609755b24"
 WORKFLOW = ROOT / ".github/workflows/issue59-full65-rebuild.yml"
 
 

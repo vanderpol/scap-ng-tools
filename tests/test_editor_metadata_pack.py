@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from build_v04_editor_metadata_pack import build  # noqa: E402
 
 
-SCHEMA_COMMIT = 'd1ab0283e09369c2c734d3b8f93b65007441cf07'
-EXPECTED_MANIFEST = '9a531bcaaf6555b50689f4ceee06fb604c7013b3ee0b544b3af9e6b9dc7ac6e1'
+SCHEMA_COMMIT = '2d983fcbd7b2367d567ca8ccc689a378d08905e4'
+EXPECTED_MANIFEST = '51a96cbe8e596be475804cbc1eeae85ccacaacef729c137c167973fc4b47939c'
 
 
 class EditorPackParity(unittest.TestCase):
@@ -41,7 +41,7 @@ class EditorPackParity(unittest.TestCase):
             self.assertEqual(sha256(manifest_bytes).hexdigest(), EXPECTED_MANIFEST)
             manifest = json.loads(manifest_bytes)
             self.assertEqual(manifest['source_commit'], SCHEMA_COMMIT)
-            self.assertEqual(len(manifest['resources']), 238)
+            self.assertEqual(len(manifest['resources']), 239)
             self.assertEqual(len(manifest['capabilities']), 101)
             names = set()
             for row in manifest['resources']:
@@ -50,7 +50,7 @@ class EditorPackParity(unittest.TestCase):
                 self.assertEqual(sha256((output / row['path']).read_bytes()).hexdigest(),
                                  row['sha256'])
                 self.assertEqual((output / row['path']).stat().st_size, row['bytes'])
-            self.assertEqual(len(names), 238)
+            self.assertEqual(len(names), 239)
             self.assertEqual(
                 {p.relative_to(output).as_posix() for p in output.rglob('*') if p.is_file()},
                 names | {'profile.json', 'manifest.json'})

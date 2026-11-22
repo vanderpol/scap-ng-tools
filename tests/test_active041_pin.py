@@ -25,14 +25,18 @@ class Active041Pins(unittest.TestCase):
         self.assertEqual(pin['semantic_pack_sha256'], PACK_HASH)
         self.assertEqual(pin['schema_version'], '0.4.1')
         self.assertIs(pin['single_version'], True)
-        self.assertEqual(len(pin['files']), 146)
+        self.assertEqual(len(pin['files']), 147)
         self.assertEqual(pin['assessment_execution']['family_sha256'], ASSESSMENT_EXECUTION_FAMILY_SHA256)
         self.assertEqual(pin['assessment_execution']['closure_sha256'], ASSESSMENT_CLOSURE_SHA256)
         self.assertEqual(len(pin['assessment_execution']['files']), 8)
         # This independent expected ledger is not regenerated from RI results.
         manifest = ROOT / 'docs/qualification/agnostic-self-assertion/expected-definitions.json'
         self.assertEqual(sha256(manifest.read_bytes()).hexdigest(),
-                         '9a9961fc8bcdf30d2d01e9178c0b59befc5e871724c48d6fe38fd9443906ce7c')
+                         'bef07de863d4e8947dc2b2caab87debdc70bd8699fa03f0198a4454fc708412f')
+        expected = json.loads(manifest.read_text())
+        self.assertEqual(expected['source_commit'],
+                         'd91e6ba33841e3202dc27d3e0d469a7abd939b16')
+        self.assertEqual(expected['expected_counts'], {'true': 44, 'false': 1, 'unknown': 1})
 
     def test_current_canonical_resource_bytes_and_profile_contract(self):
         schema_root = os.environ.get('SCAP_NG_SCHEMA_ROOT')
@@ -60,6 +64,14 @@ class Active041Pins(unittest.TestCase):
         self.assertFalse(list(validator.iter_errors(profiles)))
         profiles[1]['extends'] = 'baseline'
         self.assertTrue(list(validator.iter_errors(profiles)))
+
+    def test_p0_workflow_uses_current_source_and_assessment_closure_pins(self):
+        workflow = (ROOT / '.github/workflows/p0-canonical-qualification.yml').read_text()
+        self.assertIn('ref: 2d983fcbd7b2367d567ca8ccc689a378d08905e4', workflow)
+        self.assertIn('ref: 51f56101d4454120f036001df093d91ab411e54d', workflow)
+        self.assertIn('ref: d91e6ba33841e3202dc27d3e0d469a7abd939b16', workflow)
+        lane = (ROOT / 'scripts/qualify_p0_041.sh').read_text()
+        self.assertIn('51f56101d4454120f036001df093d91ab411e54d', lane)
 
     def test_generator_rebuilds_without_reading_previous_semantic_pack(self):
         schema = os.environ.get('SCAP_NG_SCHEMA_ROOT')

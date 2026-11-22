@@ -145,7 +145,111 @@ class ApplicabilityConversionTests(unittest.TestCase):
         self.assertTrue(all(len(key) <= 64 for key in conditions))
         self.assertEqual(trace['source_identity_preserved'], True)
 
-    def test_unqualified_platform_is_provenance_hold_without_synthetic_assessment(self):
+    def test_declared_benchmark_cpe_identities_preserve_exact_bindings_and_provenance(self):
+        benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
+          <platform idref="cpe:/o:canonical:ubuntu_linux:24.04::~~lts~~~"/>
+          <platform idref="cpe:2.3:o:microsoft:windows_11:23h2:*:*:*:*:*:*:*"/>
+          <Rule id="fixture-rule"/>
+        </Benchmark>''')
+        rule = benchmark.find(f'{{{XCCDF}}}Rule')
+        source = SimpleNamespace( root=benchmark, benchmark=benchmark,
+            rules={'fixture-rule': rule}, parents={rule: benchmark}, catalog={})
+        docs = {'authoring/direct-slice/benchmark.json': {'benchmark': {
+                    'platform': {'id': 'fixture', 'title': 'fixture'}}},
+                'authoring/direct-slice/rules/fixture-rule.json': {'rule': {}}}
+        coverage = {'rules': [{'source_rule': 'fixture-rule', 'status': 'converted',
+                               'artifacts': ['authoring/direct-slice/rules/fixture-rule.json']}]}
+        documents, trace = build_applicability(source, docs, coverage, mappings=[])
+        identities = documents['authoring/direct-slice/benchmark.json']['benchmark']['platform']['expected_cpe_identities']
+        self.assertEqual([item['value'] for item in identities], [
+            'cpe:/o:canonical:ubuntu_linux:24.04::~~lts~~~',
+            'cpe:2.3:o:microsoft:windows_11:23h2:*:*:*:*:*:*:*'])
+        self.assertEqual([item['binding'] for item in identities], ['cpe_uri_2_2', 'cpe_formatted_string_2_3'])
+        self.assertEqual([item['source']['idref'] for item in identities], [item['value'] for item in identities])
+        self.assertTrue(all(len(item['source']['sha256']) == 64 for item in identities))
+        self.assertEqual(trace['declared_benchmark_cpe_identities'], identities)
+        self.assertNotIn('applicability', documents['authoring/direct-slice/benchmark.json']['benchmark']['platform'])
+        self.assertEqual(documents['authoring/direct-slice/applicability.json']
+                         ['applicability']['conditions'], {})
+
+    def test_cpe_metadata_zero_and_empty_benchmark_graphs_are_omitted(self):
+        for has_empty_platform in (False, True):
+            benchmark = ET.Element(f'{{{XCCDF}}}Benchmark', {'id': 'b'})
+            if has_empty_platform:
+                ET.SubElement(benchmark, f'{{{XCCDF}}}platform')
+            rule = ET.SubElement(benchmark, f'{{{XCCDF}}}Rule', {'id': 'fixture-rule'})
+            source = SimpleNamespace(root=benchmark, benchmark=benchmark,
+                                    rules={'fixture-rule': rule}, parents={rule: benchmark},
+                                    catalog={})
+            docs = {
+                'authoring/direct-slice/benchmark.json': {'benchmark': {
+                    'platform': {'id': 'fixture', 'title': 'fixture'}}},
+                'authoring/direct-slice/rules/fixture-rule.json': {'rule': {}},
+            }
+            coverage = {'rules': [{'source_rule': 'fixture-rule', 'status': 'converted',
+                                   'artifacts': ['authoring/direct-slice/rules/fixture-rule.json']}]}
+            documents, trace = build_applicability(source, docs, coverage, mappings=[])
+            platform = documents['authoring/direct-slice/benchmark.json']['benchmark']['platform']
+            self.assertNotIn('expected_cpe_identities', platform)
+            self.assertEqual(trace['declared_benchmark_cpe_identities'], [])
+
+    def test_unsupported_cpe_prefix_remains_an_explicit_hold(self):
+        benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
+          <platform idref="cpe:3.0:o:vendor:product:1"/>
+          <Rule id="fixture-rule"/>
+        </Benchmark>''')
+        rule = benchmark.find(f'{{{XCCDF}}}Rule')
+        source = SimpleNamespace(root=benchmark, benchmark=benchmark,
+                                rules={'fixture-rule': rule}, parents={rule: benchmark}, catalog={})
+        docs = {
+            'authoring/direct-slice/benchmark.json': {'benchmark': {
+                'platform': {'id': 'fixture', 'title': 'fixture'}}},
+            'authoring/direct-slice/rules/fixture-rule.json': {'rule': {}},
+        }
+        coverage = {'rules': [{'source_rule': 'fixture-rule', 'status': 'converted',
+                               'artifacts': ['authoring/direct-slice/rules/fixture-rule.json']}]}
+        documents, trace = build_applicability(source, docs, coverage, mappings=[])
+        platform = documents['authoring/direct-slice/benchmark.json']['benchmark']['platform']
+        self.assertNotIn('expected_cpe_identities', platform)
+        self.assertEqual(trace['declared_benchmark_cpe_identities'], [])
+        condition = next(iter(documents['authoring/direct-slice/applicability.json']
+                              ['applicability']['conditions'].values()))
+        self.assertNotIn('assessment', condition)
+        self.assertEqual(condition['source']['id'], 'cpe:3.0:o:vendor:product:1')
+        self.assertEqual(trace['unsupported'][0]['kind'], 'cpe_identity')
+
+    def test_direct_cpe_metadata_does_not_change_boolean_or_inherited_applicability(self):
+        benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
+          <platform idref="cpe:/o:fixture:os:1"/>
+          <Group id="g"><platform idref="cpe:/a:fixture:app:1"/>
+            <Rule id="fixture-rule"><platform idref="cpe:/h:fixture:host:1"/></Rule>
+          </Group>
+        </Benchmark>''')
+        group = benchmark.find(f'{{{XCCDF}}}Group')
+        rule = group.find(f'{{{XCCDF}}}Rule')
+        source = SimpleNamespace(root=benchmark, benchmark=benchmark,
+                                rules={'fixture-rule': rule},
+                                parents={group: benchmark, rule: group}, catalog={})
+        source.applicability_condition_id = SourceModel.applicability_condition_id.__get__(source)
+        source.applicability_level = SourceModel.applicability_level.__get__(source)
+        source.applicability_context = SourceModel.applicability_context.__get__(source)
+        docs = {
+            'authoring/direct-slice/benchmark.json': {'benchmark': {
+                'platform': {'id': 'fixture', 'title': 'fixture'}}},
+            'authoring/direct-slice/rules/fixture-rule.json': {'rule': {}},
+        }
+        coverage = {'rules': [{'source_rule': 'fixture-rule', 'status': 'converted',
+                               'artifacts': ['authoring/direct-slice/rules/fixture-rule.json']}]}
+        documents, trace = build_applicability(source, docs, coverage, mappings=[])
+        benchmark_platform = documents['authoring/direct-slice/benchmark.json']['benchmark']['platform']
+        self.assertEqual([x['value'] for x in benchmark_platform['expected_cpe_identities']],
+                         ['cpe:/o:fixture:os:1'])
+        self.assertNotIn('applicability', benchmark_platform)
+        rule_app = documents['authoring/direct-slice/rules/fixture-rule.json']['rule']['applicability']
+        self.assertIn('condition', rule_app)
+        self.assertEqual(trace['source_rule_count_attached'], 1)
+
+    def test_direct_cpe_identity_is_metadata_without_synthetic_assessment(self):
         benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
           <platform idref="cpe:/o:unknown:platform"/>
           <Rule id="fixture-rule"/>
@@ -162,12 +266,12 @@ class ApplicabilityConversionTests(unittest.TestCase):
                                'artifacts': ['authoring/direct-slice/rules/fixture-rule.json']}]}
         documents, trace = build_applicability(source, docs, coverage, mappings=[])
         catalog = documents['authoring/direct-slice/applicability.json']['applicability']
-        condition = next(iter(catalog['conditions'].values()))
-        self.assertNotIn('assessment', condition)
-        self.assertEqual(condition['source']['kind'], 'cpe_platform')
-        self.assertEqual(condition['source']['id'], 'cpe:/o:unknown:platform')
+        self.assertEqual(catalog['conditions'], {})
+        identity = documents['authoring/direct-slice/benchmark.json']['benchmark']['platform']['expected_cpe_identities'][0]
+        self.assertEqual(identity['source']['kind'], 'cpe_platform')
+        self.assertEqual(identity['source']['id'], 'cpe:/o:unknown:platform')
         self.assertFalse([path for path in documents if '/assessments/' in path])
-        self.assertTrue(trace['unsupported'])
+        self.assertEqual(trace['unsupported'], [])
 
     def test_shared_fact_and_rule_reference_resolution(self):
         cpe_root = ET.parse(FIXTURES / 'linux-platform.xml').getroot()

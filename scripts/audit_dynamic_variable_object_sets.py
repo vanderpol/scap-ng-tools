@@ -270,7 +270,7 @@ def main() -> int:
         "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
         "oval_definitions_schema_sha256": sha((args.oval_schema_root / "oval-definitions-schema.xsd").read_bytes()),
         "windows_definitions_schema_sha256": sha((args.oval_schema_root / "windows-definitions-schema.xsd").read_bytes()),
-        "canonical_schema_commit": "d1ab0283e09369c2c734d3b8f93b65007441cf07",
+        "canonical_schema_commit": "2d983fcbd7b2367d567ca8ccc689a378d08905e4",
         "canonical_repository_head": "d67394f0d5df425da6febf6bc5959540cb7f540f",
         "canonical": canonical_contract(args.schema_root),
         "cases": [audit_case(CASES[name], zips[name], args.schema_root, args.oval_schema_root)

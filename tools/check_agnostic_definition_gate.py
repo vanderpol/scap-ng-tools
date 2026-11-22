@@ -78,7 +78,7 @@ def main():
         args.definition_results.resolve(), args.expectations.resolve()}:
         parser.error("receipt path must not overwrite an input")
     manifest = json.loads(args.expectations.read_text())
-    if manifest.get("source_commit") != "e3538595c5083b9c34d937a81d319234df9bbfaa":
+    if manifest.get("source_commit") != "d91e6ba33841e3202dc27d3e0d469a7abd939b16":
         parser.error("source pin differs from independently reviewed expected results")
     with args.definition_results.open(newline="") as f:
         rows = list(csv.DictReader(f))

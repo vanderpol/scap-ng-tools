@@ -19,8 +19,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 OVAL = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
-CANONICAL_SCHEMA_COMMIT = "d1ab0283e09369c2c734d3b8f93b65007441cf07"
-CANONICAL_SCHEMA_DIGEST = "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
+CANONICAL_SCHEMA_COMMIT = "2d983fcbd7b2367d567ca8ccc689a378d08905e4"
+CANONICAL_SCHEMA_DIGEST = "dc650646a24e727e68de242027cca3058683accc531f07bf6ace217609755b24"
 
 
 def local(element):
