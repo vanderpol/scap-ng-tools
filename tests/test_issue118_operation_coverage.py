@@ -52,6 +52,29 @@ class Issue118OperationCoverage(unittest.TestCase):
         self.assertIn("to_integer", result["converter"]["semantic_missing"])
         self.assertTrue(result["errors"])
 
+    def test_deliberate_ri_handler_removal_is_caught(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = root / "schema"
+            schema.mkdir()
+            (schema / "variable-expression.schema.json").write_text(json.dumps({
+                "$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}
+            }))
+            ri = root / "ri" / "evaluate"
+            ri.mkdir(parents=True)
+            # Keep this mutation test repository-local: the production gate
+            # receives the real RI checkout in the qualification workflow, and
+            # this unit test only proves that a removed dispatch branch fails.
+            for name in ("variable_functions.go", "infer041.go", "variable_count.go"):
+                (ri / name).write_text('switch operation { case "to_integer": }\n')
+            original = (ri / "variable_functions.go").read_text()
+            ri.joinpath("variable_functions.go").write_text(
+                original.replace('case "to_integer":', 'case "removed_to_integer":', 1)
+            )
+            result = audit(schema, ri_root=root / "ri", tools_root=ROOT)
+        self.assertIn("to_integer", result["runtime"]["missing"])
+        self.assertTrue(result["errors"])
+
     def test_canonical_gap_guard_rejects_old_to_integer_disposition(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

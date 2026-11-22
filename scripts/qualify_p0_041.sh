@@ -23,6 +23,16 @@ for iteration in one two; do
   cmp "$output/semantic-$iteration.json" src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.1.json
   cmp "$output/pins-$iteration.json" canonical-schema-pin.json
 done
+# Issue #118 standing quality gate: derive the active Variable expression
+# operations from this exact canonical schema and reconcile converter and RI
+# dispatch before corpus execution.  A missing handler is a hard failure, not
+# a canonical-language-gap disposition.  Keep the receipt outside the repo.
+python scripts/check_canonical_operation_coverage.py \
+  --schema-root "$canonical/schema" \
+  --tools-root "$tools_root" \
+  --ri-root "$ri" \
+  --output "$output/issue118-operation-coverage.json" \
+  2>&1 | tee "$output/issue118-operation-coverage.txt"
 python -m unittest discover -s tests -v 2>&1 | tee "$output/converter-tests.txt"
 python scripts/qualify_windows_relation_witness.py --source-root "$source_root" \
   --schema-root "$canonical/schema" --output "$output/windows-relations.json" | tee "$output/windows-relations.txt"
