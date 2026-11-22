@@ -1,7 +1,7 @@
 {
   "baseline_ledger": "docs/evidence/issue83/full65-blocker-disposition-20261122.json",
   "baseline_ledger_sha256": "47000a655e7da6e86def0c86a3ca16e8d81ab56ed5e2b0b96935004dd2fd129c",
-  "converter_commit": "16bd27e0c4692d8371990243da5753234127ff8a",
+  "converter_commit": "02107d3",
   "counts": {
     "baseline_blocked_rules": 94,
     "recovered_rules": 5,
