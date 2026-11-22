@@ -14,7 +14,7 @@
   },
   "converter": {
     "commit": "f660f7e5f96566a84a395d7cac1390e755a06170",
-    "source_tree_sha256": "a427ea6ec6400bc0d74ba5cfe6c369e33b33fc6c2dfcc1922e36fa308e7c5eb",
+    "source_tree_sha256": "a427ea6aec6400bc0d74ba5cfe6c369e33b33fc6c2dfcc1922e36fa308e7c5eb",
     "production_entrypoint": "scap_ng_tools.converter.direct04"
   },
   "canonical": {
