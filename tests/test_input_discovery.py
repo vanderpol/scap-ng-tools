@@ -56,6 +56,42 @@ class NativeInputDiscovery(unittest.TestCase):
         finally:
             sys.path.remove(str(runtime))
 
+    def test_external_variable_consumer_walk_reaches_state_entities(self):
+        import sys
+        from pathlib import Path
+        from xml.etree import ElementTree as ET
+        runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
+        sys.path.insert(0, str(runtime))
+        try:
+            from v04_draft_inputs import _external_variable_consumers
+            oval = 'urn:oval'
+            test = ET.fromstring(
+                f'<registry_test xmlns="{oval}" id="tst" check_existence="at_least_one_exists">'
+                '<object object_ref="obj"/><state state_ref="state"/></registry_test>')
+            obj = ET.fromstring(f'<registry_object xmlns="{oval}" id="obj"/>')
+            state = ET.fromstring(
+                f'<registry_state xmlns="{oval}" id="state"><value var_ref="var"/></registry_state>')
+            variable = ET.fromstring(f'<external_variable xmlns="{oval}" id="var" datatype="int"/>')
+            uses = _external_variable_consumers([test, obj, state, variable], {'tst'}, 'var')
+            self.assertEqual(uses, [{'source_test': 'tst', 'check_existence': 'at_least_one_exists'}])
+        finally:
+            sys.path.remove(str(runtime))
+
+    def test_xccdf_value_type_crosswalk_is_generic_and_fail_closed(self):
+        import sys
+        from pathlib import Path
+        runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
+        sys.path.insert(0, str(runtime))
+        try:
+            from v04_draft_inputs import XCCDF_VALUE_DATATYPES
+            self.assertIn('int', XCCDF_VALUE_DATATYPES['number'])
+            self.assertIn('float', XCCDF_VALUE_DATATYPES['number'])
+            self.assertIn('binary', XCCDF_VALUE_DATATYPES['string'])
+            self.assertNotIn('string', XCCDF_VALUE_DATATYPES['number'])
+            self.assertNotIn('integer', XCCDF_VALUE_DATATYPES['number'])
+        finally:
+            sys.path.remove(str(runtime))
+
     def test_publisher_default_uses_shared_typed_constraint_evaluator(self):
         import sys
         from pathlib import Path
