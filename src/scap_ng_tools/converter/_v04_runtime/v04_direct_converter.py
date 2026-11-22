@@ -361,8 +361,86 @@ class AssessmentConverter:
         value = logical_condition(element.get('operator', 'AND'), children)
         return {'not': value} if element.get('negate') == 'true' else value
 
+    def resolve_test_capability(self, element):
+        """Resolve a Test's executable capability from its typed references.
+
+        OVAL source files occasionally use the wrong platform Test element
+        around an Object/State pair.  The source grammar makes the referenced
+        Object and State declarations authoritative for acquisition and
+        comparison semantics; when every direct State has the same capability
+        as the Object, using that capability is lossless and generic.  This is
+        deliberately narrower than accepting arbitrary cross-capability
+        references: a missing reference, a mixed pair, or a deprecated Test
+        remains a fail-closed source disposition.  Object filters are checked
+        later by the normal same-family path and therefore do not get this
+        fallback.
+        """
+        original = None
+        original_error = None
+        try:
+            original = self.capability(element, 'test')
+        except UnsupportedSource as error:
+            # A deprecated Test is an explicit source disposition, not an
+            # accidental wrapper typo that the typed references may override.
+            if str(error).startswith('deprecated source capability:'):
+                raise
+            original_error = error
+
+        test_namespace = element.tag[1:].split('}', 1)[0] if element.tag.startswith('{') else ''
+        object_refs = [child.get('object_ref') for child in element
+                       if local_name(child) == 'object' and
+                       child.tag == f'{{{test_namespace}}}object']
+        state_refs = [child.get('state_ref') for child in element
+                      if local_name(child) == 'state' and
+                      child.tag == f'{{{test_namespace}}}state']
+        # A malformed or state-less Test must retain the ordinary mapping/error
+        # path; this fallback only applies to a complete Object/State pair.
+        if len(object_refs) != 1 or not state_refs or any(not ref for ref in (*object_refs, *state_refs)):
+            if original is not None:
+                return original
+            raise original_error or UnsupportedSource('Test has no typed Object/State capability pair')
+
+        object_id = object_refs[0]
+        object_node = self.source.node(self.component_id, object_id, 'object')
+        object_mapping = self.capability(object_node, 'object')
+        state_mappings = []
+        for state_id in state_refs:
+            state_node = self.source.node(self.component_id, state_id, 'state')
+            state_mappings.append(self.capability(state_node, 'state'))
+        capabilities = {object_mapping['capability'],
+                        *(mapping['capability'] for mapping in state_mappings)}
+        if len(capabilities) != 1:
+            if original is not None:
+                return original
+            raise original_error or UnsupportedSource(
+                'Object/State capability mismatch: ' + ', '.join(sorted(capabilities)))
+        inferred = object_mapping
+        if original is not None and original['capability'] == inferred['capability']:
+            return original
+        warning = {
+            'code': 'oval_test_capability_inferred_from_object_state',
+            'source_test': element.get('id'),
+            'source_test_sha256': digest(xml_identity(element)),
+            'source_test_element': local_name(element),
+            'source_test_capability': original['capability'] if original else None,
+            'inferred_capability': inferred['capability'],
+            'source_object': object_id,
+            'source_object_element': local_name(object_node),
+            'source_object_sha256': digest(xml_identity(object_node)),
+            'source_state_refs': state_refs,
+            'source_state_elements': [local_name(self.source.node(self.component_id, state_id, 'state'))
+                                      for state_id in state_refs],
+            'source_state_sha256': [digest(xml_identity(self.source.node(self.component_id, state_id, 'state')))
+                                    for state_id in state_refs],
+            'semantic_basis': 'typed Object and all direct State references share one authoritative capability',
+            'source_test_resolution_error': str(original_error) if original_error else None,
+            'scanner_evaluated': False,
+        }
+        self.conversion_warnings.append(warning)
+        return inferred
+
     def convert_test(self, element):
-        mapping = self.capability(element, 'test')
+        mapping = self.resolve_test_capability(element)
         if mapping['native'].get('fixed_result') is not None:
             ensure(mapping['native']['fixed_result'] == 'unknown' and
                    mapping['native'].get('test_source', {}).get('kind') == 'none' and not len(element),
@@ -378,7 +456,11 @@ class AssessmentConverter:
                 'require': {'item_requirement': {'items_found': 'one_or_more'}},
                 'reported_elements': 'all'}
             return {'test': identifier}
-        objects = element.findall(f'{{{mapping["source"]["namespace"]}}}object')
+        # Reference wrappers belong to the source Test's namespace.  The
+        # inferred capability may intentionally come from a different Object/State
+        # namespace when the wrapper element was mistyped.
+        test_namespace = element.tag[1:].split('}', 1)[0] if element.tag.startswith('{') else ''
+        objects = element.findall(f'{{{test_namespace}}}object')
         ensure(len(objects) == 1, 'one Test Object required')
         found = element.get('check_existence', 'at_least_one_exists')
         conditions = []
@@ -438,7 +520,7 @@ class AssessmentConverter:
                 # reject otherwise executable Tests that carry notes.
                 if kind == 'notes':
                     continue
-                ensure(kind in ('object', 'state') and child.tag == f'{{{mapping["source"]["namespace"]}}}{kind}', 'Test child namespace/shape')
+                ensure(kind in ('object', 'state') and child.tag == f'{{{test_namespace}}}{kind}', 'Test child namespace/shape')
                 attributes(child, {kind + '_ref'})
                 ensure(not len(child), 'Test reference has children')
                 if kind == 'state':
