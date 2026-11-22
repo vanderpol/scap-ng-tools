@@ -41,8 +41,11 @@ class OfflineBundleTests(unittest.TestCase):
                                       cwd=ROOT, capture_output=True, text=True)
             self.assertEqual(launcher.returncode, 0, launcher.stderr)
             self.assertEqual(json.loads(launcher.stdout)['schema_version'], '0.4.1')
+            missing_env = os.environ.copy()
+            missing_env['PYTHON'] = '/bin/false'
             missing_deps = subprocess.run([str(bundle / manifest['entrypoint']), '--source', 'missing.xml'],
-                                          cwd=ROOT, capture_output=True, text=True)
+                                          cwd=ROOT, env=missing_env,
+                                          capture_output=True, text=True)
             self.assertEqual(missing_deps.returncode, 78)
             self.assertIn('SCAP_NG_OFFLINE_BUNDLE_DEPENDENCY_ERROR', missing_deps.stderr)
             (bundle / 'schema' / 'assessment.schema.json').write_bytes(
