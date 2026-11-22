@@ -18,19 +18,30 @@
     },
     {
       "benchmark": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-      "declared_datatype": "string",
       "definition": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:def:218771",
-      "function": "count",
-      "function_result_datatype": "int",
       "self_assertion_correction_applies": false,
-      "semantic_basis": "Count returns the count of represented values; the source documentation example is numeric, while the local declaration says string.",
+      "semantic_basis": "Both count expressions return integer values; the source local declarations say string.",
       "source_content_is_distributed_disa_benchmark": true,
       "source_rule": "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218771r1192784_rule",
       "source_xml_member": "U_MS_IIS_10-0_Site_V2R14_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.xml",
       "source_xml_sha256": "0c68654fd568ff589f2e2eb135e674e5e2a800a0f77c587cea07bcb4ee5ad2d4",
       "source_zip_sha256": "0b97a739e3b9414fdc93d0bee9f2b71e9f0064ee716acb6bf64cef1cc39f29ae",
-      "variable_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877101",
-      "variable_xml_identity_sha256": "34d1504a59f0f6b9790d440a21d2bef15d9e0ffb3f1d65a2182df9e4bf3cfa9e"
+      "variables": [
+        {
+          "declared_datatype": "string",
+          "function": "count",
+          "function_result_datatype": "int",
+          "variable_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877102",
+          "variable_xml_identity_sha256": "25c9815900c2c29d4eee443678f471cffc2375ae4af24ed4f54c6662c90daedd"
+        },
+        {
+          "declared_datatype": "string",
+          "function": "count",
+          "function_result_datatype": "int",
+          "variable_id": "oval:navy.navwar.niwcatlantic.scc.ms.iis.10.site:var:21877101",
+          "variable_xml_identity_sha256": "34d1504a59f0f6b9790d440a21d2bef15d9e0ffb3f1d65a2182df9e4bf3cfa9e"
+        }
+      ]
     }
   ],
   "converter_disposition": "source-invalid; no implicit cast or expected-outcome change",
