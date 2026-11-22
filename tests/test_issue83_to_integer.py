@@ -45,6 +45,34 @@ class ToIntegerSemanticVectors(unittest.TestCase):
                 "datatype": "string", "value": ["077", "027", "022", "007"]}}}),
             {"candidate": "integer"})
 
+    def test_dynamic_collected_string_domain_is_admitted_for_explicit_conversion(self):
+        from types import SimpleNamespace
+        from unittest.mock import patch
+
+        assessment = {
+            "variables": {"candidate": {"kind": "local", "expression": {
+                "to_integer": {"values": {
+                    "object": {"capability": "independent.textfilecontent"},
+                    "field": "subexpression",
+                }}
+            }}}
+        }
+        generated = {"fields": {"subexpression": ["string", "integer"]},
+                     "records": [], "selectors": {}, "native": {}}
+        mapping = {"native": {"field_datatypes": {
+            "subexpression": ["string", "integer"]
+        }}}
+        with patch.object(semantic, "declaration_validator", return_value=_NoSchemaErrors()), \
+             patch.object(semantic, "snapshot", return_value=SimpleNamespace(schema_root=Path("."))), \
+             patch.object(semantic, "capability_contract", return_value=(mapping, generated)), \
+             patch("scap_ng_tools.converter._v04_semantic.v04_comparison_types.capability_contract", \
+                   return_value=(mapping, generated)), \
+             patch("scap_ng_tools.converter._v04_semantic.v04_object_contract.object_validator", \
+                   return_value=SimpleNamespace(iter_errors=lambda _: iter(()))):
+            self.assertEqual(
+                semantic.assessment_variable_expressions(assessment),
+                {"candidate": "integer"})
+
     def test_required_input_is_typed_from_string_to_integer(self):
         self.assertEqual(
             self._validate({"to_integer": {"input": "umask"}}, inputs={

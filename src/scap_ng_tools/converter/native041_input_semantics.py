@@ -114,7 +114,7 @@ def validate_assessment(assessment):
             ident = "native-input-" + ident
         probe["variables"][ident] = {"kind": "local", "expression": operand}
         types = assessment_variable_expressions(probe)
-        if types[ident] != "string":
+        if types[ident] not in {"string", "dynamic_collected"}:
             raise InputExpressionContractError("to_integer requires a typed string operand")
     return assessment_variable_expressions(projected)
 

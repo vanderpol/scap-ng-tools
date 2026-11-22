@@ -47,3 +47,81 @@ class InputExpressionAdapter(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class CollectedIntegerConversion(unittest.TestCase):
+    def test_declared_int_collected_string_field_is_explicitly_converted(self):
+        engine = load_runtime()
+        mapping = {
+            "capability": "independent.textfilecontent",
+            "source": {
+                "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5#independent",
+                "object": "textfilecontent54_object",
+            },
+            "native": {
+                "state_field_map": {"subexpression": "subexpression"},
+                "field_datatypes": {"subexpression": ["string", "integer"]},
+                "test_source": {"kind": "host"},
+            },
+        }
+        source_namespace = mapping["source"]["namespace"]
+        source_object = mapping["source"]["object"]
+
+        class Source:
+            def node(self, _component, _identifier, _kind):
+                return ET.fromstring(
+                    f'<{source_object} xmlns="{source_namespace}"/>'
+                )
+
+        visitor = engine.AssessmentConverter(
+            Source(), "component", [mapping], native_recovery=True
+        )
+        visitor.native_name = lambda _node, _kind: "collected-int-variable"
+        visitor.reference = lambda _identifier, _kind: {
+            "capability": "independent.textfilecontent",
+            "full_path": {"equals": "/etc/group"},
+        }
+        element = ET.fromstring(
+            '<local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" '
+            'datatype="int"><object_component object_ref="obj" '
+            'item_field="subexpression"/></local_variable>'
+        )
+
+        result = visitor.convert_variable(element)
+
+        self.assertEqual(result, {"variable": "collected-int-variable"})
+        self.assertEqual(
+            visitor.variables["collected-int-variable"]["expression"].keys(),
+            {"to_integer"},
+        )
+        self.assertEqual(
+            visitor.conversion_warnings[-1]["code"],
+            "oval_local_int_explicit_conversion",
+        )
+
+    def test_declared_int_integer_item_field_is_not_cast(self):
+        engine = load_runtime()
+        mapping = {
+            "capability": "unix.file",
+            "native": {"field_datatypes": {"owner_gid": ["integer"]}},
+        }
+        visitor = engine.AssessmentConverter(
+            object(), "component", [mapping], native_recovery=True
+        )
+        visitor.native_name = lambda _node, _kind: "integer-item-variable"
+        visitor.function = lambda _node: {
+            "values": {
+                "object": {"capability": "unix.file"},
+                "field": "owner_gid",
+            }
+        }
+        element = ET.fromstring(
+            '<local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" '
+            'datatype="int"><literal_component>ignored</literal_component></local_variable>'
+        )
+
+        visitor.convert_variable(element)
+
+        self.assertEqual(
+            visitor.variables["integer-item-variable"]["expression"],
+            {"values": {"object": {"capability": "unix.file"}, "field": "owner_gid"}},
+        )
