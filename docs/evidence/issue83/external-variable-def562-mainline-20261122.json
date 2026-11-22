@@ -1,0 +1,80 @@
+{
+  "canonical": {
+    "assessment_closure_sha256": "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6",
+    "current_main_head": "f7767b760c9cdcab378584294636ece94750fec7",
+    "current_main_schema_bytes_equal": true,
+    "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+    "note": "c428 is the exact RI #201 dependency pin; f776 current main has identical schema bytes.",
+    "qualification_commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "repository": "vanderpol/scap-ng"
+  },
+  "converter": {
+    "commit": "8123be7396f32101323d9c9aa79242132aeeaaa1",
+    "mode": "production direct04",
+    "repository": "vanderpol/scap-ng-tools"
+  },
+  "format": "scap-ng-tools/external-variable-def562-mainline-qualification/1",
+  "holds": [
+    "RI #201 hosted qualification and merge remain required; no runtime or independent OVAL equivalence claim.",
+    "Canonical qualification pin c428 is byte-identical to current canonical main f776 but RI closure still identifies c428."
+  ],
+  "native_outputs": {
+    "assessment.json": {
+      "bytes": 28595,
+      "sha256": "58f8e645ba1297894f0233957f7fa5f0880e8c4a61dc8018621226d6bd37ecdb"
+    },
+    "assessment.yaml": {
+      "bytes": 21990,
+      "sha256": "16d8b231cf76339c86c90f63881674508e696b017b748240bd46959468cea795"
+    },
+    "conversion-scope.json": {
+      "bytes": 563,
+      "sha256": "379a82da9a4c793dccf465a9eecdf0f8a85c626b9fb1ccc81118849da2664ae6"
+    },
+    "source-trace.json": {
+      "bytes": 76174,
+      "sha256": "590b102fc182c069506ed284834f31384712ef9d61cd16f6455fca6115c1a0c2"
+    }
+  },
+  "oval_schema": {
+    "commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "repository": "OVAL-Community/OVAL"
+  },
+  "reproducibility": {
+    "commands": [
+      "unzip -p <pinned-archive> oval-def-ext.xml > <tmp>/oval-def-ext.xml",
+      "PYTHONPATH=src .venv/bin/python -m scap_ng_tools.converter.direct04 --schema-root <canonical-c428-or-byte-identical-f776>/schema --source <tmp>/oval-def-ext.xml --sha256 df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1 --output <new-output> --oval-definition oval:org.mitre.oval.test:def:562 --source-commit d91e6ba33841e3202dc27d3e0d469a7abd939b16 --source-path SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml"
+    ],
+    "evidence_directory": "/tmp/def562-mainline.CG06",
+    "two_clean_runs_identical": true
+  },
+  "result": {
+    "all_cardinalities": "one_or_more",
+    "fixture_or_default_bound": false,
+    "independent_oval_equivalence": false,
+    "inputs": 18,
+    "named_variables": 18,
+    "restricted_inputs": 4,
+    "ri_execution": false,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "status": "CONVERTED_UNVERIFIED",
+    "tests": 18,
+    "unrestricted_inputs": 14
+  },
+  "ri_dependency": {
+    "candidate_commit": "bf2c16ef7ef33662b7c5cf0994333dbe41ed93bc",
+    "repository": "vanderpol/scap-ng-ri",
+    "runtime_execution": false,
+    "status": "qualification_pending_unmerged"
+  },
+  "source": {
+    "archive": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip",
+    "archive_sha256": "6ff45b5a85b77eadce11397d30adbdd011eb1d32fa3566d23b60322597ac5bdf",
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "definition_id": "oval:org.mitre.oval.test:def:562",
+    "member": "oval-def-ext.xml",
+    "member_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+    "repository": "OVAL-Community/SCAP-Self-Assertion"
+  }
+}

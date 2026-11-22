@@ -25,6 +25,91 @@ class NativeInputDiscovery(unittest.TestCase):
         self.assertTrue(row['required']);self.assertEqual(len(row['uses']),2)
         self.assertEqual(derive_choice(a,{'first-input':'parameter','second-input':'parameter-two'}, {'parameter':{'resolution':'publisher'}, 'parameter-two':{'resolution':'publisher'}}),[])
 
+    def test_constraint_datatype_operation_matrix_rejects_invalid_source_operations(self):
+        from scap_ng_tools.converter._v04_semantic.v04_input_presence import input_contracts
+        invalid = [
+            ('string', {'greater_than': 'x'}),
+            ('boolean', {'bitwise_and': True}),
+            ('integer', {'subset_of': 1}),
+        ]
+        for datatype, predicate in invalid:
+            with self.subTest(datatype=datatype):
+                with self.assertRaises(ValueError):
+                    input_contracts({'inputs': {
+                        'value-input': {'datatype': datatype, 'cardinality': 'exactly_one',
+                                        'required': True, 'constraints': {'predicate': predicate}}}})
+
+    def test_production_source_comparison_rejects_invalid_datatype_operations(self):
+        import sys
+        from pathlib import Path
+        runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
+        sys.path.insert(0, str(runtime))
+        try:
+            from v04_direct_datatypes import comparison
+            with self.assertRaises(ValueError):
+                comparison('string', 'greater than', 'greater_than')
+            with self.assertRaises(ValueError):
+                comparison('boolean', 'bitwise and', 'bitwise_and')
+            with self.assertRaises(ValueError):
+                comparison('int', 'subset of', 'subset_of')
+            self.assertEqual(comparison('int', 'bitwise and', 'bitwise_and'), 'bitwise_and')
+        finally:
+            sys.path.remove(str(runtime))
+
+    def test_external_variable_consumer_walk_reaches_state_entities(self):
+        import sys
+        from pathlib import Path
+        from xml.etree import ElementTree as ET
+        runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
+        sys.path.insert(0, str(runtime))
+        try:
+            from v04_draft_inputs import (
+                _external_variable_consumers, EXTERNAL_CONSUMER_CARDINALITY)
+            oval = 'urn:oval'
+            test = ET.fromstring(
+                f'<registry_test xmlns="{oval}" id="tst" check_existence="at_least_one_exists">'
+                '<object object_ref="obj"/><state state_ref="state"/></registry_test>')
+            obj = ET.fromstring(f'<registry_object xmlns="{oval}" id="obj"/>')
+            state = ET.fromstring(
+                f'<registry_state xmlns="{oval}" id="state"><value var_ref="var"/></registry_state>')
+            variable = ET.fromstring(f'<external_variable xmlns="{oval}" id="var" datatype="int"/>')
+            uses = _external_variable_consumers([test, obj, state, variable], {'tst'}, 'var')
+            self.assertEqual(uses, [{'source_test': 'tst', 'check_existence': 'at_least_one_exists'}])
+            self.assertEqual(EXTERNAL_CONSUMER_CARDINALITY['all_exist'], 'one_or_more')
+        finally:
+            sys.path.remove(str(runtime))
+
+    def test_xccdf_value_type_crosswalk_is_generic_and_fail_closed(self):
+        import sys
+        from pathlib import Path
+        runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
+        sys.path.insert(0, str(runtime))
+        try:
+            from v04_draft_inputs import XCCDF_VALUE_DATATYPES
+            self.assertIn('int', XCCDF_VALUE_DATATYPES['number'])
+            self.assertIn('float', XCCDF_VALUE_DATATYPES['number'])
+            self.assertIn('binary', XCCDF_VALUE_DATATYPES['string'])
+            self.assertNotIn('string', XCCDF_VALUE_DATATYPES['number'])
+            self.assertNotIn('integer', XCCDF_VALUE_DATATYPES['number'])
+        finally:
+            sys.path.remove(str(runtime))
+
+    def test_publisher_default_uses_shared_typed_constraint_evaluator(self):
+        import sys
+        from pathlib import Path
+        runtime = Path(__file__).resolve().parents[1] / 'src/scap_ng_tools/converter/_v04_runtime'
+        sys.path.insert(0, str(runtime))
+        try:
+            from v04_draft_inputs import _value_satisfies_constraints
+            self.assertTrue(_value_satisfies_constraints(
+                '1.2.3', {'predicate': {'version_greater_than': '1.2.0'}}))
+            self.assertTrue(_value_satisfies_constraints(
+                '00FF', {'predicate': {'binary_equals': '00ff'}}))
+            self.assertFalse(_value_satisfies_constraints(
+                '1.2.3', {'predicate': {'version_less_than': '1.2.0'}}))
+        finally:
+            sys.path.remove(str(runtime))
+
 
 if __name__=='__main__':unittest.main()
 
@@ -147,8 +232,88 @@ class NativeInputPresenceSemantics(unittest.TestCase):
             snapshot = bind_inputs(contract, {'value-input': entry}, invocation_id=state)
             states[state] = snapshot.state('value-input') if state != 'pending' else None
         self.assertEqual(states, {'omitted': 'false', 'unknown': 'unknown', 'error': 'error', 'pending': None})
+        required = bind_inputs(
+            {'required-input': {'datatype': 'string', 'cardinality': 'exactly_one', 'required': True}},
+            {'required-input': {'state': 'omitted', 'source': 'test'}},
+            invocation_id='required-omitted')
+        self.assertEqual(required.state('required-input'), 'not_evaluated')
         provided = bind_inputs(contract, {'value-input': {'state': 'provided', 'source': 'test', 'values': []}}, invocation_id='empty')
         self.assertEqual(provided.state('value-input'), 'true')
         with self.assertRaises(PendingInputBinding):
             pending = bind_inputs(contract, {'value-input': {'state': 'pending', 'source': 'test', 'reason': 'waiting'}}, invocation_id='pending2')
             pending.state('value-input')
+
+class NativeInputRestrictionBinding(unittest.TestCase):
+    def setUp(self):
+        from scap_ng_tools.converter._v04_semantic.v04_input_presence import bind_inputs
+        self.bind_inputs = bind_inputs
+
+    @staticmethod
+    def contract(predicate, *, cardinality='one_or_more', datatype='integer'):
+        return {'value-input': {'datatype': datatype, 'cardinality': cardinality,
+                                'required': True, 'constraints': {'predicate': predicate}}}
+
+    def bind(self, contract, values, name='restriction'):
+        return self.bind_inputs(contract, {'value-input': {
+            'state': 'provided', 'source': 'test', 'values': values}}, invocation_id=name)
+
+    def test_multivalue_predicate_requires_every_supplied_value_to_match(self):
+        contract = self.contract({'greater_than_or_equal': 2})
+        self.assertEqual(self.bind(contract, [2, 3]).state('value-input'), 'true')
+        self.assertEqual(self.bind(contract, [2, 1]).state('value-input'), 'error')
+        # A valid explicit empty population remains distinct from omission and
+        # is valid for one_or_more only when the contract is changed to allow it.
+        empty = self.bind_inputs(
+            self.contract({'equals': 2}, cardinality='zero_or_more'),
+            {'value-input': {'state': 'provided', 'source': 'test', 'values': []}},
+            invocation_id='empty')
+        self.assertEqual(empty.state('value-input'), 'true')
+
+    def test_all_boolean_restriction_operators_are_executed(self):
+        vectors = {
+            'and': ([{'equals': 2}, {'greater_than': 1}], True),
+            'or': ([{'equals': 2}, {'equals': 4}], True),
+            'one': ([{'equals': 2}, {'equals': 3}], True),
+            'xor': ([{'equals': 2}, {'equals': 3}], True),
+        }
+        for operator, (branches, expected) in vectors.items():
+            with self.subTest(operator=operator):
+                result = self.bind(self.contract({operator: branches}), [2], operator)
+                self.assertEqual(result.state('value-input'), 'true' if expected else 'error')
+
+    def test_negative_restriction_and_malformed_predicate_fail_closed(self):
+        rejected = self.bind(self.contract({'less_than': 2}), [2], 'negative')
+        self.assertEqual(rejected.state('value-input'), 'error')
+        from scap_ng_tools.converter._v04_semantic.v04_input_presence import input_contracts
+        with self.assertRaises(ValueError):
+            input_contracts({'inputs': self.contract({'and': []})})
+        with self.assertRaises(ValueError):
+            input_contracts({'inputs': self.contract({'matches_regex': '['}, datatype='string')})
+
+class NativeTypedInputRestrictionBinding(unittest.TestCase):
+    def setUp(self):
+        from scap_ng_tools.converter._v04_semantic.v04_input_presence import bind_inputs
+        self.bind_inputs = bind_inputs
+
+    def check(self, datatype, operation, bound, value, expected='true'):
+        contract = {'typed-input': {'datatype': datatype, 'cardinality': 'exactly_one',
+                                    'required': True,
+                                    'constraints': {'predicate': {operation: bound}}}}
+        snapshot = self.bind_inputs(contract, {'typed-input': {
+            'state': 'provided', 'source': 'test', 'values': [value]}},
+                                    invocation_id=operation)
+        self.assertEqual(snapshot.state('typed-input'), expected)
+
+    def test_typed_equality_and_ordering_boundaries(self):
+        self.check('binary', 'binary_equals', '00ff', '00FF')
+        self.check('version', 'version_greater_than', '1.2.3', '1.2.4')
+        self.check('float', 'float_greater_than_or_equal', 1.5, 1.5)
+        self.check('ipv4', 'ipv4_subset_of', '192.0.2.0/24', '192.0.2.0/25')
+        self.check('rpm_evr', 'rpm_evr_equals', '0:1-1', '0:1-1')
+        self.check('debian_evr', 'debian_evr_equals', '0:1-1', '0:1-1')
+        self.check('fileset_revision', 'fileset_revision_equals', 'A.03.61.00', 'A.03.61.00')
+        self.check('ios_version', 'ios_version_equals', '15.1', '15.1')
+
+    def test_integer_bitwise_constraints(self):
+        self.check('integer', 'bitwise_and', 4, 6)
+        self.check('integer', 'bitwise_or', 14, 1, expected='error')

@@ -20,15 +20,22 @@ class InputSemanticProjection(unittest.TestCase):
                          {"literal":{"datatype":"string","value":"0"}})
         self.assertEqual(seen,{"input","to_integer"})
 
-    def test_undeclared_optional_multivalue_and_untyped_inputs_fail(self):
+    def test_undeclared_optional_and_untyped_inputs_fail(self):
         for candidate in (
             assessment({"input":"missing-input"}),
             assessment({"input":"required-input"},required=False),
-            assessment({"input":"required-input"},cardinality="zero_or_more"),
             assessment({"input":"required-input"},dtype="record"),
         ):
             with self.subTest(candidate=candidate),self.assertRaises(ValueError):
                 project_assessment(candidate)
+
+    def test_required_multivalue_input_is_a_valid_dynamic_operand(self):
+        projected, probes, seen = project_assessment(
+            assessment({"input":"required-input"}, cardinality="one_or_more"))
+        self.assertEqual(projected["variables"]["local-variable"]["expression"],
+                         {"literal": {"datatype": "string", "value": "0"}})
+        self.assertEqual(probes, [])
+        self.assertEqual(seen, {"input"})
 
     def test_non_input_variables_are_unmodified(self):
         candidate=assessment({"arithmetic":{"arithmetic_operation":"add",

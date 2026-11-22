@@ -1324,7 +1324,18 @@ class AssessmentConverter:
                 'expression': {'literal': {'datatype': native_datatype(datatype),
                                            'value': value}}}
             return identifier
-        ensure('variable' in value, 'Assessment Input cannot replace a named runtime Variable source')
+        if 'input' in value:
+            # A standalone OVAL external Variable is an invocation-bound Input,
+            # but variable.value Tests require a named native Variable reference.
+            # Preserve that graph boundary with a local declaration whose
+            # expression is the Input; never turn the Input into a fixture,
+            # default, or scalar cast.  Input cardinality remains on the Input
+            # contract and is enforced by the binding evaluator.
+            element = self.source.node(self.component_id, source_id, 'variable')
+            identifier = self.native_name(element, 'variable')
+            self.variables[identifier] = {'kind': 'local', 'expression': value}
+            return identifier
+        ensure('variable' in value, 'unsupported named runtime Variable source')
         return value['variable']
 
     def static_string_component_values(self, element):

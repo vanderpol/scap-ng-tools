@@ -1,7 +1,160 @@
 """Bounded, explicit XCCDF export -> Parameter -> Assessment Input drafting."""
 from v04_direct_scap_source import XCCDF, OVAL, attributes, ensure, native_identifier, digest, xml_identity, local_name
-from v04_direct_datatypes import native_datatype
+from v04_direct_datatypes import SOURCE_TYPES, native_datatype, comparison
 from v04_draft_compatibility import DECISION
+
+
+OVAL_COMPARISONS = {
+    'equals': 'equals', 'not equal': 'not_equal', 'pattern match': 'matches_regex',
+    'case insensitive equals': 'case_insensitive_equals',
+    'case insensitive not equal': 'case_insensitive_not_equal',
+    'less than': 'less_than', 'less than or equal': 'less_than_or_equal',
+    'greater than': 'greater_than', 'greater than or equal': 'greater_than_or_equal',
+    'subset of': 'subset_of', 'superset of': 'superset_of',
+    'bitwise and': 'bitwise_and', 'bitwise or': 'bitwise_or',
+}
+RESTRICTION_OPERATORS = {'AND': 'and', 'OR': 'or', 'ONE': 'one', 'XOR': 'xor'}
+# XCCDF 1.2 Value/@type is a policy-layer type, not an OVAL datatype.
+# Check-export compatibility is therefore a source-language crosswalk, not
+# string equality: number supplies OVAL int/float and string supplies OVAL
+# string/binary lexical values. Unknown XCCDF types remain fail-closed.
+XCCDF_VALUE_DATATYPES = {
+    'boolean': frozenset({'boolean'}),
+    'number': frozenset({'int', 'float'}),
+    'string': frozenset({'string', 'binary'}),
+}
+MAX_CONSTRAINT_DEPTH = 32
+MAX_CONSTRAINT_NODES = 256
+EXTERNAL_CONSUMER_CARDINALITY = {
+    'at_least_one_exists': 'one_or_more',
+    'all_exist': 'one_or_more',
+    'only_one_exists': 'exactly_one',
+    'any_exist': 'zero_or_more',
+    'none_exist': 'zero_or_more',
+}
+
+
+def _external_variable_consumers(nodes, selected_tests, identifier):
+    """Find selected Test consumers through the complete source reference graph.
+
+    An external Variable is often referenced by a State entity (for example a
+    registry value), not by a ``variable_object`` selector. Walking only the
+    latter silently turns valid XCCDF check-export content into a cardinality
+    hold. This bounded graph walk follows explicit ``*_ref`` attributes and
+    ``var_ref`` child values from each selected Test, without interpreting
+    values or acquiring host data.
+    """
+    by_id = {node.get('id'): node for node in nodes if node.get('id')}
+    uses = []
+    for test_id in sorted(selected_tests):
+        test = by_id.get(test_id)
+        if test is None or not local_name(test).endswith('_test'):
+            continue
+        pending, visited = [test], set()
+        found = False
+        while pending:
+            node = pending.pop()
+            node_id = node.get('id')
+            if node_id and node_id in visited:
+                continue
+            if node_id:
+                visited.add(node_id)
+            if node_id == identifier:
+                found = True
+                break
+            refs = []
+            for child in node.iter():
+                for name, value in child.attrib.items():
+                    if name.endswith('_ref') and value:
+                        refs.append(value)
+                if local_name(child) == 'var_ref' and (child.text or '').strip():
+                    refs.append(child.text.strip())
+            for reference in refs:
+                target = by_id.get(reference)
+                if target is not None and reference not in visited:
+                    pending.append(target)
+        if found:
+            uses.append({'source_test': test_id,
+                         'check_existence': test.get('check_existence', 'at_least_one_exists')})
+    return uses
+
+
+def _external_cardinality(visitor, identifier):
+    nodes = visitor.source.nodes.get(visitor.component_id, {})
+    # Only consumers in the selected Definition/Test closure can determine
+    # this Input's cardinality. Sibling Tests in the same standalone XML are
+    # independent source documents for conversion purposes and must not make a
+    # valid selected closure fail with a spurious cardinality conflict.
+    selected_tests = {source_id for source_id, used in visitor.used.items()
+                      if used.get('kind') == 'test'}
+    selected_tests.update(identifier for kind, identifier in visitor.active
+                          if kind == 'test')
+    ensure(selected_tests, 'external Variable has no selected Test consumer')
+    uses = _external_variable_consumers(nodes.values(), selected_tests, identifier)
+    result = {EXTERNAL_CONSUMER_CARDINALITY.get(row['check_existence'])
+             for row in uses}
+    ensure(uses and None not in result and len(result) == 1,
+           'external Variable consumers require conflicting/unsupported cardinality')
+    return result.pop(), uses
+
+
+def _restriction_expression(visitor, group, source_type, depth=1, counter=None):
+    counter = counter if counter is not None else [0]
+    ensure(depth <= MAX_CONSTRAINT_DEPTH, 'external Variable restriction expression exceeds depth limit')
+    counter[0] += 1
+    ensure(counter[0] <= MAX_CONSTRAINT_NODES, 'external Variable restriction expression exceeds node limit')
+    attributes(group, {'hint', 'operator'})
+    ensure(not (group.text or '').strip() and group.get('operator', 'AND') in RESTRICTION_OPERATORS,
+           'malformed external Variable restriction group')
+    leaves = []
+    for restriction in group:
+        attributes(restriction, {'operation'})
+        ensure(local_name(restriction) == 'restriction' and not len(restriction),
+               'malformed external Variable restriction')
+        operation = restriction.get('operation')
+        ensure(operation in OVAL_COMPARISONS and (restriction.text or '').strip(),
+               'unsupported external Variable restriction operation')
+        leaves.append({comparison(source_type, operation, OVAL_COMPARISONS[operation]):
+                       visitor.literal(source_type, restriction.text or '')})
+    ensure(leaves, 'external Variable restriction requires one or more predicates')
+    if len(leaves) == 1:
+        return leaves[0], counter
+    return {RESTRICTION_OPERATORS[group.get('operator', 'AND')]: leaves}, counter
+
+
+def _external_constraints(visitor, element, source_type):
+    allowed, groups = [], []
+    for child in element:
+        if local_name(child) == 'possible_value':
+            attributes(child, {'hint'})
+            ensure(not len(child) and (child.text or '').strip(), 'malformed external Variable possible_value')
+            allowed.append(visitor.literal(source_type, child.text or ''))
+        elif local_name(child) == 'possible_restriction':
+            expression, _ = _restriction_expression(visitor, child, source_type)
+            groups.append(expression)
+        else:
+            ensure(False, 'unsupported external Variable child: ' + local_name(child))
+    # OVAL external_variable permits an empty restriction population.  In that
+    # case the declaration's datatype and the consumer-derived cardinality are
+    # the complete contract: the invocation must bind the Input, but no
+    # fixture/default or invented predicate may be introduced.  This matters
+    # for standalone Definitions that mix unrestricted external Variables with
+    # the restricted possible_value/possible_restriction witnesses.
+    constraints = {}
+    if allowed:
+        constraints['allowed'] = allowed
+    if groups:
+        constraints['predicate'] = groups[0] if len(groups) == 1 else {'or': groups}
+    return constraints
+
+
+def _value_satisfies_constraints(value, constraints):
+    # Keep publisher-default validation on the same typed evaluator as
+    # invocation binding.  A second generic evaluator silently rejected or
+    # mis-evaluated native version/address/binary operators.
+    from scap_ng_tools.converter._v04_semantic.v04_input_presence import (
+        _input_constraints_valid)
+    return _input_constraints_valid(value, constraints)
 
 
 XCCDF_RELATIONS = {
@@ -74,86 +227,67 @@ def check_exports(source, rule):
 
 def external_input(visitor, element):
     recovery = getattr(visitor, 'native_recovery', False)
-    ident=element.get('id');value=visitor.bound_exports.get(ident)
-    ensure(value is not None and all(n.tag=='{'+OVAL+'}possible_value' for n in element),
-           'unbound external Variable or unsupported possible_restriction')
-    attributes(value, {'id','type','operator','interactive','interfaceHint','hidden'})
-    value_operator = value.get('operator', 'equals')
-    ensure(value_operator == 'equals' or value_operator in XCCDF_RELATIONS,
-           'XCCDF Value operator requires a supported typed constraint adapter')
-    allowed_names = ['title', 'description', 'value', 'reference']
-    if recovery:
-        allowed_names.append('warning')
-    allowed_children = {'{'+XCCDF+'}'+name for name in allowed_names}
-    ensure(all(n.tag in allowed_children for n in value),
-           'XCCDF Value constraints require a supported Parameter adapter')
-    # XCCDF warning text is non-executable guidance. It is retained in the
-    # source Value XML provenance below; it must not be mistaken for an
-    # allowed-value or relational constraint in the native Parameter.
-    if recovery:
-        for warning in value.findall('{'+XCCDF+'}warning'):
-            attributes(warning, {'category', '{http://www.w3.org/XML/1998/namespace}lang'})
-            ensure(not len(warning), 'complex XCCDF warning is unsupported')
-    datatype=element.get('datatype')
-    source_type=value.get('type','string')
-    ensure(source_type=={'string':'string','boolean':'boolean','int':'number','float':'number'}.get(datatype),
-           'check-export source/Variable datatype mismatch')
-    defaults=[n for n in value.findall('{'+XCCDF+'}value') if not n.get('selector')]
-    ensure(len(defaults)<=1 and all(not len(n) for n in value.findall('{'+XCCDF+'}value')), 'ambiguous/complex XCCDF default')
-    input_id=(external_input_identifier(visitor, element) if recovery else
-              native_identifier(element, 'input'))
-    parameter_id=(value_parameter_identifier(visitor, value) if recovery else
-                  native_identifier(value, 'parameter'))
-    contract={'datatype':native_datatype(datatype),'cardinality':'exactly_one','required':True,
-              'description':value.findtext('{'+XCCDF+'}description','')}
-    parameter={'id':parameter_id,'datatype':native_datatype(datatype),'cardinality':'one','required':True,
-               'resolution':'publisher' if defaults else 'organization',
-               'title':value.findtext('{'+XCCDF+'}title',''), 'description':contract['description']}
-    if defaults:
-        parameter['value']=visitor.literal(datatype,defaults[0].text or '')
-    allowed=[]
-    for node in element:
-        attributes(node,{'hint'})
-        ensure(not len(node),'complex possible_value unsupported')
-        allowed.append(visitor.literal(datatype,node.text or ''))
-    if allowed:
-        contract['constraints']={'allowed':allowed}
-        parameter['constraints']={'allowed':allowed}
-        ensure(not defaults or parameter['value'] in allowed,'publisher default violates external Variable allowed values')
-    if value_operator != 'equals':
-        bound_text = defaults[0].text if defaults else value.findtext('{'+XCCDF+'}value', '')
-        relation = {'operator': XCCDF_RELATIONS[value_operator],
-                    'value': visitor.literal(datatype, bound_text or '')}
-        ensure(type(relation['value']) is not bool and isinstance(relation['value'], (int, float)),
-               'XCCDF relational Value requires a numeric typed bound')
-        contract.setdefault('constraints', {})['relation'] = relation
-        parameter.setdefault('constraints', {})['relation'] = relation
+    ident = element.get('id')
+    value = visitor.bound_exports.get(ident)
+    # Standalone OVAL has no XCCDF check-export. It still emits a typed,
+    # required native Input contract; caller-supplied bindings are intentionally
+    # resolved by RI at execution time, never by this converter or a fixture.
+    standalone = value is None
+    if not standalone:
+        attributes(value, {'id','type','operator','interactive','interfaceHint','hidden'})
+        allowed_names = ['title', 'description', 'value', 'reference']
+        if recovery:
+            allowed_names.append('warning')
+        allowed_children = {'{' + XCCDF + '}' + name for name in allowed_names}
+        ensure(all(n.tag in allowed_children for n in value),
+               'XCCDF Value constraints require a supported Parameter adapter')
+        if recovery:
+            for warning in value.findall('{' + XCCDF + '}warning'):
+                attributes(warning, {'category', '{http://www.w3.org/XML/1998/namespace}lang'})
+                ensure(not len(warning), 'complex XCCDF warning is unsupported')
+    datatype = element.get('datatype')
+    source_type = value.get('type', 'string') if value is not None else datatype
+    if standalone:
+        ensure(datatype in SOURCE_TYPES, 'unsupported external Variable datatype')
+    else:
+        ensure(datatype in XCCDF_VALUE_DATATYPES.get(source_type, ()),
+               'check-export source/Variable datatype mismatch')
+    cardinality, consumers = _external_cardinality(visitor, ident)
+    defaults = ([node for node in value.findall('{' + XCCDF + '}value') if not node.get('selector')]
+                if value is not None else [])
+    if value is not None:
+        ensure(len(defaults) <= 1 and all(not len(node) for node in value.findall('{' + XCCDF + '}value')),
+               'ambiguous/complex XCCDF default')
+    input_id = external_input_identifier(visitor, element) if recovery else native_identifier(element, 'input')
+    parameter_id = (value_parameter_identifier(visitor, value) if recovery else native_identifier(value, 'parameter')) if value is not None else None
+    contract = {'datatype': native_datatype(datatype), 'cardinality': cardinality,
+                'required': True, 'description': (value.findtext('{' + XCCDF + '}description', '') if value is not None else element.get('comment', ''))}
+    constraints = _external_constraints(visitor, element, datatype)
+    contract['constraints'] = constraints
+    visitor.inputs[input_id] = contract
+    if value is not None:
+        parameter = {'id': parameter_id, 'datatype': native_datatype(datatype), 'cardinality': cardinality,
+                     'required': True, 'resolution': 'publisher' if defaults else 'organization',
+                     'title': value.findtext('{' + XCCDF + '}title', ''), 'description': contract['description'],
+                     'constraints': constraints}
         if defaults:
-            ensure(_relation_satisfied(parameter['value'], relation['operator'], relation['value']),
-                   'publisher default violates XCCDF relational Value constraint')
-    visitor.inputs[input_id]=contract
-    visitor.policy_parameters[parameter_id]=parameter
-    visitor.input_bindings[input_id]={'parameter':parameter_id}
-    native = getattr(visitor, 'native_recovery', False)
+            parameter['value'] = visitor.literal(datatype, defaults[0].text or '')
+            ensure(_value_satisfies_constraints(parameter['value'], constraints),
+                   'publisher default violates external Variable restrictions')
+        visitor.policy_parameters[parameter_id] = parameter
+        visitor.input_bindings[input_id] = {'parameter': parameter_id}
     visitor.conversion_warnings.append({
-        'code': 'native_input_binding_unproved' if native else 'check_export_binding_unproved',
-        'owner_decision': ('https://github.com/vanderpol/scap-ng/issues/8#issuecomment-6587857027'
-                           if native else DECISION),
-        'source_external_variable': ident,
-        'source_variable_sha256': digest(xml_identity(element)),
-        'source_value': value.get('id'),
-        'source_value_sha256': digest(xml_identity(value)),
-        'source_value_operator': value_operator,
-        'source_value_xml': xml_identity(value),
-        'input': input_id,
-        'parameter': parameter_id,
-        'resolution': parameter['resolution'],
-        'independent_static_proof': 'UNPROVED',
-        'scanner_runtime': 'NOT_RUN',
-        'message': ('Explicit typed native 0.4 Input/Parameter binding retained; '
-                    'policy/runtime binding equivalence independently unproved.'
-                    if native else
-                    'Explicit typed expected-value binding retained; policy/runtime '
-                    'binding equivalence independently unproved.'),
+        'code': 'native_standalone_external_input' if standalone else ('native_input_binding_unproved' if recovery else 'check_export_binding_unproved'),
+        'owner_decision': ('https://github.com/scap-ng/issues/8#issuecomment-6587857027' if recovery else DECISION),
+        'source_external_variable': ident, 'source_variable_sha256': digest(xml_identity(element)),
+        'source_value': value.get('id') if value is not None else None,
+        'source_value_sha256': digest(xml_identity(value)) if value is not None else None,
+        'source_value_xml': xml_identity(value) if value is not None else None,
+        'input': input_id, 'parameter': parameter_id, 'resolution': 'invocation' if standalone else parameter['resolution'],
+        'cardinality': cardinality, 'cardinality_consumers': consumers,
+        'restriction_semantics': 'possible_value and possible_restriction alternatives are ORed; every supplied value is checked',
+        'independent_static_proof': 'UNPROVED', 'scanner_runtime': 'NOT_RUN',
+        'message': ('Standalone external Variable lowered to an explicit required Input; no fixture/default was bound.' if standalone else
+                    'Explicit typed native 0.4 Input/Parameter restriction binding retained; policy/runtime equivalence independently unproved.'),
     })
-    return {'input':input_id}
+    return {'input': input_id}

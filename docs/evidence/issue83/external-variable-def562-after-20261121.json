@@ -1,0 +1,63 @@
+{
+  "format": "scap-ng-tools/external-variable-def562-qualification/1",
+  "source": {
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "archive": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip",
+    "archive_sha256": "6ff45b5a85b77eadce11397d30adbdd011eb1d32fa3566d23b60322597ac5bdf",
+    "member": "oval-def-ext.xml",
+    "member_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+    "definition_id": "oval:org.mitre.oval.test:def:562",
+    "tests": 18
+  },
+  "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+  "canonical": {
+    "commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+    "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+    "assessment_closure_sha256": "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6",
+    "semantic_pack_sha256": "0dfc56220041df9eded84f137de991e249eb4ae4a0e29bada973ba9f160c7ea1"
+  },
+  "tools_branch": "codex/external-variable-contract-proposal",
+  "result": {
+    "status": "CONVERTED_UNVERIFIED",
+    "schema_validated": true,
+    "semantic_validated": true,
+    "scanner_execution": false,
+    "inputs": 18,
+    "named_variables": 18,
+    "tests": 18,
+    "reachable_source_nodes": 79,
+    "restricted_inputs": 4,
+    "unrestricted_inputs": 14,
+    "cardinalities": {
+      "one_or_more": 18
+    },
+    "restriction_mapping": {
+      "possible_value": "constraints.allowed",
+      "possible_restriction": "constraints.predicate",
+      "multiple_possible_restrictions": "top-level OR of predicate groups",
+      "unrestricted_external_variable": "typed required Input with no constraints and no default"
+    }
+  },
+  "native_outputs": {
+    "assessment_json_sha256": "58f8e645ba1297894f0233957f7fa5f0880e8c4a61dc8018621226d6bd37ecdb",
+    "assessment_yaml_sha256": "16d8b231cf76339c86c90f63881674508e696b017b748240bd46959468cea795",
+    "source_trace_json_sha256": "a338676fb4772ca53a1b3a4e43fe4cda0cc7998e4a2c7f884dd515b4f52b5344"
+  },
+  "reproduction": {
+    "command": "PYTHONPATH=src .venv/bin/python -m scap_ng_tools.converter.direct04 --schema-root <scap-ng>/schema --source oval-def-ext.xml --sha256 df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1 --output <new-output> --oval-definition oval:org.mitre.oval.test:def:562 --source-commit d91e6ba33841e3202dc27d3e0d469a7abd939b16 --source-path SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml",
+    "repeatability": "Two clean runs produced identical assessment.json, assessment.yaml and source-trace.json SHA-256 values.",
+    "binding_note": "The converter emits no fixture values. Explicit external Input values remain an RI invocation concern."
+  },
+  "holds": [
+    "CONVERTED_UNVERIFIED is structural/source-semantic validation, not RI execution or OVAL implementation equivalence.",
+    "Input binding outcomes require explicit invocation values and remain separate from conversion."
+  ],
+  "source_validation": {
+    "xsd_and_schematron": "passed",
+    "command": "oscap oval validate oval-def-ext.xml",
+    "tool": "OpenSCAP 1.3.9",
+    "exit_code": 0,
+    "interpretation": "source validation only; not converter or runtime equivalence"
+  }
+}

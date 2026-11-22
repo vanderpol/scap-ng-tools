@@ -1,0 +1,344 @@
+{
+  "conversion": {
+    "all_cardinality": "one_or_more",
+    "all_required": true,
+    "deterministic_two_run": true,
+    "fixture_or_default_emitted": false,
+    "inputs": 18,
+    "named_variables": 18,
+    "restricted_inputs": 4,
+    "schema_validated": true,
+    "semantic_validated": true,
+    "tests": 18,
+    "unrestricted_inputs": 14
+  },
+  "converter": {
+    "assessment_closure_sha256": "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6",
+    "commit": "870fba9bf96619b1029155dcf04891c13377574a",
+    "flat_schema_family_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "repository": "vanderpol/scap-ng-tools",
+    "schema_commit": "d1ab0283e09369c2c734d3b8f93b65007441cf07",
+    "semantic_pack_sha256": "d9e6f911532f4c06393c4d57738034fdb1b00f1dc38697ad0d3ea493415969a6"
+  },
+  "format": "scap-ng-tools/external-variable-def562-repin-qualification/1",
+  "input_binding_matrix": [
+    {
+      "cardinality": "one_or_more",
+      "datatype": "binary",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-0000-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:566",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "binary",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-1000-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 4,
+      "source_variable": "oval:org.mitre.oval.test:var:505",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "boolean",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-true-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:453",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "boolean",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-and-1-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 4,
+      "source_variable": "oval:org.mitre.oval.test:var:987",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "rpm_evr",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-4-5-6-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:89",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "rpm_evr",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-4-5-9-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 4,
+      "source_variable": "oval:org.mitre.oval.test:var:51",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "float",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-23456-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:592",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "float",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-3-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 4,
+      "source_variable": "oval:org.mitre.oval.test:var:964",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "integer",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-0-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:621",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "integer",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-43233-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 4,
+      "source_variable": "oval:org.mitre.oval.test:var:199",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "string",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-1-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:183",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "string",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-4-from-external-variables-xml-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 4,
+      "source_variable": "oval:org.mitre.oval.test:var:86",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "version",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-2-3-4-from-external-vari-9ce4996f12-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:110",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "version",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-2-3-4-from-external-vari-e68eb6809b-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": false,
+      "source_fixture_values": 4,
+      "source_variable": "oval:org.mitre.oval.test:var:215",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "string",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-expression-0-9-3-0-9-3-0-9-4-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": true,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:629",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "string",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-0-9-3-0-9-4-or-1-0-9-3-0-9-3-0-9-4-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": true,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:327",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "integer",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-value-such-that-it-equal-0-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": true,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:642",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    },
+    {
+      "cardinality": "one_or_more",
+      "datatype": "integer",
+      "empty_binding_state": "error",
+      "input": "this-external-variable-value-such-that-it-equal-0-or-1-input",
+      "invalid_binding_state": "error",
+      "missing_binding_state": "not_evaluated",
+      "required": true,
+      "restricted": true,
+      "source_fixture_values": 1,
+      "source_variable": "oval:org.mitre.oval.test:var:863",
+      "valid_binding": {
+        "state": "true",
+        "values_count": 1
+      }
+    }
+  ],
+  "outputs": {
+    "assessment.json": {
+      "bytes": 28595,
+      "sha256": "58f8e645ba1297894f0233957f7fa5f0880e8c4a61dc8018621226d6bd37ecdb"
+    },
+    "assessment.yaml": {
+      "bytes": 21990,
+      "sha256": "16d8b231cf76339c86c90f63881674508e696b017b748240bd46959468cea795"
+    },
+    "conversion-scope.json": {
+      "bytes": 563,
+      "sha256": "379a82da9a4c793dccf465a9eecdf0f8a85c626b9fb1ccc81118849da2664ae6"
+    }
+  },
+  "proof_boundaries": {
+    "binding_contract": "Tools static typed binding harness; valid/missing/empty/invalid vectors executed for all 18 Inputs",
+    "fixture_values": "qualification-only and never implicit defaults",
+    "independent_oval_equivalence": "not_proved",
+    "ri_runtime": "not_qualified; RI PR #201 remains unmerged/infrastructure-held"
+  },
+  "source": {
+    "archive": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip",
+    "archive_sha256": "6ff45b5a85b77eadce11397d30adbdd011eb1d32fa3566d23b60322597ac5bdf",
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "definition_id": "oval:org.mitre.oval.test:def:562",
+    "member": "oval-def-ext.xml",
+    "member_sha256": "df3a7bfbcf54b48652ed5c5ece93131c4c82ac2f07ff4056f5ed4668160dc8c1",
+    "repository": "OVAL-Community/SCAP-Self-Assertion"
+  }
+}

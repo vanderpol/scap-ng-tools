@@ -17,7 +17,7 @@ class Issue118OperationCoverage(unittest.TestCase):
         # its JSON Schema directly.
         contracts = json.loads((ROOT / "src/scap_ng_tools/converter/_v04_semantic/contracts-0.4.1.json").read_text())
         self.assertEqual(contracts["canonical_commit"], json.loads((ROOT / "canonical-schema-pin.json").read_text())["canonical_sha"])
-        self.assertEqual(contracts["canonical_commit"], "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2")
+        self.assertEqual(contracts["canonical_commit"], "d1ab0283e09369c2c734d3b8f93b65007441cf07")
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             schema = {

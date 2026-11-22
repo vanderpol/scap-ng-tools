@@ -1,0 +1,107 @@
+{
+  "converter": {
+    "assessment_closure_sha256": "56d6e0ace6032a505bdcf61f9140436a1f480d696f7441237c2864ada4ade7d6",
+    "commit": "870fba9bf96619b1029155dcf04891c13377574a",
+    "flat_schema_family_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4",
+    "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
+    "repository": "vanderpol/scap-ng-tools",
+    "schema_commit": "d1ab0283e09369c2c734d3b8f93b65007441cf07",
+    "semantic_pack_sha256": "d9e6f911532f4c06393c4d57738034fdb1b00f1dc38697ad0d3ea493415969a6"
+  },
+  "format": "scap-ng-tools/standalone-self-assertion-d1ab-ledger/1",
+  "independent_parity": {
+    "audit_receipt_sha256": "a4345282e52ec1ccb7b7a31105503385846ede9c424004a529977b4256dc1422",
+    "complete": false,
+    "definitions_checked": 162,
+    "holds": [
+      {
+        "classification": "independent_parity_checker_hold",
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc:def:38",
+        "reason": "unqualified original Variable expression: merge",
+        "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_merge.xml"
+      },
+      {
+        "classification": "independent_parity_checker_hold",
+        "definition_id": "oval:org.mitre.oval.test:def:580",
+        "reason": "unqualified original Variable expression: time_difference",
+        "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def_time_difference_function.xml"
+      },
+      {
+        "classification": "independent_parity_checker_hold",
+        "definition_id": "oval:org.mitre.oval.test:def:562",
+        "reason": "native Variable operation is unresolved: input",
+        "source": "SCAP_1.4/OVAL_Test_Content/agnostic/oval-def-ext.zip!oval-def-ext.xml"
+      },
+      {
+        "classification": "independent_parity_checker_hold",
+        "definition_id": "oval:org.joval.test:def:20002",
+        "reason": "native collected-field datatype is unresolved",
+        "source": "SCAP_1.4/OVAL_Test_Content/macos/macos-def_keychain_test.xml"
+      },
+      {
+        "classification": "independent_parity_checker_hold",
+        "definition_id": "oval:navy.navwar.niwcatlantic.scc.test:def:1",
+        "reason": "native collected-field datatype is unresolved",
+        "source": "SCAP_1.4/OVAL_Test_Content/solaris/sol-def_package511_test.xml"
+      }
+    ],
+    "scope_complete": false,
+    "source_accounted": true,
+    "tests_checked": 758
+  },
+  "notes": [
+    "The corrected source pin contains 167 Definitions and 799 Tests; older 168/803 denominators are not silently substituted.",
+    "The source tree is an exact Git worktree at the pinned commit; source content is immutable evidence.",
+    "The five parity holds are not promoted to conversion success or runtime equivalence; they are independently visible review limits."
+  ],
+  "package": {
+    "definitions_sha256": "5615b6c78fb563e5ae97013601006c73bb89b42c3111bf6efe2f26fe65f0cf34",
+    "execution": "not_run",
+    "manifest_sha256": "6af01e88215bf185a2d1d35a855d8a8459c6113576efe84eb642352e7be06839",
+    "summary": {
+      "blocked_definitions": 0,
+      "blocked_tests": 0,
+      "converted_definitions": 167,
+      "converted_tests": 799,
+      "definitions": 167,
+      "excluded_definitions": 0,
+      "excluded_tests": 0,
+      "execution": "not_run",
+      "schema_valid_yaml_documents": 167,
+      "test_ledger_reconciled": 799,
+      "tests": 799
+    },
+    "tests_ledger_sha256": "12b62b4bb4db74cffec4ce97ac4c6b5e1143aea82c6f0a216694a18dce8f97f0"
+  },
+  "qualification": {
+    "independent_oval_equivalence": "not_proved",
+    "runtime_execution": "not_run",
+    "semantic_parity": "162 Definitions independently checked; 5 explicit parity-checker holds retained above",
+    "source_expected_outcomes": "not used as evaluator input",
+    "structural_conversion": "167/167 Definitions and 799/799 Tests emitted and schema-validated; 0 converter blocked/excluded rows in this package"
+  },
+  "source": {
+    "commit": "d91e6ba33841e3202dc27d3e0d469a7abd939b16",
+    "definitions": 167,
+    "families": [
+      "agnostic",
+      "aix",
+      "asa",
+      "ios",
+      "iosxe",
+      "junos",
+      "linux",
+      "macos",
+      "panos",
+      "solaris",
+      "unix",
+      "windows"
+    ],
+    "git_pin_verified": true,
+    "ordinary_xml_files": 143,
+    "repository": "OVAL-Community/SCAP-Self-Assertion",
+    "source_tree_sha256": "9fcee01dc668e8f500e40cd4fc7bf4a2fbcd2b97703086ed96338b15a3114ad0",
+    "tests": 799,
+    "xml_documents_including_zip_members": 144
+  }
+}
