@@ -98,6 +98,10 @@ def stage(*, schema_root: Path, output: Path, source_root: Path):
             'ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)\n'
             'PYTHON=${PYTHON:-python3}\n'
             'export PYTHONPATH="$ROOT/app${PYTHONPATH:+:$PYTHONPATH}"\n'
+            'case " $* " in *" --version "*|*" --help "*) ;;\n'
+            "  *) if ! \"$PYTHON\" -c 'import yaml, jsonschema, referencing' >/dev/null 2>&1; then\n"
+            '       echo "SCAP_NG_OFFLINE_BUNDLE_DEPENDENCY_ERROR: install declared offline dependencies or use a frozen runtime" >&2; exit 78; fi ;;\n'
+            'esac\n'
             'exec "$PYTHON" -m scap_ng_tools.converter.direct04 '\
             '--schema-root "$ROOT/schema" "$@"\n', encoding='utf-8')
         launcher.chmod(0o755)
