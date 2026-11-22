@@ -17,16 +17,16 @@ import subprocess
 import sys
 import tempfile
 
-from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+from scap_ng_tools.contracts.schema_snapshot_editor_v041 import Pinned041EditorSchemaSnapshot
 
 from generate_v04_semantic_pack import GENERATOR, OVAL_COMMIT, git_head
 
 
 # Original research exporter at d12a644f4607cdc9c9ada50e3a96d4fd0060c6d9;
-# 238 deterministic resource descriptors, 101 capability identities, one URI.
+# 238 deterministic resource descriptors, 101 active capability identities, one URI.
 # Source commit is purposely excluded from this digest.
 HISTORICAL_RESOURCES_SHA256 = 'faa1c81c01c34a212e33827e3628f9c355255c1030fa8aa8936cb9d28522c564'
-REVIEWED_RESOURCES_SHA256 = '6a3678f64106b1c7ea4ee18cc3b81ea3c4b2f1a96318facac41ea84131272dac'
+REVIEWED_RESOURCES_SHA256 = '0dec67789229634cbd426229f899bf68876882eaa7ebc881f275f7731b649bc5'
 COMMIT = re.compile(r'^[a-f0-9]{40}$')
 
 
@@ -49,7 +49,7 @@ def generate_editor_capabilities(mappings, root):
 
 
 def build(schema_root, oval_root, source_commit, output):
-    snapshot = Pinned041SchemaSnapshot(schema_root)
+    snapshot = Pinned041EditorSchemaSnapshot(schema_root)
     source_commit = str(source_commit)
     schema_repo = snapshot.schema_root.parent
     if not COMMIT.fullmatch(source_commit) or git_head(schema_repo) != source_commit:

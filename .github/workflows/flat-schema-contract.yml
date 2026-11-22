@@ -35,6 +35,13 @@ jobs:
             Archive/2026_Q3/U_MS_Windows_Defender_Firewall_V2R3_STIG_SCAP_1-4_Benchmark-enhancedV14-signed.zip
           filter: blob:none
           persist-credentials: false
+      - name: Checkout exact canonical 0.4.1 editor-pack schema snapshot
+        uses: actions/checkout@v4
+        with:
+          repository: vanderpol/scap-ng
+          ref: d1ab0283e09369c2c734d3b8f93b65007441cf07
+          path: editor-schema-snapshot
+          persist-credentials: false
       - name: Checkout official OVAL 5.12.3 generator inputs (CI only)
         uses: actions/checkout@v4
         with:
@@ -68,6 +75,9 @@ jobs:
             python -m unittest discover -s tests -p 'test_schema_snapshot.py' -v
           SCAP_NG_SCHEMA_ROOT="${{ github.workspace }}/spec-snapshot/schema" \
             python -m unittest discover -s tests -p 'test_variable_inference_candidate.py' -v
+          SCAP_NG_EDITOR_SCHEMA_ROOT="${{ github.workspace }}/editor-schema-snapshot/schema" \
+          SCAP_NG_OVAL_ROOT="${{ github.workspace }}/official-oval" \
+            python -m unittest discover -s tests -p 'test_editor_metadata_pack.py' -v
           python -m unittest discover -s tests -p 'test_issue59_qualification.py' -v
           python -m unittest discover -s tests -v
           SCAP_NG_SCHEMA_ROOT="${{ github.workspace }}/spec-snapshot/schema" \
