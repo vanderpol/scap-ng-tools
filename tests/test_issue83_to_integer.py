@@ -11,6 +11,9 @@ import unittest
 from scap_ng_tools.converter._v04_semantic import v04_variable_expressions as semantic
 
 RULE_ID = "xccdf_mil.disa.stig_rule_SV-221718r991590_rule"
+SOURCE_ZIP_SHA256 = "0235429534dfc1149824f1a6b5144f73e16dc28d84d899c638cc5ede31da8c1a"
+SOURCE_XML_SHA256 = "487c6f2374b6e1e9996fa7a3c9e6eed9fac6af59a64ef8e967a71364e61a2122"
+SOURCE_RULE_SHA256 = "a82d77b5ca397a7c244fdde0027b481f23837471df055971791707d1a2c05b03"
 
 
 class _NoSchemaErrors:
@@ -63,6 +66,18 @@ class ToIntegerSemanticVectors(unittest.TestCase):
                 self._validate({"to_integer": {"literal": {
                     "datatype": "string", "value": value}}})
 
+    def test_behavioral_mutation_that_accepts_bad_decimal_is_caught(self):
+        # Keep the dispatch branch present but mutate its lexical predicate to
+        # accept everything. The production semantic admission witness must
+        # still reject the source-invalid decimal token.
+        def expected_invalid():
+            with self.assertRaisesRegex(ValueError, "signed decimal digits"):
+                self._validate({"to_integer": {"literal": {
+                    "datatype": "string", "value": "077x"}}})
+
+        with patch.object(semantic.re, "fullmatch", return_value=object()):
+            self.assertRaises(AssertionError, expected_invalid)
+
     def test_non_string_record_numeric_and_malformed_operands_fail_closed(self):
         cases = (
             {"to_integer": {"literal": {"datatype": "integer", "value": 7}}},
@@ -89,15 +104,19 @@ class ToIntegerSourceReplay(unittest.TestCase):
         cls.source = Path(source)
         cls.schema = Path(schema)
         cls.source_sha256 = hashlib.sha256(cls.source.read_bytes()).hexdigest()
+        if cls.source_sha256 != SOURCE_ZIP_SHA256:
+            raise AssertionError(
+                f"unexpected Oracle Linux 7 source ZIP SHA-256: {cls.source_sha256}")
 
     def test_pinned_rule_focused_and_benchmark_admission(self):
         from scap_ng_tools.converter.direct04 import convert_benchmark, convert_focused
         documents, trace = convert_focused(
             schema_root=self.schema, source=self.source,
-            sha256_pin=self.source_sha256, rule_ids=[RULE_ID],
+            sha256_pin=SOURCE_ZIP_SHA256, rule_ids=[RULE_ID],
             native_recovery=True)
         self.assertTrue(documents)
-        self.assertEqual(trace["source_zip_sha256"], self.source_sha256)
+        self.assertEqual(trace["source_zip_sha256"], SOURCE_ZIP_SHA256)
+        self.assertEqual(trace["source_xml_sha256"], SOURCE_XML_SHA256)
         assessment = next(doc["assessment"] for doc in documents.values()
                           if "assessment" in doc and doc["assessment"].get("mode") == "automated")
         self.assertTrue(any("to_integer" in json.dumps(value)
@@ -105,8 +124,9 @@ class ToIntegerSourceReplay(unittest.TestCase):
 
         _, _, coverage = convert_benchmark(
             schema_root=self.schema, source=self.source,
-            sha256_pin=self.source_sha256, native_recovery=True)
+            sha256_pin=SOURCE_ZIP_SHA256, native_recovery=True)
         row = next(item for item in coverage["rules"] if item["source_rule"] == RULE_ID)
+        self.assertEqual(row["source_rule_sha256"], SOURCE_RULE_SHA256)
         self.assertEqual(row["status"], "converted")
         self.assertEqual(row["proof_level"], "authoring_validated")
 
@@ -115,7 +135,7 @@ class ToIntegerSourceReplay(unittest.TestCase):
         from scap_ng_tools.converter.direct04 import convert_focused, load_pinned_snapshot
         documents, _ = convert_focused(
             schema_root=self.schema, source=self.source,
-            sha256_pin=self.source_sha256, rule_ids=[RULE_ID],
+            sha256_pin=SOURCE_ZIP_SHA256, rule_ids=[RULE_ID],
             native_recovery=True)
         assessment_doc = next(doc for doc in documents.values()
                               if "assessment" in doc and doc["assessment"].get("mode") == "automated")

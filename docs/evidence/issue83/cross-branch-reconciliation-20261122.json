@@ -1,0 +1,523 @@
+{
+  "authoritative_branch": "pr99",
+  "authoritative_categories": {
+    "bounded_converter_gap": 2,
+    "deprecated_source_construct": 83,
+    "source-invalid-semantics": 9
+  },
+  "authoritative_counts": {
+    "blocked": 94,
+    "converted": 6493,
+    "manual_only": 1403
+  },
+  "authoritative_dynamic_variable_object_set_rule_ids": [
+    "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+    "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+  ],
+  "authoritative_evidence_status": "newest_committed_receipt_only; runtime_and_hosted_qualification_unproved",
+  "authoritative_to_integer_blocked": false,
+  "branch_count": 5,
+  "branches": [
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 95,
+      "blocked_rule_ids_sha256": "527ed16b3c442f764274c2d26a7c848e31f04c06b84aae56c3ff428f4b7c36a0",
+      "branch": "main",
+      "canonical": {
+        "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+        "flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+      },
+      "categories": {
+        "schema-semantic": 13,
+        "unsupported-capability": 78,
+        "unsupported-construct": 4
+      },
+      "converter_commit": null,
+      "counts": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 13,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+      "path": "docs/evidence/issue85/full65-current-449.json",
+      "proof_boundary": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+      "receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+      "ref": "origin/main",
+      "remaining_canonical_gaps": {},
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [],
+      "to_integer_blocked": true
+    },
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-blocker-disposition-20261122.json",
+        "docs/evidence/issue85/full65-current-c428.json",
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 94,
+      "blocked_rule_ids_sha256": "f11c558db3c1300b58eb0cda69ccd1d0aaf5fa6247e24cc27df7911f396de220",
+      "branch": "pr99",
+      "canonical": {
+        "commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+        "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
+      },
+      "categories": {
+        "bounded_converter_gap": 2,
+        "deprecated_source_construct": 83,
+        "source-invalid-semantics": 9
+      },
+      "converter_commit": "df12cd30fb37e56fcc78d741a7460671b624a169",
+      "counts": {
+        "blocked": 94,
+        "converted": 6493,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 14,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "full65-blocker-disposition/2",
+      "path": "docs/evidence/issue85/full65-blocker-disposition-20261122.json",
+      "proof_boundary": "Structural authoring conversion only; no RI runtime or independent OVAL equivalence.",
+      "receipt_sha256": "874f937226d907e2cb7efb692df554bd1c5e7f1728448c212033d12adf5f1dc1",
+      "ref": "origin/pr-99",
+      "remaining_canonical_gaps": {
+        "dynamic_variable_object_set": 2,
+        "to_integer": 0
+      },
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [
+        {
+          "blocked_delta_to_preferred": -1,
+          "blocked_rule_count": 95,
+          "converted_delta_to_preferred": 1,
+          "counts": {
+            "blocked": 95,
+            "converted": 6492,
+            "manual_only": 1403
+          },
+          "path": "docs/evidence/issue85/full65-current-c428.json",
+          "to_integer_blocked": true
+        },
+        {
+          "blocked_delta_to_preferred": -1,
+          "blocked_rule_count": 95,
+          "converted_delta_to_preferred": 1,
+          "counts": {
+            "blocked": 95,
+            "converted": 6492,
+            "manual_only": 1403
+          },
+          "path": "docs/evidence/issue85/full65-current-449.json",
+          "to_integer_blocked": true
+        }
+      ],
+      "to_integer_blocked": false
+    },
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 95,
+      "blocked_rule_ids_sha256": "527ed16b3c442f764274c2d26a7c848e31f04c06b84aae56c3ff428f4b7c36a0",
+      "branch": "pr104",
+      "canonical": {
+        "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+        "flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+      },
+      "categories": {
+        "schema-semantic": 13,
+        "unsupported-capability": 78,
+        "unsupported-construct": 4
+      },
+      "converter_commit": null,
+      "counts": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 13,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+      "path": "docs/evidence/issue85/full65-current-449.json",
+      "proof_boundary": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+      "receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+      "ref": "origin/pr-104",
+      "remaining_canonical_gaps": {},
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [],
+      "to_integer_blocked": true
+    },
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 95,
+      "blocked_rule_ids_sha256": "527ed16b3c442f764274c2d26a7c848e31f04c06b84aae56c3ff428f4b7c36a0",
+      "branch": "pr105",
+      "canonical": {
+        "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+        "flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+      },
+      "categories": {
+        "schema-semantic": 13,
+        "unsupported-capability": 78,
+        "unsupported-construct": 4
+      },
+      "converter_commit": null,
+      "counts": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 13,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+      "path": "docs/evidence/issue85/full65-current-449.json",
+      "proof_boundary": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+      "receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+      "ref": "origin/pr-105",
+      "remaining_canonical_gaps": {},
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [],
+      "to_integer_blocked": true
+    },
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 95,
+      "blocked_rule_ids_sha256": "527ed16b3c442f764274c2d26a7c848e31f04c06b84aae56c3ff428f4b7c36a0",
+      "branch": "pr106",
+      "canonical": {
+        "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+        "flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+      },
+      "categories": {
+        "schema-semantic": 13,
+        "unsupported-capability": 78,
+        "unsupported-construct": 4
+      },
+      "converter_commit": null,
+      "counts": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 13,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+      "path": "docs/evidence/issue85/full65-current-449.json",
+      "proof_boundary": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+      "receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+      "ref": "origin/pr-106",
+      "remaining_canonical_gaps": {},
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [],
+      "to_integer_blocked": true
+    }
+  ],
+  "canonical_pins": [
+    [
+      "{\"archive_sha256\": \"8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb\", \"commit\": \"8c8e5dff860af6b1290ee9273a282db24278f8d5\", \"repository\": \"niwc-atlantic/scap-content-library\"}",
+      "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
+    ],
+    [
+      "{\"archive_sha256\": \"8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb\", \"commit\": \"8c8e5dff860af6b1290ee9273a282db24278f8d5\", \"repository\": \"niwc-atlantic/scap-content-library\"}",
+      "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+    ]
+  ],
+  "format": "scap-ng-tools/cross-branch-evidence-reconciliation/1",
+  "limitations": [
+    "This joins committed receipts; it does not regenerate content or prove runtime equivalence.",
+    "A branch without the newest disposition receipt remains stale/incomplete, not successful.",
+    "Canonical pin differences are preserved and are not reconciled by changing hashes."
+  ],
+  "refs": [
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 95,
+      "blocked_rule_ids_sha256": "527ed16b3c442f764274c2d26a7c848e31f04c06b84aae56c3ff428f4b7c36a0",
+      "branch": "main",
+      "canonical": {
+        "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+        "flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+      },
+      "categories": {
+        "schema-semantic": 13,
+        "unsupported-capability": 78,
+        "unsupported-construct": 4
+      },
+      "converter_commit": null,
+      "counts": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 13,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+      "path": "docs/evidence/issue85/full65-current-449.json",
+      "proof_boundary": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+      "receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+      "ref": "origin/main",
+      "remaining_canonical_gaps": {},
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [],
+      "to_integer_blocked": true
+    },
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-blocker-disposition-20261122.json",
+        "docs/evidence/issue85/full65-current-c428.json",
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 94,
+      "blocked_rule_ids_sha256": "f11c558db3c1300b58eb0cda69ccd1d0aaf5fa6247e24cc27df7911f396de220",
+      "branch": "pr99",
+      "canonical": {
+        "commit": "c428fd0708da0cdd574dc9e499db714a1068bd75",
+        "flat_schema_sha256": "1755c893712ef30334dc7ecadc88e5abf387c2d60a75211bc2445b7cefa2e7d4"
+      },
+      "categories": {
+        "bounded_converter_gap": 2,
+        "deprecated_source_construct": 83,
+        "source-invalid-semantics": 9
+      },
+      "converter_commit": "df12cd30fb37e56fcc78d741a7460671b624a169",
+      "counts": {
+        "blocked": 94,
+        "converted": 6493,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 14,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "full65-blocker-disposition/2",
+      "path": "docs/evidence/issue85/full65-blocker-disposition-20261122.json",
+      "proof_boundary": "Structural authoring conversion only; no RI runtime or independent OVAL equivalence.",
+      "receipt_sha256": "874f937226d907e2cb7efb692df554bd1c5e7f1728448c212033d12adf5f1dc1",
+      "ref": "origin/pr-99",
+      "remaining_canonical_gaps": {
+        "dynamic_variable_object_set": 2,
+        "to_integer": 0
+      },
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [
+        {
+          "blocked_delta_to_preferred": -1,
+          "blocked_rule_count": 95,
+          "converted_delta_to_preferred": 1,
+          "counts": {
+            "blocked": 95,
+            "converted": 6492,
+            "manual_only": 1403
+          },
+          "path": "docs/evidence/issue85/full65-current-c428.json",
+          "to_integer_blocked": true
+        },
+        {
+          "blocked_delta_to_preferred": -1,
+          "blocked_rule_count": 95,
+          "converted_delta_to_preferred": 1,
+          "counts": {
+            "blocked": 95,
+            "converted": 6492,
+            "manual_only": 1403
+          },
+          "path": "docs/evidence/issue85/full65-current-449.json",
+          "to_integer_blocked": true
+        }
+      ],
+      "to_integer_blocked": false
+    },
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 95,
+      "blocked_rule_ids_sha256": "527ed16b3c442f764274c2d26a7c848e31f04c06b84aae56c3ff428f4b7c36a0",
+      "branch": "pr104",
+      "canonical": {
+        "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+        "flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+      },
+      "categories": {
+        "schema-semantic": 13,
+        "unsupported-capability": 78,
+        "unsupported-construct": 4
+      },
+      "converter_commit": null,
+      "counts": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 13,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+      "path": "docs/evidence/issue85/full65-current-449.json",
+      "proof_boundary": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+      "receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+      "ref": "origin/pr-104",
+      "remaining_canonical_gaps": {},
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [],
+      "to_integer_blocked": true
+    },
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 95,
+      "blocked_rule_ids_sha256": "527ed16b3c442f764274c2d26a7c848e31f04c06b84aae56c3ff428f4b7c36a0",
+      "branch": "pr105",
+      "canonical": {
+        "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+        "flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+      },
+      "categories": {
+        "schema-semantic": 13,
+        "unsupported-capability": 78,
+        "unsupported-construct": 4
+      },
+      "converter_commit": null,
+      "counts": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 13,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+      "path": "docs/evidence/issue85/full65-current-449.json",
+      "proof_boundary": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+      "receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+      "ref": "origin/pr-105",
+      "remaining_canonical_gaps": {},
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [],
+      "to_integer_blocked": true
+    },
+    {
+      "available_evidence": [
+        "docs/evidence/issue85/full65-current-449.json"
+      ],
+      "blocked_rule_count": 95,
+      "blocked_rule_ids_sha256": "527ed16b3c442f764274c2d26a7c848e31f04c06b84aae56c3ff428f4b7c36a0",
+      "branch": "pr106",
+      "canonical": {
+        "commit": "44991ed3753944e47c42d76f157b29448b256a34",
+        "flat_schema_sha256": "ef009d2b6fb4596476b0dbbd219285409a875988da16ef2cb6acb49d14dbd260"
+      },
+      "categories": {
+        "schema-semantic": 13,
+        "unsupported-capability": 78,
+        "unsupported-construct": 4
+      },
+      "converter_commit": null,
+      "counts": {
+        "blocked": 95,
+        "converted": 6492,
+        "manual_only": 1403
+      },
+      "cumulative_recovery_count": 13,
+      "dynamic_variable_object_set_rule_ids": [
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-214463r879643_rule",
+        "xccdf_navy.navwar.niwcatlantic.scc.ms.iis_rule_SV-218752r1111807_rule"
+      ],
+      "format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
+      "path": "docs/evidence/issue85/full65-current-449.json",
+      "proof_boundary": "CONVERTED_UNVERIFIED; no scanner runtime evidence",
+      "receipt_sha256": "aba05c3ae40f2fa0236542c2c5a325534778d28c39bdbc952ce4c2dd1c3fd9e7",
+      "ref": "origin/pr-106",
+      "remaining_canonical_gaps": {},
+      "source": {
+        "archive_sha256": "8a45fc045aff0aa2d0af2481dc115083158a1ccbe1199e7f2feec318f48763cb",
+        "commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5",
+        "repository": "niwc-atlantic/scap-content-library"
+      },
+      "superseded_evidence": [],
+      "to_integer_blocked": true
+    },
+    {
+      "branch": "pr67",
+      "ref": "origin/pr-67",
+      "status": "no_full65_evidence"
+    }
+  ],
+  "source_identity_agrees": true,
+  "stale_or_incomplete_branches": [
+    "main",
+    "pr104",
+    "pr105",
+    "pr106",
+    "pr67"
+  ]
+}

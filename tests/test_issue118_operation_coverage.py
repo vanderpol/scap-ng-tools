@@ -36,16 +36,146 @@ class Issue118OperationCoverage(unittest.TestCase):
         self.assertFalse(result["classification"]["to_integer_canonical_gap"])
         self.assertEqual(result["errors"], [])
 
+    def test_deliberate_semantic_branch_removal_is_caught(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}
+            (root / "variable-expression.schema.json").write_text(json.dumps(schema))
+            semantic = root / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py"
+            semantic.parent.mkdir(parents=True)
+            original = (ROOT / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py").read_text()
+            semantic.write_text(original.replace("if op == 'to_integer':", "if op == 'removed_to_integer':", 1))
+            lowering = semantic.parent.parent / "native041_function_lowering.py"
+            lowering.parent.mkdir(parents=True, exist_ok=True)
+            lowering.write_text("if operation == 'to_integer': return {}\n")
+            result = audit(root, tools_root=root)
+        self.assertIn("to_integer", result["converter"]["semantic_missing"])
+        self.assertTrue(result["errors"])
+
+    def test_deliberate_ri_handler_removal_is_caught(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = root / "schema"
+            schema.mkdir()
+            (schema / "variable-expression.schema.json").write_text(json.dumps({
+                "$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}
+            }))
+            ri = root / "ri" / "evaluate"
+            ri.mkdir(parents=True)
+            # Keep this mutation test repository-local: the production gate
+            # receives the real RI checkout in the qualification workflow, and
+            # this unit test only proves that a removed dispatch branch fails.
+            for name in ("variable_functions.go", "infer041.go", "variable_count.go"):
+                (ri / name).write_text('switch operation { case "to_integer": }\n')
+            original = (ri / "variable_functions.go").read_text()
+            ri.joinpath("variable_functions.go").write_text(
+                original.replace('case "to_integer":', 'case "removed_to_integer":', 1)
+            )
+            result = audit(schema, ri_root=root / "ri", tools_root=ROOT)
+        self.assertIn("to_integer", result["runtime"]["missing"])
+        self.assertTrue(result["errors"])
+
+    def test_deliberate_lowering_branch_removal_is_caught(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = root / "schema"
+            schema.mkdir()
+            (schema / "variable-expression.schema.json").write_text(json.dumps({
+                "$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}
+            }))
+            tools = root / "tools"
+            lowering = tools / "src/scap_ng_tools/converter/native041_function_lowering.py"
+            lowering.parent.mkdir(parents=True)
+            lowering.write_text("if operation == 'removed_to_integer': return {}\n")
+            semantic = tools / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py"
+            semantic.parent.mkdir(parents=True)
+            semantic.write_text("if op == 'to_integer': return {'integer'}\n")
+            result = audit(schema, tools_root=tools)
+        self.assertIn("to_integer", result["converter"]["to_integer_lowering_missing"])
+        self.assertTrue(result["errors"])
+
     def test_canonical_gap_guard_rejects_old_to_integer_disposition(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             schema = {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}
             (root / "variable-expression.schema.json").write_text(json.dumps(schema))
             receipt = root / "receipt.json"
-            receipt.write_text(json.dumps({"source_rule": "SV-221718", "category": "canonical_language_gap"}))
+            receipt.write_text(json.dumps({"benchmark": [{
+                "source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+                "disposition_class": "canonical_language_gap",
+            }, {
+                "source_id": "unrelated-rule",
+                "disposition_class": "canonical_language_gap",
+            }]}))
             result = audit(root, blocker_receipt=receipt)
         self.assertTrue(result["classification"]["to_integer_canonical_gap"])
+        self.assertEqual(result["classification"]["gap_dispositions"]["status"], "fail")
         self.assertIn("incorrectly classified", " ".join(result["errors"]))
+
+    def test_gap_guard_does_not_cross_contaminate_rule_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "variable-expression.schema.json").write_text(json.dumps(
+                {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}))
+            receipt = root / "receipt.json"
+            receipt.write_text(json.dumps({"benchmark": [{
+                "source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+                "disposition_class": "converted",
+            }, {
+                "source_id": "unrelated-rule",
+                "disposition_class": "canonical_language_gap",
+            }]}))
+            result = audit(root, blocker_receipt=receipt)
+        self.assertFalse(result["classification"]["to_integer_canonical_gap"])
+        self.assertEqual(result["classification"]["gap_dispositions"]["status"], "pass")
+        self.assertEqual(result["errors"], [])
+
+    def test_gap_guard_fails_closed_when_target_row_is_missing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "variable-expression.schema.json").write_text(json.dumps(
+                {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}))
+            receipt = root / "receipt.json"
+            receipt.write_text(json.dumps({"benchmark": [{
+                "source_id": "unrelated-rule",
+                "disposition_class": "converted",
+            }]}))
+            result = audit(root, blocker_receipt=receipt)
+        self.assertEqual(result["classification"]["gap_dispositions"]["status"], "not_found")
+        self.assertTrue(result["errors"])
+
+    def test_gap_guard_rejects_ambiguous_or_malformed_target_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "variable-expression.schema.json").write_text(json.dumps(
+                {"$defs": {"expression": {"oneOf": [{"properties": {"to_integer": {}}}]}}}))
+            duplicate = root / "duplicate.json"
+            duplicate.write_text(json.dumps({"benchmark": [
+                {"source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+                 "disposition_class": "converted"},
+                {"source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+                 "disposition_class": "canonical_language_gap"},
+            ]}))
+            result = audit(root, blocker_receipt=duplicate)
+            malformed = root / "malformed.json"
+            malformed.write_text(json.dumps({"benchmark": [{
+                "source_id": "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+            }]}))
+            malformed_result = audit(root, blocker_receipt=malformed)
+        self.assertEqual(result["classification"]["gap_dispositions"]["status"], "ambiguous")
+        self.assertTrue(result["errors"])
+        self.assertEqual(malformed_result["classification"]["gap_dispositions"]["status"], "invalid")
+        self.assertTrue(malformed_result["errors"])
+
+    def test_branch_guard_does_not_accept_comment_or_data_literal(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            comment = Path(tmp) / "comment.py"
+            comment.write_text("# if op == 'to_integer':\n")
+            literal = Path(tmp) / "literal.py"
+            literal.write_text("value = {'to_integer': None}\n")
+            from scripts.check_canonical_operation_coverage import source_has_branch
+            self.assertFalse(source_has_branch(comment, "to_integer"))
+            self.assertFalse(source_has_branch(literal, "to_integer"))
 
 
 if __name__ == "__main__":

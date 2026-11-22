@@ -14,8 +14,15 @@ import json
 from pathlib import Path
 import re
 import sys
+import tokenize
+from io import StringIO
 
 EXPECTED_RUNTIME_HOLDS = {"input"}  # RI organizational Input binding is separate.
+TO_INTEGER_RULE_IDS = {
+    "xccdf_mil.disa.stig_rule_SV-221718r991590_rule",
+}
+GAP_CLASS_FIELDS = ("disposition_class",)
+RULE_ID_FIELDS = ("source_id", "source_rule", "source_rule_id", "rule_id")
 
 
 def schema_operations(schema_root: Path) -> list[str]:
@@ -34,35 +41,75 @@ def schema_operations(schema_root: Path) -> list[str]:
 
 def source_has_branch(path: Path, operation: str, *, token: str = "") -> bool:
     text = path.read_text()
+    if path.suffix == ".py":
+        # Do not let a commented-out Python branch satisfy a structural check.
+        tokens = tokenize.generate_tokens(StringIO(text).readline)
+        text = tokenize.untokenize(
+            (tok.type, " " * len(tok.string) if tok.type == tokenize.COMMENT else tok.string)
+            for tok in tokens
+        )
+    else:
+        # Go/TypeScript dispatches are checked structurally below. Strip full
+        # line comments so stale commented branches cannot pass the gate.
+        text = re.sub(r"(?m)^[ \t]*(?:#|//).*$", "", text)
     # Branch checks intentionally look for executable dispatch syntax rather
     # than a comment or a documentation mention. A deliberate branch removal
     # therefore fails this gate even if the operation remains documented.
     patterns = (
         rf"\bif\s+(?:op|operation)\s*==\s*['\"]{re.escape(operation)}['\"]",
         rf"\bcase\s+[^:\n]*['\"]{re.escape(operation)}['\"]", 
-        rf"['\"]{re.escape(operation)}['\"]\s*:\s*",
         rf"\b(?:op|operation)\s+in\s+[^\n)]*['\"]{re.escape(operation)}['\"]",
     )
     return any(re.search(pattern, text) for pattern in patterns) and (not token or token in text)
 
 
+def _rule_disposition_rows(value):
+    """Yield only rows that carry both a source Rule identity and disposition.
+
+    Ledgers contain nested summaries and unrelated Definitions/Tests. Matching
+    serialized text is unsafe: an unrelated Rule can mention both the witness
+    ID and a legitimate gap. This walk preserves row-local identity.
+    """
+    if isinstance(value, dict):
+        source_ids = {str(value[key]) for key in RULE_ID_FIELDS
+                      if isinstance(value.get(key), str)}
+        classes = {str(value[key]) for key in GAP_CLASS_FIELDS
+                   if isinstance(value.get(key), str)}
+        if source_ids:
+            # A row with an identity but no authoritative disposition is still
+            # yielded so callers can fail closed on malformed receipts.
+            yield source_ids, classes, value
+        for child in value.values():
+            yield from _rule_disposition_rows(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from _rule_disposition_rows(child)
+
+
 def audit(schema_root: Path, *, ri_root: Path | None = None,
           editor_root: Path | None = None,
-          blocker_receipt: Path | None = None) -> dict:
+          editor_pack: Path | None = None,
+          blocker_receipt: Path | None = None,
+          tools_root: Path | None = None) -> dict:
     operations = schema_operations(schema_root)
     semantic = schema_root.parent  # only used to make result paths explicit
-    tools_root = Path(__file__).resolve().parents[1]
+    tools_root = tools_root or Path(__file__).resolve().parents[1]
     semantic_file = tools_root / "src/scap_ng_tools/converter/_v04_semantic/v04_variable_expressions.py"
     semantic_missing = [op for op in operations if not source_has_branch(semantic_file, op)]
-    converter_file = tools_root / "src/scap_ng_tools/converter/native041_input_expression.py"
+    # Check the generic production lowerer, not the source-specific adapter
+    # that happens to mention the operation while preserving Input witnesses.
+    converter_file = tools_root / "src/scap_ng_tools/converter/native041_function_lowering.py"
     converter_missing = ["to_integer"] if "to_integer" in operations and not source_has_branch(converter_file, "to_integer") else []
     result = {
         "format": "scap-ng/issue118-operation-coverage/1",
         "schema": {"root": str(schema_root), "operations": operations},
         "converter": {"semantic_missing": semantic_missing, "to_integer_lowering_missing": converter_missing},
         "runtime": {"checked": False, "missing": [], "held": sorted(EXPECTED_RUNTIME_HOLDS)},
-        "editor": {"checked": False, "missing": []},
-        "classification": {"to_integer_canonical_gap": False},
+        "editor": {"checked": False, "missing": [], "pack_checked": False, "pack_missing": [], "pack_extra": []},
+        "classification": {
+            "to_integer_canonical_gap": False,
+            "gap_dispositions": {"checked": False, "status": "not_checked", "matches": []},
+        },
         "errors": [],
     }
     if ri_root:
@@ -80,21 +127,67 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
                 result["runtime"]["missing"].append(op)
     if editor_root:
         result["editor"]["checked"] = True
-        checks = {
-            "to_integer": [editor_root / "src/expression-contract.ts",
-                           editor_root / "src/graphical.ts",
-                           editor_root / "src/extension.ts"],
-        }
-        for op, files in checks.items():
-            if op in operations and not all(path.is_file() and op in path.read_text() for path in files):
+        # Every schema-admitted operation must have a concrete template
+        # dispatch in the host authoring path. The graphical planner and
+        # schema-driven operation list are checked separately by editor CI;
+        # this avoids mistaking a displayed menu item for a serializable edit.
+        template_file = editor_root / "src/extension.ts"
+        for op in operations:
+            if not template_file.is_file() or not source_has_branch(template_file, op):
                 result["editor"]["missing"].append(op)
+    if editor_pack:
+        result["editor"]["pack_checked"] = True
+        manifest_path = editor_pack / "manifest.json"
+        schema_path = editor_pack / "schemas/variable-expression.schema.json"
+        try:
+            manifest = json.loads(manifest_path.read_text())
+            packed = schema_operations(editor_pack / "schemas")
+            result["editor"]["pack_source_commit"] = manifest.get("source_commit")
+            result["editor"]["pack_operations"] = packed
+            result["editor"]["pack_missing"] = sorted(set(operations) - set(packed))
+            result["editor"]["pack_extra"] = sorted(set(packed) - set(operations))
+        except (OSError, KeyError, TypeError, ValueError) as error:
+            result["editor"]["pack_missing"] = ["editor-pack-invalid: " + str(error)]
+            result["editor"]["pack_extra"] = []
+        if result["editor"]["pack_missing"]:
+            result["errors"].append("editor metadata pack omits active schema operations")
+        if result["editor"]["pack_extra"]:
+            result["errors"].append("editor metadata pack contains operations absent from the active schema")
     if blocker_receipt and blocker_receipt.is_file():
         payload = json.loads(blocker_receipt.read_text())
-        text = json.dumps(payload, sort_keys=True)
+        rows = []
+        malformed = []
+        for source_ids, classes, row in _rule_disposition_rows(payload):
+            matched_ids = sorted(source_ids & TO_INTEGER_RULE_IDS)
+            if matched_ids:
+                rows.append((matched_ids[0], classes, row))
+        matches = [
+            {"source_rule": source_id, "classification": "canonical_language_gap"}
+            for source_id, classes, _row in rows
+            if "canonical_language_gap" in classes
+        ]
+        if len(rows) == 0:
+            status = "not_found"
+            result["errors"].append("required to_integer Rule disposition row is absent")
+        elif len(rows) > 1:
+            status = "ambiguous"
+            result["errors"].append("required to_integer Rule has multiple disposition rows")
+        elif not rows[0][1]:
+            status = "invalid"
+            malformed.append(rows[0][0])
+            result["errors"].append("required to_integer Rule disposition row has no authoritative disposition_class")
+        else:
+            status = "fail" if matches else "pass"
+        result["classification"]["gap_dispositions"] = {
+            "checked": True,
+            "status": status,
+            "matches": matches,
+            "malformed": malformed,
+            "receipt": str(blocker_receipt),
+        }
         # This exact Rule is the original defect witness. It may not remain a
         # canonical-language-gap row after the canonical to_integer admission.
-        if "SV-221718" in text and "canonical_language_gap" in text:
-            result["classification"]["to_integer_canonical_gap"] = True
+        result["classification"]["to_integer_canonical_gap"] = bool(matches)
     if semantic_missing:
         result["errors"].append("semantic validator lacks an active schema operation branch")
     if converter_missing:
@@ -111,13 +204,16 @@ def audit(schema_root: Path, *, ri_root: Path | None = None,
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--schema-root", type=Path, required=True)
+    parser.add_argument("--tools-root", type=Path)
     parser.add_argument("--ri-root", type=Path)
     parser.add_argument("--editor-root", type=Path)
+    parser.add_argument("--editor-pack", type=Path)
     parser.add_argument("--blocker-receipt", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
     result = audit(args.schema_root, ri_root=args.ri_root, editor_root=args.editor_root,
-                   blocker_receipt=args.blocker_receipt)
+                   editor_pack=args.editor_pack, blocker_receipt=args.blocker_receipt,
+                   tools_root=args.tools_root)
     raw = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.write_text(raw)
