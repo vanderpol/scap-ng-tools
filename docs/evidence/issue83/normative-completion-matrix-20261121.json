@@ -2,8 +2,8 @@
   "counts": {
     "by_classification": {
       "deprecated": 227,
-      "mapped_unproven": 377,
-      "unmapped_source_feature": 413
+      "mapped_unproven": 381,
+      "unmapped_source_feature": 409
     },
     "by_platform": {
       "aix": {
@@ -49,8 +49,8 @@
       },
       "ios": {
         "deprecated": 7,
-        "mapped_unproven": 40,
-        "unmapped_source_feature": 20
+        "mapped_unproven": 44,
+        "unmapped_source_feature": 16
       },
       "iosxe": {
         "deprecated": 3,
@@ -107,14 +107,14 @@
         "unmapped_source_feature": 68
       }
     },
-    "canonical_mapping_rows": 391,
+    "canonical_mapping_rows": 395,
     "distinct_top_level_features": 1017,
     "structural_declarations": 1426,
     "structural_grammar_rows": 42567
   },
   "features_external": {
     "count": 1017,
-    "sha256": "4b7efded284ac9c0e56138ed83b9f6565befacb539e42bd6107dd535c0feaa17"
+    "sha256": "e37b242e62166abf937c4949d9d5806225ebbd9cc0222af819ce2467b4d91de0"
   },
   "format": "scap-ng-tools/normative-completion-matrix/1",
   "grammar_inventory": {
@@ -237,17 +237,17 @@
       },
       "ios-definitions-schema.xsd": {
         "deprecated": 12,
-        "mapped_unproven": 30,
+        "mapped_unproven": 33,
         "semantic_constraint_unproven": 257,
         "structural_supporting_evidence": 586,
-        "unmapped_source_feature": 607
+        "unmapped_source_feature": 604
       },
       "ios-system-characteristics-schema.xsd": {
         "deprecated": 6,
-        "mapped_unproven": 10,
+        "mapped_unproven": 11,
         "semantic_constraint_unproven": 15,
         "structural_supporting_evidence": 289,
-        "unmapped_source_feature": 300
+        "unmapped_source_feature": 299
       },
       "iosxe-definitions-schema.xsd": {
         "deprecated": 11,
@@ -438,8 +438,8 @@
       },
       "element": {
         "deprecated": 297,
-        "mapped_unproven": 377,
-        "unmapped_source_feature": 5501
+        "mapped_unproven": 381,
+        "unmapped_source_feature": 5497
       },
       "element_mapping": {
         "structural_supporting_evidence": 245
@@ -549,9 +549,9 @@
     "source_structure": "pinned and structurally inventoried"
   },
   "source": {
-    "canonical_mapping_commit": "5ee55288b369da26f308f40813e545b78dff2753",
-    "crosswalk_path": "/tmp/issue83-crosswalk-main.json",
-    "crosswalk_sha256": "fefc748e283ad07b0b4aea1ac5843377073bd3e40132eaaf4e08085c734e31c7",
+    "canonical_mapping_commit": "f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2",
+    "crosswalk_path": "issue83-crosswalk/65-signed-archives-oval-5.12.3-f51ab2c5.json",
+    "crosswalk_sha256": "30abf7729a07bd1153e2ca0c77ddee72f1ba0f397d4d37c4e589971010eb38a8",
     "oval_schema_commit": "2f140ee5c5dd1ed9606fcd5afc301f6baeb48706",
     "source_commit": "8c8e5dff860af6b1290ee9273a282db24278f8d5"
   }

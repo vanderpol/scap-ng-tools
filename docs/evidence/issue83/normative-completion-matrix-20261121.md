@@ -5,8 +5,8 @@ It normalizes top-level source declarations and deliberately does not promote sc
 
 - Source commit: `8c8e5dff860af6b1290ee9273a282db24278f8d5`
 - OVAL schema commit: `2f140ee5c5dd1ed9606fcd5afc301f6baeb48706`
-- Canonical mapping commit: `5ee55288b369da26f308f40813e545b78dff2753`
-- Input crosswalk SHA-256: `fefc748e283ad07b0b4aea1ac5843377073bd3e40132eaaf4e08085c734e31c7`
+- Canonical mapping commit: `f51ab2c5bd82c94a9c292a7abb2ef1a7edc91ca2`
+- Input crosswalk SHA-256: `30abf7729a07bd1153e2ca0c77ddee72f1ba0f397d4d37c4e589971010eb38a8`
 - Distinct top-level features: **1017**
 - Structural grammar rows dispositioned: **42567**
 
@@ -15,8 +15,8 @@ It normalizes top-level source declarations and deliberately does not promote sc
 | Classification | Count | Meaning |
 |---|---:|---|
 | deprecated | 227 | Official source deprecation evidence; not active support |
-| mapped_unproven | 377 | Canonical mapping candidate exists; converter/semantic/runtime proof remains separate |
-| unmapped_source_feature | 413 | Exact mapping absent; review hold, not automatically a canonical gap |
+| mapped_unproven | 381 | Canonical mapping candidate exists; converter/semantic/runtime proof remains separate |
+| unmapped_source_feature | 409 | Exact mapping absent; review hold, not automatically a canonical gap |
 
 ## By platform/schema family
 
@@ -32,7 +32,7 @@ It normalizes top-level source declarations and deliberately does not promote sc
 | `freebsd` | 1 | 0 | 3 |
 | `hpux` | 8 | 0 | 15 |
 | `independent` | 22 | 34 | 8 |
-| `ios` | 7 | 40 | 20 |
+| `ios` | 7 | 44 | 16 |
 | `iosxe` | 3 | 44 | 9 |
 | `junos` | 2 | 4 | 10 |
 | `linux` | 6 | 49 | 9 |

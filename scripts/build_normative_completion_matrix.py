@@ -120,11 +120,20 @@ def build(crosswalk: dict[str, Any], *, source_sha256: str,
         raise ValueError("crosswalk has no OVAL schema inventory")
     rows = inventory.get("grammar_rows", [])
     features = []
+    identities: set[tuple[str, str]] = set()
     for row in rows:
         if (row.get("source_kind") != "element"
-                or row.get("source_path") != TOP_LEVEL_PATH
-                or not row.get("source_qname")):
+                or row.get("source_path") != TOP_LEVEL_PATH):
             continue
+        schema_file = row.get("schema_file")
+        source_qname = row.get("source_qname")
+        if not schema_file or not source_qname:
+            raise ValueError("top-level source element is missing schema/QName identity")
+        identity = (schema_file, source_qname)
+        if identity in identities:
+            raise ValueError("duplicate top-level source identity: "
+                             + schema_file + "::" + source_qname)
+        identities.add(identity)
         classification = _classify(row)
         candidates = row.get("canonical_mapping_candidates") or []
         roles = sorted({candidate.get("source_role") for candidate in candidates
@@ -263,12 +272,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--crosswalk-json", type=Path, required=True)
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-md", type=Path, required=True)
+    parser.add_argument(
+        "--source-label",
+        help="stable logical label recorded instead of a local input path",
+    )
     parser.add_argument("--compact", action="store_true",
                         help="omit per-feature rows from the versioned output")
     args = parser.parse_args(argv)
     source_sha = file_sha256(args.crosswalk_json)
     matrix = build(json.loads(args.crosswalk_json.read_text(encoding="utf-8")),
-                   source_sha256=source_sha, source_path=str(args.crosswalk_json))
+                   source_sha256=source_sha,
+                   source_path=args.source_label or str(args.crosswalk_json))
     if args.compact:
         matrix = compact(matrix)
     args.output_json.parent.mkdir(parents=True, exist_ok=True)

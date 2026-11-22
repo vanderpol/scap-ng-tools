@@ -17,29 +17,29 @@ class NormativeCompletionMatrixTests(unittest.TestCase):
                             "declarations": 4, "canonical_mapping_rows": 1},
                 "grammar_rows": [
                     {"source_kind": "element", "source_path": "/element[0]",
-                     "source_schema": "windows-definitions-schema.xsd",
+                     "schema_file": "windows-definitions-schema.xsd",
                      "source_qname": "{urn:test}mapped", "source_name": "mapped",
                      "source_member_names": ["object", "state"],
                      "canonical_mapping_candidates": [{
                          "capability": "windows.test", "mapping_file": "x.json",
                          "source_role": "test", "source_language": "OVAL 5.12.3",
-                         "source_schema": "windows-definitions-schema.xsd",
+                         "schema_file": "windows-definitions-schema.xsd",
                          "source_namespace": "urn:test", "source_name": "mapped",
                          "mapping_status": "declared_unproven",
                          "converter_proof": "not_run",
                          "runtime_equivalence": "not_proved",
                      }]},
                     {"source_kind": "element", "source_path": "/element[0]",
-                     "source_schema": "linux-definitions-schema.xsd",
+                     "schema_file": "linux-definitions-schema.xsd",
                      "source_qname": "{urn:test}deprecated", "source_name": "deprecated",
                      "deprecation": [{"version": "5.12"}],
                      "disposition": "deprecated_migration"},
                     {"source_kind": "element", "source_path": "/element[0]",
-                     "source_schema": "linux-definitions-schema.xsd",
+                     "schema_file": "linux-definitions-schema.xsd",
                      "source_qname": "{urn:test}unmapped", "source_name": "unmapped",
                      "source_member_names": ["value"]},
                     {"source_kind": "element", "source_path": "/element/nested",
-                     "source_schema": "linux-definitions-schema.xsd",
+                     "schema_file": "linux-definitions-schema.xsd",
                      "source_qname": "{urn:test}ignored", "source_name": "ignored"},
                 ],
             },
@@ -61,14 +61,14 @@ class NormativeCompletionMatrixTests(unittest.TestCase):
         crosswalk = self.crosswalk()
         crosswalk["oval_schema_inventory"]["grammar_rows"].extend([
             {"source_kind": "attribute", "source_path": "/element[0]/attribute[0]",
-             "source_schema": "windows-definitions-schema.xsd",
+             "schema_file": "windows-definitions-schema.xsd",
              "source_qname": "{urn:test}mapped-attribute",
              "canonical_mapping_candidates": [{"capability": "windows.test"}]},
             {"source_kind": "assert", "source_path": "/element[0]/assert[0]",
-             "source_schema": "windows-definitions-schema.xsd",
+             "schema_file": "windows-definitions-schema.xsd",
              "source_qname": "{urn:test}unmapped-assert"},
             {"source_kind": "enumeration", "source_path": "/element[0]/enum[0]",
-             "source_schema": "windows-definitions-schema.xsd",
+             "schema_file": "windows-definitions-schema.xsd",
              "source_qname": "{urn:test}deprecated-enum",
              "deprecation": [{"version": "5.12"}]},
         ])
@@ -82,6 +82,19 @@ class NormativeCompletionMatrixTests(unittest.TestCase):
         self.assertEqual(grammar["by_source_kind"]["enumeration"],
                          {"deprecated": 1})
         self.assertIn("Schematron rows are semantic constraints", grammar["policy"])
+
+    def test_duplicate_top_level_identity_is_rejected(self):
+        crosswalk = self.crosswalk()
+        duplicate = dict(crosswalk["oval_schema_inventory"]["grammar_rows"][0])
+        crosswalk["oval_schema_inventory"]["grammar_rows"].append(duplicate)
+        with self.assertRaisesRegex(ValueError, "duplicate top-level source identity"):
+            build(crosswalk, source_sha256="hash", source_path="crosswalk")
+
+    def test_top_level_identity_must_be_complete(self):
+        crosswalk = self.crosswalk()
+        crosswalk["oval_schema_inventory"]["grammar_rows"][0]["schema_file"] = ""
+        with self.assertRaisesRegex(ValueError, "missing schema/QName identity"):
+            build(crosswalk, source_sha256="hash", source_path="crosswalk")
 
     def test_markdown_reports_holds_not_conversion_success(self):
         text = markdown(build(self.crosswalk(), source_sha256="hash",
