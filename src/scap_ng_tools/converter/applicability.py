@@ -205,6 +205,26 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
     fact_cache = {}
     fact_condition_cache = {}
     platform_expressions = OrderedDict()
+
+    def fact_condition_id(title, href, source_id, source_xml_sha256):
+        """Return a readable, deterministic ID for a platform fact condition.
+
+        The source OVAL fact IDs are useful provenance but are often opaque
+        hashes or vendor-local numbers (for example ``def:201``).  The
+        enclosing XCCDF platform specification has the human-facing label
+        that authors use when understanding applicability, so use that label
+        as the ID stem and retain a digest of the complete fact identity for
+        collision resistance.  The digest is intentionally not omitted: one
+        platform title can contain several facts, and the same fact can be
+        reused by different source platforms.
+        """
+        label = str(title or '').strip() or 'applicability-fact'
+        stem = re.sub(r'[^a-z0-9]+', '-', label.lower()).strip('-') or 'applicability-fact'
+        identity = f'{title or ""}:{href}:{source_id}:{source_xml_sha256 or ""}'
+        token = hashlib.sha256(identity.encode('utf-8')).hexdigest()[:8]
+        prefix, suffix = 'platform-', '-condition'
+        budget = 64 - len(prefix) - len(suffix) - len(token) - 1
+        return f'{prefix}{stem[:max(1, budget)].rstrip("-")}-{token}{suffix}'
     group_level_records = {}
 
     def add_shared(assessment_id, document, trace):
@@ -339,7 +359,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             fact_cache[identity] = (None, None)
             return fact_cache[identity]
 
-    def fact_condition(fact):
+    def fact_condition(fact, title):
         """Return a catalog condition for one reusable fact Assessment.
 
         An unqualified fact still gets a condition without ``assessment``.
@@ -352,12 +372,11 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         if not href or not source_id:
             raise ValueError('source applicability fact requires href and id-ref')
         assessment_id, _ = fact_assessment(fact)
-        key = (href, source_id, fact.get('source_xml_sha256'))
+        key = (title or '', href, source_id, fact.get('source_xml_sha256'))
         if key in fact_condition_cache:
             return fact_condition_cache[key]
-        condition_id = _slug(
-            f'applicability-fact:{href}:{source_id}:{fact.get("source_xml_sha256", "")}',
-            'platform-', '-condition')
+        condition_id = fact_condition_id(
+            title, href, source_id, fact.get('source_xml_sha256'))
         source = {
             'kind': 'converter_derived', 'id': source_id, 'idref': source_id,
             'href': href, 'sha256': fact.get('source_xml_sha256'),
@@ -383,7 +402,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             operands = list(logical.get('facts', [])) + list(logical.get('children', []))
         for operand in operands:
             if 'id_ref' in operand:
-                condition_id = fact_condition(operand)
+                condition_id = fact_condition(operand, title)
                 if condition_id is None:
                     raise ValueError('unqualified source applicability fact')
                 children.append({'condition': condition_id})

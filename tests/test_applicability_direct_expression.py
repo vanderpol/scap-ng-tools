@@ -57,9 +57,9 @@ class DirectApplicabilityExpressions(unittest.TestCase):
                                 'evaluate': {'not_evaluated': {'reason': 'fixture'}}}},
                 {'assessment': aid})
 
-    def run_tree(self, logical):
+    def run_tree(self, logical, title='FTP'):
         cpe = ET.tostring(ET.fromstring(
-            f'<platform xmlns="{CPE}" id="ftp"><title>FTP</title>{logical}</platform>'),
+            f'<platform xmlns="{CPE}" id="ftp"><title>{title}</title>{logical}</platform>'),
             encoding='unicode')
         source = source_for(cpe)
         docs = {'authoring/direct-slice/benchmark.json': {'benchmark': {'platform': {'id': 'b'}}},
@@ -68,6 +68,38 @@ class DirectApplicabilityExpressions(unittest.TestCase):
                                'artifacts': ['authoring/direct-slice/rules/r.json']}]}
         with patch('scap_ng_tools.converter.applicability._assessment_document', self.fake_fact):
             return build_applicability(source, docs, coverage, mappings=[])
+
+    def test_fact_condition_ids_use_xccdf_platform_title(self):
+        docs, _ = self.run_tree(
+            '<logical-test operator="AND" negate="false">'
+            '<check-fact-ref system="oval" href="oval.xml" id-ref="oval:def:201"/>'
+            '</logical-test>',
+            title='Windows Not Server Core Installation')
+        conditions = docs['authoring/direct-slice/applicability.json']
+        condition_id = next(iter(conditions['applicability']['conditions']))
+        self.assertRegex(
+            condition_id,
+            r'^platform-windows-not-server-core-installation-[0-9a-f]{8}-condition$')
+        self.assertNotIn('applicability-fact', condition_id)
+        self.assertLessEqual(len(condition_id), 64)
+        condition = conditions['applicability']['conditions'][condition_id]
+        self.assertEqual(condition['source']['idref'], 'oval:def:201')
+
+        # A platform title is a label, not a condition identity. Distinct
+        # source facts under the same title must remain distinct while still
+        # retaining the same readable stem.
+        docs, _ = self.run_tree(
+            '<logical-test operator="OR" negate="false">'
+            '<check-fact-ref system="oval" href="oval.xml" id-ref="oval:def:201"/>'
+            '<check-fact-ref system="oval" href="oval.xml" id-ref="oval:def:202"/>'
+            '</logical-test>',
+            title='Windows Not Server Core Installation')
+        conditions = docs['authoring/direct-slice/applicability.json']['applicability']['conditions']
+        self.assertEqual(len(conditions), 2)
+        self.assertEqual({value['source']['idref'] for value in conditions.values()},
+                         {'oval:def:201', 'oval:def:202'})
+        self.assertTrue(all(key.startswith('platform-windows-not-server-core-installation-')
+                            for key in conditions))
 
     def test_negated_singleton_is_direct_not_at_consumer_scope(self):
         docs, trace = self.run_tree(
