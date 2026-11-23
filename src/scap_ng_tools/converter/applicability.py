@@ -299,7 +299,8 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
 
     def fact_assessment(fact):
         href = fact.get('href') or ''
-        component = source.catalog.get(href) or source.catalog.get(href.lstrip('#'))
+        component = (fact.get('source_component') or source.catalog.get(href) or
+                    source.catalog.get(href.lstrip('#')))
         source_id = fact.get('id_ref')
         identity = (component, source_id)
         if identity in fact_cache:
@@ -309,6 +310,9 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
             'source_xml_sha256': fact.get('source_xml_sha256'),
             'source_component': component,
         }
+        for key in ('cpe_name', 'cpe_item_sha256'):
+            if fact.get(key):
+                source_fact[key] = fact[key]
         if not component or not source_id:
             reason = 'unresolved source applicability OVAL fact reference'
             cid = unsupported_condition(f'{href}:{source_id}',
@@ -420,6 +424,26 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
         return expression
 
     def condition_for_ref(ref):
+        if not ref.startswith('#') and _cpe_binding(ref) is not None and hasattr(source, 'cpe_check'):
+            try:
+                component_id, definition_id, item_sha256, check_sha256, href = source.cpe_check(ref)
+                fact = {'id_ref': definition_id, 'href': href, 'system': OVAL,
+                        'source_xml_sha256': check_sha256, 'source_component': component_id,
+                        'cpe_item_sha256': item_sha256, 'cpe_name': ref}
+                assessment_id, _ = fact_assessment(fact)
+                condition_id = condition_key(ref)
+                source_value = {**source_provenance(ref), 'href': href}
+                value = {'source': source_value}
+                if assessment_id is not None:
+                    value['assessment'] = assessment_id
+                add_condition(condition_id, value)
+                return {'condition': condition_id}
+            except ValueError as error:
+                reason = f'unqualified source CPE OVAL applicability {ref}: {error}'
+                unsupported.append({'kind': 'cpe_identity', 'identity': ref, 'reason': reason})
+                condition_id = unsupported_condition(ref, 'Unsupported CPE identity', reason, condition_key(ref))
+                add_condition(condition_id, {'source': source_provenance(ref)})
+                return {'condition': condition_id}
         if ref.startswith('#'):
             platform_id = ref[1:]
             spec = specifications.get(platform_id)
@@ -548,7 +572,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
     # (``#id``) and non-CPE references still flow through the executable
     # applicability path below, preserving genuine source conditions.
     benchmark_condition_refs = [ref for ref in benchmark_refs
-                                if _cpe_binding(ref) is None]
+                                if _cpe_binding(ref) is None or hasattr(source, 'cpe_check')]
     benchmark_conditions = refs_conditions(benchmark_condition_refs)
     # Keep this initialized even when a caller is converting a partial
     # document graph without the generated Benchmark wrapper.  The trace is

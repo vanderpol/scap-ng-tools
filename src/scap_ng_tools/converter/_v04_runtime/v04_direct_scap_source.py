@@ -314,6 +314,37 @@ class SourceModel:
         return {'levels': levels, 'effective_operator': 'all_of',
                 'note': 'ancestor levels ANDed; platform children within one level ORed'}
 
+    def cpe_check(self, cpe_name):
+        """Resolve an exact CPE dictionary check to its named OVAL Definition.
+
+        The source CPE dictionary is authoritative for this binding. We follow
+        its exact href and require one datastream component whose ID ends in
+        that source member name; we never search by Definition ID alone or
+        invent a native CPE predicate.
+        """
+        CPE = 'http://cpe.mitre.org/dictionary/2.0'
+        matches = []
+        for root in self.components.values():
+            for item in root.iter(f'{{{CPE}}}cpe-item'):
+                if item.get('name') != cpe_name:
+                    continue
+                checks = [child for child in item if child.tag == f'{{{CPE}}}check'
+                          and child.get('system') == OVAL]
+                ensure(len(checks) == 1, f'CPE identity has {len(checks)} OVAL checks: {cpe_name}')
+                check = checks[0]
+                href, definition_id = check.get('href'), (check.text or '').strip()
+                ensure(href and definition_id, f'CPE identity has incomplete OVAL check: {cpe_name}')
+                candidates = [component_id for component_id in self.components
+                              if component_id.endswith(href)]
+                ensure(len(candidates) == 1,
+                       f'CPE OVAL href does not resolve uniquely: {href}')
+                component_id = candidates[0]
+                self.node(component_id, definition_id, 'definition')
+                matches.append((component_id, definition_id, digest(xml_identity(item)),
+                                digest(xml_identity(check)), href))
+        ensure(len(matches) == 1, f'CPE identity does not resolve uniquely: {cpe_name}')
+        return matches[0]
+
     def cpe_platform_expression(self, source_id):
         """Return the CPE 2.0 Boolean tree without reducing it to names."""
         wanted = source_id.lstrip('#')
