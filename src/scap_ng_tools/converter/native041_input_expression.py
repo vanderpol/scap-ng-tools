@@ -134,8 +134,11 @@ def install(engine):
     def convert_variable(visitor, element):
         result = original_convert_variable(visitor, element)
         from v04_direct_scap_source import local_name
-        if (not getattr(visitor, "native_recovery", False) or
-                local_name(element) != "local_variable" or
+        # Explicit OVAL local_variable/@datatype=int is a source semantic
+        # boundary, not a native-recovery experiment. Apply the canonical
+        # elementwise conversion in the production converter too; otherwise
+        # collected lexical strings reach integer predicates unchanged.
+        if (local_name(element) != "local_variable" or
                 element.get("datatype") != "int" or len(element) != 1):
             return result
         # The source local_variable datatype=int is an explicit lexical result

@@ -72,8 +72,10 @@ class CollectedIntegerConversion(unittest.TestCase):
                     f'<{source_object} xmlns="{source_namespace}"/>'
                 )
 
+        # This is a production-path correction; it must not depend on the
+        # opt-in native-recovery candidate mode.
         visitor = engine.AssessmentConverter(
-            Source(), "component", [mapping], native_recovery=True
+            Source(), "component", [mapping]
         )
         visitor.native_name = lambda _node, _kind: "collected-int-variable"
         visitor.reference = lambda _identifier, _kind: {
