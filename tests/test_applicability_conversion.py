@@ -90,6 +90,23 @@ class ApplicabilityConversionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'cycle'):
             verify_published_inventory(cyclic)
 
+    def test_groups_with_duplicate_titles_keep_source_derived_unique_ids(self):
+        # Authentic DISA benchmarks reuse presentation titles for many Groups.
+        # Group identity must therefore not be derived from title text.
+        benchmark = ET.fromstring(f"""<Benchmark xmlns="{XCCDF}" id="b">
+          <Group id="group-first"><title>Rules</title></Group>
+          <Group id="group-second"><title>Rules</title></Group>
+        </Benchmark>""")
+        source = SourceModel.__new__(SourceModel)
+        source.benchmark = benchmark
+        source.parents = {child: parent for parent in benchmark.iter() for child in parent}
+        source.applicability_level = SourceModel.applicability_level.__get__(source)
+        groups = benchmark.findall(f'{{{XCCDF}}}Group')
+        rendered = [load_runtime().native_group(source, group, {}) for group in groups]
+        self.assertEqual(len({group['id'] for group in rendered}), 2)
+        self.assertTrue(all(group['id'].startswith('group-') for group in rendered))
+        self.assertNotEqual(rendered[0]['id'], rendered[1]['id'])
+
     def test_nested_group_conversion_uses_rule_id_and_keeps_local_applicability(self):
         benchmark = ET.fromstring(f'''<Benchmark xmlns="{XCCDF}" id="b">
           <Group id="outer"><platform idref="#outer-platform">

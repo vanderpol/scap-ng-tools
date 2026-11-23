@@ -2076,7 +2076,13 @@ def native_group(source, group, rule_links):
            'XCCDF Group relationships require a canonical non-flattening mapping: '
            + (group.get('id') or '<missing-id>') + ' source-identity=' + source_identity)
     level = source.applicability_level(group)
-    value = {'id': native_identifier(group, 'group'),
+    source_group_id = group.get('id')
+    ensure(source_group_id, 'XCCDF Group has no source id')
+    # Group titles are presentation metadata and are not unique in authentic
+    # DISA benchmarks.  Derive the native identity from the authored source ID
+    # so sibling/nested Groups cannot alias while keeping the exact source
+    # identity recoverable from the converter trace and package provenance.
+    value = {'id': source_native_identifier(source_group_id, 'group-'),
              'groups': [native_group(source, child, rule_links)
                         for child in group.findall(f'{{{XCCDF}}}Group')],
              'rules': [rule_links[r.get('id')] for r in group.findall(f'{{{XCCDF}}}Rule')
