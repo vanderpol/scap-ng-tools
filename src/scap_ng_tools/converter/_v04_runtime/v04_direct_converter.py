@@ -15,7 +15,7 @@ import zipfile
 
 from v04_direct_scap_source import (
     SourceModel, UnsupportedSource, OVAL, XCCDF, attributes, digest, ensure,
-    local_name, native_identifier, xml_identity,
+    local_name, native_identifier, source_native_identifier, xml_identity,
 )
 
 from v04_direct_datatypes import SOURCE_TYPES, SPECIAL_TYPES, native_datatype, literal, comparison
@@ -2287,19 +2287,26 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
     rule_ids = [row['source_rule'] for row in rule_trace]
     rule_links = {row['source_rule']: row['native_rule'] for row in rule_trace}
     benchmark = source.benchmark
+    source_benchmark_id = benchmark.get('id')
+    ensure(source_benchmark_id, 'source Benchmark has no id')
+    benchmark_native_id = source_native_identifier(source_benchmark_id, 'benchmark-')
+    platform_native_id = source_native_identifier(source_benchmark_id + '\x00platform', 'platform-')
+    applicability_native_id = source_native_identifier(source_benchmark_id, 'applicability-')
     ensure(all(source.rule_selected(source.rules[identifier]) for identifier in rule_ids), 'disabled source defaults unsupported')
     profiles, profile_trace = render_profiles(source, rule_ids, rule_links)
-    wrapper = {'id': 'direct-slice', 'ng_schema_version': '0.4.1', 'use_case': 'compliance',
+    wrapper = {'id': benchmark_native_id, 'ng_schema_version': '0.4.1', 'use_case': 'compliance',
         'version': {'value': benchmark.findtext(f'{{{XCCDF}}}version', '')},
         'assessment_specifications': [{'id': 'scap-ng.pre-alpha.assessment', 'version': '0.4.1'}],
-        'title': [{'text': '[AUTOMATED PROTOTYPE SUBSET] ' + benchmark.findtext(f'{{{XCCDF}}}title', ''), 'language': 'en'}],
+        'title': [{'text': benchmark.findtext(f'{{{XCCDF}}}title', ''), 'language': 'en'}],
         'description': [{'text': source_description_text(benchmark), 'language': 'en'}],
         'language': benchmark.get('{http://www.w3.org/XML/1998/namespace}lang'),
         'status': [{'value': child.text, **child.attrib} for child in benchmark.findall(f'{{{XCCDF}}}status')],
-        'metadata': {'prototype_subset': True, 'omitted_rule_count': len(source.rules) - len(rule_ids)},
+        'metadata': {'partial_conversion': True, 'conversion_scope': 'automated_assessment_selection_subset',
+                     'omitted_rule_count': len(source.rules) - len(rule_ids),
+                     'source_benchmark_id': source_benchmark_id},
         'notices': [], 'front_matter': [], 'rear_matter': [], 'references': [], 'text_blocks': [],
-        'platform': {'id': 'fixture-platform', 'title': 'Source Benchmark platform restriction'},
-        'applicability_catalog': 'fixture-applicability', 'scoring': [], 'parameters': [], 'default_selection': True,
+        'platform': {'id': platform_native_id, 'title': 'Source Benchmark platform restriction'},
+        'applicability_catalog': applicability_native_id, 'scoring': [], 'parameters': [], 'default_selection': True,
         'groups': [native_group(source, group, rule_links) for group in benchmark.findall(f'{{{XCCDF}}}Group')], 'profiles': profiles, 'rules': list(rule_links.values())}
     benchmark_applicability = native_applicability(source.applicability_level(benchmark))
     if benchmark_applicability is not None:
@@ -2313,13 +2320,15 @@ def assemble_subset(source, documents, rule_trace, mappings, *, native_recovery=
         wrapper['parameters']=[parameters[key] for key in sorted(parameters)]
     if rule_ids:
         documents['authoring/direct-slice/benchmark.json'] = {'benchmark': wrapper}
-        documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': 'fixture-applicability', 'conditions': source.applicability_catalog()}}
+        documents['authoring/direct-slice/applicability.json'] = {'applicability': {'id': applicability_native_id, 'conditions': source.applicability_catalog()}}
     unsupported = ['other Rules', 'manual execution', 'CPE/platform execution', 'full Rule metadata/remediation/scoring',
                    'other Object behaviors/traversal',
                    'record-level Variables and nested records',
                    'other capabilities/functions']
     trace = {'format': 'direct-converter-spike/1', 'source_zip_sha256': source.zip_sha256, 'source_xml_sha256': source.xml_sha256,
         'source_member': source.member, 'source_benchmark_component': source.benchmark_component,
+        'source_benchmark_id': source_benchmark_id, 'native_benchmark_id': benchmark_native_id,
+        'native_platform_id': platform_native_id, 'native_applicability_catalog_id': applicability_native_id,
         'component_hashes': source.component_hashes, 'rules': rule_trace, 'profiles': profile_trace,
         'source_benchmark_metadata': [xml_identity(child) for child in benchmark if local_name(child) not in ('Group', 'Rule', 'Profile', 'Value')],
         'omitted_rules': sorted(set(source.rules) - set(rule_ids)), 'xml_parse_calls': source.parse_count,

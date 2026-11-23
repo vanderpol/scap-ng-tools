@@ -177,6 +177,10 @@ def _assessment_document(source, component, definition_id, assessment_id, title,
 def build_applicability(source, documents, coverage, mappings, *, human_compact=True,
                         native_recovery=False, rule_ids=None):
     """Attach source applicability to one converted benchmark document set."""
+    from ._v04_runtime.v04_direct_scap_source import source_native_identifier
+    source_benchmark_id = source.benchmark.get('id') or 'benchmark'
+    applicability_native_id = source_native_identifier(source_benchmark_id, 'applicability-')
+    platform_native_id = source_native_identifier(source_benchmark_id + '\x00platform', 'platform-')
     specifications = extract_platform_specifications(source)
     shared, shared_traces = OrderedDict(), OrderedDict()
     conditions, condition_cache = OrderedDict(), {}
@@ -534,7 +538,8 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
     benchmark_path = 'authoring/direct-slice/benchmark.json'
     if benchmark_path in documents:
         wrapper = documents[benchmark_path]['benchmark']
-        wrapper['applicability_catalog'] = 'direct-slice-applicability'
+        wrapper['applicability_catalog'] = applicability_native_id
+        wrapper['platform']['id'] = platform_native_id
         wrapper['platform']['title'] = (
             'Source platform applicability; unresolved identities remain an explicit hold')
         if benchmark_conditions:
@@ -590,7 +595,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
 
     catalog_path = 'authoring/direct-slice/applicability.json'
     documents[catalog_path] = {'applicability': {
-        'id': 'direct-slice-applicability', 'conditions': dict(conditions)}}
+        'id': applicability_native_id, 'conditions': dict(conditions)}}
     for assessment_id, document in shared.items():
         documents[f'authoring/direct-slice/assessments/{assessment_id}.json'] = document
 
@@ -634,7 +639,7 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
 
     trace = {
         'format': 'scap-ng-applicability/1', 'catalog': catalog_path,
-        'catalog_id': 'direct-slice-applicability',
+        'catalog_id': applicability_native_id,
         'conditions': [{'id': key, **value} for key, value in conditions.items()],
         'platform_expressions': [{'id': key, **value}
                                for key, value in platform_expressions.items()],

@@ -46,6 +46,25 @@ def digest(value):
     return sha256(json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(',', ':')).encode()).hexdigest()
 
 
+def source_native_identifier(source_identity, prefix, suffix=""):
+    """Create a stable, source-derived native identity within 0.4.1 bounds.
+
+    The readable stem is only presentation; the digest is over the exact
+    source identity so distinct source Benchmarks/platform references cannot
+    alias after case/punctuation normalization or truncation.
+    """
+    ensure(isinstance(source_identity, str) and source_identity,
+           'source identity is required for native identifier')
+    ensure(re.fullmatch('[a-z]+-', prefix), 'invalid source native identifier prefix')
+    ensure(not suffix or re.fullmatch('-[a-z]+', suffix), 'invalid source native identifier suffix')
+    token = sha256(source_identity.encode('utf-8')).hexdigest()[:12]
+    stem = re.sub('[^a-z0-9]+', '-', source_identity.lower()).strip('-') or 'source'
+    budget = 64 - len(prefix) - len(token) - 1 - len(suffix)
+    ensure(budget >= 1, 'source native identifier prefix exceeds canonical limit')
+    stem = stem[:budget].rstrip('-') or 'source'
+    return f'{prefix}{stem}-{token}{suffix}'
+
+
 def native_identifier(element, suffix, title=None):
     title = (title or element.get('comment') or element.findtext(f'{{{XCCDF}}}title') or
              element.findtext(f'{{{OVAL}}}metadata/{{{OVAL}}}title') or local_name(element))
