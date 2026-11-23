@@ -2081,7 +2081,8 @@ def native_group(source, group, rule_links):
     # Group titles are presentation metadata and are not unique in authentic
     # DISA benchmarks.  Derive the native identity from the authored source ID
     # so sibling/nested Groups cannot alias while keeping the exact source
-    # identity recoverable from the converter trace and package provenance.
+    # identity remains deterministically traceable against the pinned source
+    # package through the source-derived stem and digest.
     value = {'id': source_native_identifier(source_group_id, 'group-'),
              'groups': [native_group(source, child, rule_links)
                         for child in group.findall(f'{{{XCCDF}}}Group')],
