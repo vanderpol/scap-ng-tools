@@ -16,13 +16,17 @@ source_native_identifier = _runtime.source_native_identifier
 
 UBUNTU_BENCHMARKS = (
     ("U_CAN_Ubuntu_18-04_LTS_V2R12_STIG_SCAP_1-4_Benchmark-enhancedV17-signed.zip",
-     "xccdf_mil.disa.stig_benchmark_CAN_Ubuntu_18-04_STIG"),
+     "xccdf_mil.disa.stig_benchmark_CAN_Ubuntu_18-04_STIG",
+     "7b5ebb608e75afbdc637eb3f6bdcc62a83d62404f6659a5b18ccc08cd20b9953"),
     ("U_CAN_Ubuntu_20-04_LTS_V2R5_STIG_SCAP_1-4_Benchmark-enhancedV19-signed.zip",
-     "xccdf_mil.disa.stig_benchmark_Canonical_Ubuntu_20-04_LTS_STIG"),
+     "xccdf_mil.disa.stig_benchmark_Canonical_Ubuntu_20-04_LTS_STIG",
+     "f9bd992232599535b66fcbc26bd9063fcc992da871f353e0830651b3866aa682"),
     ("U_CAN_Ubuntu_22-04_LTS_V2R8_STIG_SCAP_1-4_Benchmark-enhancedV11-signed.zip",
-     "xccdf_mil.disa.stig_benchmark_CAN_Ubuntu_22-04_LTS_STIG"),
+     "xccdf_mil.disa.stig_benchmark_CAN_Ubuntu_22-04_LTS_STIG",
+     "0dd35a101f1a36c0d514778bdbbb7a41691d32f7ce8d836a9fd2333d5ea48d53"),
     ("U_CAN_Ubuntu_24-04_LTS_V1R6_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip",
-     "xccdf_mil.disa.stig_benchmark_CAN_Ubuntu_24-04_STIG"),
+     "xccdf_mil.disa.stig_benchmark_CAN_Ubuntu_24-04_STIG",
+     "9429eb85a8fd36f9b46360f1567a61c251a0a8016b5575d8e595536b41dbca42"),
 )
 
 
@@ -47,11 +51,14 @@ class Issue122IdentityTests(unittest.TestCase):
         snapshot = load_pinned_snapshot(schema_root)
         mappings = snapshot.supported_mappings(_runtime.CAPABILITIES)
         outputs = []
-        for filename, source_id in UBUNTU_BENCHMARKS:
+        for filename, source_id, expected_sha256 in UBUNTU_BENCHMARKS:
             archive = root / filename
             if not archive.is_file():
                 self.skipTest(f"missing authentic archive: {archive}")
-            source = SourceModel(archive, hashlib.sha256(archive.read_bytes()).hexdigest())
+            actual_sha256 = hashlib.sha256(archive.read_bytes()).hexdigest()
+            self.assertEqual(actual_sha256, expected_sha256,
+                             f"source pin changed for authentic archive: {filename}")
+            source = SourceModel(archive, expected_sha256)
             self.assertEqual(source.benchmark.get("id"), source_id)
             source_rule = next(iter(source.rules))
             documents, trace = assemble_subset(
