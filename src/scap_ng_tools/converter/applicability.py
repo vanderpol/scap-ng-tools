@@ -623,13 +623,13 @@ def build_applicability(source, documents, coverage, mappings, *, human_compact=
                 return found
         return None
 
-    from ._v04_runtime.v04_direct_scap_source import native_identifier
+    from ._v04_runtime.v04_direct_scap_source import source_native_identifier
     for source_group in source.benchmark.findall('.//' + f'{{{XCCDF}}}Group'):
         record = group_level_records.get(source_group.get('id'))
         if not record or not record['conditions']:
             continue
         native_group = find_native_group(native_groups,
-                                          native_identifier(source_group, 'group'))
+                                          source_native_identifier(source_group.get('id'), 'group-'))
         if native_group is None:
             unsupported.append({'kind': 'group', 'identity': source_group.get('id'),
                                 'reason': 'source Group applicability has no serialized native Group target'})

@@ -7,7 +7,7 @@ from unittest.mock import patch
 from scap_ng_tools.converter.applicability import (
     build_applicability, extract_platform_specifications,
 )
-from scap_ng_tools.converter._v04_runtime.v04_direct_scap_source import SourceModel
+from scap_ng_tools.converter._v04_runtime.v04_direct_scap_source import SourceModel, source_native_identifier
 
 XCCDF = 'http://checklists.nist.gov/xccdf/1.2'
 CPE = 'http://cpe.mitre.org/language/2.0'
@@ -213,7 +213,7 @@ class DirectApplicabilityExpressions(unittest.TestCase):
         source = source_for(cpe, ref=None, group_ref='#ftp')
         docs = {'authoring/direct-slice/benchmark.json': {'benchmark': {
                     'platform': {'id': 'b'},
-                    'groups': [{'id': 'group-group', 'groups': [], 'rules': []}]}},
+                    'groups': [{'id': source_native_identifier('g', 'group-'), 'groups': [], 'rules': []}]}},
                 'authoring/direct-slice/rules/r.json': {'rule': {}}}
         coverage = {'rules': [{'source_rule': 'r', 'status': 'converted',
                                'artifacts': ['authoring/direct-slice/rules/r.json']}]}

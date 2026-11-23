@@ -43,7 +43,7 @@ class ApplicabilityConversionTests(unittest.TestCase):
     def test_xccdf_inheritance_preserves_rule_group_benchmark_order(self):
         benchmark = ET.Element(f'{{{XCCDF}}}Benchmark')
         ET.SubElement(benchmark, f'{{{XCCDF}}}platform', {'idref': 'cpe:/o:fixture:benchmark'})
-        group = ET.SubElement(benchmark, f'{{{XCCDF}}}Group')
+        group = ET.SubElement(benchmark, f'{{{XCCDF}}}Group', {'id': 'fixture-group'})
         ET.SubElement(group, f'{{{XCCDF}}}platform', {'idref': '#fixture-linux-platform'})
         rule = ET.SubElement(group, f'{{{XCCDF}}}Rule', {'id': 'fixture-inherited-rule'})
         ET.SubElement(rule, f'{{{XCCDF}}}platform', {'idref': 'cpe:/a:fixture:rule'})
@@ -294,7 +294,7 @@ class ApplicabilityConversionTests(unittest.TestCase):
         cpe_root = ET.parse(FIXTURES / 'linux-platform.xml').getroot()
         benchmark = ET.Element(f'{{{XCCDF}}}Benchmark')
         ET.SubElement(benchmark, f'{{{XCCDF}}}platform', {'idref': '#fixture-linux-platform'})
-        group = ET.SubElement(benchmark, f'{{{XCCDF}}}Group')
+        group = ET.SubElement(benchmark, f'{{{XCCDF}}}Group', {'id': 'fixture-group'})
         ET.SubElement(group, f'{{{XCCDF}}}platform', {'idref': '#fixture-linux-platform'})
         rule = ET.SubElement(group, f'{{{XCCDF}}}Rule', {'id': 'fixture-rule'})
         ET.SubElement(rule, f'{{{XCCDF}}}platform', {'idref': '#fixture-linux-platform'})
