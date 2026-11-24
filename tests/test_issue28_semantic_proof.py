@@ -198,12 +198,14 @@ class IdentityCollisionRecovery(unittest.TestCase):
         source = type('Source', (), {'nodes': {'component': {
             n.get('id'): n for n in (first, second)
         }}})()
-        visitor = AssessmentConverter(source, 'component', [], native_recovery=True)
-        a = visitor.native_name(first, 'test')
-        b = visitor.native_name(second, 'test')
-        self.assertNotEqual(a, b)
-        self.assertLessEqual(len(a), 64)
-        self.assertLessEqual(len(b), 64)
+        for native_recovery in (False, True):
+            with self.subTest(native_recovery=native_recovery):
+                visitor = AssessmentConverter(source, 'component', [], native_recovery=native_recovery)
+                a = visitor.native_name(first, 'test')
+                b = visitor.native_name(second, 'test')
+                self.assertNotEqual(a, b)
+                self.assertLessEqual(len(a), 64)
+                self.assertLessEqual(len(b), 64)
 
 class NilSelectorRecovery(unittest.TestCase):
     def test_registry_key_and_name_nil_selectors_are_native_null(self):
