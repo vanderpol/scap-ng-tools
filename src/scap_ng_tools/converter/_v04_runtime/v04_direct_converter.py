@@ -284,10 +284,12 @@ class AssessmentConverter:
         original = element.get('id')
         ensure(isinstance(original, str) and original, 'source node lacks identity for native naming')
         key = suffix, identifier
-        if self.native_recovery and key in self.native_names and self.native_names[key] != original:
+        if key in self.native_names and self.native_names[key] != original:
             # Readable comments are not identities. If the source-derived
-            # descriptor is still ambiguous (including identical comments,
+            # descriptor is ambiguous (including identical comments,
             # controls, and values), append a deterministic source-ID token.
+            # This is required in the production path too: native_recovery is
+            # an authoring mode, not a license for two source Tests to alias.
             token = digest(original)[:10]
             stem = identifier.removesuffix('-' + suffix)
             budget = 64 - len(suffix) - len(token) - 2
