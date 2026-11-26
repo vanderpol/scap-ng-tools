@@ -267,20 +267,34 @@ def render_native_documents(snapshot, documents):
                 result[key] = self.construct_object(value_node, deep=deep)
             return result
 
+    # Validate the generated object graph once before serialization.  Do not
+    # rebuild the full schema registry once per document: the pinned snapshot
+    # is immutable and ``validate_native_documents`` loads the complete
+    # Assessment $ref closure.  Repeating that work for every JSON/YAML member
+    # turns a normal full-benchmark conversion into an accidental multi-GB
+    # read/CPU workload.
     validate_native_documents(snapshot, documents)
     rendered = {}
+    decoded_json_documents = {}
+    decoded_yaml_documents = {}
     for name, document in documents.items():
         json_text = json.dumps(document, indent=2, allow_nan=False) + '\n'
         yaml_text = authoring_yaml(document)
         try:
-            decoded_json, decoded_yaml = json.loads(json_text), yaml.load(yaml_text, Loader=UniqueKeys)
+            decoded_json = json.loads(json_text)
+            decoded_yaml = yaml.load(yaml_text, Loader=UniqueKeys)
         except (ValueError, yaml.YAMLError) as error:
             raise QualifiedConversionError('invalid serialized native output: ' + name) from error
         if decoded_json != document or decoded_yaml != document:
             raise QualifiedConversionError('serialized native output differs from validated document: ' + name)
-        validate_native_documents(snapshot, {name: decoded_json})
-        validate_native_documents(snapshot, {name: decoded_yaml})
+        decoded_json_documents[name] = decoded_json
+        decoded_yaml_documents[name] = decoded_yaml
         rendered[name] = (json_text, yaml_text)
+    # Validate both serialized representations as one batch.  This preserves
+    # per-document error paths while amortizing the immutable registry/closure
+    # construction across all members.
+    validate_native_documents(snapshot, decoded_json_documents)
+    validate_native_documents(snapshot, decoded_yaml_documents)
     return rendered
 
 
