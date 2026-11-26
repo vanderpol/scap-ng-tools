@@ -60,6 +60,25 @@ Then run the existing regression-triage, datatype-recovery and remaining-field
 commands in that workflow without changing their arguments. Preserve all JSON,
 CSV and summary exit codes and hashes.
 
+Add `--production --probe-focused` to run the default production options and
+retry every bulk-blocked source Rule individually under those same options.
+The report records any focused success alongside the bulk blocker. The rebuild
+also checks admitted Rule documents, Benchmark references and Profile selection
+against the original XML. It reconciles the explicit blocked IDs separately.
+
+For a complete conversion and its directory package, run the strict gate with
+the original signed source archive as the identity authority:
+
+```bash
+PYTHONPATH=src python -m scap_ng_tools.source_rule_completeness \
+  "$SOURCE_ZIP" --authoring "$DIRECT_SLICE" --package "$PACKAGE"
+```
+
+Run it after the existing canonical package adapter. It checks every original
+Rule identity, source check provenance, Benchmark Rule list, Profile selection,
+Assessment reference and package manifest member. Any omitted source Rule
+fails this gate.
+
 ## Full OVAL Self-Assertion conversion/parity
 
 Use the exact corrected source and canonical schema commands from
