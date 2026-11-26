@@ -1,9 +1,10 @@
-"""Exact binary32 conversion boundaries for Issue #28 float recovery."""
-import struct
+"""Exact binary32 conversion boundaries for the canonical float contract."""
+import os
+from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 
-from scap_ng_tools.converter.direct04 import load_runtime
+from scap_ng_tools.converter.direct04 import convert_benchmark, convert_focused, load_runtime
 
 
 load_runtime()
@@ -43,26 +44,53 @@ class Binary32Recovery(unittest.TestCase):
                 ('greater than or equal', 'float_greater_than_or_equal'),
                 ('less than', 'float_less_than'),
                 ('less than or equal', 'float_less_than_or_equal')):
-            with self.subTest(operation=operation):
-                visitor = AssessmentConverter(None, None, [], native_recovery=True)
-                element = ET.fromstring(
-                    f'<subexpression xmlns="{OVAL}" datatype="float" '
-                    f'operation="{operation}">9.9999999</subexpression>')
-                result = visitor.predicate(element, mapping)
-                self.assertEqual(set(result) & {native}, {native})
-                self.assertEqual(result[native], 10.0)
-                self.assertEqual(visitor.conversion_warnings[0]['code'],
-                                 'native_float_binary32_contract')
+            for recovery in (False, True):
+                with self.subTest(operation=operation, recovery=recovery):
+                    visitor = AssessmentConverter(None, None, [], native_recovery=recovery)
+                    element = ET.fromstring(
+                        f'<subexpression xmlns="{OVAL}" datatype="float" '
+                        f'operation="{operation}">9.9999999</subexpression>')
+                    result = visitor.predicate(element, mapping)
+                    self.assertEqual(result[native], 10.0)
+                    self.assertEqual(visitor.conversion_warnings[0]['code'],
+                                     'native_float_binary32_contract')
 
-    def test_historical_path_does_not_silently_coerce_float(self):
+    def test_production_float_predicate_rejects_nonfinite_operands(self):
         mapping = {'capability': 'independent.shellcommand',
                    'native': {'state_field_map': {'subexpression': 'subexpression'},
                               'state_value_enums': {}}}
         element = ET.fromstring(
             f'<subexpression xmlns="{OVAL}" datatype="float" '
-            'operation="greater than or equal">10.0</subexpression>')
-        with self.assertRaisesRegex(ValueError, 'binary32 recovery contract'):
+            'operation="greater than or equal">INF</subexpression>')
+        with self.assertRaisesRegex(ValueError, 'float lexical form'):
             AssessmentConverter(None, None, []).predicate(element, mapping)
+
+    @unittest.skipUnless(os.environ.get('SCAP_NG_UBUNTU_FIXTURES_ROOT')
+                         and os.environ.get('SCAP_NG_SCHEMA_ROOT'), 'requires pinned Ubuntu and schema fixtures')
+    def test_production_focused_and_bulk_preserve_ubuntu_float_rule(self):
+        source = Path(os.environ['SCAP_NG_UBUNTU_FIXTURES_ROOT']) / (
+            'U_CAN_Ubuntu_24-04_LTS_V1R6_STIG_SCAP_1-4_Benchmark-enhancedV8-signed.zip')
+        rule_id = 'xccdf_mil.disa.stig_rule_SV-270816r1066937_rule'
+        options = dict(schema_root=Path(os.environ['SCAP_NG_SCHEMA_ROOT']),
+                       source=source,
+                       sha256_pin='9429eb85a8fd36f9b46360f1567a61c251a0a8016b5575d8e595536b41dbca42')
+        focused_docs, focused_trace = convert_focused(**options, rule_ids=[rule_id])
+        bulk_docs, bulk_trace, coverage = convert_benchmark(**options)
+        self.assertEqual(coverage['summary']['source_rules'], 195)
+        self.assertEqual(len(bulk_trace['rules']), 195)
+        self.assertEqual(bulk_trace['omitted_rules'], [])
+        row, = [row for row in coverage['rules'] if row['source_rule'] == rule_id]
+        self.assertEqual(row['status'], 'converted')
+        self.assertEqual(row['inventory_problems'], [])
+        binding, = focused_trace['rules']
+        self.assertEqual(binding, next(row for row in bulk_trace['rules'] if row['source_rule'] == rule_id))
+        for path in row['artifacts']:
+            self.assertEqual(focused_docs[path], bulk_docs[path])
+        self.assertEqual(len(binding['manual_alternatives']), 1)
+        warning, = [entry for entry in binding['conversion_warnings']
+                    if entry['code'] == 'native_float_binary32_contract']
+        self.assertEqual(warning['source_lexical'], '10.0')
+        self.assertFalse(warning['scanner_evaluated'])
 
 
 if __name__ == '__main__':

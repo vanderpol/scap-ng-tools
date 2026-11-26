@@ -15,6 +15,8 @@ from pathlib import Path
 import subprocess
 import sys
 
+from scap_ng_tools.source_rule_completeness import audit
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_COMMIT = "8c8e5dff860af6b1290ee9273a282db24278f8d5"
 CANONICAL_SCHEMA_COMMIT = "2d983fcbd7b2367d567ca8ccc689a378d08905e4"
@@ -192,31 +194,53 @@ def compare_rule_ids(old_rows, new_rows, categories):
             "scanner_equivalent": False}
 
 
-def run_build(schema_root, source_root, crosswalk, categories, *, native_recovery):
-    from scap_ng_tools.converter.direct04 import convert_benchmark
+def run_build(schema_root, source_root, crosswalk, categories, *, native_recovery,
+              probe_focused=False):
+    from scap_ng_tools.converter.direct04 import convert_benchmark, convert_focused
     zip_paths = source_paths(source_root, crosswalk)
     rows, totals = [], Counter()
+    audited, audit_failures, focused_probes = {}, {}, []
     for index, item in enumerate(crosswalk["benchmarks"], 1):
         name = item["filename"]
         print(f"[{index:02d}/65] {name}", file=sys.stderr, flush=True)
-        docs, trace, coverage = convert_benchmark(
-            schema_root=schema_root, source=zip_paths[name],
-            sha256_pin=item["source_sha256"], native_recovery=native_recovery)
+        options = dict(schema_root=schema_root, source=zip_paths[name],
+                       sha256_pin=item["source_sha256"], native_recovery=native_recovery)
+        docs, trace, coverage = convert_benchmark(**options)
         if coverage["summary"]["source_rules"] != item["source_rules"] or len(coverage["rules"]) != item["source_rules"]:
             raise ValueError("original Rule count drift: " + name)
         if coverage.get("scanner_evaluated") or coverage.get("coverage_promoted"):
             raise ValueError("forbidden scanner/proof promotion: " + name)
+        blocked = []
         for rule in coverage["rules"]:
             if rule.get("status") not in RECORD_TYPES or rule.get("proof_level") not in ("none", "authoring_validated"):
                 raise ValueError("unexpected authoring qualification: " + name)
             rows.append({"benchmark": name, **rule})
+            if rule["status"] == "blocked":
+                blocked.append(rule["source_rule"])
+        try:
+            audited[name] = audit(zip_paths[name], docs.values(), trace, expected_omissions=blocked)
+        except (KeyError, ValueError) as error:
+            audit_failures[name] = str(error)
+        if probe_focused:
+            for source_rule in blocked:
+                probe = {"benchmark": name, "source_rule": source_rule}
+                try:
+                    focused, focused_trace = convert_focused(**options, rule_ids=[source_rule])
+                except ValueError as error:
+                    probe.update(status="blocked", reason=str(error))
+                else:
+                    if len([doc for doc in focused.values() if "rule" in doc]) != 1 or [
+                            rule["source_rule"] for rule in focused_trace["rules"]] != [source_rule]:
+                        raise ValueError("focused conversion returned a different Rule: " + source_rule)
+                    probe["status"] = "converted"
+                focused_probes.append(probe)
         totals[categories[name]] += len(coverage["rules"])
         if coverage["summary"]["statuses"].get("converted", 0) and not docs:
             raise ValueError("converted Rules yielded no native authoring: " + name)
     if dict(totals) != {"active": 7990, "owner_excluded_sql": 209,
                          "historical_windows_2012": 693}:
         raise ValueError("owner-scoped source totals no longer reconcile")
-    return rows
+    return rows, audited, audit_failures, focused_probes
 
 
 def main():
@@ -233,6 +257,10 @@ def main():
                         help="expected active flat 0.4.1 schema aggregate SHA-256")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--enforce-nonregression", action="store_true")
+    parser.add_argument("--production", action="store_true",
+                        help="use default production admission instead of the historical recovery lane")
+    parser.add_argument("--probe-focused", action="store_true",
+                        help="retry every blocked Rule individually using the same conversion options")
     args = parser.parse_args()
     if args.output.exists():
         parser.error("output already exists; no overwrite is permitted")
@@ -245,21 +273,38 @@ def main():
     crosswalk, sql = read_json(CROSSWALK), read_json(SQL_POLICY)
     categories = expected_scope(crosswalk, sql)
     from scap_ng_tools.contracts.schema_snapshot_v041 import Pinned041SchemaSnapshot
+    from scap_ng_tools.converter.direct04 import conversion_identity
     snap = Pinned041SchemaSnapshot(args.schema_root)
     schema_digest = snap.manifest()["aggregate_sha256"]
     expected_schema_digest = args.schema_aggregate_sha256 or CANONICAL_SCHEMA_DIGEST
     if schema_digest != expected_schema_digest:
         parser.error("canonical 0.4.1 aggregate digest differs from supplied pin")
+    converter_identity = conversion_identity(snap)
     with gzip.open(HISTORICAL_RULES, "rt", encoding="utf-8") as reader:
         historical = json.load(reader)
-    new_rows = run_build(args.schema_root, args.source_root, crosswalk, categories, native_recovery=True)
+    new_rows, audited, audit_failures, focused_probes = run_build(
+        args.schema_root, args.source_root, crosswalk, categories,
+        native_recovery=not args.production, probe_focused=args.probe_focused)
     output = compare_rule_ids(historical["rules"], new_rows, categories)
+    focused_bulk_mismatches = [row for row in focused_probes if row["status"] == "converted"]
+    out_of_scope_blockers = [
+        {key: row[key] for key in ("benchmark", "source_rule", "primary_blocker")}
+        for row in new_rows
+        if row["status"] == "blocked" and categories[row["benchmark"]] != "active"
+    ]
     output.update({"format": "scap-ng-0.4.1-source-rule-identity-rebuild/1",
                    "source_repository": "niwc-atlantic/scap-content-library",
                    "canonical_schema_commit": args.canonical_schema_commit,
                    **source_identity,
+                   "converter_identity": converter_identity,
                    "schema_version": "0.4.1", "schema_aggregate_sha256": schema_digest,
                    "source_benchmarks": 65,
+                   "native_recovery": not args.production,
+                   "audited_benchmarks": audited,
+                   "completeness_audit_failures": audit_failures,
+                   "focused_probes": focused_probes,
+                   "focused_bulk_mismatches": focused_bulk_mismatches,
+                   "out_of_scope_blocked_rule_ids": out_of_scope_blockers,
                    "owner_scope": {"active": 7990, "owner_excluded_sql": 209,
                                    "historical_windows_2012": 693},
                    "qualification": "CONVERTED_UNVERIFIED; no scanner runtime evidence"})
@@ -267,6 +312,9 @@ def main():
     args.output.write_text(json.dumps(output, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: output[key] for key in ("original", "candidate", "newly_blocked_from_converted",
                                                       "newly_converted_from_blocked", "nonregression_pass")}, sort_keys=True))
+    if audit_failures:
+        print("HOLD: independent Rule completeness audit failed: " + json.dumps(audit_failures), file=sys.stderr)
+        return 1
     if args.enforce_nonregression and not output["nonregression_pass"]:
         print("HOLD: previously converted source Rule IDs now blocked/manual", file=sys.stderr)
         return 1

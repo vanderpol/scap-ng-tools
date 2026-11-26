@@ -1629,10 +1629,7 @@ class AssessmentConverter:
         return {'concat': values} if operation == 'concat' else {'regex_capture': {'pattern': element.get('pattern'), 'value': values[0]}}
 
     def literal(self, source_type, text):
-        # Float conversion is opt-in because the canonical binary32 contract
-        # is not a generic host-number coercion and the historical path must
-        # remain byte-compatible.
-        return literal(source_type, text, binary32=self.native_recovery)
+        return literal(source_type, text)
 
     def operand(self, element, *, enum_aliases=None):
         if element.get('var_ref'):
@@ -1866,8 +1863,6 @@ class AssessmentConverter:
             ensure(element.get('datatype', 'string') == 'string', 'case-insensitive inequality requires string datatype')
         datatype = element.get('datatype', 'string')
         if datatype == 'float':
-            ensure(self.native_recovery,
-                   'float comparison requires the native binary32 recovery contract')
             # The source contract is explicit about expected-value rounding;
             # retain the lexical entity and contract binding in provenance. The
             # converter does not claim scanner/runtime equivalence here.

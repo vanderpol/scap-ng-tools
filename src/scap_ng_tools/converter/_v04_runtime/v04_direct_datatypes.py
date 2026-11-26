@@ -2,8 +2,8 @@
 
 String-based special types keep their exact lexical values and select the
 already-approved typed comparison operator. Float expected values use the
-owner-coordinated finite IEEE-754 binary32 contract only in native recovery
-mode: decimal text is rounded directly from an exact rational, never through a
+canonical finite IEEE-754 binary32 contract: decimal text is rounded
+directly from an exact rational, never through a
 binary64 intermediate. Runtime comparison and status propagation remain
 outside this converter.
 """
@@ -118,14 +118,13 @@ def native_datatype(source_type):
     return SOURCE_TYPES[source_type]
 
 
-def literal(source_type, text, *, binary32=False):
+def literal(source_type, text):
     """Convert source lexical forms with an approved native representation."""
     ensure(source_type in SOURCE_TYPES, f'unsupported scalar datatype: {source_type}')
     if source_type == 'boolean':
         ensure(text in ('true', 'false', '1', '0'), 'invalid boolean literal')
         return text in ('true', '1')
     if source_type == 'float':
-        ensure(binary32, 'float literal requires the native binary32 recovery contract')
         return binary32_literal(text)
     try:
         return int(text) if source_type == 'int' else text
