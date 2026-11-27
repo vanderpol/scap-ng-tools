@@ -19,7 +19,14 @@
     "result": "PASS",
     "passed": 50,
     "skipped": 2,
-    "subtests": 20
+    "subtests": 20,
+    "full_suite": {
+      "command": "PYTHONPATH=. .venv/bin/pytest -q",
+      "result": "PASS",
+      "passed": 503,
+      "skipped": 39,
+      "subtests": 300
+    }
   },
   "ri_boundary": {
     "runtime_commit": "0c128cad6",
