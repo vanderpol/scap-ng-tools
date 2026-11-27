@@ -2,7 +2,7 @@
   "format": "scap-ng-tools/issue129-empty-population-provenance/1",
   "date": "2026-11-27",
   "issue": 129,
-  "tools_commit": "004f7d3",
+  "tools_commit": "1b6e0ad",
   "canonical_reviewed_draft": "3023eeb6149c0064ce8c337cd955f95e98a5b778",
   "canonical_final_pin": false,
   "conversion_policy": {
