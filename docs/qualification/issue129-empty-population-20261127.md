@@ -11,7 +11,7 @@ runtime semantics.
 - Canonical SCAP-NG 0.4.1 reviewed draft head: PR #135 at
   `3023eeb6149c0064ce8c337cd955f95e98a5b778` (not treated as a final pin until
   the canonical change is merged and repinned).
-- Tools current main: `d119f0d03e7e6dfe8ea52591364415c90adf4744`.
+- Tools current main: `ccd23f0` (current main; based on `8e33b95`).
 - Active schema pin remains the existing Tools `canonical-schema-pin.json`; no
   version bump or parallel grammar is introduced by this issue.
 
