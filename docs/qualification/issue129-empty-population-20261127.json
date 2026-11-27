@@ -22,7 +22,7 @@
     "subtests": 20
   },
   "ri_boundary": {
-    "runtime_commit": "b5d86341b",
+    "runtime_commit": "0c128cad6",
     "canonical_17_test_runtime": "PASS",
     "source_oval_empty_reference": "intentional compatibility divergence; preserve source identity"
   },
