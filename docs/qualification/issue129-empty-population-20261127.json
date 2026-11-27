@@ -1,0 +1,30 @@
+{
+  "format": "scap-ng-tools/issue129-empty-population-provenance/1",
+  "date": "2026-11-27",
+  "issue": 129,
+  "tools_commit": "d119f0d03e7e6dfe8ea52591364415c90adf4744",
+  "canonical_reviewed_draft": "3023eeb6149c0064ce8c337cd955f95e98a5b778",
+  "canonical_final_pin": false,
+  "conversion_policy": {
+    "source_xml_rewrite": false,
+    "synthetic_empty_string": false,
+    "dummy_guard": false,
+    "fabricated_item": false,
+    "untyped_empty_literal": "explicit_ambiguous_empty_hold",
+    "typed_empty_literal": "preserve_declared_datatype",
+    "collected_values_projection": "preserve_source_traced_expression"
+  },
+  "qualification": {
+    "command": ".venv/bin/pytest -q tests/test_issue129_empty_population_provenance.py tests/test_variable_inference_candidate.py tests/test_issue59_native_function_lowering.py tests/test_converter_provenance.py",
+    "result": "PASS",
+    "passed": 50,
+    "skipped": 2,
+    "subtests": 20
+  },
+  "ri_boundary": {
+    "runtime_commit": "b5d86341b",
+    "canonical_17_test_runtime": "PASS",
+    "source_oval_empty_reference": "intentional compatibility divergence; preserve source identity"
+  },
+  "ubuntu_scc_alignment": "not_established; same 195/195 package and authority differential remains required"
+}
